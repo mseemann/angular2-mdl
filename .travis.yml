@@ -16,5 +16,7 @@ before_install:
  - sudo apt-get update
  - sudo apt-get install -y libappindicator1 fonts-liberation
  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
- 
+
 after_success:
+  # Send coverage data to Coveralls
+  - cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
