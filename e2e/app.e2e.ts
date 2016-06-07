@@ -12,9 +12,4 @@ describe('angular2-mdl App', function() {
     expect(page.getParagraphText()).toEqual('angular2-mdl works!');
   });
 
-  it('should have theme accent colors', () => {
-    page.navigateTo();
-    expect(page.getHeadlineElement().getCssValue('color')).toEqual('rgba(255, 215, 64, 1)');
-  });
-
 });
