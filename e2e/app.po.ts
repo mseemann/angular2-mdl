@@ -1,6 +1,6 @@
 export class Angular2MdlPage {
   navigateTo() {
-    return browser.get('/');
+    return browser.get('/angular2-mdl');
   }
 
   getParagraphText() {
