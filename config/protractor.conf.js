@@ -6,9 +6,10 @@ exports.config = {
   specs: [
     '../e2e/**/*.e2e.ts'
   ],
-  capabilities: {
-    'browserName': 'chrome'
-  },
+  multiCapabilities: [{
+    'browserName': 'chrome',
+      exclude: ['../e2e/**/*.xandroid.e2e.ts']
+  }],
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',

@@ -83,7 +83,8 @@ exports.config = {
       name: 'Android phone',
       deviceOrientation: 'portrait',
       shardTestFiles: true,
-      maxInstances: 5
+      maxInstances: 5,
+      exclude: ['../tmp/e2e/**/*.xandroid.e2e.js']
     },
     {
       browserName: 'android',
@@ -94,7 +95,8 @@ exports.config = {
       name: 'Android phone',
       deviceOrientation: 'portrait',
       shardTestFiles: true,
-      maxInstances: 5
+      maxInstances: 5,
+      exclude: ['../tmp/e2e/**/*.xandroid.e2e.js']
     },
     {
       browserName: 'android',
@@ -104,7 +106,8 @@ exports.config = {
       deviceType: 'tablet',
       name: 'Android tablet',
       shardTestFiles: true,
-      maxInstances: 5
+      maxInstances: 5,
+      exclude: ['../tmp/e2e/**/*.xandroid.e2e.js']
     },
     {
       browserName: 'android',
@@ -114,7 +117,8 @@ exports.config = {
       deviceType: 'tablet',
       name: 'Android tablet',
       shardTestFiles: true,
-      maxInstances: 5
+      maxInstances: 5,
+      exclude: ['../tmp/e2e/**/*.xandroid.e2e.js']
     },
     {
       browserName: 'Safari',
