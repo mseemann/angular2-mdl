@@ -3,7 +3,11 @@ export class Angular2MdlPage {
     return browser.get('/angular2-mdl');
   }
 
+  getHeadlineElement(){
+    return element(by.css('angular2-mdl-app h1'));
+  }
+
   getParagraphText() {
-    return element(by.css('angular2-mdl-app h1')).getText();
+    return this.getHeadlineElement().getText();
   }
 }
