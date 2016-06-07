@@ -12,6 +12,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "sourceRoot": "/",
-    "target": "es5"
+    "target": "es5",
+    "outDir": "../tmp/e2e"
   }
 }
