@@ -4,8 +4,8 @@
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
-Working with the materila-design-lite scss
+Working with the material-design-lite scss:
 
-npm install node-sass --save-dev
+- npm install node-sass --save-dev
 
 

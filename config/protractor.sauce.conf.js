@@ -160,7 +160,8 @@ exports.config = {
        browserName: 'MicrosoftEdge',
        platform: 'Windows 10',
        version: '13.10586',
-       name: "win-edge"
+       name: "win-edge",
+      exclude: ['../tmp/e2e/**/*.e2e.js'] // exclude all tests for now
      }
   ],
   sauceBuild: buildNumber,
