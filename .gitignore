@@ -27,3 +27,6 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+
+#ignore files added by travis ci script
+google-chrome-stable_current*
