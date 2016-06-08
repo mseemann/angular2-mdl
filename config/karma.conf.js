@@ -32,7 +32,9 @@ module.exports = function (config) {
       'dist/vendor/**/*.spec.js'
     ],
     preprocessors: {},
-    preprocessors: { 'dist/app/**/!(*spec).js': ['coverage'] },
+    preprocessors: {
+      'dist/components/**/!(*spec).js': ['coverage']
+    },
     coverageReporter: {
       dir : 'coverage/',
       reporters: [
