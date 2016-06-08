@@ -1,4 +1,9 @@
 
+Status: Pre-Alpha! For production use wait unitl this package reaches version 1.1.3 (this will match the current material lite version!
+
+This package assumes that you are building an Angular2 app with TypeScirpt and Angular CLI!
+
+
 [![CI Status](http://img.shields.io/travis/mseemann/angular2-mdl.svg?style=flat)](https://travis-ci.org/mseemann/angular2-mdl)
 [![npm version](https://badge.fury.io/js/angular2-mdl.svg)](http://badge.fury.io/js/angular2-mdl)
 [![Downloads](http://img.shields.io/npm/dm/angular2-mdl.svg)](https://npmjs.org/package/angular2-mdl)
@@ -6,9 +11,6 @@
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
-Status: Pre-Alpha! For production use wait unitl this package reaches version 1.1.3 (this will match the current material lite version!
-
-This package assumes that you are building an Angular2 app with TypeScirpt and Angular CLI!
 
 ### Installation
 
