@@ -1,9 +1,39 @@
 /* global require, module */
+'use strict';
+require('ts-node/register');
 
-var Angular2App = require('angular-cli/lib/broccoli/angular2-app');
+const MergeTree     = require('broccoli-merge-trees');
+const Funnel        = require('broccoli-funnel');
+const Angular2App   = require('angular-cli/lib/broccoli/angular2-app');
+
+
+function _buildE2EAppInputTree() {
+  return new MergeTree([
+    new Funnel('typings', {
+      destDir: 'typings'
+    }),
+    new Funnel('src', {
+      include: ['components/**/*'],
+      destDir: 'src/e2e-app'
+    }),
+    new Funnel('src/e2e-app', {
+      destDir: 'src/e2e-app'
+    })
+  ]);
+}
 
 module.exports = function(defaults) {
-  return new Angular2App(defaults, {
+
+  let inputNode = _buildE2EAppInputTree();
+
+  return new Angular2App(defaults, inputNode, {
+    sourceDir: 'src/e2e-app',
+    tsCompiler: {},
+    sassCompiler: {
+      includePaths: [
+        'src/scss-mdl'
+      ]
+    },
     vendorNpmFiles: [
       'systemjs/dist/system-polyfills.js',
       'systemjs/dist/system.src.js',

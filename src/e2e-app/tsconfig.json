@@ -1,18 +1,20 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "declaration": false,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "noEmitOnError": true,
-    "noImplicitAny": false,
-    "outDir": "../dist/",
-    "rootDir": ".",
+    "noEmitOnError": false,
+    "noImplicitAny": true,
+    "outDir": "../../dist/",
+    "rootDir": "..",
     "sourceMap": true,
     "target": "es5",
-    "inlineSources": true
+    "inlineSources": false,
+    "stripInternal": true,
+    "baseUrl": ""
   },
 
   "files": [

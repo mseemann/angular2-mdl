@@ -9,7 +9,7 @@ import {
 import {
   TestComponentBuilder
 } from '@angular/compiler/testing';
-import { Angular2MdlAppComponent } from '../app/angular2-mdl.component';
+import { Angular2MdlAppComponent } from './angular2-mdl.component';
 
 beforeEachProviders(() => [Angular2MdlAppComponent]);
 

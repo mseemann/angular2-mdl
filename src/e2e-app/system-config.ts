@@ -1,12 +1,19 @@
 /***********************************************************************************************
  * User Configuration.
  **********************************************************************************************/
+
 /** Map relative paths to URLs. */
 const map: any = {
+  'angular2-mdl': 'components',
 };
 
 /** User packages configuration. */
 const packages: any = {
+  'angular2-mdl': {
+    format: 'cjs',
+    defaultExtension: 'js',
+    main: 'index.js'
+  }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

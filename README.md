@@ -1,5 +1,6 @@
 
-Status: Pre-Alpha! For production use wait unitl this package reaches version 1.1.3 (this will match the current material lite version!
+Status: Pre-Alpha! For production use wait unitl this package reaches version 1.1.3 (this will 
+match the current material lite version!)
 
 This package assumes that you are building an Angular2 app with TypeScirpt and Angular CLI!
 

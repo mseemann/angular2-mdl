@@ -1,5 +1,4 @@
-@import "../scss-mdl/color-definitions";
-
+@import "color-definitions";
 
 $color-primary: $palette-blue-500 !default;
 $color-primary-dark: $palette-blue-700 !default;
@@ -7,4 +6,4 @@ $color-accent: $palette-amber-A200 !default;
 $color-primary-contrast: $color-dark-contrast !default;
 $color-accent-contrast: $color-dark-contrast !default;
 
-@import '../scss-mdl/material-design-lite';
+@import 'material-design-lite';
