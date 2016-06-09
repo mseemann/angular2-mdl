@@ -13,7 +13,7 @@ var _self = (typeof window !== 'undefined')
  * @author Lea Verou http://lea.verou.me
  */
 
-var Prism = (function(){
+export var Prism = (function(){
 
 // Private helper vars
 var lang = /\blang(?:uage)?-(\w+)\b/i;
@@ -492,14 +492,15 @@ return _self.Prism;
 
 })();
 
-if (typeof module !== 'undefined' && module.exports) {
-	module.exports = Prism;
-}
 
-// hack for components to work correctly in node.js
-if (typeof global !== 'undefined') {
-	global.Prism = Prism;
-}
+// if (typeof module !== 'undefined' && module.exports) {
+// 	module.exports = Prism;
+// }
+//
+// // hack for components to work correctly in node.js
+// if (typeof global !== 'undefined') {
+// 	global.Prism = Prism;
+// }
 ;
 Prism.languages.markup = {
 	'comment': /<!--[\w\W]*?-->/,
@@ -577,7 +578,7 @@ if (Prism.languages.markup) {
 			alias: 'language-css'
 		}
 	});
-	
+
 	Prism.languages.insertBefore('inside', 'attr-value', {
 		'style-attr': {
 			pattern: /\s*style=("|').*?\1/i,

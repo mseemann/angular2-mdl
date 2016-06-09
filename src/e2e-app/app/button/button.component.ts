@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { MDL_DIRECTIVES } from 'angular2-mdl';
 import { FORM_DIRECTIVES } from "@angular/common";
-import { Prism } from './../prism/prism.component';
+import { PrismDirective } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
@@ -9,9 +9,10 @@ import { Prism } from './../prism/prism.component';
   templateUrl: 'button.component.html',
   directives: [
     MDL_DIRECTIVES,
-    Prism
+    PrismDirective
   ],
 })
 export class ButtonDemo {
   public buttonType = 'raised';
+  public doRipple = false;
 }

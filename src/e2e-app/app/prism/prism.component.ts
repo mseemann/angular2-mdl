@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef,  } from '@angular/core';
+import { Prism } from './prism.vendor';
 
 /**
   Format the content of the component by prism. Needs prism.js to be loaded
@@ -11,7 +12,7 @@ import { Component, OnInit, ElementRef,  } from '@angular/core';
   directives: [
   ],
 })
-export class Prism implements OnInit {
+export class PrismDirective implements OnInit {
 
   private el:HTMLElement;
 
@@ -20,10 +21,7 @@ export class Prism implements OnInit {
   }
 
   ngOnInit(){
-    if(!window.Prism){
-      return;
-    }
-    var html = window.Prism.highlight(this.el.innerHTML, window.Prism.languages.html);
+    var html = Prism.highlight(this.el.innerHTML, Prism.languages.html);
     var pre = document.createElement('pre');
     pre.innerHTML = html;
     this.el.innerHTML = '';

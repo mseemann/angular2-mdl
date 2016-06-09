@@ -44,6 +44,10 @@ export class MdlButtonDirective implements AfterContentInit {
   ngAfterContentInit(){
     // TODO check buttonType and colorType
 
+    // TODO more testing
+
+    // TODO make all inputs dynamic (mdl-colored mdl-ripple)
+
     // TODO check wether this can be moved to the ripple directive - depends on the
     // other Components that have a ripple effect
 
