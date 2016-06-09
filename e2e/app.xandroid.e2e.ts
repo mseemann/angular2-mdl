@@ -10,7 +10,7 @@ describe('angular2-mdl App', function() {
 
   it('should have primary dark background color', () => {
     page.navigateTo();
-    expect(page.getHeadlineElement().getCssValue('background-color')).toEqual('rgba(25, 118, 210, 1)');
+    expect(page.getHeadlineElement().getCssValue('background-color')).toEqual('rgba(33, 150, 243, 1)');
   })
 
   it('should have theme accent colors', () => {

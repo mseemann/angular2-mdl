@@ -31,7 +31,6 @@ module.exports = function (config) {
       // Vendor packages might include spec files. We don't want to use those.
       'dist/vendor/**/*.spec.js'
     ],
-    preprocessors: {},
     preprocessors: {
       'dist/components/**/!(*spec).js': ['coverage']
     },
