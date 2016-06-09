@@ -5,7 +5,8 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-coverage')
+      require('karma-coverage'),
+      require('karma-spec-reporter')
     ],
     customLaunchers: {
       // chrome setup for travis CI using chromium
@@ -41,7 +42,7 @@ module.exports = function (config) {
         { type: 'lcov' }
       ]
     },
-    reporters: ['progress', 'coverage'],
+    reporters: ['spec', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

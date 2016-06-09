@@ -29,17 +29,21 @@ describe('Directive: MdlButton', () => {
         fixture.detectChanges();
 
         let button = fixture.debugElement.query(By.css('.mdl-button'));
-
         expect(button).not.toBeNull();
 
-    })
+        // second approach
+
+        let btnEl:HTMLElement = button.nativeElement;
+        expect(btnEl.classList.contains('mdl-button')).toBe(true);
+
+      })
   });
 });
 
 
 @Component({
   selector: 'test-button',
-  template: "<button></button>",
+  template: "replaced by the test",
   directives: [MdlButtonDirective]
 })
 class MdlTestButtonComponent {}
