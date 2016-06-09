@@ -7,8 +7,9 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { TestComponentBuilder} from '@angular/compiler/testing';
-import { MdlButtonDirective } from './mdl-button.directive';
+import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { MDL_BUTTON_DIRECTIVES } from './mdl-button.directive';
+import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 
 describe('Directive: MdlButton', () => {
 
@@ -22,11 +23,12 @@ describe('Directive: MdlButton', () => {
 
     return builder
       .overrideTemplate(MdlTestButtonComponent, `
-          <button mdl-button></button>
+          <button mdl-button mdl-ripple></button>
         `)
-      .createAsync(MdlTestButtonComponent).then( (fixture) => {
+      .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
 
         fixture.detectChanges();
+
 
         let button = fixture.debugElement.query(By.css('.mdl-button'));
         expect(button).not.toBeNull();
@@ -36,6 +38,8 @@ describe('Directive: MdlButton', () => {
         let btnEl:HTMLElement = button.nativeElement;
         expect(btnEl.classList.contains('mdl-button')).toBe(true);
 
+        fixture.debugElement.triggerEventHandler('mouseup', null);
+
       })
   });
 });
@@ -44,6 +48,6 @@ describe('Directive: MdlButton', () => {
 @Component({
   selector: 'test-button',
   template: "replaced by the test",
-  directives: [MdlButtonDirective]
+  directives: [MDL_COMMON_DIRECTIVES, MDL_BUTTON_DIRECTIVES]
 })
 class MdlTestButtonComponent {}

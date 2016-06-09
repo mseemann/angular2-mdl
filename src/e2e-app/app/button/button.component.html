@@ -1,0 +1,223 @@
+<h4>The Buttons</h4>
+
+<!-- Colored FAB button -->
+<button mdl-button="fab" mdl-colored>
+  <i class="material-icons">add</i>
+</button>
+<!-- Colored FAB button with ripple -->
+<button  mdl-button="fab" mdl-colored mdl-ripple>
+  <i class="material-icons">add</i>
+</button>
+
+<prism>
+  Colored FAB button
+  <button mdl-button="fab" mdl-colored>
+    <i class="material-icons">add</i>
+  </button>
+
+  Colored FAB button with ripple
+  <button  mdl-button="fab" mdl-colored mdl-ripple>
+    <i class="material-icons">add</i>
+  </button>
+
+</prism>
+
+
+<!-- FAB button -->
+<button mdl-button="fab">
+  <i class="material-icons">add</i>
+</button>
+<!-- FAB button with ripple -->
+<button mdl-button="fab" mdl-ripple>
+  <i class="material-icons">add</i>
+</button>
+<!-- Disabled FAB button -->
+<button mdl-button="fab" disabled>
+  <i class="material-icons">add</i>
+</button>
+
+<prism>
+  FAB button
+  <button mdl-button="fab">
+    <i class="material-icons">add</i>
+  </button>
+  FAB button with ripple
+  <button mdl-button="fab" mdl-ripple>
+    <i class="material-icons">add</i>
+  </button>
+  Disabled FAB button
+  <button mdl-button="fab" disabled>
+    <i class="material-icons">add</i>
+  </button>
+
+</prism>
+
+<!-- Raised button -->
+<button mdl-button="raised">
+  Button
+</button>
+<!-- Raised button with ripple -->
+<button mdl-button="raised" mdl-ripple>
+  Button
+</button>
+<!-- Raised disabled button-->
+<button mdl-button="raised" disabled>
+  Button
+</button>
+
+<prism>
+  Raised button
+  <button mdl-button="raised">
+    Button
+  </button>
+  Raised button with ripple
+  <button mdl-button="raised" mdl-ripple>
+    Button
+  </button>
+  Raised disabled button
+  <button mdl-button="raised" disabled>
+    Button
+  </button>
+
+</prism>
+
+<!-- Colored raised button -->
+<button mdl-button="raised" mdl-colored>
+  Button
+</button>
+<!-- Accent-colored raised button -->
+<button mdl-button="raised" mdl-colored="accent">
+  Button
+</button>
+<!-- Accent-colored raised button with ripple -->
+<button mdl-button="raised" mdl-colored="accent" mdl-ripple>
+  Button
+</button>
+
+<prism>
+  Colored raised button
+  <button mdl-button="raised" mdl-colored>
+    Button
+  </button>
+  Accent-colored raised button
+  <button mdl-button="raised" mdl-colored="accent">
+    Button
+  </button>
+  Accent-colored raised button with ripple
+  <button mdl-button="raised" mdl-colored="accent" mdl-ripple>
+    Button
+  </button>
+
+</prism>
+
+<!-- Flat button -->
+<button mdl-button>
+  Button
+</button>
+<!-- Flat button with ripple -->
+<button mdl-button mdl-ripple>
+  Button
+</button>
+<!-- Disabled flat button -->
+<button mdl-button mdl-ripple disabled>
+  Button
+</button>
+
+<prism>
+  Flat button
+  <button mdl-button>
+    Button
+  </button>
+  Flat button with ripple
+  <button mdl-button mdl-ripple>
+    Button
+  </button>
+  Disabled flat button
+  <button mdl-button mdl-ripple disabled>
+    Button
+  </button>
+
+</prism>
+
+<!-- Primary-colored flat button -->
+<button mdl-button mdl-colored="primary">
+  Button
+</button>
+<!-- Accent-colored flat button -->
+<button mdl-button mdl-colored="accent">
+  Button
+</button>
+
+<prism>
+  Primary-colored flat button
+  <button mdl-button mdl-colored="primary">
+    Button
+  </button>
+  Accent-colored flat button
+  <button mdl-button mdl-colored="accent">
+    Button
+  </button>
+
+</prism>
+
+<!-- Icon button -->
+<button mdl-button="icon">
+  <i class="material-icons">mood</i>
+</button>
+<!-- Colored icon button -->
+<button mdl-button="icon" mdl-colored>
+  <i class="material-icons">mood</i>
+</button>
+
+<prism>
+  Icon button
+  <button mdl-button="icon">
+    <i class="material-icons">mood</i>
+  </button>
+  Colored icon button
+  <button mdl-button="icon" mdl-colored>
+    <i class="material-icons">mood</i>
+  </button>
+
+</prism>
+
+<!-- Mini FAB button -->
+<button mdl-button="mini-fab">
+  <i class="material-icons">add</i>
+</button>
+<!-- Colored mini FAB button -->
+<button mdl-button="mini-fab" mdl-colored>
+  <i class="material-icons">add</i>
+</button>
+
+<prism>
+  Mini FAB button
+  <button mdl-button="mini-fab">
+    <i class="material-icons">add</i>
+  </button>
+  Colored mini FAB button
+  <button mdl-button="mini-fab" mdl-colored>
+    <i class="material-icons">add</i>
+  </button>
+
+</prism>
+
+<h4>Dynamic experiments</h4>
+
+<div>
+  <div>
+    <label for="raised">Raised</label>
+    <input type="radio" name="buttonType" [ngModel]="{checked: buttonType == 'raised'}" (change)="buttonType=$event.target.value"  value="raised" id="raised">
+    <label for="fab">Fab</label>
+    <input type="radio" name="buttonType" [ngModel]="{checked: buttonType == 'fab'}" (change)="buttonType=$event.target.value" value="fab" id="fab">
+    <label for="fab">Mini Fab</label>
+    <input type="radio" name="buttonType" [ngModel]="{checked: buttonType == 'mini-fab'}" (change)="buttonType=$event.target.value" value="mini-fab" id="mini-fab">
+    <label for="icon">Icon</label>
+    <input type="radio" name="buttonType" [ngModel]="{checked: buttonType == 'icon'}" (change)="buttonType=$event.target.value" value="icon" id="icon">
+  </div>
+
+</div>
+
+<button [mdl-button]="buttonType">
+  <i class="material-icons">add</i>
+</button>

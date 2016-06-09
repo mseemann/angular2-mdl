@@ -2,4 +2,11 @@
   {{title}}
 </h1>
 
-<button mdl-button>normal button</button>
+<div class="navigation">
+  <a [routerLink]="['']">Home</a>
+  <a [routerLink]="['button']">Buttons</a>
+</div>
+
+<div class="router-outlet">
+<router-outlet></router-outlet>
+</div>

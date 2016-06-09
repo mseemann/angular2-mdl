@@ -16,9 +16,9 @@ describe('App: Angular2Mdl', () => {
     expect(app).toBeTruthy();
   }));
 
-  it('should have as title \'angular2-mdl works!\'',
+  it('should have as title \'Angular 2 - Material Design Lite\'',
       inject([Angular2MdlAppComponent], (app: Angular2MdlAppComponent) => {
-    expect(app.title).toEqual('angular2-mdl works!');
+    expect(app.title).toEqual('Angular 2 - Material Design Lite');
   }));
 
 });

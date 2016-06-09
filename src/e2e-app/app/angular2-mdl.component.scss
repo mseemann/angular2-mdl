@@ -7,3 +7,9 @@ $color-primary-contrast: $color-dark-contrast !default;
 $color-accent-contrast: $color-dark-contrast !default;
 
 @import 'material-design-lite';
+
+
+.router-outlet, .navigation {
+  margin: 1rem;
+}
+
