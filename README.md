@@ -4,6 +4,7 @@ match the current material lite version!)
 
 This package assumes that you are building an Angular2 app with TypeScirpt and Angular CLI!
 
+[Demo](http://mseemann.github.io/angular2-mdl/)
 
 [![CI Status](http://img.shields.io/travis/mseemann/angular2-mdl.svg?style=flat)](https://travis-ci.org/mseemann/angular2-mdl)
 [![npm version](https://badge.fury.io/js/angular2-mdl.svg)](http://badge.fury.io/js/angular2-mdl)
