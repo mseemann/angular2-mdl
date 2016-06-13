@@ -32,6 +32,7 @@ export class MdlRippleDirective implements OnChanges {
       // remove any existing ripple container
       if(this.rippleContainer){
         this.el.removeChild(this.rippleContainer);
+        delete this.rippleContainer;
         delete this.ripple;
       }
 
