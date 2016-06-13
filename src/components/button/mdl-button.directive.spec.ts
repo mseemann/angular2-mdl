@@ -23,25 +23,18 @@ describe('Directive: MdlButton', () => {
 
     return builder
       .overrideTemplate(MdlTestButtonComponent, `
-          <button mdl-button mdl-ripple></button>
+          <button mdl-button></button>
         `)
       .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
 
         fixture.detectChanges();
 
-
-        let button = fixture.debugElement.query(By.css('.mdl-button'));
-        expect(button).not.toBeNull();
-
-        // second approach
-
-        let btnEl:HTMLElement = button.nativeElement;
+        let btnEl:HTMLElement = fixture.nativeElement.children.item(0);
         expect(btnEl.classList.contains('mdl-button')).toBe(true);
-
-        fixture.debugElement.triggerEventHandler('mouseup', null);
 
       })
   });
+
 });
 
 
