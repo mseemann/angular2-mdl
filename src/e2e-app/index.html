@@ -20,6 +20,14 @@
     <script>
       System.import('system-config.js').then(function () {
         System.import('main');
+
+        // simulate html5 mode server behavior on github pages - see 404.html
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
+        }
+
       }).catch(console.error.bind(console));
     </script>
 
