@@ -3,7 +3,8 @@ import {
   describe,
   expect,
   it,
-  inject
+  inject,
+  tick
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
@@ -33,6 +34,36 @@ describe('Directive: MdlButton', () => {
         expect(btnEl.classList.contains('mdl-button')).toBe(true);
 
       })
+  });
+
+  it('should throw if an unsupported buttontype is provided', () => {
+
+    return builder
+      .overrideTemplate(MdlTestButtonComponent, `
+          <button mdl-button="didNotExist"></button>
+        `)
+      .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+
+  });
+
+  it('should throw if an unsupported colored type is provided', () => {
+
+    return builder
+      .overrideTemplate(MdlTestButtonComponent, `
+          <button mdl-button mdl-colored="didNotExist"></button>
+        `)
+      .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+
   });
 
 });
