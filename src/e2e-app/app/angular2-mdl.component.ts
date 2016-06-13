@@ -3,7 +3,7 @@ import {Route, Routes, ROUTER_DIRECTIVES} from '@angular/router';
 
 import { ButtonDemo } from './button/button.component';
 
-import { MDL_DIRECTIVES } from 'angular2-mdl';
+import { MDL_DIRECTIVES } from '../components';
 
 @Component({
   selector: 'home',

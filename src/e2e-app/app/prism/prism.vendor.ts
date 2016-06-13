@@ -1,5 +1,7 @@
 /* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript */
-var _self = (typeof window !== 'undefined')
+declare var WorkerGlobalScope:any;
+
+var _self:any = (typeof window !== 'undefined')
 	? window   // if in browser
 	: (
 		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
@@ -134,7 +136,7 @@ var _ = _self.Prism = {
 		},
 
 		// Traverse a language definition with Depth First Search
-		DFS: function(o, callback, type, visited) {
+		DFS: function(o, callback, type?, visited?) {
 			visited = visited || {};
 			for (var i in o) {
 				if (o.hasOwnProperty(i)) {
@@ -157,7 +159,8 @@ var _ = _self.Prism = {
 	highlightAll: function(async, callback) {
 		var env = {
 			callback: callback,
-			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
+			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
+      elements: undefined
 		};
 
 		_.hooks.run("before-highlightall", env);
@@ -211,14 +214,14 @@ var _ = _self.Prism = {
 		_.hooks.run('before-highlight', env);
 
 		if (async && _self.Worker) {
-			var worker = new Worker(_.filename);
+			var worker = new Worker(_['filename']);
 
 			worker.onmessage = function(evt) {
-				env.highlightedCode = evt.data;
+				env['highlightedCode'] = evt.data;
 
 				_.hooks.run('before-insert', env);
 
-				env.element.innerHTML = env.highlightedCode;
+				env.element.innerHTML = env['highlightedCode'];
 
 				callback && callback.call(env.element);
 				_.hooks.run('after-highlight', env);
@@ -232,11 +235,11 @@ var _ = _self.Prism = {
 			}));
 		}
 		else {
-			env.highlightedCode = _.highlight(env.code, env.grammar, env.language);
+			env['highlightedCode'] = _.highlight(env.code, env.grammar, env.language);
 
 			_.hooks.run('before-insert', env);
 
-			env.element.innerHTML = env.highlightedCode;
+			env.element.innerHTML = env['highlightedCode'];
 
 			callback && callback.call(element);
 
@@ -247,11 +250,11 @@ var _ = _self.Prism = {
 
 	highlight: function (text, grammar, language) {
 		var tokens = _.tokenize(text, grammar);
-		return Token.stringify(_.util.encode(tokens), language);
+		return Token['stringify'](_.util.encode(tokens), language);
 	},
 
-	tokenize: function(text, grammar, language) {
-		var Token = _.Token;
+	tokenize: function(text, grammar, language?) {
+		var Token = _['Token'];
 
 		var strarr = [text];
 
@@ -400,7 +403,7 @@ var _ = _self.Prism = {
 	}
 };
 
-var Token = _.Token = function(type, content, alias, matchedStr, greedy) {
+var Token = _['Token'] = function(type, content, alias?, matchedStr?, greedy?) {
 	this.type = type;
 	this.content = content;
 	this.alias = alias;
@@ -409,20 +412,20 @@ var Token = _.Token = function(type, content, alias, matchedStr, greedy) {
 	this.greedy = !!greedy;
 };
 
-Token.stringify = function(o, language, parent) {
+Token['stringify'] = function(o, language, parent) {
 	if (typeof o == 'string') {
 		return o;
 	}
 
 	if (_.util.type(o) === 'Array') {
 		return o.map(function(element) {
-			return Token.stringify(element, language, o);
+			return Token['stringify'](element, language, o);
 		}).join('');
 	}
 
 	var env = {
 		type: o.type,
-		content: Token.stringify(o.content, language, parent),
+		content: Token['stringify'](o.content, language, parent),
 		tag: 'span',
 		classes: ['token', o.type],
 		attributes: {},
@@ -476,14 +479,14 @@ if (!_self.document) {
 var script = document.currentScript || [].slice.call(document.getElementsByTagName("script")).pop();
 
 if (script) {
-	_.filename = script.src;
+	_['filename'] = script.src;
 
 	if (document.addEventListener && !script.hasAttribute('data-manual')) {
 		if(document.readyState !== "loading") {
-			requestAnimationFrame(_.highlightAll, 0);
+			requestAnimationFrame(<FrameRequestCallback>_.highlightAll);
 		}
 		else {
-			document.addEventListener('DOMContentLoaded', _.highlightAll);
+			document.addEventListener('DOMContentLoaded', <any>_['highlightAll']);
 		}
 	}
 }

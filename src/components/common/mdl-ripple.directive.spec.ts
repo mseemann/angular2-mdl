@@ -3,7 +3,8 @@ import {
   describe,
   expect,
   it,
-  inject
+  inject,
+  beforeEach
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
@@ -73,7 +74,7 @@ describe('Directive: MdlRipple', () => {
       })
   })
 
-  it('should remove the ripple if mdl-ripple is set to false', (done: () => void) => {
+  it('should remove the ripple if mdl-ripple is set to false', () => {
     return builder
       .overrideTemplate(MdlTestRippleComponent, `
           <button [mdl-ripple]="doRipple"></button>
@@ -89,8 +90,6 @@ describe('Directive: MdlRipple', () => {
         fixture.detectChanges();
 
         expect(getSpan1IfAny(fixture)).toBeNull();
-
-        done();
       })
   })
 });

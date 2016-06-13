@@ -4,7 +4,8 @@ import {
   expect,
   it,
   inject,
-  tick
+  tick,
+  beforeEach
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';

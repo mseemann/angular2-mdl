@@ -18,7 +18,7 @@ export class MdlRippleDirective implements OnChanges {
   private el:HTMLElement;
   private ripple:any;
 
-  @Input('mdl-ripple') rippleActive: boolean = true;
+  @Input('mdl-ripple') rippleActive: boolean | string = true;
 
   constructor(private elementRef: ElementRef){
     this.el = elementRef.nativeElement;
