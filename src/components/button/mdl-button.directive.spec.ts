@@ -9,7 +9,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { Component, Optional } from '@angular/core';
 import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
-import {MDL_BUTTON_DIRECTIVES, MdlButtonDirective} from './mdl-button.directive';
+import { MdlButtonDirective} from './mdl-button.directive';
 import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 
 describe('Directive: MdlButton', () => {
@@ -95,7 +95,7 @@ describe('Directive: MdlButton', () => {
 @Component({
   selector: 'test-button',
   template: "replaced by the test",
-  directives: [MDL_COMMON_DIRECTIVES, MDL_BUTTON_DIRECTIVES],
+  directives: [MDL_COMMON_DIRECTIVES, MdlButtonDirective],
   providers: [MdlButtonDirective]
 })
 class MdlTestButtonComponent {

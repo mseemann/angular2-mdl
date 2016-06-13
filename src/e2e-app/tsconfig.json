@@ -13,8 +13,7 @@
     "sourceMap": true,
     "target": "es5",
     "inlineSources": false,
-    "stripInternal": true,
-    "baseUrl": ""
+    "stripInternal": true
   },
 
   "files": [
