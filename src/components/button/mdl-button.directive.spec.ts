@@ -1,5 +1,4 @@
 import {
-  beforeEachProviders,
   describe,
   expect,
   it,
@@ -8,9 +7,9 @@ import {
   beforeEach
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import { Component, Optional } from '@angular/core';
 import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
-import { MDL_BUTTON_DIRECTIVES } from './mdl-button.directive';
+import {MDL_BUTTON_DIRECTIVES, MdlButtonDirective} from './mdl-button.directive';
 import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 
 describe('Directive: MdlButton', () => {
@@ -67,12 +66,38 @@ describe('Directive: MdlButton', () => {
 
   });
 
+  it('should call blur on mouseup and mouseleave', () => {
+
+    return builder
+      .overrideTemplate(MdlTestButtonComponent, `
+          <button mdl-button></button>
+        `)
+      .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
+
+        fixture.detectChanges();
+
+        var mdlButtonDirective =  fixture.componentInstance.mdlButton;
+
+        spyOn(mdlButtonDirective, 'blur');
+        expect(mdlButtonDirective.blur).not.toHaveBeenCalled();
+
+        mdlButtonDirective.onMouseUp();
+        expect(mdlButtonDirective.blur).toHaveBeenCalled();
+
+        mdlButtonDirective.onMouseLeave();
+        expect(mdlButtonDirective.blur).toHaveBeenCalled();
+
+      })
+  });
 });
 
 
 @Component({
   selector: 'test-button',
   template: "replaced by the test",
-  directives: [MDL_COMMON_DIRECTIVES, MDL_BUTTON_DIRECTIVES]
+  directives: [MDL_COMMON_DIRECTIVES, MDL_BUTTON_DIRECTIVES],
+  providers: [MdlButtonDirective]
 })
-class MdlTestButtonComponent {}
+class MdlTestButtonComponent {
+  constructor(@Optional() public mdlButton:MdlButtonDirective){}
+}

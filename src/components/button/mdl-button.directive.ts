@@ -68,7 +68,7 @@ export class MdlButtonDirective implements OnChanges {
       throw new MdlUnsupportedButtonTypeError(this.mdlButtonType);
     }
 
-    if( this.mdlColoredType) {
+    if( this.mdlColoredType ) {
       if (MDL_COLORED_TYPES.indexOf(this.mdlColoredType) === -1) {
         throw new MdlUnsupportedColoredTypeError(this.mdlColoredType);
       }
