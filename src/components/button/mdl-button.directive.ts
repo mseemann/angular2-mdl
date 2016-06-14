@@ -62,7 +62,7 @@ export class MdlButtonDirective implements OnChanges {
     this.el = elementRef.nativeElement;
   }
 
-  ngOnChanges(changes: {[key: string]: SimpleChange}) {
+  ngOnChanges() {
 
     if (MDL_BUTTON_TYPES.indexOf(this.mdlButtonType) === -1) {
       throw new MdlUnsupportedButtonTypeError(this.mdlButtonType);

@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 
 import { ButtonDemo } from './button/button.component';
+import { BadgeDemo } from './badge/badge.component';
 
 import { MDL_DIRECTIVES } from '../components';
 
@@ -15,6 +16,7 @@ export class Home {}
 
 export const AppRoutes = [
   { path: '/home',  component: Home, index: true },
+  { path: '/badge', component: BadgeDemo },
   { path: '/button', component: ButtonDemo }
 ];
 
