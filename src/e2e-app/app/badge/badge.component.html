@@ -1,15 +1,48 @@
 <h4>The Badges </h4>
 
+<h5>Number badge on icon</h5>
 <!-- Number badge on icon -->
 <div class="material-icons" mdl-badge="1" mdl-badge-overlap>account_box</div>
 <div class="material-icons" mdl-badge="♥" mdl-badge-overlap>account_box</div>
 
+<prism>
+  <!-- Number badge on icon -->
+  <div class="material-icons" mdl-badge="1" mdl-badge-overlap>account_box</div>
+  <div class="material-icons" mdl-badge="♥" mdl-badge-overlap>account_box</div>
+
+</prism>
 
 
+<h5>Number badge</h5>
 <!-- Number badge -->
 <span mdl-badge="4">Inbox</span>
+
+<prism>
+<!-- Number badge -->
+<span mdl-badge="4">Inbox</span>
+
+</prism>
+
+<h5>Icon badge</h5>
+
+<!-- Icon badge -->
+<span mdl-badge="♥">Mood</span>
+<prism>
 <!-- Icon badge -->
 <span mdl-badge="♥">Mood</span>
 
+</prism>
 
+<h5>Badge without background</h5>
 <a href="#" mdl-badge-no-background mdl-badge="123">This badge has no background color.</a>
+
+<prism>
+<a href="#" mdl-badge-no-background mdl-badge="123">This badge has no background color.</a>
+
+</prism>
+
+<h4>Dynamic experiments</h4>
+
+set the badge counter
+<input type="number" [(ngModel)]="badgeCount">
+<span [mdl-badge]="badgeCount">Inbox</span>
