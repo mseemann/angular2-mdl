@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import {Route, Routes, ROUTER_DIRECTIVES} from '@angular/router';
+import {ROUTER_DIRECTIVES} from '@angular/router';
 
 import { ButtonDemo } from './button/button.component';
 
@@ -8,11 +8,15 @@ import { MDL_DIRECTIVES } from '../components';
 @Component({
   selector: 'home',
   template: `
-    <p>Welcome to the e2e demos for Angular 2 <a href="https://getmdl.io/" target="_blank">Material Design Lite!</a></p>
+    <h4>Welcome to the e2e demos for Angular 2 <a href="https://getmdl.io/" target="_blank">Material Design Lite!</a></h4>
   `
 })
 export class Home {}
 
+export const AppRoutes = [
+  { path: '/home',  component: Home, index: true },
+  { path: '/button', component: ButtonDemo }
+];
 
 @Component({
   moduleId: module.id,
@@ -25,10 +29,6 @@ export class Home {}
   ],
   encapsulation: ViewEncapsulation.None
 })
-@Routes([
-  new Route({path: '/', component: Home}),
-  new Route({path: '/button', component: ButtonDemo})
-])
 export class Angular2MdlAppComponent {
   title = 'Angular 2 - Material Design Lite';
 }

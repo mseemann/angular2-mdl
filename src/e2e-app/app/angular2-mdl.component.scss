@@ -9,7 +9,29 @@ $color-accent-contrast: $color-dark-contrast !default;
 @import 'material-design-lite';
 
 
-.router-outlet, .navigation {
-  margin: 1rem;
+.router-outlet {
+  display: flex;
+  margin-left: 1em;
 }
 
+main {
+  display: flex !important;
+  flex-direction: row;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+
+  a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding: 0.5rem;
+    color: unquote("rgb(#{$palette-grey-800})");
+
+    &.router-link-active {
+      color: unquote("rgb(#{$color-primary})");
+    }
+  }
+}

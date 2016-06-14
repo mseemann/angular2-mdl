@@ -1,12 +1,22 @@
-<h1 class="mdl-color--primary mdl-color-text--accent">
-  {{title}}
-</h1>
+<div class="mdl-layout__container">
+  <div class="mdl-layout">
+    <header class="mdl-layout__header">
+      <h1 class="mdl-color--primary mdl-color-text--accent">
+        {{title}}
+      </h1>
+    </header>
+    <main class="mdl-layout__content">
+        <aside class="mdl-shadow--4dp">
 
-<div class="navigation">
-  <a [routerLink]="['']">Home</a>
-  <a [routerLink]="['button']">Buttons</a>
+            <a [routerLink]="['/home']">Home</a>
+            <a [routerLink]="['/button']">Buttons</a>
+
+        </aside>
+
+        <div class="router-outlet">
+          <router-outlet></router-outlet>
+        </div>
+
+    </main>
 </div>
-
-<div class="router-outlet">
-<router-outlet></router-outlet>
 </div>
