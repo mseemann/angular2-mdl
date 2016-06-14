@@ -13,10 +13,21 @@ import { MDL_DIRECTIVES } from '../components';
     <h4>Welcome to the e2e demos for Angular 2 <a href="https://getmdl.io/" target="_blank">Material Design Lite!</a></h4>
   `
 })
-export class Home {}
+export class Home {
+
+  // urlSegments:Observable<UrlSegment[]>;
+  //
+  // constructor(private r:ActivatedRoute){
+  //   console.log(r);
+  //   this.urlSegments =  r.urlSegments;//.map( url => url[0].path);
+  //   this.urlSegments.subscribe( (x) => {
+  //     console.log(x);
+  //   })
+  // }
+}
 
 export const AppRoutes = [
-  { path: '/home',  component: Home, index: true },
+  { component: Home, index: true },
   { path: '/badge', component: BadgeDemo },
   { path: '/button', component: ButtonDemo }
 ];
@@ -36,12 +47,10 @@ export class Angular2MdlAppComponent {
 
   title = 'Angular 2 - Material Design Lite';
 
-  // urlSegments:Observable<UrlSegment[]>;
-  //
-  // constructor(private r:ActivatedRoute){
-  //  this.urlSegments =  r.urlSegments;//.map( url => url[0].path);
-  //   this.urlSegments.subscribe( (x) => {
-  //     console.log(x);
-  //   })
+  // works only if ts 1.9 is used - but angualr cli has a peer dependency for 1.8 :(
+  // constructor(private router:Router){
+  //   router.events.subscribe( (event) => {
+  //     console.log(event);
+  //   });
   // }
 }

@@ -9,7 +9,7 @@ import {
 import { Angular2MdlAppComponent } from './angular2-mdl.component';
 import { APP_ROUTER_PROVIDERS } from './app.routes';
 
-beforeEachProviders(() => [Angular2MdlAppComponent]);
+beforeEachProviders(() => [Angular2MdlAppComponent, ...APP_ROUTER_PROVIDERS]);
 
 describe('App: Angular2Mdl', () => {
   it('should create the app',
