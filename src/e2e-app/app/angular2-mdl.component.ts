@@ -1,10 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
+import { ROUTER_DIRECTIVES, ActivatedRoute, UrlSegment} from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { ButtonDemo } from './button/button.component';
 import { BadgeDemo } from './badge/badge.component';
 
 import { MDL_DIRECTIVES } from '../components';
+import {equalUrlSegments} from "@angular/router/url_tree";
 
 @Component({
   selector: 'home',
@@ -32,5 +34,14 @@ export const AppRoutes = [
   encapsulation: ViewEncapsulation.None
 })
 export class Angular2MdlAppComponent {
+
   title = 'Angular 2 - Material Design Lite';
+  urlSegments:Observable<UrlSegment[]>;
+
+  constructor(private r:ActivatedRoute){
+   this.urlSegments =  r.urlSegments;//.map( url => url[0].path);
+    this.urlSegments.subscribe( (x) => {
+      console.log(x);
+    })
+  }
 }

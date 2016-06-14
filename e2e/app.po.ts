@@ -4,7 +4,7 @@ export class Angular2MdlPage {
   }
 
   getHeadlineElement(){
-    return element(by.css('angular2-mdl-app h1'));
+    return element(by.css('h1.mdl-color-text--accent'));
   }
 
   getParagraphText() {

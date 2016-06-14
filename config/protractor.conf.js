@@ -4,11 +4,10 @@ var SpecReporter = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    '../e2e/**/*.e2e.ts'
+    '../tmp/e2e/**/*.e2e.js'
   ],
   multiCapabilities: [{
-    'browserName': 'chrome',
-      exclude: ['../e2e/**/*.xandroid.e2e.ts']
+    'browserName': 'chrome'
   }],
   directConnect: true,
   baseUrl: 'http://localhost:4200/',

@@ -12,6 +12,7 @@
           <a [routerLink]="['/button']">Buttons</a>
         </aside>
 
+        <div>{{urlSegments|async}}</div>
         <div class="router-outlet">
           <router-outlet></router-outlet>
         </div>
