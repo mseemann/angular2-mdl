@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef,  } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewEncapsulation } from '@angular/core';
 import { Prism } from './prism.vendor';
 
 /**
@@ -9,8 +9,7 @@ import { Prism } from './prism.vendor';
   selector: 'prism',
   template: '<ng-content></ng-content>',
   styleUrls: ['prism.component.css'],
-  directives: [
-  ],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class PrismDirective implements OnInit {
 

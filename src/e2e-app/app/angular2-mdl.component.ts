@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 
 import { ButtonDemo } from './button/button.component';
 import { BadgeDemo } from './badge/badge.component';
+import { CardDemo } from './card/card.component';
+import { ShadowDemo } from './shadow/shadow.component';
 
 import { MDL_DIRECTIVES } from '../components';
 
@@ -29,7 +31,9 @@ export class Home {
 export const AppRoutes = [
   { component: Home, index: true },
   { path: '/badge', component: BadgeDemo },
-  { path: '/button', component: ButtonDemo }
+  { path: '/button', component: ButtonDemo },
+  { path: '/card', component: CardDemo },
+  { path: '/shadow', component: ShadowDemo }
 ];
 
 @Component({
@@ -54,3 +58,4 @@ export class Angular2MdlAppComponent {
   //   });
   // }
 }
+
