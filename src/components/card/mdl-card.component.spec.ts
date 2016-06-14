@@ -9,7 +9,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { Component, Optional } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
-import { MdlCardComponent } from './mdl-card.component';
+import { MDL_CARD_DIRECTIVES } from './mdl-card.component';
 
 describe('Directive: MdlCard', () => {
 
@@ -19,7 +19,7 @@ describe('Directive: MdlCard', () => {
     builder = tcb;
   }));
 
-  it('should add the css class mdl-card ato the element', () => {
+  it('should add the css class mdl-card to the element', () => {
 
     return builder
       .createAsync(TestApp).then( (fixture) => {
@@ -27,21 +27,86 @@ describe('Directive: MdlCard', () => {
         fixture.detectChanges();
 
         let mdlCardElement = fixture.debugElement.query(By.css('mdl-card'));
-
         expect(mdlCardElement.nativeElement.classList.contains('mdl-card')).toBe(true);
 
+        let mdlCardTitleElement = fixture.debugElement.query(By.css('mdl-card-title'));
+        expect(mdlCardTitleElement.nativeElement.classList.contains('mdl-card__title')).toBe(true);
+
+        let mdlCardSupportingTextElement = fixture.debugElement.query(By.css('mdl-card-supporting-text'));
+        expect(mdlCardSupportingTextElement.nativeElement.classList.contains('mdl-card__supporting-text')).toBe(true);
+
+        let mdlCardActionsElement = fixture.debugElement.query(By.css('mdl-card-actions'));
+        expect(mdlCardActionsElement.nativeElement.classList.contains('mdl-card__actions')).toBe(true);
+
+        let mdlCardMenuElement = fixture.debugElement.query(By.css('mdl-card-menu'));
+        expect(mdlCardMenuElement.nativeElement.classList.contains('mdl-card__menu')).toBe(true);
       })
   });
 
+  it('should throw if mdl-card-title has no mdl-card parent', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-card-title></mdl-card-title>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
 
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
+
+  it('should throw if mdl-card-supporting-text has no mdl-card parent', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-card-supporting-text></mdl-card-supporting-text>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
+
+  it('should throw if mdl-card-actions has no mdl-card parent', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-card-actions></mdl-card-actions>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
+
+  it('should throw if mdl-card-menu has no mdl-card parent', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-card-menu></mdl-card-menu>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
 });
 
 @Component({
   selector: 'test-app',
   template: `
-    <mdl-card></mdl-card>
+    <mdl-card>
+      <mdl-card-title></mdl-card-title>
+      <mdl-card-supporting-text></mdl-card-supporting-text>
+      <mdl-card-actions></mdl-card-actions>
+      <mdl-card-menu></mdl-card-menu>
+    </mdl-card>
   `,
-  directives: [MdlCardComponent]
+  directives: [MDL_CARD_DIRECTIVES]
 })
 class TestApp {
 }
