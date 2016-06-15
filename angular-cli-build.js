@@ -14,10 +14,7 @@ function _buildE2EAppInputTree() {
     }),
     new Funnel('src', {
       include: ['components/**/*'],
-      destDir: 'src/e2e-app'
-    }),
-    new Funnel('src/e2e-app', {
-      destDir: 'src/e2e-app'
+      destDir: 'src'
     })
   ]);
 }
@@ -26,8 +23,8 @@ module.exports = function(defaults) {
 
   let inputNode = _buildE2EAppInputTree();
 
-  return new Angular2App(defaults, inputNode, {
-    sourceDir: 'src/e2e-app',
+  return new Angular2App(defaults, {
+    //sourceDir: 'src/e2e-app',
     tsCompiler: {},
     sassCompiler: {
       includePaths: [
