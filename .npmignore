@@ -1,7 +1,15 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-#/dist
+/dist/vendor
+/dist/app
+/dist/assets
+/dist/404.html
+/dist/favicon.ico
+/dist/index.html
+/dist/main.*
+/dist/prism.css
+/dist/system-config.*
 /tmp
 
 # dependencies
