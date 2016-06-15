@@ -20,6 +20,44 @@ This package assumes that you are building an Angular2 app with TypeScript and A
 npm install angular2-mdl --save
 ```
 
+### How to use the mdl components
+
+You need to extend the `angular-cli-build.js` file to include `angular2-mdl` as a vendor package: 
+
+```JavaScript
+return new Angular2App(defaults, {
+
+    vendorNpmFiles: [
+      ...
+      'angular2-mdl/**/*'
+    ]
+  });
+```
+
+Next you need to configure your `system-config.js` file:
+
+```JavaScript
+const map: any = {
+  'angular2-mdl': 'vendor/angular2-mdl'
+};
+
+/** User packages configuration. */
+const packages: any = {
+  'angular2-mdl': { main: 'dist/components/index.js'}
+};
+```
+
+After that you may use the angular2-mdl directives in your components:
+```JavaScript
+import { MDL_DIRECTIVES } from 'angular2-mdl';
+
+@Component{
+   ...
+   directives: [ MDL_DIRECTIVES ]
+}
+```
+
+
 ### How to use the scss files from material-design-lite
 
 First of all you need to install node-sass for your project:
@@ -41,7 +79,6 @@ return new Angular2App(defaults, {
     },
     vendorNpmFiles: [
       ...
-      'angular2-mdl/**/*.+(js|js.map)'
     ]
   });
 ```
