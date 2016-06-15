@@ -15,7 +15,7 @@ import { PrismDirective } from './../prism/prism.component';
     .demo-card-wide > .mdl-card__title {
       color: #fff;
       height: 176px;
-      background: url('../assets/sund.jpg') center / cover;
+      background: url('assets/sund.jpg') center / cover;
     }
     .demo-card-wide > .mdl-card__menu {
       color: #fff;
