@@ -12,7 +12,8 @@ import {
   MdlCardSupportingTextComponent,
   MdlCardActionsComponent,
   MdlCardMenuComponent,
-  MdlCardTitleTextDirective
+  MdlCardTitleTextDirective,
+  MdlCardBorderDirective
 } from './card/mdl-card.component';
 
 export * from './common/mdl-ripple.directive';
@@ -33,5 +34,6 @@ export const MDL_DIRECTIVES = [
   MdlCardActionsComponent,
   MdlCardMenuComponent,
   MdlCardTitleTextDirective,
+  MdlCardBorderDirective,
   MdlShadowDirective
 ];

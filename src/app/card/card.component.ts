@@ -9,8 +9,9 @@ import { PrismDirective } from './../prism/prism.component';
   styles:[
     `
     .demo-card-wide {
-      margin-left:1rem;
-      float:right;
+      width: 500px;
+      margin-right:1rem;
+      float:left;
     }
     .demo-card-wide > .mdl-card__title {
       color: #fff;
@@ -19,7 +20,25 @@ import { PrismDirective } from './../prism/prism.component';
     }
     .demo-card-wide > .mdl-card__menu {
       color: #fff;
-    }`
+    }
+    
+    .demo-card-square.mdl-card {
+      width: 320px;
+      height: 320px;
+      margin-right:1rem;
+      float:left;
+    }
+    .demo-card-square > .mdl-card__title {
+      color: #fff;
+      background:
+        url('assets/wood.jpg') bottom right 15% no-repeat #46B6AC;
+    }
+
+    .example-separator {
+      clear: both;  
+      margin-bottom: 1rem;
+    }
+    `
   ],
   directives: [
     MDL_DIRECTIVES,

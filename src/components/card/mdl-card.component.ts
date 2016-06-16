@@ -113,6 +113,14 @@ export class MdlCardMenuComponent extends MdlCardChildStructure {
 })
 export class MdlCardTitleTextDirective {}
 
+@Directive({
+  selector: '[mdl-card-border]',
+  host: {
+    '[class.mdl-card--border]': 'true'
+  }
+})
+export class MdlCardBorderDirective {}
+
 
 export const MDL_CARD_DIRECTIVES = [
   MdlCardComponent,
@@ -120,5 +128,6 @@ export const MDL_CARD_DIRECTIVES = [
   MdlCardSupportingTextComponent,
   MdlCardActionsComponent,
   MdlCardMenuComponent,
-  MdlCardTitleTextDirective
+  MdlCardTitleTextDirective,
+  MdlCardBorderDirective
 ];
