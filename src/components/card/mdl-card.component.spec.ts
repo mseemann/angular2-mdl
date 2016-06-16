@@ -47,6 +47,8 @@ describe('Components: MdlCard*', () => {
         let mdlCardBorderElement = fixture.debugElement.query(By.css('[mdl-card-border]'));
         expect(mdlCardBorderElement.nativeElement.classList.contains('mdl-card--border')).toBe(true);
 
+        let mdlCardExpandElement = fixture.debugElement.query(By.css('[mdl-card-expand]'));
+        expect(mdlCardExpandElement.nativeElement.classList.contains('mdl-card--expand')).toBe(true);
 
       })
   });
@@ -108,7 +110,7 @@ describe('Components: MdlCard*', () => {
   selector: 'test-app',
   template: `
     <mdl-card>
-      <mdl-card-title><div mdl-card-title-text>test</div></mdl-card-title>
+      <mdl-card-title mdl-card-expand><div mdl-card-title-text>test</div></mdl-card-title>
       <mdl-card-supporting-text></mdl-card-supporting-text>
       <mdl-card-actions mdl-card-border></mdl-card-actions>
       <mdl-card-menu></mdl-card-menu>
