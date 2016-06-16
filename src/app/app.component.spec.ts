@@ -6,7 +6,7 @@ import {
   inject
 } from '@angular/core/testing';
 
-import { Angular2MdlAppComponent } from './angular2-mdl.component';
+import { Angular2MdlAppComponent } from './app.component';
 import { APP_ROUTER_PROVIDERS } from './app.routes';
 
 beforeEachProviders(() => [Angular2MdlAppComponent, ...APP_ROUTER_PROVIDERS]);

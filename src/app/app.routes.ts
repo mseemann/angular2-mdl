@@ -1,6 +1,6 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
-import { AppRoutes } from './angular2-mdl.component';
+import { AppRoutes } from './app.component';
 
 const routes: RouterConfig = [
   ...AppRoutes

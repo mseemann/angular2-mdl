@@ -1,6 +1,6 @@
 {
   "project": {
-    "version": "1.0.0-beta.5",
+    "version": "1.0.0-beta.6",
     "name": "angular2-mdl"
   },
   "apps": [
@@ -26,6 +26,7 @@
     "prefix": "app",
     "sourceDir": "src",
     "styleExt": "css",
-    "prefixInterfaces": false
+    "prefixInterfaces": false,
+    "lazyRoutePrefix": "+"
   }
 }

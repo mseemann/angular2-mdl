@@ -38,9 +38,9 @@ export const AppRoutes = [
 
 @Component({
   moduleId: module.id,
-  selector: 'angular2-mdl-app',
-  templateUrl: 'angular2-mdl.component.html',
-  styleUrls: ['angular2-mdl.component.css'],
+  selector: 'root-app',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css'],
   directives: [
     ROUTER_DIRECTIVES,
     MDL_DIRECTIVES
