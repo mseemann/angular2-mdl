@@ -9,8 +9,8 @@ import { PrismDirective } from './../prism/prism.component';
   styles:[
     `
     .demo-card-wide {
-      margin-right:1rem;
-      float:left;
+      margin-left:1rem;
+      float:right;
     }
     .demo-card-wide > .mdl-card__title {
       color: #fff;

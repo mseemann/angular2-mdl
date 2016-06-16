@@ -105,10 +105,20 @@ export class MdlCardMenuComponent extends MdlCardChildStructure {
 
 }
 
+@Directive({
+  selector: '[mdl-card-title-text]',
+  host: {
+    '[class.mdl-card__title-text]': 'true'
+  }
+})
+export class MdlCardTitleTextDirective {}
+
 
 export const MDL_CARD_DIRECTIVES = [
   MdlCardComponent,
   MdlCardTitleComponent,
   MdlCardSupportingTextComponent,
   MdlCardActionsComponent,
-  MdlCardMenuComponent];
+  MdlCardMenuComponent,
+  MdlCardTitleTextDirective
+];

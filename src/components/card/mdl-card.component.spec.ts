@@ -11,7 +11,7 @@ import { Component, Optional } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MDL_CARD_DIRECTIVES } from './mdl-card.component';
 
-describe('Directive: MdlCard', () => {
+describe('Components: MdlCard*', () => {
 
   var builder: TestComponentBuilder;
 
@@ -40,6 +40,10 @@ describe('Directive: MdlCard', () => {
 
         let mdlCardMenuElement = fixture.debugElement.query(By.css('mdl-card-menu'));
         expect(mdlCardMenuElement.nativeElement.classList.contains('mdl-card__menu')).toBe(true);
+
+        let mdlCardTitleTextElement = fixture.debugElement.query(By.css('[mdl-card-title-text]'));
+        expect(mdlCardTitleTextElement.nativeElement.classList.contains('mdl-card__title-text')).toBe(true);
+
       })
   });
 
@@ -100,7 +104,7 @@ describe('Directive: MdlCard', () => {
   selector: 'test-app',
   template: `
     <mdl-card>
-      <mdl-card-title></mdl-card-title>
+      <mdl-card-title><div mdl-card-title-text>test</div></mdl-card-title>
       <mdl-card-supporting-text></mdl-card-supporting-text>
       <mdl-card-actions></mdl-card-actions>
       <mdl-card-menu></mdl-card-menu>

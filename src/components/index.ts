@@ -1,13 +1,19 @@
 import { MdlRippleDirective } from "./common/mdl-ripple.directive";
 import { MdlButtonDirective } from "./button/mdl-button.directive";
-import { MdlBadgeDirective, MdlBadgeNoBackgroundDirective, MdlBadgeOverlapDirective } from './badge/mdl-badge.directive'
+import {
+  MdlBadgeDirective,
+  MdlBadgeNoBackgroundDirective,
+  MdlBadgeOverlapDirective
+} from './badge/mdl-badge.directive'
 import { MdlShadowDirective } from './shadow/mdl-shadow.directive';
 import {
   MdlCardComponent,
   MdlCardTitleComponent,
   MdlCardSupportingTextComponent,
   MdlCardActionsComponent,
-  MdlCardMenuComponent} from './card/mdl-card.component';
+  MdlCardMenuComponent,
+  MdlCardTitleTextDirective
+} from './card/mdl-card.component';
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
@@ -26,5 +32,6 @@ export const MDL_DIRECTIVES = [
   MdlCardSupportingTextComponent,
   MdlCardActionsComponent,
   MdlCardMenuComponent,
+  MdlCardTitleTextDirective,
   MdlShadowDirective
 ];
