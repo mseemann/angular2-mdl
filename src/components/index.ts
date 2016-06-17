@@ -16,6 +16,9 @@ import {
   MdlCardBorderDirective,
   MdlCardExpandDirective
 } from './card/mdl-card.component';
+import {
+  MdlProgressComponent
+} from './progress/mdl-progress.component';
 import { MdlIconComponent } from './icon/mdl-icon.component'
 
 export * from './common/mdl-ripple.directive';
@@ -23,6 +26,7 @@ export * from './badge/mdl-badge.directive';
 export * from './button/mdl-button.directive';
 export * from './card/mdl-card.component';
 export * from './icon/mdl-icon.component';
+export * from './progress/mdl-progress.component';
 export * from './shadow/mdl-shadow.directive';
 
 export const MDL_DIRECTIVES = [
@@ -40,5 +44,6 @@ export const MDL_DIRECTIVES = [
   MdlCardBorderDirective,
   MdlCardExpandDirective,
   MdlIconComponent,
+  MdlProgressComponent,
   MdlShadowDirective
 ];

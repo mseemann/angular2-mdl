@@ -6,10 +6,11 @@
 <mdl-icon mdl-badge="♥" mdl-badge-overlap>account_box</mdl-icon>
 
 <prism>
+  <![CDATA[
   <!-- Number badge on icon -->
-  <mdl-icon mdl-badge="1" mdl-badge-overlap>account_box</mdl-icon>
-  <mdl-icon mdl-badge="♥" mdl-badge-overlap>account_box</mdl-icon>
-
+  <br/><mdl-icon mdl-badge="1" mdl-badge-overlap>account_box</mdl-icon>
+  <br/><mdl-icon mdl-badge="♥" mdl-badge-overlap>account_box</mdl-icon>
+  ]]>
 </prism>
 
 
@@ -18,9 +19,10 @@
 <span mdl-badge="4">Inbox</span>
 
 <prism>
-<!-- Number badge -->
-<span mdl-badge="4">Inbox</span>
-
+  <![CDATA[
+  <!-- Number badge -->
+  <br/><span mdl-badge="4">Inbox</span>
+  ]]>
 </prism>
 
 <h5>Icon badge</h5>
@@ -28,17 +30,19 @@
 <!-- Icon badge -->
 <span mdl-badge="♥">Mood</span>
 <prism>
-<!-- Icon badge -->
-<span mdl-badge="♥">Mood</span>
-
+  <![CDATA[
+  <!-- Icon badge -->
+  <br/><span mdl-badge="♥">Mood</span>
+  ]]>
 </prism>
 
 <h5>Badge without background</h5>
 <a href="#" mdl-badge-no-background mdl-badge="123">This badge has no background color.</a>
 
 <prism>
+  <![CDATA[
 <a href="#" mdl-badge-no-background mdl-badge="123">This badge has no background color.</a>
-
+  ]]>
 </prism>
 
 <h4>Dynamic experiments</h4>
@@ -46,3 +50,10 @@
 set the badge counter
 <input type="number" [(ngModel)]="badgeCount">
 <span [mdl-badge]="badgeCount">Inbox</span>
+
+<prism>
+  <![CDATA[
+  <input type="number" [(ngModel)]="badgeCount">
+  <br/><span [mdl-badge]="badgeCount">Inbox</span>
+  ]]>
+</prism>

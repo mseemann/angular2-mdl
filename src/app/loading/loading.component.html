@@ -1,0 +1,47 @@
+<h4>Loading </h4>
+
+<h5>Progressbar</h5>
+
+<h6>Simple Porgressbar</h6>
+<mdl-progress [progress]="progress"></mdl-progress>
+Progress:
+<input type="number" min="0" max="100" [(ngModel)]="progress">
+
+<prism>
+  <![CDATA[
+<mdl-progress [progress]="progress"></mdl-progress>
+  <br/>Progress:
+  <br/><input type="number" min="0" max="100" [(ngModel)]="progress">
+  ]]>
+</prism>
+
+
+<h6>MDL Progress Bar with Indeterminate Progress</h6>
+<mdl-progress [indeterminate]="indeterminate"></mdl-progress>
+Indeterminate<input type="checkbox" [(ngModel)]="indeterminate">
+
+<prism>
+  <![CDATA[
+  <mdl-progress [indeterminate]="indeterminate"></mdl-progress>
+  <br/>Indeterminate<input type="checkbox" [(ngModel)]="indeterminate">
+  ]]>
+</prism>
+
+<h6>MDL Progress Bar with Buffering</h6>
+<mdl-progress [progress]="progress" [buffer]="buffer"></mdl-progress>
+Progress:
+<input type="number" min="0" max="100" [(ngModel)]="progress">
+Buffer:
+<input type="number" min="0" max="100" [(ngModel)]="buffer">
+
+<prism>
+  <![CDATA[
+  <mdl-progress [progress]="progress" [buffer]="buffer"></mdl-progress>
+  <br/>Progress:
+  <br/><input type="number" min="0" max="100" [(ngModel)]="progress">
+  <br/></br7>Buffer:
+  <br/><input type="number" min="0" max="100" [(ngModel)]="buffer">
+  ]]>
+</prism>
+
+<h5>Spinner</h5>

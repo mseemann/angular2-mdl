@@ -7,7 +7,7 @@ import { BadgeDemo } from './badge/badge.component';
 import { CardDemo } from './card/card.component';
 import { IconDemo } from './icon/icon.component';
 import { ShadowDemo } from './shadow/shadow.component';
-
+import { LoadingDemo } from './loading/loading.component';
 import { MDL_DIRECTIVES } from '../components';
 
 @Component({
@@ -35,6 +35,7 @@ export const AppRoutes = [
   { path: '/button', component: ButtonDemo },
   { path: '/card', component: CardDemo },
   { path: '/icon', component: IconDemo },
+  { path: '/loading', component: LoadingDemo },
   { path: '/shadow', component: ShadowDemo }
 ];
 

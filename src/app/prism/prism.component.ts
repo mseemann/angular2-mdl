@@ -9,9 +9,10 @@ import { Prism } from './prism.vendor';
   selector: 'prism',
   template: '<ng-content></ng-content>',
   styleUrls: ['prism.component.css'],
+  directives: [],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class PrismDirective implements OnInit {
+export class PrismComponent implements OnInit {
 
   private el:HTMLElement;
 
@@ -21,7 +22,9 @@ export class PrismDirective implements OnInit {
 
   ngOnInit(){
     // remove empty attribute values
-    var rawHtml = this.el.innerHTML.replace(new RegExp('=""', 'g'), '');
+    console.log(this.el.innerText);
+    var rawHtml = this.el.innerText.replace(new RegExp('=""', 'g'), '');
+    rawHtml = rawHtml.replace(new RegExp('<br/>', 'g'), '\n');
     var html:string = Prism.highlight(rawHtml, Prism.languages.html);
     var pre = document.createElement('pre');
 

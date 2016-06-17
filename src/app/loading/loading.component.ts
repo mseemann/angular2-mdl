@@ -4,13 +4,15 @@ import { PrismComponent } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
-  selector: 'badge-demo',
-  templateUrl: 'badge.component.html',
+  selector: 'loading-demo',
+  templateUrl: 'loading.component.html',
   directives: [
     MDL_DIRECTIVES,
     PrismComponent
   ],
 })
-export class BadgeDemo {
-  badgeCount = 1;
+export class LoadingDemo {
+  progress = 44;
+  indeterminate = true;
+  buffer = 78;
 }
