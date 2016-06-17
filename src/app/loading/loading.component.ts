@@ -15,4 +15,5 @@ export class LoadingDemo {
   progress = 44;
   indeterminate = true;
   buffer = 78;
+  active = true;
 }

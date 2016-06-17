@@ -22,7 +22,6 @@ export class PrismComponent implements OnInit {
 
   ngOnInit(){
     // remove empty attribute values
-    console.log(this.el.innerText);
     var rawHtml = this.el.innerText.replace(new RegExp('=""', 'g'), '');
     rawHtml = rawHtml.replace(new RegExp('<br/>', 'g'), '\n');
     var html:string = Prism.highlight(rawHtml, Prism.languages.html);
