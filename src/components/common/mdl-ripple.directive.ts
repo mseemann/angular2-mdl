@@ -6,12 +6,9 @@ import {
   SimpleChange
 } from '@angular/core';
 import { MaterialRipple } from './ripple.vendor';
-@Directive({
-  selector: '[mdl-ripple]'
-})
+
 export class MdlRippleDirective implements OnChanges {
 
-  RIPPLE_CONTAINER = 'mdl-button__ripple-container';
   RIPPLE = 'mdl-ripple';
 
   private rippleContainer:HTMLElement;
@@ -20,7 +17,7 @@ export class MdlRippleDirective implements OnChanges {
 
   @Input('mdl-ripple') rippleActive: boolean | string = true;
 
-  constructor(private elementRef: ElementRef){
+  constructor(private elementRef: ElementRef, private cssContainerClass:string){
     this.el = elementRef.nativeElement;
   }
 
@@ -40,7 +37,7 @@ export class MdlRippleDirective implements OnChanges {
       // otherwise (e.g. [mdl-ripple] it is a boolean may be with the default value true.
       if (this.rippleActive === '' || this.rippleActive){
         this.rippleContainer = document.createElement('span');
-        this.rippleContainer.classList.add(this.RIPPLE_CONTAINER);
+        this.rippleContainer.classList.add(this.cssContainerClass);
         var rippleElement = document.createElement('span');
         rippleElement.classList.add(this.RIPPLE);
         this.rippleContainer.appendChild(rippleElement);
@@ -57,4 +54,26 @@ export class MdlRippleDirective implements OnChanges {
 
 }
 
-export const MDL_COMMON_DIRECTIVES = [MdlRippleDirective];
+@Directive({
+  selector: 'button[mdl-ripple]'
+})
+export class MdlButtonRippleDirective extends MdlRippleDirective {
+
+  constructor(elementRef: ElementRef){
+    super(elementRef, 'mdl-button__ripple-container')
+  }
+
+}
+
+@Directive({
+  selector: 'mdl-checkbox[mdl-ripple]'
+})
+export class MdlCheckboxRippleDirective extends MdlRippleDirective {
+
+  constructor(elementRef: ElementRef){
+    super(elementRef, 'mdl-checkbox__ripple-container')
+  }
+
+}
+
+export const MDL_COMMON_DIRECTIVES = [MdlCheckboxRippleDirective, MdlButtonRippleDirective];

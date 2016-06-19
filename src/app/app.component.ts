@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DIRECTIVES, ActivatedRoute, Router} from '@angular/router';
-import { Observable } from 'rxjs';
+import { ROUTER_DIRECTIVES} from '@angular/router';
 
 import { ButtonDemo } from './button/button.component';
 import { BadgeDemo } from './badge/badge.component';
@@ -8,6 +7,7 @@ import { CardDemo } from './card/card.component';
 import { IconDemo } from './icon/icon.component';
 import { ShadowDemo } from './shadow/shadow.component';
 import { LoadingDemo } from './loading/loading.component';
+import { ToggleDemo } from './toggle/toggle.component';
 import { MDL_DIRECTIVES } from '../components';
 
 @Component({
@@ -17,16 +17,6 @@ import { MDL_DIRECTIVES } from '../components';
   `
 })
 export class Home {
-
-  // urlSegments:Observable<UrlSegment[]>;
-  //
-  // constructor(private r:ActivatedRoute){
-  //   console.log(r);
-  //   this.urlSegments =  r.urlSegments;//.map( url => url[0].path);
-  //   this.urlSegments.subscribe( (x) => {
-  //     console.log(x);
-  //   })
-  // }
 }
 
 export const AppRoutes = [
@@ -36,7 +26,8 @@ export const AppRoutes = [
   { path: '/card', component: CardDemo },
   { path: '/icon', component: IconDemo },
   { path: '/loading', component: LoadingDemo },
-  { path: '/shadow', component: ShadowDemo }
+  { path: '/shadow', component: ShadowDemo },
+  { path: '/toggle', component: ToggleDemo }
 ];
 
 @Component({
@@ -54,11 +45,5 @@ export class Angular2MdlAppComponent {
 
   title = 'Angular 2 - Material Design Lite';
 
-  // works only if ts 1.9 is used - but angualr cli has a peer dependency for 1.8 :(
-  // constructor(private router:Router){
-  //   router.events.subscribe( (event) => {
-  //     console.log(event);
-  //   });
-  // }
 }
 

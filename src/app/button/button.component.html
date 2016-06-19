@@ -219,14 +219,15 @@
 <div>
   <div>
     <label for="raised">Raised</label>
-    <input type="radio" name="buttonType" [ngModel]="{checked: buttonType == 'raised'}" (change)="buttonType=$event.target.value"  value="raised" id="raised">
+    <input #raised type="radio" name="buttonType" [checked]="buttonType === raised.value" (click)="buttonType = raised.value" value="raised">
     <label for="fab">Fab</label>
-    <input type="radio" name="buttonType" [ngModel]="{checked: buttonType == 'fab'}" (change)="buttonType=$event.target.value" value="fab" id="fab">
+    <input #fab type="radio" name="buttonType" [checked]="buttonType == fab.value" (click)="buttonType = fab.value" value="fab">
     <label for="fab">Mini Fab</label>
-    <input type="radio" name="buttonType" [ngModel]="{checked: buttonType == 'mini-fab'}" (change)="buttonType=$event.target.value" value="mini-fab" id="mini-fab">
+    <input #miniFab type="radio" name="buttonType" [checked]="buttonType == miniFab.value" (click)="buttonType= miniFab.value" value="mini-fab" >
     <label for="icon">Icon</label>
-    <input type="radio" name="buttonType" [ngModel]="{checked: buttonType == 'icon'}" (change)="buttonType=$event.target.value" value="icon" id="icon">
+    <input #icon type="radio" name="buttonType" [checked]="buttonType == icon.value" (click)="buttonType=icon.value" value="icon" >
   </div>
+  <div>{{buttonType}}</div>
   <div>
     <input type="checkbox" [(ngModel)]="doRipple">Ripple effect active?
   </div>
