@@ -2,14 +2,7 @@ import {
   Directive,
   Component,
   OnInit,
-  ElementRef,
-  ViewEncapsulation,
-  Inject,
-  ViewContainerRef,
-  Renderer,
-  TemplateRef,
-  Injector,
-  ComponentRef
+  ElementRef
 } from '@angular/core';
 import { Prism } from './prism.vendor';
 
