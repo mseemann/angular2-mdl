@@ -7,25 +7,26 @@
 Progress:
 <input type="number" min="0" max="100" [(ngModel)]="progress">
 
-<prism>
+<pre prism>
   <![CDATA[
-<mdl-progress [progress]="progress"></mdl-progress>
-  <br/>Progress:
-  <br/><input type="number" min="0" max="100" [(ngModel)]="progress">
+  <mdl-progress [progress]="progress"></mdl-progress>
+  Progress:
+  <input type="number" min="0" max="100" [(ngModel)]="progress">
   ]]>
-</prism>
+</pre>
 
 
 <h6>MDL Progress Bar with Indeterminate Progress</h6>
 <mdl-progress [indeterminate]="indeterminate"></mdl-progress>
 Indeterminate<input type="checkbox" [(ngModel)]="indeterminate">
 
-<prism>
+<pre prism>
   <![CDATA[
   <mdl-progress [indeterminate]="indeterminate"></mdl-progress>
-  <br/>Indeterminate<input type="checkbox" [(ngModel)]="indeterminate">
+  Indeterminate:
+  <input type="checkbox" [(ngModel)]="indeterminate">
   ]]>
-</prism>
+</pre>
 
 <h6>MDL Progress Bar with Buffering</h6>
 <mdl-progress [progress]="progress" [buffer]="buffer"></mdl-progress>
@@ -34,15 +35,15 @@ Progress:
 Buffer:
 <input type="number" min="0" max="100" [(ngModel)]="buffer">
 
-<prism>
+<pre prism>
   <![CDATA[
   <mdl-progress [progress]="progress" [buffer]="buffer"></mdl-progress>
-  <br/>Progress:
-  <br/><input type="number" min="0" max="100" [(ngModel)]="progress">
-  <br/></br7>Buffer:
-  <br/><input type="number" min="0" max="100" [(ngModel)]="buffer">
+  Progress:
+  <input type="number" min="0" max="100" [(ngModel)]="progress">
+  Buffer:
+  <input type="number" min="0" max="100" [(ngModel)]="buffer">
   ]]>
-</prism>
+</pre>
 
 <h5>Spinner</h5>
 
@@ -50,21 +51,21 @@ Buffer:
 <!-- MDL Spinner Component -->
 <mdl-spinner [active]="active"></mdl-spinner>
 Active<input type="checkbox" [(ngModel)]="active">
-<prism>
+<pre prism>
   <![CDATA[
   <!-- MDL Spinner Component -->
-  <br/><mdl-spinner [active]="true"></mdl-spinner>
+  <mdl-spinner [active]="true"></mdl-spinner>
   ]]>
-</prism>
+</pre>
 
 <h6>MDL Spinner Component with Single Color</h6>
 <!-- MDL Spinner Component with Single Color -->
 <mdl-spinner single-color active></mdl-spinner>
 
-<prism>
+<pre prism>
   <![CDATA[
   <!-- MDL Spinner Component with Single Color -->
-  <br/><mdl-spinner single-color active></mdl-spinner>
+  <mdl-spinner single-color active></mdl-spinner>
   ]]>
-</prism>
+</pre>
 

@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { MDL_DIRECTIVES } from '../../components';
-import { PrismComponent } from './../prism/prism.component';
+import { PrismDirective } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
@@ -16,7 +16,7 @@ import { PrismComponent } from './../prism/prism.component';
   `],
   directives: [
     MDL_DIRECTIVES,
-    PrismComponent
+    PrismDirective
   ],
   encapsulation: ViewEncapsulation.None
 })

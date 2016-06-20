@@ -8,7 +8,7 @@ import {
   tick,
   beforeEach
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component, Optional } from '@angular/core';
 import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
 import { MdlCheckboxComponent } from './mdl-checkbox.component';
@@ -16,9 +16,11 @@ import { MdlCheckboxComponent } from './mdl-checkbox.component';
 describe('Component: MdlCheckbox', () => {
 
   var builder: TestComponentBuilder;
+  var doc: HTMLDocument;
 
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
+  beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
     builder = tcb;
+    doc = document;
   }));
 
   it('should add the css class mdl-checkbox to the host element', () => {
@@ -89,7 +91,7 @@ describe('Component: MdlCheckbox', () => {
 
           let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
-          var evt = document.createEvent('HTMLEvents');
+          var evt = doc.createEvent('HTMLEvents');
           evt.initEvent('focus', true, true);
           inputEl.dispatchEvent(evt);
 
@@ -98,7 +100,7 @@ describe('Component: MdlCheckbox', () => {
           let checkboxEl:HTMLElement = fixture.debugElement.query(By.directive(MdlCheckboxComponent)).nativeElement;
           expect(checkboxEl.classList.contains('is-focused')).toBe(true);
 
-          var evtBlur = document.createEvent('HTMLEvents');
+          var evtBlur = doc.createEvent('HTMLEvents');
           evtBlur.initEvent('blur', true, true);
           inputEl.dispatchEvent(evtBlur);
 
