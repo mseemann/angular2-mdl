@@ -10,9 +10,11 @@
     "noImplicitAny": false,
     "outDir": "../../dist/",
     "rootDir": "..",
-    "sourceMap": true,
     "target": "es5",
     "inlineSources": false,
+    "mapRoot": "dist",
+    "sourceMap": true,
+    "inlineSourceMap": false,
     "stripInternal": true
   },
 

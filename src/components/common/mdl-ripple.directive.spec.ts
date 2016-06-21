@@ -77,7 +77,7 @@ describe('Directive: MdlRipple', () => {
   it('should remove the ripple if mdl-ripple is set to false', () => {
     return builder
       .overrideTemplate(MdlTestRippleComponent, `
-          <button [mdl-ripple]="doRipple"></button>
+          <mdl-checkbox [mdl-ripple]="doRipple"></mdl-checkbox>
         `)
       .createAsync(MdlTestRippleComponent).then( (fixture) => {
 

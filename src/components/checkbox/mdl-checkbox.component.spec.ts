@@ -115,7 +115,7 @@ describe('Component: MdlCheckbox', () => {
 
 @Component({
   selector: 'test-icon',
-  template: '<mdl-checkbox [(ngModel)]="checkboxValue1">checkbox label</mdl-checkbox>',
+  template: '<mdl-checkbox [(ngModel)]="checkboxValue1" mdl-ripple>checkbox label</mdl-checkbox>',
   directives: [MdlCheckboxComponent]
 })
 class MdlTestCheckboxComponent {
