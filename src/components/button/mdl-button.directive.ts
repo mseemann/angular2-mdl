@@ -76,14 +76,14 @@ export class MdlButtonDirective implements OnChanges {
   }
 
   onMouseUp(){
-    this.blur();
+    this.blurIt();
   }
 
   onMouseLeave(){
-    this.blur();
+    this.blurIt();
   }
 
-  blur(){
+  blurIt(){
     this.el.blur();
   }
 }

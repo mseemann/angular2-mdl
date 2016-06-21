@@ -78,14 +78,14 @@ describe('Directive: MdlButton', () => {
 
         var mdlButtonDirective =  fixture.componentInstance.mdlButton;
 
-        spyOn(mdlButtonDirective, 'blur');
-        expect(mdlButtonDirective.blur).not.toHaveBeenCalled();
+        spyOn(mdlButtonDirective, 'blurIt').and.callThrough();
+        expect(mdlButtonDirective.blurIt).not.toHaveBeenCalled();
 
         mdlButtonDirective.onMouseUp();
-        expect(mdlButtonDirective.blur).toHaveBeenCalled();
+        expect(mdlButtonDirective.blurIt).toHaveBeenCalled();
 
         mdlButtonDirective.onMouseLeave();
-        expect(mdlButtonDirective.blur).toHaveBeenCalled();
+        expect(mdlButtonDirective.blurIt).toHaveBeenCalled();
 
       })
   });
