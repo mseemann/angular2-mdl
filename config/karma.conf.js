@@ -49,7 +49,7 @@ module.exports = function (config) {
       ]
     },
     remapIstanbulReporter: {
-      src: 'coverage/coverage-final.json',
+      src: './coverage/coverage-final.json',
       reports: {
         html: 'coverage/coverage-remap',
         lcovonly: 'coverage/coverage-remap/lcov.info'
