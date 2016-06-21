@@ -92,6 +92,21 @@ describe('Directive: MdlRipple', () => {
         expect(getSpan1IfAny(fixture)).toBeNull();
       })
   })
+
+  it('should add the ripple to mdl-radio', () => {
+    return builder
+      .overrideTemplate(MdlTestRippleComponent, `
+          <mdl-radio mdl-ripple></mdl-radio>
+        `)
+      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let span1 = getSpan1IfAny(fixture);
+
+        expect(span1.classList.contains('mdl-ripple')).toBe(true);
+      })
+  });
 });
 
 

@@ -76,4 +76,15 @@ export class MdlCheckboxRippleDirective extends MdlRippleDirective {
 
 }
 
-export const MDL_COMMON_DIRECTIVES = [MdlCheckboxRippleDirective, MdlButtonRippleDirective];
+@Directive({
+  selector: 'mdl-radio[mdl-ripple]'
+})
+export class MdlRadioRippleDirective extends MdlRippleDirective {
+
+  constructor(elementRef: ElementRef){
+    super(elementRef, 'mdl-radio__ripple-container')
+  }
+
+}
+
+export const MDL_COMMON_DIRECTIVES = [MdlCheckboxRippleDirective, MdlButtonRippleDirective, MdlRadioRippleDirective];
