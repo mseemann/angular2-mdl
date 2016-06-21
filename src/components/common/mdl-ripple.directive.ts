@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { MaterialRipple } from './ripple.vendor';
 
+// TODO change to @Component with a template to create the dom structure for ripple effects
+
 export class MdlRippleDirective implements OnChanges {
 
   RIPPLE = 'mdl-ripple';
