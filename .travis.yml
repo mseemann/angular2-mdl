@@ -27,6 +27,8 @@ after_success:
   - ./scripts/delete-gh-pages.sh
   # deploy to github pages if build succeds
   - git status; npm run deploy-gh-pages
+  # stash any changes - if tehre are any
+  - git stash
   # turn back to master
   - git checkout master
   #  give github a little bit of time to update the github page
