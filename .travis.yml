@@ -20,6 +20,7 @@ before_install:
 
 after_success:
   # Send coverage data to Coveralls
+  - pwd
   - ls -la ./coverage
   - ls -la coverage
   - cat ./coverage/coverage-remap/lcov.info | ./node_modules/coveralls/bin/coveralls.js
