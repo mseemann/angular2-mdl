@@ -20,9 +20,9 @@ before_install:
 
 after_success:
   # create remaped coverage reports - karma-remap did not find the coverage-final.json
-  #- ./node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -o coverage/coverage-mapped.json -t lcovonly -o coverage/lcov.info
+  - ./node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -o coverage/coverage-mapped.json -t lcovonly -o coverage/lcov.info
   # Send coverage data to Coveralls
-  - cat ./coverage/coverage-remap/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   # remove branch gh-pages
   - ./scripts/delete-gh-pages.sh
   # deploy to github pages if build succeds
