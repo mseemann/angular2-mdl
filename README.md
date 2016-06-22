@@ -13,6 +13,16 @@ This package assumes that you are building an Angular2 app with TypeScript and A
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
+### Status of the npm package
+
+- Badges
+- Buttons 
+- Cards
+- Icons
+- Loading
+- Shadow
+- Toggle (Checkbox, Radio)
+
 
 ### Installation
 
