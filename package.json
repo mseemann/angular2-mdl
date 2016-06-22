@@ -7,7 +7,7 @@
     "start": "ng server",
     "postinstall": "typings install",
     "lint": "tslint \"src/**/*.ts\"",
-    "test": "ng version; ng test --watch false",
+    "test": "ng version; tsc -v; ng test --watch false",
     "pree2e": "webdriver-manager update; tsc --project e2e",
     "e2e": "protractor",
     "deploy-gh-pages": "ng github-pages:deploy --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\"",
@@ -17,6 +17,10 @@
   "main": "./dist/components/index.js",
   "typings": "./dist/components/index.d.ts",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mseemann/angular2-mdl.git"
+  },
   "dependencies": {
     "@angular/core": "2.0.0-rc.2",
     "@angular/common": "2.0.0-rc.2"
@@ -50,8 +54,8 @@
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.26",
     "ts-node": "^0.5.5",
-    "tslint": "^3.11.0-dev.0",
-    "typescript": "^1.9.0-dev.20160615-1.0",
+    "tslint": "3.11.0-dev.0",
+    "typescript": "1.9.0-dev.20160615-1.0",
     "typings": "^0.8.1",
     "zone.js": "^0.6.12"
   }
