@@ -57,8 +57,16 @@ import { MDL_DIRECTIVES } from 'angular2-mdl';
 }
 ```
 
+### css from material-design-lite
+You may include the material-deisgn-lite css in your html and you're done!
+```HTML
+<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css" />
+```
+Under https://getmdl.io/customize/index.html you'll find a customizing tool to change the theme colors.
 
 ### How to use the scss files from material-design-lite
+But there is also another way. This package includes the scss files from material-design-lite. 
+With these files you are able to change the colors and other variables in your own scss files:
 
 First of all you need to install node-sass for your project:
 

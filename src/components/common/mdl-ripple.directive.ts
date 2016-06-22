@@ -25,8 +25,6 @@ export class MdlRippleDirective implements OnChanges {
 
 
   ngOnChanges(changes: {[propertyName: string]: SimpleChange}){
-    let chng = changes['rippleActive'];
-    if (chng){
 
       // remove any existing ripple container
       if(this.rippleContainer){
@@ -36,22 +34,19 @@ export class MdlRippleDirective implements OnChanges {
       }
 
       // if used as mdl-ripple without property binding it is an empty string
-      // otherwise (e.g. [mdl-ripple] it is a boolean may be with the default value true.
+      // otherwise (e.g. [mdl-ripple] it is a boolean - may be with the default value true.
       if (this.rippleActive === '' || this.rippleActive){
         this.rippleContainer = document.createElement('span');
         this.rippleContainer.classList.add(this.cssContainerClass);
         var rippleElement = document.createElement('span');
         rippleElement.classList.add(this.RIPPLE);
         this.rippleContainer.appendChild(rippleElement);
-        rippleElement.addEventListener('mouseup', ()=>{
-          rippleElement.blur();
-        });
+        rippleElement.addEventListener('mouseup', ()=>rippleElement.blur());
         this.el.appendChild(this.rippleContainer);
 
         this.ripple = new MaterialRipple(this.rippleContainer);
 
       }
-    }
   }
 
 }
