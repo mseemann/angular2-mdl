@@ -54,7 +54,7 @@ module.exports = function (config) {
         html: 'coverage/coverage-remap',
         lcovonly: 'coverage/coverage-remap/lcov.info'
       },
-      timeoutNotCreated: 1000,
+      timeoutNotCreated: 10000,
       timeoutNoMoreFiles: 1000
     },
     reporters: ['spec', 'coverage', 'karma-remap-istanbul'],
