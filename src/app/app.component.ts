@@ -7,14 +7,14 @@ import { CardDemo } from './card/card.component';
 import { IconDemo } from './icon/icon.component';
 import { ShadowDemo } from './shadow/shadow.component';
 import { LoadingDemo } from './loading/loading.component';
+import { ListDemo } from './list/list.component';
 import { ToggleDemo } from './toggle/toggle.component';
 import { MDL_DIRECTIVES } from '../components';
 
 @Component({
+  moduleId: module.id,
   selector: 'home',
-  template: `
-    <h4>Welcome to the e2e demos for Angular 2 <a href="https://getmdl.io/" target="_blank">Material Design Lite!</a></h4>
-  `
+  templateUrl: 'home.html'
 })
 export class Home {
 }
@@ -26,6 +26,7 @@ export const AppRoutes = [
   { path: 'card', component: CardDemo },
   { path: 'icon', component: IconDemo },
   { path: 'loading', component: LoadingDemo },
+  { path: 'list', component: ListDemo },
   { path: 'shadow', component: ShadowDemo },
   { path: 'toggle', component: ToggleDemo }
 ];

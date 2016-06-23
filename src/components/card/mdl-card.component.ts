@@ -9,13 +9,8 @@ import {
   Renderer,
   Optional,
   ViewEncapsulation } from '@angular/core';
-import { MdlError } from './../common/mdl-error';
+import { MdlStructureError } from './../common/mdl-error';
 
-export class MdlStructureError extends MdlError {
-  constructor(child:string, requiredParent: string) {
-    super(`"${child}" requires "${requiredParent}" as a parent.`);
-  }
-}
 
 @Component({
   selector: 'mdl-card',
@@ -25,9 +20,8 @@ export class MdlStructureError extends MdlError {
   template:'<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
-export class MdlCardComponent {
+export class MdlCardComponent {}
 
-}
 
 export class MdlCardChildStructure implements OnInit {
 

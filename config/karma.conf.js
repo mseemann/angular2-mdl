@@ -6,8 +6,7 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-coverage'),
-      require('karma-spec-reporter'),
-      require('karma-remap-istanbul')
+      require('karma-spec-reporter')
     ],
     customLaunchers: {
       // chrome setup for travis CI using chromium
@@ -48,19 +47,10 @@ module.exports = function (config) {
         }
       ]
     },
-    remapIstanbulReporter: {
-      src: 'coverage/coverage-final.json',
-      reports: {
-        html: 'coverage/coverage-remap',
-        lcovonly: 'coverage/coverage-remap/lcov.info'
-      },
-      timeoutNotCreated: 1000,
-      timeoutNoMoreFiles: 1000
-    },
-    reporters: ['spec', 'coverage', 'karma-remap-istanbul'],
+    reporters: ['spec', 'coverage'],
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_ERROR,
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false

@@ -29,6 +29,10 @@ import {
 } from './progress/mdl-progress.component';
 import { MdlIconComponent } from './icon/mdl-icon.component';
 import { MdlIconToggleComponent } from './icon-toggle/mdl-icon-toggle.component';
+import {
+  MdlListComponent,
+  MdlListItemComponent
+} from './list/mdl-list.component';
 import { MdlSpinnerComponent } from './spinner/mdl-spinner.component';
 import { MdlSwitchComponent } from './switch/mdl-switch.component';
 
@@ -38,6 +42,7 @@ export * from './button/mdl-button.component';
 export * from './card/mdl-card.component';
 export * from './checkbox/mdl-checkbox.component';
 export * from './icon/mdl-icon.component';
+export * from './list/mdl-list.component';
 export * from './icon-toggle/mdl-icon-toggle.component';
 export * from './progress/mdl-progress.component';
 export * from './radio/mdl-radio.component';
@@ -66,6 +71,8 @@ export const MDL_DIRECTIVES = [
   MdlCheckboxComponent,
   MdlIconComponent,
   MdlIconToggleComponent,
+  MdlListComponent,
+  MdlListItemComponent,
   MdlProgressComponent,
   MdlRadioComponent,
   MdlShadowDirective,
