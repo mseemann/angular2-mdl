@@ -20,14 +20,14 @@ export class Home {
 }
 
 export const AppRoutes = [
-  { component: Home, index: true },
-  { path: '/badge', component: BadgeDemo },
-  { path: '/button', component: ButtonDemo },
-  { path: '/card', component: CardDemo },
-  { path: '/icon', component: IconDemo },
-  { path: '/loading', component: LoadingDemo },
-  { path: '/shadow', component: ShadowDemo },
-  { path: '/toggle', component: ToggleDemo }
+  { component: Home, path:'', index: true },
+  { path: 'badge', component: BadgeDemo },
+  { path: 'button', component: ButtonDemo },
+  { path: 'card', component: CardDemo },
+  { path: 'icon', component: IconDemo },
+  { path: 'loading', component: LoadingDemo },
+  { path: 'shadow', component: ShadowDemo },
+  { path: 'toggle', component: ToggleDemo }
 ];
 
 @Component({
