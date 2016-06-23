@@ -2,7 +2,8 @@ import {
   MdlButtonRippleDirective,
   MdlCheckboxRippleDirective,
   MdlRadioRippleDirective,
-  MdlIconToggleRippleDirective
+  MdlIconToggleRippleDirective,
+  MdlSwitchRippleDirective
 } from "./common/mdl-ripple.directive";
 import { MdlButtonDirective } from "./button/mdl-button.directive";
 import {
@@ -29,6 +30,7 @@ import {
 import { MdlIconComponent } from './icon/mdl-icon.component';
 import { MdlIconToggleComponent } from './icon-toggle/mdl-icon-toggle.component';
 import { MdlSpinnerComponent } from './spinner/mdl-spinner.component';
+import { MdlSwitchComponent } from './switch/mdl-switch.component';
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
@@ -41,13 +43,14 @@ export * from './progress/mdl-progress.component';
 export * from './radio/mdl-radio.component';
 export * from './shadow/mdl-shadow.directive';
 export * from './spinner/mdl-spinner.component';
-
+export * from './switch/mdl-switch.component';
 
 export const MDL_DIRECTIVES = [
   MdlButtonRippleDirective,
   MdlCheckboxRippleDirective,
   MdlRadioRippleDirective,
   MdlIconToggleRippleDirective,
+  MdlSwitchRippleDirective,
   MdlBadgeDirective,
   MdlBadgeNoBackgroundDirective,
   MdlBadgeOverlapDirective,
@@ -66,5 +69,6 @@ export const MDL_DIRECTIVES = [
   MdlProgressComponent,
   MdlRadioComponent,
   MdlShadowDirective,
-  MdlSpinnerComponent
+  MdlSpinnerComponent,
+  MdlSwitchComponent
 ];

@@ -23,7 +23,7 @@ This package assumes that you are building an Angular2 app with TypeScript and A
 - Icons
 - Loading
 - Shadow
-- Toggle (Checkbox, Radio, Icon Toggle)
+- Toggle (Checkbox, Radio, Icon Toggle, Switch)
 
 
 ### Installation

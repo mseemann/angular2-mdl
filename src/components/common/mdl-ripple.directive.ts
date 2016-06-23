@@ -95,6 +95,17 @@ export class MdlIconToggleRippleDirective extends MdlRippleDirective {
 
 }
 
+@Directive({
+  selector: 'mdl-switch[mdl-ripple]'
+})
+export class MdlSwitchRippleDirective extends MdlRippleDirective {
+
+  constructor(elementRef: ElementRef){
+    super(elementRef, 'mdl-switch__ripple-container')
+  }
+
+}
+
 
 
 
@@ -102,4 +113,5 @@ export const MDL_COMMON_DIRECTIVES = [
   MdlCheckboxRippleDirective,
   MdlButtonRippleDirective,
   MdlRadioRippleDirective,
-  MdlIconToggleRippleDirective];
+  MdlIconToggleRippleDirective,
+  MdlSwitchRippleDirective];

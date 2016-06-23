@@ -122,6 +122,21 @@ describe('Directive: MdlRipple', () => {
         expect(span1.classList.contains('mdl-ripple')).toBe(true);
       })
   });
+
+  it('should add the ripple to mdl-switch', () => {
+    return builder
+      .overrideTemplate(MdlTestRippleComponent, `
+          <mdl-switch mdl-ripple></mdl-switch>
+        `)
+      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let span1 = getSpan1IfAny(fixture);
+
+        expect(span1.classList.contains('mdl-ripple')).toBe(true);
+      })
+  });
 });
 
 
