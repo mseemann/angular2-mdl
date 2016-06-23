@@ -42,10 +42,87 @@ export class MdlListItemComponent implements OnInit{
   }
 }
 
+@Component({
+  selector: 'mdl-list-item-primary-content',
+  host: {
+    '[class.mdl-list__item-primary-content]': 'true'
+  },
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
+})
+export class MdlListItemPrimaryContentComponent implements OnInit{
 
+  constructor(@Optional() private mdlListItemComponent:MdlListItemComponent){}
+
+  ngOnInit(){
+    if (this.mdlListItemComponent===null){
+      throw new MdlStructureError('mdl-list-item-primary-content', 'mdl-list-item');
+    }
+  }
+}
+
+
+@Component({
+  selector: 'mdl-list-item-secondary-content',
+  host: {
+    '[class.mdl-list__item-secondary-content]': 'true'
+  },
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
+})
+export class MdlListItemSecondaryContentComponent implements OnInit{
+
+  constructor(@Optional() private mdlListItemComponent:MdlListItemComponent){}
+
+  ngOnInit(){
+    if (this.mdlListItemComponent===null){
+      throw new MdlStructureError('mdl-list-item-secondary-content', 'mdl-list-item');
+    }
+  }
+}
+
+@Component({
+  selector: 'mdl-list-item-secondary-action',
+  host: {
+    '[class.mdl-list__item-secondary-action]': 'true'
+  },
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
+})
+export class MdlListItemSecondaryActionComponent implements OnInit{
+
+  constructor(@Optional() private mdlListItemComponent:MdlListItemComponent){}
+
+  ngOnInit(){
+    if (this.mdlListItemComponent===null){
+      throw new MdlStructureError('mdl-list-item-secondary-action', 'mdl-list-item');
+    }
+  }
+}
+
+@Directive({
+  selector: 'mdl-icon[mdl-list-item-icon]',
+  host: {
+    '[class.mdl-list__item-icon]': 'true'
+  }
+})
+export class MdlListItemIconDirective {}
+
+@Directive({
+  selector: 'mdl-icon[mdl-list-item-avatar]',
+  host: {
+    '[class.mdl-list__item-avatar]': 'true'
+  }
+})
+export class MdlListItemAvatarDirective {}
 
 
 export const MDL_LIST_DIRECTIVES = [
   MdlListComponent,
-  MdlListItemComponent
+  MdlListItemComponent,
+  MdlListItemPrimaryContentComponent,
+  MdlListItemIconDirective,
+  MdlListItemAvatarDirective,
+  MdlListItemSecondaryContentComponent,
+  MdlListItemSecondaryActionComponent
 ];

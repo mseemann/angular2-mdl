@@ -11,6 +11,10 @@ import { PrismDirective } from './../prism/prism.component';
   mdl-list {
     width: 300px;
   }
+  
+  mdl-radio, mdl-checkbox, mdl-switch {
+    display: inline;
+  }
 `
   ],
   directives: [

@@ -34,15 +34,14 @@ export class MdlShadowDirective implements OnChanges {
       throw new MdlUnsupportedShadowValueError(this.mdlShadow);
     }
 
-    if (changes['mdlShadow'] ){
-      let change = changes['mdlShadow'];
+    let change = changes['mdlShadow'];
 
-      if (!change.isFirstChange()){
-        this.renderer.setElementClass(this.el, `mdl-shadow--${change.previousValue}dp`, false);
-      }
-
-      this.renderer.setElementClass(this.el, `mdl-shadow--${change.currentValue}dp`, true);
+    if (!change.isFirstChange()){
+      this.renderer.setElementClass(this.el, `mdl-shadow--${change.previousValue}dp`, false);
     }
+
+    this.renderer.setElementClass(this.el, `mdl-shadow--${change.currentValue}dp`, true);
+
   }
 
 }

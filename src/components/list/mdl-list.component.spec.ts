@@ -26,9 +26,26 @@ describe('Components: MdlList*', () => {
 
         fixture.detectChanges();
 
-        let mdlCardElement = fixture.debugElement.query(By.css('mdl-list'));
-        expect(mdlCardElement.nativeElement.classList.contains('mdl-list')).toBe(true);
+        let mdlListElement = fixture.debugElement.query(By.css('mdl-list'));
+        expect(mdlListElement.nativeElement.classList.contains('mdl-list')).toBe(true);
 
+        let mdlListItemElement = fixture.debugElement.query(By.css('mdl-list-item'));
+        expect(mdlListItemElement.nativeElement.classList.contains('mdl-list__item')).toBe(true);
+
+        let mdlListItemPrimaryContentElement = fixture.debugElement.query(By.css('mdl-list-item-primary-content'));
+        expect(mdlListItemPrimaryContentElement.nativeElement.classList.contains('mdl-list__item-primary-content')).toBe(true);
+
+        let mdlListItemSecondaryContentElement = fixture.debugElement.query(By.css('mdl-list-item-secondary-content'));
+        expect(mdlListItemSecondaryContentElement.nativeElement.classList.contains('mdl-list__item-secondary-content')).toBe(true);
+
+        let mdlListIconElement = fixture.debugElement.query(By.css('#icon1'));
+        expect(mdlListIconElement.nativeElement.classList.contains('mdl-list__item-icon')).toBe(true);
+
+        let mdlListIconAvatarElement = fixture.debugElement.query(By.css('#icon2'));
+        expect(mdlListIconAvatarElement.nativeElement.classList.contains('mdl-list__item-avatar')).toBe(true);
+
+        let mdlListItemSecondaryActionElement = fixture.debugElement.query(By.css('mdl-list-item-secondary-action'));
+        expect(mdlListItemSecondaryActionElement.nativeElement.classList.contains('mdl-list__item-secondary-action')).toBe(true);
       })
   });
 
@@ -45,13 +62,62 @@ describe('Components: MdlList*', () => {
       })
   })
 
+  it('should throw if mdl-list-item-primary-content has no mdl-list-item parent', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-list-item-primary-content></mdl-list-item-primary-content>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
+
+  it('should throw if mdl-list-item-secondary-content has no mdl-list-item parent', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-list-item-secondary-content></mdl-list-item-secondary-content>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
+
+  it('should throw if mdl-list-item-secondary-action has no mdl-list-item parent', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-list-item-secondary-action></mdl-list-item-secondary-action>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
 });
 
 @Component({
   selector: 'test-app',
   template: `
     <mdl-list>
-      <mdl-list-item></mdl-list-item>
+      <mdl-list-item>
+        <mdl-list-item-primary-content>
+          <mdl-icon mdl-list-item-icon id="icon1"></mdl-icon>
+          <mdl-icon mdl-list-item-avatar id="icon2"></mdl-icon>
+        </mdl-list-item-primary-content>
+        <mdl-list-item-secondary-content>
+        
+        </mdl-list-item-secondary-content>
+        <mdl-list-item-secondary-action>
+        
+        </mdl-list-item-secondary-action>
+      </mdl-list-item>
     </mdl-list>
   `,
   directives: [MDL_LIST_DIRECTIVES]

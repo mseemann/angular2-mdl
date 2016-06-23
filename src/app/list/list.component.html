@@ -92,28 +92,131 @@
 
 <h5>Avatars and actions</h5>
 
-<div class="demo-list-action mdl-list">
-  <div class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <i class="material-icons mdl-list__item-avatar">person</i>
+<mdl-list>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
       <span>Bryan Cranston</span>
-    </span>
-    <a class="mdl-list__item-secondary-action" href="#"><mdl-icon>star</mdl-icon></a>
-  </div>
-  <div class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <i class="material-icons mdl-list__item-avatar">person</i>
+    </mdl-list-item-primary-content>
+    <a href="#"><mdl-icon>star</mdl-icon></a>
+  </mdl-list-item>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
       <span>Aaron Paul</span>
-    </span>
-    <a class="mdl-list__item-secondary-action" href="#"><mdl-icon>star</mdl-icon></a>
-  </div>
-  <div class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <i class="material-icons mdl-list__item-avatar">person</i>
+    </mdl-list-item-primary-content>
+    <a href="#"><mdl-icon>star</mdl-icon></a>
+  </mdl-list-item>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
       <span>Bob Odenkirk</span>
-    </span>
-    <span class="mdl-list__item-secondary-content">
-      <a class="mdl-list__item-secondary-action" href="#"><mdl-icon>star</mdl-icon></a>
-  </span>
-  </div>
-</div>
+    </mdl-list-item-primary-content>
+    <mdl-list-item-secondary-content>
+      <a href="#"><mdl-icon>star</mdl-icon></a>
+    </mdl-list-item-secondary-content>
+  </mdl-list-item>
+</mdl-list>
+
+<pre prism>
+  <![CDATA[
+<mdl-list>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+      <span>Bryan Cranston</span>
+    </mdl-list-item-primary-content>
+    <a href="#"><mdl-icon>star</mdl-icon></a>
+  </mdl-list-item>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+      <span>Aaron Paul</span>
+    </mdl-list-item-primary-content>
+    <a href="#"><mdl-icon>star</mdl-icon></a>
+  </mdl-list-item>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+      <span>Bob Odenkirk</span>
+    </mdl-list-item-primary-content>
+    <mdl-list-item-secondary-content>
+      <a href="#"><mdl-icon>star</mdl-icon></a>
+    </mdl-list-item-secondary-content>
+  </mdl-list-item>
+</mdl-list>
+  ]]>
+</pre>
+
+<h5>Avatars and controls</h5>
+
+<mdl-list>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+      Bryan Cranston
+    </mdl-list-item-primary-content>
+    <mdl-list-item-secondary-action>
+      <mdl-checkbox mdl-ripple></mdl-checkbox>
+    </mdl-list-item-secondary-action>
+  </mdl-list-item>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+      Aaron Paul
+    </mdl-list-item-primary-content>
+    <mdl-list-item-secondary-action>
+      <mdl-radio ngModel="false" mdl-ripple></mdl-radio>
+    </mdl-list-item-secondary-action>
+  </mdl-list-item>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+      Bob Odenkirk
+    </mdl-list-item-primary-content>
+      <mdl-list-item-secondary-action>
+        <mdl-switch mdl-ripple></mdl-switch>
+      </mdl-list-item-secondary-action>
+  </mdl-list-item>
+</mdl-list>
+
+<pre prism>
+  <![CDATA[
+  <style>
+    mdl-radio, mdl-checkbox, mdl-switch {
+      display: inline;
+    }
+  </style>
+<mdl-list>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+      Bryan Cranston
+    </mdl-list-item-primary-content>
+    <mdl-list-item-secondary-action>
+      <mdl-checkbox mdl-ripple></mdl-checkbox>
+    </mdl-list-item-secondary-action>
+  </mdl-list-item>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+      Aaron Paul
+    </mdl-list-item-primary-content>
+    <mdl-list-item-secondary-action>
+      <mdl-radio ngModel="false" mdl-ripple></mdl-radio>
+    </mdl-list-item-secondary-action>
+  </mdl-list-item>
+  <mdl-list-item>
+    <mdl-list-item-primary-content>
+      <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+      Bob Odenkirk
+    </mdl-list-item-primary-content>
+      <mdl-list-item-secondary-action>
+        <mdl-switch mdl-ripple></mdl-switch>
+      </mdl-list-item-secondary-action>
+  </mdl-list-item>
+</mdl-list>
+  ]]>
+</pre>
+
+<h5>Two line</h5>
