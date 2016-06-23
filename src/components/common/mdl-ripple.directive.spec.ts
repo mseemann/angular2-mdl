@@ -107,6 +107,21 @@ describe('Directive: MdlRipple', () => {
         expect(span1.classList.contains('mdl-ripple')).toBe(true);
       })
   });
+
+  it('should add the ripple to mdl-icon-toggle', () => {
+    return builder
+      .overrideTemplate(MdlTestRippleComponent, `
+          <mdl-icon-toggle mdl-ripple></mdl-icon-toggle>
+        `)
+      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let span1 = getSpan1IfAny(fixture);
+
+        expect(span1.classList.contains('mdl-ripple')).toBe(true);
+      })
+  });
 });
 
 

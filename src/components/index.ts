@@ -1,7 +1,8 @@
 import {
   MdlButtonRippleDirective,
   MdlCheckboxRippleDirective,
-  MdlRadioRippleDirective
+  MdlRadioRippleDirective,
+  MdlIconToggleRippleDirective
 } from "./common/mdl-ripple.directive";
 import { MdlButtonDirective } from "./button/mdl-button.directive";
 import {
@@ -46,6 +47,7 @@ export const MDL_DIRECTIVES = [
   MdlButtonRippleDirective,
   MdlCheckboxRippleDirective,
   MdlRadioRippleDirective,
+  MdlIconToggleRippleDirective,
   MdlBadgeDirective,
   MdlBadgeNoBackgroundDirective,
   MdlBadgeOverlapDirective,
