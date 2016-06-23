@@ -46,6 +46,17 @@ describe('Components: MdlList*', () => {
 
         let mdlListItemSecondaryActionElement = fixture.debugElement.query(By.css('mdl-list-item-secondary-action'));
         expect(mdlListItemSecondaryActionElement.nativeElement.classList.contains('mdl-list__item-secondary-action')).toBe(true);
+
+        let mdlListItemSubTitleElement = fixture.debugElement.query(By.css('mdl-list-item-sub-title'));
+        expect(mdlListItemSubTitleElement.nativeElement.classList.contains('mdl-list__item-sub-title')).toBe(true);
+
+        let mdlListItemSecondaryInfoElement = fixture.debugElement.query(By.css('mdl-list-item-secondary-info'));
+        expect(mdlListItemSecondaryInfoElement.nativeElement.classList.contains('mdl-list__item-secondary-info')).toBe(true);
+
+        let mdlListItemtextBodyElement = fixture.debugElement.query(By.css('mdl-list-item-text-body'));
+        expect(mdlListItemtextBodyElement.nativeElement.classList.contains('mdl-list__item-text-body')).toBe(true);
+
+
       })
   });
 
@@ -100,19 +111,74 @@ describe('Components: MdlList*', () => {
 
       })
   })
+
+  it('should throw if mdl-list-item-sub-title has no mdl-list-item-primary-content', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-list-item-sub-title></mdl-list-item-sub-title>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
+
+  it('should throw if mdl-list-item-secondary-info has no mdl-list-item-secondary-content', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-list-item-secondary-info></mdl-list-item-secondary-info>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
+
+  it('should throw if mdl-list-item-text-body has no mdl-list-item', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-list-item-text-body></mdl-list-item-text-body>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
+
+  it('should only support max 3 lines', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-list-item lines="4"></mdl-list-item>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      })
+  })
+
 });
 
 @Component({
   selector: 'test-app',
   template: `
     <mdl-list>
-      <mdl-list-item>
+      <mdl-list-item lines="3">
         <mdl-list-item-primary-content>
           <mdl-icon mdl-list-item-icon id="icon1"></mdl-icon>
           <mdl-icon mdl-list-item-avatar id="icon2"></mdl-icon>
+          <mdl-list-item-sub-title></mdl-list-item-sub-title>
+          <mdl-list-item-text-body></mdl-list-item-text-body>
         </mdl-list-item-primary-content>
         <mdl-list-item-secondary-content>
-        
+          <mdl-list-item-secondary-info></mdl-list-item-secondary-info>
         </mdl-list-item-secondary-content>
         <mdl-list-item-secondary-action>
         

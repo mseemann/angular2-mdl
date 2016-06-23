@@ -36,7 +36,10 @@ import {
   MdlListItemIconDirective,
   MdlListItemAvatarDirective,
   MdlListItemSecondaryContentComponent,
-  MdlListItemSecondaryActionComponent
+  MdlListItemSecondaryActionComponent,
+  MdlListItemSubTitleComponent,
+  MdlListItemSecondaryInfoComponent,
+  MdlListItemTextBodyComponent
 } from './list/mdl-list.component';
 import { MdlSpinnerComponent } from './spinner/mdl-spinner.component';
 import { MdlSwitchComponent } from './switch/mdl-switch.component';
@@ -83,6 +86,9 @@ export const MDL_DIRECTIVES = [
   MdlListItemAvatarDirective,
   MdlListItemSecondaryContentComponent,
   MdlListItemSecondaryActionComponent,
+  MdlListItemSubTitleComponent,
+  MdlListItemSecondaryInfoComponent,
+  MdlListItemTextBodyComponent,
   MdlProgressComponent,
   MdlRadioComponent,
   MdlShadowDirective,

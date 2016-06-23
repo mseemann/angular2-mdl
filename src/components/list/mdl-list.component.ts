@@ -9,8 +9,16 @@ import {
   Renderer,
   Optional,
   ViewEncapsulation } from '@angular/core';
-import { MdlStructureError } from './../common/mdl-error';
+import {
+  MdlError,
+  MdlStructureError
+} from './../common/mdl-error';
 
+export class MdlUnsupportedCountOfListItemLinesError extends MdlError {
+  constructor(lines:number|string) {
+    super(`"${lines}" is not supported - max 3 lines please.`);
+  }
+}
 
 @Component({
   selector: 'mdl-list',
@@ -26,12 +34,16 @@ export class MdlListComponent {}
 @Component({
   selector: 'mdl-list-item',
   host: {
-    '[class.mdl-list__item]': 'true'
+    '[class.mdl-list__item]': 'true',
+    '[class.mdl-list__item--two-line]': 'lines==2',
+    '[class.mdl-list__item--three-line]': 'lines==3'
   },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
-export class MdlListItemComponent implements OnInit{
+export class MdlListItemComponent implements OnInit, OnChanges {
+
+  @Input() lines: string | number = 1;
 
   constructor(@Optional() private mdlListComponent:MdlListComponent){}
 
@@ -40,6 +52,21 @@ export class MdlListItemComponent implements OnInit{
       throw new MdlStructureError('mdl-list-item', 'mdl-list');
     }
   }
+
+  ngOnChanges(){
+
+    if (this.lines && this.lines > 3) {
+      throw new MdlUnsupportedCountOfListItemLinesError(this.lines);
+    }
+  }
+
+
+  /**
+   * .mdl-list__item-secondary-content	Defines the secondary content sub-division	requires .mdl-list__item-two-line or .mdl-list__item-three-line
+   .mdl-list__item-secondary-info	Defines the information sub-division	requires .mdl-list__item-two-line or .mdl-list__item-three-line
+   .mdl-list__item-secondary-action	Defines the Action sub-division	requires .mdl-list__item-two-line or .mdl-list__item-three-line
+   .mdl-list__item-text-body	Defines the Text Body sub-division	requires .mdl-list__item-three-line
+   */
 }
 
 @Component({
@@ -100,6 +127,64 @@ export class MdlListItemSecondaryActionComponent implements OnInit{
   }
 }
 
+@Component({
+  selector: 'mdl-list-item-sub-title',
+  host: {
+    '[class.mdl-list__item-sub-title]': 'true'
+  },
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
+})
+export class MdlListItemSubTitleComponent implements OnInit{
+
+  constructor(@Optional() private mdlListItemComponent:MdlListItemPrimaryContentComponent){}
+
+  ngOnInit(){
+    if (this.mdlListItemComponent===null){
+      throw new MdlStructureError('mdl-list-item-sub-title', 'mdl-list-item-primary-content');
+    }
+  }
+}
+
+@Component({
+  selector: 'mdl-list-item-secondary-info',
+  host: {
+    '[class.mdl-list__item-secondary-info]': 'true'
+  },
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
+})
+export class MdlListItemSecondaryInfoComponent implements OnInit{
+
+  constructor(@Optional() private mdlListItemComponent:MdlListItemSecondaryContentComponent){}
+
+  ngOnInit(){
+    if (this.mdlListItemComponent===null){
+      throw new MdlStructureError('mdl-list-item-secondary-info', 'mdl-list-item-secondary-content');
+    }
+  }
+}
+
+@Component({
+  selector: 'mdl-list-item-text-body',
+  host: {
+    '[class.mdl-list__item-text-body]': 'true'
+  },
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
+})
+export class MdlListItemTextBodyComponent implements OnInit{
+
+  constructor(@Optional() private mdlListItemComponent:MdlListItemComponent){}
+
+  ngOnInit(){
+    if (this.mdlListItemComponent===null){
+      throw new MdlStructureError('mdl-list-item-text-body', 'mdl-list-item');
+    }
+  }
+}
+
+
 @Directive({
   selector: 'mdl-icon[mdl-list-item-icon]',
   host: {
@@ -124,5 +209,8 @@ export const MDL_LIST_DIRECTIVES = [
   MdlListItemIconDirective,
   MdlListItemAvatarDirective,
   MdlListItemSecondaryContentComponent,
-  MdlListItemSecondaryActionComponent
+  MdlListItemSecondaryActionComponent,
+  MdlListItemSubTitleComponent,
+  MdlListItemSecondaryInfoComponent,
+  MdlListItemTextBodyComponent
 ];
