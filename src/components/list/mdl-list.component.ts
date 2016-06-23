@@ -62,6 +62,7 @@ export class MdlListItemComponent implements OnInit, OnChanges {
 
 
   /**
+   * TODO check these conditions
    * .mdl-list__item-secondary-content	Defines the secondary content sub-division	requires .mdl-list__item-two-line or .mdl-list__item-three-line
    .mdl-list__item-secondary-info	Defines the information sub-division	requires .mdl-list__item-two-line or .mdl-list__item-three-line
    .mdl-list__item-secondary-action	Defines the Action sub-division	requires .mdl-list__item-two-line or .mdl-list__item-three-line
