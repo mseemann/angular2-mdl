@@ -5,7 +5,7 @@ import {
   MdlIconToggleRippleDirective,
   MdlSwitchRippleDirective
 } from "./common/mdl-ripple.directive";
-import { MdlButtonDirective } from "./button/mdl-button.directive";
+import { MdlButtonComponent } from "./button/mdl-button.component";
 import {
   MdlBadgeDirective,
   MdlBadgeNoBackgroundDirective,
@@ -34,7 +34,7 @@ import { MdlSwitchComponent } from './switch/mdl-switch.component';
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
-export * from './button/mdl-button.directive';
+export * from './button/mdl-button.component';
 export * from './card/mdl-card.component';
 export * from './checkbox/mdl-checkbox.component';
 export * from './icon/mdl-icon.component';
@@ -54,7 +54,7 @@ export const MDL_DIRECTIVES = [
   MdlBadgeDirective,
   MdlBadgeNoBackgroundDirective,
   MdlBadgeOverlapDirective,
-  MdlButtonDirective,
+  MdlButtonComponent,
   MdlCardComponent,
   MdlCardTitleComponent,
   MdlCardSupportingTextComponent,

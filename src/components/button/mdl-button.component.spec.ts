@@ -9,7 +9,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { Component, Optional } from '@angular/core';
 import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
-import { MdlButtonDirective} from './mdl-button.directive';
+import { MdlButtonComponent} from './mdl-button.component';
 import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 
 describe('Directive: MdlButton', () => {
@@ -24,7 +24,7 @@ describe('Directive: MdlButton', () => {
 
     return builder
       .overrideTemplate(MdlTestButtonComponent, `
-          <button mdl-button></button>
+          <mdl-button></mdl-button>
         `)
       .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
 
@@ -40,7 +40,7 @@ describe('Directive: MdlButton', () => {
 
     return builder
       .overrideTemplate(MdlTestButtonComponent, `
-          <button mdl-button="didNotExist"></button>
+          <mdl-button mdl-button-type="didNotExist"></mdl-button>
         `)
       .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
 
@@ -55,7 +55,7 @@ describe('Directive: MdlButton', () => {
 
     return builder
       .overrideTemplate(MdlTestButtonComponent, `
-          <button mdl-button mdl-colored="didNotExist"></button>
+          <mdl-button mdl-colored="didNotExist"></mdl-button>
         `)
       .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
 
@@ -70,7 +70,7 @@ describe('Directive: MdlButton', () => {
 
     return builder
       .overrideTemplate(MdlTestButtonComponent, `
-          <button mdl-button></button>
+          <mdl-button></mdl-button>
         `)
       .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
 
@@ -95,9 +95,9 @@ describe('Directive: MdlButton', () => {
 @Component({
   selector: 'test-button',
   template: "replaced by the test",
-  directives: [MDL_COMMON_DIRECTIVES, MdlButtonDirective],
-  providers: [MdlButtonDirective]
+  directives: [MDL_COMMON_DIRECTIVES, MdlButtonComponent],
+  providers: [MdlButtonComponent]
 })
 class MdlTestButtonComponent {
-  constructor(@Optional() public mdlButton:MdlButtonDirective){}
+  constructor(@Optional() public mdlButton:MdlButtonComponent){}
 }

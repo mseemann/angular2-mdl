@@ -31,7 +31,7 @@ describe('Directive: MdlRipple', () => {
   it('should add the ripple span elements if mdl-ripple is empty', () => {
     return builder
       .overrideTemplate(MdlTestRippleComponent, `
-          <button mdl-ripple></button>
+          <mdl-button mdl-ripple></mdl-button>
         `)
       .createAsync(MdlTestRippleComponent).then( (fixture) => {
 
@@ -47,7 +47,7 @@ describe('Directive: MdlRipple', () => {
   it('should add the ripple if mdl-ripple is set to true', () => {
     return builder
       .overrideTemplate(MdlTestRippleComponent, `
-          <button [mdl-ripple]="true"></button>
+          <mdl-button [mdl-ripple]="true"></mdl-button>
         `)
       .createAsync(MdlTestRippleComponent).then( (fixture) => {
 
@@ -62,7 +62,7 @@ describe('Directive: MdlRipple', () => {
   it('should not add ripple if mdl-ripple is set to false', () => {
     return builder
       .overrideTemplate(MdlTestRippleComponent, `
-          <button [mdl-ripple]="false"></button>
+          <mdl-button [mdl-ripple]="false"></mdl-button>
         `)
       .createAsync(MdlTestRippleComponent).then( (fixture) => {
 

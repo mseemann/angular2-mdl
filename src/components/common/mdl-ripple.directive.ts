@@ -52,7 +52,7 @@ export class MdlRippleDirective implements OnChanges {
 }
 
 @Directive({
-  selector: 'button[mdl-ripple]'
+  selector: 'mdl-button[mdl-ripple]'
 })
 export class MdlButtonRippleDirective extends MdlRippleDirective {
 

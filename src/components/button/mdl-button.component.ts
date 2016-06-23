@@ -1,5 +1,5 @@
 import {
-  Directive,
+  Component,
   Input,
   ElementRef,
   Renderer,
@@ -36,8 +36,8 @@ const MDL_COLORED_TYPES = [
 
 // TODO test blur/focus
 
-@Directive({
-  selector: 'button[mdl-button]',
+@Component({
+  selector: 'mdl-button',
   host: {
     '(mouseup)': 'onMouseUp()',
     '(mouseleave)': 'onMouseLeave()',
@@ -49,13 +49,14 @@ const MDL_COLORED_TYPES = [
     '[class.mdl-button--colored]' : 'mdlColoredType == "" || mdlColoredType == "primary"',
     '[class.mdl-button--primary]' : 'mdlColoredType == "primary"',
     '[class.mdl-button--accent]' :  'mdlColoredType == "accent"'
-  }
+  },
+  template: '<ng-content></ng-content>'
 })
-export class MdlButtonDirective implements OnChanges {
+export class MdlButtonComponent implements OnChanges {
 
   private el:HTMLElement;
 
-  @Input('mdl-button') mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '' ;
+  @Input('mdl-button-type') mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '' ;
   @Input('mdl-colored') mdlColoredType : 'primary' | 'accent' | '';
 
   constructor(private elementRef: ElementRef){
@@ -64,7 +65,7 @@ export class MdlButtonDirective implements OnChanges {
 
   ngOnChanges() {
 
-    if (MDL_BUTTON_TYPES.indexOf(this.mdlButtonType) === -1) {
+    if (this.mdlButtonType && MDL_BUTTON_TYPES.indexOf(this.mdlButtonType) === -1) {
       throw new MdlUnsupportedButtonTypeError(this.mdlButtonType);
     }
 
@@ -89,4 +90,4 @@ export class MdlButtonDirective implements OnChanges {
 }
 
 
-export const MDL_BUTTON_DIRECTIVES = [MdlButtonDirective];
+export const MDL_BUTTON_DIRECTIVES = [MdlButtonComponent];
