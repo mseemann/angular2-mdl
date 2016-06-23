@@ -20,7 +20,7 @@ export class PrismDirective implements OnInit {
 
     var rawHtml = this.el.nativeElement.textContent.replace(new RegExp('=""', 'g'), '');
     // REMOVE the escaped exression so angular ignores the content :(
-    rawHtml = rawHtml.replace(new RegExp('{x{'), '{{');
+    rawHtml = rawHtml.replace(new RegExp('{x{', 'g'), '{{');
     var html = Prism.highlight(rawHtml, Prism.languages.html);
     var pre = document.createElement('pre');
 
