@@ -25,6 +25,7 @@ This package assumes that you are building an Angular2 app with TypeScript and A
 - Shadow
 - Toggle (Checkbox, Radio, Icon Toggle, Switch)
 - Lists
+- Slider
 
 
 ### Installation

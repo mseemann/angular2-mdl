@@ -1,0 +1,25 @@
+<h4>Sliders</h4>
+
+<div style="width: 300px;">
+  <mdl-slider min="1" max="50" value="30" ></mdl-slider>
+</div>
+
+<div style="width: 300px;">
+  <mdl-slider [min]="minValue" [max]="maxValue" [(ngModel)]="currentValue"></mdl-slider>
+</div>
+
+currentValue is: {{currentValue}}
+
+<pre prism>
+  <![CDATA[
+<div style="width: 300px;">
+  <mdl-slider min="1" max="50" value="30" ></mdl-slider>
+</div>
+
+<div style="width: 300px;">
+  <mdl-slider [min]="minValue" [max]="maxValue" [(ngModel)]="currentValue"></mdl-slider>
+</div>
+
+currentValue is: {x{currentValue}}
+]]>
+</pre>

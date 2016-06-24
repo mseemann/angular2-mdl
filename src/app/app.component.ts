@@ -9,6 +9,7 @@ import { ShadowDemo } from './shadow/shadow.component';
 import { LoadingDemo } from './loading/loading.component';
 import { ListDemo } from './list/list.component';
 import { ToggleDemo } from './toggle/toggle.component';
+import { SliderDemo } from './slider/slider.component';
 import { MDL_DIRECTIVES } from '../components';
 
 @Component({
@@ -28,6 +29,7 @@ export const AppRoutes = [
   { path: 'loading', component: LoadingDemo },
   { path: 'list', component: ListDemo },
   { path: 'shadow', component: ShadowDemo },
+  { path: 'slider', component: SliderDemo },
   { path: 'toggle', component: ToggleDemo }
 ];
 

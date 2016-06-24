@@ -42,6 +42,7 @@ import {
   MdlListItemTextBodyComponent
 } from './list/mdl-list.component';
 import { MdlSpinnerComponent } from './spinner/mdl-spinner.component';
+import { MdlSliderComponent }  from './slider/mdl-slider.component';
 import { MdlSwitchComponent } from './switch/mdl-switch.component';
 
 export * from './common/mdl-ripple.directive';
@@ -56,6 +57,7 @@ export * from './progress/mdl-progress.component';
 export * from './radio/mdl-radio.component';
 export * from './shadow/mdl-shadow.directive';
 export * from './spinner/mdl-spinner.component';
+export * from './slider/mdl-slider.component';
 export * from './switch/mdl-switch.component';
 
 export const MDL_DIRECTIVES = [
@@ -92,6 +94,7 @@ export const MDL_DIRECTIVES = [
   MdlProgressComponent,
   MdlRadioComponent,
   MdlShadowDirective,
+  MdlSliderComponent,
   MdlSpinnerComponent,
   MdlSwitchComponent
 ];
