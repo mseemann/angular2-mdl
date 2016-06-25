@@ -7,6 +7,13 @@ import {
   Injector,
   ViewContainerRef
 } from '@angular/core';
+import { MdlError } from '../common/mdl-error';
+
+export class MdlSnackbarError extends MdlError {
+  constructor(message:string) {
+    super(`${message}`);
+  }
+}
 
 
 const ANIMATION_TIME = 250;
@@ -63,8 +70,10 @@ export class MdlSnackbarComponent{
 export interface IMdlSnackbarMessage {
   message:string;
   timeout?:number;
-  actionHandler?:() => void;
-  actionText?:string;
+  action?: {
+    handler:() => void;
+    text:string;
+  }
   vcRef?:ViewContainerRef;
 }
 
@@ -82,10 +91,11 @@ export class MdlSnackbarService {
     this.defaultViewContainerRef = vcRef;
   }
 
-  showToast(message:string, timeout?:number):Promise<MdlSnackbarComponent>{
+  showToast(message:string, timeout?:number, vcRef?:ViewContainerRef):Promise<MdlSnackbarComponent>{
     return this.showSnackbar({
       message: message,
-      timeout: timeout
+      timeout: timeout,
+      vcRef: vcRef
     });
   }
 
@@ -94,9 +104,9 @@ export class MdlSnackbarService {
     let optTimeout        = snackbarMessage.timeout || 2750;
     let viewContainerRef  = snackbarMessage.vcRef || this.defaultViewContainerRef;
 
-    // TODO viewContainerRef must be set
-    // TODO if actionHandler then acitonText is required
-
+    if(!viewContainerRef){
+      throw new MdlSnackbarError('A viewContainerRef must be present. Wether as by setDefaultViewContainerRef or as IMdlSnackbarMessage param.');
+    }
 
     let c = this.componentResolver.resolveComponent(MdlSnackbarComponent);
     return c.then( (cFactory)=>{
@@ -104,16 +114,17 @@ export class MdlSnackbarService {
       let cRef = viewContainerRef.createComponent(cFactory);
       let mdlSnackbarComponent = cRef.instance;
       mdlSnackbarComponent.message = snackbarMessage.message;
-      mdlSnackbarComponent.actionText = snackbarMessage.actionText;
+
 
       // TODO make sure only one snackbar is visible at one time
       // observable? push the configured instance and consume one after another?
 
-      if (snackbarMessage.actionHandler){
+      if (snackbarMessage.action){
+        mdlSnackbarComponent.actionText = snackbarMessage.action.text;
         mdlSnackbarComponent.onAction = () =>{
           mdlSnackbarComponent.hide().then(() => {
             cRef.destroy();
-            snackbarMessage.actionHandler();
+            snackbarMessage.action.handler();
           });
         }
       } else {

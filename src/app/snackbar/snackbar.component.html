@@ -8,5 +8,27 @@
 <pre prism>
   <![CDATA[
 
+  <mdl-button mdl-button-type="raised" mdl-colored mdl-ripple (click)="showSnackbar()">Show Snackbar</mdl-button>
+
+  <script>
+  export class SnackbarDemo {
+
+    constructor(private mdlSnackbarService: MdlSnackbarService, private vcRef: ViewContainerRef){
+      mdlSnackbarService.setDefaultViewContainerRef(vcRef);
+    }
+
+    showSnackbar(){
+      this.mdlSnackbarService.showSnackbar({
+        message:'The Message',
+        action:{
+          handler:()=>{
+            this.mdlSnackbarService.showToast('You hit the ok Button');
+          },
+          text: 'OK'
+        }
+      });
+    }
+  }
+  </script>
 ]]>
 </pre>

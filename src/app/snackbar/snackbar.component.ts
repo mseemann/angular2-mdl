@@ -27,11 +27,12 @@ export class SnackbarDemo {
   showSnackbar(){
     this.mdlSnackbarService.showSnackbar({
       message:'The Message',
-      timeout:2000,
-      actionHandler:()=>{
-        this.mdlSnackbarService.showToast('You hit the ok Button');
-      },
-      actionText:'OK'
+      action:{
+        handler:()=>{
+          this.mdlSnackbarService.showToast('You hit the ok Button');
+        },
+        text: 'OK'
+      }
     });
   }
 }

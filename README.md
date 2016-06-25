@@ -26,6 +26,7 @@ This package assumes that you are building an Angular2 app with TypeScript and A
 - Toggle (Checkbox, Radio, Icon Toggle, Switch)
 - Lists
 - Slider
+- Snackbar
 
 
 ### Installation

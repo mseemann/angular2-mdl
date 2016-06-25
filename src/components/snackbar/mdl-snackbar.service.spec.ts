@@ -25,7 +25,7 @@ describe('Service: MdlSnackbar', () => {
     mdlSnackbarServcie = service;
   }));
 
-  it('should should show and close a snackbar', ( done ) => {
+  it('should show a snackbar and close the snackbar if the aciton button is clicked', ( done ) => {
 
     return builder
       .createAsync(MdlTestViewComponent).then( (fixture) => {
@@ -38,23 +38,27 @@ describe('Service: MdlSnackbar', () => {
           mdlSnackbarServcie.setDefaultViewContainerRef(viewRef);
           let p = mdlSnackbarServcie.showSnackbar({
             message:'m1',
-            actionHandler: ()=>{
+            action: {
+              handler: ()=> {
                 done();
+              },
+              text: 'OK'
             }
           });
 
           fixture.detectChanges();
           p.then( (mdlSnackbarComponent)=>{
+
             expect(mdlSnackbarComponent.isActive()).toBe(true);
             mdlSnackbarComponent.onClick();
-          });
 
+          });
 
         })();
       })
   });
 
-  it('should show a toastmessage', ( done ) => {
+  it('should show a toastmessage and hide the message automatically', ( done ) => {
     return builder
       .createAsync(MdlTestViewComponent).then( (fixture) => {
 
@@ -68,10 +72,10 @@ describe('Service: MdlSnackbar', () => {
           fixture.detectChanges();
 
           p.then( (mdlSnackbarComponent)=>{
+
             expect(mdlSnackbarComponent.isActive()).toBe(true);
 
             setTimeout(()=>{
-              //fixture.detectChanges();
               expect(mdlSnackbarComponent.isActive()).toBe(false);
               done();
             }, 1500) // > 1000 + 250
@@ -81,6 +85,16 @@ describe('Service: MdlSnackbar', () => {
       })
   })
 
+  it('should throw if no viewCOntainerRef is provided', ()=>{
+    return builder
+      .createAsync(MdlTestViewComponent).then( (fixture) => {
+
+        expect( () => {
+          mdlSnackbarServcie.showToast('toast message', 1000);
+        }).toThrow();
+
+      })
+  })
 
 });
 
