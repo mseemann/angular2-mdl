@@ -117,7 +117,7 @@ export class MdlSnackbarService {
           });
         }
       } else {
-        setTimeout( ()=>{
+        setTimeout( ()=> {
           mdlSnackbarComponent.hide().then(() => {cRef.destroy()});
         }, optTimeout);
       }

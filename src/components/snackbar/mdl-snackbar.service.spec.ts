@@ -54,7 +54,7 @@ describe('Service: MdlSnackbar', () => {
       })
   });
 
-  it('should show a toastmessage', () => {
+  it('should show a toastmessage', ( done ) => {
     return builder
       .createAsync(MdlTestViewComponent).then( (fixture) => {
 
@@ -63,17 +63,18 @@ describe('Service: MdlSnackbar', () => {
 
           let viewRef = fixture.debugElement.componentInstance.viewRef;
           mdlSnackbarServcie.setDefaultViewContainerRef(viewRef);
-          let p = mdlSnackbarServcie.showToast('toast message', 300);
+          let p = mdlSnackbarServcie.showToast('toast message', 1000);
 
           fixture.detectChanges();
-          p.then( (mdlSnackbarComponent)=>{
-            //expect(mdlSnackbarComponent.isActive()).toBe(true);
 
-            // setTimeout(()=>{
-            //   fixture.detectChanges();
-            //   //expect(mdlSnackbarComponent.isActive()).toBe(false);
-            //   done();
-            // }, 1400) // 100 + 250
+          p.then( (mdlSnackbarComponent)=>{
+            expect(mdlSnackbarComponent.isActive()).toBe(true);
+
+            setTimeout(()=>{
+              //fixture.detectChanges();
+              expect(mdlSnackbarComponent.isActive()).toBe(false);
+              done();
+            }, 1500) // > 1000 + 250
           });
 
         })();
