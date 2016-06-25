@@ -10,7 +10,8 @@ import { LoadingDemo } from './loading/loading.component';
 import { ListDemo } from './list/list.component';
 import { ToggleDemo } from './toggle/toggle.component';
 import { SliderDemo } from './slider/slider.component';
-import { MDL_DIRECTIVES } from '../components';
+import { SnackbarDemo } from './snackbar/snackbar.component';
+import { MDL_DIRECTIVES, MDL_SERVICES } from '../components';
 
 @Component({
   moduleId: module.id,
@@ -30,6 +31,7 @@ export const AppRoutes = [
   { path: 'list', component: ListDemo },
   { path: 'shadow', component: ShadowDemo },
   { path: 'slider', component: SliderDemo },
+  { path: 'snackbar', component: SnackbarDemo },
   { path: 'toggle', component: ToggleDemo }
 ];
 
@@ -42,7 +44,8 @@ export const AppRoutes = [
     ROUTER_DIRECTIVES,
     MDL_DIRECTIVES
   ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [MDL_SERVICES]
 })
 export class Angular2MdlAppComponent {
 

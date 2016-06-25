@@ -44,6 +44,10 @@ import {
 import { MdlSpinnerComponent } from './spinner/mdl-spinner.component';
 import { MdlSliderComponent }  from './slider/mdl-slider.component';
 import { MdlSwitchComponent } from './switch/mdl-switch.component';
+import {
+  IMdlSnackbarMessage,
+  MdlSnackbarService
+} from './snackbar/mdl-snackbar.service';
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
@@ -58,7 +62,12 @@ export * from './radio/mdl-radio.component';
 export * from './shadow/mdl-shadow.directive';
 export * from './spinner/mdl-spinner.component';
 export * from './slider/mdl-slider.component';
+export * from './snackbar/mdl-snackbar.service';
 export * from './switch/mdl-switch.component';
+
+export const MDL_SERVICES = [
+  MdlSnackbarService
+];
 
 export const MDL_DIRECTIVES = [
   MdlButtonRippleDirective,
