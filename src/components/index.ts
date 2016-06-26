@@ -52,7 +52,7 @@ import {
   MdlTooltipComponent,
   MdlTooltipDirective,
   MdlTooltipLargeDirective
-} from './tooltip/mdl-tooltip.component'
+} from './tooltip/index'
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';

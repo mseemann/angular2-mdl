@@ -16,7 +16,7 @@ import {
   MdlTooltipComponent,
   MdlSimpleTooltipComponent,
   MdlTooltipDirective
-} from './mdl-tooltip.component';
+} from './index';
 
 describe('Component: MdlIcon', () => {
 
@@ -130,70 +130,31 @@ describe('Component: MdlIcon', () => {
       })
   });
 
-  it('should add the css class mdl-tooltip--right if the position is set to right', () => {
+  it('should add the css class mdl-tooltip--{position} if the position is set to {position}', () => {
 
-    return builder
-      .overrideTemplate(MdlTestTooltipComponent, `
-          <div [mdl-tooltip]="t" mdl-tooltip-position="right"></div>
+      return builder
+        .overrideTemplate(MdlTestTooltipComponent, `
+          <div [mdl-tooltip]="t" mdl-tooltip-position="left"></div>
           <mdl-tooltip #t="mdlTooltip">x</mdl-tooltip>
         `)
-      .createAsync(MdlTestTooltipComponent).then( (fixture) => {
+        .createAsync(MdlTestTooltipComponent).then( (fixture) => {
 
-        fixture.detectChanges();
+          fixture.detectChanges();
 
-        let tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
-        // simulate mouse enter to run the special "right" code
-        var evt = doc.createEvent('HTMLEvents');
-        evt.initEvent('mouseenter', true, true);
-        tooltipTriggerElement.dispatchEvent(evt);
+          ['bottom', 'top', 'left', 'right'].forEach( (position)=>{
 
-        let tooltipEl:HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
-        expect(tooltipEl.classList.contains('mdl-tooltip--right')).toBe(true);
+            let debugElement = fixture.debugElement.query(By.directive(MdlTooltipComponent));
+
+            debugElement.componentInstance.position = position;
+
+            fixture.detectChanges();
+
+            let tooltipEl:HTMLElement = debugElement.nativeElement;
+            expect(tooltipEl.classList.contains(`mdl-tooltip--${position}`)).toBe(true);
+
+          });
       })
-  });
 
-  it('should add the css class mdl-tooltip--top if the position is set to top', () => {
-
-    return builder
-      .overrideTemplate(MdlTestTooltipComponent, `
-          <div [mdl-tooltip]="t" mdl-tooltip-position="top"></div>
-          <mdl-tooltip #t="mdlTooltip">x</mdl-tooltip>
-        `)
-      .createAsync(MdlTestTooltipComponent).then( (fixture) => {
-
-        fixture.detectChanges();
-
-        let tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
-        // simulate mouse enter to run the special "right" code
-        var evt = doc.createEvent('HTMLEvents');
-        evt.initEvent('mouseenter', true, true);
-        tooltipTriggerElement.dispatchEvent(evt);
-
-        let tooltipEl:HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
-        expect(tooltipEl.classList.contains('mdl-tooltip--top')).toBe(true);
-      })
-  });
-
-  it('should add the css class mdl-tooltip--bottom if the position is set to bottom', () => {
-
-    return builder
-      .overrideTemplate(MdlTestTooltipComponent, `
-          <div [mdl-tooltip]="t" mdl-tooltip-position="bottom"></div>
-          <mdl-tooltip #t="mdlTooltip">x</mdl-tooltip>
-        `)
-      .createAsync(MdlTestTooltipComponent).then( (fixture) => {
-
-        fixture.detectChanges();
-
-        let tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
-        // simulate mouse enter to run the special "right" code
-        var evt = doc.createEvent('HTMLEvents');
-        evt.initEvent('mouseenter', true, true);
-        tooltipTriggerElement.dispatchEvent(evt);
-
-        let tooltipEl:HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
-        expect(tooltipEl.classList.contains('mdl-tooltip--bottom')).toBe(true);
-      })
   });
 });
 
@@ -203,4 +164,6 @@ describe('Component: MdlIcon', () => {
   template: "replaced by the test",
   directives: [MDL_TOOLTIP_DIRECTIVES]
 })
-class MdlTestTooltipComponent {}
+class MdlTestTooltipComponent {
+
+}
