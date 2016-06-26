@@ -26,35 +26,34 @@ export class AbstractMdlTooltipDirective implements OnInit {
     private doc:HTMLDocument){
   }
 
-  // TODO avoid code duplication
+
   ngOnInit(){
+    // if the tooltip is not an instance of MdlTooltipComponent
+    // we create a simpleTooltipComponent on the fly.
     if (!(this.tooltip instanceof MdlTooltipComponent)){
       let c = this.componentResolver.resolveComponent(MdlSimpleTooltipComponent);
       c.then( (cFactory)=> {
         this.tooltipComponent = this.vcRef.createComponent(cFactory).instance;
         this.tooltipComponent.tooltipText = <string>this.tooltip;
-        this.tooltipComponent.large = this.large;
-        this.tooltipComponent.position = this.position;
+        this.configureTooltipComponent();
       });
     } else {
-
       this.tooltipComponent = <MdlTooltipComponent>this.tooltip;
-      this.tooltipComponent.large = this.large;
-      this.tooltipComponent.position = this.position;
-
+      this.configureTooltipComponent();
     }
-
     this.doc.addEventListener('touchstart', this.onMouseLeave);
+  }
 
+  private configureTooltipComponent(){
+    this.tooltipComponent.large = this.large;
+    this.tooltipComponent.position = this.position;
   }
 
   onMouseEnter(event){
-    // TODO check tooltipComponent is instantiated
     this.tooltipComponent.mouseEnter(event);
   }
 
   onMouseLeave(){
-    // TODO check tooltipComponent is instantiated
     this.tooltipComponent.mouseLeave();
   }
 }
