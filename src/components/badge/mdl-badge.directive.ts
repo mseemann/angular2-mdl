@@ -25,9 +25,7 @@ export class MdlBadgeDirective implements OnChanges {
   }
 
   ngOnChanges(changes: {[key: string]: SimpleChange}) {
-    if (changes['mdlBadgeContent'] ){
-      this.renderer.setElementAttribute(this.el, 'data-badge', this.mdlBadgeContent);
-    }
+    this.renderer.setElementAttribute(this.el, 'data-badge', this.mdlBadgeContent);
   }
 
 }
