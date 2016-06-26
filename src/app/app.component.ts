@@ -9,6 +9,7 @@ import { ShadowDemo } from './shadow/shadow.component';
 import { LoadingDemo } from './loading/loading.component';
 import { ListDemo } from './list/list.component';
 import { ToggleDemo } from './toggle/toggle.component';
+import { TooltipDemo } from './tooltip/tooltip.component';
 import { SliderDemo } from './slider/slider.component';
 import { SnackbarDemo } from './snackbar/snackbar.component';
 import { MDL_DIRECTIVES, MDL_SERVICES } from '../components';
@@ -32,7 +33,8 @@ export const AppRoutes = [
   { path: 'shadow', component: ShadowDemo },
   { path: 'slider', component: SliderDemo },
   { path: 'snackbar', component: SnackbarDemo },
-  { path: 'toggle', component: ToggleDemo }
+  { path: 'toggle', component: ToggleDemo },
+  { path: 'tooltip', component: TooltipDemo }
 ];
 
 @Component({
