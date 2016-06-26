@@ -11,14 +11,17 @@ import {
   Inject
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
+import { MdlTooltipPositionService } from './mdl-tooltip-position.service';
 
-const LEFT      = 'mdl-tooltip--left';
-const RIGHT     = 'mdl-tooltip--right';
-const TOP       = 'mdl-tooltip--top';
+const LEFT      = 'left';
+const RIGHT     = 'right';
+const TOP       = 'top';
 const IS_ACTIVE = 'is-active';
 
 
-let tooltipComponentMeta = new ComponentMetadata();
+let tooltipComponentMeta = new ComponentMetadata({
+  providers:[MdlTooltipPositionService]
+});
 tooltipComponentMeta.selector = 'mdl-simple-tooltip';
 tooltipComponentMeta.host = {
   '[class.mdl-tooltip]': 'true',
@@ -37,7 +40,11 @@ export class MdlSimpleTooltipComponent {
   large = false;
   position:string;
 
-  constructor(private elRef:ElementRef, private renderer:Renderer){
+  constructor(
+    private elRef:ElementRef,
+    private renderer:Renderer,
+    private mdlTooltipPositionService: MdlTooltipPositionService){
+
     this.element = elRef.nativeElement;
   }
 
@@ -46,39 +53,15 @@ export class MdlSimpleTooltipComponent {
   }
 
   mouseEnter(event){
-    //TODO should be a service to improve testability
-    var props = event.target.getBoundingClientRect();
-    var left = props.left + (props.width / 2);
-    var top = props.top + (props.height / 2);
-    var marginLeft = -1 * (this.element.offsetWidth / 2);
-    var marginTop = -1 * (this.element.offsetHeight / 2);
-    if (this.element.classList.contains(LEFT) || this.element.classList.contains(RIGHT)) {
-      left = (props.width / 2);
-      if (top + marginTop < 0) {
-        this.element.style.top = '0';
-        this.element.style.marginTop = '0';
-      } else {
-        this.element.style.top = top + 'px';
-        this.element.style.marginTop = marginTop + 'px';
-      }
-    } else {
-      if (left + marginLeft < 0) {
-        this.element.style.left = '0';
-        this.element.style.marginLeft = '0';
-      } else {
-        this.element.style.left = left + 'px';
-        this.element.style.marginLeft = marginLeft + 'px';
-      }
-    }
 
-    if (this.element.classList.contains(TOP)) {
-      this.element.style.top = props.top - this.element.offsetHeight - 10 + 'px';
-    } else if (this.element.classList.contains(RIGHT)) {
-      this.element.style.left = props.left + props.width + 10 + 'px';
-    } else if (this.element.classList.contains(LEFT)) {
-      this.element.style.left = props.left - this.element.offsetWidth - 10 + 'px';
-    } else {
-      this.element.style.top = props.top + props.height + 10 + 'px';
+    let props = event.target.getBoundingClientRect();
+    let offsetWidth = this.element.offsetWidth;
+    let offsetHeight = this.element.offsetHeight;
+
+    let style = this.mdlTooltipPositionService.calcStyle(offsetWidth,offsetHeight, props, this.position);
+
+    for(var key in style) {
+      this.renderer.setElementStyle(this.elRef.nativeElement, key, style[key]);
     }
 
     this.renderer.setElementClass(this.elRef.nativeElement, IS_ACTIVE, true);
@@ -87,12 +70,12 @@ export class MdlSimpleTooltipComponent {
 
 
 tooltipComponentMeta.selector = 'mdl-tooltip';
-tooltipComponentMeta.template = '<ng-content></ng-content>';
+tooltipComponentMeta.template = '<div><ng-content></ng-content></div>';
 tooltipComponentMeta.exportAs = 'mdlTooltip';
 
 @Component(tooltipComponentMeta)
 export class MdlTooltipComponent extends MdlSimpleTooltipComponent {
-  constructor(elRef:ElementRef, renderer:Renderer){
-    super(elRef, renderer);
+  constructor(elRef:ElementRef, renderer:Renderer, mdlTooltipPositionService: MdlTooltipPositionService){
+    super(elRef, renderer, mdlTooltipPositionService);
   }
 }
