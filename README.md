@@ -112,11 +112,11 @@ Now you can use the sass sources form angular-material-lite and change the used 
 ```scss
 @import "color-definitions";
 
-$color-primary: $palette-blue-500 !default;
-$color-primary-dark: $palette-blue-700 !default;
-$color-accent: $palette-amber-A200 !default;
-$color-primary-contrast: $color-dark-contrast !default;
-$color-accent-contrast: $color-dark-contrast !default;
+$color-primary: $palette-blue-500;
+$color-primary-dark: $palette-blue-700;
+$color-accent: $palette-amber-A200;
+$color-primary-contrast: $color-dark-contrast;
+$color-accent-contrast: $color-dark-contrast;
 
 @import 'material-design-lite';
 ```
