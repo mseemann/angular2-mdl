@@ -4,8 +4,6 @@ import {
   it,
   inject,
   injectAsync,
-  fakeAsync,
-  tick,
   beforeEach
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
@@ -62,22 +60,20 @@ describe('Component: MdlCheckbox', () => {
       .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
         fixture.detectChanges();
 
-        fakeAsync(() => {
-
           let instance = fixture.componentInstance;
           let component = fixture.debugElement.query(By.directive(MdlCheckboxComponent)).componentInstance;
           let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
           instance.checkboxValue1 = false;
           fixture.detectChanges();
-          tick();
+
           expect(el.checked).toEqual(false);
 
           fixture.debugElement.query(By.directive(MdlCheckboxComponent)).nativeElement.click();
           fixture.detectChanges();
-          tick();
+
           expect(el.checked).toEqual(true);
-        })();
+
       })
   })
 
