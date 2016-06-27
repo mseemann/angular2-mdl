@@ -9,7 +9,7 @@ import {
   beforeEach
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
+import { Component, Optional, DebugElement } from '@angular/core';
 import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
 import { MdlCheckboxComponent } from './mdl-checkbox.component';
 
@@ -39,9 +39,8 @@ describe('Component: MdlCheckbox', () => {
   it('should support ngModel', () => {
     return builder
       .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
-        fixture.detectChanges();
 
-        fakeAsync(() => {
+          fixture.detectChanges();
 
           let instance = fixture.componentInstance;
           let component = fixture.debugElement.query(By.directive(MdlCheckboxComponent)).componentInstance;
@@ -49,14 +48,12 @@ describe('Component: MdlCheckbox', () => {
 
           instance.checkboxValue1 = true;
           fixture.detectChanges();
-          tick();
           expect(el.checked).toEqual(true);
 
           component.value = false;
           fixture.detectChanges();
-          tick();
           expect(el.checked).toEqual(false);
-        })();
+
       })
   })
 
