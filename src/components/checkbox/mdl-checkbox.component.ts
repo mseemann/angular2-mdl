@@ -78,6 +78,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
 
   onBlur(){
     this.renderer.setElementClass(this.el, IS_FOCUSED, false);
+    this.onTouchedCallback();
   }
 
   onClick(){

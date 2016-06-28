@@ -13,7 +13,7 @@ This package assumes that you are building an Angular2 app with TypeScript and A
 [![Dependencies](https://david-dm.org/mseemann/angular2-mdl.svg)](https://david-dm.org/mseemann/angular2-mdl)
 [![DevDependencies](https://david-dm.org/mseemann/angular2-mdl/dev-status.svg)](https://david-dm.org/mseemann/angular2-mdl#info=devDependencies&view=table)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
+[![Build Status](https://saucelabs.com/open_sauce/build_matrix/angular2-mdl.svg)](https://saucelabs.com/beta/builds/bb6212e96c6046a8a24cf7ced054a031)
 
 ### Status of the npm package
 
