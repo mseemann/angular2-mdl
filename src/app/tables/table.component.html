@@ -1,9 +1,51 @@
 <h4>Tables</h4>
 
-
 WIP...
+<br>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable is-upgraded" mdl-shadow="2">
+  <thead>
+     <tr>
+       <th class="mdl-data-table__cell--non-numeric">Material</th>
+       <th class="mdl-data-table__header--sorted-ascending">Quantity</th>
+       <th class="mdl-data-table__header--sorted-descending">Unit price</th>
+     </tr>
+  </thead>
+  <tbody>
+  <tr class="is-selected">
+    <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+    <td>25</td>
+    <td>$2.90</td>
+  </tr>
+  <tr>
+    <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
+    <td>50</td>
+    <td>$1.25</td>
+  </tr>
+  <tr>
+    <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
+    <td>10</td>
+    <td>$2.35</td>
+  </tr>
+  </tbody>
+</table>
 
-
+<h5>Selectable</h5>
+<table mdl-table class=" mdl-js-data-table mdl-data-table--selectable is-upgraded" mdl-shadow="2">
+   <thead>
+      <tr>
+         <th mdl-table-non-numeric>Material</th>
+         <th class="mdl-data-table__header--sorted-ascending">Quantity</th>
+         <th class="mdl-data-table__header--sorted-descending">Unit price</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr *ngFor="let data of tableData">
+         <td mdl-table-non-numeric>{{data.material}}</td>
+         <td>{{data.quantity}}</td>
+         <td>{{data.unitPrice | currency:'USD':true:'1.2-2'}}</td>
+      </tr>
+   </tbody>
+</table>
 
 <pre prism>
   <![CDATA[

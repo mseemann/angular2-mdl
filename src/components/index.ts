@@ -52,7 +52,11 @@ import {
   MdlTooltipComponent,
   MdlTooltipDirective,
   MdlTooltipLargeDirective
-} from './tooltip/index'
+} from './tooltip/index';
+import {
+  MdlTableDirective,
+  MdlTableNonNumericDirective
+} from './table/index';
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
@@ -69,7 +73,8 @@ export * from './spinner/mdl-spinner.component';
 export * from './slider/mdl-slider.component';
 export * from './snackbar/mdl-snackbar.service';
 export * from './switch/mdl-switch.component';
-export * from './tooltip/mdl-tooltip.component';
+export * from './table/index'
+export * from './tooltip/index';
 
 export const MDL_SERVICES = [
   MdlSnackbarService
@@ -114,5 +119,7 @@ export const MDL_DIRECTIVES = [
   MdlSwitchComponent,
   MdlTooltipComponent,
   MdlTooltipDirective,
-  MdlTooltipLargeDirective
+  MdlTooltipLargeDirective,
+  MdlTableDirective,
+  MdlTableNonNumericDirective
 ];
