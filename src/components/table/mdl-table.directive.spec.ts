@@ -9,7 +9,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { Component, Optional } from '@angular/core';
 import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
-import { MdlTableDirective } from './mdl-table.directive';
+import {MdlTableDirective, MdlTableSelectableDirective} from './mdl-table.directive';
 
 describe('Component: MdlTable*', () => {
 
@@ -19,7 +19,7 @@ describe('Component: MdlTable*', () => {
     builder = tcb;
   }));
 
-  it('should add the css class material-icons to the host element', () => {
+  it('should add the css class mdl-data-table to the host element', () => {
 
     return builder
       .overrideTemplate(MdlTestTableComponent, `
@@ -35,6 +35,22 @@ describe('Component: MdlTable*', () => {
       })
   });
 
+  it('should add the css class mdl-data-table__selectabele to the host element', () => {
+
+    return builder
+      .overrideTemplate(MdlTestTableComponent, `
+          <table mdl-table-selectable></table>
+        `)
+      .createAsync(MdlTestTableComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let table:HTMLElement = fixture.debugElement.query(By.directive(MdlTableSelectableDirective)).nativeElement;
+        expect(table.classList.contains('mdl-data-table--selectable')).toBe(true);
+
+      })
+  });
+
 
 });
 
@@ -42,6 +58,6 @@ describe('Component: MdlTable*', () => {
 @Component({
   selector: 'test-table',
   template: "replaced by the test",
-  directives: [MdlTableDirective]
+  directives: [MdlTableDirective, MdlTableSelectableDirective]
 })
 class MdlTestTableComponent {}

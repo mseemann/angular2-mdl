@@ -55,6 +55,7 @@ import {
 } from './tooltip/index';
 import {
   MdlTableDirective,
+  MdlTableSelectableDirective,
   MdlTableNonNumericDirective
 } from './table/index';
 
@@ -121,5 +122,6 @@ export const MDL_DIRECTIVES = [
   MdlTooltipDirective,
   MdlTooltipLargeDirective,
   MdlTableDirective,
+  MdlTableSelectableDirective,
   MdlTableNonNumericDirective
 ];

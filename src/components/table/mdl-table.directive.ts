@@ -10,3 +10,13 @@ import { Directive } from '@angular/core';
 export class MdlTableDirective {}
 
 
+
+
+@Directive({
+  selector: '[mdl-table-selectable]',
+  host: {
+    '[class.mdl-data-table]': 'true',
+    '[class.mdl-data-table--selectable]': 'true'
+  }
+})
+export class MdlTableSelectableDirective {}
