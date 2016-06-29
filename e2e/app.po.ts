@@ -4,10 +4,14 @@ export class Angular2MdlPage {
   }
 
   getHeadlineElement(){
-    return element(by.css('h1.mdl-color-text--accent'));
+    return element(by.css('.mdl-layout__header-row'));
   }
 
+  getHeadineTextElement(){
+    return element(by.css('.docs-layout-title'));
+  }
+    
   getParagraphText() {
-    return this.getHeadlineElement().getText();
+    return this.getHeadineTextElement().getText();
   }
 }

@@ -10,7 +10,6 @@ $color-accent-contrast: $color-dark-contrast;
 
 
 .router-outlet {
-  display: flex;
   margin-left: 1rem;
 }
 
@@ -22,6 +21,7 @@ main {
 aside {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   width: 200px;
 
   a {
@@ -38,4 +38,20 @@ aside {
 
 h4{
   text-transform: uppercase;
+}
+
+.component-description {
+  flex-grow: 1;
+}
+
+.app-main-content{
+  flex-grow: 1;
+
+  .mdl-grid{
+    min-height: 100%;
+  }
+
+  .mdl-cell {
+    display: flex;
+  }
 }

@@ -11,7 +11,6 @@ import { PrismDirective } from './../prism/prism.component';
     .demo-card-wide {
       width: 500px;
       margin-right:1rem;
-      float:left;
     }
     .demo-card-wide > .mdl-card__title {
       color: #fff;
@@ -26,7 +25,6 @@ import { PrismDirective } from './../prism/prism.component';
       width: 320px;
       height: 320px;
       margin-right:1rem;
-      float:left;
     }
     .demo-card-square > .mdl-card__title {
       color: #fff;
@@ -38,7 +36,6 @@ import { PrismDirective } from './../prism/prism.component';
       width: 256px;
       height: 256px;
       margin-right:1rem;
-      float:left;
       background: url('assets/richter.jpg') center / cover;
     }
     .demo-card-image > .mdl-card__actions {
@@ -56,7 +53,6 @@ import { PrismDirective } from './../prism/prism.component';
       width: 256px;
       height: 256px;
       margin-right:1rem;
-      float:left;
       background: #3E4EB8;
     }
     .demo-card-event > .mdl-card__actions {
