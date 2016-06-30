@@ -27,7 +27,9 @@ This package assumes that you are building an Angular2 app with TypeScript and A
 - Lists
 - Slider
 - Snackbar
+- Table
 - Tooltips
+
 
 
 ### Installation
