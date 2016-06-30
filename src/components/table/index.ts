@@ -1,15 +1,16 @@
 import {
-  MdlTableDirective,
-  MdlTableSelectableDirective
-} from './mdl-table.directive';
-import { MdlTableNonNumericDirective } from './mdl-table-non-numeric.directive';
+  IMdlTableColumn,
+  IMdlTableModel,
+  MdlDefaultTableModel,
+  IMdlTableModelItem
+} from './mdl-table';
+import {
+  MdlTableComponent
+} from './mdl-table.component'
 
-export * from './mdl-table.directive';
-export * from './mdl-table-non-numeric.directive';
-
+export * from './mdl-table';
+export * from './mdl-table.component';
 
 export const MDL_TABLE_DIRECTIVES = [
-  MdlTableDirective,
-  MdlTableSelectableDirective,
-  MdlTableNonNumericDirective
+  MdlTableComponent
 ];
