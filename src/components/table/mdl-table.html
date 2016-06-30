@@ -11,7 +11,7 @@
    </tr>
    </thead>
    <tbody>
-   <tr *ngFor="let data of model.data; let i = index" [ngClass]="{'is-selected': data.selected}">
+   <tr *ngFor="let data of model.data; let i = index" [ngClass]="{'is-selected': selectable && data.selected}">
       <td *ngIf="selectable">
          <mdl-checkbox mdl-ripple
               [(ngModel)]="data.selected"

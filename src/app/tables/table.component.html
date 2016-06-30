@@ -3,6 +3,12 @@
 <h5>Simple Table</h5>
 <mdl-table mdl-shadow="2" [table-model]="tableModel"></mdl-table>
 
+<pre prism>
+  <![CDATA[
+   <mdl-table mdl-shadow="2" [table-model]="tableModel"></mdl-table>
+     ]]>
+</pre>
+
 <h5>Selectable</h5>
 <mdl-table-selectable mdl-shadow="2"
      [table-model]="tableModel"
@@ -10,12 +16,19 @@
      (table-model-selectionChanged)="selectionChanged($event)">
 </mdl-table-selectable>
 
+<br>
 
 {{selected | json}}
 
 
 <pre prism>
   <![CDATA[
+   <mdl-table-selectable mdl-shadow="2"
+       [table-model]="tableModel"
+       [table-model-selected]="selected"
+       (table-model-selectionChanged)="selectionChanged($event)">
+   </mdl-table-selectable>
 
+   {x{selected | json}}
   ]]>
 </pre>

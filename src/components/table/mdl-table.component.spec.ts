@@ -9,7 +9,7 @@ import {
 import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component, Optional, DebugElement } from '@angular/core';
 import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
-import { MdlTableComponent} from './mdl-table.component';
+import { MdlSelectableTableComponent } from './mdl-table.component';
 import {
   IMdlTableModelItem,
   MdlDefaultTableModel
@@ -94,7 +94,7 @@ interface ITableItem extends IMdlTableModelItem {
          (table-model-selectionChanged)="selectionChanged($event)">
     </mdl-table-selectable>
     `,
-  directives: [MdlTableComponent]
+  directives: [MdlSelectableTableComponent]
 })
 class MdlTestTableComponent {
   tableData:[ITableItem] = [

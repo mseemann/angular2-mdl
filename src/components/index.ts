@@ -54,7 +54,8 @@ import {
   MdlTooltipLargeDirective
 } from './tooltip/index';
 import {
-  MdlTableComponent
+  MdlTableComponent,
+  MdlSelectableTableComponent
 } from './table/index';
 
 export * from './common/mdl-ripple.directive';
@@ -119,5 +120,6 @@ export const MDL_DIRECTIVES = [
   MdlTooltipComponent,
   MdlTooltipDirective,
   MdlTooltipLargeDirective,
-  MdlTableComponent
+  MdlTableComponent,
+  MdlSelectableTableComponent
 ];

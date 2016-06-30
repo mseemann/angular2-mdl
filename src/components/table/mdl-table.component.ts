@@ -5,7 +5,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  Attribute
+  ComponentMetadata
 } from '@angular/core';
 import {
   IMdlTableModel,
@@ -16,20 +16,30 @@ import {
 import { MDL_CHECKBOX_DIRECTIVES } from './../checkbox/mdl-checkbox.component';
 import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive'
 
-@Component({
-  moduleId: module.id,
-  selector: 'mdl-table-selectable',
-  templateUrl: 'mdl-table.html',
-  styles: [
-    `
+let tableComponentMeta = new ComponentMetadata({
+    moduleId: module.id,
+    selector: 'mdl-table',
+    templateUrl: 'mdl-table.html',
+    styles: [
+      `
     :host{
       display:inline-block;
     }
     `
-  ],
-  directives: [MDL_CHECKBOX_DIRECTIVES, MDL_COMMON_DIRECTIVES]
-})
+    ],
+    directives: [MDL_CHECKBOX_DIRECTIVES, MDL_COMMON_DIRECTIVES]
+});
+@Component(tableComponentMeta)
 export class MdlTableComponent {
+
+  @Input('table-model') model:IMdlTableModel;
+
+  selectable = false;
+}
+
+tableComponentMeta.selector = 'mdl-table-selectable';
+@Component(tableComponentMeta)
+export class MdlSelectableTableComponent extends MdlTableComponent {
 
   @Input('table-model') model:IMdlTableModel;
   @Input('table-model-selected') selected:Array<IMdlTableModelItem>;
