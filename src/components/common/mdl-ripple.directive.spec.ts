@@ -137,6 +137,7 @@ describe('Directive: MdlRipple', () => {
         expect(span1.classList.contains('mdl-ripple')).toBe(true);
       })
   });
+  
 });
 
 

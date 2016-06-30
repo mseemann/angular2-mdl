@@ -41,7 +41,7 @@ export class MdlRippleDirective implements OnChanges {
         var rippleElement = document.createElement('span');
         rippleElement.classList.add(this.RIPPLE);
         this.rippleContainer.appendChild(rippleElement);
-        rippleElement.addEventListener('mouseup', ()=>rippleElement.blur());
+        //?? rippleElement.addEventListener('mouseup', ()=>rippleElement.blur());
         this.el.appendChild(this.rippleContainer);
 
         this.ripple = new MaterialRipple(this.rippleContainer);

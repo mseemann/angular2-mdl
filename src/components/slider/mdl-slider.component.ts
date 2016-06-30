@@ -10,13 +10,12 @@ import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor
 } from '@angular/common';
+import { noop } from './../common/mdl-internal-commons';
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlSliderComponent),
   multi: true
 });
-
-const noop = () => {};
 
 @Component({
   selector: 'mdl-slider',
