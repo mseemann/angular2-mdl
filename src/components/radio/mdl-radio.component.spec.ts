@@ -60,7 +60,7 @@ describe('Component: MdlRadio', () => {
       })
   })
 
-  it('should mark the component as focused and blured', () => {
+  it('should mark the component as focused and blured', ( done ) => {
     return builder
       .createAsync(MdlTestRadioComponent).then( (fixture) => {
         fixture.detectChanges();
@@ -78,6 +78,8 @@ describe('Component: MdlRadio', () => {
 
         fixture.detectChanges();
         expect(radioEl.classList.contains('is-focused')).toBe(false);
+
+        done();
 
       })
   })
