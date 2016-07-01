@@ -5,7 +5,7 @@ import {
   inject,
   tick,
   beforeEach,
-  beforeEachProviders,
+  addProviders,
   fakeAsync
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -18,7 +18,9 @@ describe('Service: MdlSnackbar', () => {
   var builder: TestComponentBuilder;
   var mdlSnackbarServcie: MdlSnackbarService;
 
-  beforeEachProviders(() => [MdlSnackbarService]);
+  beforeEach(() => {
+    addProviders([MdlSnackbarService]);
+  });
 
   beforeEach(inject([TestComponentBuilder, MdlSnackbarService], function (tcb: TestComponentBuilder, service:MdlSnackbarService) {
     builder = tcb;

@@ -3,7 +3,6 @@ import {
   expect,
   it,
   inject,
-  injectAsync,
   beforeEach
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';

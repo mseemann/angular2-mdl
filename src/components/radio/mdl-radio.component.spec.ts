@@ -3,7 +3,6 @@ import {
   expect,
   it,
   inject,
-  injectAsync,
   fakeAsync,
   tick,
   beforeEach

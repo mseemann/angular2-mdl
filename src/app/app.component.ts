@@ -27,7 +27,7 @@ export class Home {
 }
 
 export const AppRoutes = [
-  { component: Home, path:'', index: true },
+  { path: '', component: Home },
   { path: 'badge', component: BadgeDemo },
   { path: 'button', component: ButtonDemo },
   { path: 'card', component: CardDemo },

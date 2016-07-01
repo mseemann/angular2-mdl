@@ -23,15 +23,15 @@
     "url": "git+https://github.com/mseemann/angular2-mdl.git"
   },
   "dependencies": {
-    "@angular/core": "2.0.0-rc.3",
-    "@angular/common": "2.0.0-rc.3"
+    "@angular/core": "2.0.0-rc.4",
+    "@angular/common": "2.0.0-rc.4"
   },
   "devDependencies": {
-    "@angular/compiler": "2.0.0-rc.3",
-    "@angular/http": "2.0.0-rc.3",
-    "@angular/platform-browser": "2.0.0-rc.3",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.3",
-    "@angular/router": "3.0.0-alpha.7",
+    "@angular/compiler": "2.0.0-rc.4",
+    "@angular/http": "2.0.0-rc.4",
+    "@angular/platform-browser": "2.0.0-rc.4",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.4",
+    "@angular/router": "3.0.0-beta.2",
     "angular-cli": "^1.0.0-beta.6",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
