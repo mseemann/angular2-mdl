@@ -33,7 +33,7 @@
     "@angular/platform-browser-dynamic": "2.0.0-rc.4",
     "@angular/router": "3.0.0-beta.2",
     "angular-cli": "1.0.0-beta.6",
-    "broccoli-funnel": "1.0.1",
+    "broccoli-funnel": "1.0.2",
     "broccoli-merge-trees": "1.1.1",
     "codelyzer": "0.0.24",
     "coveralls": "2.11.9",
