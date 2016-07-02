@@ -11,6 +11,7 @@ $color-accent-contrast: $color-dark-contrast;
 
 .router-outlet {
   margin-left: 1rem;
+  width: 100%;
 }
 
 main {
@@ -47,11 +48,15 @@ h4{
 .app-main-content{
   flex-grow: 1;
 
-  .mdl-grid{
+  .main-grid{
     min-height: 100%;
   }
 
   .mdl-cell {
     display: flex;
   }
+}
+
+[prism] {
+  margin:1em 1em 1em 0;
 }
