@@ -53,7 +53,6 @@ export class MdlSimpleTooltipComponent {
   }
 
   mouseEnter(event){
-
     let props = event.target.getBoundingClientRect();
     let offsetWidth = this.element.offsetWidth;
     let offsetHeight = this.element.offsetHeight;

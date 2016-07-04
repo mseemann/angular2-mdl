@@ -41,7 +41,7 @@ export class AbstractMdlTooltipDirective implements OnInit {
       this.tooltipComponent = <MdlTooltipComponent>this.tooltip;
       this.configureTooltipComponent();
     }
-    this.doc.addEventListener('touchstart', this.onMouseLeave);
+    window.addEventListener('touchstart', ()=>{this.onMouseLeave()});
   }
 
   private configureTooltipComponent(){
