@@ -9,7 +9,6 @@ import {
   Renderer,
   Inject
 } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
 import { MdlSimpleTooltipComponent, MdlTooltipComponent } from './mdl-tooltip.component';
 
 export class AbstractMdlTooltipDirective implements OnInit {
@@ -23,7 +22,7 @@ export class AbstractMdlTooltipDirective implements OnInit {
     private vcRef: ViewContainerRef,
     private large:boolean,
     private componentResolver: ComponentResolver,
-    private doc:HTMLDocument){
+    private renderer:Renderer){
   }
 
 
@@ -41,7 +40,11 @@ export class AbstractMdlTooltipDirective implements OnInit {
       this.tooltipComponent = <MdlTooltipComponent>this.tooltip;
       this.configureTooltipComponent();
     }
-    window.addEventListener('touchstart', ()=>{this.onMouseLeave()});
+
+    this.renderer.listenGlobal('window', 'touchstart', () => {
+      this.onMouseLeave();
+    });
+
   }
 
   private configureTooltipComponent(){
@@ -73,8 +76,8 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
   @Input('mdl-tooltip')           tooltip:string|MdlTooltipComponent;
   @Input('mdl-tooltip-position')  position:string;
 
-  constructor(vcRef: ViewContainerRef, componentResolver: ComponentResolver, @Inject(DOCUMENT) doc){
-    super(vcRef, false, componentResolver, doc);
+  constructor(vcRef: ViewContainerRef, componentResolver: ComponentResolver, renderer:Renderer){
+    super(vcRef, false, componentResolver, renderer);
   }
 }
 
@@ -86,7 +89,7 @@ export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
   @Input('mdl-tooltip-large')     tooltip:string|MdlTooltipComponent;
   @Input('mdl-tooltip-position')  position:string;
 
-  constructor(vcRef: ViewContainerRef, componentResolver: ComponentResolver, @Inject(DOCUMENT) doc){
-    super(vcRef, true, componentResolver, doc);
+  constructor(vcRef: ViewContainerRef, componentResolver: ComponentResolver,  renderer:Renderer){
+    super(vcRef, true, componentResolver, renderer);
   }
 }
