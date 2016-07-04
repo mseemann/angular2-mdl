@@ -41,4 +41,8 @@ import { PrismDirective } from './../prism/prism.component';
     `
   ]
 })
-export class MenuDemo {}
+export class MenuDemo {
+  action(){
+    console.log('action clicked');
+  }
+}

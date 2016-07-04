@@ -1,17 +1,15 @@
 <h4>Menus</h4>
 
-WIP!
-
 <div class="mdl-grid">
    <div class="mdl-cell mdl-cell--3-col">
       <div class="container" mdl-shadow="2">
          <div class="bar mdl-color--primary">
-            <mdl-button (click)="m1.show()" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+            <mdl-button #btn1="mdlButton" (click)="m1.toggle($event, btn1)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
             <mdl-menu #m1="mdlMenu" mdl-menu-position="bottom-left">
-               <mdl-menu-item mdl-ripple>Some Action</mdl-menu-item>
+               <mdl-menu-item mdl-ripple (click)="action()">Some Action</mdl-menu-item>
                <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
                <mdl-menu-item mdl-ripple disabled>Disabled Action</mdl-menu-item>
-               <mdl-meni-item>Yet Another Action</mdl-meni-item>
+               <mdl-menu-item>Yet Another Action</mdl-menu-item>
             </mdl-menu>
          </div>
          <div class="background"></div>
@@ -21,7 +19,13 @@ WIP!
       <div class="container" mdl-shadow="2">
          <div class="bar mdl-color--primary">
             <div class="top-right">
-               <mdl-button mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+               <mdl-button #btn2="mdlButton" (click)="m2.toggle($event, btn2)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+               <mdl-menu #m2="mdlMenu" mdl-menu-position="bottom-right">
+                  <mdl-menu-item mdl-ripple>Some Action</mdl-menu-item>
+                  <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
+                  <mdl-menu-item mdl-ripple disabled>Disabled Action</mdl-menu-item>
+                  <mdl-menu-item>Yet Another Action</mdl-menu-item>
+               </mdl-menu>
             </div>
          </div>
          <div class="background"></div>
@@ -31,7 +35,13 @@ WIP!
       <div class="container" mdl-shadow="2">
          <div class="background"></div>
          <div class="bar mdl-color--primary">
-            <mdl-button mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+            <mdl-button #btn3="mdlButton" (click)="m3.toggle($event, btn3)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+            <mdl-menu #m3="mdlMenu" mdl-menu-position="top-left">
+               <mdl-menu-item mdl-ripple>Some Action</mdl-menu-item>
+               <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
+               <mdl-menu-item mdl-ripple disabled>Disabled Action</mdl-menu-item>
+               <mdl-menu-item>Yet Another Action</mdl-menu-item>
+            </mdl-menu>
          </div>
       </div>
    </div>
@@ -40,7 +50,13 @@ WIP!
          <div class="background"></div>
          <div class="bar mdl-color--primary">
             <div class="top-right">
-               <mdl-button mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+               <mdl-button #btn4="mdlButton" (click)="m4.toggle($event, btn4)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+               <mdl-menu #m4="mdlMenu" mdl-menu-position="top-right">
+                  <mdl-menu-item mdl-ripple>Some Action</mdl-menu-item>
+                  <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
+                  <mdl-menu-item mdl-ripple disabled>Disabled Action</mdl-menu-item>
+                  <mdl-menu-item>Yet Another Action</mdl-menu-item>
+               </mdl-menu>
             </div>
          </div>
       </div>
@@ -53,6 +69,39 @@ WIP!
 
 <pre prism>
   <![CDATA[
-TODO!
+<mdl-button #btn1="mdlButton" (click)="m1.toggle($event, btn1)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+<mdl-menu #m1="mdlMenu" mdl-menu-position="bottom-left">
+   <mdl-menu-item mdl-ripple (click)="action()">Some Action</mdl-menu-item>
+   <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
+   <mdl-menu-item mdl-ripple disabled>Disabled Action</mdl-menu-item>
+   <mdl-menu-item>Yet Another Action</mdl-menu-item>
+</mdl-menu>
+  ]]>
+</pre>
+
+<pre prism>
+  <![CDATA[
+<mdl-button #btn2="mdlButton" (click)="m2.toggle($event, btn2)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+<mdl-menu #m2="mdlMenu" mdl-menu-position="bottom-right">
+   ...
+</mdl-menu>
+  ]]>
+</pre>
+
+<pre prism>
+  <![CDATA[
+<mdl-button #btn3="mdlButton" (click)="m3.toggle($event, btn3)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+<mdl-menu #m3="mdlMenu" mdl-menu-position="top-left">
+   ...
+</mdl-menu>
+  ]]>
+</pre>
+
+<pre prism>
+  <![CDATA[
+<mdl-button #btn4="mdlButton" (click)="m4.toggle($event, btn4)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></mdl-button>
+<mdl-menu #m4="mdlMenu" mdl-menu-position="top-right">
+   ...
+</mdl-menu>
   ]]>
 </pre>

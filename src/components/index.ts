@@ -3,7 +3,8 @@ import {
   MdlCheckboxRippleDirective,
   MdlRadioRippleDirective,
   MdlIconToggleRippleDirective,
-  MdlSwitchRippleDirective
+  MdlSwitchRippleDirective,
+  MdlMenuItemRippleDirective
 } from "./common/mdl-ripple.directive";
 import { MdlButtonComponent } from "./button/mdl-button.component";
 import {
@@ -59,6 +60,8 @@ import {
 } from './table/index';
 import {
   MdlMenuComponent,
+  MdlMenuItemComponent,
+  MdlMenuItemFullBleedDeviderComponent
 } from './menu/index'
 
 export * from './common/mdl-ripple.directive';
@@ -126,5 +129,8 @@ export const MDL_DIRECTIVES = [
   MdlTooltipLargeDirective,
   MdlTableComponent,
   MdlSelectableTableComponent,
-  MdlMenuComponent
+  MdlMenuComponent,
+  MdlMenuItemComponent,
+  MdlMenuItemRippleDirective,
+  MdlMenuItemFullBleedDeviderComponent
 ];

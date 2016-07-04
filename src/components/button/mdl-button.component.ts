@@ -34,7 +34,6 @@ const MDL_COLORED_TYPES = [
   ''
 ]
 
-// TODO test blur/focus
 
 @Component({
   selector: 'mdl-button',
@@ -50,17 +49,18 @@ const MDL_COLORED_TYPES = [
     '[class.mdl-button--primary]' : 'mdlColoredType == "primary"',
     '[class.mdl-button--accent]' :  'mdlColoredType == "accent"'
   },
+  exportAs: 'mdlButton',
   template: '<ng-content></ng-content>'
 })
 export class MdlButtonComponent implements OnChanges {
 
-  private el:HTMLElement;
+  private element:HTMLElement;
 
   @Input('mdl-button-type') mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '' ;
   @Input('mdl-colored') mdlColoredType : 'primary' | 'accent' | '';
 
   constructor(private elementRef: ElementRef){
-    this.el = elementRef.nativeElement;
+    this.element = elementRef.nativeElement;
   }
 
   ngOnChanges() {
@@ -83,7 +83,7 @@ export class MdlButtonComponent implements OnChanges {
   }
 
   blurIt(){
-    this.el.blur();
+    this.element.blur();
   }
 }
 

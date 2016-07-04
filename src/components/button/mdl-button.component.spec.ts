@@ -89,6 +89,8 @@ describe('Directive: MdlButton', () => {
 
       })
   });
+
+  //TODO test exportAs mdlButton
 });
 
 
