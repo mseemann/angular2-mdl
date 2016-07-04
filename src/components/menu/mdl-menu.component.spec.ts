@@ -35,6 +35,23 @@ describe('Component: MdlMenu', () => {
       })
   });
 
+  it('should export the component instance as mdlMenu', ( done ) => {
+
+    return builder
+      .overrideTemplate(MdlTestIconComponent, `
+          <mdl-menu #menu="mdlMenu">x</mdl-menu>
+        `)
+      .createAsync(MdlTestIconComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let references = fixture.debugElement.query(By.directive(MdlMenuComponent)).references;
+
+        expect(references['menu']).toBeDefined();
+
+        done();
+      })
+  });
 
 });
 

@@ -15,8 +15,8 @@ import {
 export class MdlMenuComponent {
   @Input('mdl-menu-position') position:string;
 
-  // show(){
-  //   console.log('show the menu');
-  // }
+  show(){
+    console.log('show the menu');
+  }
 }
 
