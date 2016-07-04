@@ -30,6 +30,7 @@ This package assumes that you are building an Angular2 app with TypeScript and A
 - Snackbar
 - Table
 - Tooltips
+- Menu
 
 
 
