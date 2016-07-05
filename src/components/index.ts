@@ -65,7 +65,9 @@ import {
 } from './menu/index';
 import {
   MdlLayoutComponent,
-  MdlLayoutHeaderComponent
+  MdlLayoutHeaderComponent,
+  MdlLayoutDrawerComponent,
+  MdlLayoutContentComponent
 } from './layout/index';
 
 export * from './common/mdl-ripple.directive';
@@ -139,5 +141,7 @@ export const MDL_DIRECTIVES = [
   MdlMenuItemRippleDirective,
   MdlMenuItemFullBleedDeviderComponent,
   MdlLayoutComponent,
-  MdlLayoutHeaderComponent
+  MdlLayoutHeaderComponent,
+  MdlLayoutDrawerComponent,
+  MdlLayoutContentComponent
 ];

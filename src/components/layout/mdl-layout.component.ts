@@ -1,6 +1,10 @@
 import {
-  Component
+  Component,
+  ContentChild
 } from '@angular/core';
+import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
+import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
+import { MdlLayoutContentComponent } from './mdl-layout-content.component';
 
 const CONTAINER = 'mdl-layout__container';
 const HEADER = 'mdl-layout__header';
@@ -60,4 +64,8 @@ const ON_SMALL_SCREEN = 'mdl-layout--small-screen-only';
 })
 export class MdlLayoutComponent {
 
+  @ContentChild(MdlLayoutHeaderComponent) header;
+  @ContentChild(MdlLayoutDrawerComponent) drawer;
+  @ContentChild(MdlLayoutContentComponent) content;
+  
 }
