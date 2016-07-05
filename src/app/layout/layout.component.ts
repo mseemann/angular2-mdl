@@ -10,5 +10,14 @@ import { PrismDirective } from './../prism/prism.component';
     MDL_DIRECTIVES,
     PrismDirective
   ],
+  styles:[
+    `
+    .demo-layout-transparent {
+         background: url('assets/oslo.jpg') center / cover;
+         height: 300px;
+    }
+
+    `
+  ]
 })
 export class LayoutDemo {}

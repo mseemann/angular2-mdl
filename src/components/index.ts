@@ -62,7 +62,10 @@ import {
   MdlMenuComponent,
   MdlMenuItemComponent,
   MdlMenuItemFullBleedDeviderComponent
-} from './menu/index'
+} from './menu/index';
+import {
+  MdlLayoutComponent
+} from './layout/mdl-layout.component';
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
@@ -82,6 +85,7 @@ export * from './switch/mdl-switch.component';
 export * from './table/index'
 export * from './tooltip/index';
 export * from './menu/index';
+export * from './layout/mdl-layout.component';
 
 export const MDL_SERVICES = [
   MdlSnackbarService
@@ -132,5 +136,6 @@ export const MDL_DIRECTIVES = [
   MdlMenuComponent,
   MdlMenuItemComponent,
   MdlMenuItemRippleDirective,
-  MdlMenuItemFullBleedDeviderComponent
+  MdlMenuItemFullBleedDeviderComponent,
+  MdlLayoutComponent
 ];
