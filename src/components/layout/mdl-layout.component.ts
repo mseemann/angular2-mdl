@@ -1,7 +1,13 @@
 import {
   Component,
-  ContentChild
+  ContentChild,
+  ViewChild,
+  AfterViewInit,
+  ElementRef,
+  HostBinding,
+  Input
 } from '@angular/core';
+import { MdlError } from './../common/mdl-error';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
 import { MdlLayoutContentComponent } from './mdl-layout-content.component';
@@ -48,6 +54,20 @@ const IS_ANIMATING = 'is-animating';
 const ON_LARGE_SCREEN = 'mdl-layout--large-screen-only';
 const ON_SMALL_SCREEN = 'mdl-layout--small-screen-only';
 
+const ENTER =  13;
+const ESCAPE = 27;
+const SPACE = 32;
+
+const STANDARD = 'standard';
+const SEAMED = 'seamed';
+const WATERFALL = 'waterfall';
+const SCROLL = 'scroll';
+
+export class MdLUnsupportedLayoutTypeError extends MdlError {
+  constructor(type: string) {
+    super(`Layout type "${type}" isn't supported by mdl-layout (allowed: standard, seamed, waterfall, scroll).`);
+  }
+}
 
 @Component({
   selector: 'mdl-layout',
@@ -58,14 +78,41 @@ const ON_SMALL_SCREEN = 'mdl-layout--small-screen-only';
       <div class="mdl-layout__container">
          <div class="mdl-layout">
             <ng-content></ng-content>
+            <div #obfuscator class="mdl-layout__obfuscator" 
+                  [ngClass]="{'is-visible':isDrawerVisible}" 
+                  (click)="toggleDrawer()"
+                  (keydown)="obfuscatorKeyDown($event)"></div>
          </div>
       </div>
    `
 })
-export class MdlLayoutComponent {
+export class MdlLayoutComponent implements AfterViewInit{
 
   @ContentChild(MdlLayoutHeaderComponent) header;
   @ContentChild(MdlLayoutDrawerComponent) drawer;
   @ContentChild(MdlLayoutContentComponent) content;
-  
+  @ViewChild('obfuscator') obfuscator:ElementRef;
+
+  @Input('mdl-layout-mode') private mode: string = STANDARD;
+
+  private isDrawerVisible = false;
+
+  ngAfterViewInit(){
+    if(this.mode === ''){
+      this.mode = STANDARD;
+    }
+    if ([STANDARD, SEAMED , WATERFALL, SCROLL].indexOf(this.mode) === -1){
+      throw new MdLUnsupportedLayoutTypeError(this.mode);
+    }
+  }
+
+  toggleDrawer(){
+    this.isDrawerVisible = !this.isDrawerVisible;
+  }
+
+  obfuscatorKeyDown($event){
+    if ($event.keyCode === ESCAPE && this.isDrawerVisible) {
+      this.toggleDrawer();
+    }
+  }
 }
