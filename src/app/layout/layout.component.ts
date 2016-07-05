@@ -12,9 +12,14 @@ import { PrismDirective } from './../prism/prism.component';
   ],
   styles:[
     `
+    .demo-container {
+        width: 100%;
+        position: relative;
+    }
     .demo-layout-transparent {
          background: url('assets/oslo.jpg') center / cover;
          height: 300px;
+        
     }
 
     `

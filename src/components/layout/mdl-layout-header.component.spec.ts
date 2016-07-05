@@ -9,9 +9,9 @@ import {
 import { By } from '@angular/platform-browser';
 import { Component, Optional } from '@angular/core';
 import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
-import { MdlLayoutComponent } from './mdl-layout.component';
+import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 
-describe('Component: MdlLayout', () => {
+describe('Component: MdlLayoutHeader', () => {
 
   var builder: TestComponentBuilder;
 
@@ -19,22 +19,19 @@ describe('Component: MdlLayout', () => {
     builder = tcb;
   }));
 
-  it('should add the css class mdl-layout__container to the child of the host element', ( done ) => {
+  it('should add the css class mdl-layout__header to the host element', ( done ) => {
 
     return builder
       .overrideTemplate(MdlTestLayoutComponent, `
-          <mdl-layout>x</mdl-layout>
+          <mdl-layout-header>x</mdl-layout-header>
         `)
       .createAsync(MdlTestLayoutComponent).then( (fixture) => {
 
         fixture.detectChanges();
 
-        let layoutEl:HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutComponent)).nativeElement;
-        let layoutContainer:HTMLElement = <HTMLElement>layoutEl.children.item(0);
-        expect(layoutContainer.classList.contains('mdl-layout__container')).toBe(true);
+        let layoutEl:HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent)).nativeElement;
+        expect(layoutEl.classList.contains('mdl-layout__header')).toBe(true);
 
-        let layoutMainElement = <HTMLElement>layoutContainer.children.item(0);
-        expect(layoutMainElement.classList.contains('mdl-layout')).toBe(true);
         done();
       })
   });
@@ -46,6 +43,6 @@ describe('Component: MdlLayout', () => {
 @Component({
   selector: 'test-layout',
   template: "replaced by the test",
-  directives: [MdlLayoutComponent]
+  directives: [MdlLayoutHeaderComponent]
 })
 class MdlTestLayoutComponent {}
