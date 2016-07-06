@@ -8,6 +8,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { MdlError } from './../common/mdl-error';
+import { BooleanProperty } from './../common/boolean-property';
 import { MdlIconComponent } from './../icon/mdl-icon.component';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
@@ -26,6 +27,7 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
   }
 }
 
+
 @Component({
   moduleId: module.id,
   selector: 'mdl-layout',
@@ -40,7 +42,8 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   @ContentChild(MdlLayoutDrawerComponent) private drawer;
   @ContentChild(MdlLayoutContentComponent) private content;
 
-  @Input('mdl-layout-mode') private mode: string = STANDARD;
+  @Input('mdl-layout-mode') public mode: string = STANDARD;
+  @Input('mdl-layout-fixed-drawer') @BooleanProperty() public isFixedDrawer = false;
 
   private isDrawerVisible = false;
   private isSmallScreen = false;
@@ -49,7 +52,6 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   private windowMediaQueryListener: Function;
 
   constructor(private renderer: Renderer) {
-
   }
 
   public ngAfterContentInit() {

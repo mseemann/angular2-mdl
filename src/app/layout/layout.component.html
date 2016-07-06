@@ -4,7 +4,7 @@
 
 <h6>Navigation Layout with transparent header</h6>
 
-<div class="demo-container demo-layout-transparent">
+<div class="demo-container demo-layout-transparent" mdl-shadow="2">
    <mdl-layout #mdlLayout1="mdlLayout">
       <mdl-layout-header mdl-layout-header-transparent>
          <mdl-layout-header-row>
@@ -64,6 +64,45 @@
 <mdl-button (click)="mdlLayout1.toggleDrawer()" mdl-button-type="raised" mdl-colored>Toggle Drawer</mdl-button>
   ]]>
 </pre>
+
+<h6>Fixed drawer, no header</h6>
+
+<div class="demo-container demo-layout-fixed-drawer" mdl-shadow="2">
+   <mdl-layout mdl-layout-fixed-drawer>
+      <mdl-layout-drawer>
+         <mdl-layout-title>Title</mdl-layout-title>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+         </nav>
+      </mdl-layout-drawer>
+      <mdl-layout-content>
+         The content.
+      </mdl-layout-content>
+   </mdl-layout>
+</div>
+
+<pre prism>
+  <![CDATA[
+<div class="demo-container demo-layout-fixed-drawer" mdl-shadow="2">
+   <mdl-layout mdl-layout-fixed-drawer>
+      <mdl-layout-drawer>
+         <mdl-layout-title>Title</mdl-layout-title>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+         </nav>
+      </mdl-layout-drawer>
+      <mdl-layout-content>
+         <!-- Your content goes here -->
+      </mdl-layout-content>
+   </mdl-layout>
+</div>
+  ]]>
+</pre>
+
 
 <h5>Grid</h5>
 
