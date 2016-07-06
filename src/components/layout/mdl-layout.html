@@ -1,8 +1,13 @@
 <div class="mdl-layout__container" [ngClass]="{'has-scrolling-header': mode==='scroll'}">
-   <div class="mdl-layout is-upgraded" [ngClass]="{'is-small-screen': isSmallScreen, 'mdl-layout--fixed-drawer': isFixedDrawer}">
+   <div class="mdl-layout is-upgraded"
+        [ngClass]="{
+        'is-small-screen': isSmallScreen,
+        'mdl-layout--fixed-drawer': isFixedDrawer,
+        'mdl-layout--fixed-header': isFixedHeader
+        }">
       <ng-content select="mdl-layout-header"></ng-content>
       <ng-content select="mdl-layout-drawer"></ng-content>
-      <div class="mdl-layout__drawer-button" (click)="toggleDrawer()"><mdl-icon>&#xE5D2;</mdl-icon></div>
+      <div *ngIf="drawer" class="mdl-layout__drawer-button" (click)="toggleDrawer()"><mdl-icon>&#xE5D2;</mdl-icon></div>
       <ng-content select="mdl-layout-content"></ng-content>
       <div class="mdl-layout__obfuscator"
            [ngClass]="{'is-visible':isDrawerVisible}"

@@ -44,6 +44,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
 
   @Input('mdl-layout-mode') public mode: string = STANDARD;
   @Input('mdl-layout-fixed-drawer') @BooleanProperty() public isFixedDrawer = false;
+  @Input('mdl-layout-fixed-header') @BooleanProperty() public isFixedHeader = false;
 
   private isDrawerVisible = false;
   private isSmallScreen = false;

@@ -26,6 +26,9 @@ import { ROUTER_DIRECTIVES} from '@angular/router';
     .demo-layout-fixed-drawer {
         height: 300px;
     }
+    .demo-layout-fixed-header {
+        height: 300px;
+    }
     mdl-layout-content{
         margin:1rem;
     }

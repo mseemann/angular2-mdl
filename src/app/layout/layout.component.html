@@ -103,6 +103,74 @@
   ]]>
 </pre>
 
+<h6>Fixed header</h6>
+<p>Always shows a header, even in smaller screens.</p>
+
+<div class="demo-container demo-layout-fixed-header" mdl-shadow="2">
+   <mdl-layout mdl-layout-fixed-header>
+      <mdl-layout-header>
+         <mdl-layout-header-row>
+            <mdl-layout-title>Title</mdl-layout-title>
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+         </mdl-layout-header-row>
+      </mdl-layout-header>
+      <mdl-layout-drawer>
+         <mdl-layout-title>Title</mdl-layout-title>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+         </nav>
+      </mdl-layout-drawer>
+      <mdl-layout-content>
+         <!-- Your content goes here -->
+      </mdl-layout-content>
+   </mdl-layout>
+</div>
+
+<pre prism>
+  <![CDATA[
+<div class="demo-container demo-layout-fixed-header" mdl-shadow="2">
+   <mdl-layout mdl-layout-fixed-header>
+      <mdl-layout-header>
+         <mdl-layout-header-row>
+            <mdl-layout-title>Title</mdl-layout-title>
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+         </mdl-layout-header-row>
+      </mdl-layout-header>
+      <mdl-layout-drawer>
+         <mdl-layout-title>Title</mdl-layout-title>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+         </nav>
+      </mdl-layout-drawer>
+      <mdl-layout-content>
+         <!-- Your content goes here -->
+      </mdl-layout-content>
+   </mdl-layout>
+</div>
+  ]]>
+</pre>
+
+
+
+
+
+
 
 <h5>Grid</h5>
 
