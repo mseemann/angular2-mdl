@@ -3,7 +3,7 @@
 <h5>Navigation layouts</h5>
 
 <div class="demo-container demo-layout-transparent">
-   <mdl-layout mdl-layout-mode="standard">
+   <mdl-layout mdl-layout-mode="standard" #mdlLayout1="mdlLayout">
       <mdl-layout-header class="mdl-layout__header--transparent">
          <div class="mdl-layout__header-row">
             <!-- Title -->
@@ -28,10 +28,10 @@
             <a class="mdl-navigation__link" href="">Link</a>
          </nav>
       </mdl-layout-drawer>
-      <div class="mdl-layout__drawer-button"><mdl-icon>&#xE5D2;</mdl-icon></div>
-      <mdl-layout-content></mdl-layout-content>
+      <mdl-layout-content>...</mdl-layout-content>
    </mdl-layout>
 </div>
+<mdl-button (click)="mdlLayout1.toggleDrawer()" mdl-button-type="raised" mdl-colored>Toggle Drawer</mdl-button>
 
 <h5>Grid</h5>
 <h5>Tabs</h5>

@@ -1,62 +1,19 @@
 import {
   Component,
   ContentChild,
-  ViewChild,
-  AfterViewInit,
-  ElementRef,
-  HostBinding,
-  Input
+  AfterContentInit,
+  OnDestroy,
+  Input,
+  Renderer,
+  ViewEncapsulation
 } from '@angular/core';
 import { MdlError } from './../common/mdl-error';
+import { MdlIconComponent } from './../icon/mdl-icon.component';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
 import { MdlLayoutContentComponent } from './mdl-layout-content.component';
 
-const CONTAINER = 'mdl-layout__container';
-const HEADER = 'mdl-layout__header';
-const DRAWER = 'mdl-layout__drawer';
-const CONTENT = 'mdl-layout__content';
-const DRAWER_BTN = 'mdl-layout__drawer-button';
-
-const ICON = 'material-icons';
-
-const JS_RIPPLE_EFFECT = 'mdl-js-ripple-effect';
-const RIPPLE_CONTAINER = 'mdl-layout__tab-ripple-container';
-const RIPPLE = 'mdl-ripple';
-const RIPPLE_IGNORE_EVENTS = 'mdl-js-ripple-effect--ignore-events';
-
-const HEADER_SEAMED = 'mdl-layout__header--seamed';
-const HEADER_WATERFALL = 'mdl-layout__header--waterfall';
-const HEADER_SCROLL = 'mdl-layout__header--scroll';
-
-const FIXED_HEADER = 'mdl-layout--fixed-header';
-const OBFUSCATOR = 'mdl-layout__obfuscator';
-
-const TAB_BAR = 'mdl-layout__tab-bar';
-const TAB_CONTAINER = 'mdl-layout__tab-bar-container';
-const TAB = 'mdl-layout__tab';
-const TAB_BAR_BUTTON = 'mdl-layout__tab-bar-button';
-const TAB_BAR_LEFT_BUTTON = 'mdl-layout__tab-bar-left-button';
-const TAB_BAR_RIGHT_BUTTON = 'mdl-layout__tab-bar-right-button';
-const PANEL = 'mdl-layout__tab-panel';
-
-const HAS_DRAWER = 'has-drawer';
-const HAS_TABS = 'has-tabs';
-const HAS_SCROLLING_HEADER = 'has-scrolling-header';
-const CASTING_SHADOW = 'is-casting-shadow';
-const IS_COMPACT = 'is-compact';
-const IS_SMALL_SCREEN = 'is-small-screen';
-const IS_DRAWER_OPEN = 'is-visible';
-const IS_ACTIVE = 'is-active';
-const IS_UPGRADED = 'is-upgraded';
-const IS_ANIMATING = 'is-animating';
-
-const ON_LARGE_SCREEN = 'mdl-layout--large-screen-only';
-const ON_SMALL_SCREEN = 'mdl-layout--small-screen-only';
-
-const ENTER =  13;
 const ESCAPE = 27;
-const SPACE = 32;
 
 const STANDARD = 'standard';
 const SEAMED = 'seamed';
@@ -70,49 +27,101 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
 }
 
 @Component({
+  moduleId: module.id,
   selector: 'mdl-layout',
-  host: {
-  },
-  template:
-    `
-      <div class="mdl-layout__container">
-         <div class="mdl-layout">
-            <ng-content></ng-content>
-            <div #obfuscator class="mdl-layout__obfuscator" 
-                  [ngClass]="{'is-visible':isDrawerVisible}" 
-                  (click)="toggleDrawer()"
-                  (keydown)="obfuscatorKeyDown($event)"></div>
-         </div>
-      </div>
-   `
+  templateUrl: 'mdl-layout.html',
+  exportAs: 'mdlLayout',
+  directives: [MdlIconComponent],
+  encapsulation: ViewEncapsulation.None
 })
-export class MdlLayoutComponent implements AfterViewInit{
+export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
 
-  @ContentChild(MdlLayoutHeaderComponent) header;
-  @ContentChild(MdlLayoutDrawerComponent) drawer;
-  @ContentChild(MdlLayoutContentComponent) content;
-  @ViewChild('obfuscator') obfuscator:ElementRef;
+  @ContentChild(MdlLayoutHeaderComponent) private header;
+  @ContentChild(MdlLayoutDrawerComponent) private drawer;
+  @ContentChild(MdlLayoutContentComponent) private content;
 
   @Input('mdl-layout-mode') private mode: string = STANDARD;
 
   private isDrawerVisible = false;
 
-  ngAfterViewInit(){
-    if(this.mode === ''){
+  private sccrollListener: Function;
+
+  constructor(private renderer: Renderer) {
+
+  }
+
+  public ngAfterContentInit() {
+    this.validateMode();
+  }
+
+  private validateMode() {
+    if (this.mode === '') {
       this.mode = STANDARD;
     }
-    if ([STANDARD, SEAMED , WATERFALL, SCROLL].indexOf(this.mode) === -1){
+    if ([STANDARD, SEAMED , WATERFALL, SCROLL].indexOf(this.mode) === -1) {
       throw new MdLUnsupportedLayoutTypeError(this.mode);
+    }
+
+    if (this.header) {
+      // inform the header about the mode
+      this.header.mode = this.mode;
+    }
+
+    if (this.content) {
+      this.sccrollListener = this.renderer.listen(this.content.el, 'scroll', (event) => {
+        if (this.mode !== SCROLL) {
+          return;
+        }
+        // TODO
+        // if (this.header_.classList.contains(this.CssClasses_.IS_ANIMATING)) {
+        //   return;
+        // }
+        //
+        // var headerVisible =
+        //   !this.element_.classList.contains(this.CssClasses_.IS_SMALL_SCREEN) ||
+        //   this.element_.classList.contains(this.CssClasses_.FIXED_HEADER);
+        //
+        // if (this.content_.scrollTop > 0 &&
+        //   !this.header_.classList.contains(this.CssClasses_.IS_COMPACT)) {
+        //   this.header_.classList.add(this.CssClasses_.CASTING_SHADOW);
+        //   this.header_.classList.add(this.CssClasses_.IS_COMPACT);
+        //   if (headerVisible) {
+        //     this.header_.classList.add(this.CssClasses_.IS_ANIMATING);
+        //   }
+        // } else if (this.content_.scrollTop <= 0 &&
+        //   this.header_.classList.contains(this.CssClasses_.IS_COMPACT)) {
+        //   this.header_.classList.remove(this.CssClasses_.CASTING_SHADOW);
+        //   this.header_.classList.remove(this.CssClasses_.IS_COMPACT);
+        //   if (headerVisible) {
+        //     this.header_.classList.add(this.CssClasses_.IS_ANIMATING);
+        //   }
+        // }
+      });
+    }
+
+    if (this.drawer) {
+
     }
   }
 
-  toggleDrawer(){
+  public toggleDrawer() {
     this.isDrawerVisible = !this.isDrawerVisible;
+    if (this.drawer) {
+      this.drawer.isDrawerVisible = this.isDrawerVisible;
+    }
   }
 
-  obfuscatorKeyDown($event){
+  // tslint:disable-next-line - method is access from template
+  private obfuscatorKeyDown($event){
     if ($event.keyCode === ESCAPE && this.isDrawerVisible) {
       this.toggleDrawer();
+    }
+  }
+
+  public ngOnDestroy() {
+    if (this.sccrollListener) {
+      this.sccrollListener();
+      this.sccrollListener = null;
     }
   }
 }

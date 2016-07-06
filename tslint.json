@@ -1,7 +1,7 @@
 {
   "rulesDirectory": ["node_modules/codelyzer"],
   "rules": {
-    "max-line-length": [true, 100],
+    "max-line-length": [true, 120],
     "no-inferrable-types": true,
     "class-name": true,
     "comment-format": [
@@ -17,7 +17,7 @@
     "no-eval": true,
     "no-arg": true,
     "no-internal-module": true,
-    "no-trailing-whitespace": true,
+    "no-trailing-whitespace": false,
     "no-bitwise": true,
     "no-shadowed-variable": true,
     "no-unused-expression": true,
@@ -60,13 +60,14 @@
       "check-separator",
       "check-type"
     ],
+    "interface-name": true,
+    "no-unreachable": true,
+    "member-access": true,
     "component-selector-name": [true, "kebab-case"],
     "component-selector-type": [true, "element"],
-    "host-parameter-decorator": true,
-    "input-parameter-decorator": true,
-    "output-parameter-decorator": true,
-    "attribute-parameter-decorator": true,
-    "input-property-directive": true,
-    "output-property-directive": true
+    "use-host-property-decorator": true,
+    "use-input-property-decorator": true,
+    "use-output-property-decorator": true,
+    "no-attribute-parameter-decorator": true
   }
 }
