@@ -1,13 +1,12 @@
-<div class="mdl-layout__container">
-<div class="mdl-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
+<mdl-layout mdl-layout-fixed-header>
+    <mdl-layout-header>
       <div class="mdl-color--primary mdl-color-text--accent mdl-layout__header-row">
-         <div class="docs-layout-title mdl-layout-title">
+         <mdl-layout-title class="docs-layout-title">
           {{title}}
-         </div>
+         </mdl-layout-title>
       </div>
-    </header>
-    <main class="mdl-layout__content">
+    </mdl-layout-header>
+    <mdl-layout-content>
       <div class="app-main-content">
          <div class="mdl-grid mdl-grid--no-spacing main-grid">
             <div class="mdl-cell mdl-cell--12-col">
@@ -37,6 +36,5 @@
             </div>
          </div>
       </div>
-    </main>
-</div>
-</div>
+    </mdl-layout-content>
+</mdl-layout>

@@ -166,10 +166,49 @@
   ]]>
 </pre>
 
+<h6>Fixed header and drawer</h6>
+<p>The drawer is always open in large screens. The header is always shown, even in small screens.</p>
 
+<div class="demo-container demo-layout-fixed-header" mdl-shadow="2">
+   <mdl-layout mdl-layout-fixed-header mdl-layout-fixed-drawer>
+      <mdl-layout-header>
+         <mdl-layout-header-row>
+            <mdl-layout-title>Title</mdl-layout-title>
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+         </mdl-layout-header-row>
+      </mdl-layout-header>
+      <mdl-layout-drawer>
+         <mdl-layout-title>Title</mdl-layout-title>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+         </nav>
+      </mdl-layout-drawer>
+      <mdl-layout-content>
+         <!-- Your content goes here -->
+      </mdl-layout-content>
+   </mdl-layout>
+</div>
 
+<pre prism>
+  <![CDATA[
+<mdl-layout mdl-layout-fixed-header mdl-layout-fixed-drawer>
+   ...
+</mdl-layout>
+  ]]>
+</pre>
 
+<h6>Scrolling header</h6>
+<p> Uses a header that scrolls with the text, rather than staying locked at the top</p>
 
+WIP...
 
 
 <h5>Grid</h5>
