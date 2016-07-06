@@ -122,8 +122,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
       this.isSmallScreen = true;
     } else {
       this.isSmallScreen = false;
-      this.isDrawerVisible = false;
-      this.drawer.isDrawerVisible = false;
+      this.closeDrawer();
     }
   }
 
@@ -131,6 +130,13 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
     this.isDrawerVisible = !this.isDrawerVisible;
     if (this.drawer) {
       this.drawer.isDrawerVisible = this.isDrawerVisible;
+    }
+  }
+
+  public closeDrawer() {
+    this.isDrawerVisible = false;
+    if (this.drawer) {
+      this.drawer.isDrawerVisible = false;
     }
   }
 

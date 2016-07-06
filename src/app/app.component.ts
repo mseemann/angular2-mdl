@@ -1,5 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DIRECTIVES} from '@angular/router';
+import {
+  ROUTER_DIRECTIVES,
+  RouterConfig
+} from '@angular/router';
 
 import { ButtonDemo } from './button/button.component';
 import { BadgeDemo } from './badge/badge.component';
@@ -8,7 +11,13 @@ import { IconDemo } from './icon/icon.component';
 import { ShadowDemo } from './shadow/shadow.component';
 import { LoadingDemo } from './loading/loading.component';
 import { ListDemo } from './list/list.component';
-import { LayoutDemo } from './layout/layout.component';
+import {
+  LayoutDemo,
+  Layout0Demo,
+  Layout1Demo,
+  Layout2Demo,
+  Layout3Demo
+} from './layout/layout.component';
 import { MenuDemo } from './menus/menu.component';
 import { ToggleDemo } from './toggle/toggle.component';
 import { TooltipDemo } from './tooltip/tooltip.component';
@@ -26,13 +35,20 @@ import { MDL_DIRECTIVES, MDL_SERVICES } from '../components';
 export class Home {
 }
 
-export const appRoutes = [
+export const appRoutes: RouterConfig = [
   { path: '', component: Home },
   { path: 'badge', component: BadgeDemo },
   { path: 'button', component: ButtonDemo },
   { path: 'card', component: CardDemo },
   { path: 'icon', component: IconDemo },
-  { path: 'layout', component: LayoutDemo },
+  { path: 'layout', component: LayoutDemo,
+    children: [
+      { path: '', component: Layout0Demo },
+      { path: 'l1', component: Layout1Demo },
+      { path: 'l2', component: Layout2Demo },
+      { path: 'l3', component: Layout3Demo }
+    ]
+  },
   { path: 'loading', component: LoadingDemo },
   { path: 'list', component: ListDemo },
   { path: 'menu', component: MenuDemo },

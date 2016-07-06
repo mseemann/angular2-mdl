@@ -2,38 +2,73 @@
 
 <h5>Navigation layouts</h5>
 
+<h6>Navigation Layout with transparent header</h6>
+
 <div class="demo-container demo-layout-transparent">
    <mdl-layout #mdlLayout1="mdlLayout">
       <mdl-layout-header mdl-layout-header-transparent>
          <mdl-layout-header-row>
-            <!-- Title -->
             <mdl-layout-title>Title</mdl-layout-title>
-            <!-- Add spacer, to align navigation to the right -->
             <mdl-layout-spacer></mdl-layout-spacer>
-            <!-- Navigation -->
             <nav class="mdl-navigation">
-               <a class="mdl-navigation__link" href="">Link</a>
-               <a class="mdl-navigation__link" href="">Link</a>
-               <a class="mdl-navigation__link" href="">Link</a>
-               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" [routerLink]="['/layout/l1']">Link 1</a>
+               <a class="mdl-navigation__link" [routerLink]="['/layout/l2']">Link 2</a>
+               <a class="mdl-navigation__link" [routerLink]="['/layout/l3']">Link 3</a>
             </nav>
          </mdl-layout-header-row>
       </mdl-layout-header>
       <mdl-layout-drawer>
          <mdl-layout-title>Title</mdl-layout-title>
          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" [routerLink]="['/layout/l1']" (click)="mdlLayout1.closeDrawer()">Link 1</a>
+            <a class="mdl-navigation__link" [routerLink]="['/layout/l2']" (click)="mdlLayout1.closeDrawer()">Link 2</a>
+            <a class="mdl-navigation__link" [routerLink]="['/layout/l3']" (click)="mdlLayout1.closeDrawer()">Link 3</a>
          </nav>
       </mdl-layout-drawer>
-      <mdl-layout-content>...</mdl-layout-content>
+      <mdl-layout-content>
+         <router-outlet></router-outlet>
+      </mdl-layout-content>
+   </mdl-layout>
+</div>
+<br>
+<mdl-button (click)="mdlLayout1.toggleDrawer()" mdl-button-type="raised" mdl-colored>Toggle Drawer</mdl-button>
+
+<pre prism>
+  <![CDATA[
+<div class="demo-container demo-layout-transparent">
+   <mdl-layout #mdlLayout1="mdlLayout">
+      <mdl-layout-header mdl-layout-header-transparent>
+         <mdl-layout-header-row>
+            <mdl-layout-title>Title</mdl-layout-title>
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <nav class="mdl-navigation">
+               <a class="mdl-navigation__link" [routerLink]="['/layout/l1']">Link 1</a>
+               <a class="mdl-navigation__link" [routerLink]="['/layout/l2']">Link 2</a>
+               <a class="mdl-navigation__link" [routerLink]="['/layout/l3']">Link 3</a>
+            </nav>
+         </mdl-layout-header-row>
+      </mdl-layout-header>
+      <mdl-layout-drawer>
+         <mdl-layout-title>Title</mdl-layout-title>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" [routerLink]="['/layout/l1']" (click)="mdlLayout1.closeDrawer()">Link 1</a>
+            <a class="mdl-navigation__link" [routerLink]="['/layout/l2']" (click)="mdlLayout1.closeDrawer()">Link 2</a>
+            <a class="mdl-navigation__link" [routerLink]="['/layout/l3']" (click)="mdlLayout1.closeDrawer()">Link 3</a>
+         </nav>
+      </mdl-layout-drawer>
+      <mdl-layout-content>
+         <router-outlet></router-outlet>
+      </mdl-layout-content>
    </mdl-layout>
 </div>
 <mdl-button (click)="mdlLayout1.toggleDrawer()" mdl-button-type="raised" mdl-colored>Toggle Drawer</mdl-button>
+  ]]>
+</pre>
 
 <h5>Grid</h5>
+
+Please visit the original <a href="https://getmdl.io/components/index.html#layout-section/grid" target="mdl-docu">material lite documentation</a> how to use the grid system.
+
 <h5>Tabs</h5>
 <h5>Footer</h5>
 

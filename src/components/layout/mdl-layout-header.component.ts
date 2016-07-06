@@ -12,9 +12,9 @@ import {
     '[class.is-casting-shadow]': 'mode==="standard"',
     '[class.mdl-layout__header--seamed]': 'mode==="seamed"',
     '[class.mdl-layout__header--waterfall]': 'mode==="waterfall"',
-    '[class.mdl-layout__header--scroll]': 'mode==="scroll"',
-    '(transitionend)': 'onTransitionEnd()',
-    '(click)': 'onClick()'
+    '[class.mdl-layout__header--scroll]': 'mode==="scroll"'
+    // '(transitionend)': 'onTransitionEnd()',
+    // '(click)': 'onClick()'
   },
   template:
     `<ng-content></ng-content>`,

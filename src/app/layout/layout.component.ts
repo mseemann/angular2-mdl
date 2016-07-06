@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { MDL_DIRECTIVES } from '../../components';
 import { PrismDirective } from './../prism/prism.component';
+import { ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -8,7 +9,8 @@ import { PrismDirective } from './../prism/prism.component';
   templateUrl: 'layout.component.html',
   directives: [
     MDL_DIRECTIVES,
-    PrismDirective
+    PrismDirective,
+    ROUTER_DIRECTIVES
   ],
   styles: [
     `
@@ -19,16 +21,41 @@ import { PrismDirective } from './../prism/prism.component';
     .demo-layout-transparent {
          background: url('assets/oslo.jpg') center / cover;
          height: 300px;
-        
+        color: white;
     }
-    .demo-layout-transparent .mdl-layout__header,
-    .demo-layout-transparent .mdl-layout__drawer-button {
-      /* This background is dark, so we set text to white. Use 87% black instead if
-         your background is light. */
-      color: white;
+    mdl-layout-content{
+        margin:1rem;
     }
     `
   ],
   encapsulation: ViewEncapsulation.None
 })
 export class LayoutDemo {}
+
+@Component({
+  moduleId: module.id,
+  selector: 'layout-demo-0',
+  template: '',
+})
+export class Layout0Demo {}
+
+@Component({
+  moduleId: module.id,
+  selector: 'layout-demo-1',
+  template: '<div>Link 1 content</div>',
+})
+export class Layout1Demo {}
+
+@Component({
+  moduleId: module.id,
+  selector: 'layout-demo-2',
+  template: '<div>Link 2 content</div>',
+})
+export class Layout2Demo {}
+
+@Component({
+  moduleId: module.id,
+  selector: 'layout-demo-3',
+  template: '<div>Link 3 content</div>',
+})
+export class Layout3Demo {}

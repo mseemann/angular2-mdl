@@ -1,7 +1,4 @@
 
-Status: Pre-Alpha! For production use wait unitl this package reaches version 1.0.0 (this will 
-match the current material lite version!)
-
 This package assumes that you are building an Angular2 app with TypeScript and Angular CLI!
 
 [Demo](http://mseemann.github.io/angular2-mdl/)
@@ -31,6 +28,7 @@ This package assumes that you are building an Angular2 app with TypeScript and A
 - Table
 - Tooltips
 - Menu
+- Layout (standard)
 
 
 
