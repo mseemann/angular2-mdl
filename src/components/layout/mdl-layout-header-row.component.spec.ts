@@ -7,9 +7,9 @@ import {
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
-import {  MdlLayoutHeaderTransparentDirective } from './mdl-layout-header-transparent.directive';
+import {  MdlLayoutHeaderRowComponent } from './mdl-layout-header-row.component';
 
-describe('Component: MdlLayoutHeaderTransparent', () => {
+describe('Component: MdlLayoutHeaderRow', () => {
 
   var builder: TestComponentBuilder;
 
@@ -17,18 +17,18 @@ describe('Component: MdlLayoutHeaderTransparent', () => {
     builder = tcb;
   }));
 
-  it('should add the css class mdl-layout__header--transparent to the header element', () => {
+  it('should add the css class mdl-layout__header-row to the header element', () => {
 
     return builder
       .overrideTemplate(MdlTestComponent, `
-          <mdl-layout-header mdl-layout-header-transparent>x</mdl-layout-header>
+          <mdl-layout-header-row>x</mdl-layout-header-row>
         `)
       .createAsync(MdlTestComponent).then( (fixture) => {
 
         fixture.detectChanges();
 
         let headerEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(headerEl.classList.contains('mdl-layout__header--transparent')).toBe(true);
+        expect(headerEl.classList.contains('mdl-layout__header-row')).toBe(true);
 
       });
   });
@@ -40,6 +40,6 @@ describe('Component: MdlLayoutHeaderTransparent', () => {
 @Component({
   selector: 'test',
   template: 'replaced by the test',
-  directives: [MdlLayoutHeaderTransparentDirective]
+  directives: [MdlLayoutHeaderRowComponent]
 })
 class MdlTestComponent {}

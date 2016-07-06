@@ -67,7 +67,10 @@ import {
   MdlLayoutHeaderComponent,
   MdlLayoutDrawerComponent,
   MdlLayoutContentComponent,
-  MdlLayoutHeaderTransparentDirective
+  MdlLayoutHeaderTransparentDirective,
+  MdlLayoutHeaderRowComponent,
+  MdlLayoutTitleComponent,
+  MdlLayoutSpacerComponent
 } from './layout/index';
 
 export * from './common/mdl-ripple.directive';
@@ -144,5 +147,8 @@ export const MDL_DIRECTIVES = [
   MdlLayoutHeaderComponent,
   MdlLayoutDrawerComponent,
   MdlLayoutContentComponent,
-  MdlLayoutHeaderTransparentDirective
+  MdlLayoutHeaderTransparentDirective,
+  MdlLayoutHeaderRowComponent,
+  MdlLayoutTitleComponent,
+  MdlLayoutSpacerComponent
 ];
