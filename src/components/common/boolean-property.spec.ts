@@ -30,5 +30,5 @@ describe('BooleanProperty', () => {
 
 
 class BooleanPropertyTest {
-  @BooleanProperty() field: boolean;
+  @BooleanProperty() public field: boolean;
 }
