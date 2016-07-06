@@ -1,7 +1,5 @@
 import {
   Component,
-  Provider,
-  forwardRef,
   Input,
   Output,
   EventEmitter,
@@ -9,12 +7,11 @@ import {
 } from '@angular/core';
 import {
   IMdlTableModel,
-  IMdlTableColumn,
   IMdlTableModelItem
-} from './mdl-table'
+} from './mdl-table';
 
 import { MDL_CHECKBOX_DIRECTIVES } from './../checkbox/mdl-checkbox.component';
-import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive'
+import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 
 let tableComponentMeta = new ComponentMetadata({
     moduleId: module.id,
@@ -32,38 +29,38 @@ let tableComponentMeta = new ComponentMetadata({
 @Component(tableComponentMeta)
 export class MdlTableComponent {
 
-  @Input('table-model') model:IMdlTableModel;
+  @Input('table-model') public model: IMdlTableModel;
 
-  selectable = false;
+  protected selectable = false;
 }
 
 tableComponentMeta.selector = 'mdl-table-selectable';
 @Component(tableComponentMeta)
 export class MdlSelectableTableComponent extends MdlTableComponent {
 
-  @Input('table-model') model:IMdlTableModel;
-  @Input('table-model-selected') selected:Array<IMdlTableModelItem>;
-  @Output('table-model-selectionChanged') selectionChange = new EventEmitter();
+  @Input('table-model') public model: IMdlTableModel;
+  @Input('table-model-selected') public selected: Array<IMdlTableModelItem>;
+  @Output('table-model-selectionChanged') public selectionChange = new EventEmitter();
 
-  selectable = true;
-  allSelected = false;
+  protected selectable = true;
+  protected allSelected = false;
 
-  isAllSelected(){
+  public isAllSelected() {
     return this.model.data.every( data => data.selected);
   }
 
-  toogleAll(){
+  protected toogleAll() {
     let selected = !this.isAllSelected();
     this.model.data.forEach( data => data.selected = selected);
     this.updateSelected();
   }
 
-  updateSelected(){
+  private updateSelected() {
     this.selected = this.model.data.filter( data => data.selected);
-    this.selectionChange.emit({value:this.selected});
+    this.selectionChange.emit({value: this.selected});
   }
 
-  selectionChanged(data){
+  protected selectionChanged(data) {
     this.updateSelected();
   }
 

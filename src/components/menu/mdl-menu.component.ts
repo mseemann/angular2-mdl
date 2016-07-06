@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   OnInit,
-  AfterContentInit,
   AfterViewInit,
   ViewChild,
   ElementRef,
@@ -55,59 +54,54 @@ export class MdlMenuError extends MdlError {
   `,
   directives: [MdlMenuItemComponent]
 })
-export class MdlMenuComponent implements OnInit, AfterContentInit, AfterViewInit {
-  @Input('mdl-menu-position') position:string;
+export class MdlMenuComponent implements OnInit, AfterViewInit {
+  @Input('mdl-menu-position') public position: string;
 
-  @ViewChild('container') containerChild:ElementRef;
-  container:HTMLElement;
+  @ViewChild('container') private containerChild: ElementRef;
+  private container: HTMLElement;
 
-  @ViewChild('menuElement') menuElementChild:ElementRef;
-  menuElement:HTMLElement;
+  @ViewChild('menuElement') private menuElementChild: ElementRef;
+  private menuElement: HTMLElement;
 
-  @ViewChild('outline') outlineChild:ElementRef;
-  outline:HTMLElement;
+  @ViewChild('outline') private outlineChild: ElementRef;
+  private outline: HTMLElement;
 
-  @ContentChildren(MdlMenuItemComponent)
-  menuItemComponents: QueryList<MdlMenuItemComponent>;
+  @ContentChildren(MdlMenuItemComponent) private menuItemComponents: QueryList<MdlMenuItemComponent>;
 
-  cssPosition = 'mdl-menu--bottom-left';
+  private cssPosition = 'mdl-menu--bottom-left';
 
-  isVisible   = false;
+  private isVisible   = false;
 
-  ngOnInit(){
+  public ngOnInit() {
     this.cssPosition = CSS_ALIGN_MAP[this.position] || BOTTOM_LEFT;
   }
 
-  ngAfterViewInit(){
+  public ngAfterViewInit() {
     this.container    = this.containerChild.nativeElement;
     this.menuElement  = this.menuElementChild.nativeElement;
     this.outline      = this.outlineChild.nativeElement;
   }
 
-  ngAfterContentInit(){
-    //console.log(this.menuItemComponents);
-  }
 
-
-  toggle(event: Event , mdlButton: MdlButtonComponent){
-    if(!mdlButton){
+  public toggle(event: Event , mdlButton: MdlButtonComponent) {
+    if (!mdlButton) {
       throw new MdlMenuError(`MdlButtonComponent is required`);
     }
-    if(this.isVisible){
+    if (this.isVisible) {
       this.hide();
     } else {
       this.show(event, mdlButton);
     }
   }
 
-  hideOnItemClicked(){
+  public hideOnItemClicked() {
     // Wait some time before closing menu, so the user can see the ripple.
-    setTimeout( ()=> {
+    setTimeout( () => {
       this.hide();
     }, CLOSE_TIMEOUT);
   }
   
-  hide(){
+  public hide() {
     // Remove all transition delays; menu items fade out concurrently.
     this.menuItemComponents.toArray().forEach(mi => {
       mi.element.style.removeProperty('transition-delay');
@@ -130,7 +124,7 @@ export class MdlMenuComponent implements OnInit, AfterContentInit, AfterViewInit
     this.isVisible = false;
   }
 
-  show(event, mdlButton){
+  public show(event, mdlButton) {
 
     var forElement  = mdlButton.element;
     var rect        = forElement.getBoundingClientRect();
@@ -201,16 +195,16 @@ export class MdlMenuComponent implements OnInit, AfterContentInit, AfterViewInit
   }
 
 
-  addAnimationEndListener(){
+  private addAnimationEndListener() {
     this.menuElement.addEventListener('transitionend', () => this.animationEnd);
     this.menuElement.addEventListener('webkitTransitionEnd', () => this.animationEnd);
   }
 
-  animationEnd(){
+  private animationEnd() {
     this.menuElement.classList.remove('is-animating');
   }
 
-  applyClip(height, width){
+  private applyClip(height, width) {
     if (this.position == UNALIGNED) {
       // Do not clip.
       this.menuElement.style.clip = '';

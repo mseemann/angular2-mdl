@@ -4,7 +4,8 @@ import {
   forwardRef,
   Provider,
   ViewChild,
-  Renderer, ElementRef
+  Renderer,
+  ElementRef
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -39,50 +40,50 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   `
 })
 export class MdlSliderComponent implements ControlValueAccessor {
-  private _value:any;
+  private value_: any;
 
-  @Input() min:number;
-  @Input() max:number;
-  @ViewChild('lower') lowerEl:ElementRef;
-  @ViewChild('uppper') upperEl:ElementRef;
-  @ViewChild('input') inputEl:ElementRef;
+  @Input() public min: number;
+  @Input() public max: number;
+  @ViewChild('lower') private lowerEl: ElementRef;
+  @ViewChild('uppper') private upperEl: ElementRef;
+  @ViewChild('input') private inputEl: ElementRef;
 
-  constructor(private renderer:Renderer){
+  constructor(private renderer: Renderer) {
   }
 
-  get value(): any { return this._value; };
+  get value(): any { return this.value_; };
   @Input() set value(v: any) {
-    this._value = v;
+    this.value_ = v;
     this.updateSliderUI();
     this.onChangeCallback(v);
   }
 
-  writeValue(value: number): void {
-    this._value = value;
+  public writeValue(value: number): void {
+    this.value_ = value;
     this.updateSliderUI();
   }
 
   private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_:any) => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
 
-  registerOnChange(fn: any): void {
+  public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any): void{
+  public registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 
-  updateSliderUI(){
-    var fraction = (this._value - this.min) / (this.max - this.min);
+  private updateSliderUI() {
+    var fraction = (this.value_ - this.min) / (this.max - this.min);
 
-    this.renderer.setElementClass(this.inputEl.nativeElement, 'is-lowest-value', fraction === 0)
+    this.renderer.setElementClass(this.inputEl.nativeElement, 'is-lowest-value', fraction === 0);
 
-    this.renderer.setElementStyle(this.lowerEl.nativeElement, 'flex', ''+fraction);
-    this.renderer.setElementStyle(this.upperEl.nativeElement, 'flex', ''+(1 - fraction));
+    this.renderer.setElementStyle(this.lowerEl.nativeElement, 'flex', '' + fraction);
+    this.renderer.setElementStyle(this.upperEl.nativeElement, 'flex', '' + (1 - fraction));
   }
 
-  onMouseUp(event){
+  protected onMouseUp(event) {
     event.target.blur();
   }
 }

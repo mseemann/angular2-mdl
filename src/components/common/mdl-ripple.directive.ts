@@ -11,23 +11,23 @@ import { MaterialRipple } from './ripple.vendor';
 
 export class MdlRippleDirective implements OnChanges {
 
-  RIPPLE = 'mdl-ripple';
+  private RIPPLE = 'mdl-ripple';
 
-  private rippleContainer:HTMLElement;
-  private el:HTMLElement;
-  private ripple:any;
+  private rippleContainer: HTMLElement;
+  private el: HTMLElement;
+  private ripple: any;
 
-  @Input('mdl-ripple') rippleActive: boolean | string = true;
+  @Input('mdl-ripple') private rippleActive: boolean | string = true;
 
-  constructor(private elementRef: ElementRef, private cssContainerClass:string){
+  constructor(private elementRef: ElementRef, private cssContainerClass: string) {
     this.el = elementRef.nativeElement;
   }
 
 
-  ngOnChanges(changes: {[propertyName: string]: SimpleChange}){
+  public ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
 
       // remove any existing ripple container
-      if(this.rippleContainer){
+      if (this.rippleContainer) {
         this.el.removeChild(this.rippleContainer);
         delete this.rippleContainer;
         delete this.ripple;
@@ -35,13 +35,13 @@ export class MdlRippleDirective implements OnChanges {
 
       // if used as mdl-ripple without property binding it is an empty string
       // otherwise (e.g. [mdl-ripple] it is a boolean - may be with the default value true.
-      if (this.rippleActive === '' || this.rippleActive){
+      if (this.rippleActive === '' || this.rippleActive) {
         this.rippleContainer = document.createElement('span');
         this.rippleContainer.classList.add(this.cssContainerClass);
         var rippleElement = document.createElement('span');
         rippleElement.classList.add(this.RIPPLE);
         this.rippleContainer.appendChild(rippleElement);
-        //?? rippleElement.addEventListener('mouseup', ()=>rippleElement.blur());
+        // ?? rippleElement.addEventListener('mouseup', ()=>rippleElement.blur());
         this.el.appendChild(this.rippleContainer);
 
         this.ripple = new MaterialRipple(this.rippleContainer);
@@ -56,8 +56,8 @@ export class MdlRippleDirective implements OnChanges {
 })
 export class MdlButtonRippleDirective extends MdlRippleDirective {
 
-  constructor(elementRef: ElementRef){
-    super(elementRef, 'mdl-button__ripple-container')
+  constructor(elementRef: ElementRef) {
+    super(elementRef, 'mdl-button__ripple-container');
   }
 
 }
@@ -67,8 +67,8 @@ export class MdlButtonRippleDirective extends MdlRippleDirective {
 })
 export class MdlCheckboxRippleDirective extends MdlRippleDirective {
 
-  constructor(elementRef: ElementRef){
-    super(elementRef, 'mdl-checkbox__ripple-container')
+  constructor(elementRef: ElementRef) {
+    super(elementRef, 'mdl-checkbox__ripple-container');
   }
 
 }
@@ -78,8 +78,8 @@ export class MdlCheckboxRippleDirective extends MdlRippleDirective {
 })
 export class MdlRadioRippleDirective extends MdlRippleDirective {
 
-  constructor(elementRef: ElementRef){
-    super(elementRef, 'mdl-radio__ripple-container')
+  constructor(elementRef: ElementRef) {
+    super(elementRef, 'mdl-radio__ripple-container');
   }
 
 }
@@ -89,8 +89,8 @@ export class MdlRadioRippleDirective extends MdlRippleDirective {
 })
 export class MdlIconToggleRippleDirective extends MdlRippleDirective {
 
-  constructor(elementRef: ElementRef){
-    super(elementRef, 'mdl-icon-toggle__ripple-container')
+  constructor(elementRef: ElementRef) {
+    super(elementRef, 'mdl-icon-toggle__ripple-container');
   }
 
 }
@@ -100,8 +100,8 @@ export class MdlIconToggleRippleDirective extends MdlRippleDirective {
 })
 export class MdlSwitchRippleDirective extends MdlRippleDirective {
 
-  constructor(elementRef: ElementRef){
-    super(elementRef, 'mdl-switch__ripple-container')
+  constructor(elementRef: ElementRef) {
+    super(elementRef, 'mdl-switch__ripple-container');
   }
 
 }
@@ -111,8 +111,8 @@ export class MdlSwitchRippleDirective extends MdlRippleDirective {
 })
 export class MdlMenuItemRippleDirective extends MdlRippleDirective {
 
-  constructor(elementRef: ElementRef){
-    super(elementRef, 'mdl-menu__item--ripple-container')
+  constructor(elementRef: ElementRef) {
+    super(elementRef, 'mdl-menu__item--ripple-container');
   }
 
 }

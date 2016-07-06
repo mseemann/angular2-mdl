@@ -4,7 +4,7 @@ import {
 
 @Directive({
   selector: '[mdl-menu-item-full-bleed-divider]',
-  host:{
+  host: {
     '[class.mdl-menu__item--full-bleed-divider]': 'true'
   }
 })

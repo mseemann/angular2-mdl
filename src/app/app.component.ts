@@ -26,7 +26,7 @@ import { MDL_DIRECTIVES, MDL_SERVICES } from '../components';
 export class Home {
 }
 
-export const AppRoutes = [
+export const appRoutes = [
   { path: '', component: Home },
   { path: 'badge', component: BadgeDemo },
   { path: 'button', component: ButtonDemo },
@@ -59,7 +59,7 @@ export const AppRoutes = [
 })
 export class Angular2MdlAppComponent {
 
-  title = 'Angular 2 - Material Design Lite';
+  public title = 'Angular 2 - Material Design Lite';
 
 }
 

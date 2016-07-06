@@ -45,40 +45,40 @@ const IS_FOCUSED = 'is-focused';
 })
 export class MdlRadioComponent implements ControlValueAccessor {
 
-  @Input() name: string;
-  @Input() value: any;
-  @Input() private optionValue: any;
+  @Input() public name: string;
+  @Input() public value: any;
+  @Input() public optionValue: any;
 
-  private el:HTMLElement;
+  private el: HTMLElement;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer){
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {
     this.el = elementRef.nativeElement;
   }
   
-  writeValue(optionValue: any): void {
+  public writeValue(optionValue: any): void {
     this.optionValue = optionValue;
   }
 
   private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_:any) => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
 
-  registerOnChange(fn: any): void {
+  public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any): void{
+  public registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 
-  onFocus(){
+  protected onFocus() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, true);
   }
 
-  onBlur(){
+  protected onBlur() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, false);
   }
 
-  onClick(){
+  protected onClick() {
     this.optionValue = this.value;
     this.onChangeCallback(this.value);
   }

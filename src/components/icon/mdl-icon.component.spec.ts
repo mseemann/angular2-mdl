@@ -3,12 +3,10 @@ import {
   expect,
   it,
   inject,
-  tick,
   beforeEach
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { Component } from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlIconComponent } from './mdl-icon.component';
 
 describe('Component: MdlIcon', () => {
@@ -29,10 +27,10 @@ describe('Component: MdlIcon', () => {
 
         fixture.detectChanges();
 
-        let iconEl:HTMLElement = fixture.nativeElement.children.item(0);
+        let iconEl: HTMLElement = fixture.nativeElement.children.item(0);
         expect(iconEl.classList.contains('material-icons')).toBe(true);
 
-      })
+      });
   });
 
 
@@ -41,7 +39,7 @@ describe('Component: MdlIcon', () => {
 
 @Component({
   selector: 'test-icon',
-  template: "replaced by the test",
+  template: 'replaced by the test',
   directives: [MdlIconComponent]
 })
 class MdlTestIconComponent {}

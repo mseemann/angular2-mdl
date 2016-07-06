@@ -3,12 +3,11 @@ import {
   expect,
   it,
   inject,
-  tick,
   beforeEach
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { Component } from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MDL_MENU_DIRECTIVES, MdlMenuItemComponent } from './index';
 
 describe('Component: MdlMenuItem-Directive', () => {
@@ -29,11 +28,11 @@ describe('Component: MdlMenuItem-Directive', () => {
 
         fixture.detectChanges();
 
-        let item:HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
+        let item: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
         expect(item.classList.contains('mdl-menu__item--full-bleed-divider')).toBe(true);
 
         done();
-      })
+      });
   });
 
 
@@ -42,7 +41,7 @@ describe('Component: MdlMenuItem-Directive', () => {
 
 @Component({
   selector: 'test-menu',
-  template: "replaced by the test",
+  template: 'replaced by the test',
   directives: [MDL_MENU_DIRECTIVES]
 })
 class MdlTestMenuItemComponent {}

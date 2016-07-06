@@ -1,27 +1,17 @@
 import {
   Component,
   ComponentMetadata,
-  Directive,
-  Input,
-  OnInit,
-  ViewContainerRef,
-  ComponentResolver,
   ElementRef,
-  Renderer,
-  Inject
+  Renderer
 } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
 import { MdlTooltipPositionService } from './mdl-tooltip-position.service';
 
-const LEFT      = 'left';
-const RIGHT     = 'right';
-const TOP       = 'top';
 const IS_ACTIVE = 'is-active';
 
-
 let tooltipComponentMeta = new ComponentMetadata({
-  providers:[MdlTooltipPositionService]
+  providers: [MdlTooltipPositionService]
 });
+
 tooltipComponentMeta.selector = 'mdl-simple-tooltip';
 tooltipComponentMeta.host = {
   '[class.mdl-tooltip]': 'true',
@@ -35,31 +25,31 @@ tooltipComponentMeta.template = '<div>{{tooltipText}}</div>';
 
 @Component(tooltipComponentMeta)
 export class MdlSimpleTooltipComponent {
-  tooltipText:string;
-  element:HTMLElement;
-  large = false;
-  position:string;
+  public tooltipText: string;
+  public element: HTMLElement;
+  public large = false;
+  public position: string;
 
   constructor(
-    private elRef:ElementRef,
-    private renderer:Renderer,
-    private mdlTooltipPositionService: MdlTooltipPositionService){
+    private elRef: ElementRef,
+    private renderer: Renderer,
+    private mdlTooltipPositionService: MdlTooltipPositionService) {
 
     this.element = elRef.nativeElement;
   }
 
-  mouseLeave(){
+  public mouseLeave() {
     this.renderer.setElementClass(this.elRef.nativeElement, IS_ACTIVE, false);
   }
 
-  mouseEnter(event){
+  public mouseEnter(event) {
     let props = event.target.getBoundingClientRect();
     let offsetWidth = this.element.offsetWidth;
     let offsetHeight = this.element.offsetHeight;
 
-    let style = this.mdlTooltipPositionService.calcStyle(offsetWidth,offsetHeight, props, this.position);
+    let style = this.mdlTooltipPositionService.calcStyle(offsetWidth, offsetHeight, props, this.position);
 
-    for(var key in style) {
+    for (var key in style) {
       this.renderer.setElementStyle(this.elRef.nativeElement, key, style[key]);
     }
 
@@ -74,7 +64,7 @@ tooltipComponentMeta.exportAs = 'mdlTooltip';
 
 @Component(tooltipComponentMeta)
 export class MdlTooltipComponent extends MdlSimpleTooltipComponent {
-  constructor(elRef:ElementRef, renderer:Renderer, mdlTooltipPositionService: MdlTooltipPositionService){
+  constructor(elRef: ElementRef, renderer: Renderer, mdlTooltipPositionService: MdlTooltipPositionService) {
     super(elRef, renderer, mdlTooltipPositionService);
   }
 }

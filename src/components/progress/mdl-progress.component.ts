@@ -18,21 +18,21 @@ import {
   `
 
 })
-export class MdlProgressComponent implements OnChanges{
-  @Input() progress = 0;
-  @Input() buffer = 100;
-  @Input() aux = 0;
+export class MdlProgressComponent implements OnChanges {
+  @Input() public progress = 0;
+  @Input() public buffer = 100;
+  @Input() public aux = 0;
 
-  @Input() indeterminate: boolean | string;
+  @Input() public indeterminate: boolean | string;
 
-  ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+  public ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
     if (changes['buffer']) {
       this.setBuffer(changes['buffer'].currentValue);
     }
   }
 
-  setBuffer(b:number){
-    this.aux = 100 -b;
+  private setBuffer(b: number) {
+    this.aux = 100 - b;
   }
 
 }

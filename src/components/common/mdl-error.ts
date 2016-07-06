@@ -9,7 +9,7 @@ export class MdlError extends Error {
 }
 
 export class MdlStructureError extends MdlError {
-  constructor(child:string, requiredParent: string) {
+  constructor(child: string, requiredParent: string) {
     super(`"${child}" requires "${requiredParent}" as a parent.`);
   }
 }

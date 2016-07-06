@@ -3,12 +3,11 @@ import {
   expect,
   it,
   inject,
-  tick,
   beforeEach
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { Component } from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlMenuComponent } from './mdl-menu.component';
 import { MdlMenuItemComponent } from './mdl-menu-item.component';
 import { MdlButtonComponent } from './../button/mdl-button.component';
@@ -31,11 +30,11 @@ describe('Component: MdlMenu', () => {
 
         fixture.detectChanges();
 
-        let menuEl:HTMLElement = fixture.debugElement.query(By.css('.mdl-menu__container')).nativeElement;
+        let menuEl: HTMLElement = fixture.debugElement.query(By.css('.mdl-menu__container')).nativeElement;
         expect(menuEl).toBeDefined();
 
         done();
-      })
+      });
   });
 
   it('should export the component instance as mdlMenu', ( done ) => {
@@ -53,7 +52,7 @@ describe('Component: MdlMenu', () => {
         expect(references['menu']).toBeDefined();
 
         done();
-      })
+      });
   });
 
   it('should throw if toggle is called without a button', ( done ) => {
@@ -68,15 +67,15 @@ describe('Component: MdlMenu', () => {
 
         let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
-        expect(()=>{
+        expect(() => {
           menu.toggle(null, null);
         }).toThrow();
 
         done();
-      })
-  })
+      });
+  });
 
-  it('should show the menu if the the menu button is clicked and hide if clicked again', ( done )=>{
+  it('should show the menu if the the menu button is clicked and hide if clicked again', ( done ) => {
     return builder
       .overrideTemplate(MdlTestIconComponent, `
           <mdl-button #btn="mdlButton" (click)="m1.toggle($event, btn)">button</mdl-button>
@@ -106,8 +105,8 @@ describe('Component: MdlMenu', () => {
 
         done();
 
-      })
-  })
+      });
+  });
 
   it('should be possible to show a menu bottom-right aligned', ( done ) => {
     return builder
@@ -134,8 +133,8 @@ describe('Component: MdlMenu', () => {
 
         done();
 
-      })
-  })
+      });
+  });
 
   it('should be possible to show a menu top-left aligned', ( done ) => {
     return builder
@@ -161,8 +160,8 @@ describe('Component: MdlMenu', () => {
         expect(menu.container.style.bottom).not.toBe('');
         done();
 
-      })
-  })
+      });
+  });
 
   it('should be possible to show a menu top-right aligned', ( done ) => {
     return builder
@@ -189,8 +188,8 @@ describe('Component: MdlMenu', () => {
 
         done();
 
-      })
-  })
+      });
+  });
 
   it('should be possible to show a menu unaligned', ( done ) => {
     return builder
@@ -215,8 +214,8 @@ describe('Component: MdlMenu', () => {
         expect(menu.container.style.right).toBe('');
         done();
 
-      })
-  })
+      });
+  });
 
 
 });
@@ -224,7 +223,7 @@ describe('Component: MdlMenu', () => {
 
 @Component({
   selector: 'test-menu',
-  template: "replaced by the test",
+  template: 'replaced by the test',
   directives: [MdlMenuComponent, MdlButtonComponent, MdlMenuItemComponent]
 })
 class MdlTestIconComponent {}

@@ -3,14 +3,12 @@ import {
   expect,
   it,
   inject,
-  tick,
   beforeEach,
   addProviders,
   fakeAsync
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { Component, Optional, ViewContainerRef } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { Component, ViewContainerRef } from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlSnackbarService } from './mdl-snackbar.service';
 
 describe('Service: MdlSnackbar', () => {
@@ -22,7 +20,8 @@ describe('Service: MdlSnackbar', () => {
     addProviders([MdlSnackbarService]);
   });
 
-  beforeEach(inject([TestComponentBuilder, MdlSnackbarService], function (tcb: TestComponentBuilder, service:MdlSnackbarService) {
+  beforeEach(inject([TestComponentBuilder, MdlSnackbarService],
+    function (tcb: TestComponentBuilder, service: MdlSnackbarService) {
     builder = tcb;
     mdlSnackbarServcie = service;
   }));
@@ -39,9 +38,9 @@ describe('Service: MdlSnackbar', () => {
 
           mdlSnackbarServcie.setDefaultViewContainerRef(viewRef);
           let p = mdlSnackbarServcie.showSnackbar({
-            message:'m1',
+            message: 'm1',
             action: {
-              handler: ()=> {
+              handler: () => {
                 done();
               },
               text: 'OK'
@@ -49,7 +48,7 @@ describe('Service: MdlSnackbar', () => {
           });
 
           fixture.detectChanges();
-          p.then( (mdlSnackbarComponent)=>{
+          p.then( (mdlSnackbarComponent) => {
 
             expect(mdlSnackbarComponent.isActive()).toBe(true);
             mdlSnackbarComponent.onClick();
@@ -57,7 +56,7 @@ describe('Service: MdlSnackbar', () => {
           });
 
         })();
-      })
+      });
   });
 
   it('should show a toastmessage and hide the message automatically', ( done ) => {
@@ -73,21 +72,21 @@ describe('Service: MdlSnackbar', () => {
 
           fixture.detectChanges();
 
-          p.then( (mdlSnackbarComponent)=>{
+          p.then( (mdlSnackbarComponent) => {
 
             expect(mdlSnackbarComponent.isActive()).toBe(true);
 
-            setTimeout(()=>{
+            setTimeout(() => {
               expect(mdlSnackbarComponent.isActive()).toBe(false);
               done();
-            }, 1500) // > 1000 + 250
+            }, 1500); // > 1000 + 250
           });
 
         })();
-      })
-  })
+      });
+  });
 
-  it('should throw if no viewCOntainerRef is provided', ()=>{
+  it('should throw if no viewCOntainerRef is provided', () => {
     return builder
       .createAsync(MdlTestViewComponent).then( (fixture) => {
 
@@ -95,21 +94,21 @@ describe('Service: MdlSnackbar', () => {
           mdlSnackbarServcie.showToast('toast message', 1000);
         }).toThrow();
 
-      })
-  })
+      });
+  });
 
 });
 
 
 @Component({
   selector: 'test-view',
-  template: "<div></div>",
+  template: '<div></div>',
   providers: [MdlSnackbarService]
 })
 class MdlTestViewComponent {
 
-  viewRef:ViewContainerRef;
-  constructor(viewRef:ViewContainerRef){
+  protected viewRef: ViewContainerRef;
+  constructor(viewRef: ViewContainerRef) {
     this.viewRef = viewRef;
   }
 }

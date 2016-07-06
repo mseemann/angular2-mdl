@@ -1,6 +1,5 @@
 import {
   Component,
-  Inject,
   ViewContainerRef
 } from '@angular/core';
 import {
@@ -20,15 +19,15 @@ import { PrismDirective } from './../prism/prism.component';
 })
 export class SnackbarDemo {
 
-  constructor(private mdlSnackbarService: MdlSnackbarService, private vcRef: ViewContainerRef){
+  constructor(private mdlSnackbarService: MdlSnackbarService, private vcRef: ViewContainerRef) {
     mdlSnackbarService.setDefaultViewContainerRef(vcRef);
   }
 
-  showSnackbar(){
+  public showSnackbar() {
     this.mdlSnackbarService.showSnackbar({
-      message:'The Message',
-      action:{
-        handler:()=>{
+      message: 'The Message',
+      action: {
+        handler: () => {
           this.mdlSnackbarService.showToast('You hit the ok Button');
         },
         text: 'OK'

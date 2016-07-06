@@ -1,13 +1,7 @@
 import {
-  IMdlTableColumn,
-  IMdlTableModel,
-  MdlDefaultTableModel,
-  IMdlTableModelItem
-} from './mdl-table';
-import {
   MdlTableComponent,
   MdlSelectableTableComponent
-} from './mdl-table.component'
+} from './mdl-table.component';
 
 export * from './mdl-table';
 export * from './mdl-table.component';

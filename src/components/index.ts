@@ -5,13 +5,13 @@ import {
   MdlIconToggleRippleDirective,
   MdlSwitchRippleDirective,
   MdlMenuItemRippleDirective
-} from "./common/mdl-ripple.directive";
-import { MdlButtonComponent } from "./button/mdl-button.component";
+} from './common/mdl-ripple.directive';
+import { MdlButtonComponent } from './button/mdl-button.component';
 import {
   MdlBadgeDirective,
   MdlBadgeNoBackgroundDirective,
   MdlBadgeOverlapDirective
-} from './badge/mdl-badge.directive'
+} from './badge/mdl-badge.directive';
 import { MdlShadowDirective } from './shadow/mdl-shadow.directive';
 import {
   MdlCardComponent,
@@ -23,7 +23,7 @@ import {
   MdlCardBorderDirective,
   MdlCardExpandDirective
 } from './card/mdl-card.component';
-import { MdlCheckboxComponent } from './checkbox/mdl-checkbox.component'
+import { MdlCheckboxComponent } from './checkbox/mdl-checkbox.component';
 import { MdlRadioComponent } from './radio/mdl-radio.component';
 import {
   MdlProgressComponent

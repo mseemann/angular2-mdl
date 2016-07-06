@@ -12,8 +12,8 @@ import { PrismDirective } from './../prism/prism.component';
   ],
 })
 export class LoadingDemo {
-  progress = 44;
-  indeterminate = true;
-  buffer = 78;
-  active = true;
+  public progress = 44;
+  public indeterminate = true;
+  public buffer = 78;
+  public active = true;
 }

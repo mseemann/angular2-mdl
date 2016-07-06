@@ -42,7 +42,7 @@ import { PrismDirective } from './../prism/prism.component';
   ]
 })
 export class MenuDemo {
-  action(){
+  public action() {
     console.log('action clicked');
   }
 }

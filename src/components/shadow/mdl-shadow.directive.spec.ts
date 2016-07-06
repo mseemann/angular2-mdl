@@ -3,12 +3,10 @@ import {
   expect,
   it,
   inject,
-  tick,
   beforeEach
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { Component } from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlShadowDirective } from './mdl-shadow.directive';
 
 describe('Directive: MdlShadow', () => {
@@ -29,10 +27,10 @@ describe('Directive: MdlShadow', () => {
 
         fixture.detectChanges();
 
-        let spanEl:HTMLElement = fixture.nativeElement.children.item(0);
+        let spanEl: HTMLElement = fixture.nativeElement.children.item(0);
         expect(spanEl.classList.contains('mdl-shadow--2dp')).toBe(true);
 
-      })
+      });
   });
 
   it('should change the class from mdl-shadow--2dp to mdl-shadow--4dp if the directive value changes', () => {
@@ -45,7 +43,7 @@ describe('Directive: MdlShadow', () => {
 
         fixture.detectChanges();
 
-        let spanEl:HTMLElement = fixture.nativeElement.children.item(0);
+        let spanEl: HTMLElement = fixture.nativeElement.children.item(0);
         expect(spanEl.classList.contains('mdl-shadow--2dp')).toBe(true);
 
 
@@ -53,9 +51,8 @@ describe('Directive: MdlShadow', () => {
         fixture.detectChanges();
         expect(spanEl.classList.contains('mdl-shadow--4dp')).toBe(true);
 
-      })
-
-  })
+      });
+  });
 
   it('should throw if an unsupported shadow value is provided', () => {
 
@@ -68,7 +65,7 @@ describe('Directive: MdlShadow', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
-      })
+      });
 
   });
 
@@ -77,9 +74,9 @@ describe('Directive: MdlShadow', () => {
 
 @Component({
   selector: 'test-shadow',
-  template: "replaced by the test",
+  template: 'replaced by the test',
   directives: [MdlShadowDirective]
 })
 class MdlTestShadowComponent {
-  shadow = 2;
+  protected shadow = 2;
 }

@@ -1,6 +1,5 @@
 import {
   Directive,
-  Component,
   OnInit,
   ElementRef
 } from '@angular/core';
@@ -12,11 +11,10 @@ import { Prism } from './prism.vendor';
 export class PrismDirective implements OnInit {
 
 
-  constructor(private el:ElementRef){
-
+  constructor(private el: ElementRef) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
 
     var rawHtml = this.el.nativeElement.textContent.replace(new RegExp('=""', 'g'), '');
     // REMOVE the escaped exression so angular ignores the content :(
@@ -30,7 +28,5 @@ export class PrismDirective implements OnInit {
     this.el.nativeElement.innerHTML = '';
     this.el.nativeElement.appendChild(pre);
   }
-
-
 
 }

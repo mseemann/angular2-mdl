@@ -3,12 +3,11 @@ import {
   expect,
   it,
   inject,
-  tick,
   beforeEach
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { Component } from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlLayoutContentComponent } from './mdl-layout-content.component';
 
 describe('Component: MdlLayoutContent', () => {
@@ -29,11 +28,11 @@ describe('Component: MdlLayoutContent', () => {
 
         fixture.detectChanges();
 
-        let layoutEl:HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutContentComponent)).nativeElement;
+        let layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutContentComponent)).nativeElement;
         expect(layoutEl.classList.contains('mdl-layout__content')).toBe(true);
 
         done();
-      })
+      });
   });
 
 
@@ -42,7 +41,7 @@ describe('Component: MdlLayoutContent', () => {
 
 @Component({
   selector: 'test-layout',
-  template: "replaced by the test",
+  template: 'replaced by the test',
   directives: [MdlLayoutContentComponent]
 })
 class MdlTestLayoutComponent {}

@@ -13,7 +13,7 @@ import {
 
 describe('Component: MdlTooltipPositionService', () => {
 
-  var service:MdlTooltipPositionService;
+  var service: MdlTooltipPositionService;
   let boundingClientRect;
 
   beforeEachProviders(() => [MdlTooltipPositionService]);
@@ -21,12 +21,12 @@ describe('Component: MdlTooltipPositionService', () => {
   beforeEach(inject([MdlTooltipPositionService], function (mdlService: MdlTooltipPositionService) {
     service = mdlService;
     boundingClientRect = {
-      bottom:100,
-      height:20,
-      left:200,
-      right:200,
-      top:100,
-      width:20};
+      bottom: 100,
+      height: 20,
+      left: 200,
+      right: 200,
+      top: 100,
+      width: 20};
   }));
 
   // left Object{top: '110px', marginTop: '0px', left: '190px'}
@@ -74,4 +74,5 @@ describe('Component: MdlTooltipPositionService', () => {
     expect(style.left).toBe('0');
   });
 
-})
+});
+

@@ -1,12 +1,7 @@
 import {
   Component,
   Directive,
-  Input,
-  OnChanges,
   OnInit,
-  SimpleChange,
-  ElementRef,
-  Renderer,
   Optional,
   ViewEncapsulation } from '@angular/core';
 import { MdlStructureError } from './../common/mdl-error';
@@ -17,7 +12,7 @@ import { MdlStructureError } from './../common/mdl-error';
   host: {
     '[class.mdl-card]': 'true'
   },
-  template:'<ng-content></ng-content>',
+  template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlCardComponent {}
@@ -25,11 +20,11 @@ export class MdlCardComponent {}
 
 export class MdlCardChildStructure implements OnInit {
 
-  constructor(private mdlCardComponent:MdlCardComponent, private childComponentName:string){
+  constructor(private mdlCardComponent: MdlCardComponent, private childComponentName: string) {
   }
 
-  ngOnInit(){
-    if (this.mdlCardComponent===null){
+  public ngOnInit() {
+    if (this.mdlCardComponent === null) {
       throw new MdlStructureError(this.childComponentName, 'mdl-card');
     }
   }
@@ -45,7 +40,7 @@ export class MdlCardChildStructure implements OnInit {
 })
 export class MdlCardTitleComponent extends MdlCardChildStructure {
 
-  constructor(@Optional() mdlCardComponent:MdlCardComponent){
+  constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-title');
   }
 
@@ -61,7 +56,7 @@ export class MdlCardTitleComponent extends MdlCardChildStructure {
 })
 export class MdlCardSupportingTextComponent extends MdlCardChildStructure {
 
-  constructor(@Optional() mdlCardComponent:MdlCardComponent){
+  constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-supporting-text');
   }
 
@@ -77,7 +72,7 @@ export class MdlCardSupportingTextComponent extends MdlCardChildStructure {
 })
 export class MdlCardActionsComponent extends MdlCardChildStructure {
 
-  constructor(@Optional() mdlCardComponent:MdlCardComponent){
+  constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-actions');
   }
 
@@ -93,7 +88,7 @@ export class MdlCardActionsComponent extends MdlCardChildStructure {
 })
 export class MdlCardMenuComponent extends MdlCardChildStructure {
 
-  constructor(@Optional() mdlCardComponent:MdlCardComponent){
+  constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-menu');
   }
 

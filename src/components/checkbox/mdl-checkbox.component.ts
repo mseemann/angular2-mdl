@@ -42,45 +42,45 @@ const IS_FOCUSED = 'is-focused';
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
 
-  private _value: boolean = false;
+  private value_: boolean = false;
 
-  private el:HTMLElement;
+  private el: HTMLElement;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer){
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {
     this.el = elementRef.nativeElement;
   }
 
-  get value(): boolean { return this._value; };
+  get value(): boolean { return this.value_; };
   @Input() set value(v: boolean) {
-    this._value = v;
+    this.value_ = v;
     this.onChangeCallback(v);
   }
 
-  writeValue(value: any): void {
-    this._value = value;
+  public writeValue(value: any): void {
+    this.value_ = value;
   }
 
   private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_:any) => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
 
-  registerOnChange(fn: any): void {
+  public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any): void{
+  public registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 
-  onFocus(){
+  protected onFocus() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, true);
   }
 
-  onBlur(){
+  protected onBlur() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, false);
     this.onTouchedCallback();
   }
 
-  onClick(){
+  protected onClick() {
     this.value = !this.value;
   }
 }

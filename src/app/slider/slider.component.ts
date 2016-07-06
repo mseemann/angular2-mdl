@@ -12,7 +12,7 @@ import { PrismDirective } from './../prism/prism.component';
   ],
 })
 export class SliderDemo {
-  minValue = 0;
-  maxValue = 100;
-  currentValue = 55;
+  protected minValue = 0;
+  protected maxValue = 100;
+  protected currentValue = 55;
 }

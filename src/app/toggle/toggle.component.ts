@@ -12,8 +12,8 @@ import { PrismDirective } from './../prism/prism.component';
   ],
 })
 export class ToggleDemo {
-  checkbox1 = true;
-  checkbox2 = false;
+  protected checkbox1 = true;
+  protected checkbox2 = false;
 
-  radioOption = '1';
+  protected radioOption = '1';
 }

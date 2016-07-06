@@ -26,7 +26,7 @@ export class MdlLayoutHeaderComponent {
   protected mode: string;
   protected el: HTMLElement;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer){
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {
     this.el = elementRef.nativeElement;
   }
 

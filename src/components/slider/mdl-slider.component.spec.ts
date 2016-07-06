@@ -8,8 +8,8 @@ import {
   beforeEach
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { Component } from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlSliderComponent } from './mdl-slider.component';
 
 describe('Component: MdlSlider', () => {
@@ -29,10 +29,10 @@ describe('Component: MdlSlider', () => {
 
         fixture.detectChanges();
 
-        let iconEl:HTMLElement = fixture.nativeElement.children.item(0);
+        let iconEl: HTMLElement = fixture.nativeElement.children.item(0);
         expect(iconEl.classList.contains('mdl-slider__container')).toBe(true);
 
-      })
+      });
   });
 
   it('should support ngModel', () => {
@@ -56,8 +56,8 @@ describe('Component: MdlSlider', () => {
           tick();
           expect(el.value).toEqual('88');
         })();
-      })
-  })
+      });
+  });
 
   it('should call blur on mouseup events on the host element', () => {
     return builder
@@ -76,8 +76,8 @@ describe('Component: MdlSlider', () => {
 
         expect(hostElement.blur).toHaveBeenCalled();
 
-      })
-  })
+      });
+  });
 
 
 });
@@ -89,7 +89,7 @@ describe('Component: MdlSlider', () => {
   directives: [MdlSliderComponent]
 })
 class MdlTestSliderComponent {
-  min = 0;
-  max = 100;
-  currentValue = 50;
+  protected min = 0;
+  protected max = 100;
+  protected currentValue = 50;
 }

@@ -3,14 +3,11 @@ import {
   expect,
   it,
   inject,
-  tick,
-  flushMicrotasks,
-  beforeEach,
-  fakeAsync
+  beforeEach
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { Component } from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import {
   MDL_TOOLTIP_DIRECTIVES,
   MdlTooltipComponent,
@@ -21,7 +18,7 @@ import {
 describe('Component: MdlTooltip', () => {
 
   var builder: TestComponentBuilder;
-  var doc:HTMLDocument;
+  var doc: HTMLDocument;
 
   beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
     builder = tcb;
@@ -38,10 +35,10 @@ describe('Component: MdlTooltip', () => {
 
         fixture.detectChanges();
 
-        let tooltipEl:HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
+        let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
         expect(tooltipEl.classList.contains('mdl-tooltip')).toBe(true);
 
-      })
+      });
   });
 
   it('should add the css class mdl-tooltip--large to the host element', () => {
@@ -55,10 +52,10 @@ describe('Component: MdlTooltip', () => {
 
         fixture.detectChanges();
 
-        let tooltipEl:HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
+        let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
         expect(tooltipEl.classList.contains('mdl-tooltip--large')).toBe(true);
 
-      })
+      });
   });
 
   it('should add create a simpletooltipcomponent for the mdl-tooltip directive with text', ( done ) => {
@@ -72,17 +69,18 @@ describe('Component: MdlTooltip', () => {
         fixture.detectChanges();
 
         // wait for async component creation
-        setTimeout( ()=>{
+        setTimeout( () => {
           // let angular prepare the tooltip with class and text
           fixture.detectChanges();
           // check the result
-          let tooltipEl:HTMLElement = fixture.debugElement.query(By.directive(MdlSimpleTooltipComponent)).nativeElement;
+          let tooltipEl: HTMLElement = fixture.debugElement
+            .query(By.directive(MdlSimpleTooltipComponent)).nativeElement;
           expect(tooltipEl.classList.contains('mdl-tooltip')).toBe(true);
 
           done();
         }, 0);
 
-      })
+      });
   });
 
   it('should add the css class is-active if the mous enters the directive element', ( done ) => {
@@ -102,11 +100,11 @@ describe('Component: MdlTooltip', () => {
         evt.initEvent('mouseenter', true, true);
         tooltipTriggerElement.dispatchEvent(evt);
 
-        let tooltipEl:HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
+        let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
         expect(tooltipEl.classList.contains('is-active')).toBe(true);
 
         done();
-      })
+      });
   });
 
   it('should remove the css class is-active if the mouse leaves the directive element', ( done ) => {
@@ -126,12 +124,12 @@ describe('Component: MdlTooltip', () => {
         evt.initEvent('mouseleave', true, true);
         tooltipTriggerElement.dispatchEvent(evt);
 
-        let tooltipEl:HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
+        let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
 
         expect(tooltipEl.classList.contains('is-active')).toBe(false);
 
         done();
-      })
+      });
   });
 
   it('should add the css class mdl-tooltip--{position} if the position is set to {position}', ( done ) => {
@@ -144,7 +142,7 @@ describe('Component: MdlTooltip', () => {
         .createAsync(MdlTestTooltipComponent).then( (fixture) => {
           fixture.detectChanges();
 
-          ['bottom', 'top', 'left', 'right'].forEach( (position)=>{
+          ['bottom', 'top', 'left', 'right'].forEach( (position) => {
 
             let debugElement = fixture.debugElement.query(By.directive(MdlTooltipComponent));
 
@@ -152,12 +150,12 @@ describe('Component: MdlTooltip', () => {
 
             fixture.detectChanges();
 
-            let tooltipEl:HTMLElement = debugElement.nativeElement;
+            let tooltipEl: HTMLElement = debugElement.nativeElement;
             expect(tooltipEl.classList.contains(`mdl-tooltip--${position}`)).toBe(true);
 
             done();
           });
-      })
+      });
 
   });
 });
@@ -165,7 +163,7 @@ describe('Component: MdlTooltip', () => {
 
 @Component({
   selector: 'test-icon',
-  template: "replaced by the test",
+  template: 'replaced by the test',
   directives: [MDL_TOOLTIP_DIRECTIVES]
 })
 class MdlTestTooltipComponent {

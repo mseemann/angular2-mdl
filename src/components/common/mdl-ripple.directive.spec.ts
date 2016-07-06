@@ -1,5 +1,4 @@
 import {
-  beforeEachProviders,
   describe,
   expect,
   it,
@@ -8,7 +7,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 
 describe('Directive: MdlRipple', () => {
@@ -19,10 +18,10 @@ describe('Directive: MdlRipple', () => {
     builder = tcb;
   }));
 
-  function getSpan1IfAny(fixture){
+  function getSpan1IfAny(fixture) {
 
-    let rippleTarget = fixture.debugElement.query(By.css('[ng-reflect-ripple-active]')).nativeElement
-    if(rippleTarget.children.length === 0){
+    let rippleTarget = fixture.debugElement.query(By.css('[ng-reflect-ripple-active]')).nativeElement;
+    if (rippleTarget.children.length === 0) {
       return null;
     }
     let span0 = rippleTarget.children.item(0);
@@ -43,7 +42,7 @@ describe('Directive: MdlRipple', () => {
         expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
         done();
-      })
+      });
   });
 
   it('should add the ripple if mdl-ripple is set to true', ( done ) => {
@@ -60,8 +59,8 @@ describe('Directive: MdlRipple', () => {
         expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
         done();
-      })
-  })
+      });
+  });
 
   it('should not add ripple if mdl-ripple is set to false', ( done ) => {
     return builder
@@ -77,8 +76,8 @@ describe('Directive: MdlRipple', () => {
         expect(span1).toBeNull();
 
         done();
-      })
-  })
+      });
+  });
 
   it('should remove the ripple if mdl-ripple is set to false', ( done ) => {
     return builder
@@ -98,8 +97,8 @@ describe('Directive: MdlRipple', () => {
         expect(getSpan1IfAny(fixture)).toBeNull();
 
         done();
-      })
-  })
+      });
+  });
 
   it('should add the ripple to mdl-radio', ( done ) => {
     return builder
@@ -115,7 +114,7 @@ describe('Directive: MdlRipple', () => {
         expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
         done();
-      })
+      });
   });
 
   it('should add the ripple to mdl-icon-toggle', (done ) => {
@@ -132,7 +131,7 @@ describe('Directive: MdlRipple', () => {
         expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
         done();
-      })
+      });
   });
 
   it('should add the ripple to mdl-switch', ( done ) => {
@@ -149,7 +148,7 @@ describe('Directive: MdlRipple', () => {
         expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
         done();
-      })
+      });
   });
 
   it('should add the ripple to mdl-menu-item', ( done ) => {
@@ -168,7 +167,7 @@ describe('Directive: MdlRipple', () => {
         expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
         done();
-      })
+      });
   });
   
 });
@@ -176,9 +175,9 @@ describe('Directive: MdlRipple', () => {
 
 @Component({
   selector: 'test-ripple',
-  template: "replaced by the test",
+  template: 'replaced by the test',
   directives: [MDL_COMMON_DIRECTIVES]
 })
 class MdlTestRippleComponent {
-  doRipple = true;
+  protected doRipple = true;
 }

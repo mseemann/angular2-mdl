@@ -17,7 +17,7 @@ export class MdlLayoutContentComponent {
 
   protected el: HTMLElement;
 
-  constructor(private elRef: ElementRef){
+  constructor(private elRef: ElementRef) {
     this.el = elRef.nativeElement;
   }
 

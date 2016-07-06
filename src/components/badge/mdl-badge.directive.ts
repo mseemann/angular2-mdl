@@ -5,8 +5,6 @@ import {
   SimpleChange,
   ElementRef,
   Renderer } from '@angular/core';
-import { MdlError } from './../common/mdl-error';
-
 
 @Directive({
   selector: '[mdl-badge]',
@@ -16,15 +14,15 @@ import { MdlError } from './../common/mdl-error';
 })
 export class MdlBadgeDirective implements OnChanges {
 
-  private el:HTMLElement;
+  private el: HTMLElement;
 
-  @Input('mdl-badge') mdlBadgeContent: string;
+  @Input('mdl-badge') private mdlBadgeContent: string;
 
-  constructor(private elementRef: ElementRef, private renderer:Renderer){
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {
     this.el = elementRef.nativeElement;
   }
 
-  ngOnChanges(changes: {[key: string]: SimpleChange}) {
+  public ngOnChanges(changes: {[key: string]: SimpleChange}) {
     this.renderer.setElementAttribute(this.el, 'data-badge', this.mdlBadgeContent);
   }
 

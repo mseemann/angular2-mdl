@@ -3,13 +3,11 @@ import {
   expect,
   it,
   inject,
-  fakeAsync,
-  tick,
   beforeEach
 } from '@angular/core/testing';
-import { By, DOCUMENT } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlSwitchComponent } from './mdl-switch.component';
 
 describe('Component: MdlSwitch', () => {
@@ -29,10 +27,10 @@ describe('Component: MdlSwitch', () => {
 
         fixture.detectChanges();
 
-        let checkboxEl:HTMLElement = fixture.nativeElement.children.item(0);
+        let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
         expect(checkboxEl.classList.contains('mdl-switch')).toBe(true);
 
-      })
+      });
   });
 
 });

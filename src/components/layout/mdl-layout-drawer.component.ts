@@ -6,8 +6,8 @@ import {
 @Component({
   selector: 'mdl-layout-drawer',
   host: {
-    '[class.mdl-layout__drawer]':'true',
-    '[class.is-visible]':'isDrawerVisible'
+    '[class.mdl-layout__drawer]': 'true',
+    '[class.is-visible]': 'isDrawerVisible'
   },
   template:
     `<ng-content></ng-content>`,
@@ -15,5 +15,5 @@ import {
 })
 export class MdlLayoutDrawerComponent {
 
-  isDrawerVisible = false;
+  public isDrawerVisible = false;
 }

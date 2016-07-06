@@ -1,7 +1,6 @@
 import {
   Component,
   Injectable,
-  ElementRef,
   DynamicComponentLoader,
   ComponentResolver,
   Injector,
@@ -10,7 +9,7 @@ import {
 import { MdlError } from '../common/mdl-error';
 
 export class MdlSnackbarError extends MdlError {
-  constructor(message:string) {
+  constructor(message: string) {
     super(`${message}`);
   }
 }
@@ -19,7 +18,7 @@ export class MdlSnackbarError extends MdlError {
 const ANIMATION_TIME = 250;
 
 @Component({
-  selector:'mdl-snackbar-component',
+  selector: 'mdl-snackbar-component',
   template: `
     <div id="demo-toast-example" class=" mdl-snackbar" [ngClass]="{'mdl-snackbar--active': showIt }">
       <div class="mdl-snackbar__text">{{message}}</div>
@@ -27,71 +26,71 @@ const ANIMATION_TIME = 250;
     </div>
   `
 })
-export class MdlSnackbarComponent{
-  message:string;
-  actionText:string;
+export class MdlSnackbarComponent {
+  public message: string;
+  public actionText: string;
   private showIt = false;
-  onAction:() => void;
+  public onAction: () => void;
 
-  onClick(){
+  public onClick() {
     this.onAction();
   }
 
-  isActive(){
+  public isActive() {
     return this.showIt;
   }
 
-  show():Promise<void>{
+  public show(): Promise<void> {
 
     return new Promise<void>((resolve, reject) => {
       // wait unit the dom is in place - then showIt will change the css class
-      setTimeout(()=>{
+      setTimeout(() => {
         this.showIt = true;
         // fire after the view animation is done
-        setTimeout(()=>{
+        setTimeout(() => {
           resolve();
-        }, ANIMATION_TIME)
+        }, ANIMATION_TIME);
       }, 1);
     });
 
   }
 
-  hide():Promise<void>{
+  public hide(): Promise<void> {
     this.showIt = false;
     return new Promise<void>(function(resolve, reject) {
       // fire after the view animation is done
-      setTimeout(()=>{
+      setTimeout(() => {
         resolve();
-      }, ANIMATION_TIME)
+      }, ANIMATION_TIME);
     });
   }
 }
 
 export interface IMdlSnackbarMessage {
-  message:string;
-  timeout?:number;
+  message: string;
+  timeout?: number;
   action?: {
-    handler:() => void;
-    text:string;
-  }
-  vcRef?:ViewContainerRef;
+    handler: () => void;
+    text: string;
+  };
+  vcRef?: ViewContainerRef;
 }
 
 @Injectable()
 export class MdlSnackbarService {
 
-  private defaultViewContainerRef:ViewContainerRef;
+  private defaultViewContainerRef: ViewContainerRef;
   constructor(
     private componentResolver: ComponentResolver,
-    private injector:Injector,
-    private dynamicComponentLoader:DynamicComponentLoader){
+    private injector: Injector,
+    private dynamicComponentLoader: DynamicComponentLoader) {
   }
 
-  setDefaultViewContainerRef(vcRef:ViewContainerRef){
+  public setDefaultViewContainerRef(vcRef: ViewContainerRef) {
     this.defaultViewContainerRef = vcRef;
   }
 
-  showToast(message:string, timeout?:number, vcRef?:ViewContainerRef):Promise<MdlSnackbarComponent>{
+  public showToast(message: string, timeout?: number, vcRef?: ViewContainerRef): Promise<MdlSnackbarComponent> {
     return this.showSnackbar({
       message: message,
       timeout: timeout,
@@ -99,17 +98,18 @@ export class MdlSnackbarService {
     });
   }
 
-  showSnackbar(snackbarMessage:IMdlSnackbarMessage):Promise<MdlSnackbarComponent>{
+  public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Promise<MdlSnackbarComponent> {
 
     let optTimeout        = snackbarMessage.timeout || 2750;
     let viewContainerRef  = snackbarMessage.vcRef || this.defaultViewContainerRef;
 
-    if(!viewContainerRef){
-      throw new MdlSnackbarError('A viewContainerRef must be present. Wether as by setDefaultViewContainerRef or as IMdlSnackbarMessage param.');
+    if (!viewContainerRef) {
+      throw new MdlSnackbarError('A viewContainerRef must be present. ' +
+        'Wether as by setDefaultViewContainerRef or as IMdlSnackbarMessage param.');
     }
 
     let c = this.componentResolver.resolveComponent(MdlSnackbarComponent);
-    return c.then( (cFactory)=>{
+    return c.then( (cFactory) => {
 
       let cRef = viewContainerRef.createComponent(cFactory);
       let mdlSnackbarComponent = cRef.instance;
@@ -119,17 +119,17 @@ export class MdlSnackbarService {
       // TODO make sure only one snackbar is visible at one time
       // observable? push the configured instance and consume one after another?
 
-      if (snackbarMessage.action){
+      if (snackbarMessage.action) {
         mdlSnackbarComponent.actionText = snackbarMessage.action.text;
-        mdlSnackbarComponent.onAction = () =>{
+        mdlSnackbarComponent.onAction = () => {
           mdlSnackbarComponent.hide().then(() => {
             cRef.destroy();
             snackbarMessage.action.handler();
           });
-        }
+        };
       } else {
-        setTimeout( ()=> {
-          mdlSnackbarComponent.hide().then(() => {cRef.destroy()});
+        setTimeout( () => {
+          mdlSnackbarComponent.hide().then(() => {cRef.destroy(); });
         }, optTimeout);
       }
 

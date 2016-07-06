@@ -2,10 +2,8 @@ import {
   Component,
   Input,
   ElementRef,
-  Renderer,
-  OnChanges,
-  SimpleChange,
-  Optional} from '@angular/core';
+  OnChanges
+} from '@angular/core';
 import { MdlError } from './../common/mdl-error';
 
 export class MdlUnsupportedButtonTypeError extends MdlError {
@@ -32,7 +30,7 @@ const MDL_COLORED_TYPES = [
   'primary',
   'accent',
   ''
-]
+];
 
 
 @Component({
@@ -54,35 +52,35 @@ const MDL_COLORED_TYPES = [
 })
 export class MdlButtonComponent implements OnChanges {
 
-  private element:HTMLElement;
+  private element: HTMLElement;
 
-  @Input('mdl-button-type') mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '' ;
-  @Input('mdl-colored') mdlColoredType : 'primary' | 'accent' | '';
+  @Input('mdl-button-type') private mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '' ;
+  @Input('mdl-colored') private mdlColoredType: 'primary' | 'accent' | '';
 
-  constructor(private elementRef: ElementRef){
+  constructor(private elementRef: ElementRef) {
     this.element = elementRef.nativeElement;
   }
 
-  ngOnChanges() {
+  public ngOnChanges() {
 
     if (this.mdlButtonType && MDL_BUTTON_TYPES.indexOf(this.mdlButtonType) === -1) {
       throw new MdlUnsupportedButtonTypeError(this.mdlButtonType);
     }
 
-    if( this.mdlColoredType && MDL_COLORED_TYPES.indexOf(this.mdlColoredType) === -1) {
+    if ( this.mdlColoredType && MDL_COLORED_TYPES.indexOf(this.mdlColoredType) === -1) {
       throw new MdlUnsupportedColoredTypeError(this.mdlColoredType);
     }
   }
 
-  onMouseUp(){
+  protected onMouseUp() {
     this.blurIt();
   }
 
-  onMouseLeave(){
+  protected onMouseLeave() {
     this.blurIt();
   }
 
-  blurIt(){
+  private blurIt() {
     this.element.blur();
   }
 }

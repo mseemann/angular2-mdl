@@ -5,9 +5,9 @@ import {
 @Injectable()
 export class MdlTooltipPositionService {
 
-  calcStyle(offsetWidth:number, offsetHeight:number, props:ClientRect, position:string): any {
+  public calcStyle(offsetWidth: number, offsetHeight: number, props: ClientRect, position: string): any {
 
-    var result:any = {};
+    var result: any = {};
     var left = props.left + (props.width / 2);
     var top = props.top + (props.height / 2);
     var marginLeft = -1 * (offsetWidth / 2);

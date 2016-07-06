@@ -1,6 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { MDL_DIRECTIVES } from '../../components';
-import { FORM_DIRECTIVES } from "@angular/common";
 import { PrismDirective } from './../prism/prism.component';
 
 @Component({

@@ -8,8 +8,8 @@ import {
   beforeEach
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { Component } from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlRadioComponent } from './mdl-radio.component';
 
 describe('Component: MdlRadio', () => {
@@ -29,10 +29,10 @@ describe('Component: MdlRadio', () => {
 
         fixture.detectChanges();
 
-        let checkboxEl:HTMLElement = fixture.nativeElement.children.item(0);
+        let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
         expect(checkboxEl.classList.contains('mdl-radio')).toBe(true);
 
-      })
+      });
   });
 
   it('should support ngModel', () => {
@@ -44,7 +44,6 @@ describe('Component: MdlRadio', () => {
 
           let instance = fixture.componentInstance;
           let component = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[0];
-          let el: HTMLInputElement = fixture.debugElement.queryAll(By.css('input'))[0].nativeElement;
 
           instance.radioValue = '1';
           fixture.detectChanges();
@@ -57,8 +56,8 @@ describe('Component: MdlRadio', () => {
           tick();
           expect(instance.radioValue).toEqual('2');
         })();
-      })
-  })
+      });
+  });
 
   it('should mark the component as focused and blured', ( done ) => {
     return builder
@@ -71,7 +70,7 @@ describe('Component: MdlRadio', () => {
 
         fixture.detectChanges();
 
-        let radioEl:HTMLElement = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[0].nativeElement;
+        let radioEl: HTMLElement = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[0].nativeElement;
         expect(radioEl.classList.contains('is-focused')).toBe(true);
         
         inputEl.blur();
@@ -81,8 +80,8 @@ describe('Component: MdlRadio', () => {
 
         done();
 
-      })
-  })
+      });
+  });
 
 });
 
@@ -96,5 +95,5 @@ describe('Component: MdlRadio', () => {
   directives: [MdlRadioComponent]
 })
 class MdlTestRadioComponent {
-  radioValue = '2';
+  protected radioValue = '2';
 }

@@ -3,12 +3,10 @@ import {
   ElementRef,
   Provider,
   Renderer,
-  forwardRef,
-  Input
+  forwardRef
 } from '@angular/core';
 import {
-  NG_VALUE_ACCESSOR,
-  ControlValueAccessor
+  NG_VALUE_ACCESSOR
 } from '@angular/common';
 import { MdlCheckboxComponent } from './../checkbox/mdl-checkbox.component';
 
@@ -39,12 +37,10 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
 })
 export class MdlSwitchComponent extends MdlCheckboxComponent {
 
-  constructor(elementRef: ElementRef, renderer: Renderer){
+  constructor(elementRef: ElementRef, renderer: Renderer) {
     super(elementRef, renderer);
   }
 
 }
-
-
 
 export const MDL_SWITCH_DIRECTIVES = [MdlSwitchComponent];

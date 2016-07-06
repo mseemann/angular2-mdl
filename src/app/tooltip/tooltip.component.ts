@@ -12,5 +12,5 @@ import { PrismDirective } from './../prism/prism.component';
   ],
 })
 export class TooltipDemo {
-  tt1 = 'Follow';
+  protected tt1 = 'Follow';
 }

@@ -1,19 +1,16 @@
 import {
   Component,
-  OnInit,
-  SimpleChanges
+  OnInit
 } from '@angular/core';
 import { 
   MDL_DIRECTIVES,
-  IMdlTableModel,
-  IMdlTableColumn,
   IMdlTableModelItem,
   MdlDefaultTableModel
 } from '../../components';
 import { PrismDirective } from './../prism/prism.component';
 
 export interface ITableItem extends IMdlTableModelItem {
-  material:string;
+  material: string;
   quantity: number;
   unitPrice: number;
 }
@@ -30,26 +27,26 @@ export interface ITableItem extends IMdlTableModelItem {
 })
 export class TableDemo implements OnInit {
 
-  tableData:[ITableItem] = [
-    {material:'Acrylic (Transparent)', quantity:25, unitPrice:2.90, selected:true},
-    {material:'Plywood (Birch)', quantity:50, unitPrice:1.25, selected:false},
-    {material:'Laminate (Gold on Blue)', quantity:10, unitPrice:2.35, selected:false}
+  private tableData: [ITableItem] = [
+    {material: 'Acrylic (Transparent)', quantity: 25, unitPrice: 2.90, selected: true},
+    {material: 'Plywood (Birch)', quantity: 50, unitPrice: 1.25, selected: false},
+    {material: 'Laminate (Gold on Blue)', quantity: 10, unitPrice: 2.35, selected: false}
   ];
 
-  selected:Array<ITableItem> = new Array<ITableItem>();
+  protected selected: Array<ITableItem> = new Array<ITableItem>();
 
   public tableModel = new MdlDefaultTableModel([
-    {key:'material', name:'Material', sortable:true},
-    {key:'quantity', name:'Quantity', sortable:true, numeric:true},
-    {key:'unitPrice', name:'Unit price', numeric:true}
+    {key: 'material', name: 'Material', sortable: true},
+    {key: 'quantity', name: 'Quantity', sortable: true, numeric: true},
+    {key: 'unitPrice', name: 'Unit price', numeric: true}
   ]);
 
-  ngOnInit(){
+  public ngOnInit() {
     this.tableModel.addAll(this.tableData);
     this.selected = this.tableData.filter( data => data.selected);
   }
 
-  selectionChanged($event){
+  protected selectionChanged($event) {
     this.selected = $event.value;
   }
 
