@@ -12,5 +12,5 @@ import { PrismDirective } from './../prism/prism.component';
   ],
 })
 export class BadgeDemo {
-  badgeCount = 1;
+  protected badgeCount = 1;
 }

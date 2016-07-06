@@ -3,10 +3,8 @@ import {
   expect,
   it,
   inject,
-  tick,
   beforeEach
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { Component, Optional } from '@angular/core';
 import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
 import { MdlButtonComponent} from './mdl-button.component';
@@ -26,14 +24,14 @@ describe('Directive: MdlButton', () => {
       .overrideTemplate(MdlTestButtonComponent, `
           <mdl-button></mdl-button>
         `)
-      .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
+      .createAsync(MdlTestButtonComponent).then( (fixture: ComponentFixture<MdlTestButtonComponent>) => {
 
         fixture.detectChanges();
 
-        let btnEl:HTMLElement = fixture.nativeElement.children.item(0);
+        let btnEl: HTMLElement = fixture.nativeElement.children.item(0);
         expect(btnEl.classList.contains('mdl-button')).toBe(true);
 
-      })
+      });
   });
 
   it('should throw if an unsupported buttontype is provided', () => {
@@ -42,12 +40,12 @@ describe('Directive: MdlButton', () => {
       .overrideTemplate(MdlTestButtonComponent, `
           <mdl-button mdl-button-type="didNotExist"></mdl-button>
         `)
-      .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
+      .createAsync(MdlTestButtonComponent).then( (fixture: ComponentFixture<MdlTestButtonComponent>) => {
 
         expect( () => fixture.detectChanges() )
           .toThrow();
 
-      })
+      });
 
   });
 
@@ -57,12 +55,12 @@ describe('Directive: MdlButton', () => {
       .overrideTemplate(MdlTestButtonComponent, `
           <mdl-button mdl-colored="didNotExist"></mdl-button>
         `)
-      .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
+      .createAsync(MdlTestButtonComponent).then( (fixture: ComponentFixture<MdlTestButtonComponent>) => {
 
         expect( () => fixture.detectChanges() )
           .toThrow();
 
-      })
+      });
 
   });
 
@@ -72,7 +70,7 @@ describe('Directive: MdlButton', () => {
       .overrideTemplate(MdlTestButtonComponent, `
           <mdl-button></mdl-button>
         `)
-      .createAsync(MdlTestButtonComponent).then( (fixture:ComponentFixture<MdlTestButtonComponent>) => {
+      .createAsync(MdlTestButtonComponent).then( (fixture: ComponentFixture<MdlTestButtonComponent>) => {
 
         fixture.detectChanges();
 
@@ -87,19 +85,19 @@ describe('Directive: MdlButton', () => {
         mdlButtonDirective.onMouseLeave();
         expect(mdlButtonDirective.blurIt).toHaveBeenCalled();
 
-      })
+      });
   });
 
-  //TODO test exportAs mdlButton
+  // TODO test exportAs mdlButton
 });
 
 
 @Component({
   selector: 'test-button',
-  template: "replaced by the test",
+  template: 'replaced by the test',
   directives: [MDL_COMMON_DIRECTIVES, MdlButtonComponent],
   providers: [MdlButtonComponent]
 })
 class MdlTestButtonComponent {
-  constructor(@Optional() public mdlButton:MdlButtonComponent){}
+  constructor(@Optional() public mdlButton: MdlButtonComponent) {}
 }

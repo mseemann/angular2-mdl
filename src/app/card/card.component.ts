@@ -6,7 +6,7 @@ import { PrismDirective } from './../prism/prism.component';
   moduleId: module.id,
   selector: 'card-demo',
   templateUrl: 'card.component.html',
-  styles:[
+  styles: [
     `
     .demo-card-wide {
       width: 500px;

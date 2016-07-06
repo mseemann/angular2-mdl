@@ -3,11 +3,10 @@ import {
   expect,
   it,
   inject,
-  tick,
   beforeEach
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Optional } from '@angular/core';
+import { Component } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MDL_CARD_DIRECTIVES } from './mdl-card.component';
 
@@ -50,7 +49,7 @@ describe('Components: MdlCard*', () => {
         let mdlCardExpandElement = fixture.debugElement.query(By.css('[mdl-card-expand]'));
         expect(mdlCardExpandElement.nativeElement.classList.contains('mdl-card--expand')).toBe(true);
 
-      })
+      });
   });
 
   it('should throw if mdl-card-title has no mdl-card parent', () => {
@@ -63,8 +62,8 @@ describe('Components: MdlCard*', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
-      })
-  })
+      });
+  });
 
   it('should throw if mdl-card-supporting-text has no mdl-card parent', () => {
     return builder
@@ -76,8 +75,8 @@ describe('Components: MdlCard*', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
-      })
-  })
+      });
+  });
 
   it('should throw if mdl-card-actions has no mdl-card parent', () => {
     return builder
@@ -89,8 +88,8 @@ describe('Components: MdlCard*', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
-      })
-  })
+      });
+  });
 
   it('should throw if mdl-card-menu has no mdl-card parent', () => {
     return builder
@@ -102,8 +101,8 @@ describe('Components: MdlCard*', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
-      })
-  })
+      });
+  });
 });
 
 @Component({

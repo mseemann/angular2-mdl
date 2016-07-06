@@ -43,8 +43,10 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   @Input('mdl-layout-mode') private mode: string = STANDARD;
 
   private isDrawerVisible = false;
+  private isSmallScreen = false;
 
-  private sccrollListener: Function;
+  private scrollListener: Function;
+  private windowMediaQueryListener: Function;
 
   constructor(private renderer: Renderer) {
 
@@ -68,7 +70,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
     }
 
     if (this.content) {
-      this.sccrollListener = this.renderer.listen(this.content.el, 'scroll', (event) => {
+      this.scrollListener = this.renderer.listen(this.content.el, 'scroll', (event) => {
         if (this.mode !== SCROLL) {
           return;
         }
@@ -97,10 +99,31 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
         //   }
         // }
       });
+      let query: MediaQueryList = window.matchMedia('(max-width: 1024px)');
+
+      let queryListener = () => {
+        this.onQueryChange(query.matches);
+      };
+      query.addListener(queryListener);
+      this.windowMediaQueryListener = function() {
+        query.removeListener(queryListener);
+      };
+      // set the initial state
+      queryListener();
     }
 
     if (this.drawer) {
 
+    }
+  }
+
+  private onQueryChange(isSmall: boolean) {
+    if (isSmall) {
+      this.isSmallScreen = true;
+    } else {
+      this.isSmallScreen = false;
+      this.isDrawerVisible = false;
+      this.drawer.isDrawerVisible = false;
     }
   }
 
@@ -119,9 +142,13 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    if (this.sccrollListener) {
-      this.sccrollListener();
-      this.sccrollListener = null;
+    if (this.scrollListener) {
+      this.scrollListener();
+      this.scrollListener = null;
+    }
+    if (this.windowMediaQueryListener) {
+      this.windowMediaQueryListener();
+      this.windowMediaQueryListener = null;
     }
   }
 }

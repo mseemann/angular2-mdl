@@ -117,15 +117,45 @@ describe('Component: MdlLayout', () => {
         fixture.detectChanges();
         let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
-        expect(layoutComponent.sccrollListener).toBeDefined();
+        expect(layoutComponent.scrollListener).toBeDefined();
 
         layoutComponent.ngOnDestroy();
 
-        expect(layoutComponent.sccrollListener).toBeNull();
+        expect(layoutComponent.scrollListener).toBeNull();
 
         done();
       });
 
+  });
+
+  it('should change the small screen css on small screens', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+          <mdl-layout>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+        let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+        // small screen
+        layoutComponent.onQueryChange(true);
+        fixture.detectChanges();
+        let mdlLayoutElement =  fixture.debugElement.query(By.css('.mdl-layout')).nativeElement;
+        expect(mdlLayoutElement.classList.contains('is-small-screen')).toBe(true);
+
+        // large screen
+        layoutComponent.onQueryChange(false);
+        fixture.detectChanges();
+        expect(mdlLayoutElement.classList.contains('is-small-screen')).toBe(false);
+
+
+        done();
+      });
   });
 
 });

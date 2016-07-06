@@ -6,8 +6,8 @@ import {
   beforeEach
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
-import { Component, Optional, DebugElement } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import { Component} from '@angular/core';
+import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlCheckboxComponent } from './mdl-checkbox.component';
 
 describe('Component: MdlCheckbox', () => {
@@ -27,10 +27,10 @@ describe('Component: MdlCheckbox', () => {
 
         fixture.detectChanges();
 
-        let checkboxEl:HTMLElement = fixture.nativeElement.children.item(0);
+        let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
         expect(checkboxEl.classList.contains('mdl-checkbox')).toBe(true);
 
-      })
+      });
   });
 
   it('should support ngModel', () => {
@@ -51,8 +51,8 @@ describe('Component: MdlCheckbox', () => {
           fixture.detectChanges();
           expect(el.checked).toEqual(false);
 
-      })
-  })
+      });
+  });
 
   it('should change the value on click', () => {
     return builder
@@ -60,7 +60,6 @@ describe('Component: MdlCheckbox', () => {
         fixture.detectChanges();
 
           let instance = fixture.componentInstance;
-          let component = fixture.debugElement.query(By.directive(MdlCheckboxComponent)).componentInstance;
           let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
           instance.checkboxValue1 = false;
@@ -73,8 +72,8 @@ describe('Component: MdlCheckbox', () => {
 
           expect(el.checked).toEqual(true);
 
-      })
-  })
+      });
+  });
 
   it('should mark the component as focused and blured', () => {
     return builder
@@ -89,7 +88,7 @@ describe('Component: MdlCheckbox', () => {
 
           fixture.detectChanges();
 
-          let checkboxEl:HTMLElement = fixture.debugElement.query(By.directive(MdlCheckboxComponent)).nativeElement;
+          let checkboxEl: HTMLElement = fixture.debugElement.query(By.directive(MdlCheckboxComponent)).nativeElement;
           expect(checkboxEl.classList.contains('is-focused')).toBe(true);
 
           var evtBlur = doc.createEvent('HTMLEvents');
@@ -99,8 +98,8 @@ describe('Component: MdlCheckbox', () => {
           fixture.detectChanges();
           expect(checkboxEl.classList.contains('is-focused')).toBe(false);
 
-      })
-  })
+      });
+  });
 
 });
 
@@ -111,5 +110,5 @@ describe('Component: MdlCheckbox', () => {
   directives: [MdlCheckboxComponent]
 })
 class MdlTestCheckboxComponent {
-  checkboxValue1 = false;
+  protected checkboxValue1 = false;
 }

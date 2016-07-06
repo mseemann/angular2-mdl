@@ -46,7 +46,6 @@ import { MdlSpinnerComponent } from './spinner/mdl-spinner.component';
 import { MdlSliderComponent }  from './slider/mdl-slider.component';
 import { MdlSwitchComponent } from './switch/mdl-switch.component';
 import {
-  IMdlSnackbarMessage,
   MdlSnackbarService
 } from './snackbar/mdl-snackbar.service';
 import {
