@@ -19,8 +19,8 @@ import { ROUTER_DIRECTIVES} from '@angular/router';
         position: relative;
     }
     .demo-layout-transparent {
-         background: url('assets/oslo.jpg') center / cover;
-         height: 300px;
+        background: url('assets/oslo.jpg') center / cover;
+        height: 300px;
         color: white;
     }
     .demo-layout-fixed-drawer {
@@ -28,6 +28,12 @@ import { ROUTER_DIRECTIVES} from '@angular/router';
     }
     .demo-layout-fixed-header {
         height: 300px;
+    }
+    .demo-layout-header-scrolling{
+        height: 300px;
+    }
+    .page-content {
+        height: 600px;
     }
     mdl-layout-content{
         margin:1rem;

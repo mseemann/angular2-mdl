@@ -4,7 +4,6 @@ import {
   Renderer,
   ViewEncapsulation
 } from '@angular/core';
-
 @Component({
   selector: 'mdl-layout-header',
   host: {

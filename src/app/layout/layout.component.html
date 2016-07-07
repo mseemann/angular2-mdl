@@ -208,7 +208,40 @@
 <h6>Scrolling header</h6>
 <p> Uses a header that scrolls with the text, rather than staying locked at the top</p>
 
-WIP...
+<div class="demo-container demo-layout-header-scrolling" mdl-shadow="2">
+   <mdl-layout mdl-layout-mode="scroll">
+      <mdl-layout-header>
+         <mdl-layout-header-row>
+            <mdl-layout-title>Title</mdl-layout-title>
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <nav class="mdl-navigation">
+               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+         </mdl-layout-header-row>
+      </mdl-layout-header>
+      <mdl-layout-drawer>
+         <mdl-layout-title>Title</mdl-layout-title>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+         </nav>
+      </mdl-layout-drawer>
+      <mdl-layout-content>
+         <div class="page-content"><!-- Your content goes here --></div>
+      </mdl-layout-content>
+   </mdl-layout>
+</div>
+
+<pre prism>
+  <![CDATA[
+<mdl-layout mdl-layout-mode="scroll">
+   ...
+</mdl-layout>
+  ]]>
+</pre>
 
 
 <h5>Grid</h5>
