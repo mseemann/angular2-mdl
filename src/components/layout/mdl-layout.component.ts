@@ -5,8 +5,10 @@ import {
   OnDestroy,
   Input,
   Renderer,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ElementRef,
 } from '@angular/core';
+import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from './../common/mdl-error';
 import { BooleanProperty } from './../common/boolean-property';
 import { MdlIconComponent } from './../icon/mdl-icon.component';
@@ -52,7 +54,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   private scrollListener: Function;
   private windowMediaQueryListener: Function;
 
-  constructor(private renderer: Renderer) {
+  constructor(private renderer: Renderer, private evm: EventManager, private el: ElementRef) {
   }
 
   public ngAfterContentInit() {
@@ -73,9 +75,10 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
       this.header.isSeamed = this.isSeamed;
     }
 
+
     if (this.content) {
-      this.scrollListener = this.renderer.listen(this.content.el, 'scroll', () => {
-        this.onScroll(this.content.el.scrollTop);
+      this.scrollListener = this.renderer.listen(this.content.el, 'scroll', (e) => {
+         this.onScroll(this.content.el.scrollTop);
       });
 
       let query: MediaQueryList = window.matchMedia('(max-width: 1024px)');
@@ -141,7 +144,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
 
   // tslint:disable-next-line - method is access from template
   private obfuscatorKeyDown($event){
-    if ($event.keyCode === ESCAPE && this.isDrawerVisible) {
+    if ($event.keyCode === ESCAPE) {
       this.toggleDrawer();
     }
   }

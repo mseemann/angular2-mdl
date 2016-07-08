@@ -13,6 +13,7 @@ import {
   MDL_LAYOUT_DIRECTIVES,
   MdlLayoutHeaderComponent
 } from './index';
+import {MdlLayoutContentComponent} from "./mdl-layout-content.component";
 
 describe('Component: MdlLayout', () => {
 
@@ -128,6 +129,31 @@ describe('Component: MdlLayout', () => {
 
   });
 
+  it('should safely unregister the scroll listener if no content is present', ( done ) => {
+
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+          <mdl-layout>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+          </mdl-layout>
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+        let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+        expect(layoutComponent.scrollListener).toBeUndefined();
+
+        layoutComponent.ngOnDestroy();
+
+        expect(layoutComponent.scrollListener).toBeUndefined();
+
+        done();
+      });
+
+  });
+
   it('should change the small screen css on small screens', ( done ) => {
     return builder
       .overrideTemplate(MdlTestLayoutComponent, `
@@ -158,6 +184,31 @@ describe('Component: MdlLayout', () => {
       });
   });
 
+  it('should call onscroll if the content is getting ascroll event', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+          <mdl-layout>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+        let layoutDebugElement = fixture.debugElement.query(By.directive(MdlLayoutComponent));
+        let layoutComponent = layoutDebugElement.componentInstance;
+
+        let contentEl = fixture.debugElement.query(By.directive(MdlLayoutContentComponent)).nativeElement;
+
+        spyOn(layoutComponent, 'onScroll');
+
+        var scrollEvent = new CustomEvent('scroll');
+        contentEl.dispatchEvent(scrollEvent);
+
+        expect(layoutComponent.onScroll).toHaveBeenCalled();
+
+        done();
+      });
+  });
 });
 
 

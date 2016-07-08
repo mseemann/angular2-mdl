@@ -11,7 +11,6 @@ import { TestComponentBuilder } from '@angular/compiler/testing';
 import {
   MDL_LAYOUT_DIRECTIVES,
   MdlLayoutHeaderComponent,
-  MdlLayoutContentComponent,
   MdlLayoutComponent} from './index';
 
 describe('Component: MdlLayoutHeader', () => {
@@ -100,7 +99,7 @@ describe('Component: MdlLayoutHeader', () => {
       .overrideTemplate(MdlTestLayoutComponent, `
          <mdl-layout mdl-layout-mode="waterfall">
             <mdl-layout-header>x</mdl-layout-header>
-            <mdl-layout-content><div style="height:1000px"></div></mdl-layout-content>
+            <mdl-layout-content></mdl-layout-content>
          </mdl-layout>
           
         `)
@@ -113,7 +112,6 @@ describe('Component: MdlLayoutHeader', () => {
         let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
 
         mdlLayout.onScroll(600);
-
         expect(headerDebugElement.componentInstance.isCompact).toBe(true);
 
         // simulate animating is over
@@ -128,12 +126,42 @@ describe('Component: MdlLayoutHeader', () => {
       });
   });
 
+  it('should not animate the header if the screen is samll', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+         <mdl-layout mdl-layout-mode="waterfall">
+            <mdl-layout-header>x</mdl-layout-header>
+            <mdl-layout-content></mdl-layout-content>
+         </mdl-layout>
+          
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let mdlLayout = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+        let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+        mdlLayout.isSmallScreen = true;
+        mdlLayout.onScroll(600);
+
+        expect(headerDebugElement.componentInstance.isAnimating).toBe(false);
+
+
+        mdlLayout.onScroll(0);
+        expect(headerDebugElement.componentInstance.isAnimating).toBe(false);
+
+        done();
+
+      });
+  });
+
   it('should not run any scroll code if the header is not in waterfall mode or is animating', ( done ) => {
     return builder
       .overrideTemplate(MdlTestLayoutComponent, `
          <mdl-layout>
             <mdl-layout-header>x</mdl-layout-header>
-            <mdl-layout-content><div style="height:1000px"></div></mdl-layout-content>
+            <mdl-layout-content></mdl-layout-content>
          </mdl-layout>
           
         `)
