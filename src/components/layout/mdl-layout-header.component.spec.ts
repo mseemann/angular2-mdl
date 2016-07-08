@@ -8,7 +8,11 @@ import {
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
-import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
+import {
+  MDL_LAYOUT_DIRECTIVES,
+  MdlLayoutHeaderComponent,
+  MdlLayoutContentComponent,
+  MdlLayoutComponent} from './index';
 
 describe('Component: MdlLayoutHeader', () => {
 
@@ -35,13 +39,133 @@ describe('Component: MdlLayoutHeader', () => {
       });
   });
 
+  it('should decompact the header if the header is compact in waterfall mode', ( done ) => {
 
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+         <mdl-layout mdl-layout-mode="waterfall">
+            <mdl-layout-header>x</mdl-layout-header>
+            <mdl-layout-content></mdl-layout-content>
+         </mdl-layout>
+          
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+        let header = headerDebugElement.componentInstance;
+        header.isCompact = false;
+        
+        header.el.click();
+        expect(header.isCompact).toBe(false);
+
+        header.isCompact = true;
+        expect(header.isCompact).toBe(true);
+        header.el.click();
+        expect(header.isCompact).toBe(false);
+
+        done();
+      });
+
+  });
+
+  it('should set animating to false if the transisition ends', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+         <mdl-layout mdl-layout-mode="waterfall">
+            <mdl-layout-header>x</mdl-layout-header>
+            <mdl-layout-content></mdl-layout-content>
+         </mdl-layout>
+          
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+        let header = headerDebugElement.componentInstance;
+        header.isAnimating = true;
+
+        header.el.dispatchEvent(new CustomEvent('transitionend'));
+
+        expect(header.isAnimating).toBe(false);
+
+        done();
+      });
+  });
+
+  it('should compact the header if the content is scrolled down and not compact on the contrary', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+         <mdl-layout mdl-layout-mode="waterfall">
+            <mdl-layout-header>x</mdl-layout-header>
+            <mdl-layout-content><div style="height:1000px"></div></mdl-layout-content>
+         </mdl-layout>
+          
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let mdlLayout = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+        let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+
+        mdlLayout.onScroll(600);
+
+        expect(headerDebugElement.componentInstance.isCompact).toBe(true);
+
+        // simulate animating is over
+        headerDebugElement.componentInstance.isAnimating = false;
+        mdlLayout.onScroll(0);
+
+
+        expect(headerDebugElement.componentInstance.isCompact).toBe(false);
+
+        done();
+
+      });
+  });
+
+  it('should not run any scroll code if the header is not in waterfall mode or is animating', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+         <mdl-layout>
+            <mdl-layout-header>x</mdl-layout-header>
+            <mdl-layout-content><div style="height:1000px"></div></mdl-layout-content>
+         </mdl-layout>
+          
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let mdlLayout = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+        mdlLayout.mode = 'standard';
+
+        let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+
+        mdlLayout.onScroll(600);
+        expect(headerDebugElement.componentInstance.isCompact).toBe(false);
+
+
+        mdlLayout.mode = 'waterfall';
+        headerDebugElement.componentInstance.isAnimating = true;
+
+        mdlLayout.onScroll(600);
+        expect(headerDebugElement.componentInstance.isCompact).toBe(false);
+
+        done();
+
+      });
+  });
 });
 
 
 @Component({
   selector: 'test-layout',
   template: 'replaced by the test',
-  directives: [MdlLayoutHeaderComponent]
+  directives: [MDL_LAYOUT_DIRECTIVES]
 })
 class MdlTestLayoutComponent {}

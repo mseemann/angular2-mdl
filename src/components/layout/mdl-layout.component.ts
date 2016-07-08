@@ -73,35 +73,10 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
     }
 
     if (this.content) {
-      this.scrollListener = this.renderer.listen(this.content.el, 'scroll', (event) => {
-        if (this.mode !== SCROLL) {
-          return;
-        }
-        // TODO
-        // if (this.header_.classList.contains(this.CssClasses_.IS_ANIMATING)) {
-        //   return;
-        // }
-        //
-        // var headerVisible =
-        //   !this.element_.classList.contains(this.CssClasses_.IS_SMALL_SCREEN) ||
-        //   this.element_.classList.contains(this.CssClasses_.FIXED_HEADER);
-        //
-        // if (this.content_.scrollTop > 0 &&
-        //   !this.header_.classList.contains(this.CssClasses_.IS_COMPACT)) {
-        //   this.header_.classList.add(this.CssClasses_.CASTING_SHADOW);
-        //   this.header_.classList.add(this.CssClasses_.IS_COMPACT);
-        //   if (headerVisible) {
-        //     this.header_.classList.add(this.CssClasses_.IS_ANIMATING);
-        //   }
-        // } else if (this.content_.scrollTop <= 0 &&
-        //   this.header_.classList.contains(this.CssClasses_.IS_COMPACT)) {
-        //   this.header_.classList.remove(this.CssClasses_.CASTING_SHADOW);
-        //   this.header_.classList.remove(this.CssClasses_.IS_COMPACT);
-        //   if (headerVisible) {
-        //     this.header_.classList.add(this.CssClasses_.IS_ANIMATING);
-        //   }
-        // }
+      this.scrollListener = this.renderer.listen(this.content.el, 'scroll', () => {
+        this.onScroll(this.content.el.scrollTop);
       });
+
       let query: MediaQueryList = window.matchMedia('(max-width: 1024px)');
 
       let queryListener = () => {
@@ -115,8 +90,28 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
       queryListener();
     }
 
-    if (this.drawer) {
+  }
 
+  private onScroll(scrollTop) {
+    if (this.mode !== WATERFALL) {
+      return;
+    }
+
+    if (this.header.isAnimating) {
+      return;
+    }
+
+    let headerVisible = !this.isSmallScreen || this.isFixedHeader;
+    if (scrollTop > 0 && !this.header.isCompact) {
+      this.header.isCompact = true;
+      if (headerVisible) {
+        this.header.isAnimating = true;
+      }
+    } else if (scrollTop <= 0 && this.header.isCompact) {
+      this.header.isCompact = false;
+      if (headerVisible) {
+        this.header.isAnimating = true;
+      }
     }
   }
 

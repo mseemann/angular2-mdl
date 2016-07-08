@@ -17,20 +17,11 @@ import { ROUTER_DIRECTIVES} from '@angular/router';
     .demo-container {
         width: 100%;
         position: relative;
+        height: 300px;
     }
     .demo-layout-transparent {
         background: url('assets/oslo.jpg') center / cover;
-        height: 300px;
         color: white;
-    }
-    .demo-layout-fixed-drawer {
-        height: 300px;
-    }
-    .demo-layout-fixed-header {
-        height: 300px;
-    }
-    .demo-layout-header-scrolling{
-        height: 300px;
     }
     .page-content {
         height: 600px;

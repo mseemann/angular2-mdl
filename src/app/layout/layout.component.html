@@ -67,7 +67,7 @@
 
 <h6>Fixed drawer, no header</h6>
 
-<div class="demo-container demo-layout-fixed-drawer" mdl-shadow="2">
+<div class="demo-container" mdl-shadow="2">
    <mdl-layout mdl-layout-fixed-drawer>
       <mdl-layout-drawer>
          <mdl-layout-title>Title</mdl-layout-title>
@@ -85,7 +85,7 @@
 
 <pre prism>
   <![CDATA[
-<div class="demo-container demo-layout-fixed-drawer" mdl-shadow="2">
+<div class="demo-container" mdl-shadow="2">
    <mdl-layout mdl-layout-fixed-drawer>
       <mdl-layout-drawer>
          <mdl-layout-title>Title</mdl-layout-title>
@@ -106,7 +106,7 @@
 <h6>Fixed header</h6>
 <p>Always shows a header, even in smaller screens.</p>
 
-<div class="demo-container demo-layout-fixed-header" mdl-shadow="2">
+<div class="demo-container" mdl-shadow="2">
    <mdl-layout mdl-layout-fixed-header>
       <mdl-layout-header>
          <mdl-layout-header-row>
@@ -136,7 +136,7 @@
 
 <pre prism>
   <![CDATA[
-<div class="demo-container demo-layout-fixed-header" mdl-shadow="2">
+<div class="demo-container" mdl-shadow="2">
    <mdl-layout mdl-layout-fixed-header>
       <mdl-layout-header>
          <mdl-layout-header-row>
@@ -169,7 +169,7 @@
 <h6>Fixed header and drawer</h6>
 <p>The drawer is always open in large screens. The header is always shown, even in small screens.</p>
 
-<div class="demo-container demo-layout-fixed-header" mdl-shadow="2">
+<div class="demo-container" mdl-shadow="2">
    <mdl-layout mdl-layout-fixed-header mdl-layout-fixed-drawer>
       <mdl-layout-header>
          <mdl-layout-header-row>
@@ -208,7 +208,7 @@
 <h6>Scrolling header</h6>
 <p> Uses a header that scrolls with the text, rather than staying locked at the top</p>
 
-<div class="demo-container demo-layout-header-scrolling" mdl-shadow="2">
+<div class="demo-container" mdl-shadow="2">
    <mdl-layout mdl-layout-mode="scroll">
       <mdl-layout-header>
          <mdl-layout-header-row>
@@ -242,6 +242,53 @@
 </mdl-layout>
   ]]>
 </pre>
+
+<h6>Waterfall header</h6>
+<p>Uses a header that contracts as the page scrolls down.</p>
+
+<div class="demo-container" mdl-shadow="2">
+   <mdl-layout mdl-layout-mode="waterfall">
+      <mdl-layout-header>
+         <!-- Top row, always visible -->
+         <mdl-layout-header-row>
+            <!-- Title -->
+            <mdl-layout-title>Title</mdl-layout-title>
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <mdl-icon>search <!-- TODO search box --></mdl-icon>
+         </mdl-layout-header-row>
+         <!-- Bottom row, not visible on scroll -->
+         <mdl-layout-header-row>
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" href="">Link</a>
+               <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+         </mdl-layout-header-row>
+      </mdl-layout-header>
+      <mdl-layout-drawer>
+         <mdl-layout-title>Title</mdl-layout-title>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+         </nav>
+      </mdl-layout-drawer>
+      <mdl-layout-content>
+         <div class="page-content"><!-- Your content goes here --></div>
+      </mdl-layout-content>
+   </mdl-layout>
+</div>
+
+<pre prism>
+  <![CDATA[
+<mdl-layout mdl-layout-mode="waterfall">
+   ...
+</mdl-layout>
+  ]]>
+</pre>
+
 
 
 <h5>Grid</h5>
