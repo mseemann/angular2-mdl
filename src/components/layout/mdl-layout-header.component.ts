@@ -9,7 +9,7 @@ import {
   host: {
     '[class.mdl-layout__header]': 'true',
     '[class.is-casting-shadow]': 'mode==="standard" || isCompact',
-    '[class.mdl-layout__header--seamed]': 'mode==="seamed"',
+    '[class.mdl-layout__header--seamed]': 'isSeamed',
     '[class.mdl-layout__header--waterfall]': 'mode==="waterfall"',
     '[class.mdl-layout__header--scroll]': 'mode==="scroll"',
     '[class.is-compact]' : 'isCompact',
@@ -27,6 +27,7 @@ export class MdlLayoutHeaderComponent {
   protected el: HTMLElement;
   public isCompact = false;
   public isAnimating = false;
+  public isSeamed = false;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer) {
     this.el = elementRef.nativeElement;
