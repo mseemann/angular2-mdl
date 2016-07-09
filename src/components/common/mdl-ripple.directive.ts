@@ -33,6 +33,8 @@ export class MdlRippleDirective implements OnChanges {
         delete this.ripple;
       }
 
+      // FIXME is MDL_JS_RIPPLE_EFFECT_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events' needed on thi.el?
+
       // if used as mdl-ripple without property binding it is an empty string
       // otherwise (e.g. [mdl-ripple] it is a boolean - may be with the default value true.
       if (this.rippleActive === '' || this.rippleActive) {
@@ -117,8 +119,16 @@ export class MdlMenuItemRippleDirective extends MdlRippleDirective {
 
 }
 
+@Directive({
+  selector: 'a[mdl-ripple]'
+})
+export class MdlAnchorRippleDirective extends MdlRippleDirective {
 
+  constructor(elementRef: ElementRef) {
+    super(elementRef, 'mdl-tabs__ripple-container');
+  }
 
+}
 
 export const MDL_COMMON_DIRECTIVES = [
   MdlCheckboxRippleDirective,
@@ -126,5 +136,6 @@ export const MDL_COMMON_DIRECTIVES = [
   MdlRadioRippleDirective,
   MdlIconToggleRippleDirective,
   MdlSwitchRippleDirective,
-  MdlMenuItemRippleDirective
+  MdlMenuItemRippleDirective,
+  MdlAnchorRippleDirective
 ];

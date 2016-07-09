@@ -298,11 +298,66 @@ Please visit the original <a href="https://getmdl.io/components/index.html#layou
 
 <h5>Tabs</h5>
 
+<div class="demo-tab-container">
+   <mdl-tabs mdl-ripple mdl-tab-active-index="0" (mdl-tab-active-changed)="tabChanged($event)">
+      <mdl-tab-panel mdl-tab-panel-title="Starks">
+         <ul>
+            <li>Eddard</li>
+            <li>Catelyn</li>
+            <li>Robb</li>
+            <li>Sansa</li>
+            <li>Brandon</li>
+            <li>Arya</li>
+            <li>Rickon</li>
+         </ul>
+      </mdl-tab-panel>
+      <mdl-tab-panel mdl-tab-panel-title="Lannisters">
+         <ul>
+            <li>Tywin</li>
+            <li>Cersei</li>
+            <li>Jamie</li>
+            <li>Tyrion</li>
+         </ul>
+      </mdl-tab-panel>
+      <mdl-tab-panel mdl-tab-panel-title="Targaryens">
+         <ul>
+            <li>Viserys</li>
+            <li>Daenerys</li>
+         </ul>
+      </mdl-tab-panel>
+   </mdl-tabs>
+</div>
 
 
 <pre prism>
   <![CDATA[
-
+<mdl-tabs mdl-ripple mdl-tab-active-index="0" (mdl-tab-active-changed)="tabChanged($event)">
+      <mdl-tab-panel mdl-tab-panel-title="Starks">
+         <ul>
+            <li>Eddard</li>
+            <li>Catelyn</li>
+            <li>Robb</li>
+            <li>Sansa</li>
+            <li>Brandon</li>
+            <li>Arya</li>
+            <li>Rickon</li>
+         </ul>
+      </mdl-tab-panel>
+      <mdl-tab-panel mdl-tab-panel-title="Lannisters">
+         <ul>
+            <li>Tywin</li>
+            <li>Cersei</li>
+            <li>Jamie</li>
+            <li>Tyrion</li>
+         </ul>
+      </mdl-tab-panel>
+      <mdl-tab-panel mdl-tab-panel-title="Targaryens">
+         <ul>
+            <li>Viserys</li>
+            <li>Daenerys</li>
+         </ul>
+      </mdl-tab-panel>
+   </mdl-tabs>
   ]]>
 </pre>
 

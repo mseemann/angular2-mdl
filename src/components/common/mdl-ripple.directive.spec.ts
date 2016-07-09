@@ -169,6 +169,23 @@ describe('Directive: MdlRipple', () => {
         done();
       });
   });
+
+  it('should add the ripple to anchor tag for tabs', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestRippleComponent, `
+            <a mdl-ripple></a>
+        `)
+      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let span1 = getSpan1IfAny(fixture);
+
+        expect(span1.classList.contains('mdl-ripple')).toBe(true);
+
+        done();
+      });
+  });
   
 });
 

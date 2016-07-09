@@ -26,6 +26,9 @@ import { ROUTER_DIRECTIVES} from '@angular/router';
     .page-content {
         height: 600px;
     }
+    .demo-tab-container{
+       display: inline-block;
+    }
     mdl-layout-content{
         margin:1rem;
     }
@@ -33,7 +36,12 @@ import { ROUTER_DIRECTIVES} from '@angular/router';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class LayoutDemo {}
+export class LayoutDemo {
+
+  public tabChanged($event) {
+    console.log($event);
+  }
+}
 
 @Component({
   moduleId: module.id,

@@ -72,6 +72,10 @@ import {
   MdlLayoutTitleComponent,
   MdlLayoutSpacerComponent
 } from './layout/index';
+import {
+  MdlTabsComponent,
+  MdlTabPanelComponent
+} from './tabs/index';
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
@@ -92,6 +96,7 @@ export * from './table/index'
 export * from './tooltip/index';
 export * from './menu/index';
 export * from './layout/index';
+export * from './tabs/index';
 
 export const MDL_SERVICES = [
   MdlSnackbarService
@@ -150,5 +155,7 @@ export const MDL_DIRECTIVES = [
   MdlLayoutHeaderTransparentDirective,
   MdlLayoutHeaderRowComponent,
   MdlLayoutTitleComponent,
-  MdlLayoutSpacerComponent
+  MdlLayoutSpacerComponent,
+  MdlTabsComponent,
+  MdlTabPanelComponent
 ];
