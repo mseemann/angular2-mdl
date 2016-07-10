@@ -28,7 +28,8 @@ This package assumes that you are building an Angular2 app with TypeScript and A
 - Table
 - Tooltips
 - Menu
-- Layout (standard)
+- Layout (standard, scroll, waterfall, tabs)
+- Tabs
 
 
 
