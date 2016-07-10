@@ -4,12 +4,13 @@ import {
   OnChanges,
   SimpleChange
 } from '@angular/core';
+import { BooleanProperty } from './../common/boolean-property';
 
 @Component({
   selector: 'mdl-progress',
   host: {
     '[class.mdl-progress]': 'true',
-    '[class.mdl-progress__indeterminate]': 'indeterminate==="" || indeterminate===true'
+    '[class.mdl-progress__indeterminate]': 'indeterminate===true'
   },
   template: `
     <div class="progressbar bar bar1" [style.width]="progress + '%'"></div>
@@ -23,7 +24,7 @@ export class MdlProgressComponent implements OnChanges {
   @Input() public buffer = 100;
   @Input() public aux = 0;
 
-  @Input() public indeterminate: boolean | string;
+  @Input() @BooleanProperty() public indeterminate: boolean;
 
   public ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
     if (changes['buffer']) {

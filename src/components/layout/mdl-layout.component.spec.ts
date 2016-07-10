@@ -11,8 +11,7 @@ import { TestComponentBuilder } from '@angular/compiler/testing';
 import {
   MdlLayoutComponent,
   MDL_LAYOUT_DIRECTIVES,
-  MdlLayoutContentComponent,
-  MdlLayoutTabPanelComponent
+  MdlLayoutContentComponent
 } from './index';
 import { MdlAnchorRippleDirective } from './../common/mdl-ripple.directive';
 

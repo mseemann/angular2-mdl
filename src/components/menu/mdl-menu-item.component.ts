@@ -6,6 +6,7 @@ import {
   Inject
 } from '@angular/core';
 import { MdlMenuComponent } from './mdl-menu.component';
+import { BooleanProperty } from './../common/boolean-property';
 
 
 @Component({
@@ -19,7 +20,7 @@ import { MdlMenuComponent } from './mdl-menu.component';
 })
 export class MdlMenuItemComponent {
 
-  @Input('disabled') public disabled: boolean|string;
+  @Input('disabled') @BooleanProperty() public disabled: boolean;
 
   public element: HTMLElement;
   // forwardRef is needed because of he circular dependency menu queries menuitems; menuitem needs the parent
@@ -30,7 +31,7 @@ export class MdlMenuItemComponent {
   }
 
   protected onClick($event) {
-    if (this.disabled == false || this.disabled == '') {
+    if (this.disabled) {
       $event.stopPropagation();
       return;
     }

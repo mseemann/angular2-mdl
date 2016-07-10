@@ -8,6 +8,7 @@ import {
   EventEmitter
 } from '@angular/core';
 import { BooleanProperty } from './../common/boolean-property';
+import { NumberProperty } from './../common/number.property';
 import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 import { MdlTabPanelComponent } from './mdl-tab-panel.component';
 
@@ -32,7 +33,7 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
 })
 export class MdlTabsComponent implements AfterContentInit {
 
-  @Input('mdl-tab-active-index') public selectedIndex: number|string = null; // TODO @NumberPorperty annotation?
+  @Input('mdl-tab-active-index') @NumberProperty() public selectedIndex: number = 0;
   @Input('mdl-ripple') @BooleanProperty() protected isRipple = false;
   @Output('mdl-tab-active-changed') public selectedTabEmitter = new EventEmitter();
 
@@ -40,10 +41,6 @@ export class MdlTabsComponent implements AfterContentInit {
 
 
   public ngAfterContentInit() {
-    if ( !this.selectedIndex ) {
-      this.selectedIndex = 0;
-    }
-
     if (this.tabs.toArray().length > 0 && this.selectedIndex <= this.tabs.toArray().length) {
       this.tabs.toArray()[this.selectedIndex].isActive = true;
     }

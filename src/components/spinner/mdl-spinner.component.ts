@@ -2,14 +2,15 @@ import {
   Component,
   Input
 } from '@angular/core';
+import { BooleanProperty } from './../common/boolean-property';
 
 @Component({
   selector: 'mdl-spinner',
   host: {
     '[class.mdl-spinner]': 'true',
     '[class.is-upgraded]': 'true',
-    '[class.is-active]': 'active==="" || active===true',
-    '[class.mdl-spinner--single-color]': 'singleColor==="" || singleColor===true',
+    '[class.is-active]': 'active',
+    '[class.mdl-spinner--single-color]': 'singleColor',
   },
   /* tslint:disable must be one line - otherwise the spinner is broken in the ui*/
   template: `
@@ -25,8 +26,8 @@ import {
 export class MdlSpinnerComponent {
   protected layers = [1, 2, 3, 4];
 
-  @Input() public active: boolean | string;
-  @Input('single-color') public singleColor: boolean | string;
+  @Input() @BooleanProperty() public active: boolean;
+  @Input('single-color') @BooleanProperty() public singleColor: boolean;
 
 }
 
