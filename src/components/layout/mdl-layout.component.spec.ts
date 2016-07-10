@@ -11,9 +11,10 @@ import { TestComponentBuilder } from '@angular/compiler/testing';
 import {
   MdlLayoutComponent,
   MDL_LAYOUT_DIRECTIVES,
-  MdlLayoutHeaderComponent
+  MdlLayoutContentComponent,
+  MdlLayoutTabPanelComponent
 } from './index';
-import {MdlLayoutContentComponent} from "./mdl-layout-content.component";
+import { MdlAnchorRippleDirective } from './../common/mdl-ripple.directive';
 
 describe('Component: MdlLayout', () => {
 
@@ -209,12 +210,87 @@ describe('Component: MdlLayout', () => {
         done();
       });
   });
+
+  it('should activate the first tab if no index is set', ( done ) => {
+
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+          <mdl-layout>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-content>
+               <mdl-layout-tab-panel mdl-layout-tab-panel-title="t1"></mdl-layout-tab-panel>
+               <mdl-layout-tab-panel mdl-layout-tab-panel-title="t2"></mdl-layout-tab-panel>
+            </mdl-layout-content>
+          </mdl-layout>
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let mdlLayoutComponent: MdlLayoutComponent =
+          fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+        expect(mdlLayoutComponent.selectedIndex).toBe(0);
+
+        done();
+      });
+
+  });
+
+
+  it('should be possible to listen to chanegs to the active tab', ( done ) => {
+
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+          <mdl-layout [mdl-layout-tab-active-index]="1" (mdl-layout-tab-active-changed)="tabChanged($event)">
+           <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-content>
+               <mdl-layout-tab-panel mdl-layout-tab-panel-title="t1"></mdl-layout-tab-panel>
+               <mdl-layout-tab-panel mdl-layout-tab-panel-title="t2"></mdl-layout-tab-panel>
+            </mdl-layout-content>
+         </mdl-layout>
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let testComponent = fixture.componentInstance;
+
+        let mdlTabsComponent: MdlLayoutComponent =
+          fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+        expect(mdlTabsComponent.selectedIndex).toBe(1);
+        let aDebugElements = fixture.debugElement.queryAll(By.css('a'));
+
+        // select the first tab
+        aDebugElements[0].nativeElement.click();
+
+        fixture.detectChanges();
+
+        expect(mdlTabsComponent.selectedIndex).toBe(0);
+
+
+        expect(testComponent.selectedIndexOutput).toBe(0);
+
+        // click again should change nothing
+        aDebugElements[0].nativeElement.click();
+        expect(mdlTabsComponent.selectedIndex).toBe(0);
+
+        done();
+      });
+  });
 });
 
 
 @Component({
   selector: 'test-layout',
   template: 'replaced by the test',
-  directives: [MDL_LAYOUT_DIRECTIVES, MdlLayoutHeaderComponent]
+  directives: [MDL_LAYOUT_DIRECTIVES, MdlAnchorRippleDirective]
 })
-class MdlTestLayoutComponent {}
+class MdlTestLayoutComponent {
+  public selectedIndexOutput: number;
+
+  public tabChanged($event) {
+    this.selectedIndexOutput = $event.index;
+  }
+}

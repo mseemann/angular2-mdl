@@ -2,7 +2,8 @@ next:
 * Attribute mdl-layout-fixed-drawer for mdl-layout
 * Attribute mdl-layout-fixed-header for mdl-layout
 * Mode scroll, waterfall for mdl-layout
-* Tabs
+* Tabs (standalone)
+* (fix) Tabs for layouts
 
 <a name="1.0.0-alpha.1"></a>
 # 1.0.0-alpha.1 (2016-07-06)

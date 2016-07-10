@@ -70,7 +70,8 @@ import {
   MdlLayoutHeaderTransparentDirective,
   MdlLayoutHeaderRowComponent,
   MdlLayoutTitleComponent,
-  MdlLayoutSpacerComponent
+  MdlLayoutSpacerComponent,
+  MdlLayoutTabPanelComponent
 } from './layout/index';
 import {
   MdlTabsComponent,
@@ -157,5 +158,6 @@ export const MDL_DIRECTIVES = [
   MdlLayoutTitleComponent,
   MdlLayoutSpacerComponent,
   MdlTabsComponent,
-  MdlTabPanelComponent
+  MdlTabPanelComponent,
+  MdlLayoutTabPanelComponent
 ];

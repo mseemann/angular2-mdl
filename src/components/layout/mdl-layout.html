@@ -3,7 +3,8 @@
         [ngClass]="{
         'is-small-screen': isSmallScreen,
         'mdl-layout--fixed-drawer': isFixedDrawer,
-        'mdl-layout--fixed-header': isFixedHeader
+        'mdl-layout--fixed-header': isFixedHeader,
+        'mdl-layout--fixed-tabs': 'tabs.toArray().length > 0'
         }">
       <ng-content select="mdl-layout-header"></ng-content>
       <ng-content select="mdl-layout-drawer"></ng-content>

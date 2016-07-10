@@ -12,6 +12,7 @@ import {
   MDL_LAYOUT_DIRECTIVES,
   MdlLayoutHeaderComponent,
   MdlLayoutComponent} from './index';
+import { MdlAnchorRippleDirective } from './../common/mdl-ripple.directive';
 
 describe('Component: MdlLayoutHeader', () => {
 
@@ -25,7 +26,9 @@ describe('Component: MdlLayoutHeader', () => {
 
     return builder
       .overrideTemplate(MdlTestLayoutComponent, `
-          <mdl-layout-header>x</mdl-layout-header>
+           <mdl-layout>
+            <mdl-layout-header>x</mdl-layout-header>
+          </mdl-layout>
         `)
       .createAsync(MdlTestLayoutComponent).then( (fixture) => {
 
@@ -194,6 +197,6 @@ describe('Component: MdlLayoutHeader', () => {
 @Component({
   selector: 'test-layout',
   template: 'replaced by the test',
-  directives: [MDL_LAYOUT_DIRECTIVES]
+  directives: [MDL_LAYOUT_DIRECTIVES, MdlAnchorRippleDirective]
 })
 class MdlTestLayoutComponent {}

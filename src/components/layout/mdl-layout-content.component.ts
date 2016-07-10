@@ -1,8 +1,11 @@
 import {
   Component,
   ViewEncapsulation,
-  ElementRef
+  ElementRef,
+  ContentChildren,
+  QueryList
 } from '@angular/core';
+import { MdlLayoutTabPanelComponent } from './mdl-layout-tab-panel.component';
 
 @Component({
   selector: 'mdl-layout-content',
@@ -15,10 +18,13 @@ import {
 })
 export class MdlLayoutContentComponent {
 
+  @ContentChildren(MdlLayoutTabPanelComponent) public tabs: QueryList<MdlLayoutTabPanelComponent>;
+
   protected el: HTMLElement;
 
   constructor(private elRef: ElementRef) {
     this.el = elRef.nativeElement;
   }
+
 
 }

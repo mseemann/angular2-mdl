@@ -290,7 +290,37 @@
   ]]>
 </pre>
 
+<h6>Fixed tabs</h6>
 
+<div class="demo-container" mdl-shadow="2">
+   <mdl-layout mdl-layout-fixed-header mdl-layout-tab-active-index="0" (mdl-layout-tab-active-changed)="tabChanged($event)">
+      <mdl-layout-header>
+         <mdl-layout-header-row>
+            <mdl-layout-title>Title</mdl-layout-title>
+         </mdl-layout-header-row>
+      </mdl-layout-header>
+      <mdl-layout-drawer>
+         <mdl-layout-title>Title</mdl-layout-title>
+      </mdl-layout-drawer>
+      <mdl-layout-content>
+         <mdl-layout-tab-panel mdl-layout-tab-panel-title="Tab 1">
+            1
+         </mdl-layout-tab-panel>
+         <mdl-layout-tab-panel mdl-layout-tab-panel-title="Tab 2">
+            2
+         </mdl-layout-tab-panel>
+         <mdl-layout-tab-panel mdl-layout-tab-panel-title="Tab 3">
+            3
+         </mdl-layout-tab-panel>
+      </mdl-layout-content>
+   </mdl-layout>
+</div>
+
+<pre prism>
+  <![CDATA[
+
+  ]]>
+</pre>
 
 <h5>Grid</h5>
 

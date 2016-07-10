@@ -6,6 +6,7 @@ import { MdlLayoutHeaderTransparentDirective } from './mdl-layout-header-transpa
 import { MdlLayoutHeaderRowComponent } from './mdl-layout-header-row.component';
 import { MdlLayoutTitleComponent } from './mdl-layout-title.component';
 import { MdlLayoutSpacerComponent } from './mdl-layout-spacer.component';
+import { MdlLayoutTabPanelComponent } from './mdl-layout-tab-panel.component';
 
 export const MDL_LAYOUT_DIRECTIVES = [
   MdlLayoutComponent,
@@ -15,7 +16,8 @@ export const MDL_LAYOUT_DIRECTIVES = [
   MdlLayoutHeaderTransparentDirective,
   MdlLayoutHeaderRowComponent,
   MdlLayoutTitleComponent,
-  MdlLayoutSpacerComponent
+  MdlLayoutSpacerComponent,
+  MdlLayoutTabPanelComponent
 ];
 
 export * from './mdl-layout.component';
@@ -26,3 +28,4 @@ export * from './mdl-layout-header-transparent.directive';
 export * from './mdl-layout-header-row.component';
 export * from './mdl-layout-title.component';
 export * from './mdl-layout-spacer.component';
+export * from './mdl-layout-tab-panel.component';

@@ -7,6 +7,8 @@ import {
   Renderer,
   ViewEncapsulation,
   ElementRef,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from './../common/mdl-error';
@@ -47,6 +49,9 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   @Input('mdl-layout-fixed-drawer') @BooleanProperty() public isFixedDrawer = false;
   @Input('mdl-layout-fixed-header') @BooleanProperty() public isFixedHeader = false;
   @Input('mdl-layout-header-seamed') @BooleanProperty() public isSeamed = false;
+  @Input('mdl-layout-tab-active-index') public selectedIndex: number|string = null; // TODO @NumberPorperty annotation?
+  @Input('mdl-ripple') @BooleanProperty() protected isRipple = false;
+  @Output('mdl-layout-tab-active-changed') public selectedTabEmitter = new EventEmitter();
 
   private isDrawerVisible = false;
   private isSmallScreen = false;
@@ -59,6 +64,16 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
 
   public ngAfterContentInit() {
     this.validateMode();
+
+    if (this.header && this.content) {
+      this.header.tabs = this.content.tabs;
+      if ( !this.selectedIndex ) {
+        this.selectedIndex = 0;
+      }
+      if (this.header.tabs.toArray().length > 0 && this.selectedIndex <= this.header.tabs.toArray().length) {
+        this.header.tabs.toArray()[this.selectedIndex].isActive = true;
+      }
+    }
   }
 
   private validateMode() {
@@ -157,6 +172,20 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
     if (this.windowMediaQueryListener) {
       this.windowMediaQueryListener();
       this.windowMediaQueryListener = null;
+    }
+  }
+
+  // triggered from mdl-layout-header.component
+  public tabSelected(tab) {
+    let index = this.header.tabs.toArray().indexOf(tab);
+    if (index != this.selectedIndex) {
+      // deselect all tabs
+      this.header.tabs.forEach( ( aTab ) => aTab.isActive = false );
+      // select the clicked tab
+      tab.isActive = true;
+
+      this.selectedIndex = index;
+      this.selectedTabEmitter.emit({index: this.selectedIndex});
     }
   }
 }
