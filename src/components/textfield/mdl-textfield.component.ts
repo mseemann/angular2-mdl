@@ -16,6 +16,7 @@ import {
 
 import { noop } from './../common/mdl-internal-commons';
 import { BooleanProperty } from './../common/boolean-property';
+import { NumberProperty } from './../common/number.property';
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlTextFieldComponent),
@@ -28,7 +29,7 @@ const IS_INVALID = 'is-invalid';
 const IS_DIRTY = 'is-dirty';
 
 @Component({
-  selector: 'mdl-text-field',
+  selector: 'mdl-textfield',
   host: {
     '[class.mdl-textfield]': 'true',
     '[class.is-upgraded]': 'true',
@@ -36,7 +37,20 @@ const IS_DIRTY = 'is-dirty';
     '[class.has-placeholder]': 'placeholder'
   },
   template: `
-   <input 
+   <textarea
+      *ngIf="rows"
+      #input
+      [rows]="rows"
+      class="mdl-textfield__input" 
+      type="text"
+      [placeholder]="placeholder ? placeholder : ''"
+      (focus)="onFocus()" 
+      (blur)="onBlur()"
+      (keydown)="keydownTextarea($event)"
+      [(ngModel)]="value"
+      [disabled]="disabled"></textarea>
+   <input
+      *ngIf="!rows"
       #input
       class="mdl-textfield__input" 
       type="{{type}}" 
@@ -70,6 +84,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() @BooleanProperty() public disabled = false;
   @Input('floating-label') @BooleanProperty() public isFloatingLabel = false;
   @Input() public placeholder: string;
+  @Input() @NumberProperty() public rows: number = null;
+  @Input() @NumberProperty() public maxrows: number = -1;
 
   constructor(private renderer: Renderer, private elmRef: ElementRef) {
     this.el = elmRef.nativeElement;
@@ -114,14 +130,23 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 
   private checkValidity() {
-    if (this.inputEl.nativeElement.validity) {
+    if (this.inputEl && this.inputEl.nativeElement.validity) {
       this.renderer.setElementClass(this.el, IS_INVALID, !this.inputEl.nativeElement.validity.valid);
     }
   }
 
   private checkDirty() {
-    let dirty = this.inputEl.nativeElement.value && this.inputEl.nativeElement.value.length > 0;
+    let dirty = this.inputEl && this.inputEl.nativeElement.value && this.inputEl.nativeElement.value.length > 0;
     this.renderer.setElementClass(this.el, IS_DIRTY, dirty);
+  }
+
+  public keydownTextarea($event: KeyboardEvent) {
+    var currentRowCount = this.inputEl.nativeElement.value.split('\n').length;
+    if ($event.keyCode === 13) {
+      if (currentRowCount >= this.maxrows && this.maxrows !== -1) {
+        $event.preventDefault();
+      }
+    }
   }
 }
 

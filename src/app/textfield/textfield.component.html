@@ -1,43 +1,43 @@
 <h4>Text Fields</h4>
 
 
-<mdl-text-field type="text" label="Text..." [(ngModel)]="text1" placeholder="type a text"></mdl-text-field>
-<mdl-text-field
+<mdl-textfield type="text" label="Text..." [(ngModel)]="text1" placeholder="type a text"></mdl-textfield>
+<mdl-textfield
         type="text"
         label="Number..."
         pattern="-?[0-9]*(\.[0-9]+)?"
         error-msg="Input is not a number!"
-        [(ngModel)]="text2"></mdl-text-field>
+        [(ngModel)]="text2"></mdl-textfield>
 
 <br/>
 {{text1}}
 {{text2}}
 
 <br/>
-<mdl-text-field type="text" label="Text...(disabled)" [(ngModel)]="text3" disabled></mdl-text-field>
+<mdl-textfield type="text" label="Text...(disabled)" [(ngModel)]="text3" disabled></mdl-textfield>
 
 <pre prism>
   <![CDATA[
-<mdl-text-field type="text" label="Text..." [(ngModel)]="text1"></mdl-text-field>
-<mdl-text-field
+<mdl-textfield type="text" label="Text..." [(ngModel)]="text1"></mdl-textfield>
+<mdl-textfield
         type="text"
         label="Number..."
         pattern="-?[0-9]*(\.[0-9]+)?"
         error-msg="Input is not a number!"
-        [(ngModel)]="text2"></mdl-text-field>
+        [(ngModel)]="text2"></mdl-textfield>
   ]]>
 </pre>
 
 <h5>Text/Numeric with floating label</h5>
 
-<mdl-text-field type="text" label="Text..." [(ngModel)]="text3" floating-label></mdl-text-field>
-<mdl-text-field
+<mdl-textfield type="text" label="Text..." [(ngModel)]="text3" floating-label></mdl-textfield>
+<mdl-textfield
         type="text"
         label="Number..."
         pattern="-?[0-9]*(\.[0-9]+)?"
         error-msg="Input is not a number!"
         [(ngModel)]="text4"
-        floating-label ></mdl-text-field>
+        floating-label ></mdl-textfield>
 
 <br/>
 {{text3}}
@@ -45,13 +45,27 @@
 
 <pre prism>
   <![CDATA[
-<mdl-text-field type="text" label="Text..." [(ngModel)]="text3" floating-label></mdl-text-field>
-<mdl-text-field
+<mdl-textfield type="text" label="Text..." [(ngModel)]="text3" floating-label></mdl-textfield>
+<mdl-textfield
         type="text"
         label="Number..."
         pattern="-?[0-9]*(\.[0-9]+)?"
         error-msg="Input is not a number!"
         [(ngModel)]="text4"
-        floating-label ></mdl-text-field>
+        floating-label ></mdl-textfield>
+  ]]>
+</pre>
+
+<h5>Multiline Textfield</h5>
+aka Textarea. Add the attribute row to turn the input field to a textarea. Specify maxrows to restrict the
+possible lines.<br/>
+
+<mdl-textfield label="Text..." [(ngModel)]="text5" placeholder="type a text" rows="3" maxrows="3"></mdl-textfield>
+<br/>
+{{text5}}
+
+<pre prism>
+  <![CDATA[
+<mdl-textfield label="Text..." [(ngModel)]="text5" placeholder="type a text" rows="3" maxrows="3"></mdl-textfield>
   ]]>
 </pre>

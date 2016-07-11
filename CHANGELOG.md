@@ -1,5 +1,9 @@
 next:
 * textfield (+floating label)
+* multiline textfield
+
+### BREAKING CHANGES
+* mdl-text-field renamed to mdl-textfield
 
 <a name="1.0.0-alpha.2"></a>
 # 1.0.0-alpha.1 (2016-07-10)

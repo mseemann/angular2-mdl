@@ -8,7 +8,7 @@ import {
 import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
-import { MdlTextFieldComponent } from './mdl-text-field.component';
+import { MdlTextFieldComponent } from './mdl-textfield.component';
 
 describe('Component: MdlTextField', () => {
 
@@ -24,7 +24,7 @@ describe('Component: MdlTextField', () => {
 
     return builder
       .overrideTemplate(MdlTestComponent, `
-          <mdl-text-field type="text" label="Text..." ></mdl-text-field>
+          <mdl-textfield type="text" label="Text..." ></mdl-textfield>
         `)
       .createAsync(MdlTestComponent).then( (fixture) => {
 
@@ -40,7 +40,7 @@ describe('Component: MdlTextField', () => {
   it('should support ngModel', ( done ) => {
     return builder
       .overrideTemplate(MdlTestComponent, `
-          <mdl-text-field type="text" label="Text..." [(ngModel)]="text1"></mdl-text-field>
+          <mdl-textfield type="text" label="Text..." [(ngModel)]="text1"></mdl-textfield>
         `)
       .createAsync(MdlTestComponent).then( (fixture) => {
 
@@ -66,7 +66,7 @@ describe('Component: MdlTextField', () => {
   it('should mark the component as focused and blured', () => {
     return builder
       .overrideTemplate(MdlTestComponent, `
-          <mdl-text-field type="text" label="Text..." [(ngModel)]="text1"></mdl-text-field>
+          <mdl-textfield type="text" label="Text..." [(ngModel)]="text1"></mdl-textfield>
         `)
       .createAsync(MdlTestComponent).then( (fixture) => {
         fixture.detectChanges();
@@ -95,7 +95,7 @@ describe('Component: MdlTextField', () => {
   it('should mark the component as invalid ngModel', ( done ) => {
     return builder
       .overrideTemplate(MdlTestComponent, `
-          <mdl-text-field type="text" label="Text..." [(ngModel)]="text1" pattern="a"></mdl-text-field>
+          <mdl-textfield type="text" label="Text..." [(ngModel)]="text1" pattern="a"></mdl-textfield>
         `)
       .createAsync(MdlTestComponent).then( (fixture) => {
 
@@ -114,6 +114,77 @@ describe('Component: MdlTextField', () => {
       });
   });
 
+  it('should create a textare if row is specified', ( done ) => {
+
+    return builder
+      .overrideTemplate(MdlTestComponent, `
+          <mdl-textfield type="text" label="Text..." rows="3"></mdl-textfield>
+        `)
+      .createAsync(MdlTestComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let el = fixture.debugElement.query(By.css('textarea'));
+
+        expect(el).toBeDefined();
+
+        done();
+      });
+  });
+
+  it('should restrict the line count if maxrows is present', ( done ) => {
+
+    return builder
+      .overrideTemplate(MdlTestComponent, `
+          <mdl-textfield type="text" label="Text..." rows="3" [maxrows]="1"></mdl-textfield>
+        `)
+      .createAsync(MdlTestComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let el = fixture.debugElement.query(By.css('textarea')).nativeElement;
+
+        el.value = 'a';
+
+        var e = <any>new Event('keydown');
+        e.keyCode = 13;
+
+        spyOn(e, 'preventDefault');
+
+        el.dispatchEvent(e);
+
+        expect(e.preventDefault).toHaveBeenCalled();
+
+
+        done();
+      });
+  });
+
+  it('should not restrict the line count if maxrows is -1', ( done ) => {
+
+    return builder
+      .overrideTemplate(MdlTestComponent, `
+          <mdl-textfield type="text" label="Text..." rows="3" [maxrows]="-1"></mdl-textfield>
+        `)
+      .createAsync(MdlTestComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let el = fixture.debugElement.query(By.css('textarea')).nativeElement;
+
+        el.value = 'a';
+
+        var e = <any>new Event('keydown');
+        e.keyCode = 13;
+        el.dispatchEvent(e);
+
+        spyOn(e, 'preventDefault');
+
+        expect(e.preventDefault).not.toHaveBeenCalled();
+
+        done();
+      });
+  });
 });
 
 

@@ -79,7 +79,7 @@ import {
 } from './tabs/index';
 import {
   MdlTextFieldComponent
-} from './textfield/mdl-text-field.component';
+} from './textfield/mdl-textfield.component';
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
@@ -101,7 +101,7 @@ export * from './tooltip/index';
 export * from './menu/index';
 export * from './layout/index';
 export * from './tabs/index';
-export * from './textfield/mdl-text-field.component';
+export * from './textfield/mdl-textfield.component';
 
 export const MDL_SERVICES = [
   MdlSnackbarService
