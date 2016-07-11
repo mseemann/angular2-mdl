@@ -1,12 +1,57 @@
 <h4>Text Fields</h4>
 
 
-WIP...
+<mdl-text-field type="text" label="Text..." [(ngModel)]="text1" placeholder="type a text"></mdl-text-field>
+<mdl-text-field
+        type="text"
+        label="Number..."
+        pattern="-?[0-9]*(\.[0-9]+)?"
+        error-msg="Input is not a number!"
+        [(ngModel)]="text2"></mdl-text-field>
 
+<br/>
+{{text1}}
+{{text2}}
 
+<br/>
+<mdl-text-field type="text" label="Text...(disabled)" [(ngModel)]="text3" disabled></mdl-text-field>
 
 <pre prism>
   <![CDATA[
+<mdl-text-field type="text" label="Text..." [(ngModel)]="text1"></mdl-text-field>
+<mdl-text-field
+        type="text"
+        label="Number..."
+        pattern="-?[0-9]*(\.[0-9]+)?"
+        error-msg="Input is not a number!"
+        [(ngModel)]="text2"></mdl-text-field>
+  ]]>
+</pre>
 
+<h5>Text/Numeric with floating label</h5>
+
+<mdl-text-field type="text" label="Text..." [(ngModel)]="text3" floating-label></mdl-text-field>
+<mdl-text-field
+        type="text"
+        label="Number..."
+        pattern="-?[0-9]*(\.[0-9]+)?"
+        error-msg="Input is not a number!"
+        [(ngModel)]="text4"
+        floating-label ></mdl-text-field>
+
+<br/>
+{{text3}}
+{{text4}}
+
+<pre prism>
+  <![CDATA[
+<mdl-text-field type="text" label="Text..." [(ngModel)]="text3" floating-label></mdl-text-field>
+<mdl-text-field
+        type="text"
+        label="Number..."
+        pattern="-?[0-9]*(\.[0-9]+)?"
+        error-msg="Input is not a number!"
+        [(ngModel)]="text4"
+        floating-label ></mdl-text-field>
   ]]>
 </pre>

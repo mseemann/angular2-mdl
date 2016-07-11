@@ -77,6 +77,9 @@ import {
   MdlTabsComponent,
   MdlTabPanelComponent
 } from './tabs/index';
+import {
+  MdlTextFieldComponent
+} from './textfield/mdl-text-field.component';
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
@@ -98,6 +101,7 @@ export * from './tooltip/index';
 export * from './menu/index';
 export * from './layout/index';
 export * from './tabs/index';
+export * from './textfield/mdl-text-field.component';
 
 export const MDL_SERVICES = [
   MdlSnackbarService
@@ -159,5 +163,6 @@ export const MDL_DIRECTIVES = [
   MdlLayoutSpacerComponent,
   MdlTabsComponent,
   MdlTabPanelComponent,
-  MdlLayoutTabPanelComponent
+  MdlLayoutTabPanelComponent,
+  MdlTextFieldComponent
 ];

@@ -1,4 +1,5 @@
 next:
+* textfield (+floating label)
 
 <a name="1.0.0-alpha.2"></a>
 # 1.0.0-alpha.1 (2016-07-10)
