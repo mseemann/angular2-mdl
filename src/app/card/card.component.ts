@@ -1,10 +1,12 @@
 import {
   Component,
-  ViewEncapsulation
+  ViewEncapsulation,
+  AfterContentInit
 } from '@angular/core';
 import { MDL_DIRECTIVES } from '../../components';
 import { PrismDirective } from './../prism/prism.component';
 
+/* tslint:disable */
 @Component({
   moduleId: module.id,
   selector: 'card-demo',
@@ -93,7 +95,18 @@ import { PrismDirective } from './../prism/prism.component';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class CardDemo {
+/* tslint:enable */
+export class CardDemo implements AfterContentInit {
+
+  public ngAfterContentInit() {
+    (function(d, sc, u) {
+      var s = d.createElement(sc), p = d.getElementsByTagName(sc)[0];
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = u + '?v=' + (+new Date());
+      p.parentNode.insertBefore(s,p);
+    })(document, 'script', '//aff.bstatic.com/static/affiliate_base/js/flexiproduct.js');
+  }
 
   public booknow() {
     let url = 'http://www.booking.com/index.html?aid=818140';
