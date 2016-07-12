@@ -9,6 +9,7 @@ import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlTextFieldComponent } from './mdl-textfield.component';
+import { MdlButtonComponent } from './../button/mdl-button.component';
 
 describe('Component: MdlTextField', () => {
 
@@ -181,6 +182,44 @@ describe('Component: MdlTextField', () => {
         spyOn(e, 'preventDefault');
 
         expect(e.preventDefault).not.toHaveBeenCalled();
+
+        done();
+      });
+  });
+
+  it('should create an expandable textfield if icon is present', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestComponent, `
+          <mdl-textfield type="text" icon="search"></mdl-textfield>
+        `)
+      .createAsync(MdlTestComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+
+        expect(el.classList.contains('mdl-textfield--expandable')).toBe(true);
+
+        done();
+      });
+  });
+
+  it('should activate the expandable if the icon button is clicked', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestComponent, `
+          <mdl-textfield type="text" icon="search"></mdl-textfield>
+        `)
+      .createAsync(MdlTestComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let btnEl = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
+        btnEl.click();
+        fixture.detectChanges();
+        
+
+        let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+        expect(el.classList.contains('is-focused')).toBe(true);
 
         done();
       });

@@ -1,6 +1,7 @@
 next:
 * textfield (+floating label)
 * multiline textfield
+* expandable textfield
 
 ### BREAKING CHANGES
 * mdl-text-field renamed to mdl-textfield

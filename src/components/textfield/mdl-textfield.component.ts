@@ -17,6 +17,8 @@ import {
 import { noop } from './../common/mdl-internal-commons';
 import { BooleanProperty } from './../common/boolean-property';
 import { NumberProperty } from './../common/number.property';
+import { MdlButtonComponent } from './../button/mdl-button.component';
+import { MdlIconComponent } from './../icon/mdl-icon.component';
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlTextFieldComponent),
@@ -33,37 +35,60 @@ const IS_DIRTY = 'is-dirty';
   host: {
     '[class.mdl-textfield]': 'true',
     '[class.is-upgraded]': 'true',
+    '[class.mdl-textfield--expandable]': 'icon',
     '[class.mdl-textfield--floating-label]': 'isFloatingLabel',
     '[class.has-placeholder]': 'placeholder'
   },
   template: `
-   <textarea
-      *ngIf="rows"
-      #input
-      [rows]="rows"
-      class="mdl-textfield__input" 
-      type="text"
-      [placeholder]="placeholder ? placeholder : ''"
-      (focus)="onFocus()" 
-      (blur)="onBlur()"
-      (keydown)="keydownTextarea($event)"
-      [(ngModel)]="value"
-      [disabled]="disabled"></textarea>
-   <input
-      *ngIf="!rows"
-      #input
-      class="mdl-textfield__input" 
-      type="{{type}}" 
-      [pattern]="pattern ? pattern : '.*'"
-      [placeholder]="placeholder ? placeholder : ''"
-      (focus)="onFocus()" 
-      (blur)="onBlur()"
-      [(ngModel)]="value"
-      [disabled]="disabled">
-   <label class="mdl-textfield__label">{{label}}</label>
-   <span class="mdl-textfield__error">{{errorMessage}}</span>
+   <div *ngIf="!icon">
+     <textarea
+        *ngIf="rows"
+        #input
+        [rows]="rows"
+        class="mdl-textfield__input" 
+        type="text"
+        [placeholder]="placeholder ? placeholder : ''"
+        (focus)="onFocus()" 
+        (blur)="onBlur()"
+        (keydown)="keydownTextarea($event)"
+        [(ngModel)]="value"
+        [disabled]="disabled"></textarea>
+     <input
+        *ngIf="!rows"
+        #input
+        class="mdl-textfield__input" 
+        type="{{type}}" 
+        [pattern]="pattern ? pattern : '.*'"
+        [placeholder]="placeholder ? placeholder : ''"
+        (focus)="onFocus()" 
+        (blur)="onBlur()"
+        [(ngModel)]="value"
+        [disabled]="disabled">
+     <label class="mdl-textfield__label">{{label}}</label>
+     <span class="mdl-textfield__error">{{errorMessage}}</span>
+   </div>
+   <div *ngIf="icon">
+      <mdl-button mdl-button-type="icon" (click)="setFocus()">
+         <mdl-icon>{{icon}}</mdl-icon>
+      </mdl-button>
+      <div class="mdl-textfield__expandable-holder">
+       <input
+          #input
+          class="mdl-textfield__input" 
+          type="{{type}}" 
+          [pattern]="pattern ? pattern : '.*'"
+          [placeholder]="placeholder ? placeholder : ''"
+          (focus)="onFocus()" 
+          (blur)="onBlur()"
+          [(ngModel)]="value"
+          [disabled]="disabled">
+     <label class="mdl-textfield__label">{{label}}</label>
+     <span class="mdl-textfield__error">{{errorMessage}}</span>
+      </div>
+   </div>
    `,
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR]
+  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  directives: [MdlIconComponent, MdlButtonComponent]
 })
 export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, DoCheck {
   private value_: any;
@@ -86,6 +111,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() public placeholder: string;
   @Input() @NumberProperty() public rows: number = null;
   @Input() @NumberProperty() public maxrows: number = -1;
+  @Input() public icon: string;
 
   constructor(private renderer: Renderer, private elmRef: ElementRef) {
     this.el = elmRef.nativeElement;
@@ -114,6 +140,10 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   public ngDoCheck() {
     this.checkValidity();
     this.checkDirty();
+  }
+
+  protected setFocus(){
+    this.inputEl.nativeElement.focus();
   }
 
   protected onFocus() {

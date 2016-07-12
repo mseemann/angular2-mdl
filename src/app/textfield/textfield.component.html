@@ -60,12 +60,26 @@
 aka Textarea. Add the attribute row to turn the input field to a textarea. Specify maxrows to restrict the
 possible lines.<br/>
 
-<mdl-textfield label="Text..." [(ngModel)]="text5" placeholder="type a text" rows="3" maxrows="3"></mdl-textfield>
+<mdl-textfield label="Text..." [(ngModel)]="text5" rows="3" maxrows="3" floating-label></mdl-textfield>
 <br/>
 {{text5}}
 
 <pre prism>
   <![CDATA[
-<mdl-textfield label="Text..." [(ngModel)]="text5" placeholder="type a text" rows="3" maxrows="3"></mdl-textfield>
+<mdl-textfield label="Text..." [(ngModel)]="text5" rows="3" maxrows="3" floating-label></mdl-textfield>
+  ]]>
+</pre>
+
+<h5>Expandable</h5>
+
+Just specify an icon to turn the text input field into an expandable field.
+<br/>
+
+<mdl-textfield type="text" [(ngModel)]="text6" icon="search"></mdl-textfield>
+<br/>
+{{text6}}
+<pre prism>
+  <![CDATA[
+<mdl-textfield type="text" [(ngModel)]="text6" icon="search"></mdl-textfield>
   ]]>
 </pre>
