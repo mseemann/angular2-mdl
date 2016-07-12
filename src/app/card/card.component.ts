@@ -100,7 +100,7 @@ export class CardDemo implements AfterContentInit {
 
   public ngAfterContentInit() {
     (function(d, sc, u) {
-      var s = d.createElement(sc), p = d.getElementsByTagName(sc)[0];
+      var s: any = d.createElement(sc), p: any = d.getElementsByTagName(sc)[0];
       s.type = 'text/javascript';
       s.async = true;
       s.src = u + '?v=' + (+new Date());
