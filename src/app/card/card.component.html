@@ -100,14 +100,13 @@
 <mdl-card class="demo-card-event" mdl-shadow="2">
   <mdl-card-title mdl-card-expand>
     <h4>
-      Featured event:<br>
-      May 24, 2016<br>
-      7-11pm
+       Unwind! Relax! Breathe!<br>
+       You deserve a holiday
     </h4>
   </mdl-card-title>
   <mdl-card-actions mdl-card-border>
-    <mdl-button mdl-colored mdl-ripple>
-      Add to Calendar
+    <mdl-button mdl-colored mdl-ripple (click)="booknow()">
+      Book now
     </mdl-button>
     <div class="mdl-layout-spacer"></div>
     <mdl-icon>event</mdl-icon>
@@ -118,19 +117,20 @@
   <![CDATA[
   <mdl-card class="demo-card-event" mdl-shadow="2">
     <mdl-card-title mdl-card-expand>
-     <h4>
-        Featured event:<br>
-        May 24, 2016<br>
-        7-11pm
-      </h4>
+ <h4>
+       Unwind! Relax! Breathe!<br>
+       You deserve a holiday
+    </h4>
     </mdl-card-title>
     <mdl-card-actions mdl-card-border>
-      <mdl-button mdl-colored mdl-ripple>
-        Add to Calendar
-      </mdl-button>
+      <mdl-button mdl-colored mdl-ripple (click)="booknow()">
+      Book now
+    </mdl-button>
       <div class="mdl-layout-spacer"></div>
       <mdl-icon>event</mdl-icon>
     </mdl-card-actions>
   </mdl-card>
   ]]>
 </pre>
+
+

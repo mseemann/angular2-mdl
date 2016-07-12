@@ -1,4 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation
+} from '@angular/core';
 import { MDL_DIRECTIVES } from '../../components';
 import { PrismDirective } from './../prism/prism.component';
 
@@ -53,7 +56,7 @@ import { PrismDirective } from './../prism/prism.component';
       width: 256px;
       height: 256px;
       margin-right:1rem;
-      background: #3E4EB8;
+      background: url('http://r.bstatic.com/static/affiliate_base/img/banners/branded_set_2/200x200/e2ba08df23df8354ed950047c69537ba7a3bb73f.jpg') center / cover;
     }
     .demo-card-event > .mdl-card__actions {
       border-color: rgba(255, 255, 255, 0.2);
@@ -92,4 +95,8 @@ import { PrismDirective } from './../prism/prism.component';
 })
 export class CardDemo {
 
+  public booknow() {
+    let url = 'http://www.booking.com/index.html?aid=818140';
+    window.open(url);
+  }
 }
