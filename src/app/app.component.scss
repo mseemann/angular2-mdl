@@ -23,7 +23,6 @@ main {
 aside {
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
   width: 200px;
 
   a {
@@ -44,14 +43,11 @@ h4{
 
 .component-description {
   flex-grow: 1;
+  min-height: 1000px;
 }
 
-.app-main-content{
-  flex-grow: 1;
 
-  .main-grid{
-    min-height: 100%;
-  }
+.app-main-content {
 
   .mdl-cell {
     display: flex;

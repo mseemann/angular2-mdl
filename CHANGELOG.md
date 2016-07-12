@@ -1,4 +1,8 @@
 next:
+
+<a name="1.0.0-rc1"></a>
+# 1.0.0-rc1 (2016-07-12)
+
 * textfield (+floating label)
 * multiline textfield
 * expandable textfield
