@@ -104,7 +104,7 @@ export class CardDemo implements AfterContentInit {
       s.type = 'text/javascript';
       s.async = true;
       s.src = u + '?v=' + (+new Date());
-      p.parentNode.insertBefore(s,p);
+      p.parentNode.insertBefore(s, p);
     })(document, 'script', '//aff.bstatic.com/static/affiliate_base/js/flexiproduct.js');
   }
 
