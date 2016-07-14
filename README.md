@@ -83,6 +83,7 @@ import { MDL_DIRECTIVES } from 'angular2-mdl';
 You may include the material-deisgn-lite css in your html and you're done!
 ```HTML
 <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 Under https://getmdl.io/customize/index.html you'll find a customizing tool to change the theme colors.
 
