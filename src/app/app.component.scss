@@ -27,7 +27,6 @@ nav {
   a {
     padding: 8px 40px !important;
     font-size: 18px !important;
-    text-decoration: none;
     color: unquote("rgb(#{$palette-grey-800})") !important;
 
     &.router-link-active {
@@ -42,7 +41,6 @@ h4{
 
 .component-description {
   flex-grow: 1;
-  min-height: 1000px;
 }
 
 
