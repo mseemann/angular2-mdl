@@ -11,7 +11,8 @@ import { TestComponentBuilder } from '@angular/compiler/testing';
 import {
   MdlLayoutComponent,
   MDL_LAYOUT_DIRECTIVES,
-  MdlLayoutContentComponent
+  MdlLayoutContentComponent,
+  MdlLayoutDrawerComponent
 } from './index';
 import { MdlAnchorRippleDirective } from './../common/mdl-ripple.directive';
 
@@ -278,6 +279,39 @@ describe('Component: MdlLayout', () => {
         done();
       });
   });
+
+  it('should close the drawer on small screens if closeDrawerOnSmallScreens is called', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+          <mdl-layout mdl-layout-fixed-drawer>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+        let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+        layoutComponent.toggleDrawer();
+        fixture.detectChanges();
+
+        let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+        expect(drawer.isDrawerVisible).toBe(true);
+
+        // small screen
+        layoutComponent.onQueryChange(true);
+        fixture.detectChanges();
+
+
+        layoutComponent.closeDrawerOnSmallScreens();
+        expect(drawer.isDrawerVisible).toBe(false);
+        
+        done();
+      });
+  });
+
 });
 
 
