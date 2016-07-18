@@ -127,13 +127,11 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
     if (scrollTop > 0 && !this.header.isCompact) {
       this.header.isCompact = true;
       if (headerVisible) {
-        console.log('x1');
         this.header.isAnimating = true;
       }
     } else if (scrollTop <= 0 && this.header.isCompact) {
       this.header.isCompact = false;
       if (headerVisible) {
-        console.log('x2');
         this.header.isAnimating = true;
       }
     }
@@ -197,9 +195,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   }
 
   public closeDrawerOnSmallScreens() {
-    console.log(this.isSmallScreen, this.isDrawerVisible);
     if (this.isSmallScreen && this.isDrawerVisible) {
-      console.log('close drawer');
       this.closeDrawer();
     }
   }
