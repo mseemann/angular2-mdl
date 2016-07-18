@@ -18,7 +18,7 @@ describe('Components: MdlCard*', () => {
     builder = tcb;
   }));
 
-  it('should add the css class mdl-card to the element', () => {
+  it('should add the css class mdl-card to the element', ( done ) => {
 
     return builder
       .createAsync(TestApp).then( (fixture) => {
@@ -30,6 +30,9 @@ describe('Components: MdlCard*', () => {
 
         let mdlCardTitleElement = fixture.debugElement.query(By.css('mdl-card-title'));
         expect(mdlCardTitleElement.nativeElement.classList.contains('mdl-card__title')).toBe(true);
+
+        let mdlCardMediaElement = fixture.debugElement.query(By.css('mdl-card-media'));
+        expect(mdlCardMediaElement.nativeElement.classList.contains('mdl-card__media')).toBe(true);
 
         let mdlCardSupportingTextElement = fixture.debugElement.query(By.css('mdl-card-supporting-text'));
         expect(mdlCardSupportingTextElement.nativeElement.classList.contains('mdl-card__supporting-text')).toBe(true);
@@ -49,6 +52,7 @@ describe('Components: MdlCard*', () => {
         let mdlCardExpandElement = fixture.debugElement.query(By.css('[mdl-card-expand]'));
         expect(mdlCardExpandElement.nativeElement.classList.contains('mdl-card--expand')).toBe(true);
 
+        done();
       });
   });
 
@@ -103,6 +107,20 @@ describe('Components: MdlCard*', () => {
 
       });
   });
+
+  it('should throw if mdl-card-media has no mdl-card parent', () => {
+    return builder
+      .overrideTemplate(TestApp, `
+          <mdl-card-media></mdl-card-media>
+        `)
+      .createAsync(TestApp).then( (fixture) => {
+
+        expect( () => fixture.detectChanges() )
+          .toThrow();
+
+      });
+  });
+
 });
 
 @Component({
@@ -110,6 +128,7 @@ describe('Components: MdlCard*', () => {
   template: `
     <mdl-card>
       <mdl-card-title mdl-card-expand><div mdl-card-title-text>test</div></mdl-card-title>
+      <mdl-card-media></mdl-card-media>
       <mdl-card-supporting-text></mdl-card-supporting-text>
       <mdl-card-actions mdl-card-border></mdl-card-actions>
       <mdl-card-menu></mdl-card-menu>

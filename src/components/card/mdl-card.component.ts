@@ -63,6 +63,22 @@ export class MdlCardSupportingTextComponent extends MdlCardChildStructure {
 }
 
 @Component({
+  selector: 'mdl-card-media',
+  host: {
+    '[class.mdl-card__media]': 'true'
+  },
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
+})
+export class MdlCardMediaComponent extends MdlCardChildStructure {
+
+  constructor(@Optional() mdlCardComponent: MdlCardComponent) {
+    super(mdlCardComponent, 'mdl-card-media');
+  }
+
+}
+
+@Component({
   selector: 'mdl-card-actions',
   host: {
     '[class.mdl-card__actions]': 'true'
@@ -122,6 +138,7 @@ export class MdlCardExpandDirective {}
 export const MDL_CARD_DIRECTIVES = [
   MdlCardComponent,
   MdlCardTitleComponent,
+  MdlCardMediaComponent,
   MdlCardSupportingTextComponent,
   MdlCardActionsComponent,
   MdlCardMenuComponent,

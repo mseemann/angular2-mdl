@@ -16,6 +16,7 @@ import { MdlShadowDirective } from './shadow/mdl-shadow.directive';
 import {
   MdlCardComponent,
   MdlCardTitleComponent,
+  MdlCardMediaComponent,
   MdlCardSupportingTextComponent,
   MdlCardActionsComponent,
   MdlCardMenuComponent,
@@ -123,6 +124,7 @@ export const MDL_DIRECTIVES = [
   MdlCardActionsComponent,
   MdlCardMenuComponent,
   MdlCardTitleTextDirective,
+  MdlCardMediaComponent,
   MdlCardBorderDirective,
   MdlCardExpandDirective,
   MdlCheckboxComponent,
