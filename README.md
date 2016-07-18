@@ -3,7 +3,7 @@ Angular 2 components, directives and styles based on material design lite https:
 
 This package assumes that you are building an Angular2 app with TypeScript. Angular CLI makes it even easier but isn't required.
 
-[Demo-App with all supported components](http://mseemann.github.io/angular2-mdl/)
+[Demo-App with all supported components and documentation](http://mseemann.github.io/angular2-mdl/)
 
 [![CI Status](http://img.shields.io/travis/mseemann/angular2-mdl.svg?style=flat)](https://travis-ci.org/mseemann/angular2-mdl)
 [![npm version](https://badge.fury.io/js/angular2-mdl.svg)](http://badge.fury.io/js/angular2-mdl)
