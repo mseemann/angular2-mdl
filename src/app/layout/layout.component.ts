@@ -30,7 +30,7 @@ import { ROUTER_DIRECTIVES} from '@angular/router';
        display: inline-block;
     }
     mdl-layout-content{
-        margin:1rem;
+        margin-right:1rem;
     }
     `
   ],
