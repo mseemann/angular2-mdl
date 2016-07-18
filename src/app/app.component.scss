@@ -61,7 +61,7 @@ h4{
   padding-left: 1rem;
 }
 
-table {
+table.docu {
   width: 100%;
   position: relative;
   border: 1px solid rgba(0,0,0,.12);
@@ -70,41 +70,43 @@ table {
   font-size: 13px;
   background-color: #fff;
   margin-bottom: 1rem;
-}
 
-thead {
-  background-color: unquote("rgb(#{$color-primary})");
+  thead {
+    background-color: unquote("rgb(#{$color-primary})");
 
-  th {
-    position: relative;
-    vertical-align: bottom;
-    text-overflow: ellipsis;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0;
-    height: 48px;
-    font-size: 16px;
-    color: unquote("rgb(#{$color-accent})");
-    padding-bottom: 8px;
-    box-sizing: border-box;
-  }
-}
-
-tbody {
-
-  td:first-child {
-    font-weight: bold;
-    white-space: nowrap;
+    th {
+      position: relative;
+      vertical-align: bottom;
+      text-overflow: ellipsis;
+      font-weight: 500;
+      line-height: 24px;
+      letter-spacing: 0;
+      height: 48px;
+      font-size: 16px;
+      color: unquote("rgb(#{$color-accent})");
+      padding-bottom: 8px;
+      box-sizing: border-box;
+    }
   }
 
-  td {
-    vertical-align: top;
-    position: relative;
-    border-top: 1px solid rgba(0, 0, 0, .12);
-    border-bottom: 1px solid rgba(0, 0, 0, .12);
-    padding: 12px 18px;
-    box-sizing: border-box;
-    opacity: 0.8;
-    font-size: 16px;
+  tbody {
+
+    td:first-child {
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    td {
+      vertical-align: top;
+      position: relative;
+      border-top: 1px solid rgba(0, 0, 0, .12);
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+      padding: 12px 18px;
+      box-sizing: border-box;
+      opacity: 0.8;
+      font-size: 16px;
+    }
   }
+
 }
+
