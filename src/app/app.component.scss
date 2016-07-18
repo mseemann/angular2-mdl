@@ -20,20 +20,18 @@ main {
   flex-direction: row;
 }
 
-aside {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0; // do not shrink in any case!
-  width: 200px;
+nav {
+
+  padding-top:0 !important;
 
   a {
-    font-size: 1.25rem;
+    padding: 8px 40px !important;
+    font-size: 18px !important;
     text-decoration: none;
-    padding: 0.5rem;
-    color: unquote("rgb(#{$palette-grey-800})");
+    color: unquote("rgb(#{$palette-grey-800})") !important;
 
     &.router-link-active {
-      color: unquote("rgb(#{$color-primary})");
+      color: unquote("rgb(#{$color-primary})") !important;
     }
   }
 }

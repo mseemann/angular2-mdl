@@ -8,7 +8,8 @@ import {
   ViewEncapsulation,
   ElementRef,
   Output,
-  EventEmitter
+  EventEmitter,
+  ChangeDetectorRef
 } from '@angular/core';
 import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from './../common/mdl-error';
@@ -60,7 +61,11 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   private scrollListener: Function;
   private windowMediaQueryListener: Function;
 
-  constructor(private renderer: Renderer, private evm: EventManager, private el: ElementRef) {
+  constructor(
+    private renderer: Renderer,
+    private evm: EventManager,
+    private el: ElementRef,
+    private cdr: ChangeDetectorRef) {
   }
 
   public ngAfterContentInit() {
@@ -139,6 +144,8 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
       this.isSmallScreen = false;
       this.closeDrawer();
     }
+    // looks like the query addListener runs not in NGZone - inform manually about changes
+    this.cdr.detectChanges();
   }
 
   public toggleDrawer() {
@@ -184,6 +191,12 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
 
       this.selectedIndex = index;
       this.selectedTabEmitter.emit({index: this.selectedIndex});
+    }
+  }
+
+  public closeDrawerOnSmallScreens() {
+    if (this.isSmallScreen && this.isDrawerVisible) {
+      this.closeDrawer();
     }
   }
 }

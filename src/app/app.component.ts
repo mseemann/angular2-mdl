@@ -25,7 +25,7 @@ import { SliderDemo } from './slider/slider.component';
 import { SnackbarDemo } from './snackbar/snackbar.component';
 import { TableDemo } from './tables/table.component';
 import { TextFieldDemo } from './textfield/textfield.component';
-import { MDL_DIRECTIVES, MDL_SERVICES } from '../components';
+import { MDL_DIRECTIVES, MDL_SERVICES, MdlLayoutComponent } from '../components';
 
 @Component({
   moduleId: module.id,
@@ -77,5 +77,8 @@ export class Angular2MdlAppComponent {
 
   public title = 'Angular 2 - Material Design Lite';
 
+  public componentSelected(mainLayout: MdlLayoutComponent) {
+    mainLayout.closeDrawerOnSmallScreens();
+  }
 }
 

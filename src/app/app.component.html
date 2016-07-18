@@ -1,4 +1,4 @@
-<mdl-layout mdl-layout-fixed-header>
+<mdl-layout mdl-layout-fixed-header mdl-layout-fixed-drawer #mainLayout="mdlLayout">
     <mdl-layout-header>
       <mdl-layout-header-row class="mdl-color--primary mdl-color-text--accent">
          <mdl-layout-title class="docs-layout-title">
@@ -10,27 +10,30 @@
          </div>
       </mdl-layout-header-row>
     </mdl-layout-header>
+   <mdl-layout-drawer>
+      <mdl-layout-title>Components</mdl-layout-title>
+      <nav class="mdl-navigation">
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/badge" routerLinkActive="router-link-active">Badges</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/button" routerLinkActive="router-link-active">Buttons</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/card" routerLinkActive="router-link-active">Cards</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/icon" routerLinkActive="router-link-active">Icons</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/layout" routerLinkActive="router-link-active">Layouts</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/list" routerLinkActive="router-link-active">List</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/loading" routerLinkActive="router-link-active">Loading</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/menu" routerLinkActive="router-link-active">Menus</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/shadow" routerLinkActive="router-link-active">Shadows</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/slider" routerLinkActive="router-link-active">Sliders</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/snackbar" routerLinkActive="router-link-active">Snackbar</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/table" routerLinkActive="router-link-active">Tables</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/textfield" routerLinkActive="router-link-active">Text Fields</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/toggle" routerLinkActive="router-link-active">Toggle</a>
+         <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/tooltip" routerLinkActive="router-link-active">Tooltips</a>
+     </nav>
+   </mdl-layout-drawer>
     <mdl-layout-content class="app-main-content">
          <div class="mdl-grid mdl-grid--no-spacing">
             <div class="mdl-cell mdl-cell--12-col">
-               <aside mdl-shadow="4">
-                  <a routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-                  <a routerLink="/badge" routerLinkActive="router-link-active">Badges</a>
-                  <a routerLink="/button" routerLinkActive="router-link-active">Buttons</a>
-                  <a routerLink="/card" routerLinkActive="router-link-active">Cards</a>
-                  <a routerLink="/icon" routerLinkActive="router-link-active">Icons</a>
-                  <a routerLink="/layout" routerLinkActive="router-link-active">Layouts</a>
-                  <a routerLink="/list" routerLinkActive="router-link-active">List</a>
-                  <a routerLink="/loading" routerLinkActive="router-link-active">Loading</a>
-                  <a routerLink="/menu" routerLinkActive="router-link-active">Menus</a>
-                  <a routerLink="/shadow" routerLinkActive="router-link-active">Shadows</a>
-                  <a routerLink="/slider" routerLinkActive="router-link-active">Sliders</a>
-                  <a routerLink="/snackbar" routerLinkActive="router-link-active">Snackbar</a>
-                  <a routerLink="/table" routerLinkActive="router-link-active">Tables</a>
-                  <a routerLink="/textfield" routerLinkActive="router-link-active">Text Fields</a>
-                  <a routerLink="/toggle" routerLinkActive="router-link-active">Toggle</a>
-                  <a routerLink="/tooltip" routerLinkActive="router-link-active">Tooltips</a>
-               </aside>
                <main class="component-description">
                   <div class="router-outlet">
                      <router-outlet></router-outlet>
