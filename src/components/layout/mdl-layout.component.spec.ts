@@ -304,10 +304,11 @@ describe('Component: MdlLayout', () => {
         layoutComponent.onQueryChange(true);
         fixture.detectChanges();
 
+        expect(layoutComponent.isSmallScreen).toBe(true);
 
         layoutComponent.closeDrawerOnSmallScreens();
         expect(drawer.isDrawerVisible).toBe(false);
-        
+
         done();
       });
   });
