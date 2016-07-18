@@ -23,6 +23,7 @@ main {
 aside {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0; // do not shrink in any case!
   width: 200px;
 
   a {
@@ -55,7 +56,9 @@ h4{
 }
 
 [prism] {
-  margin:1em 1em 1em 0;
+  background: #f5f2f0;
+  white-space: pre-wrap;
+  padding-left: 1rem;
 }
 
 table {

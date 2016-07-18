@@ -29,9 +29,6 @@ import { ROUTER_DIRECTIVES} from '@angular/router';
     .demo-tab-container{
        display: inline-block;
     }
-    mdl-layout-content{
-        margin-right:1rem;
-    }
     `
   ],
   encapsulation: ViewEncapsulation.None
