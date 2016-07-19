@@ -6,7 +6,8 @@ import {
   ViewChild,
   ElementRef,
   ContentChildren,
-  QueryList
+  QueryList,
+  Renderer
 } from '@angular/core';
 import { MdlButtonComponent } from './../button/mdl-button.component';
 import { MdlMenuItemComponent }  from './mdl-menu-item.component';
@@ -24,7 +25,7 @@ const TRANSITION_DURATION_SECONDS = 0.3;
 const TRANSITION_DURATION_FRACTION =  0.8;
 // How long the menu stays open after choosing an option (so the user can see
 // the ripple).
-const CLOSE_TIMEOUT = 150;
+const CLOSE_TIMEOUT = 200;
 
 const CSS_ALIGN_MAP = {};
 CSS_ALIGN_MAP[BOTTOM_LEFT] = 'mdl-menu--bottom-left';
@@ -71,6 +72,8 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
   private cssPosition = 'mdl-menu--bottom-left';
 
   private isVisible   = false;
+
+  constructor(private renderer: Renderer){}
 
   public ngOnInit() {
     this.cssPosition = CSS_ALIGN_MAP[this.position] || BOTTOM_LEFT;
@@ -196,12 +199,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
 
 
   private addAnimationEndListener() {
-    this.menuElement.addEventListener('transitionend', () => this.animationEnd);
-    this.menuElement.addEventListener('webkitTransitionEnd', () => this.animationEnd);
-  }
-
-  private animationEnd() {
-    this.menuElement.classList.remove('is-animating');
+    this.renderer.listen(this.menuElement, 'transitionend', () => {
+      this.menuElement.classList.remove('is-animating');
+    });
   }
 
   private applyClip(height, width) {
