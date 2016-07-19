@@ -83,3 +83,75 @@ Just specify an icon to turn the text input field into an expandable field.
 <mdl-textfield type="text" [(ngModel)]="text6" icon="search"></mdl-textfield>
   ]]>
 </pre>
+
+<h5>Attributes of the mdl-textfield component</h5>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+      <td>type</td>
+      <td>
+         The type of the input field - propaget to the underlying <i>input</i> element.
+      </td>
+   </tr>
+
+   <tr>
+      <td>label</td>
+      <td>The label of the input field</td>
+   </tr>
+
+   <tr>
+      <td>pattern</td>
+      <td>A regular expression that the input text must conform to. If it dosen't match
+         the error (attribute <i>error-msg</i>) will be shown</td>
+   </tr>
+
+   <tr>
+      <td>error-msg</td>
+      <td>The error message that will be shown if the input value did not match the pattern.</td>
+   </tr>
+
+   <tr>
+      <td>disabled</td>
+      <td>Disabled the text field if present or true.</td>
+   </tr>
+
+   <tr>
+      <td>floating-label</td>
+      <td>If present or true the label of the text field will be floating if the element has the focus.</td>
+   </tr>
+
+   <tr>
+      <td>placeholder</td>
+      <td>A placeholder string for the input filed.</td>
+   </tr>
+
+   <tr>
+      <td>rows</td>
+      <td>If present the input field will be drawn as textarea. You can specify the number of rows.</td>
+   </tr>
+
+   <tr>
+      <td>maxrows</td>
+      <td>Defines the maximum number of row the component will expand to.</td>
+   </tr>
+
+   <tr>
+      <td>icon</td>
+      <td>If present the input field is hidden until the icon is clicked or the
+         component gains the focus. The icon must be a material design icon.</td>
+   </tr>
+
+   <tr>
+      <td>ngModel</td>
+      <td>The text field is ngModel compatible.</td>
+   </tr>
+
+   </tbody>
+</table>
