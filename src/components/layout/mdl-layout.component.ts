@@ -108,14 +108,20 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
       let query: MediaQueryList = window.matchMedia('(max-width: 1024px)');
 
       let queryListener = () => {
-        this.onQueryChange(query.matches);
+        this.ngZone.run( () => {
+          // looks like the query addListener runs not in NGZone - inform manually about changes
+          this.onQueryChange(query.matches);
+        });
       };
       query.addListener(queryListener);
       this.windowMediaQueryListener = function() {
         query.removeListener(queryListener);
       };
       // set the initial state
-      queryListener();
+      setTimeout(() => {
+        this.onQueryChange(query.matches);
+      });
+
     }
 
   }
@@ -144,16 +150,12 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   }
 
   private onQueryChange(isSmall: boolean) {
-    this.ngZone.run( () => {
-      // looks like the query addListener runs not in NGZone - inform manually about changes
       if (isSmall) {
         this.isSmallScreen = true;
       } else {
         this.isSmallScreen = false;
         this.closeDrawer();
       }
-    });
-
   }
 
   public toggleDrawer() {
@@ -208,7 +210,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
     }
   }
 
-  public hasDrawer(){
+  public hasDrawer() {
     return this.drawer !== null;
   }
 }

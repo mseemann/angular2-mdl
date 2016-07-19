@@ -87,7 +87,7 @@ table.docu {
 
     td:first-child {
       font-weight: bold;
-      white-space: nowrap;
+      max-width: 300px;
     }
 
     td {

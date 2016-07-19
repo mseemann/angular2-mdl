@@ -32,3 +32,66 @@
   </script>
 ]]>
 </pre>
+
+
+<h6>Methods</h6>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Method</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+      <td>setDefaultViewContainerRef(vcRef: ViewContainerRef)</td>
+      <td>
+         Every SnackBar needs a reference to the <i>ViewContainerRef</i> where it can be added. You can provide
+         a default <i>ViewContainerRef</i> for every Snackbar or provide a <i>ViewContainerRef</i> during each show call.
+         A <i>ViewContainerRef</i> can be injected to every component in the constructor.
+      </td>
+   </tr>
+
+   <tr>
+      <td>showToast(message: string, timeout?: number, vcRef?: ViewContainerRef): Promise&lt;MdlSnackbarComponent&gt; </td>
+      <td>
+        Shorthand version for
+         <pre>
+return this.showSnackbar({
+   message: message,
+   timeout: timeout,
+   vcRef: vcRef
+ });
+         </pre>
+         Shows an auto hiding text.
+      </td>
+   </tr>
+
+   <tr>
+      <td>showSnackbar(snackbarMessage: IMdlSnackbarMessage): Promise&lt;MdlSnackbarComponent&gt;</td>
+      <td>
+         Shows a snackbar. The <i>IMdlSnackbarMessage</i> is:
+         <pre>
+export interface IMdlSnackbarMessage {
+  message: string;
+  timeout?: number;
+  action?: {
+    handler: () => void;
+    text: string;
+  };
+  vcRef?: ViewContainerRef;
+}
+         </pre>
+         <pre>message</pre> The message that should be shown.
+         <pre>timeout</pre> for how long should the message be visible. Defaults to 2750 ms. Is ignored if an action is proivded.
+         <pre>action</pre> Consists of a handler fuction and an aciton text. The text will be the buttons label. The action is called if the button is clicked.
+         <pre>vcRef</pre> The <i>ViewContainerRef</i> where the Snackbar is attached.
+         <p>
+            Returns a Promis with the created <i>MdlSnackbarComponent</i>. You can use this instance to
+            manipulate the <i>MdlSnackbarComponent</i> and be informed if the Snackbar is shown to the user.
+         </p>
+      </td>
+   </tr>
+
+   </tbody>
