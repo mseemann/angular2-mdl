@@ -2,32 +2,35 @@
 
 <h5>Checkbox</h5>
 
-<mdl-checkbox name="checkbox1" [mdl-ripple]="true" [(ngModel)]="checkbox1">
+<mdl-checkbox  [mdl-ripple]="true" [(ngModel)]="checkbox1">
   Checkbox
 </mdl-checkbox>
 {{checkbox1}}
 
 <pre prism>
   <![CDATA[
-  <mdl-checkbox name="checkbox1" [mdl-ripple]="true" [(ngModel)]="checkbox1">
+  <mdl-checkbox [mdl-ripple]="true" [(ngModel)]="checkbox1">
     Checkbox
   </mdl-checkbox>
   {x{checkbox1}}
   ]]>
 </pre>
 
-<mdl-checkbox name="checkbox2" [(ngModel)]="checkbox2">
+<mdl-checkbox [(ngModel)]="checkbox2">
   Checkbox
 </mdl-checkbox>
 {{checkbox2}}
 <pre prism>
   <![CDATA[
-  <mdl-checkbox name="checkbox2" [(ngModel)]="checkbox2">
+  <mdl-checkbox [(ngModel)]="checkbox2">
     Checkbox
   </mdl-checkbox>
   {x{checkbox2}}
     ]]>
 </pre>
+
+<p>The <i>mdl-checkbox</i> is <i>ngModel</i> compliant. You can provide the <i>mdl-ripple</i> directive to create a ripple effect.</p>
+
 
 <h5>Radios</h5>
 <mdl-radio name="group1" value="1" [(ngModel)]="radioOption" mdl-ripple>Value 1</mdl-radio>
@@ -43,6 +46,11 @@
   {x{radioOption}}
   ]]>
 </pre>
+
+<p>The <i>mdl-radio</i> component is <i>ngModel</i> compliant. The <i>name</i> attribute is used to group radios together.
+The <i>value</i> is used to set the <i>ngModel</i> value if the option is selected.
+   You can provide the <i>mdl-ripple</i> directive to create a ripple effect.
+</p>
 
 <h5>Icon Toggle</h5>
 
@@ -60,6 +68,9 @@
   ]]>
 </pre>
 
+<p>The <i>mdl-icon-toggle</i> is much like a <i>mdl-checkbox</i> componnet.
+   The only difference: an colored icon is used to cover the state of the checkbox.</p>
+
 <h5>Switch</h5>
 
 <mdl-switch [(ngModel)]="checkbox1" mdl-ripple>Option 1</mdl-switch>
@@ -75,3 +86,6 @@
   {x{checkbox2}}
   ]]>
 </pre>
+
+<p>The <i>mdl-switch</i> is much like an <i>mdl-checkbox</i> componnet.
+   The only difference: an toggle ui is used to cover the state of the checkbox.</p>
