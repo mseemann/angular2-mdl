@@ -10,6 +10,7 @@ $color-accent-contrast: $color-dark-contrast;
 
 
 .router-outlet {
+  flex-grow: 1;
   margin-left: 1rem;
   margin-right: 1rem;
   width: 100%;
@@ -20,6 +21,13 @@ main {
   flex-direction: row;
 }
 
+.main-footer {
+  flex-grow: 1;
+}
+
+footer {
+  flex-shrink: 0;
+}
 nav {
 
   a[routerLink] {
@@ -37,10 +45,6 @@ h4{
   text-transform: uppercase;
 }
 
-.component-description {
-  flex-grow: 1;
-}
-
 .mdl-layout__header-row {
  padding-left: 40px;
 }
@@ -52,10 +56,15 @@ h4{
 }
 
 .app-main-content {
+  display: flex;
+  flex-direction: column;
+}
 
-  .mdl-cell {
-    display: flex;
-  }
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-grow: 1;
 }
 
 [prism] {
@@ -112,4 +121,12 @@ table.docu {
   }
 
 }
+
+.icon svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
 
