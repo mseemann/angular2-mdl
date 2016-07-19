@@ -105,3 +105,99 @@
 </mdl-menu>
   ]]>
 </pre>
+
+<h5>mdl-menu component</h5>
+<p>The <i>mdl-menu</i> component is exposed as <i>mdlMenu</i> to the template.</p>
+
+<h6>Attributes</h6>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+      <td>mdl-menu-position</td>
+      <td>
+         Defines the position of the menu.
+         <ul>
+            <li>
+               bottom-left
+            </li>
+            <li>bottom-right</li>
+            <li>top-left</li>
+            <li>top-right</li>
+            <li>unaligned - no styling is defined. You need to do it by yourself</li>
+         </ul>
+      </td>
+   </tr>
+   </tbody>
+</table>
+
+<h6>Methods</h6>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Method</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+      <td>toggle(event: Event , mdlButton: MdlButtonComponent)</td>
+      <td>
+         Toggles the menu. event and button are needed to calculate the position of the menu.
+      </td>
+   </tr>
+
+   <tr>
+      <td>hide</td>
+      <td>
+         The menu will be hided.
+      </td>
+   </tr>
+
+   <tr>
+      <td>show(event: Event , mdlButton: MdlButtonComponent)</td>
+      <td>
+         Shows the menu. event and button are needed to calculate the position of the menu.
+      </td>
+   </tr>
+
+   </tbody>
+</table>
+
+<h5>mdl-menu-item component</h5>
+<p>The <i>mdl-menu-item</i> component draws the menu-items.</p>
+
+<h6>Attributes</h6>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+      <td>mdl-menu-item-full-bleed-divider</td>
+      <td>
+         Draws a line at the bottom of the menu item.
+      </td>
+   </tr>
+
+   <tr>
+      <td>mdl-ripple</td>
+      <td>
+         Enables the tipple effect on menu items.
+      </td>
+   </tr>
+
+   </tbody>
+</table>
+

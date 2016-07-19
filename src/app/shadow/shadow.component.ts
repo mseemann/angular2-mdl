@@ -13,6 +13,9 @@ import { PrismDirective } from './../prism/prism.component';
       margin:20px;
       float: left;
     }
+    .clearfix {
+        clear: both;
+    }
   `],
   directives: [
     MDL_DIRECTIVES,
