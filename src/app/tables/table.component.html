@@ -65,3 +65,38 @@
    </script>
 ]]>
 </pre>
+
+<p>The <i>mdl-table</i> component is usually designed to show a small amount of structured data. One version with a
+special row to select all or some items. You need to provide a <i>IMdlTableModel</i> or you can use
+the <i>MdlDefaultTableModel</i></p>
+
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+      <td>table-model</td>
+      <td>
+         An Instance that impelments the <i>IMdlTableModel</i>
+      </td>
+   </tr>
+
+   <tr>
+      <td>table-model-selected</td>
+      <td>
+         An  Array of <i>ITableItem</i>s. Each item is marked as selected.
+      </td>
+   </tr>
+
+   <tr>
+      <td>table-model-selectionChanged</td>
+      <td>Event that is triggered if the selection is changed. The value property of the event contains the array with the selected items.</td>
+   </tr>
+
+   </tbody>
+</table>
