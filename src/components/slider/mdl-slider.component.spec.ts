@@ -79,6 +79,51 @@ describe('Component: MdlSlider', () => {
       });
   });
 
+  it('should propagate mousedown events on the host to the input element', ( done ) => {
+    return builder
+      .createAsync(MdlTestSliderComponent).then( (fixture) => {
+        fixture.detectChanges();
+
+        let hostElement = fixture.debugElement.query(By.css('mdl-slider')).nativeElement;
+
+        let inputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
+
+        spyOn(inputElement, 'dispatchEvent').and.callThrough();
+
+        var evt = doc.createEvent('HTMLEvents');
+        evt.initEvent('mousedown', true, true);
+        hostElement.dispatchEvent(evt);
+
+        fixture.detectChanges();
+
+        expect(inputElement.dispatchEvent).toHaveBeenCalledTimes(1);
+
+        done();
+      });
+  });
+
+
+  it('should not propagate mousedown events to the input element on other elements than the host', ( done ) => {
+    return builder
+      .createAsync(MdlTestSliderComponent).then( (fixture) => {
+        fixture.detectChanges();
+
+        let inputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
+
+        spyOn(inputElement, 'dispatchEvent').and.callThrough();
+
+        var evt = doc.createEvent('HTMLEvents');
+        evt.initEvent('mousedown', true, true);
+        inputElement.dispatchEvent(evt);
+
+        fixture.detectChanges();
+
+        // if it would be propagated dispatchEvent would have been called 2 times.
+        expect(inputElement.dispatchEvent).toHaveBeenCalledTimes(1);
+
+        done();
+      });
+  });
 
 });
 

@@ -24,6 +24,7 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   host: {
     '[class.mdl-slider__container]': 'true',
     '(mouseup)': 'onMouseUp($event)',
+    '(mousedown)': 'onMouseDown($event)'
   },
   template: `
     <input class="mdl-slider is-upgraded" 
@@ -37,7 +38,17 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
       <div class="mdl-slider__background-lower" #lower></div>
       <div class="mdl-slider__background-upper" #uppper></div>
   </div>
-  `
+  `,
+  styles: [
+    `
+    :host {
+        height: 22px;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+    }
+    `
+  ]
 })
 export class MdlSliderComponent implements ControlValueAccessor {
   private value_: any;
@@ -48,7 +59,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
   @ViewChild('uppper') private upperEl: ElementRef;
   @ViewChild('input') private inputEl: ElementRef;
 
-  constructor(private renderer: Renderer) {
+  constructor(private renderer: Renderer, private elRef: ElementRef) {
   }
 
   get value(): any { return this.value_; };
@@ -83,8 +94,27 @@ export class MdlSliderComponent implements ControlValueAccessor {
     this.renderer.setElementStyle(this.upperEl.nativeElement, 'flex', '' + (1 - fraction));
   }
 
-  protected onMouseUp(event) {
+  public onMouseUp(event) {
     event.target.blur();
+  }
+
+  public onMouseDown(event: MouseEvent) {
+    if (event.target !== this.elRef.nativeElement) {
+      return;
+    }
+    // Discard the original event and create a new event that
+    // is on the slider element.
+    event.preventDefault();
+    var newEvent = new MouseEvent('mousedown', {
+      relatedTarget: event.relatedTarget,
+      button: event.button,
+      buttons: event.buttons,
+      clientX: event.clientX,
+      clientY: this.inputEl.nativeElement.getBoundingClientRect().y,
+      screenX: event.screenX,
+      screenY: event.screenY
+    });
+    this.inputEl.nativeElement.dispatchEvent(newEvent);
   }
 }
 
