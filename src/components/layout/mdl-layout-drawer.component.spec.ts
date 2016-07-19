@@ -8,7 +8,10 @@ import {
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
-import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
+import {
+  MdlLayoutDrawerComponent,
+  MdlLayoutComponent
+} from './index';
 
 describe('Component: MdlLayoutDrawer', () => {
 
@@ -42,6 +45,7 @@ describe('Component: MdlLayoutDrawer', () => {
 @Component({
   selector: 'test-layout',
   template: 'replaced by the test',
-  directives: [MdlLayoutDrawerComponent]
+  directives: [MdlLayoutDrawerComponent],
+  providers: [ MdlLayoutComponent ]
 })
 class MdlTestLayoutComponent {}

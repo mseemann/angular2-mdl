@@ -313,6 +313,31 @@ describe('Component: MdlLayout', () => {
       });
   });
 
+  it('should set the drawer to null, if the drawer is not a direct child of the layout', (done) => {
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+          <mdl-layout mdl-layout-fixed-drawer>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-content>
+               <mdl-layout>
+                  <mdl-layout-drawer></mdl-layout-drawer>
+               </mdl-layout>
+            </mdl-layout-content>
+          </mdl-layout>
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+        let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+        fixture.detectChanges();
+
+        expect(layoutComponent.hasDrawer()).toBe(false);
+
+
+        done();
+      });
+  });
 });
 
 

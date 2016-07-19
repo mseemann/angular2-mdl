@@ -9,7 +9,7 @@ import {
   ElementRef,
   Output,
   EventEmitter,
-  ChangeDetectorRef
+  NgZone
 } from '@angular/core';
 import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from './../common/mdl-error';
@@ -53,10 +53,11 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   @Input('mdl-layout-header-seamed') @BooleanProperty() public isSeamed = false;
   @Input('mdl-layout-tab-active-index') @NumberProperty() public selectedIndex: number = 0;
   @Input('mdl-ripple') @BooleanProperty() protected isRipple = false;
+  @Input('mdl-layout-no-drawer-button') @BooleanProperty() public isNoDrawer = false;
   @Output('mdl-layout-tab-active-changed') public selectedTabEmitter = new EventEmitter();
 
-  private isDrawerVisible = false;
-  private isSmallScreen = false;
+  public isDrawerVisible = false;
+  public isSmallScreen = false;
 
   private scrollListener: Function;
   private windowMediaQueryListener: Function;
@@ -65,7 +66,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
     private renderer: Renderer,
     private evm: EventManager,
     private el: ElementRef,
-    private cdr: ChangeDetectorRef) {
+    private ngZone: NgZone) {
   }
 
   public ngAfterContentInit() {
@@ -76,6 +77,11 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
       if (this.header.tabs.toArray().length > 0 && this.selectedIndex <= this.header.tabs.toArray().length) {
         this.header.tabs.toArray()[this.selectedIndex].isActive = true;
       }
+    }
+
+    // set this.drawer to null, if the drawer is not a direct child if this layout. It may be a drywer of a sub layout.
+    if (this.drawer && !this.drawer.isDrawerDirectChildOf(this)) {
+      this.drawer = null;
     }
   }
 
@@ -138,14 +144,16 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   }
 
   private onQueryChange(isSmall: boolean) {
-    if (isSmall) {
-      this.isSmallScreen = true;
-    } else {
-      this.isSmallScreen = false;
-      this.closeDrawer();
-    }
-    // looks like the query addListener runs not in NGZone - inform manually about changes
-    this.cdr.detectChanges();
+    this.ngZone.run( () => {
+      // looks like the query addListener runs not in NGZone - inform manually about changes
+      if (isSmall) {
+        this.isSmallScreen = true;
+      } else {
+        this.isSmallScreen = false;
+        this.closeDrawer();
+      }
+    });
+
   }
 
   public toggleDrawer() {
@@ -198,5 +206,9 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
     if (this.isSmallScreen && this.isDrawerVisible) {
       this.closeDrawer();
     }
+  }
+
+  public hasDrawer(){
+    return this.drawer !== null;
   }
 }
