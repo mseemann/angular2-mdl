@@ -60,6 +60,31 @@ describe('Component: MdlMenuItem', () => {
       });
   });
 
+  it('should call hideOnItemClicked on menu if the item is touched', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestMenuItemComponent, `
+          <mdl-menu><mdl-menu-item>x</mdl-menu-item></mdl-menu>
+        `)
+      .createAsync(MdlTestMenuItemComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+
+        let menuItemEl: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
+
+        spyOn(menu, 'hideOnItemClicked').and.callThrough();
+        expect(menu.hideOnItemClicked).not.toHaveBeenCalled();
+
+        let event = new Event('touchstart', {});
+        menuItemEl.dispatchEvent(event);
+
+        expect(menu.hideOnItemClicked).toHaveBeenCalled();
+
+        done();
+      });
+  });
+
   it('should not call hideOnItemClicked on menu if the item is disbaled', ( done ) => {
     return builder
       .overrideTemplate(MdlTestMenuItemComponent, `

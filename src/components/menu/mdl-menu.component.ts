@@ -25,7 +25,7 @@ const TRANSITION_DURATION_SECONDS = 0.3;
 const TRANSITION_DURATION_FRACTION =  0.8;
 // How long the menu stays open after choosing an option (so the user can see
 // the ripple).
-const CLOSE_TIMEOUT = 200;
+const CLOSE_TIMEOUT = 175;
 
 const CSS_ALIGN_MAP = {};
 CSS_ALIGN_MAP[BOTTOM_LEFT] = 'mdl-menu--bottom-left';
@@ -83,6 +83,15 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
     this.container    = this.containerChild.nativeElement;
     this.menuElement  = this.menuElementChild.nativeElement;
     this.outline      = this.outlineChild.nativeElement;
+
+    // Add a click listener to the document, to close the menu.
+    var callback = () => {
+      if (this.isVisible) {
+        this.hide();
+      }
+    };
+    this.renderer.listenGlobal('window', 'click', callback);
+    this.renderer.listenGlobal('window', 'touchstart', callback);
   }
 
 
@@ -128,6 +137,8 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
   }
 
   public show(event, mdlButton) {
+
+    event.stopPropagation();
 
     var forElement  = mdlButton.element;
     var rect        = forElement.getBoundingClientRect();
@@ -184,17 +195,6 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
     this.addAnimationEndListener();
 
     this.isVisible = true;
-
-    // Add a click listener to the document, to close the menu.
-    var callback = function(e) {
-      // Check to see if the document is processing the same event that
-      // displayed the menu in the first place. If so, do nothing.
-      if (e !== event ) {
-        document.removeEventListener('click', callback);
-        this.hide();
-      }
-    }.bind(this);
-    document.addEventListener('click', callback);
   }
 
 
