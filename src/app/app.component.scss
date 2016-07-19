@@ -41,6 +41,15 @@ h4{
   flex-grow: 1;
 }
 
+.mdl-layout__header-row {
+ padding-left: 40px;
+}
+
+@media screen and (max-width: 1024px) {
+  .mdl-layout__header-row {
+    padding-left: 72px;
+  }
+}
 
 .app-main-content {
 
