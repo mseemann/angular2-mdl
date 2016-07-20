@@ -1,5 +1,5 @@
 
-Angular 2 components, directives and styles based on material design lite https://getmdl.io.
+Angular 2 components, directives and styles based on material design lite https://getmdl.io (v: 1.1.3).
 
 This package assumes that you are building an Angular2 app with TypeScript. Angular CLI makes it even easier but isn't required.
 
