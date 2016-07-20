@@ -3,7 +3,9 @@ import {
   Input,
   ElementRef,
   OnChanges,
-  SimpleChange
+  SimpleChange,
+  Renderer,
+  OnInit
 } from '@angular/core';
 import { MaterialRipple } from './ripple.vendor';
 
@@ -14,7 +16,7 @@ export class MdlRippleDirective implements OnChanges {
   private RIPPLE = 'mdl-ripple';
 
   private rippleContainer: HTMLElement;
-  private el: HTMLElement;
+  protected el: HTMLElement;
   private ripple: any;
 
   @Input('mdl-ripple') private rippleActive: boolean | string = true;
@@ -132,6 +134,24 @@ export class MdlAnchorRippleDirective extends MdlRippleDirective {
 
 }
 
+@Directive({
+  selector: 'mdl-list-item[mdl-ripple]',
+})
+export class MdlListItemRippleDirective extends MdlRippleDirective implements OnInit {
+
+  constructor(elementRef: ElementRef, private renderer: Renderer) {
+    // mdl-button__ripple-container
+    super(elementRef, ['mdl-button__ripple-container']);
+  }
+
+  public ngOnInit() {
+    // mdl-list-items has no position style - but position relative
+    // is needed to restrict the ripplecontainer to the bounds of the item
+    this.renderer.setElementStyle(this.el, 'position', 'relative');
+  }
+
+}
+
 export const MDL_COMMON_DIRECTIVES = [
   MdlCheckboxRippleDirective,
   MdlButtonRippleDirective,
@@ -139,5 +159,6 @@ export const MDL_COMMON_DIRECTIVES = [
   MdlIconToggleRippleDirective,
   MdlSwitchRippleDirective,
   MdlMenuItemRippleDirective,
-  MdlAnchorRippleDirective
+  MdlAnchorRippleDirective,
+  MdlListItemRippleDirective
 ];

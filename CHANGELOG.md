@@ -1,4 +1,13 @@
-next:
+
+<a name="1.0.4"></a>
+# 1.0.4 (2016-07-20)
+
+### Features
+* mdl-list-item supports mdl-ripple
+
+### BREAKING CHANGES
+- none -
+
 
 <a name="1.0.0-rc1"></a>
 # 1.0.0-rc1 (2016-07-12)

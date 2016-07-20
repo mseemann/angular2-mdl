@@ -9,6 +9,7 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
+import {MDL_LIST_DIRECTIVES, MdlListItemComponent} from './../list/mdl-list.component';
 
 describe('Directive: MdlRipple', () => {
 
@@ -186,6 +187,45 @@ describe('Directive: MdlRipple', () => {
         done();
       });
   });
+
+  it('should add the ripple to mdl-list-item tag for tabs', ( done ) => {
+    builder
+      .overrideTemplate(MdlTestRippleComponent, `
+         <mdl-list>
+            <mdl-list-item mdl-ripple></mdl-list-item>
+          </mdl-list>
+        `)
+      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let span1 = getSpan1IfAny(fixture);
+
+        expect(span1.classList.contains('mdl-ripple')).toBe(true);
+
+        done();
+      });
+  });
+
+  it('should make the mdl-list-items css style position to relative', ( done ) => {
+    return builder
+      .overrideTemplate(MdlTestRippleComponent, `
+         <mdl-list>
+            <mdl-list-item mdl-ripple></mdl-list-item>
+          </mdl-list>
+        `)
+      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        let mdlListItemElement: HTMLElement = fixture.debugElement
+          .query(By.directive(MdlListItemComponent)).nativeElement;
+
+        expect(mdlListItemElement.style.position).toBe('relative');
+
+        done();
+      });
+  });
   
 });
 
@@ -193,7 +233,7 @@ describe('Directive: MdlRipple', () => {
 @Component({
   selector: 'test-ripple',
   template: 'replaced by the test',
-  directives: [MDL_COMMON_DIRECTIVES]
+  directives: [ MDL_COMMON_DIRECTIVES, MDL_LIST_DIRECTIVES]
 })
 class MdlTestRippleComponent {
   protected doRipple = true;
