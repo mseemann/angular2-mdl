@@ -2,6 +2,15 @@
   "name": "angular2-mdl",
   "version": "1.0.1",
   "license": "MIT",
+  "description": "Angular 2 components, directives and styles based on material design lite https://getmdl.io (v: 1.1.3).",
+  "homepage": "http://mseemann.de/angular2-mdl/",
+  "keywords": [
+    "angular",
+    "angular 2",
+    "material design lite",
+    "componnets",
+    "typescript"
+  ],
   "angular-cli": {},
   "scripts": {
     "start": "ng server",
