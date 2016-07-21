@@ -14,7 +14,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 [![Build Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
 
-### Status of the npm package version 1.0.0-rc1
+### Status of the npm package version 1.1.0
 
 - Badges
 - Buttons 
