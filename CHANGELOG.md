@@ -1,4 +1,14 @@
 
+<a name="1.1.0"></a>
+# 1.1.0 (2016-07-21)
+
+### Features
+* mdl-button attribute mdl-colored behavior changed
+
+### BREAKING CHANGES
+* mdl-colored need an explicit value (e.g. wether primary or accent)
+
+
 <a name="1.0.4"></a>
 # 1.0.4 (2016-07-20)
 

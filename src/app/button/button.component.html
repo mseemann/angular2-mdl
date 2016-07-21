@@ -212,25 +212,26 @@
 
 <h4>Dynamic experiments</h4>
 
-<mdl-button [mdl-button-type]="buttonType" [mdl-ripple]="doRipple">
-  <mdl-icon>add</mdl-icon>
-</mdl-button>
-
 <div>
   <div>
-    <label for="raised">Raised</label>
-    <input #raised type="radio" name="buttonType" [checked]="buttonType === raised.value" (click)="buttonType = raised.value" value="raised">
-    <label for="fab">Fab</label>
-    <input #fab type="radio" name="buttonType" [checked]="buttonType == fab.value" (click)="buttonType = fab.value" value="fab">
-    <label for="fab">Mini Fab</label>
-    <input #miniFab type="radio" name="buttonType" [checked]="buttonType == miniFab.value" (click)="buttonType= miniFab.value" value="mini-fab" >
-    <label for="icon">Icon</label>
-    <input #icon type="radio" name="buttonType" [checked]="buttonType == icon.value" (click)="buttonType=icon.value" value="icon" >
+     <mdl-radio name="buttonType" [(ngModel)]="buttonType" value="raised">Raised</mdl-radio>
+     <mdl-radio name="buttonType" [(ngModel)]="buttonType" value="fab">Fab</mdl-radio>
+     <mdl-radio name="buttonType" [(ngModel)]="buttonType" value="mini-fab">Mini</mdl-radio>
+     <mdl-radio name="buttonType" [(ngModel)]="buttonType" value="icon">Icon</mdl-radio>
+     <mdl-radio name="buttonType" [(ngModel)]="buttonType" value="">Default</mdl-radio>
   </div>
-  <div>{{buttonType}}</div>
   <div>
-    <input type="checkbox" [(ngModel)]="doRipple">Ripple effect active?
+    <mdl-checkbox [(ngModel)]="doRipple" mdl-ripple>Ripple effect active?</mdl-checkbox>
   </div>
+   <div>
+      <mdl-radio name="coloredType" [(ngModel)]="colored" value="">None</mdl-radio>
+      <mdl-radio name="coloredType" [(ngModel)]="colored" value="accent">Accent</mdl-radio>
+      <mdl-radio name="coloredType" [(ngModel)]="colored" value="primary">Primary</mdl-radio>
+   </div>
+
+   <mdl-button [mdl-button-type]="buttonType" [mdl-ripple]="doRipple" [mdl-colored]="colored">
+      <mdl-icon>add</mdl-icon>
+   </mdl-button>
 
 </div>
 
@@ -262,7 +263,7 @@
          <td>
             Specifies wether the botton is colored and how the button is colored.
             <ul>
-               <li>if no value is provided the primary color is used.</li>
+               <li>if no value is provided the button has no color.</li>
                <li>if <i>accent</i> is provided as value. The accent color is used to color the button</li>
                <li>if <i>primary</i> is provided as value. The primary color is used to color the button</li>
             </ul>

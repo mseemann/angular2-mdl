@@ -5,6 +5,7 @@
   <title>Angular2Mdl</title>
   <base href="/">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link href="main.css" rel="stylesheet" />
   <link href="prism.css" rel="stylesheet" />
   {{#unless environment.production}}
   <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
@@ -14,9 +15,28 @@
    <meta name="description" content="Angular 2 Material Design Lite; Angular components
     for Material Design Lite; Components instead of css classes; Buttons, Snackbar,
     Layouts, Tabs, Badges, Icons, Menus">
+   <style>
+      root-app {
+         height: 100vh;
+         display: block;
+      }
+
+      root-app > .loading {
+         text-align: center;
+         display: inline-block;
+         position: relative;
+         top: 50vh;
+         left: calc(50% - 27px);
+      }
+   </style>
 </head>
 <body>
-  <root-app>Loading...</root-app>
+  <root-app>
+     <div class="loading">
+        <div class="mdl-spinner mdl-js-spinner is-active is-upgraded"><div class="mdl-spinner__layer mdl-spinner__layer-1"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div><div class="mdl-spinner__layer mdl-spinner__layer-2"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div><div class="mdl-spinner__layer mdl-spinner__layer-3"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div><div class="mdl-spinner__layer mdl-spinner__layer-4"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div></div>
+        <div>loading ...</div>
+     </div>
+  </root-app>
 
 
     {{#each scripts.polyfills}}<script src="{{.}}"></script>{{/each}}

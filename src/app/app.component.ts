@@ -58,7 +58,8 @@ export const appRoutes: RouterConfig = [
   { path: 'table', component: TableDemo },
   { path: 'textfield', component: TextFieldDemo },
   { path: 'toggle', component: ToggleDemo },
-  { path: 'tooltip', component: TooltipDemo }
+  { path: 'tooltip', component: TooltipDemo },
+  { path: '**', redirectTo: '' },
 ];
 
 @Component({

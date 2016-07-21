@@ -43,7 +43,6 @@ const MDL_COLORED_TYPES = [
     '[class.mdl-button--fab]':      'mdlButtonType == "fab" || mdlButtonType == "mini-fab"',
     '[class.mdl-button--mini-fab]': 'mdlButtonType == "mini-fab"',
     '[class.mdl-button--icon]':     'mdlButtonType == "icon"',
-    '[class.mdl-button--colored]' : 'mdlColoredType == "" || mdlColoredType == "primary"',
     '[class.mdl-button--primary]' : 'mdlColoredType == "primary"',
     '[class.mdl-button--accent]' :  'mdlColoredType == "accent"'
   },

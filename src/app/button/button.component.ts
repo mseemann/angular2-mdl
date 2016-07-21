@@ -14,4 +14,5 @@ import { PrismDirective } from './../prism/prism.component';
 export class ButtonDemo {
   public buttonType = 'raised';
   public doRipple = false;
+  public colored = '';
 }
