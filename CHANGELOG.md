@@ -1,4 +1,14 @@
 
+<a name="1.1.1"></a>
+# 1.1.1 (2016-07-22)
+
+### Features
+* mdl-button attribute disabled is now dynamic
+
+### BREAKING CHANGES
+
+
+
 <a name="1.1.0"></a>
 # 1.1.0 (2016-07-21)
 
