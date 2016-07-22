@@ -16,27 +16,48 @@
     for Material Design Lite; Components instead of css classes; Buttons, Snackbar,
     Layouts, Tabs, Badges, Icons, Menus">
    <style>
-      root-app {
-         height: 100vh;
+      root-app > .loading {
+				margin: 0 auto;
+				text-align: center;
          display: block;
+         position: relative;
+         top: 25vh;
       }
 
-      root-app > .loading {
-         text-align: center;
-         display: inline-block;
-         position: relative;
-         top: 50vh;
-         left: calc(50% - 27px);
-      }
+		 root-app  .text-container {
+			 text-align: left;
+			 display:inline-block;
+			 padding: 0 1em;
+		 }
    </style>
 </head>
 <body>
   <root-app>
-     <div class="loading">
+		<div class="loading spinner">
         <div class="mdl-spinner mdl-js-spinner is-active is-upgraded"><div class="mdl-spinner__layer mdl-spinner__layer-1"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div><div class="mdl-spinner__layer mdl-spinner__layer-2"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div><div class="mdl-spinner__layer mdl-spinner__layer-3"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div><div class="mdl-spinner__layer mdl-spinner__layer-4"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div></div>
         <div>loading ...</div>
-     </div>
-  </root-app>
+			<div class="text-container">
+
+				<h4>Welcome to the e2e demos for Angular 2 Material Design Lite!</h4>
+
+				Features:
+				<ul>
+					<li>Angular components for Material Design Lite</li>
+					<ul>
+						<li>change the properties and the components changes their behavior</li>
+						<li>add and remove components on the fly (for example menu items)</li>
+					</ul>
+					<li>Components instead of css classes.</li>
+					<ul>
+						<li>This will provide less errors and a better tool support. </li>
+						<li>The html code is shorter.</li>
+					</ul>
+					<li>Inlcude only the code that you really use in your production files.</li>
+					<li>For sure this demo and docu has been created with angular2-mdl!</li>
+				</ul>
+			</div>
+		</div>
+	</root-app>
 
 
     {{#each scripts.polyfills}}<script src="{{.}}"></script>{{/each}}
