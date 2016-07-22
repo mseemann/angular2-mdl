@@ -15,4 +15,5 @@ export class ButtonDemo {
   public buttonType = 'raised';
   public doRipple = false;
   public colored = '';
+  public btnDisabled = false;
 }

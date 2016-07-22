@@ -67,6 +67,12 @@
   Button
 </mdl-button>
 
+<mdl-button mdl-button-type="raised" [disabled]="btnDisabled">
+	Button
+</mdl-button>
+
+<mdl-checkbox mdl-ripple [(ngModel)]="btnDisabled">Disable Button</mdl-checkbox>
+
 <pre prism>
   <![CDATA[
   <!-- Raised button -->
@@ -81,6 +87,10 @@
   <mdl-button mdl-button-type="raised" disabled>
     Button
   </mdl-button>
+
+	<mdl-button mdl-button-type="raised" [disabled]="btnDisabled">
+		Button
+	</mdl-button>
   ]]>
 </pre>
 

@@ -2,9 +2,11 @@ import {
   Component,
   Input,
   ElementRef,
-  OnChanges
+  OnChanges,
+  Renderer
 } from '@angular/core';
 import { MdlError } from './../common/mdl-error';
+import { BooleanProperty } from './../common/boolean-property';
 
 export class MdlUnsupportedButtonTypeError extends MdlError {
   constructor(type: string) {
@@ -36,6 +38,7 @@ const MDL_COLORED_TYPES = [
 @Component({
   selector: 'mdl-button',
   host: {
+    '[attr.disabled]': 'disabled ? "disabled" : null',
     '(mouseup)': 'onMouseUp()',
     '(mouseleave)': 'onMouseLeave()',
     '[class.mdl-button]': 'true',
@@ -55,8 +58,9 @@ export class MdlButtonComponent implements OnChanges {
 
   @Input('mdl-button-type') private mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '' ;
   @Input('mdl-colored') private mdlColoredType: 'primary' | 'accent' | '';
+  @Input() @BooleanProperty() public disabled = false;
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {
     this.element = elementRef.nativeElement;
   }
 
@@ -69,6 +73,8 @@ export class MdlButtonComponent implements OnChanges {
     if ( this.mdlColoredType && MDL_COLORED_TYPES.indexOf(this.mdlColoredType) === -1) {
       throw new MdlUnsupportedColoredTypeError(this.mdlColoredType);
     }
+
+   // this.renderer.setElementAttribute()
   }
 
   protected onMouseUp() {
