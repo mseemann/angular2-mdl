@@ -42,12 +42,12 @@ h4{
   text-transform: uppercase;
 }
 
-.mdl-layout__header-row {
+.main-header {
  padding-left: 40px;
 }
 
 @media screen and (max-width: 1024px) {
-  .mdl-layout__header-row {
+  .main-header {
     padding-left: 72px;
   }
 }
