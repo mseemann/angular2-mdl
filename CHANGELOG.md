@@ -1,4 +1,14 @@
 
+<a name="1.1.2"></a>
+# 1.1.2 (2016-07-25)
+
+### Features
+* intenalize all exteranl templates -> be compatible with angular-univeral
+
+### BREAKING CHANGES
+
+
+
 <a name="1.1.1"></a>
 # 1.1.1 (2016-07-22)
 
