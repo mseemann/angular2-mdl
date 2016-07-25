@@ -9,8 +9,6 @@ import {
 } from '@angular/core';
 import { MaterialRipple } from './ripple.vendor';
 
-// TODO change to @Component with a template to create the dom structure for ripple effects
-
 export class MdlRippleDirective implements OnChanges {
 
   private RIPPLE = 'mdl-ripple';
@@ -25,7 +23,6 @@ export class MdlRippleDirective implements OnChanges {
     this.el = elementRef.nativeElement;
   }
 
-
   public ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
 
       // remove any existing ripple container
@@ -35,18 +32,19 @@ export class MdlRippleDirective implements OnChanges {
         delete this.ripple;
       }
 
-      // FIXME is MDL_JS_RIPPLE_EFFECT_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events' needed on thi.el?
-
       // if used as mdl-ripple without property binding it is an empty string
       // otherwise (e.g. [mdl-ripple] it is a boolean - may be with the default value true.
       if (this.rippleActive === '' || this.rippleActive) {
-        this.rippleContainer = this.renderer.createElement(this.el, 'span');
+
+        this.rippleContainer = this.renderer.createElement(null, 'span');
         this.cssContainerClasses.forEach( ( cssClass ) => {
-          this.renderer.setElementClass(this.rippleContainer, cssClass, true);
+          this.rippleContainer.classList.add(cssClass);
         });
-        var rippleElement = this.renderer.createElement(this.rippleContainer, 'span');
-        this.renderer.setElementClass(rippleElement, this.RIPPLE, true);
-        // ?? rippleElement.addEventListener('mouseup', ()=>rippleElement.blur());
+        var rippleElement = this.renderer.createElement(null, 'span');
+        rippleElement.classList.add(this.RIPPLE);
+        this.rippleContainer.appendChild(rippleElement);
+        this.el.appendChild(this.rippleContainer);
+
         this.ripple = new MaterialRipple(this.rippleContainer);
 
       }
@@ -137,7 +135,6 @@ export class MdlAnchorRippleDirective extends MdlRippleDirective {
 export class MdlListItemRippleDirective extends MdlRippleDirective implements OnInit {
 
   constructor(elementRef: ElementRef, renderer: Renderer) {;
-    // mdl-button__ripple-container
     super(elementRef, renderer, ['mdl-button__ripple-container']);
   }
 
