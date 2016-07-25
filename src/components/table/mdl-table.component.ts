@@ -16,7 +16,34 @@ import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 let tableComponentMeta = new ComponentMetadata({
     moduleId: module.id,
     selector: 'mdl-table',
-    templateUrl: 'mdl-table.html',
+    template: `
+        <table class="mdl-data-table">
+           <thead>
+           <tr>
+              <th *ngIf="selectable">
+                 <mdl-checkbox mdl-ripple [ngModel]="isAllSelected()" (ngModelChange)="toogleAll()"></mdl-checkbox>
+              </th>
+              <th *ngFor="let column of model.columns"
+                  [ngClass]="{'mdl-data-table__cell--non-numeric': !column.numeric}">
+                 {{column.name}}
+              </th>
+           </tr>
+           </thead>
+           <tbody>
+           <tr *ngFor="let data of model.data; let i = index" [ngClass]="{'is-selected': selectable && data.selected}">
+              <td *ngIf="selectable">
+                 <mdl-checkbox mdl-ripple
+                      [(ngModel)]="data.selected"
+                      (ngModelChange)="selectionChanged(data)"></mdl-checkbox>
+              </td>
+              <td *ngFor="let column of model.columns"
+                  [ngClass]="{'mdl-data-table__cell--non-numeric': !column.numeric}">
+                 {{data[column.key]}}
+              </td>
+           </tr>
+           </tbody>
+        </table>  
+    `,
     styles: [
       `
     :host{
