@@ -1,3 +1,10 @@
+<a name="1.1.4"></a>
+# 1.1.4 (2016-07-25)
+
+### Features
+* avoid using window and document  -> be compatible with angular-univeral
+
+### BREAKING CHANGES
 
 <a name="1.1.2"></a>
 # 1.1.2 (2016-07-25)
