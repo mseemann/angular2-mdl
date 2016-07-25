@@ -126,23 +126,27 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
          this.onScroll(this.content.el.scrollTop);
       });
 
-      let query: MediaQueryList = window.matchMedia('(max-width: 1024px)');
+      // do not try to access the window object if rendered on the server
+      if (typeof window === 'object' && 'matchMedia' in window) {
 
-      let queryListener = () => {
-        this.ngZone.run( () => {
-          // looks like the query addListener runs not in NGZone - inform manually about changes
+        let query: MediaQueryList = window.matchMedia('(max-width: 1024px)');
+
+        let queryListener = () => {
+          this.ngZone.run( () => {
+            // looks like the query addListener runs not in NGZone - inform manually about changes
+            this.onQueryChange(query.matches);
+          });
+        };
+        query.addListener(queryListener);
+        this.windowMediaQueryListener = function() {
+          query.removeListener(queryListener);
+        };
+        // set the initial state
+        setTimeout(() => {
           this.onQueryChange(query.matches);
         });
-      };
-      query.addListener(queryListener);
-      this.windowMediaQueryListener = function() {
-        query.removeListener(queryListener);
-      };
-      // set the initial state
-      setTimeout(() => {
-        this.onQueryChange(query.matches);
-      });
 
+      }
     }
 
   }
