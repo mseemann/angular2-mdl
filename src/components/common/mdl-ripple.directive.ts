@@ -40,16 +40,13 @@ export class MdlRippleDirective implements OnChanges {
       // if used as mdl-ripple without property binding it is an empty string
       // otherwise (e.g. [mdl-ripple] it is a boolean - may be with the default value true.
       if (this.rippleActive === '' || this.rippleActive) {
-        this.rippleContainer = this.renderer.createElement(null, 'span');
+        this.rippleContainer = this.renderer.createElement(this.el, 'span');
         this.cssContainerClasses.forEach( ( cssClass ) => {
-          this.rippleContainer.classList.add(cssClass);
+          this.renderer.setElementClass(this.rippleContainer, cssClass, true);
         });
-        var rippleElement = this.renderer.createElement(null, 'span');
-        rippleElement.classList.add(this.RIPPLE);
-        this.rippleContainer.appendChild(rippleElement);
+        var rippleElement = this.renderer.createElement(this.rippleContainer, 'span');
+        this.renderer.setElementClass(rippleElement, this.RIPPLE, true);
         // ?? rippleElement.addEventListener('mouseup', ()=>rippleElement.blur());
-        this.el.appendChild(this.rippleContainer);
-
         this.ripple = new MaterialRipple(this.rippleContainer);
 
       }
@@ -74,7 +71,7 @@ export class MdlButtonRippleDirective extends MdlRippleDirective {
 export class MdlCheckboxRippleDirective extends MdlRippleDirective {
 
   constructor(elementRef: ElementRef, renderer: Renderer) {
-    super(elementRef, renderer, ['mdl-checkbox__ripple-container']);
+    super(elementRef, renderer, ['mdl-checkbox__ripple-container', 'mdl-ripple--center']);
   }
 
 }
@@ -85,7 +82,7 @@ export class MdlCheckboxRippleDirective extends MdlRippleDirective {
 export class MdlRadioRippleDirective extends MdlRippleDirective {
 
   constructor(elementRef: ElementRef, renderer: Renderer) {
-    super(elementRef, renderer, ['mdl-radio__ripple-container']);
+    super(elementRef, renderer, ['mdl-radio__ripple-container', 'mdl-ripple--center']);
   }
 
 }
@@ -96,7 +93,7 @@ export class MdlRadioRippleDirective extends MdlRippleDirective {
 export class MdlIconToggleRippleDirective extends MdlRippleDirective {
 
   constructor(elementRef: ElementRef, renderer: Renderer) {
-    super(elementRef, renderer, ['mdl-icon-toggle__ripple-container']);
+    super(elementRef, renderer, ['mdl-icon-toggle__ripple-container', 'mdl-ripple--center']);
   }
 
 }
@@ -107,7 +104,7 @@ export class MdlIconToggleRippleDirective extends MdlRippleDirective {
 export class MdlSwitchRippleDirective extends MdlRippleDirective {
 
   constructor(elementRef: ElementRef, renderer: Renderer) {
-    super(elementRef, renderer, ['mdl-switch__ripple-container']);
+    super(elementRef, renderer, ['mdl-switch__ripple-container', 'mdl-ripple--center']);
   }
 
 }
