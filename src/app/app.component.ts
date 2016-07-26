@@ -30,7 +30,8 @@ import { MDL_DIRECTIVES, MDL_SERVICES, MdlLayoutComponent } from '../components'
 @Component({
   moduleId: module.id,
   selector: 'home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  directives: [MDL_DIRECTIVES]
 })
 export class Home {
 }

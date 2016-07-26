@@ -38,7 +38,8 @@ const IS_FOCUSED = 'is-focused';
   <span class="mdl-checkbox__box-outline">
     <span class="mdl-checkbox__tick-outline"></span>
   </span>
-  `
+  `,
+  inputs: ['value']
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
 
@@ -51,7 +52,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   }
 
   get value(): boolean { return this.value_; };
-  @Input() set value(v: boolean) {
+  set value(v: boolean) {
     this.value_ = v;
     this.onChangeCallback(v);
   }

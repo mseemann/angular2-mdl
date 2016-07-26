@@ -211,7 +211,7 @@ describe('Directive: MdlRipple', () => {
     return builder
       .overrideTemplate(MdlTestRippleComponent, `
          <mdl-list>
-            <mdl-list-item mdl-ripple></mdl-list-item>
+            <mdl-list-item [mdl-ripple]="true"></mdl-list-item>
           </mdl-list>
         `)
       .createAsync(MdlTestRippleComponent).then( (fixture) => {
@@ -226,7 +226,24 @@ describe('Directive: MdlRipple', () => {
         done();
       });
   });
-  
+
+  it('should add the ripple toa tag for', ( done ) => {
+    builder
+      .overrideTemplate(MdlTestRippleComponent, `
+           <a [mdl-ripple]="true"></a>
+        `)
+      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+
+      fixture.detectChanges();
+
+      let span1 = getSpan1IfAny(fixture);
+
+      expect(span1.classList.contains('mdl-ripple')).toBe(true);
+
+      done();
+    });
+  });
+
 });
 
 
