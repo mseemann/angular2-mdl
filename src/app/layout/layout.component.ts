@@ -35,8 +35,10 @@ import { ROUTER_DIRECTIVES} from '@angular/router';
 })
 export class LayoutDemo {
 
-  public tabChanged($event) {
-    console.log($event);
+  public activeIndex = 0;
+
+  public tabChanged({index}) {
+    this.activeIndex = index;
   }
 }
 

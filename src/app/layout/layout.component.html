@@ -295,7 +295,7 @@ The screen width must be wider than 1024px to see the header in any case.
 <h6>Fixed tabs</h6>
 
 <div class="demo-container" mdl-shadow="2">
-   <mdl-layout mdl-layout-fixed-header mdl-layout-tab-active-index="0" (mdl-layout-tab-active-changed)="tabChanged($event)">
+   <mdl-layout mdl-layout-fixed-header [mdl-layout-tab-active-index]="activeIndex" (mdl-layout-tab-active-changed)="tabChanged($event)">
       <mdl-layout-header>
          <mdl-layout-header-row>
             <mdl-layout-title>Title</mdl-layout-title>
@@ -317,6 +317,9 @@ The screen width must be wider than 1024px to see the header in any case.
       </mdl-layout-content>
    </mdl-layout>
 </div>
+
+active index:
+<input type="number" [(ngModel)]="activeIndex" min="0" max="2">
 
 <pre prism>
   <![CDATA[
@@ -351,9 +354,12 @@ The screen width must be wider than 1024px to see the header in any case.
 Please visit the original <a href="https://getmdl.io/components/index.html#layout-section/grid" target="mdl-docu">material lite documentation</a> how to use the grid system.
 
 <h5>Tabs</h5>
-
+<div>
+  active index:
+  <input type="number" [(ngModel)]="activeIndex" min="0" max="2">
+</div>
 <div class="demo-tab-container">
-   <mdl-tabs mdl-ripple mdl-tab-active-index="0" (mdl-tab-active-changed)="tabChanged($event)">
+   <mdl-tabs mdl-ripple [mdl-tab-active-index]="activeIndex" (mdl-tab-active-changed)="tabChanged($event)">
       <mdl-tab-panel mdl-tab-panel-title="Starks">
          <ul>
             <li>Eddard</li>

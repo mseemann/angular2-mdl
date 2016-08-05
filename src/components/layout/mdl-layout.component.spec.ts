@@ -75,7 +75,7 @@ describe('Component: MdlLayout', () => {
         done();
       });
   });
-  
+
   it('should close the obfuscator if the escape key is pressed', (done) => {
     return builder
       .overrideTemplate(MdlTestLayoutComponent, `
@@ -86,7 +86,7 @@ describe('Component: MdlLayout', () => {
           </mdl-layout>
         `)
       .createAsync(MdlTestLayoutComponent).then( (fixture) => {
-        
+
         fixture.detectChanges();
         let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
         layoutComponent.isDrawerVisible = true;
@@ -99,7 +99,7 @@ describe('Component: MdlLayout', () => {
         obfuscatorElement.dispatchEvent(e);
 
         expect(layoutComponent.isDrawerVisible).toBe(false);
-        
+
         done();
       });
   });
@@ -237,6 +237,37 @@ describe('Component: MdlLayout', () => {
 
   });
 
+  it('should activate the selected tab if the selectedIndex changed programmatically', ( done ) => {
+
+    return builder
+      .overrideTemplate(MdlTestLayoutComponent, `
+          <mdl-layout [mdl-layout-tab-active-index]="activeIndex">
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-content>
+               <mdl-layout-tab-panel mdl-layout-tab-panel-title="t1"></mdl-layout-tab-panel>
+               <mdl-layout-tab-panel mdl-layout-tab-panel-title="t2"></mdl-layout-tab-panel>
+            </mdl-layout-content>
+          </mdl-layout>
+        `)
+      .createAsync(MdlTestLayoutComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        expect(fixture.componentInstance.activeIndex).toBe(0);
+
+        fixture.componentInstance.activeIndex = 1;
+
+        fixture.detectChanges();
+
+        let mdlLayoutComponent: MdlLayoutComponent =
+          fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+        expect(mdlLayoutComponent.selectedIndex).toBe(1);
+
+        done();
+      });
+
+  });
 
   it('should be possible to listen to chanegs to the active tab', ( done ) => {
 
@@ -347,6 +378,9 @@ describe('Component: MdlLayout', () => {
   directives: [MDL_LAYOUT_DIRECTIVES, MdlAnchorRippleDirective]
 })
 class MdlTestLayoutComponent {
+
+  public activeIndex = 0;
+
   public selectedIndexOutput: number;
 
   public tabChanged($event) {

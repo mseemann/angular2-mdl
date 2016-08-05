@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noImplicitAny": false,
-    "outDir": "../../dist/",
+    "outDir": "../dist/",
     "rootDir": "..",
     "target": "es5",
     "inlineSources": false,

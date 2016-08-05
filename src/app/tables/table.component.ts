@@ -2,7 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { 
+import {
   MDL_DIRECTIVES,
   IMdlTableModelItem,
   MdlDefaultTableModel

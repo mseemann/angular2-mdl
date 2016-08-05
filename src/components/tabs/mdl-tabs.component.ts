@@ -5,7 +5,9 @@ import {
   AfterContentInit,
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { BooleanProperty } from './../common/boolean-property';
 import { NumberProperty } from './../common/number.property';
@@ -31,7 +33,7 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
   `,
   directives: [MDL_COMMON_DIRECTIVES]
 })
-export class MdlTabsComponent implements AfterContentInit {
+export class MdlTabsComponent implements AfterContentInit, OnChanges {
 
   @Input('mdl-tab-active-index') @NumberProperty() public selectedIndex: number = 0;
   @Input('mdl-ripple') @BooleanProperty() protected isRipple = false;
@@ -41,8 +43,21 @@ export class MdlTabsComponent implements AfterContentInit {
 
 
   public ngAfterContentInit() {
-    if (this.tabs.toArray().length > 0 && this.selectedIndex <= this.tabs.toArray().length) {
-      this.tabs.toArray()[this.selectedIndex].isActive = true;
+    this.updateSelectedTabIndex();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): any{
+    if ( changes['selectedIndex'] ){
+      this.updateSelectedTabIndex();
+    }
+  }
+
+  private updateSelectedTabIndex(){
+    if ( this.tabs ){
+      this.tabs.forEach( tab => tab.isActive = false );
+      if (this.tabs.toArray().length > 0 && this.selectedIndex <= this.tabs.toArray().length) {
+        this.tabs.toArray()[this.selectedIndex].isActive = true;
+      }
     }
   }
 

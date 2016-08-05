@@ -8,7 +8,11 @@ import {
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
-import { MdlTabPanelComponent } from './mdl-tab-panel.component';
+import {
+  MdlTabPanelComponent,
+  MdlTabsComponent,
+  MDL_TABS_DIRECTIVES
+} from './index';
 
 describe('Component: MdlTabsPanel', () => {
 
@@ -60,12 +64,43 @@ describe('Component: MdlTabsPanel', () => {
 
   });
 
+  it('should activate the selected tab if the selectedIndex changed programmatically', ( done ) => {
+
+    return builder
+      .overrideTemplate(MdlTestComponent, `
+          <mdl-tabs [mdl-tab-active-index]="activeIndex" >
+               <mdl-tab-panel mdl-tab-panel-title="t1"></mdl-tab-panel>
+               <mdl-tab-panel mdl-tab-panel-titlex="t2"></mdl-tab-panel>
+          </mdl-tabs>
+        `)
+      .createAsync(MdlTestComponent).then( (fixture) => {
+
+        fixture.detectChanges();
+
+        expect(fixture.componentInstance.activeIndex).toBe(0);
+
+        fixture.componentInstance.activeIndex = 1;
+
+        fixture.detectChanges();
+
+        let mdlLayoutComponent: MdlTabsComponent =
+          fixture.debugElement.query(By.directive(MdlTabsComponent)).componentInstance;
+
+        expect(mdlLayoutComponent.selectedIndex).toBe(1);
+
+        done();
+      });
+
+  });
+
 });
 
 
 @Component({
   selector: 'test',
   template: 'replaced by the test',
-  directives: [MdlTabPanelComponent]
+  directives: [MDL_TABS_DIRECTIVES]
 })
-class MdlTestComponent {}
+class MdlTestComponent {
+  public activeIndex = 0;
+}

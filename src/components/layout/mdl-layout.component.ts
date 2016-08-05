@@ -9,7 +9,9 @@ import {
   ElementRef,
   Output,
   EventEmitter,
-  NgZone
+  NgZone,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from './../common/mdl-error';
@@ -62,7 +64,7 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
   directives: [MdlIconComponent],
   encapsulation: ViewEncapsulation.None
 })
-export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
+export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChanges {
 
   @ContentChild(MdlLayoutHeaderComponent) private header;
   @ContentChild(MdlLayoutDrawerComponent) private drawer;
@@ -93,16 +95,29 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy {
   public ngAfterContentInit() {
     this.validateMode();
 
-    if (this.header && this.content) {
+    if (this.header && this.content && this.content.tabs) {
       this.header.tabs = this.content.tabs;
-      if (this.header.tabs.toArray().length > 0 && this.selectedIndex <= this.header.tabs.toArray().length) {
-        this.header.tabs.toArray()[this.selectedIndex].isActive = true;
-      }
+      this.updateSelectedTabIndex();
     }
 
     // set this.drawer to null, if the drawer is not a direct child if this layout. It may be a drywer of a sub layout.
     if (this.drawer && !this.drawer.isDrawerDirectChildOf(this)) {
       this.drawer = null;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): any {
+    if ( changes['selectedIndex'] ){
+      this.updateSelectedTabIndex();
+    }
+  }
+
+  private updateSelectedTabIndex(){
+    if (this.header && this.header.tabs) {
+      this.header.tabs.forEach( tab => tab.isActive = false);
+      if (this.header.tabs.toArray().length > 0 && this.selectedIndex <= this.header.tabs.toArray().length) {
+        this.header.tabs.toArray()[this.selectedIndex].isActive = true;
+      }
     }
   }
 
