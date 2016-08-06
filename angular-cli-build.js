@@ -24,7 +24,7 @@ function _buildE2EAppInputTree() {
 
 module.exports = function(defaults) {
 
-  let inputNode = _buildE2EAppInputTree();
+  var inputNode = _buildE2EAppInputTree();
 
   return new Angular2App(defaults, {
     //sourceDir: 'src/e2e-app',

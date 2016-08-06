@@ -10,7 +10,6 @@ import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor
 } from '@angular/common';
-import { noop } from './../common/mdl-internal-commons';
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlCheckboxComponent),
@@ -61,8 +60,8 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
     this.value_ = value;
   }
 
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
+  private onTouchedCallback: () => void;
+  private onChangeCallback: (_: any) => void;
 
   public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;

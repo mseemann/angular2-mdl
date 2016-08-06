@@ -14,7 +14,6 @@ import {
   ControlValueAccessor
 } from '@angular/common';
 
-import { noop } from './../common/mdl-internal-commons';
 import { BooleanProperty } from './../common/boolean-property';
 import { NumberProperty } from './../common/number.property';
 import { MdlButtonComponent } from './../button/mdl-button.component';
@@ -122,8 +121,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.checkDirty();
   }
 
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
+  private onTouchedCallback: () => void;
+  private onChangeCallback: (_: any) => void;
 
   public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
@@ -152,7 +151,9 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
 
   protected onBlur() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, false);
-    this.onTouchedCallback();
+    if( this.onTouchedCallback ){
+      this.onTouchedCallback();
+    }
   }
 
   private checkDisabled() {

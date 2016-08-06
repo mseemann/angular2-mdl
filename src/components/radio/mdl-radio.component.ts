@@ -10,7 +10,6 @@ import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor
 } from '@angular/common';
-import { noop } from './../common/mdl-internal-commons';
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlRadioComponent),
@@ -54,13 +53,13 @@ export class MdlRadioComponent implements ControlValueAccessor {
   constructor(private elementRef: ElementRef, private renderer: Renderer) {
     this.el = elementRef.nativeElement;
   }
-  
+
   public writeValue(optionValue: any): void {
     this.optionValue = optionValue;
   }
 
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
+  private onTouchedCallback: () => void;
+  private onChangeCallback: (_: any) => void;
 
   public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
