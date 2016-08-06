@@ -14,7 +14,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 [![Build Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
 
-CAVEAT: This package uses the angular forms API from @angular/common. In the next releases it will change to @angular/forms!
+CAVEAT: This package uses the angular forms API from @angular/common. In the next releases it will change to @angular/forms! (see: https://docs.google.com/document/u/1/d/1RIezQqE4aEhBRmArIAS1mRIZtWFf6JxN_7B4meyWK0Y/pub)
 
 
 ### Status of the npm package version 1.1
