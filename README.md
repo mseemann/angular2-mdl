@@ -14,7 +14,10 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 [![Build Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
 
-### Status of the npm package version 1.1.0
+CAVEAT: This package uses the angular forms API from @angular/common. In the next releases it will change to @angular/forms!
+
+
+### Status of the npm package version 1.1
 
 - Badges
 - Buttons 
