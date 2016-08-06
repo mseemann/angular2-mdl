@@ -115,7 +115,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   private updateSelectedTabIndex(){
     if (this.header && this.header.tabs) {
       this.header.tabs.forEach( tab => tab.isActive = false);
-      if (this.header.tabs.toArray().length > 0 && this.selectedIndex <= this.header.tabs.toArray().length) {
+      if (this.header.tabs.toArray().length > 0 && this.selectedIndex < this.header.tabs.toArray().length) {
         this.header.tabs.toArray()[this.selectedIndex].isActive = true;
       }
     }
@@ -234,12 +234,8 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   public tabSelected(tab) {
     let index = this.header.tabs.toArray().indexOf(tab);
     if (index != this.selectedIndex) {
-      // deselect all tabs
-      this.header.tabs.forEach( ( aTab ) => aTab.isActive = false );
-      // select the clicked tab
-      tab.isActive = true;
-
       this.selectedIndex = index;
+      this.updateSelectedTabIndex();
       this.selectedTabEmitter.emit({index: this.selectedIndex});
     }
   }

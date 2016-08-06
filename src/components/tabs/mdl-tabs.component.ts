@@ -55,7 +55,7 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
   private updateSelectedTabIndex(){
     if ( this.tabs ){
       this.tabs.forEach( tab => tab.isActive = false );
-      if (this.tabs.toArray().length > 0 && this.selectedIndex <= this.tabs.toArray().length) {
+      if (this.tabs.toArray().length > 0 && this.selectedIndex < this.tabs.toArray().length) {
         this.tabs.toArray()[this.selectedIndex].isActive = true;
       }
     }
@@ -64,12 +64,8 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
   protected tabSelected(tab: MdlTabPanelComponent) {
     let index = this.tabs.toArray().indexOf(tab);
     if (index != this.selectedIndex) {
-      // deselect all tabs
-      this.tabs.forEach( ( aTab ) => aTab.isActive = false );
-      // select the clicked tab
-      tab.isActive = true;
-
       this.selectedIndex = index;
+      this.updateSelectedTabIndex();
       this.selectedTabEmitter.emit({index: this.selectedIndex});
     }
   }
