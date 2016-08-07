@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 * https://github.com/mseemann/angular2-mdl/issues/28
+
 ### BREAKING CHANGES
 you need to make your app require @angular/forms@0.2.0
 

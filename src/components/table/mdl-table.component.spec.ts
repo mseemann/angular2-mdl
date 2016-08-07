@@ -26,7 +26,7 @@ describe('Component: MdlTableComponent', () => {
     builder = tcb;
   }));
 
-  it('should create a table with class "mdl-data-table', () => {
+  it('should create a table with class "mdl-data-table', ( done ) => {
 
     return builder
       .createAsync(MdlTestTableComponent).then((fixture) => {
@@ -36,11 +36,13 @@ describe('Component: MdlTableComponent', () => {
         let tableEl: HTMLInputElement = fixture.debugElement.query(By.css('table')).nativeElement;
         expect(tableEl.classList.contains('mdl-data-table')).toBe(true);
 
+        done();
+
       });
   });
 
 
-  it('should select all items if the toggleAll checkbox is clicked', () => {
+  it('should select all items if the toggleAll checkbox is clicked', ( done ) => {
     return builder
       .createAsync(MdlTestTableComponent).then((fixture) => {
 
@@ -54,10 +56,11 @@ describe('Component: MdlTableComponent', () => {
 
         expect(fixture.componentInstance.selected.length).toBe(fixture.componentInstance.tableData.length);
 
+        done();
       });
   });
 
-  it('should change the selection to the last table row if the last checkbox is clickt', () => {
+  it('should change the selection to the last table row if the last checkbox is clickt', ( done ) => {
     return builder
       .createAsync(MdlTestTableComponent).then((fixture) => {
 
@@ -71,6 +74,8 @@ describe('Component: MdlTableComponent', () => {
 
         // one is already selected so we have to selected items
         expect(fixture.componentInstance.selected.length).toBe(2);
+
+        done();
 
       });
   });
