@@ -14,10 +14,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 [![Build Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
 
-CAVEAT: This package uses the angular forms API from @angular/common. In the next releases it will change to @angular/forms! (see: https://docs.google.com/document/u/1/d/1RIezQqE4aEhBRmArIAS1mRIZtWFf6JxN_7B4meyWK0Y/pub)
-
-
-### Status of the npm package version 1.1
+### Status of the npm package version 1.2
 
 - Badges
 - Buttons 
@@ -36,6 +33,16 @@ CAVEAT: This package uses the angular forms API from @angular/common. In the nex
 - Tabs
 - Textfields (multiline, expandable)
 
+This package supports both forms APIs. If you want to use the new forms api you have to enable this at the bootstrapping - this will change with angular 2 rc5!:
+
+```JavaScript
+import { disableDeprecatedForms, provideForms} from '@angular/forms';
+
+bootstrap(AppComponent, [
+  disableDeprecatedForms(),
+  provideForms()
+]).catch((err: any) => console.error(err));
+```
 
 
 ### Installation

@@ -1,3 +1,11 @@
+<a name="1.2.0"></a>
+# 1.2.0 (2016-08-07)
+
+### Bug Fixes
+* https://github.com/mseemann/angular2-mdl/issues/28
+### BREAKING CHANGES
+you need to make your app require @angular/forms@0.2.0
+
 <a name="1.1.5"></a>
 # 1.1.5 (2016-07-26)
 
