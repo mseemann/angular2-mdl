@@ -3,15 +3,23 @@ import {
   ElementRef,
   Provider,
   Renderer,
-  forwardRef,
-  Input
+  forwardRef
 } from '@angular/core';
+import {
+  NG_VALUE_ACCESSOR as DEPRECTAED_NG_VALUE_ACCESSOR,
+  ControlValueAccessor as DEPRECATED_ControlValueAccessor
+} from '@angular/common';
 import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor
-} from '@angular/common';
+} from '@angular/forms';
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
+  useExisting: forwardRef(() => MdlCheckboxComponent),
+  multi: true
+});
+
+const DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(DEPRECTAED_NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlCheckboxComponent),
   multi: true
 });
@@ -20,7 +28,7 @@ const IS_FOCUSED = 'is-focused';
 
 @Component({
   selector: 'mdl-checkbox',
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR, DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR],
   host: {
     '(click)': 'onClick()',
     '[class.mdl-checkbox]': 'true',
@@ -31,7 +39,7 @@ const IS_FOCUSED = 'is-focused';
   <input type="checkbox" class="mdl-checkbox__input" 
     (focus)="onFocus()" 
     (blur)="onBlur()"
-    [(ngModel)]="value">
+    [ngModel]="value">
   <span class="mdl-checkbox__label"><ng-content></ng-content></span>
   <span class="mdl-checkbox__focus-helper"></span>
   <span class="mdl-checkbox__box-outline">
@@ -40,7 +48,7 @@ const IS_FOCUSED = 'is-focused';
   `,
   inputs: ['value']
 })
-export class MdlCheckboxComponent implements ControlValueAccessor {
+export class MdlCheckboxComponent implements ControlValueAccessor, DEPRECATED_ControlValueAccessor {
 
   private value_: boolean = false;
 

@@ -62,12 +62,6 @@
     ],
     "interface-name": true,
     "no-unreachable": true,
-    "member-access": true,
-    "component-selector-name": [true, "kebab-case"],
-    "component-selector-type": [true, "element"],
-    "use-host-property-decorator": true,
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
-    "no-attribute-parameter-decorator": true
+    "member-access": true
   }
 }

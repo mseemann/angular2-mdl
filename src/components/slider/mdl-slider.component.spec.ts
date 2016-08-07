@@ -5,124 +5,157 @@ import {
   inject,
   fakeAsync,
   tick,
-  beforeEach
+  beforeEach,
+  addProviders
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlSliderComponent } from './mdl-slider.component';
+import { disableDeprecatedForms, provideForms} from '@angular/forms';
 
 describe('Component: MdlSlider', () => {
 
   var builder: TestComponentBuilder;
   var doc: HTMLDocument;
 
-  beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
-    builder = tcb;
-    doc = document;
-  }));
+  describe('with deprecated forms api', () => {
 
-  it('should add the css class mdl-slider__container to the host element', () => {
+    beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
+      builder = tcb;
+      doc = document;
+    }));
 
-    return builder
-      .createAsync(MdlTestSliderComponent).then( (fixture) => {
+    it('should add the css class mdl-slider__container to the host element', () => {
 
-        fixture.detectChanges();
+      return builder
+        .createAsync(MdlTestSliderComponent).then( (fixture) => {
 
-        let iconEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(iconEl.classList.contains('mdl-slider__container')).toBe(true);
-
-      });
-  });
-
-  it('should support ngModel', () => {
-    return builder
-      .createAsync(MdlTestSliderComponent).then( (fixture) => {
-        fixture.detectChanges();
-
-        fakeAsync(() => {
-
-          let instance = fixture.componentInstance;
-          let component = fixture.debugElement.query(By.directive(MdlSliderComponent)).componentInstance;
-          let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
-
-          instance.currentValue = 67;
           fixture.detectChanges();
-          tick();
-          expect(el.value).toEqual('67');
 
-          component.value = 88;
+          let iconEl: HTMLElement = fixture.nativeElement.children.item(0);
+          expect(iconEl.classList.contains('mdl-slider__container')).toBe(true);
+
+        });
+    });
+
+    it('should support ngModel', () => {
+      return builder
+        .createAsync(MdlTestSliderComponent).then( (fixture) => {
           fixture.detectChanges();
-          tick();
-          expect(el.value).toEqual('88');
-        })();
-      });
+
+          fakeAsync(() => {
+
+            let instance = fixture.componentInstance;
+            let component = fixture.debugElement.query(By.directive(MdlSliderComponent)).componentInstance;
+            let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+            instance.currentValue = 67;
+            fixture.detectChanges();
+            tick();
+            expect(el.value).toEqual('67');
+
+            component.value = 88;
+            fixture.detectChanges();
+            tick();
+            expect(el.value).toEqual('88');
+          })();
+        });
+    });
+
+    it('should call blur on mouseup events on the host element', () => {
+      return builder
+        .createAsync(MdlTestSliderComponent).then( (fixture) => {
+          fixture.detectChanges();
+
+          let hostElement = fixture.debugElement.query(By.css('mdl-slider')).nativeElement;
+
+          spyOn(hostElement, 'blur');
+
+          var evt = doc.createEvent('HTMLEvents');
+          evt.initEvent('mouseup', true, true);
+          hostElement.dispatchEvent(evt);
+
+          fixture.detectChanges();
+
+          expect(hostElement.blur).toHaveBeenCalled();
+
+        });
+    });
+
+    it('should propagate mousedown events on the host to the input element', ( done ) => {
+      return builder
+        .createAsync(MdlTestSliderComponent).then( (fixture) => {
+          fixture.detectChanges();
+
+          let hostElement = fixture.debugElement.query(By.css('mdl-slider')).nativeElement;
+
+          let inputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
+
+          spyOn(inputElement, 'dispatchEvent').and.callThrough();
+
+          var evt = doc.createEvent('HTMLEvents');
+          evt.initEvent('mousedown', true, true);
+          hostElement.dispatchEvent(evt);
+
+          fixture.detectChanges();
+
+          expect(inputElement.dispatchEvent).toHaveBeenCalledTimes(1);
+
+          done();
+        });
+    });
+
+
+    it('should not propagate mousedown events to the input element on other elements than the host', ( done ) => {
+      return builder
+        .createAsync(MdlTestSliderComponent).then( (fixture) => {
+          fixture.detectChanges();
+
+          let inputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
+
+          spyOn(inputElement, 'dispatchEvent').and.callThrough();
+
+          var evt = doc.createEvent('HTMLEvents');
+          evt.initEvent('mousedown', true, true);
+          inputElement.dispatchEvent(evt);
+
+          fixture.detectChanges();
+
+          // if it would be propagated dispatchEvent would have been called 2 times.
+          expect(inputElement.dispatchEvent).toHaveBeenCalledTimes(1);
+
+          done();
+        });
+    });
   });
 
-  it('should call blur on mouseup events on the host element', () => {
-    return builder
-      .createAsync(MdlTestSliderComponent).then( (fixture) => {
-        fixture.detectChanges();
+  describe('with new forms api', () => {
 
-        let hostElement = fixture.debugElement.query(By.css('mdl-slider')).nativeElement;
+    beforeEach( () => {
+      addProviders([
+        disableDeprecatedForms(),
+        provideForms()
+      ]);
+    });
 
-        spyOn(hostElement, 'blur');
+    beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
+      builder = tcb;
+      doc = document;
+    }));
 
-        var evt = doc.createEvent('HTMLEvents');
-        evt.initEvent('mouseup', true, true);
-        hostElement.dispatchEvent(evt);
+    it('should be possible to create the test component', ( done ) => {
 
-        fixture.detectChanges();
+      return builder
+        .createAsync(MdlTestSliderComponent).then( (fixture) => {
 
-        expect(hostElement.blur).toHaveBeenCalled();
+          fixture.detectChanges();
 
-      });
-  });
+          done();
 
-  it('should propagate mousedown events on the host to the input element', ( done ) => {
-    return builder
-      .createAsync(MdlTestSliderComponent).then( (fixture) => {
-        fixture.detectChanges();
+        });
+    });
 
-        let hostElement = fixture.debugElement.query(By.css('mdl-slider')).nativeElement;
-
-        let inputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
-
-        spyOn(inputElement, 'dispatchEvent').and.callThrough();
-
-        var evt = doc.createEvent('HTMLEvents');
-        evt.initEvent('mousedown', true, true);
-        hostElement.dispatchEvent(evt);
-
-        fixture.detectChanges();
-
-        expect(inputElement.dispatchEvent).toHaveBeenCalledTimes(1);
-
-        done();
-      });
-  });
-
-
-  it('should not propagate mousedown events to the input element on other elements than the host', ( done ) => {
-    return builder
-      .createAsync(MdlTestSliderComponent).then( (fixture) => {
-        fixture.detectChanges();
-
-        let inputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
-
-        spyOn(inputElement, 'dispatchEvent').and.callThrough();
-
-        var evt = doc.createEvent('HTMLEvents');
-        evt.initEvent('mousedown', true, true);
-        inputElement.dispatchEvent(evt);
-
-        fixture.detectChanges();
-
-        // if it would be propagated dispatchEvent would have been called 2 times.
-        expect(inputElement.dispatchEvent).toHaveBeenCalledTimes(1);
-
-        done();
-      });
   });
 
 });

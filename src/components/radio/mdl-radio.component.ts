@@ -7,9 +7,18 @@ import {
   Input
 } from '@angular/core';
 import {
+  NG_VALUE_ACCESSOR as DEPRECATED_NG_VALUE_ACCESSOR,
+  ControlValueAccessor as DEPRECATED_ControlValueAccessor
+} from '@angular/common';
+import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor
-} from '@angular/common';
+} from '@angular/forms';
+
+const DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(DEPRECATED_NG_VALUE_ACCESSOR, {
+  useExisting: forwardRef(() => MdlRadioComponent),
+  multi: true
+});
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlRadioComponent),
@@ -24,7 +33,7 @@ const IS_FOCUSED = 'is-focused';
 
 @Component({
   selector: 'mdl-radio',
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR, MD_INPUT_CONTROL_VALUE_ACCESSOR],
   host: {
     '(click)': 'onClick()',
     '[class.mdl-radio]': 'true',
@@ -42,7 +51,7 @@ const IS_FOCUSED = 'is-focused';
   <span class="mdl-radio__inner-circle"></span>
   `
 })
-export class MdlRadioComponent implements ControlValueAccessor {
+export class MdlRadioComponent implements DEPRECATED_ControlValueAccessor, ControlValueAccessor {
 
   @Input() public name: string;
   @Input() public value: any;

@@ -8,9 +8,18 @@ import {
   ElementRef
 } from '@angular/core';
 import {
+  NG_VALUE_ACCESSOR as DEPRECATED_NG_VALUE_ACCESSOR,
+  ControlValueAccessor as DEPRECATED_ControlValueAccessor
+} from '@angular/common';
+import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor
-} from '@angular/common';
+} from '@angular/forms';
+
+const DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(DEPRECATED_NG_VALUE_ACCESSOR, {
+  useExisting: forwardRef(() => MdlSliderComponent),
+  multi: true
+});
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlSliderComponent),
@@ -19,7 +28,7 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
 
 @Component({
   selector: 'mdl-slider',
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR, MD_INPUT_CONTROL_VALUE_ACCESSOR],
   host: {
     '[class.mdl-slider__container]': 'true',
     '(mouseup)': 'onMouseUp($event)',
@@ -49,7 +58,7 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
     `
   ]
 })
-export class MdlSliderComponent implements ControlValueAccessor {
+export class MdlSliderComponent implements DEPRECATED_ControlValueAccessor, ControlValueAccessor {
   private value_: any;
 
   @Input() public min: number;
@@ -65,7 +74,9 @@ export class MdlSliderComponent implements ControlValueAccessor {
   @Input() set value(v: any) {
     this.value_ = v;
     this.updateSliderUI();
-    this.onChangeCallback(v);
+    if ( this.onChangeCallback ) {
+      this.onChangeCallback(v);
+    }
   }
 
   public writeValue(value: number): void {

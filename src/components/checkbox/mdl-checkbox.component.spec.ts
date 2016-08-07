@@ -3,39 +3,45 @@ import {
   expect,
   it,
   inject,
-  beforeEach
+  beforeEach,
+  addProviders
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component} from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlCheckboxComponent } from './mdl-checkbox.component';
+import { disableDeprecatedForms, provideForms} from '@angular/forms';
+
 
 describe('Component: MdlCheckbox', () => {
 
   var builder: TestComponentBuilder;
   var doc: HTMLDocument;
 
-  beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
-    builder = tcb;
-    doc = document;
-  }));
+  describe('with deprecated forms api', () => {
 
-  it('should add the css class mdl-checkbox to the host element', () => {
+    beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
+      builder = tcb;
+      doc = document;
+    }));
 
-    return builder
-      .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
+    it('should add the css class mdl-checkbox to the host element', ( done ) => {
 
-        fixture.detectChanges();
+      return builder
+        .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
 
-        let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(checkboxEl.classList.contains('mdl-checkbox')).toBe(true);
+          fixture.detectChanges();
 
-      });
-  });
+          let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
+          expect(checkboxEl.classList.contains('mdl-checkbox')).toBe(true);
 
-  it('should support ngModel', () => {
-    return builder
-      .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
+          done();
+        });
+    });
+
+    it('should support ngModel', ( done ) => {
+      return builder
+        .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
 
           fixture.detectChanges();
 
@@ -45,19 +51,22 @@ describe('Component: MdlCheckbox', () => {
 
           instance.checkboxValue1 = true;
           fixture.detectChanges();
+
           expect(el.checked).toEqual(true);
 
           component.value = false;
           fixture.detectChanges();
           expect(el.checked).toEqual(false);
 
-      });
-  });
+          done();
 
-  it('should change the value on click', () => {
-    return builder
-      .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
-        fixture.detectChanges();
+        });
+    });
+
+    it('should change the value on click', ( done ) => {
+      return builder
+        .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
+          fixture.detectChanges();
 
           let instance = fixture.componentInstance;
           let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
@@ -72,13 +81,14 @@ describe('Component: MdlCheckbox', () => {
 
           expect(el.checked).toEqual(true);
 
-      });
-  });
+          done();
+        });
+    });
 
-  it('should mark the component as focused and blured', () => {
-    return builder
-      .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
-        fixture.detectChanges();
+    it('should mark the component as focused and blured', ( done ) => {
+      return builder
+        .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
+          fixture.detectChanges();
 
           let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
@@ -98,8 +108,37 @@ describe('Component: MdlCheckbox', () => {
           fixture.detectChanges();
           expect(checkboxEl.classList.contains('is-focused')).toBe(false);
 
-      });
+          done();
+        });
+    });
   });
+
+
+  describe('with new forms api', () => {
+    beforeEach( () => {
+      addProviders([
+        disableDeprecatedForms(),
+        provideForms()
+      ]);
+    });
+
+    beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
+      builder = tcb;
+      doc = document;
+    }));
+
+    it('should be possible to create the testcomponnet if the new forms api is used', ( done ) => {
+
+      return builder
+        .createAsync(MdlTestCheckboxComponent).then( (fixture) => {
+
+          done();
+        });
+
+    });
+
+  });
+
 
 });
 

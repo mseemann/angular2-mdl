@@ -10,14 +10,23 @@ import {
   ViewChild
 } from '@angular/core';
 import {
+  NG_VALUE_ACCESSOR as DEPRECATED_NG_VALUE_ACCESSOR,
+  ControlValueAccessor as DEPRECATED_ControlValueAccessor
+} from '@angular/common';
+import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor
-} from '@angular/common';
+} from '@angular/forms';
 
 import { BooleanProperty } from './../common/boolean-property';
 import { NumberProperty } from './../common/number.property';
 import { MdlButtonComponent } from './../button/mdl-button.component';
 import { MdlIconComponent } from './../icon/mdl-icon.component';
+
+const DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(DEPRECATED_NG_VALUE_ACCESSOR, {
+  useExisting: forwardRef(() => MdlTextFieldComponent),
+  multi: true
+});
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlTextFieldComponent),
@@ -86,10 +95,10 @@ const IS_DIRTY = 'is-dirty';
       </div>
    </div>
    `,
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR, MD_INPUT_CONTROL_VALUE_ACCESSOR],
   directives: [MdlIconComponent, MdlButtonComponent]
 })
-export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, DoCheck {
+export class MdlTextFieldComponent implements DEPRECATED_ControlValueAccessor, ControlValueAccessor, OnChanges, DoCheck {
   private value_: any;
   private el: HTMLElement;
 

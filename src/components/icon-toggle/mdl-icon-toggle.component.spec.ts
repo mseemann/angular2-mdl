@@ -3,34 +3,66 @@ import {
   expect,
   it,
   inject,
-  beforeEach
+  beforeEach,
+  addProviders
 } from '@angular/core/testing';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlIconToggleComponent } from './mdl-icon-toggle.component';
+import { disableDeprecatedForms, provideForms} from '@angular/forms';
 
 describe('Component: MdlIconToggle', () => {
 
   var builder: TestComponentBuilder;
   var doc: HTMLDocument;
 
-  beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
-    builder = tcb;
-    doc = document;
-  }));
+  describe('with deprecated forms api', () => {
 
-  it('should add the css class mdl-icon-toggle to the host element', () => {
+    beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
+      builder = tcb;
+      doc = document;
+    }));
 
-    return builder
-      .createAsync(MdlTestIconToggleComponent).then( (fixture) => {
+    it('should add the css class mdl-icon-toggle to the host element', () => {
 
-        fixture.detectChanges();
+      return builder
+        .createAsync(MdlTestIconToggleComponent).then( (fixture) => {
 
-        let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(checkboxEl.classList.contains('mdl-icon-toggle')).toBe(true);
+          fixture.detectChanges();
 
-      });
+          let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
+          expect(checkboxEl.classList.contains('mdl-icon-toggle')).toBe(true);
+
+        });
+    });
+  });
+
+  describe('with new forms api', () => {
+
+    beforeEach( () => {
+      addProviders([
+        disableDeprecatedForms(),
+        provideForms()
+      ]);
+    });
+    beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
+      builder = tcb;
+      doc = document;
+    }));
+
+    it('should create the testcomponent', ( done ) => {
+
+      return builder
+        .createAsync(MdlTestIconToggleComponent).then( (fixture) => {
+
+          fixture.detectChanges();
+
+          done();
+
+        });
+    });
+
   });
 
 });

@@ -23,6 +23,7 @@ const packages: any = {
 const barrels: string[] = [
   // Angular specific barrels.
   '@angular/core',
+  '@angular/forms',
   '@angular/common',
   '@angular/compiler',
   '@angular/http',
