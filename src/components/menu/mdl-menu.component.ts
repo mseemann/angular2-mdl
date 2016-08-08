@@ -73,7 +73,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
 
   private isVisible   = false;
 
-  constructor(private renderer: Renderer){}
+  constructor(private renderer: Renderer) {}
 
   public ngOnInit() {
     this.cssPosition = CSS_ALIGN_MAP[this.position] || BOTTOM_LEFT;

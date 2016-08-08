@@ -98,7 +98,8 @@ const IS_DIRTY = 'is-dirty';
   providers: [DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR, MD_INPUT_CONTROL_VALUE_ACCESSOR],
   directives: [MdlIconComponent, MdlButtonComponent]
 })
-export class MdlTextFieldComponent implements DEPRECATED_ControlValueAccessor, ControlValueAccessor, OnChanges, DoCheck {
+export class MdlTextFieldComponent
+              implements DEPRECATED_ControlValueAccessor, ControlValueAccessor, OnChanges, DoCheck {
   private value_: any;
   private el: HTMLElement;
 
@@ -150,7 +151,7 @@ export class MdlTextFieldComponent implements DEPRECATED_ControlValueAccessor, C
     this.checkDirty();
   }
 
-  protected setFocus(){
+  protected setFocus() {
     this.inputEl.nativeElement.focus();
   }
 
@@ -160,7 +161,7 @@ export class MdlTextFieldComponent implements DEPRECATED_ControlValueAccessor, C
 
   protected onBlur() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, false);
-    if( this.onTouchedCallback ){
+    if ( this.onTouchedCallback ) {
       this.onTouchedCallback();
     }
   }

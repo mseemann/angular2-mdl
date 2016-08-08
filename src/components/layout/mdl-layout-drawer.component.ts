@@ -25,7 +25,7 @@ export class MdlLayoutDrawerComponent {
 
   }
 
-  public isDrawerDirectChildOf(layout: MdlLayoutComponent){
+  public isDrawerDirectChildOf(layout: MdlLayoutComponent) {
     return this.parentLayout === layout;
   }
 }

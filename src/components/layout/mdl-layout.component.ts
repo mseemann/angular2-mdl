@@ -106,13 +106,13 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): any {
-    if ( changes['selectedIndex'] ){
+  public ngOnChanges(changes: SimpleChanges): any {
+    if ( changes['selectedIndex'] ) {
       this.updateSelectedTabIndex();
     }
   }
 
-  private updateSelectedTabIndex(){
+  private updateSelectedTabIndex() {
     if (this.header && this.header.tabs) {
       this.header.tabs.forEach( tab => tab.isActive = false);
       if (this.header.tabs.toArray().length > 0 && this.selectedIndex < this.header.tabs.toArray().length) {
@@ -212,8 +212,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     }
   }
 
-  // tslint:disable-next-line - method is access from template
-  private obfuscatorKeyDown($event){
+  public obfuscatorKeyDown($event) {
     if ($event.keyCode === ESCAPE) {
       this.toggleDrawer();
     }

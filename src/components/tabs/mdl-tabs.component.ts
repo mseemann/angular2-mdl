@@ -46,14 +46,14 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
     this.updateSelectedTabIndex();
   }
 
-  public ngOnChanges(changes: SimpleChanges): any{
-    if ( changes['selectedIndex'] ){
+  public ngOnChanges(changes: SimpleChanges): any {
+    if ( changes['selectedIndex'] ) {
       this.updateSelectedTabIndex();
     }
   }
 
-  private updateSelectedTabIndex(){
-    if ( this.tabs ){
+  private updateSelectedTabIndex() {
+    if ( this.tabs ) {
       this.tabs.forEach( tab => tab.isActive = false );
       if (this.tabs.toArray().length > 0 && this.selectedIndex < this.tabs.toArray().length) {
         this.tabs.toArray()[this.selectedIndex].isActive = true;
