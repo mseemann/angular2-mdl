@@ -1,4 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation } from '@angular/core';
 import {
   ROUTER_DIRECTIVES,
   RouterConfig
