@@ -26,9 +26,6 @@ import { ROUTER_DIRECTIVES} from '@angular/router';
     .page-content {
         height: 600px;
     }
-    .demo-tab-container{
-       display: inline-block;
-    }
     `
   ],
   encapsulation: ViewEncapsulation.None

@@ -26,6 +26,7 @@ import { TooltipDemo } from './tooltip/tooltip.component';
 import { SliderDemo } from './slider/slider.component';
 import { SnackbarDemo } from './snackbar/snackbar.component';
 import { TableDemo } from './tables/table.component';
+import { TabsDemo } from './tabs/tabs.component';
 import { TextFieldDemo } from './textfield/textfield.component';
 import { MDL_DIRECTIVES, MDL_SERVICES, MdlLayoutComponent } from '../components';
 
@@ -59,6 +60,7 @@ export const appRoutes: RouterConfig = [
   { path: 'slider', component: SliderDemo },
   { path: 'snackbar', component: SnackbarDemo },
   { path: 'table', component: TableDemo },
+  { path: 'tabs', component: TabsDemo },
   { path: 'textfield', component: TextFieldDemo },
   { path: 'toggle', component: ToggleDemo },
   { path: 'tooltip', component: TooltipDemo },

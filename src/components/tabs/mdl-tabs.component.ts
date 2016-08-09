@@ -23,11 +23,13 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
   template:
   `
    <div class="mdl-tabs__tab-bar">
-      <a href="javascript:void(0)" *ngFor="let tab of tabs.toArray()"  
-            (click)="tabSelected(tab)"
-            class="mdl-tabs__tab" 
-            [mdl-ripple]="isRipple"
-            [ngClass]="{'is-active': tab.isActive}">{{tab.title}}</a>
+      <div *ngFor="let tab of tabs.toArray()">
+        <a href="javascript:void(0)"   
+              (click)="tabSelected(tab)"
+              class="mdl-tabs__tab" 
+              [mdl-ripple]="isRipple"
+              [ngClass]="{'is-active': tab.isActive}">{{tab.title}}</a>
+       </div>
   </div>
   <ng-content></ng-content>
   `,

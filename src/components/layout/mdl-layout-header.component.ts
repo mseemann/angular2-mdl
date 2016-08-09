@@ -27,11 +27,13 @@ import { MdlLayoutComponent } from './mdl-layout.component';
      <ng-content></ng-content>
      <div *ngIf="tabs?.toArray()?.length > 0" class="mdl-layout__tab-bar-container">
          <div class="mdl-layout__tab-bar is-casting-shadow">
-              <a href="javascript:void(0)" *ngFor="let tab of tabs.toArray()"  
+            <div *ngFor="let tab of tabs.toArray()" class="mdl-layout__tab">
+              <a href="javascript:void(0)"   
                 (click)="mdlLayout.tabSelected(tab)"
                 class="mdl-layout__tab" 
                 [mdl-ripple]="isRipple"
                 [ngClass]="{'is-active': tab.isActive}">{{tab.title}}</a>
+             </div>
          </div>
      </div>
   `,
