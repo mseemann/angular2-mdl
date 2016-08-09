@@ -131,7 +131,7 @@ export class MdlMenuItemRippleDirective extends MdlRippleDirective {
 }
 
 @Directive({
-  selector: 'a[mdl-ripple]'
+  selector: 'a[mdl-ripple],div[mdl-ripple]'
 })
 export class MdlAnchorRippleDirective extends MdlRippleDirective {
 

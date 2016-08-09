@@ -10,7 +10,8 @@ import { By } from '@angular/platform-browser';
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import {
   MdlTabsComponent,
-  MdlTabPanelComponent
+  MdlTabPanelComponent,
+  MdlTabPanelTitleComponent
 } from './index';
 
 describe('Component: MdlTabs', () => {
@@ -97,13 +98,41 @@ describe('Component: MdlTabs', () => {
         done();
       });
   });
+
+  it('should be possible to create rich tabs', ( done ) => {
+
+    return builder
+      .overrideTemplate(MdlTestComponent, `
+          <mdl-tabs [mdl-tab-active-index]="1" (mdl-tab-active-changed)="tabChanged($event)">
+            <mdl-tab-panel>
+              <mdl-tab-panel-title>
+                <span class="test">Test</span>
+              </mdl-tab-panel-title>
+              <mdl-tab-panel-content>
+                <span class="content">The content</span>
+              </mdl-tab-panel-content>
+            </mdl-tab-panel>
+          </mdl-tabs>
+        `)
+      .createAsync(MdlTestComponent).then( (fixture) => {
+
+          fixture.detectChanges();
+
+          // the tab is now a div tag and not an a tag.
+          let testElement = fixture.debugElement.query(By.css('.mdl-tabs__tab'));
+          expect(testElement.nativeElement.nodeName).toBe('DIV');
+        
+          done();
+      });
+
+  });
 });
 
 
 @Component({
   selector: 'test',
   template: 'replaced by the test',
-  directives: [MdlTabsComponent, MdlTabPanelComponent]
+  directives: [MdlTabsComponent, MdlTabPanelComponent, MdlTabPanelTitleComponent]
 })
 class MdlTestComponent {
 

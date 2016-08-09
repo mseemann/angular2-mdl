@@ -78,7 +78,8 @@ import {
 } from './layout/index';
 import {
   MdlTabsComponent,
-  MdlTabPanelComponent
+  MdlTabPanelComponent,
+  MdlTabPanelTitleComponent
 } from './tabs/index';
 import {
   MdlTextFieldComponent
@@ -169,6 +170,7 @@ export const MDL_DIRECTIVES = [
   MdlLayoutSpacerComponent,
   MdlTabsComponent,
   MdlTabPanelComponent,
+  MdlTabPanelTitleComponent,
   MdlLayoutTabPanelComponent,
   MdlTextFieldComponent
 ];

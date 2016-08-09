@@ -13,6 +13,7 @@ import { BooleanProperty } from './../common/boolean-property';
 import { NumberProperty } from './../common/number.property';
 import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 import { MdlTabPanelComponent } from './mdl-tab-panel.component';
+import { AppendViewContainerRefDirective }  from './../common/append-view-container-ref-directive';
 
 @Component({
   selector: 'mdl-tabs',
@@ -24,7 +25,14 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
   `
    <div class="mdl-tabs__tab-bar">
       <div *ngFor="let tab of tabs.toArray()">
-        <a href="javascript:void(0)"   
+        <div 
+          *ngIf="tab.titleComponent" 
+          class="mdl-tabs__tab" 
+          (click)="tabSelected(tab)"
+          [mdl-ripple]="isRipple"
+          [ngClass]="{'is-active': tab.isActive}"
+          [append-view-container-ref]="tab.titleComponent.vcRef"></div>
+        <a *ngIf="!tab.titleComponent" href="javascript:void(0)"   
               (click)="tabSelected(tab)"
               class="mdl-tabs__tab" 
               [mdl-ripple]="isRipple"
@@ -33,7 +41,7 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
   </div>
   <ng-content></ng-content>
   `,
-  directives: [MDL_COMMON_DIRECTIVES]
+  directives: [MDL_COMMON_DIRECTIVES, AppendViewContainerRefDirective]
 })
 export class MdlTabsComponent implements AfterContentInit, OnChanges {
 
@@ -42,7 +50,6 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
   @Output('mdl-tab-active-changed') public selectedTabEmitter = new EventEmitter();
 
   @ContentChildren(MdlTabPanelComponent) protected tabs: QueryList<MdlTabPanelComponent>;
-
 
   public ngAfterContentInit() {
     this.updateSelectedTabIndex();

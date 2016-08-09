@@ -18,6 +18,9 @@ import { PrismDirective } from './../prism/prism.component';
     .demo-tab-container{
        display: inline-block;
     }
+    mdl-icon {
+       vertical-align: middle;
+    }
     `
   ],
   encapsulation: ViewEncapsulation.None
