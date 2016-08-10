@@ -61,7 +61,6 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
     </div>
   `,
   exportAs: 'mdlLayout',
-  directives: [MdlIconComponent],
   encapsulation: ViewEncapsulation.None
 })
 export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChanges {

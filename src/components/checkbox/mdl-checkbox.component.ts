@@ -3,7 +3,8 @@ import {
   ElementRef,
   Provider,
   Renderer,
-  forwardRef
+  forwardRef,
+  NgModule
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR as DEPRECTAED_NG_VALUE_ACCESSOR,
@@ -11,8 +12,9 @@ import {
 } from '@angular/common';
 import {
   NG_VALUE_ACCESSOR,
-  ControlValueAccessor
+  ControlValueAccessor, FormsModule
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlCheckboxComponent),
@@ -94,5 +96,12 @@ export class MdlCheckboxComponent implements ControlValueAccessor, DEPRECATED_Co
 }
 
 
-
+/** @deprecated */
 export const MDL_CHECKBOX_DIRECTIVES = [MdlCheckboxComponent];
+
+@NgModule({
+  imports: [CommonModule, FormsModule],
+  exports: MDL_CHECKBOX_DIRECTIVES,
+  declarations: MDL_CHECKBOX_DIRECTIVES,
+})
+export class MdlChekboxModule {}

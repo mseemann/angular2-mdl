@@ -273,7 +273,7 @@ describe('Component: MdlTextField', () => {
 @Component({
   selector: 'test',
   template: 'replaced by the test',
-  directives: [MdlTextFieldComponent]
+  directives: [MdlTextFieldComponent, MdlButtonComponent]
 })
 class MdlTestComponent {
   public text1 = '';

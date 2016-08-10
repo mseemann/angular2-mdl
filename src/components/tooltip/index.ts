@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import {
   MdlTooltipComponent
 } from './mdl-tooltip.component';
@@ -7,6 +8,7 @@ import {
   MdlTooltipLargeDirective
 } from './mdl-tooltip.directive';
 
+/** @deprecated */
 export const MDL_TOOLTIP_DIRECTIVES = [
   MdlTooltipComponent,
   MdlTooltipLargeDirective,
@@ -15,3 +17,10 @@ export const MDL_TOOLTIP_DIRECTIVES = [
 
 export * from './mdl-tooltip.component';
 export * from './mdl-tooltip.directive';
+
+@NgModule({
+  imports: [],
+  exports: MDL_TOOLTIP_DIRECTIVES,
+  declarations: MDL_TOOLTIP_DIRECTIVES,
+})
+export class MdlTooltipModule {}

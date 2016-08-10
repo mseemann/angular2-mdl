@@ -37,8 +37,7 @@ import { MdlLayoutComponent } from './mdl-layout.component';
          </div>
      </div>
   `,
-  encapsulation: ViewEncapsulation.None,
-  directives: [MdlAnchorRippleDirective]
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlLayoutHeaderComponent {
 

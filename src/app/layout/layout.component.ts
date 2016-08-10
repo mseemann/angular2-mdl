@@ -1,16 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { MDL_DIRECTIVES } from '../../components';
 import { PrismDirective } from './../prism/prism.component';
-import { ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
   moduleId: module.id,
   selector: 'layout-demo',
   templateUrl: 'layout.component.html',
   directives: [
-    MDL_DIRECTIVES,
-    PrismDirective,
-    ROUTER_DIRECTIVES
+    PrismDirective
   ],
   styles: [
     `

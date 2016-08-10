@@ -1,12 +1,25 @@
+import { NgModule } from '@angular/core';
 import {
   MdlTableComponent,
   MdlSelectableTableComponent
 } from './mdl-table.component';
+import { MdlChekboxModule} from './../checkbox/mdl-checkbox.component';
+import { MdlCommonModule} from './../common/mdl-ripple.directive';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 export * from './mdl-table';
 export * from './mdl-table.component';
 
+/** @deprecated */
 export const MDL_TABLE_DIRECTIVES = [
   MdlTableComponent,
   MdlSelectableTableComponent
 ];
+
+@NgModule({
+  imports: [MdlChekboxModule, MdlCommonModule, CommonModule, FormsModule],
+  exports: MDL_TABLE_DIRECTIVES,
+  declarations: MDL_TABLE_DIRECTIVES,
+})
+export class MdlTableModule {}

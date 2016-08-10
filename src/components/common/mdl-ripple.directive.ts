@@ -5,7 +5,8 @@ import {
   OnChanges,
   SimpleChange,
   Renderer,
-  OnInit
+  OnInit,
+  NgModule
 } from '@angular/core';
 import { MaterialRipple } from './ripple.vendor';
 
@@ -162,6 +163,7 @@ export class MdlListItemRippleDirective extends MdlRippleDirective implements On
 
 }
 
+/** @deprecated */
 export const MDL_COMMON_DIRECTIVES = [
   MdlCheckboxRippleDirective,
   MdlButtonRippleDirective,
@@ -172,3 +174,10 @@ export const MDL_COMMON_DIRECTIVES = [
   MdlAnchorRippleDirective,
   MdlListItemRippleDirective
 ];
+
+@NgModule({
+  imports: [],
+  exports: MDL_COMMON_DIRECTIVES,
+  declarations: MDL_COMMON_DIRECTIVES,
+})
+export class MdlCommonModule {}

@@ -4,7 +4,9 @@ import {
   OnChanges,
   SimpleChange,
   ElementRef,
-  Renderer } from '@angular/core';
+  Renderer,
+  NgModule
+} from '@angular/core';
 import { MdlError } from './../common/mdl-error';
 import { NumberProperty } from './../common/number.property';
 
@@ -48,5 +50,12 @@ export class MdlShadowDirective implements OnChanges {
 }
 
 
-
+/** @deprecated */
 export const MDL_SHADOW_DIRECTIVES = [MdlShadowDirective];
+
+@NgModule({
+  imports: [],
+  exports: MDL_SHADOW_DIRECTIVES,
+  declarations: MDL_SHADOW_DIRECTIVES,
+})
+export class MdlShadowModule {}

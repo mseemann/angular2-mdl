@@ -4,7 +4,8 @@ import {
   Provider,
   Renderer,
   forwardRef,
-  Input
+  Input,
+  NgModule
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR as DEPRECATED_NG_VALUE_ACCESSOR,
@@ -12,8 +13,10 @@ import {
 } from '@angular/common';
 import {
   NG_VALUE_ACCESSOR,
-  ControlValueAccessor
+  ControlValueAccessor,
+  FormsModule
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 const DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(DEPRECATED_NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlRadioComponent),
@@ -93,5 +96,12 @@ export class MdlRadioComponent implements DEPRECATED_ControlValueAccessor, Contr
 }
 
 
-
+/** @deprecated */
 export const MDL_RADIO_DIRECTIVES = [MdlRadioComponent];
+
+@NgModule({
+  imports: [CommonModule, FormsModule],
+  exports: MDL_RADIO_DIRECTIVES,
+  declarations: MDL_RADIO_DIRECTIVES,
+})
+export class MdlRadioModule {}

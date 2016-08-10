@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  NgModule
+} from '@angular/core';
 
 
 @Component({
@@ -11,5 +14,12 @@ import { Component } from '@angular/core';
 export class MdlIconComponent {}
 
 
-
+/** @deprecated */
 export const MDL_ICON_DIRECTIVES = [MdlIconComponent];
+
+@NgModule({
+  imports: [],
+  exports: MDL_ICON_DIRECTIVES,
+  declarations: MDL_ICON_DIRECTIVES,
+})
+export class MdlIconModule {}

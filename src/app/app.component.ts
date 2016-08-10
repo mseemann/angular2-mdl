@@ -2,7 +2,6 @@ import {
   Component,
   ViewEncapsulation } from '@angular/core';
 import {
-  ROUTER_DIRECTIVES,
   RouterConfig
 } from '@angular/router';
 
@@ -28,13 +27,12 @@ import { SnackbarDemo } from './snackbar/snackbar.component';
 import { TableDemo } from './tables/table.component';
 import { TabsDemo } from './tabs/tabs.component';
 import { TextFieldDemo } from './textfield/textfield.component';
-import { MDL_DIRECTIVES, MDL_SERVICES, MdlLayoutComponent } from '../components';
+import { MdlLayoutComponent } from '../components';
 
 @Component({
   moduleId: module.id,
   selector: 'home',
-  templateUrl: 'home.html',
-  directives: [MDL_DIRECTIVES]
+  templateUrl: 'home.html'
 })
 export class Home {
 }
@@ -72,12 +70,7 @@ export const appRoutes: RouterConfig = [
   selector: 'root-app',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  directives: [
-    ROUTER_DIRECTIVES,
-    MDL_DIRECTIVES
-  ],
-  encapsulation: ViewEncapsulation.None,
-  providers: [MDL_SERVICES]
+  encapsulation: ViewEncapsulation.None
 })
 export class Angular2MdlAppComponent {
 

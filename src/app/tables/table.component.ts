@@ -3,7 +3,6 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  MDL_DIRECTIVES,
   IMdlTableModelItem,
   MdlDefaultTableModel
 } from '../../components';
@@ -21,7 +20,6 @@ export interface ITableItem extends IMdlTableModelItem {
   selector: 'table-demo',
   templateUrl: 'table.component.html',
   directives: [
-    MDL_DIRECTIVES,
     PrismDirective
   ],
 })

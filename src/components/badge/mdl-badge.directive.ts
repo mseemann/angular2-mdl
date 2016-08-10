@@ -54,4 +54,4 @@ export const MDL_BADGE_DIRECTIVES = [MdlBadgeDirective, MdlBadgeOverlapDirective
   exports: MDL_BADGE_DIRECTIVES,
   declarations: MDL_BADGE_DIRECTIVES,
 })
-export class MdlBadgeModule { }
+export class MdlBadgeModule {}

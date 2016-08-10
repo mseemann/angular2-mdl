@@ -3,7 +3,6 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {
-  MDL_DIRECTIVES,
   MdlSnackbarService
 } from '../../components';
 import { PrismDirective } from './../prism/prism.component';
@@ -13,7 +12,6 @@ import { PrismDirective } from './../prism/prism.component';
   selector: 'snackbar-demo',
   templateUrl: 'snackbar.component.html',
   directives: [
-    MDL_DIRECTIVES,
     PrismDirective
   ]
 })

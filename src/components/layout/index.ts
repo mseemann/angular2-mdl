@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import { MdlLayoutComponent } from './mdl-layout.component';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
@@ -7,7 +8,11 @@ import { MdlLayoutHeaderRowComponent } from './mdl-layout-header-row.component';
 import { MdlLayoutTitleComponent } from './mdl-layout-title.component';
 import { MdlLayoutSpacerComponent } from './mdl-layout-spacer.component';
 import { MdlLayoutTabPanelComponent } from './mdl-layout-tab-panel.component';
+import { MdlIconModule } from './../icon/mdl-icon.component';
+import { MdlCommonModule } from './../common/mdl-ripple.directive';
+import { CommonModule } from '@angular/common';
 
+/** @deprecated */
 export const MDL_LAYOUT_DIRECTIVES = [
   MdlLayoutComponent,
   MdlLayoutHeaderComponent,
@@ -29,3 +34,10 @@ export * from './mdl-layout-header-row.component';
 export * from './mdl-layout-title.component';
 export * from './mdl-layout-spacer.component';
 export * from './mdl-layout-tab-panel.component';
+
+@NgModule({
+  imports: [ MdlIconModule, MdlCommonModule, CommonModule ],
+  exports: MDL_LAYOUT_DIRECTIVES,
+  declarations: MDL_LAYOUT_DIRECTIVES,
+})
+export class MdlLayoutModule {}

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MDL_DIRECTIVES } from '../../components';
 import { PrismDirective } from './../prism/prism.component';
 
 @Component({
@@ -7,7 +6,6 @@ import { PrismDirective } from './../prism/prism.component';
   selector: 'loading-demo',
   templateUrl: 'loading.component.html',
   directives: [
-    MDL_DIRECTIVES,
     PrismDirective
   ],
 })

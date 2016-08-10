@@ -1,8 +1,10 @@
 import {
   Component,
-  Input
+  Input,
+  NgModule
 } from '@angular/core';
 import { BooleanProperty } from './../common/boolean-property';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'mdl-spinner',
@@ -32,4 +34,12 @@ export class MdlSpinnerComponent {
 
 }
 
+/** @deprecated */
 export const MDL_SPINNER_DIRECTIVES = [MdlSpinnerComponent];
+
+@NgModule({
+  imports: [CommonModule],
+  exports: MDL_SPINNER_DIRECTIVES,
+  declarations: MDL_SPINNER_DIRECTIVES,
+})
+export class MdlSpinnerModule {}

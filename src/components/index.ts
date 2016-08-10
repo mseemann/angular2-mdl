@@ -1,4 +1,6 @@
+import { NgModule } from '@angular/core';
 import {
+  MdlCommonModule,
   MdlButtonRippleDirective,
   MdlCheckboxRippleDirective,
   MdlRadioRippleDirective,
@@ -8,14 +10,22 @@ import {
   MdlListItemRippleDirective,
   MdlAnchorRippleDirective
 } from './common/mdl-ripple.directive';
-import { MdlButtonComponent } from './button/mdl-button.component';
 import {
+  MdlButtonModule,
+  MdlButtonComponent
+} from './button/mdl-button.component';
+import {
+  MdlBadgeModule,
   MdlBadgeDirective,
   MdlBadgeNoBackgroundDirective,
   MdlBadgeOverlapDirective
 } from './badge/mdl-badge.directive';
-import { MdlShadowDirective } from './shadow/mdl-shadow.directive';
 import {
+  MdlShadowModule,
+  MdlShadowDirective
+} from './shadow/mdl-shadow.directive';
+import {
+  MdlCardModule,
   MdlCardComponent,
   MdlCardTitleComponent,
   MdlCardMediaComponent,
@@ -26,14 +36,28 @@ import {
   MdlCardBorderDirective,
   MdlCardExpandDirective
 } from './card/mdl-card.component';
-import { MdlCheckboxComponent } from './checkbox/mdl-checkbox.component';
-import { MdlRadioComponent } from './radio/mdl-radio.component';
 import {
+  MdlChekboxModule,
+  MdlCheckboxComponent
+} from './checkbox/mdl-checkbox.component';
+import {
+  MdlRadioModule,
+  MdlRadioComponent
+} from './radio/mdl-radio.component';
+import {
+  MdlProgressModule,
   MdlProgressComponent
 } from './progress/mdl-progress.component';
-import { MdlIconComponent } from './icon/mdl-icon.component';
-import { MdlIconToggleComponent } from './icon-toggle/mdl-icon-toggle.component';
 import {
+  MdlIconModule,
+  MdlIconComponent
+} from './icon/mdl-icon.component';
+import {
+  MdlIconToggleModule,
+  MdlIconToggleComponent
+} from './icon-toggle/mdl-icon-toggle.component';
+import {
+  MdlListModule,
   MdlListComponent,
   MdlListItemComponent,
   MdlListItemPrimaryContentComponent,
@@ -45,27 +69,40 @@ import {
   MdlListItemSecondaryInfoComponent,
   MdlListItemTextBodyComponent
 } from './list/mdl-list.component';
-import { MdlSpinnerComponent } from './spinner/mdl-spinner.component';
-import { MdlSliderComponent }  from './slider/mdl-slider.component';
-import { MdlSwitchComponent } from './switch/mdl-switch.component';
+import {
+  MdlSpinnerModule,
+  MdlSpinnerComponent
+} from './spinner/mdl-spinner.component';
+import {
+  MdlSliderModule,
+  MdlSliderComponent
+}  from './slider/mdl-slider.component';
+import {
+  MdlSwitchModule,
+  MdlSwitchComponent
+} from './switch/mdl-switch.component';
 import {
   MdlSnackbarService
 } from './snackbar/mdl-snackbar.service';
 import {
+  MdlTooltipModule,
   MdlTooltipComponent,
   MdlTooltipDirective,
   MdlTooltipLargeDirective
 } from './tooltip/index';
 import {
+  MdlTableModule,
   MdlTableComponent,
   MdlSelectableTableComponent
 } from './table/index';
 import {
+  MdlMenuModule,
   MdlMenuComponent,
   MdlMenuItemComponent,
   MdlMenuItemFullBleedDeviderComponent
 } from './menu/index';
 import {
+  MdlLayoutModule,
   MdlLayoutComponent,
   MdlLayoutHeaderComponent,
   MdlLayoutDrawerComponent,
@@ -77,11 +114,13 @@ import {
   MdlLayoutTabPanelComponent
 } from './layout/index';
 import {
+  MdlTabsModule,
   MdlTabsComponent,
   MdlTabPanelComponent,
   MdlTabPanelTitleComponent
 } from './tabs/index';
 import {
+  MdlTextFieldModule,
   MdlTextFieldComponent
 } from './textfield/mdl-textfield.component';
 
@@ -107,10 +146,12 @@ export * from './layout/index';
 export * from './tabs/index';
 export * from './textfield/mdl-textfield.component';
 
+/** @deprecated */
 export const MDL_SERVICES = [
   MdlSnackbarService
 ];
 
+/** @deprecated */
 export const MDL_DIRECTIVES = [
   MdlButtonRippleDirective,
   MdlCheckboxRippleDirective,
@@ -174,3 +215,33 @@ export const MDL_DIRECTIVES = [
   MdlLayoutTabPanelComponent,
   MdlTextFieldComponent
 ];
+
+const MDL_MODULES = [
+  MdlCommonModule,
+  MdlButtonModule,
+  MdlBadgeModule,
+  MdlShadowModule,
+  MdlCardModule,
+  MdlChekboxModule,
+  MdlRadioModule,
+  MdlProgressModule,
+  MdlIconModule,
+  MdlIconToggleModule,
+  MdlListModule,
+  MdlSpinnerModule,
+  MdlSliderModule,
+  MdlSwitchModule,
+  MdlTooltipModule,
+  MdlTableModule,
+  MdlMenuModule,
+  MdlTabsModule,
+  MdlTextFieldModule,
+  MdlLayoutModule
+];
+
+@NgModule({
+  imports: MDL_MODULES,
+  exports: MDL_MODULES,
+  providers: MDL_SERVICES
+})
+export class MdlModule {}

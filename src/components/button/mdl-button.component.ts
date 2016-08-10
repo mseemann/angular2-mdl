@@ -3,7 +3,8 @@ import {
   Input,
   ElementRef,
   OnChanges,
-  Renderer
+  Renderer,
+  NgModule
 } from '@angular/core';
 import { MdlError } from './../common/mdl-error';
 import { BooleanProperty } from './../common/boolean-property';
@@ -90,5 +91,12 @@ export class MdlButtonComponent implements OnChanges {
   }
 }
 
-
+/** @deprecated */
 export const MDL_BUTTON_DIRECTIVES = [MdlButtonComponent];
+
+@NgModule({
+  imports: [],
+  exports: MDL_BUTTON_DIRECTIVES,
+  declarations: MDL_BUTTON_DIRECTIVES,
+})
+export class MdlButtonModule {}

@@ -2,9 +2,11 @@ import {
   Component,
   Input,
   OnChanges,
-  SimpleChange
+  SimpleChange,
+  NgModule
 } from '@angular/core';
 import { BooleanProperty } from './../common/boolean-property';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'mdl-progress',
@@ -38,4 +40,12 @@ export class MdlProgressComponent implements OnChanges {
 
 }
 
+/** @deprecated */
 export const MDL_PROGRESS_DIRECTIVES = [MdlProgressComponent];
+
+@NgModule({
+  imports: [CommonModule],
+  exports: MDL_PROGRESS_DIRECTIVES,
+  declarations: MDL_PROGRESS_DIRECTIVES,
+})
+export class MdlProgressModule {}

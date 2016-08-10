@@ -5,7 +5,8 @@ import {
   Provider,
   ViewChild,
   Renderer,
-  ElementRef
+  ElementRef,
+  NgModule
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR as DEPRECATED_NG_VALUE_ACCESSOR,
@@ -13,8 +14,10 @@ import {
 } from '@angular/common';
 import {
   NG_VALUE_ACCESSOR,
-  ControlValueAccessor
+  ControlValueAccessor,
+  FormsModule
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 const DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(DEPRECATED_NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlSliderComponent),
@@ -128,5 +131,12 @@ export class MdlSliderComponent implements DEPRECATED_ControlValueAccessor, Cont
   }
 }
 
-
+/** @deprecated */
 export const MDL_SLIDER_DIRECTIVES = [MdlSliderComponent];
+
+@NgModule({
+  imports: [FormsModule, CommonModule],
+  exports: MDL_SLIDER_DIRECTIVES,
+  declarations: MDL_SLIDER_DIRECTIVES,
+})
+export class MdlSliderModule {}

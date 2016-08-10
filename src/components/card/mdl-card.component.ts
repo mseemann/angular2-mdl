@@ -3,7 +3,9 @@ import {
   Directive,
   OnInit,
   Optional,
-  ViewEncapsulation } from '@angular/core';
+  ViewEncapsulation,
+  NgModule
+} from '@angular/core';
 import { MdlStructureError } from './../common/mdl-error';
 
 
@@ -134,7 +136,7 @@ export class MdlCardBorderDirective {}
 })
 export class MdlCardExpandDirective {}
 
-
+/** @deprecated */
 export const MDL_CARD_DIRECTIVES = [
   MdlCardComponent,
   MdlCardTitleComponent,
@@ -146,3 +148,10 @@ export const MDL_CARD_DIRECTIVES = [
   MdlCardBorderDirective,
   MdlCardExpandDirective
 ];
+
+@NgModule({
+  imports: [],
+  exports: MDL_CARD_DIRECTIVES,
+  declarations: MDL_CARD_DIRECTIVES,
+})
+export class MdlCardModule {}

@@ -3,15 +3,18 @@ import {
   ElementRef,
   Provider,
   Renderer,
-  forwardRef
+  forwardRef,
+  NgModule
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   NG_VALUE_ACCESSOR as DEPRECATED_NG_VALUE_ACCESSOR
 } from '@angular/common';
 import {
-  NG_VALUE_ACCESSOR
+  NG_VALUE_ACCESSOR,
+  FormsModule
 } from '@angular/forms';
-import { MdlIconComponent } from './../icon/mdl-icon.component';
+import { MdlIconModule } from './../icon/mdl-icon.component';
 import { MdlCheckboxComponent } from './../checkbox/mdl-checkbox.component';
 
 const DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(DEPRECATED_NG_VALUE_ACCESSOR, {
@@ -41,7 +44,6 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
     [(ngModel)]="value">
   <mdl-icon class="mdl-icon-toggle__label"><ng-content></ng-content></mdl-icon>
   `,
-  directives: [MdlIconComponent]
 })
 export class MdlIconToggleComponent extends MdlCheckboxComponent {
 
@@ -52,5 +54,12 @@ export class MdlIconToggleComponent extends MdlCheckboxComponent {
 }
 
 
-
+/** @deprecated */
 export const MDL_ICON_TOGGLE_DIRECTIVES = [MdlIconToggleComponent];
+
+@NgModule({
+  imports: [ MdlIconModule, CommonModule, FormsModule],
+  exports: MDL_ICON_TOGGLE_DIRECTIVES,
+  declarations: MDL_ICON_TOGGLE_DIRECTIVES,
+})
+export class MdlIconToggleModule {}

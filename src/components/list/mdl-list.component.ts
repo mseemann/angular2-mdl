@@ -5,7 +5,9 @@ import {
   OnChanges,
   OnInit,
   Optional,
-  ViewEncapsulation } from '@angular/core';
+  ViewEncapsulation,
+  NgModule
+} from '@angular/core';
 import {
   MdlError,
   MdlStructureError
@@ -204,7 +206,7 @@ export class MdlListItemIconDirective {}
 })
 export class MdlListItemAvatarDirective {}
 
-
+/** @deprecated */
 export const MDL_LIST_DIRECTIVES = [
   MdlListComponent,
   MdlListItemComponent,
@@ -217,3 +219,11 @@ export const MDL_LIST_DIRECTIVES = [
   MdlListItemSecondaryInfoComponent,
   MdlListItemTextBodyComponent
 ];
+
+
+@NgModule({
+  imports: [],
+  exports: MDL_LIST_DIRECTIVES,
+  declarations: MDL_LIST_DIRECTIVES,
+})
+export class MdlListModule {}
