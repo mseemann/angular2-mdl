@@ -1,12 +1,9 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder,
+  ComponentFixture
 } from '@angular/core/testing';
 import { Component, Optional } from '@angular/core';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
 import { MdlButtonComponent} from './mdl-button.component';
 import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 

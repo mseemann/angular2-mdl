@@ -1,12 +1,8 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import {  MdlLayoutSpacerComponent } from './mdl-layout-spacer.component';
 
 describe('Component: MdlLayoutSpacer', () => {

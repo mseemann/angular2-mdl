@@ -1,12 +1,8 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import {  MdlLayoutHeaderRowComponent } from './mdl-layout-header-row.component';
 
 describe('Component: MdlLayoutHeaderRow', () => {

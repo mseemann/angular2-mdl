@@ -1,13 +1,9 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import {
   MdlTabsComponent,
   MdlTabPanelComponent,
@@ -121,7 +117,7 @@ describe('Component: MdlTabs', () => {
           // the tab is now a div tag and not an a tag.
           let testElement = fixture.debugElement.query(By.css('.mdl-tabs__tab'));
           expect(testElement.nativeElement.nodeName).toBe('DIV');
-        
+
           done();
       });
 

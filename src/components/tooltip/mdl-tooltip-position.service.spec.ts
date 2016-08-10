@@ -1,10 +1,6 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach,
-  beforeEachProviders
+  TestBed
 } from '@angular/core/testing';
 
 import {
@@ -16,7 +12,11 @@ describe('Component: MdlTooltipPositionService', () => {
   var service: MdlTooltipPositionService;
   let boundingClientRect;
 
-  beforeEachProviders(() => [MdlTooltipPositionService]);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers:  [MdlTooltipPositionService]
+    });
+  });
 
   beforeEach(inject([MdlTooltipPositionService], function (mdlService: MdlTooltipPositionService) {
     service = mdlService;

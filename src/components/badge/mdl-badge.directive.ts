@@ -4,7 +4,9 @@ import {
   OnChanges,
   SimpleChange,
   ElementRef,
-  Renderer } from '@angular/core';
+  Renderer,
+  NgModule
+} from '@angular/core';
 
 @Directive({
   selector: '[mdl-badge]',
@@ -44,5 +46,12 @@ export class MdlBadgeOverlapDirective {}
 })
 export class MdlBadgeNoBackgroundDirective {}
 
-
+/** @deprecated */
 export const MDL_BADGE_DIRECTIVES = [MdlBadgeDirective, MdlBadgeOverlapDirective, MdlBadgeNoBackgroundDirective];
+
+@NgModule({
+  imports: [],
+  exports: MDL_BADGE_DIRECTIVES,
+  declarations: MDL_BADGE_DIRECTIVES,
+})
+export class MdlBadgeModule { }

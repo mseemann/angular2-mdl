@@ -77,15 +77,15 @@ export class MdlButtonComponent implements OnChanges {
    // this.renderer.setElementAttribute()
   }
 
-  protected onMouseUp() {
+  public onMouseUp() {
     this.blurIt();
   }
 
-  protected onMouseLeave() {
+  public onMouseLeave() {
     this.blurIt();
   }
 
-  private blurIt() {
+  public blurIt() {
     this.element.blur();
   }
 }

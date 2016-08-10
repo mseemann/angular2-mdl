@@ -1,12 +1,8 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlShadowDirective } from './mdl-shadow.directive';
 
 describe('Directive: MdlShadow', () => {
@@ -78,5 +74,5 @@ describe('Directive: MdlShadow', () => {
   directives: [MdlShadowDirective]
 })
 class MdlTestShadowComponent {
-  protected shadow = 2;
+  public shadow = 2;
 }

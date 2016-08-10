@@ -1,22 +1,29 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach,
-  addProviders
+  TestComponentBuilder,
+  TestBed,
+  async
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component} from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
+import {  } from '@angular/compiler/testing';
 import { MdlCheckboxComponent } from './mdl-checkbox.component';
-import { disableDeprecatedForms, provideForms} from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
+import { DeprecatedFormsModule } from '@angular/common';
 
 describe('Component: MdlCheckbox', () => {
 
   var builder: TestComponentBuilder;
   var doc: HTMLDocument;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [DeprecatedFormsModule],
+      declarations: [],
+    });
+
+    TestBed.compileComponents();
+  }));
 
   describe('with deprecated forms api', () => {
 
@@ -115,11 +122,12 @@ describe('Component: MdlCheckbox', () => {
 
 
   describe('with new forms api', () => {
+
     beforeEach( () => {
-      addProviders([
-        disableDeprecatedForms(),
-        provideForms()
-      ]);
+      TestBed.configureTestingModule({
+        imports: [FormsModule],
+        declarations: [],
+      });
     });
 
     beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
@@ -149,5 +157,5 @@ describe('Component: MdlCheckbox', () => {
   directives: [MdlCheckboxComponent]
 })
 class MdlTestCheckboxComponent {
-  protected checkboxValue1 = false;
+  public checkboxValue1 = false;
 }

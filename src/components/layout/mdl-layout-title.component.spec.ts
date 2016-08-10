@@ -1,12 +1,8 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import {  MdlLayoutTitleComponent } from './mdl-layout-title.component';
 
 describe('Component: MdlLayoutTitle', () => {

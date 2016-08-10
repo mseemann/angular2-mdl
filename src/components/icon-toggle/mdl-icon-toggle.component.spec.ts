@@ -1,16 +1,15 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach,
-  addProviders
+  TestBed,
+  TestComponentBuilder,
+  async
 } from '@angular/core/testing';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
+import {  } from '@angular/compiler/testing';
 import { MdlIconToggleComponent } from './mdl-icon-toggle.component';
-import { disableDeprecatedForms, provideForms} from '@angular/forms';
+import { disableDeprecatedForms, provideForms, FormsModule} from '@angular/forms';
+import {DeprecatedFormsModule} from '@angular/common';
 
 describe('Component: MdlIconToggle', () => {
 
@@ -18,6 +17,15 @@ describe('Component: MdlIconToggle', () => {
   var doc: HTMLDocument;
 
   describe('with deprecated forms api', () => {
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [DeprecatedFormsModule],
+        declarations: [],
+      });
+
+      TestBed.compileComponents();
+    }));
 
     beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
       builder = tcb;
@@ -41,11 +49,12 @@ describe('Component: MdlIconToggle', () => {
   describe('with new forms api', () => {
 
     beforeEach( () => {
-      addProviders([
-        disableDeprecatedForms(),
-        provideForms()
-      ]);
+      TestBed.configureTestingModule({
+        imports: [FormsModule],
+        declarations: [],
+      });
     });
+
     beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
       builder = tcb;
       doc = document;

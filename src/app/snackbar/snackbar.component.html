@@ -10,14 +10,14 @@
 
   <mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple (click)="showSnackbar()">Show Snackbar</mdl-button>
 
-  <script>
+  <scriptx>
   export class SnackbarDemo {
 
-    constructor(private mdlSnackbarService: MdlSnackbarService, private vcRef: ViewContainerRef){
+    constructor(private mdlSnackbarService: MdlSnackbarService, private vcRef: ViewContainerRef) {
       mdlSnackbarService.setDefaultViewContainerRef(vcRef);
     }
 
-    showSnackbar(){
+    showSnackbar() {
       this.mdlSnackbarService.showSnackbar({
         message:'The Message',
         action:{
@@ -29,7 +29,7 @@
       });
     }
   }
-  </script>
+  </scriptx>
 ]]>
 </pre>
 
@@ -58,11 +58,11 @@
       <td>
         Shorthand version for
          <pre>
-return this.showSnackbar({
+return this.showSnackbar(&#123;
    message: message,
    timeout: timeout,
    vcRef: vcRef
- });
+ &#125;);
          </pre>
          Shows an auto hiding text.
       </td>
@@ -73,15 +73,13 @@ return this.showSnackbar({
       <td>
          Shows a snackbar. The <i>IMdlSnackbarMessage</i> is:
          <pre>
-export interface IMdlSnackbarMessage {
-  message: string;
+  &#123;message: string;
   timeout?: number;
-  action?: {
+  action?:&#123;
     handler: () => void;
-    text: string;
-  };
-  vcRef?: ViewContainerRef;
-}
+    text: string;&#125;
+  vcRef?: ViewContainerRef;&#125;
+
          </pre>
          <pre>message</pre> The message that should be shown.
          <pre>timeout</pre> for how long should the message be visible. Defaults to 2750 ms. Is ignored if an action is proivded.
@@ -93,5 +91,5 @@ export interface IMdlSnackbarMessage {
          </p>
       </td>
    </tr>
-
    </tbody>
+</table>

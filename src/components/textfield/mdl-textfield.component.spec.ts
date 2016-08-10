@@ -1,17 +1,15 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach,
-  addProviders
+  TestComponentBuilder,
+  TestBed,
+  async
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlTextFieldComponent } from './mdl-textfield.component';
 import { MdlButtonComponent } from './../button/mdl-button.component';
-import { disableDeprecatedForms, provideForms} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { DeprecatedFormsModule } from '@angular/common';
 
 describe('Component: MdlTextField', () => {
 
@@ -19,6 +17,15 @@ describe('Component: MdlTextField', () => {
   var doc: HTMLDocument;
 
   describe('with deprecated forms api', () => {
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [DeprecatedFormsModule],
+        declarations: [],
+      });
+
+      TestBed.compileComponents();
+    }));
 
     beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
       builder = tcb;
@@ -234,10 +241,10 @@ describe('Component: MdlTextField', () => {
   describe('with new forms api', () => {
 
     beforeEach( () => {
-      addProviders([
-        disableDeprecatedForms(),
-        provideForms()
-      ]);
+      TestBed.configureTestingModule({
+        imports: [FormsModule],
+        declarations: [],
+      });
     });
 
     beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {

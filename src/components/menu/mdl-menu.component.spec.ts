@@ -1,13 +1,9 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlMenuComponent } from './mdl-menu.component';
 import { MdlMenuItemComponent } from './mdl-menu-item.component';
 import { MdlButtonComponent } from './../button/mdl-button.component';

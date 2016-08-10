@@ -1,13 +1,9 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 import {MDL_LIST_DIRECTIVES, MdlListItemComponent} from './../list/mdl-list.component';
 

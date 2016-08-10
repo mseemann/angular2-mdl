@@ -1,13 +1,9 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlProgressComponent } from './mdl-progress.component';
 
 describe('Component: MdlProgress', () => {
@@ -65,5 +61,5 @@ describe('Component: MdlProgress', () => {
   directives: [MdlProgressComponent]
 })
 class MdlTestProgressComponent {
-  protected buffer = 20;
+  public buffer = 20;
 }

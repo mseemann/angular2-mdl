@@ -1,14 +1,10 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach,
-  addProviders,
-  fakeAsync
+  fakeAsync,
+  TestComponentBuilder,
+  TestBed
 } from '@angular/core/testing';
 import { Component, ViewContainerRef } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlSnackbarService } from './mdl-snackbar.service';
 
 describe('Service: MdlSnackbar', () => {
@@ -17,7 +13,7 @@ describe('Service: MdlSnackbar', () => {
   var mdlSnackbarServcie: MdlSnackbarService;
 
   beforeEach(() => {
-    addProviders([MdlSnackbarService]);
+    TestBed.configureTestingModule({providers: [MdlSnackbarService]});
   });
 
   beforeEach(inject([TestComponentBuilder, MdlSnackbarService],

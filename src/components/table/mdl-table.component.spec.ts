@@ -1,13 +1,11 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder,
+  async,
+  TestBed
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component} from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlSelectableTableComponent } from './mdl-table.component';
 import {
   IMdlTableModelItem,
@@ -16,11 +14,20 @@ import {
 import {
   MdlCheckboxComponent
 } from './../checkbox/mdl-checkbox.component';
+import {DeprecatedFormsModule} from '@angular/common';
 
 describe('Component: MdlTableComponent', () => {
 
   var builder: TestComponentBuilder;
 
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [DeprecatedFormsModule],
+      declarations: [],
+    });
+
+    TestBed.compileComponents();
+  }));
 
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
@@ -102,13 +109,13 @@ interface ITableItem extends IMdlTableModelItem {
   directives: [MdlSelectableTableComponent]
 })
 class MdlTestTableComponent {
-  private tableData: [ITableItem] = [
+  public tableData: [ITableItem] = [
     {material: 'Acrylic (Transparent)', quantity: 25, unitPrice: 2.90, selected: true},
     {material: 'Plywood (Birch)', quantity: 50, unitPrice: 1.25, selected: false},
     {material: 'Laminate (Gold on Blue)', quantity: 10, unitPrice: 2.35, selected: false}
   ];
 
-  protected selected: Array<ITableItem> = new Array<ITableItem>();
+  public selected: Array<ITableItem> = new Array<ITableItem>();
 
   public tableModel = new MdlDefaultTableModel([
     {key: 'material', name: 'Material', sortable: true},

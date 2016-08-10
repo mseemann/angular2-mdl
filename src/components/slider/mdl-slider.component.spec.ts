@@ -1,18 +1,16 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
   fakeAsync,
   tick,
-  beforeEach,
-  addProviders
+  TestComponentBuilder,
+  TestBed,
+  async
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlSliderComponent } from './mdl-slider.component';
-import { disableDeprecatedForms, provideForms} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { DeprecatedFormsModule } from '@angular/common';
 
 describe('Component: MdlSlider', () => {
 
@@ -20,6 +18,15 @@ describe('Component: MdlSlider', () => {
   var doc: HTMLDocument;
 
   describe('with deprecated forms api', () => {
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [ DeprecatedFormsModule ],
+        declarations: [],
+      });
+
+      TestBed.compileComponents();
+    }));
 
     beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
       builder = tcb;
@@ -133,10 +140,10 @@ describe('Component: MdlSlider', () => {
   describe('with new forms api', () => {
 
     beforeEach( () => {
-      addProviders([
-        disableDeprecatedForms(),
-        provideForms()
-      ]);
+      TestBed.configureTestingModule({
+        imports: [FormsModule],
+        declarations: [],
+      });
     });
 
     beforeEach(inject([TestComponentBuilder, DOCUMENT], function (tcb: TestComponentBuilder, document) {
@@ -167,7 +174,7 @@ describe('Component: MdlSlider', () => {
   directives: [MdlSliderComponent]
 })
 class MdlTestSliderComponent {
-  protected min = 0;
-  protected max = 100;
-  protected currentValue = 50;
+  public min = 0;
+  public max = 100;
+  public currentValue = 50;
 }

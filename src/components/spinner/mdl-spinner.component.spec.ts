@@ -1,12 +1,8 @@
 import {
-  describe,
-  expect,
-  it,
   inject,
-  beforeEach
+  TestComponentBuilder
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
 import { MdlSpinnerComponent } from './mdl-spinner.component';
 
 describe('Component: MdlProgress', () => {
@@ -81,6 +77,6 @@ describe('Component: MdlProgress', () => {
   directives: [MdlSpinnerComponent]
 })
 class MdlTestSpinnerComponent {
-  protected active = true;
-  protected colored = true;
+  public active = true;
+  public colored = true;
 }
