@@ -8,7 +8,7 @@ import {
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { MdlRadioComponent } from './mdl-radio.component';
+import { MdlRadioComponent, MdlRadioModule } from './mdl-radio.component';
 import { FormsModule } from '@angular/forms';
 import { DeprecatedFormsModule } from '@angular/common';
 
@@ -21,7 +21,7 @@ describe('Component: MdlRadio', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [DeprecatedFormsModule],
+        imports: [DeprecatedFormsModule, MdlRadioModule],
         declarations: [],
       });
 
@@ -33,7 +33,7 @@ describe('Component: MdlRadio', () => {
       doc = document;
     }));
 
-    it('should add the css class mdl-radio to the host element', () => {
+    it('should add the css class mdl-radio to the host element', ( done ) => {
 
       return builder
         .createAsync(MdlTestRadioComponent).then( (fixture) => {
@@ -43,30 +43,31 @@ describe('Component: MdlRadio', () => {
           let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
           expect(checkboxEl.classList.contains('mdl-radio')).toBe(true);
 
+          done();
         });
     });
 
-    it('should support ngModel', () => {
+    it('should support ngModel', ( done ) => {
       return builder
         .createAsync(MdlTestRadioComponent).then( (fixture) => {
           fixture.detectChanges();
-
-          fakeAsync(() => {
 
             let instance = fixture.componentInstance;
             let component = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[0];
 
             instance.radioValue = '1';
             fixture.detectChanges();
-            tick();
+
             expect(component.nativeElement.classList.contains('is-checked')).toEqual(true);
 
             let component2 = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[1];
             component2.nativeElement.click();
             fixture.detectChanges();
-            tick();
+
             expect(instance.radioValue).toEqual('2');
-          })();
+
+            done();
+
         });
     });
 
@@ -75,21 +76,22 @@ describe('Component: MdlRadio', () => {
         .createAsync(MdlTestRadioComponent).then( (fixture) => {
           fixture.detectChanges();
 
-          let inputEl: HTMLInputElement = fixture.debugElement.queryAll(By.css('input'))[0].nativeElement;
 
-          inputEl.focus();
+            let inputEl: HTMLInputElement = fixture.debugElement.queryAll(By.css('input'))[0].nativeElement;
 
-          fixture.detectChanges();
+            inputEl.focus();
 
-          let radioEl: HTMLElement = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[0].nativeElement;
-          expect(radioEl.classList.contains('is-focused')).toBe(true);
+            fixture.detectChanges();
 
-          inputEl.blur();
+            let radioEl: HTMLElement = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[0].nativeElement;
+            expect(radioEl.classList.contains('is-focused')).toBe(true);
 
-          fixture.detectChanges();
-          expect(radioEl.classList.contains('is-focused')).toBe(false);
+            inputEl.blur();
 
-          done();
+            fixture.detectChanges();
+            expect(radioEl.classList.contains('is-focused')).toBe(false);
+
+            done();
 
         });
     });
@@ -110,13 +112,14 @@ describe('Component: MdlRadio', () => {
       doc = document;
     }));
 
-    it('should create the testcomponent', () => {
+    it('should create the testcomponent', ( done ) => {
 
       return builder
         .createAsync(MdlTestRadioComponent).then( (fixture) => {
 
           fixture.detectChanges();
 
+          done();
         });
     });
 

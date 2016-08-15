@@ -1,20 +1,32 @@
 import {
   inject,
-  TestComponentBuilder
+  TestComponentBuilder,
+  TestBed,
+  async
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { MdlProgressComponent } from './mdl-progress.component';
+import { MdlProgressComponent, MdlProgressModule } from './mdl-progress.component';
 
 describe('Component: MdlProgress', () => {
 
   var builder: TestComponentBuilder;
 
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [MdlProgressModule],
+      declarations: [],
+    });
+
+    TestBed.compileComponents();
+  }));
+
+
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));
 
-  it('should add the css class mdl-progress to the host element', () => {
+  it('should add the css class mdl-progress to the host element', ( done ) => {
 
     return builder
       .overrideTemplate(MdlTestProgressComponent, `
@@ -27,10 +39,11 @@ describe('Component: MdlProgress', () => {
         let progressEl: HTMLElement = fixture.nativeElement.children.item(0);
         expect(progressEl.classList.contains('mdl-progress')).toBe(true);
 
+        done();
       });
   });
 
-  it('should call setBuffer - if the buffer changes', () => {
+  it('should call setBuffer - if the buffer changes', ( done ) => {
     return builder
       .overrideTemplate(MdlTestProgressComponent, `
           <mdl-progress progress="44" [buffer]="buffer"></mdl-progress>
@@ -49,6 +62,7 @@ describe('Component: MdlProgress', () => {
         fixture.detectChanges();
         expect(progressComponent.setBuffer).toHaveBeenCalled();
 
+        done();
       });
   });
 
@@ -57,8 +71,7 @@ describe('Component: MdlProgress', () => {
 
 @Component({
   selector: 'test-progress',
-  template: 'replaced by the test',
-  directives: [MdlProgressComponent]
+  template: 'replaced by the test'
 })
 class MdlTestProgressComponent {
   public buffer = 20;

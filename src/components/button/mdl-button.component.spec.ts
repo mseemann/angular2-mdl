@@ -1,21 +1,32 @@
 import {
   inject,
   TestComponentBuilder,
-  ComponentFixture
+  ComponentFixture,
+  TestBed,
+  async
 } from '@angular/core/testing';
 import { Component, Optional } from '@angular/core';
-import { MdlButtonComponent} from './mdl-button.component';
-import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
+import { MdlButtonComponent, MdlButtonModule} from './mdl-button.component';
+import { MdlCommonModule} from './../common/mdl-ripple.directive';
 
 describe('Directive: MdlButton', () => {
 
   var builder: TestComponentBuilder;
 
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [MdlButtonModule, MdlCommonModule],
+      declarations: [],
+    });
+
+    TestBed.compileComponents();
+  }));
+
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));
 
-  it('should add the css class mdl-button to the host element', () => {
+  it('should add the css class mdl-button to the host element', ( done ) => {
 
     return builder
       .overrideTemplate(MdlTestButtonComponent, `
@@ -28,10 +39,11 @@ describe('Directive: MdlButton', () => {
         let btnEl: HTMLElement = fixture.nativeElement.children.item(0);
         expect(btnEl.classList.contains('mdl-button')).toBe(true);
 
+        done();
       });
   });
 
-  it('should throw if an unsupported buttontype is provided', () => {
+  it('should throw if an unsupported buttontype is provided', ( done ) => {
 
     return builder
       .overrideTemplate(MdlTestButtonComponent, `
@@ -42,11 +54,12 @@ describe('Directive: MdlButton', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
+        done();
       });
 
   });
 
-  it('should throw if an unsupported colored type is provided', () => {
+  it('should throw if an unsupported colored type is provided', ( done) => {
 
     return builder
       .overrideTemplate(MdlTestButtonComponent, `
@@ -57,11 +70,12 @@ describe('Directive: MdlButton', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
+        done();
       });
 
   });
 
-  it('should call blur on mouseup and mouseleave', () => {
+  it('should call blur on mouseup and mouseleave', ( done ) => {
 
     return builder
       .overrideTemplate(MdlTestButtonComponent, `
@@ -82,6 +96,7 @@ describe('Directive: MdlButton', () => {
         mdlButtonDirective.onMouseLeave();
         expect(mdlButtonDirective.blurIt).toHaveBeenCalled();
 
+        done();
       });
   });
 
@@ -92,7 +107,6 @@ describe('Directive: MdlButton', () => {
 @Component({
   selector: 'test-button',
   template: 'replaced by the test',
-  directives: [MDL_COMMON_DIRECTIVES, MdlButtonComponent],
   providers: [MdlButtonComponent]
 })
 class MdlTestButtonComponent {

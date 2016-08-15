@@ -14,7 +14,7 @@ import {
 import {
   MdlCheckboxComponent
 } from './../checkbox/mdl-checkbox.component';
-import {DeprecatedFormsModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 describe('Component: MdlTableComponent', () => {
 
@@ -22,7 +22,7 @@ describe('Component: MdlTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [DeprecatedFormsModule],
+      imports: [FormsModule],
       declarations: [],
     });
 

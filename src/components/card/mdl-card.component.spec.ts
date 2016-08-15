@@ -1,14 +1,25 @@
 import {
   inject,
-  TestComponentBuilder
+  TestComponentBuilder,
+  TestBed,
+  async
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { MDL_CARD_DIRECTIVES } from './mdl-card.component';
+import { MdlCardModule } from './mdl-card.component';
 
 describe('Components: MdlCard*', () => {
 
   var builder: TestComponentBuilder;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [MdlCardModule],
+      declarations: [],
+    });
+
+    TestBed.compileComponents();
+  }));
 
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
@@ -52,7 +63,7 @@ describe('Components: MdlCard*', () => {
       });
   });
 
-  it('should throw if mdl-card-title has no mdl-card parent', () => {
+  it('should throw if mdl-card-title has no mdl-card parent', ( done ) => {
     return builder
       .overrideTemplate(TestApp, `
           <mdl-card-title></mdl-card-title>
@@ -62,10 +73,11 @@ describe('Components: MdlCard*', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
+        done();
       });
   });
 
-  it('should throw if mdl-card-supporting-text has no mdl-card parent', () => {
+  it('should throw if mdl-card-supporting-text has no mdl-card parent', ( done ) => {
     return builder
       .overrideTemplate(TestApp, `
           <mdl-card-supporting-text></mdl-card-supporting-text>
@@ -75,10 +87,11 @@ describe('Components: MdlCard*', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
+        done();
       });
   });
 
-  it('should throw if mdl-card-actions has no mdl-card parent', () => {
+  it('should throw if mdl-card-actions has no mdl-card parent', ( done ) => {
     return builder
       .overrideTemplate(TestApp, `
           <mdl-card-actions></mdl-card-actions>
@@ -88,10 +101,12 @@ describe('Components: MdlCard*', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
+        done();
+
       });
   });
 
-  it('should throw if mdl-card-menu has no mdl-card parent', () => {
+  it('should throw if mdl-card-menu has no mdl-card parent', ( done ) => {
     return builder
       .overrideTemplate(TestApp, `
           <mdl-card-menu></mdl-card-menu>
@@ -101,10 +116,12 @@ describe('Components: MdlCard*', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
+        done();
+
       });
   });
 
-  it('should throw if mdl-card-media has no mdl-card parent', () => {
+  it('should throw if mdl-card-media has no mdl-card parent', ( done ) => {
     return builder
       .overrideTemplate(TestApp, `
           <mdl-card-media></mdl-card-media>
@@ -114,6 +131,7 @@ describe('Components: MdlCard*', () => {
         expect( () => fixture.detectChanges() )
           .toThrow();
 
+        done();
       });
   });
 
@@ -130,7 +148,6 @@ describe('Components: MdlCard*', () => {
       <mdl-card-menu></mdl-card-menu>
     </mdl-card>
   `,
-  directives: [MDL_CARD_DIRECTIVES]
 })
 class TestApp {
 }

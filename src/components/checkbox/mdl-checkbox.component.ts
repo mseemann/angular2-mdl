@@ -7,10 +7,6 @@ import {
   NgModule
 } from '@angular/core';
 import {
-  NG_VALUE_ACCESSOR as DEPRECTAED_NG_VALUE_ACCESSOR,
-  ControlValueAccessor as DEPRECATED_ControlValueAccessor
-} from '@angular/common';
-import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor, FormsModule
 } from '@angular/forms';
@@ -21,16 +17,11 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   multi: true
 });
 
-const DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(DEPRECTAED_NG_VALUE_ACCESSOR, {
-  useExisting: forwardRef(() => MdlCheckboxComponent),
-  multi: true
-});
-
 const IS_FOCUSED = 'is-focused';
 
 @Component({
   selector: 'mdl-checkbox',
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR, DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
   host: {
     '(click)': 'onClick()',
     '[class.mdl-checkbox]': 'true',
@@ -50,7 +41,7 @@ const IS_FOCUSED = 'is-focused';
   `,
   inputs: ['value']
 })
-export class MdlCheckboxComponent implements ControlValueAccessor, DEPRECATED_ControlValueAccessor {
+export class MdlCheckboxComponent implements ControlValueAccessor {
 
   private value_: boolean = false;
 
@@ -63,7 +54,10 @@ export class MdlCheckboxComponent implements ControlValueAccessor, DEPRECATED_Co
   get value(): boolean { return this.value_; };
   set value(v: boolean) {
     this.value_ = v;
-    this.onChangeCallback(v);
+    if (this.onChangeCallback ) {
+      this.onChangeCallback(v);
+    }
+
   }
 
   public writeValue(value: any): void {

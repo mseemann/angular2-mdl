@@ -2,7 +2,7 @@ import { provideRouter, RouterConfig } from '@angular/router';
 
 import { appRoutes } from './app.component';
 
-const routes: RouterConfig = [
+export const routes: RouterConfig = [
   ...appRoutes
 ];
 
