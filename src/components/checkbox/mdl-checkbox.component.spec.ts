@@ -58,12 +58,14 @@ describe('Component: MdlCheckbox', () => {
         instance.checkboxValue1 = true;
         component.value = true;
 
+        fixture.detectChanges();
 
-        fixture.whenStable().then( () => {
+
+
           console.log(el.checked);
           expect(instance.checkboxValue1).toEqual(true);
           done();
-        });
+
 
       });
 
