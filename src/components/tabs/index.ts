@@ -2,7 +2,7 @@ import { MdlTabsComponent } from './mdl-tabs.component';
 import { MdlTabPanelComponent } from './mdl-tab-panel.component';
 import { MdlTabPanelTitleComponent } from './mdl-tab-panel-title.component';
 import { NgModule } from '@angular/core';
-import { MdlCommonModule } from './../common/mdl-ripple.directive';
+import { MdlRippleModule } from './../common/mdl-ripple.directive';
 import { CommonModule } from '@angular/common';
 
 
@@ -18,7 +18,7 @@ export const MDL_TABS_DIRECTIVES = [
 ];
 
 @NgModule({
-  imports: [MdlCommonModule, CommonModule],
+  imports: [MdlRippleModule, CommonModule],
   exports: MDL_TABS_DIRECTIVES,
   declarations: MDL_TABS_DIRECTIVES,
 })

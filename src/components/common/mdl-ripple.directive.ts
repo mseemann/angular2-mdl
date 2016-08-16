@@ -180,4 +180,4 @@ export const MDL_COMMON_DIRECTIVES = [
   exports: MDL_COMMON_DIRECTIVES,
   declarations: MDL_COMMON_DIRECTIVES,
 })
-export class MdlCommonModule {}
+export class MdlRippleModule {}

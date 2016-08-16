@@ -3,8 +3,8 @@ import {
   MdlTableComponent,
   MdlSelectableTableComponent
 } from './mdl-table.component';
-import { MdlChekboxModule} from './../checkbox/mdl-checkbox.component';
-import { MdlCommonModule} from './../common/mdl-ripple.directive';
+import { MdlChekboxModule } from './../checkbox/mdl-checkbox.component';
+import { MdlRippleModule } from './../common/mdl-ripple.directive';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -18,7 +18,7 @@ export const MDL_TABLE_DIRECTIVES = [
 ];
 
 @NgModule({
-  imports: [MdlChekboxModule, MdlCommonModule, CommonModule, FormsModule],
+  imports: [MdlChekboxModule, MdlRippleModule, CommonModule, FormsModule],
   exports: MDL_TABLE_DIRECTIVES,
   declarations: MDL_TABLE_DIRECTIVES,
 })

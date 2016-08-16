@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import {
-  MdlCommonModule,
+  MdlRippleModule,
   MdlButtonRippleDirective,
   MdlCheckboxRippleDirective,
   MdlRadioRippleDirective,
@@ -217,7 +217,7 @@ export const MDL_DIRECTIVES = [
 ];
 
 const MDL_MODULES = [
-  MdlCommonModule,
+  MdlRippleModule,
   MdlButtonModule,
   MdlBadgeModule,
   MdlShadowModule,

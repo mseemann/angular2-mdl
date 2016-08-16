@@ -2,13 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { MdlButtonComponent, MdlButtonModule} from './mdl-button.component';
-import { MdlCommonModule} from './../common/mdl-ripple.directive';
+import { MdlRippleModule} from './../common/mdl-ripple.directive';
 
 describe('Component: MdlButton', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MdlButtonModule, MdlCommonModule],
+      imports: [MdlButtonModule, MdlRippleModule],
       declarations: [MdlTestButtonComponent]
     });
   });
