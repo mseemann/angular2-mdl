@@ -13,7 +13,6 @@ describe('Component: MdlLayoutDrawer', () => {
       imports: [ MdlLayoutModule ],
       declarations: [ MdlTestLayoutComponent ],
     });
-
   });
 
   it('should add the css class mdl-layout__header to the host element', ( done ) => {
