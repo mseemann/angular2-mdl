@@ -1,13 +1,9 @@
-import {
-  NgModule,
-  ApplicationRef
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MdlModule } from './../components/index';
 import { RouterModule } from '@angular/router';
-import { Angular2MdlAppComponent, Home } from './app.component';
-import { APP_ROUTER_PROVIDERS } from './app.routes';
+import { Angular2MdlAppComponent, Home, appRoutes } from './app.component';
 import { ButtonDemo } from './button/button.component';
 import { BadgeDemo } from './badge/badge.component';
 import { CardDemo } from './card/card.component';
@@ -36,10 +32,7 @@ import { TextFieldDemo } from './textfield/textfield.component';
     BrowserModule,
     FormsModule,
     MdlModule,
-    RouterModule
-  ],
-  providers: [
-    APP_ROUTER_PROVIDERS,
+    RouterModule.forRoot(appRoutes)
   ],
   declarations: [
     Home,
@@ -70,10 +63,4 @@ import { TextFieldDemo } from './textfield/textfield.component';
   ],
 })
 export class Angular2MdlAppModule {
-
-  constructor(private appRef: ApplicationRef) { }
-
-  public ngDoBootstrap() {
-    this.appRef.bootstrap(Angular2MdlAppComponent);
-  }
 }

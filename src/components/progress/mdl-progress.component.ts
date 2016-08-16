@@ -3,12 +3,15 @@ import {
   Input,
   OnChanges,
   SimpleChange,
-  NgModule
+  NgModule,
+  ViewEncapsulation,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { BooleanProperty } from './../common/boolean-property';
 import { CommonModule } from '@angular/common';
 
 @Component({
+  moduleId: module.id,
   selector: 'mdl-progress',
   host: {
     '[class.mdl-progress]': 'true',
@@ -18,8 +21,9 @@ import { CommonModule } from '@angular/common';
     <div class="progressbar bar bar1" [style.width]="progress + '%'"></div>
     <div class="bufferbar bar bar2" [style.width]="buffer + '%'"></div>
     <div class="auxbar bar bar3" [ngStyle]="{'width': aux+'%'}"></div>
-  `
-
+  `,
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MdlProgressComponent implements OnChanges {
   @Input() public progress = 0;
