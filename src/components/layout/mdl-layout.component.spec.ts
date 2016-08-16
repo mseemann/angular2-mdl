@@ -16,7 +16,6 @@ describe('Component: MdlLayout', () => {
       imports: [MdlLayoutModule, MdlRippleModule],
       declarations: [ MdlTestLayoutComponent ],
     });
-
   });
 
   it('should add the css class mdl-layout__container to the child of the host element', ( done ) => {
@@ -25,7 +24,6 @@ describe('Component: MdlLayout', () => {
       template: '<mdl-layout>x</mdl-layout>' }
     });
     let fixture = TestBed.createComponent(MdlTestLayoutComponent);
-
     fixture.detectChanges();
 
     let layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutComponent)).nativeElement;

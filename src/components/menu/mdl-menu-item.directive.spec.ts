@@ -1,34 +1,26 @@
-import {
-  inject,
-  TestComponentBuilder
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { MDL_MENU_DIRECTIVES, MdlMenuItemComponent } from './index';
+import { MdlMenuModule, MdlMenuItemComponent } from './index';
 
 describe('Component: MdlMenuItem-Directive', () => {
 
-  var builder: TestComponentBuilder;
-
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [MdlMenuModule],
+      declarations: [ MdlTestMenuItemComponent ],
+    });
+  });
 
   it('should add the css class mdl-menu__item--full-bleed-divider to the host element', ( done ) => {
 
-    return builder
-      .overrideTemplate(MdlTestMenuItemComponent, `
-          <mdl-menu><mdl-menu-item mdl-menu-item-full-bleed-divider>x</mdl-menu-item></mdl-menu>
-        `)
-      .createAsync(MdlTestMenuItemComponent).then( (fixture) => {
+    let fixture = TestBed.createComponent(MdlTestMenuItemComponent);
+    fixture.detectChanges();
 
-        fixture.detectChanges();
+    let item: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
+    expect(item.classList.contains('mdl-menu__item--full-bleed-divider')).toBe(true);
 
-        let item: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
-        expect(item.classList.contains('mdl-menu__item--full-bleed-divider')).toBe(true);
-
-        done();
-      });
+    done();
   });
 
 
@@ -37,7 +29,6 @@ describe('Component: MdlMenuItem-Directive', () => {
 
 @Component({
   selector: 'test-menu',
-  template: 'replaced by the test',
-  directives: [MDL_MENU_DIRECTIVES]
+  template: '<mdl-menu><mdl-menu-item mdl-menu-item-full-bleed-divider>x</mdl-menu-item></mdl-menu>'
 })
 class MdlTestMenuItemComponent {}
