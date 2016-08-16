@@ -11,7 +11,6 @@ describe('Component: MdlLayoutContent', () => {
       imports: [ MdlLayoutModule ],
       declarations: [ MdlTestLayoutComponent ],
     });
-
   });
 
   it('should add the css class mdl-layout__content to the host element', ( done ) => {
