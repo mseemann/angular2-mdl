@@ -1,32 +1,25 @@
-import {
-  inject,
-  TestComponentBuilder
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import {  MdlLayoutTitleComponent } from './mdl-layout-title.component';
+import {  MdlLayoutModule } from './index';
 
 describe('Component: MdlLayoutTitle', () => {
 
-  var builder: TestComponentBuilder;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ MdlLayoutModule ],
+      declarations: [ MdlTestComponent ]
+    });
+  });
+  it('should add the css class mdl-layout-title to the header element', ( done ) => {
 
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
 
-  it('should add the css class mdl-layout-title to the header element', () => {
+    let titleEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(titleEl.classList.contains('mdl-layout-title')).toBe(true);
 
-    return builder
-      .overrideTemplate(MdlTestComponent, `
-          <mdl-layout-title>x</mdl-layout-title>
-        `)
-      .createAsync(MdlTestComponent).then( (fixture) => {
+    done();
 
-        fixture.detectChanges();
-
-        let titleEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(titleEl.classList.contains('mdl-layout-title')).toBe(true);
-
-      });
   });
 
 
@@ -35,7 +28,6 @@ describe('Component: MdlLayoutTitle', () => {
 
 @Component({
   selector: 'test',
-  template: 'replaced by the test',
-  directives: [MdlLayoutTitleComponent]
+  template: '<mdl-layout-title>x</mdl-layout-title>'
 })
 class MdlTestComponent {}
