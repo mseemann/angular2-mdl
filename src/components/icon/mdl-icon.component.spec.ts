@@ -1,32 +1,26 @@
 import {
-  inject,
-  TestComponentBuilder
+  TestBed
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { MdlIconComponent } from './mdl-icon.component';
+import { MdlIconModule } from './mdl-icon.component';
 
 describe('Component: MdlIcon', () => {
 
-  var builder: TestComponentBuilder;
-
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ MdlIconModule ],
+      declarations: [ MdlTestIconComponent ],
+    });
+  });
 
   it('should add the css class material-icons to the host element', () => {
 
-    return builder
-      .overrideTemplate(MdlTestIconComponent, `
-          <mdl-icon>x</mdl-icon>
-        `)
-      .createAsync(MdlTestIconComponent).then( (fixture) => {
+    let fixture = TestBed.createComponent(MdlTestIconComponent);
+    fixture.detectChanges();
 
-        fixture.detectChanges();
+    let iconEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(iconEl.classList.contains('material-icons')).toBe(true);
 
-        let iconEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(iconEl.classList.contains('material-icons')).toBe(true);
-
-      });
   });
 
 
@@ -35,7 +29,6 @@ describe('Component: MdlIcon', () => {
 
 @Component({
   selector: 'test-icon',
-  template: 'replaced by the test',
-  directives: [MdlIconComponent]
+  template: '<mdl-icon>x</mdl-icon>'
 })
 class MdlTestIconComponent {}
