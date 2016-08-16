@@ -1,32 +1,25 @@
-import {
-  inject,
-  TestComponentBuilder
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import {  MdlLayoutHeaderRowComponent } from './mdl-layout-header-row.component';
+import {  MdlLayoutModule } from './index';
 
 describe('Component: MdlLayoutHeaderRow', () => {
 
-  var builder: TestComponentBuilder;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ MdlLayoutModule ],
+      declarations: [ MdlTestComponent ],
+    });
+  });
 
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
+  it('should add the css class mdl-layout__header-row to the header element', ( done ) => {
 
-  it('should add the css class mdl-layout__header-row to the header element', () => {
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
 
-    return builder
-      .overrideTemplate(MdlTestComponent, `
-          <mdl-layout-header-row>x</mdl-layout-header-row>
-        `)
-      .createAsync(MdlTestComponent).then( (fixture) => {
+    let headerEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(headerEl.classList.contains('mdl-layout__header-row')).toBe(true);
 
-        fixture.detectChanges();
-
-        let headerEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(headerEl.classList.contains('mdl-layout__header-row')).toBe(true);
-
-      });
+    done();
   });
 
 
@@ -35,7 +28,6 @@ describe('Component: MdlLayoutHeaderRow', () => {
 
 @Component({
   selector: 'test',
-  template: 'replaced by the test',
-  directives: [MdlLayoutHeaderRowComponent]
+  template: '<mdl-layout-header-row>x</mdl-layout-header-row>'
 })
 class MdlTestComponent {}
