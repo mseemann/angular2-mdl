@@ -8,19 +8,11 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  NG_VALUE_ACCESSOR as DEPRECATED_NG_VALUE_ACCESSOR
-} from '@angular/common';
-import {
   NG_VALUE_ACCESSOR,
   FormsModule
 } from '@angular/forms';
 import { MdlIconModule } from './../icon/mdl-icon.component';
 import { MdlCheckboxComponent } from './../checkbox/mdl-checkbox.component';
-
-const DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(DEPRECATED_NG_VALUE_ACCESSOR, {
-  useExisting: forwardRef(() => MdlIconToggleComponent),
-  multi: true
-});
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlIconToggleComponent),
@@ -30,7 +22,7 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
 
 @Component({
   selector: 'mdl-icon-toggle',
-  providers: [DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR, MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
   host: {
     '(click)': 'onClick()',
     '[class.mdl-icon-toggle]': 'true',
