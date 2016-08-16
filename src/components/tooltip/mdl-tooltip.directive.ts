@@ -4,7 +4,7 @@ import {
   Input,
   OnInit,
   ViewContainerRef,
-  ComponentResolver,
+  Compiler,
   Renderer
 } from '@angular/core';
 import { MdlSimpleTooltipComponent, MdlTooltipComponent } from './mdl-tooltip.component';
@@ -19,7 +19,7 @@ export class AbstractMdlTooltipDirective implements OnInit {
   constructor(
     private vcRef: ViewContainerRef,
     private large: boolean,
-    private componentResolver: ComponentResolver,
+    private compiler: Compiler,
     private renderer: Renderer) {
   }
 
@@ -28,12 +28,12 @@ export class AbstractMdlTooltipDirective implements OnInit {
     // if the tooltip is not an instance of MdlTooltipComponent
     // we create a simpleTooltipComponent on the fly.
     if (!(this.tooltip instanceof MdlTooltipComponent)) {
-      let c = this.componentResolver.resolveComponent(MdlSimpleTooltipComponent);
-      c.then( (cFactory) => {
-        this.tooltipComponent = this.vcRef.createComponent(cFactory).instance;
-        this.tooltipComponent.tooltipText = <string>this.tooltip;
-        this.configureTooltipComponent();
-      });
+      let cFactory = this.compiler.compileComponentSync(MdlSimpleTooltipComponent);
+
+      this.tooltipComponent = this.vcRef.createComponent(cFactory).instance;
+      this.tooltipComponent.tooltipText = <string>this.tooltip;
+      this.configureTooltipComponent();
+
     } else {
       this.tooltipComponent = <MdlTooltipComponent>this.tooltip;
       this.configureTooltipComponent();
@@ -74,8 +74,8 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
   @Input('mdl-tooltip')           public tooltip: string|MdlTooltipComponent;
   @Input('mdl-tooltip-position')  public position: string;
 
-  constructor(vcRef: ViewContainerRef, componentResolver: ComponentResolver, renderer: Renderer) {
-    super(vcRef, false, componentResolver, renderer);
+  constructor(vcRef: ViewContainerRef, compiler: Compiler, renderer: Renderer) {
+    super(vcRef, false, compiler, renderer);
   }
 }
 
@@ -87,7 +87,7 @@ export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
   @Input('mdl-tooltip-large')     public tooltip: string|MdlTooltipComponent;
   @Input('mdl-tooltip-position')  public position: string;
 
-  constructor(vcRef: ViewContainerRef, componentResolver: ComponentResolver,  renderer: Renderer) {
-    super(vcRef, true, componentResolver, renderer);
+  constructor(vcRef: ViewContainerRef, compiler: Compiler,  renderer: Renderer) {
+    super(vcRef, true, compiler, renderer);
   }
 }

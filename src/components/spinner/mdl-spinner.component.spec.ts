@@ -1,72 +1,67 @@
-import {
-  inject,
-  TestComponentBuilder
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { MdlSpinnerComponent } from './mdl-spinner.component';
+import { MdlSpinnerComponent, MdlSpinnerModule } from './mdl-spinner.component';
 
 describe('Component: MdlProgress', () => {
 
-  var builder: TestComponentBuilder;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ MdlSpinnerModule ],
+      declarations: [ MdlTestSpinnerComponent ],
+    });
+  });
 
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
+  it('should add the css class mdl-spinner to the host element', ( done ) => {
 
-  it('should add the css class mdl-spinner to the host element', () => {
+    TestBed.overrideComponent(MdlTestSpinnerComponent, { set: {
+      template: '<mdl-spinner active></mdl-spinner>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestSpinnerComponent);
+    fixture.detectChanges();
 
-    return builder
-      .overrideTemplate(MdlTestSpinnerComponent, `
-          <mdl-spinner active></mdl-spinner>
-        `)
-      .createAsync(MdlTestSpinnerComponent).then( (fixture) => {
+    let spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(spinnerEl.classList.contains('mdl-spinner')).toBe(true);
 
-        fixture.detectChanges();
-
-        let spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(spinnerEl.classList.contains('mdl-spinner')).toBe(true);
-
-      });
+    done();
   });
 
   it('should be possible to activate or deactivate the spinner', () => {
-    return builder
-      .overrideTemplate(MdlTestSpinnerComponent, `
-          <mdl-spinner [active]="active"></mdl-spinner>
-        `)
-      .createAsync(MdlTestSpinnerComponent).then( (fixture) => {
 
-        fixture.detectChanges();
+    TestBed.overrideComponent(MdlTestSpinnerComponent, { set: {
+      template: '<mdl-spinner [active]="active"></mdl-spinner>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestSpinnerComponent);
+    fixture.detectChanges();
 
-        let spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(spinnerEl.classList.contains('is-active')).toBe(true);
+    let spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(spinnerEl.classList.contains('is-active')).toBe(true);
 
-        fixture.componentInstance.active = false;
+    fixture.componentInstance.active = false;
 
-        fixture.detectChanges();
+    fixture.detectChanges();
 
-        expect(spinnerEl.classList.contains('is-active')).toBe(false);
-      });
+    expect(spinnerEl.classList.contains('is-active')).toBe(false);
+
   });
 
-  it('should be possible to colorize or decolorize the spinner', () => {
-    return builder
-      .overrideTemplate(MdlTestSpinnerComponent, `
-          <mdl-spinner [single-color]="colored"></mdl-spinner>
-        `)
-      .createAsync(MdlTestSpinnerComponent).then( (fixture) => {
+  it('should be possible to colorize or decolorize the spinner', ( done ) => {
 
-        fixture.detectChanges();
+    TestBed.overrideComponent(MdlTestSpinnerComponent, { set: {
+      template: '<mdl-spinner [single-color]="colored"></mdl-spinner>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestSpinnerComponent);
+    fixture.detectChanges();
 
-        let spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(spinnerEl.classList.contains('mdl-spinner--single-color')).toBe(true);
+    let spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(spinnerEl.classList.contains('mdl-spinner--single-color')).toBe(true);
 
-        fixture.componentInstance.colored = false;
+    fixture.componentInstance.colored = false;
 
-        fixture.detectChanges();
+    fixture.detectChanges();
 
-        expect(spinnerEl.classList.contains('mdl-spinner--single-color')).toBe(false);
-      });
+    expect(spinnerEl.classList.contains('mdl-spinner--single-color')).toBe(false);
+
+    done();
   });
 });
 

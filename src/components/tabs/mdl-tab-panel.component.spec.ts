@@ -1,91 +1,82 @@
-import {
-  inject,
-  TestComponentBuilder
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import {
   MdlTabPanelComponent,
   MdlTabsComponent,
-  MDL_TABS_DIRECTIVES
+  MdlTabsModule
 } from './index';
 
 describe('Component: MdlTabsPanel', () => {
 
-  var builder: TestComponentBuilder;
-
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ MdlTabsModule ],
+      declarations: [ MdlTestComponent ],
+    });
+  });
 
   it('should add the css class mdl-tabs__panel to the host element', ( done ) => {
 
-    return builder
-      .overrideTemplate(MdlTestComponent, `
-          <mdl-tab-panel>x</mdl-tab-panel>
-        `)
-      .createAsync(MdlTestComponent).then( (fixture) => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-tab-panel>x</mdl-tab-panel>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
 
-        fixture.detectChanges();
+    let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(tabPanelEl.classList.contains('mdl-tabs__panel')).toBe(true);
 
-        let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(tabPanelEl.classList.contains('mdl-tabs__panel')).toBe(true);
-
-        done();
-      });
+    done();
 
   });
 
   it('should add the css class isActive to the host element if the panel is active', ( done ) => {
 
-    return builder
-      .overrideTemplate(MdlTestComponent, `
-          <mdl-tab-panel>x</mdl-tab-panel>
-        `)
-      .createAsync(MdlTestComponent).then( (fixture) => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-tab-panel>x</mdl-tab-panel>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
 
-        fixture.detectChanges();
+    let tabPanelComponent = fixture.debugElement.query(By.directive(MdlTabPanelComponent)).componentInstance;
 
-        let tabPanelComponent = fixture.debugElement.query(By.directive(MdlTabPanelComponent)).componentInstance;
+    tabPanelComponent.isActive = true;
+    fixture.detectChanges();
 
-        tabPanelComponent.isActive = true;
-        fixture.detectChanges();
+    let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
 
-        let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(tabPanelEl.classList.contains('is-active')).toBe(true);
 
-        expect(tabPanelEl.classList.contains('is-active')).toBe(true);
-
-        done();
-      });
+    done();
 
   });
 
   it('should activate the selected tab if the selectedIndex changed programmatically', ( done ) => {
 
-    return builder
-      .overrideTemplate(MdlTestComponent, `
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
           <mdl-tabs [mdl-tab-active-index]="activeIndex" >
                <mdl-tab-panel mdl-tab-panel-title="t1"></mdl-tab-panel>
                <mdl-tab-panel mdl-tab-panel-titlex="t2"></mdl-tab-panel>
           </mdl-tabs>
-        `)
-      .createAsync(MdlTestComponent).then( (fixture) => {
+        ` }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
 
-        fixture.detectChanges();
+    expect(fixture.componentInstance.activeIndex).toBe(0);
 
-        expect(fixture.componentInstance.activeIndex).toBe(0);
+    fixture.componentInstance.activeIndex = 1;
 
-        fixture.componentInstance.activeIndex = 1;
+    fixture.detectChanges();
 
-        fixture.detectChanges();
+    let mdlLayoutComponent: MdlTabsComponent =
+      fixture.debugElement.query(By.directive(MdlTabsComponent)).componentInstance;
 
-        let mdlLayoutComponent: MdlTabsComponent =
-          fixture.debugElement.query(By.directive(MdlTabsComponent)).componentInstance;
+    expect(mdlLayoutComponent.selectedIndex).toBe(1);
 
-        expect(mdlLayoutComponent.selectedIndex).toBe(1);
-
-        done();
-      });
+    done();
 
   });
 
@@ -94,8 +85,7 @@ describe('Component: MdlTabsPanel', () => {
 
 @Component({
   selector: 'test',
-  template: 'replaced by the test',
-  directives: [MDL_TABS_DIRECTIVES]
+  template: 'replaced by the test'
 })
 class MdlTestComponent {
   public activeIndex = 0;

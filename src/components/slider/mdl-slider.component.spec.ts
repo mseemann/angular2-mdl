@@ -11,13 +11,11 @@ describe('Component: MdlSlider', () => {
 
   var doc: HTMLDocument;
 
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ MdlSliderModule, FormsModule ],
       declarations: [ MdlTestSliderComponent],
     });
-
   });
 
   beforeEach(inject([DOCUMENT], function (document) {

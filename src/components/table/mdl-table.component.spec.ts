@@ -1,16 +1,11 @@
-import {
-  inject,
-  TestComponentBuilder,
-  async,
-  TestBed
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component} from '@angular/core';
-import { MdlSelectableTableComponent } from './mdl-table.component';
 import {
   IMdlTableModelItem,
-  MdlDefaultTableModel
-} from './mdl-table';
+  MdlDefaultTableModel,
+  MdlTableModule
+} from './index';
 import {
   MdlCheckboxComponent
 } from './../checkbox/mdl-checkbox.component';
@@ -18,73 +13,59 @@ import {FormsModule} from '@angular/forms';
 
 describe('Component: MdlTableComponent', () => {
 
-  var builder: TestComponentBuilder;
-
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [],
+      imports: [ MdlTableModule, FormsModule ],
+      declarations: [ MdlTestTableComponent ],
     });
-
-    TestBed.compileComponents();
-  }));
-
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
+  });
 
   it('should create a table with class "mdl-data-table', ( done ) => {
 
-    return builder
-      .createAsync(MdlTestTableComponent).then((fixture) => {
+    let fixture = TestBed.createComponent(MdlTestTableComponent);
+    fixture.detectChanges();
 
-        fixture.detectChanges();
+    let tableEl: HTMLInputElement = fixture.debugElement.query(By.css('table')).nativeElement;
+    expect(tableEl.classList.contains('mdl-data-table')).toBe(true);
 
-        let tableEl: HTMLInputElement = fixture.debugElement.query(By.css('table')).nativeElement;
-        expect(tableEl.classList.contains('mdl-data-table')).toBe(true);
+    done();
 
-        done();
-
-      });
   });
 
 
   it('should select all items if the toggleAll checkbox is clicked', ( done ) => {
-    return builder
-      .createAsync(MdlTestTableComponent).then((fixture) => {
 
-        fixture.detectChanges();
+    let fixture = TestBed.createComponent(MdlTestTableComponent);
+    fixture.detectChanges();
 
-        let firstCheckboxEl: HTMLInputElement = fixture.debugElement
-            .query(By.directive(MdlCheckboxComponent)).nativeElement;
-        firstCheckboxEl.click();
+    let firstCheckboxEl: HTMLInputElement = fixture.debugElement
+        .query(By.directive(MdlCheckboxComponent)).nativeElement;
+    firstCheckboxEl.click();
 
-        fixture.detectChanges();
+    fixture.detectChanges();
 
-        expect(fixture.componentInstance.selected.length).toBe(fixture.componentInstance.tableData.length);
+    expect(fixture.componentInstance.selected.length).toBe(fixture.componentInstance.tableData.length);
 
-        done();
-      });
+    done();
+
   });
 
   it('should change the selection to the last table row if the last checkbox is clickt', ( done ) => {
-    return builder
-      .createAsync(MdlTestTableComponent).then((fixture) => {
 
-        fixture.detectChanges();
+    let fixture = TestBed.createComponent(MdlTestTableComponent);
+    fixture.detectChanges();
 
-        let checkboxes = fixture.debugElement.queryAll(By.directive(MdlCheckboxComponent));
-        let firstCheckboxEl: HTMLInputElement = checkboxes[checkboxes.length - 1].nativeElement;
-        firstCheckboxEl.click();
+    let checkboxes = fixture.debugElement.queryAll(By.directive(MdlCheckboxComponent));
+    let firstCheckboxEl: HTMLInputElement = checkboxes[checkboxes.length - 1].nativeElement;
+    firstCheckboxEl.click();
 
-        fixture.detectChanges();
+    fixture.detectChanges();
 
-        // one is already selected so we have to selected items
-        expect(fixture.componentInstance.selected.length).toBe(2);
+    // one is already selected so we have to selected items
+    expect(fixture.componentInstance.selected.length).toBe(2);
 
-        done();
+    done();
 
-      });
   });
 
 });
@@ -106,7 +87,6 @@ interface ITableItem extends IMdlTableModelItem {
          (table-model-selectionChanged)="selectionChanged($event)">
     </mdl-table-selectable>
     `,
-  directives: [MdlSelectableTableComponent]
 })
 class MdlTestTableComponent {
   public tableData: [ITableItem] = [

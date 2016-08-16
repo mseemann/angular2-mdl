@@ -2,9 +2,8 @@ import {
   Component,
   Injectable,
   DynamicComponentLoader,
-  ComponentResolver,
   Injector,
-  ViewContainerRef
+  ViewContainerRef, Compiler
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 
@@ -24,7 +23,7 @@ const ANIMATION_TIME = 250;
       <div class="mdl-snackbar__text">{{message}}</div>
       <button *ngIf="onAction" class="mdl-snackbar__action" type="button" (click)="onClick()" >{{actionText}}</button>
     </div>
-  `
+  `,
 })
 export class MdlSnackbarComponent {
   public message: string;
@@ -81,9 +80,9 @@ export class MdlSnackbarService {
 
   private defaultViewContainerRef: ViewContainerRef;
   constructor(
-    private componentResolver: ComponentResolver,
     private injector: Injector,
-    private dynamicComponentLoader: DynamicComponentLoader) {
+    private dynamicComponentLoader: DynamicComponentLoader,
+    private compiler: Compiler) {
   }
 
   public setDefaultViewContainerRef(vcRef: ViewContainerRef) {
@@ -108,36 +107,33 @@ export class MdlSnackbarService {
         'Wether as by setDefaultViewContainerRef or as IMdlSnackbarMessage param.');
     }
 
-    let c = this.componentResolver.resolveComponent(MdlSnackbarComponent);
-    return c.then( (cFactory) => {
+    let cFactory =  this.compiler.compileComponentSync(MdlSnackbarComponent);
 
-      let cRef = viewContainerRef.createComponent(cFactory);
-      let mdlSnackbarComponent = cRef.instance;
-      mdlSnackbarComponent.message = snackbarMessage.message;
-
-
-      // TODO make sure only one snackbar is visible at one time
-      // observable? push the configured instance and consume one after another?
-
-      if (snackbarMessage.action) {
-        mdlSnackbarComponent.actionText = snackbarMessage.action.text;
-        mdlSnackbarComponent.onAction = () => {
-          mdlSnackbarComponent.hide().then(() => {
-            cRef.destroy();
-            snackbarMessage.action.handler();
-          });
-        };
-      } else {
-        setTimeout( () => {
-          mdlSnackbarComponent.hide().then(() => {cRef.destroy(); });
-        }, optTimeout);
-      }
+    let cRef = viewContainerRef.createComponent(cFactory);
+    let mdlSnackbarComponent = cRef.instance;
+    mdlSnackbarComponent.message = snackbarMessage.message;
 
 
-      return mdlSnackbarComponent.show().then( () => {
-        return mdlSnackbarComponent;
-      });
+    // TODO make sure only one snackbar is visible at one time
+    // observable? push the configured instance and consume one after another?
 
+    if (snackbarMessage.action) {
+      mdlSnackbarComponent.actionText = snackbarMessage.action.text;
+      mdlSnackbarComponent.onAction = () => {
+        mdlSnackbarComponent.hide().then(() => {
+          cRef.destroy();
+          snackbarMessage.action.handler();
+        });
+      };
+    } else {
+      setTimeout( () => {
+        mdlSnackbarComponent.hide().then(() => {cRef.destroy(); });
+      }, optTimeout);
+    }
+
+
+    return mdlSnackbarComponent.show().then( () => {
+      return mdlSnackbarComponent;
     });
 
   }
