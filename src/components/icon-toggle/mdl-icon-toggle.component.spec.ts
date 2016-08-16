@@ -21,13 +21,15 @@ describe('Component: MdlIconToggle', () => {
     doc = document;
   }));
 
-  it('should add the css class mdl-icon-toggle to the host element', () => {
+  it('should add the css class mdl-icon-toggle to the host element', ( done ) => {
 
     let fixture = TestBed.createComponent(MdlTestIconToggleComponent);
     fixture.detectChanges();
 
     let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(checkboxEl.classList.contains('mdl-icon-toggle')).toBe(true);
+
+    done();
 
   });
 
