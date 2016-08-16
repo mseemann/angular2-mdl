@@ -26,6 +26,7 @@ import { SnackbarDemo } from './snackbar/snackbar.component';
 import { TableDemo } from './tables/table.component';
 import { TabsDemo } from './tabs/tabs.component';
 import { TextFieldDemo } from './textfield/textfield.component';
+import { PrismDirective } from './prism/prism.component';
 
 @NgModule({
   imports: [
@@ -56,11 +57,11 @@ import { TextFieldDemo } from './textfield/textfield.component';
     TableDemo,
     TabsDemo,
     TextFieldDemo,
-    Angular2MdlAppComponent
+    Angular2MdlAppComponent,
+    PrismDirective
   ],
-  bootstrap: [
-    Angular2MdlAppComponent
-  ],
+  entryComponents: [Angular2MdlAppComponent],
+  bootstrap: [Angular2MdlAppComponent],
 })
 export class Angular2MdlAppModule {
 }

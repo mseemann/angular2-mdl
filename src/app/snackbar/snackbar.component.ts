@@ -5,15 +5,11 @@ import {
 import {
   MdlSnackbarService
 } from '../../components';
-import { PrismDirective } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
   selector: 'snackbar-demo',
-  templateUrl: 'snackbar.component.html',
-  directives: [
-    PrismDirective
-  ]
+  templateUrl: 'snackbar.component.html'
 })
 export class SnackbarDemo {
 

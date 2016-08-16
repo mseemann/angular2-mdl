@@ -2,15 +2,11 @@ import {
   Component,
   ViewEncapsulation
 } from '@angular/core';
-import { PrismDirective } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
   selector: 'tabs-demo',
   templateUrl: 'tabs.component.html',
-  directives: [
-    PrismDirective
-  ],
   styles: [
     `
     .demo-tab-container{

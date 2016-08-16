@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
-import { PrismDirective } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
   selector: 'toggle-demo',
-  templateUrl: 'toggle.component.html',
-  directives: [
-    PrismDirective
-  ],
+  templateUrl: 'toggle.component.html'
 })
 export class ToggleDemo {
   protected checkbox1 = true;

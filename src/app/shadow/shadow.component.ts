@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { PrismDirective } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
@@ -16,9 +15,6 @@ import { PrismDirective } from './../prism/prism.component';
         clear: both;
     }
   `],
-  directives: [
-    PrismDirective
-  ],
   encapsulation: ViewEncapsulation.None
 })
 export class ShadowDemo {

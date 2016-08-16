@@ -3,7 +3,6 @@ import {
   ViewEncapsulation,
   AfterContentInit
 } from '@angular/core';
-import { PrismDirective } from './../prism/prism.component';
 
 /* tslint:disable */
 @Component({
@@ -87,9 +86,6 @@ import { PrismDirective } from './../prism/prism.component';
       margin-bottom: 1rem;
     }
     `
-  ],
-  directives: [
-    PrismDirective
   ],
   encapsulation: ViewEncapsulation.None
 })

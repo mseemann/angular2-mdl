@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PrismDirective } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
@@ -15,9 +14,6 @@ import { PrismDirective } from './../prism/prism.component';
     display: inline;
   }
 `
-  ],
-  directives: [
-    PrismDirective
-  ],
+  ]
 })
 export class ListDemo {}

@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
-import { PrismDirective } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
   selector: 'menu-demo',
   templateUrl: 'menu.component.html',
-  directives: [
-    PrismDirective
-  ],
   styles: [
     `
      :host {

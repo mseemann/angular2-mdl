@@ -6,7 +6,6 @@ import {
   IMdlTableModelItem,
   MdlDefaultTableModel
 } from '../../components';
-import { PrismDirective } from './../prism/prism.component';
 
 export interface ITableItem extends IMdlTableModelItem {
   material: string;
@@ -18,10 +17,7 @@ export interface ITableItem extends IMdlTableModelItem {
 @Component({
   moduleId: module.id,
   selector: 'table-demo',
-  templateUrl: 'table.component.html',
-  directives: [
-    PrismDirective
-  ],
+  templateUrl: 'table.component.html'
 })
 export class TableDemo implements OnInit {
 

@@ -1,13 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { PrismDirective } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
   selector: 'layout-demo',
   templateUrl: 'layout.component.html',
-  directives: [
-    PrismDirective
-  ],
   styles: [
     `
     .demo-container {

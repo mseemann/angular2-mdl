@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
-import { PrismDirective } from './../prism/prism.component';
 
 @Component({
   moduleId: module.id,
   selector: 'slider-demo',
-  templateUrl: 'slider.component.html',
-  directives: [
-    PrismDirective
-  ],
+  templateUrl: 'slider.component.html'
 })
 export class SliderDemo {
   protected minValue = 0;
