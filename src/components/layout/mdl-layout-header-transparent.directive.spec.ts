@@ -1,41 +1,34 @@
-import {
-  inject,
-  TestComponentBuilder
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import {  MdlLayoutHeaderTransparentDirective } from './mdl-layout-header-transparent.directive';
+import { By } from '@angular/platform-browser';
+import { MdlLayoutModule, MdlLayoutHeaderComponent } from './index';
 
 describe('Component: MdlLayoutHeaderTransparent', () => {
 
-  var builder: TestComponentBuilder;
-
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
-
-  it('should add the css class mdl-layout__header--transparent to the header element', () => {
-
-    return builder
-      .overrideTemplate(MdlTestComponent, `
-          <mdl-layout-header mdl-layout-header-transparent>x</mdl-layout-header>
-        `)
-      .createAsync(MdlTestComponent).then( (fixture) => {
-
-        fixture.detectChanges();
-
-        let headerEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(headerEl.classList.contains('mdl-layout__header--transparent')).toBe(true);
-
-      });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ MdlLayoutModule ],
+      declarations: [ MdlTestComponent ]
+    });
   });
 
+
+  it('should add the css class mdl-layout__header--transparent to the header element', ( done ) => {
+
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent)).nativeElement;
+    expect(headerDebugElement.classList.contains('mdl-layout__header--transparent')).toBe(true);
+
+    done();
+  });
 
 });
 
 
 @Component({
-  selector: 'test',
-  template: 'replaced by the test',
-  directives: [MdlLayoutHeaderTransparentDirective]
+  selector: 'test-component',
+  template: '<mdl-layout><mdl-layout-header mdl-layout-header-transparent>x</mdl-layout-header></mdl-layout>'
 })
 class MdlTestComponent {}
