@@ -111,7 +111,7 @@ describe('Components: MdlCard*', () => {
       template: '<mdl-card-media></mdl-card-media>' }
     });
     let fixture = TestBed.createComponent(TestApp);
-    
+
     expect( () => fixture.detectChanges() )
       .toThrow();
 

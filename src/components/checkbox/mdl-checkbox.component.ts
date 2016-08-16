@@ -4,7 +4,9 @@ import {
   Provider,
   Renderer,
   forwardRef,
-  NgModule
+  NgModule,
+  ViewEncapsulation,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -39,7 +41,9 @@ const IS_FOCUSED = 'is-focused';
     <span class="mdl-checkbox__tick-outline"></span>
   </span>
   `,
-  inputs: ['value']
+  inputs: ['value'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
 
