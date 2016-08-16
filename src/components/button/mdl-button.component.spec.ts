@@ -1,114 +1,112 @@
-import {
-  inject,
-  TestComponentBuilder,
-  ComponentFixture,
-  TestBed,
-  async
-} from '@angular/core/testing';
-import { Component, Optional } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { MdlButtonComponent, MdlButtonModule} from './mdl-button.component';
 import { MdlCommonModule} from './../common/mdl-ripple.directive';
 
-describe('Directive: MdlButton', () => {
+describe('Component: MdlButton', () => {
 
-  var builder: TestComponentBuilder;
-
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MdlButtonModule, MdlCommonModule],
-      declarations: [],
+      declarations: [MdlTestButtonComponent]
     });
+  });
 
-    TestBed.compileComponents();
-  }));
-
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
 
   it('should add the css class mdl-button to the host element', ( done ) => {
 
-    return builder
-      .overrideTemplate(MdlTestButtonComponent, `
-          <mdl-button></mdl-button>
-        `)
-      .createAsync(MdlTestButtonComponent).then( (fixture: ComponentFixture<MdlTestButtonComponent>) => {
+    TestBed.overrideComponent(MdlTestButtonComponent, { set: {
+      template: '<mdl-button></mdl-button>' }
+    });
 
-        fixture.detectChanges();
+    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    fixture.detectChanges();
 
-        let btnEl: HTMLElement = fixture.nativeElement.children.item(0);
-        expect(btnEl.classList.contains('mdl-button')).toBe(true);
+    let btnEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(btnEl.classList.contains('mdl-button')).toBe(true);
 
-        done();
-      });
+    done();
+
   });
 
   it('should throw if an unsupported buttontype is provided', ( done ) => {
 
-    return builder
-      .overrideTemplate(MdlTestButtonComponent, `
-          <mdl-button mdl-button-type="didNotExist"></mdl-button>
-        `)
-      .createAsync(MdlTestButtonComponent).then( (fixture: ComponentFixture<MdlTestButtonComponent>) => {
+    TestBed.overrideComponent(MdlTestButtonComponent, { set: {
+      template: '<mdl-button mdl-button-type="didNotExist"></mdl-button>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestButtonComponent);
 
-        expect( () => fixture.detectChanges() )
-          .toThrow();
+    expect( () => fixture.detectChanges() )
+      .toThrow();
 
-        done();
-      });
+    done();
+
 
   });
 
   it('should throw if an unsupported colored type is provided', ( done) => {
 
-    return builder
-      .overrideTemplate(MdlTestButtonComponent, `
-          <mdl-button mdl-colored="didNotExist"></mdl-button>
-        `)
-      .createAsync(MdlTestButtonComponent).then( (fixture: ComponentFixture<MdlTestButtonComponent>) => {
+    TestBed.overrideComponent(MdlTestButtonComponent, { set: {
+      template: '<mdl-button mdl-colored="didNotExist"></mdl-button>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestButtonComponent);
 
-        expect( () => fixture.detectChanges() )
-          .toThrow();
+    expect( () => fixture.detectChanges() )
+      .toThrow();
 
-        done();
-      });
+    done();
+
 
   });
 
   it('should call blur on mouseup and mouseleave', ( done ) => {
 
-    return builder
-      .overrideTemplate(MdlTestButtonComponent, `
-          <mdl-button></mdl-button>
-        `)
-      .createAsync(MdlTestButtonComponent).then( (fixture: ComponentFixture<MdlTestButtonComponent>) => {
+    TestBed.overrideComponent(MdlTestButtonComponent, { set: {
+      template: '<mdl-button></mdl-button>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestButtonComponent);
 
-        fixture.detectChanges();
+    fixture.detectChanges();
 
-        var mdlButtonDirective =  fixture.componentInstance.mdlButton;
+    var mdlButtonDirective =  fixture.debugElement.query(By.directive(MdlButtonComponent)).componentInstance;
 
-        spyOn(mdlButtonDirective, 'blurIt').and.callThrough();
-        expect(mdlButtonDirective.blurIt).not.toHaveBeenCalled();
+    spyOn(mdlButtonDirective, 'blurIt').and.callThrough();
+    expect(mdlButtonDirective.blurIt).not.toHaveBeenCalled();
 
-        mdlButtonDirective.onMouseUp();
-        expect(mdlButtonDirective.blurIt).toHaveBeenCalled();
+    mdlButtonDirective.onMouseUp();
+    expect(mdlButtonDirective.blurIt).toHaveBeenCalled();
 
-        mdlButtonDirective.onMouseLeave();
-        expect(mdlButtonDirective.blurIt).toHaveBeenCalled();
+    mdlButtonDirective.onMouseLeave();
+    expect(mdlButtonDirective.blurIt).toHaveBeenCalled();
 
-        done();
-      });
+    done();
+
   });
 
-  // TODO test exportAs mdlButton
+
+  it('should export the component instance as mdlButton', ( done ) => {
+
+    TestBed.overrideComponent(MdlTestButtonComponent, { set: {
+      template: '<mdl-button #button="mdlButton">x</mdl-button>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+
+    fixture.detectChanges();
+
+    let references = fixture.debugElement.query(By.directive(MdlButtonComponent)).references;
+
+    expect(references['button']).toBeDefined();
+
+    done();
+
+  });
+
 });
 
 
 @Component({
   selector: 'test-button',
-  template: 'replaced by the test',
-  providers: [MdlButtonComponent]
+  template: 'replaced by the test'
 })
-class MdlTestButtonComponent {
-  constructor(@Optional() public mdlButton: MdlButtonComponent) {}
-}
+class MdlTestButtonComponent {}

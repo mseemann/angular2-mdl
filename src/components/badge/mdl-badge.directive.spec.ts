@@ -1,19 +1,16 @@
-import {
-  TestBed,
-  async
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { MdlBadgeModule } from './mdl-badge.directive';
 
 
 describe('Directive: MdlBadge', () => {
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MdlBadgeModule],
       declarations: [MdlTestBadgeComponent],
     });
-  }));
+  });
 
   it('should add the css class mdl-badge and the attribute data-badge to the host element', ( done ) => {
 
