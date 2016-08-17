@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule, ApplicationRef} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MdlModule } from './../components/index';
@@ -61,7 +61,12 @@ import { PrismDirective } from './prism/prism.component';
     PrismDirective
   ],
   entryComponents: [Angular2MdlAppComponent],
-  bootstrap: [Angular2MdlAppComponent],
+  bootstrap: [],
 })
 export class Angular2MdlAppModule {
+  constructor(private appRef: ApplicationRef) { }
+
+  public ngDoBootstrap() {
+    this.appRef.bootstrap(Angular2MdlAppComponent);
+  }
 }

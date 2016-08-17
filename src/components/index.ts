@@ -217,18 +217,18 @@ export const MDL_DIRECTIVES = [
 ];
 
 const MDL_MODULES = [
-  MdlRippleModule,
   MdlButtonModule,
+  MdlChekboxModule,
+  MdlSpinnerModule,
+  MdlRippleModule,
   MdlBadgeModule,
   MdlShadowModule,
   MdlCardModule,
-  MdlChekboxModule,
   MdlRadioModule,
   MdlProgressModule,
   MdlIconModule,
   MdlIconToggleModule,
   MdlListModule,
-  MdlSpinnerModule,
   MdlSliderModule,
   MdlSwitchModule,
   MdlTooltipModule,
