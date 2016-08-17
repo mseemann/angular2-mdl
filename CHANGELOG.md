@@ -1,3 +1,13 @@
+<a name="1.3.0"></a>
+# 1.3.0 (2016-08-17)
+
+### Bug Fixes
+* https://github.com/mseemann/angular2-mdl/issues/31
+
+### BREAKING CHANGES
+You need to use the new angular2 forms API - e.g. FormsModule.
+
+
 <a name="1.2.0"></a>
 # 1.2.0 (2016-08-07)
 

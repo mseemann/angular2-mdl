@@ -14,7 +14,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 [![Build Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
 
-### Status of the npm package version 1.2
+### Status of the npm package version 1.3 (mdl version 1.1.3; angular2 rc5)
 
 - Badges
 - Buttons 
@@ -33,17 +33,34 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 - Tabs
 - Textfields (multiline, expandable)
 
-This package supports both forms APIs. If you want to use the new forms api you have to enable this at the bootstrapping - this will change with angular 2 rc5!:
+This package no longer supports the deprecated forms APIs. You have to use the FormsModule in you app module. For example:
 
 ```JavaScript
-import { disableDeprecatedForms, provideForms} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
-bootstrap(AppComponent, [
-  disableDeprecatedForms(),
-  provideForms()
-]).catch((err: any) => console.error(err));
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    MdlModule
+  ],
+  declarations: [
+    Angular2MdlAppComponent
+  ],
+  entryComponents: [Angular2MdlAppComponent],
+  bootstrap: [],
+})
+export class Angular2MdlAppModule {
+  constructor(private appRef: ApplicationRef) { }
+
+  public ngDoBootstrap() {
+    this.appRef.bootstrap(Angular2MdlAppComponent);
+  }
+}
 ```
 
+There are still a lot of bugs in angular2 rc5. For example: https://github.com/angular/angular/issues/10618. 
+This means that prod builds are broken. You need to disable some minification options. See the comments in the mentioned ticket.
 
 ### Installation
 
@@ -51,7 +68,11 @@ bootstrap(AppComponent, [
 npm install angular2-mdl --save
 ```
 
-### How to use the mdl components
+### How to use the mdl components with the angular cli webpack version
+
+Just use it. Add the MdlModule to your NgModule imports and you are done!
+
+### How to use the mdl components with the angular cli system js version
 
 You need to extend the `angular-cli-build.js` file to include `angular2-mdl` as a vendor package: 
 
@@ -78,14 +99,17 @@ const packages: any = {
 };
 ```
 
-After that you may use the angular2-mdl directives in your components:
+After that you may use the angular2-mdl module in your app module:
 ```JavaScript
-import { MDL_DIRECTIVES } from 'angular2-mdl';
+import { MdlModule } from 'angular2-mdl';
 
-@Component{
-   ...
-   directives: [ MDL_DIRECTIVES ]
-}
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    MdlModule
+  ],
+  ...
 ```
 
 ### css from material-design-lite
