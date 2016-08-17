@@ -21,7 +21,7 @@
     "e2e": "protractor",
     "deploy-gh-pages": "ng github-pages:deploy --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\"",
     "generate-scss-from-mdl-scss": "node ./dev-scripts/generate-scss-from-mdl-scss.js",
-    "prepublish": "typings install; tsc --project src"
+    "prepublish": "ng build"
   },
   "main": "./dist/components/index.js",
   "typings": "./dist/components/index.d.ts",
