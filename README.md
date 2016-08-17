@@ -138,6 +138,4 @@ $color-accent-contrast: $color-dark-contrast;
 ```
 
 
-
-
-.
+[comment]: <> (in angular-cli/lib/broccoli/angular-broccoli-bundle.js set { minify: true, mangle: false })

@@ -11,7 +11,6 @@ import { BooleanProperty } from './../common/boolean-property';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  moduleId: module.id,
   selector: 'mdl-progress',
   host: {
     '[class.mdl-progress]': 'true',

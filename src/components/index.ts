@@ -218,6 +218,7 @@ export const MDL_DIRECTIVES = [
 
 const MDL_MODULES = [
   MdlButtonModule,
+  MdlLayoutModule,
   MdlChekboxModule,
   MdlSpinnerModule,
   MdlRippleModule,
@@ -235,8 +236,7 @@ const MDL_MODULES = [
   MdlTableModule,
   MdlMenuModule,
   MdlTabsModule,
-  MdlTextFieldModule,
-  MdlLayoutModule
+  MdlTextFieldModule
 ];
 
 @NgModule({

@@ -36,7 +36,6 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
 
 
 @Component({
-  moduleId: module.id,
   selector: 'mdl-layout',
   template: `
     <div class="mdl-layout__container" [ngClass]="{'has-scrolling-header': mode==='scroll'}">

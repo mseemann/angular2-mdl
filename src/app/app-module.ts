@@ -36,6 +36,7 @@ import { PrismDirective } from './prism/prism.component';
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [
+    Angular2MdlAppComponent,
     Home,
     ButtonDemo,
     BadgeDemo,
@@ -57,7 +58,6 @@ import { PrismDirective } from './prism/prism.component';
     TableDemo,
     TabsDemo,
     TextFieldDemo,
-    Angular2MdlAppComponent,
     PrismDirective
   ],
   entryComponents: [Angular2MdlAppComponent],
