@@ -15,3 +15,37 @@ Features:
    <li>Inlcude only the code that you really use in your production files.</li>
    <li>For sure this demo and docu has been created with angular2-mdl!</li>
 </ul>
+
+<div>
+A side effect is that you don’t need to write a lot of css classes and html structures to create material design lite components.
+
+Instead of
+<pre prism>
+  <![CDATA[
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+	<label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+		<i class="material-icons">search</i>
+	</label>
+	<div class="mdl-textfield__expandable-holder">
+		<input class="mdl-textfield__input" type="text" id="sample6">
+	</div>
+</div>
+  ]]>
+</pre>
+
+you just write:
+<pre prism>
+	<![CDATA[
+<mdl-textfield type="text" [(ngModel)]="theText" icon="search"></mdl-textfield>
+	]]>
+</pre>
+
+to create an expandle text field and get two-way-databindig for free!
+
+	<p>
+		<mdl-textfield type="text" [(ngModel)]="theText" icon="search"></mdl-textfield>
+	</p>
+
+</div>
+
+<p></p>
