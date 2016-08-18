@@ -10,7 +10,9 @@ import { MdlLayoutSpacerComponent } from './mdl-layout-spacer.component';
 import { MdlLayoutTabPanelComponent } from './mdl-layout-tab-panel.component';
 import { MdlIconModule } from './../icon/mdl-icon.component';
 import { MdlRippleModule } from './../common/mdl-ripple.directive';
+import { MdlCommonsModule } from './../common/index';
 import { CommonModule } from '@angular/common';
+import { MdlTabsModule } from '../tabs/index';
 
 /** @deprecated */
 export const MDL_LAYOUT_DIRECTIVES = [
@@ -36,7 +38,7 @@ export * from './mdl-layout-spacer.component';
 export * from './mdl-layout-tab-panel.component';
 
 @NgModule({
-  imports: [ MdlIconModule, MdlRippleModule, CommonModule ],
+  imports: [ MdlIconModule, MdlRippleModule, MdlCommonsModule, MdlTabsModule, CommonModule ],
   exports: MDL_LAYOUT_DIRECTIVES,
   declarations: MDL_LAYOUT_DIRECTIVES,
 })

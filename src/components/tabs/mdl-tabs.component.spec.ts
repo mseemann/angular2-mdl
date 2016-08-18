@@ -101,6 +101,7 @@ describe('Component: MdlTabs', () => {
 
     // the tab is now a div tag and not an a tag.
     let testElement = fixture.debugElement.query(By.css('.mdl-tabs__tab'));
+
     expect(testElement.nativeElement.nodeName).toBe('DIV');
   });
 });

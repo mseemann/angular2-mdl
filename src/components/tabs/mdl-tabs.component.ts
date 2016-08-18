@@ -11,9 +11,7 @@ import {
 } from '@angular/core';
 import { BooleanProperty } from './../common/boolean-property';
 import { NumberProperty } from './../common/number.property';
-import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
 import { MdlTabPanelComponent } from './mdl-tab-panel.component';
-import { AppendViewContainerRefDirective }  from './../common/append-view-container-ref-directive';
 
 @Component({
   selector: 'mdl-tabs',
@@ -40,8 +38,7 @@ import { AppendViewContainerRefDirective }  from './../common/append-view-contai
        </div>
   </div>
   <ng-content></ng-content>
-  `,
-  directives: [MDL_COMMON_DIRECTIVES, AppendViewContainerRefDirective]
+  `
 })
 export class MdlTabsComponent implements AfterContentInit, OnChanges {
 

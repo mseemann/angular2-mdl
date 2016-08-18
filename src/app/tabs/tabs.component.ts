@@ -15,6 +15,9 @@ import {
     mdl-icon {
        vertical-align: middle;
     }
+    .mdl-tabs__tab {
+        cursor: pointer;
+    }
     `
   ],
   encapsulation: ViewEncapsulation.None

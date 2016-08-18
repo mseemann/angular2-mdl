@@ -8,8 +8,8 @@ import {
   forwardRef
 } from '@angular/core';
 import { MdlLayoutTabPanelComponent } from './mdl-layout-tab-panel.component';
-import { MdlAnchorRippleDirective } from './../common/mdl-ripple.directive';
 import { MdlLayoutComponent } from './mdl-layout.component';
+
 
 @Component({
   selector: 'mdl-layout-header',
@@ -27,17 +27,24 @@ import { MdlLayoutComponent } from './mdl-layout.component';
      <ng-content></ng-content>
      <div *ngIf="tabs?.toArray()?.length > 0" class="mdl-layout__tab-bar-container">
          <div class="mdl-layout__tab-bar is-casting-shadow">
-            <div *ngFor="let tab of tabs.toArray()" class="mdl-layout__tab">
-              <a href="javascript:void(0)"   
+           <div *ngFor="let tab of tabs.toArray()" class="mdl-layout__tab" [ngClass]="{'is-active': tab.isActive}">
+              <div 
+                *ngIf="tab.titleComponent" 
                 (click)="mdlLayout.tabSelected(tab)"
-                class="mdl-layout__tab" 
                 [mdl-ripple]="isRipple"
-                [ngClass]="{'is-active': tab.isActive}">{{tab.title}}</a>
+                [append-view-container-ref]="tab.titleComponent.vcRef"></div>
+              <a *ngIf="!tab.titleComponent" 
+                    href="javascript:void(0)"   
+                    (click)="mdlLayout.tabSelected(tab)"
+                    class="mdl-layout__tab" 
+                    [mdl-ripple]="isRipple"
+                   >{{tab.title}}</a>
              </div>
          </div>
      </div>
   `,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  directives: []
 })
 export class MdlLayoutHeaderComponent {
 

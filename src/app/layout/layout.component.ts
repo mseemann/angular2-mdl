@@ -18,6 +18,13 @@ import { Component, ViewEncapsulation } from '@angular/core';
     .page-content {
         height: 600px;
     }
+    
+    mdl-icon {
+       vertical-align: middle;
+    }
+    .mdl-layout__tab {
+        cursor: pointer;
+    }
     `
   ],
   encapsulation: ViewEncapsulation.None

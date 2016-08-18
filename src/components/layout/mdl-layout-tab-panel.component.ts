@@ -1,7 +1,9 @@
 import {
   Component,
-  Input
+  Input,
+  ContentChild
 } from '@angular/core';
+import { MdlTabPanelTitleComponent } from './../tabs/index';
 
 
 @Component({
@@ -12,11 +14,13 @@ import {
   },
   template:
     `
-   <ng-content></ng-content>
+   <ng-content *ngIf="titleComponent" select="mdl-tab-panel-content"></ng-content>
+   <ng-content *ngIf="!titleComponent"></ng-content>
    `
 })
 export class MdlLayoutTabPanelComponent {
 
+  @ContentChild(MdlTabPanelTitleComponent) public titleComponent;
   @Input('mdl-layout-tab-panel-title') public title;
   public isActive = false;
 

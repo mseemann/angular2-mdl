@@ -1,19 +1,24 @@
-import { TestBed } from '@angular/core/testing';
+import {
+  TestBed,
+  async
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import {
   MdlLayoutModule,
   MdlLayoutComponent,
   MdlLayoutContentComponent,
-  MdlLayoutDrawerComponent
+  MdlLayoutDrawerComponent,
+  MdlLayoutHeaderComponent
 } from './index';
 import { MdlRippleModule } from './../common/mdl-ripple.directive';
+import { MdlTabsModule } from './../tabs/index';
 
 describe('Component: MdlLayout', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MdlLayoutModule, MdlRippleModule],
+      imports: [MdlLayoutModule, MdlRippleModule, MdlTabsModule],
       declarations: [ MdlTestLayoutComponent ],
     });
   });
@@ -299,6 +304,36 @@ describe('Component: MdlLayout', () => {
 
     done();
   });
+
+
+  it('should be possible to create rich tabs', async(() => {
+
+    TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
+      template: `
+          <mdl-layout>
+           <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-content>
+               <mdl-layout-tab-panel>
+                 <mdl-tab-panel-title>
+                    <span class="test">Test</span>
+                  </mdl-tab-panel-title>
+                  <mdl-tab-panel-content>
+                    <span class="content">The content</span>
+                  </mdl-tab-panel-content>
+                </mdl-layout-tab-panel>
+            </mdl-layout-content>
+         </mdl-layout>
+        ` }
+    });
+    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
+
+    // must have a MdlLayoutHeaderComponent
+    let layoutHeader = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+    let titleDebugElement = layoutHeader.query(By.css('.test'));
+
+    expect(titleDebugElement.nativeElement.nodeName).toEqual('SPAN');
+  }));
 
   it('should close the drawer on small screens if closeDrawerOnSmallScreens is called', ( done ) => {
 

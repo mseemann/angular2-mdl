@@ -298,15 +298,20 @@ The screen width must be wider than 1024px to see the header in any case.
    <mdl-layout mdl-layout-fixed-header [mdl-layout-tab-active-index]="activeIndex" (mdl-layout-tab-active-changed)="tabChanged($event)">
       <mdl-layout-header>
          <mdl-layout-header-row>
-            <mdl-layout-title>Title</mdl-layout-title>
+          <mdl-layout-title>Title</mdl-layout-title>
          </mdl-layout-header-row>
       </mdl-layout-header>
       <mdl-layout-drawer>
          <mdl-layout-title>Title</mdl-layout-title>
       </mdl-layout-drawer>
       <mdl-layout-content>
-         <mdl-layout-tab-panel mdl-layout-tab-panel-title="Tab 1">
-            1
+         <mdl-layout-tab-panel>
+            <mdl-tab-panel-title>
+              <mdl-icon class="mdl-color-text--accent">person</mdl-icon><span>Tab 1</span>
+					 </mdl-tab-panel-title>
+					 <mdl-tab-panel-content>
+						 1
+					 </mdl-tab-panel-content>
          </mdl-layout-tab-panel>
          <mdl-layout-tab-panel mdl-layout-tab-panel-title="Tab 2">
             2
@@ -334,8 +339,13 @@ active index:
          <mdl-layout-title>Title</mdl-layout-title>
       </mdl-layout-drawer>
       <mdl-layout-content>
-         <mdl-layout-tab-panel mdl-layout-tab-panel-title="Tab 1">
-            1
+         <mdl-layout-tab-panel>
+					<mdl-tab-panel-title>
+						<mdl-icon class="mdl-color-text--primary">person</mdl-icon><span>Tab 1</span>
+					</mdl-tab-panel-title>
+					<mdl-tab-panel-content>
+						1
+					</mdl-tab-panel-content>
          </mdl-layout-tab-panel>
          <mdl-layout-tab-panel mdl-layout-tab-panel-title="Tab 2">
             2
