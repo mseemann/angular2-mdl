@@ -1,3 +1,10 @@
+<a name="1.3.1"></a>
+# 1.3.1 (2016-08-18)
+
+### Features
+* https://github.com/mseemann/angular2-mdl/issues/29
+   (select tab porgrammatically, support for rich tab titles)
+
 <a name="1.3.0"></a>
 # 1.3.0 (2016-08-17)
 
