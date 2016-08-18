@@ -28,6 +28,11 @@ module.exports = function(defaults) {
 
   return new Angular2App(defaults, {
     //sourceDir: 'src/e2e-app',
+		polyfills: [
+			'vendor/core-js/client/core.js',
+			'vendor/systemjs/dist/system.src.js',
+			'vendor/zone.js/dist/zone.js'
+		],
     tsCompiler: {},
     sassCompiler: {
       includePaths: [
@@ -35,13 +40,12 @@ module.exports = function(defaults) {
       ]
     },
     vendorNpmFiles: [
-      'systemjs/dist/system-polyfills.js',
-      'systemjs/dist/system.src.js',
-      'zone.js/dist/**/*.+(js|js.map)',
-      'es6-shim/es6-shim.js',
-      'reflect-metadata/**/*.+(ts|js|js.map)',
-      'rxjs/**/*.+(js|js.map)',
-      '@angular/**/*.+(js|js.map)'
+			'systemjs/dist/system-polyfills.js',
+			'systemjs/dist/system.src.js',
+			'zone.js/dist/*.+(js|js.map)',
+			'core-js/client/core.js',
+			'rxjs/**/*.+(js|js.map)',
+			'@angular/**/*.+(js|js.map)',
     ]
   });
 };
