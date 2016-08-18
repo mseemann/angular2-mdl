@@ -1,19 +1,26 @@
 import {
-  inject,
-  TestComponentBuilder
+  TestBed
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
-import {MDL_LIST_DIRECTIVES, MdlListItemComponent} from './../list/mdl-list.component';
+import { MdlRippleModule } from './../common/mdl-ripple.directive';
+import { MdlListModule, MdlListItemComponent } from './../list/mdl-list.component';
+
+function getFiytureForTemplate(template) {
+  TestBed.overrideComponent(MdlTestRippleComponent, { set: { template: template }});
+  let fixture = TestBed.createComponent(MdlTestRippleComponent);
+  fixture.detectChanges();
+  return fixture;
+}
 
 describe('Directive: MdlRipple', () => {
 
-  var builder: TestComponentBuilder;
-
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [MdlRippleModule, MdlListModule],
+      declarations: [MdlTestRippleComponent],
+    });
+  });
 
   function getSpan1IfAny(fixture) {
 
@@ -25,219 +32,139 @@ describe('Directive: MdlRipple', () => {
     return span0.children.item(0);
   }
 
-  it('should add the ripple span elements if mdl-ripple is empty', ( done ) => {
-    return builder
-      .overrideTemplate(MdlTestRippleComponent, `
-          <mdl-button mdl-ripple></mdl-button>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+  it('should add the ripple span elements if mdl-ripple is empty', () => {
 
-        fixture.detectChanges();
+    let fixture = getFiytureForTemplate('<mdl-button mdl-ripple></mdl-button>');
 
-        let span1 = getSpan1IfAny(fixture);
+    let span1 = getSpan1IfAny(fixture);
 
-        expect(span1.classList.contains('mdl-ripple')).toBe(true);
+    expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
-        done();
-      });
   });
 
-  it('should add the ripple if mdl-ripple is set to true', ( done ) => {
-    return builder
-      .overrideTemplate(MdlTestRippleComponent, `
-          <mdl-button [mdl-ripple]="true"></mdl-button>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+  it('should add the ripple if mdl-ripple is set to true', () => {
 
-        fixture.detectChanges();
+    let fixture = getFiytureForTemplate('<mdl-button [mdl-ripple]="true"></mdl-button>');
 
-        let span1 = getSpan1IfAny(fixture);
+    let span1 = getSpan1IfAny(fixture);
 
-        expect(span1.classList.contains('mdl-ripple')).toBe(true);
+    expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
-        done();
-      });
   });
 
-  it('should not add ripple if mdl-ripple is set to false', ( done ) => {
-    return builder
-      .overrideTemplate(MdlTestRippleComponent, `
-          <mdl-button [mdl-ripple]="false"></mdl-button>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
 
-        fixture.detectChanges();
+  it('should not add ripple if mdl-ripple is set to false', () => {
+    let fixture = getFiytureForTemplate('<mdl-button [mdl-ripple]="false"></mdl-button>');
 
-        let span1 = getSpan1IfAny(fixture);
+    let span1 = getSpan1IfAny(fixture);
 
-        expect(span1).toBeNull();
+    expect(span1).toBeNull();
 
-        done();
-      });
   });
 
-  it('should remove the ripple if mdl-ripple is set to false', ( done ) => {
-    return builder
-      .overrideTemplate(MdlTestRippleComponent, `
-          <mdl-checkbox [mdl-ripple]="doRipple"></mdl-checkbox>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+  it('should remove the ripple if mdl-ripple is set to false', () => {
 
-        fixture.detectChanges();
+    let fixture = getFiytureForTemplate('<mdl-checkbox [mdl-ripple]="doRipple"></mdl-checkbox>');
 
-        expect(getSpan1IfAny(fixture).classList.contains('mdl-ripple')).toBe(true);
+    expect(getSpan1IfAny(fixture).classList.contains('mdl-ripple')).toBe(true);
 
-        fixture.debugElement.componentInstance.doRipple = false;
+    fixture.debugElement.componentInstance.doRipple = false;
 
-        fixture.detectChanges();
+    fixture.detectChanges();
 
-        expect(getSpan1IfAny(fixture)).toBeNull();
+    expect(getSpan1IfAny(fixture)).toBeNull();
 
-        done();
-      });
   });
 
-  it('should add the ripple to mdl-radio', ( done ) => {
-    return builder
-      .overrideTemplate(MdlTestRippleComponent, `
-          <mdl-radio mdl-ripple></mdl-radio>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+  it('should add the ripple to mdl-radio', () => {
 
-        fixture.detectChanges();
+    let fixture = getFiytureForTemplate('<mdl-radio mdl-ripple></mdl-radio>');
 
-        let span1 = getSpan1IfAny(fixture);
+    let span1 = getSpan1IfAny(fixture);
 
-        expect(span1.classList.contains('mdl-ripple')).toBe(true);
-
-        done();
-      });
+    expect(span1.classList.contains('mdl-ripple')).toBe(true);
   });
 
-  it('should add the ripple to mdl-icon-toggle', (done ) => {
-    return builder
-      .overrideTemplate(MdlTestRippleComponent, `
-          <mdl-icon-toggle mdl-ripple></mdl-icon-toggle>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+  it('should add the ripple to mdl-icon-toggle', () => {
 
-        fixture.detectChanges();
+    let fixture = getFiytureForTemplate('<mdl-icon-toggle mdl-ripple></mdl-icon-toggle>');
 
-        let span1 = getSpan1IfAny(fixture);
+    let span1 = getSpan1IfAny(fixture);
 
-        expect(span1.classList.contains('mdl-ripple')).toBe(true);
+    expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
-        done();
-      });
   });
 
-  it('should add the ripple to mdl-switch', ( done ) => {
-    return builder
-      .overrideTemplate(MdlTestRippleComponent, `
-          <mdl-switch mdl-ripple></mdl-switch>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+  it('should add the ripple to mdl-switch', () => {
 
-        fixture.detectChanges();
+    let fixture = getFiytureForTemplate(' <mdl-switch mdl-ripple></mdl-switch>');
 
-        let span1 = getSpan1IfAny(fixture);
+    let span1 = getSpan1IfAny(fixture);
 
-        expect(span1.classList.contains('mdl-ripple')).toBe(true);
+    expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
-        done();
-      });
   });
 
-  it('should add the ripple to mdl-menu-item', ( done ) => {
-    return builder
-      .overrideTemplate(MdlTestRippleComponent, `
+  it('should add the ripple to mdl-menu-item', () => {
+    let fixture = getFiytureForTemplate(`
           <mdl-menu>
             <mdl-menu-item mdl-ripple></mdl-menu-item>
           </mdl-menu>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+        `);
 
-        fixture.detectChanges();
+    let span1 = getSpan1IfAny(fixture);
 
-        let span1 = getSpan1IfAny(fixture);
-
-        expect(span1.classList.contains('mdl-ripple')).toBe(true);
-
-        done();
-      });
+    expect(span1.classList.contains('mdl-ripple')).toBe(true);
   });
 
-  it('should add the ripple to anchor tag for tabs', ( done ) => {
-    return builder
-      .overrideTemplate(MdlTestRippleComponent, `
-            <a mdl-ripple></a>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+  it('should add the ripple to anchor tag for tabs', () => {
 
-        fixture.detectChanges();
+    let fixture = getFiytureForTemplate('<a mdl-ripple></a>');
 
-        let span1 = getSpan1IfAny(fixture);
+    let span1 = getSpan1IfAny(fixture);
 
-        expect(span1.classList.contains('mdl-ripple')).toBe(true);
+    expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
-        done();
-      });
   });
 
-  it('should add the ripple to mdl-list-item tag for tabs', ( done ) => {
-    builder
-      .overrideTemplate(MdlTestRippleComponent, `
+  it('should add the ripple to mdl-list-item tag for tabs', () => {
+
+    let fixture = getFiytureForTemplate(`
          <mdl-list>
             <mdl-list-item mdl-ripple></mdl-list-item>
           </mdl-list>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+        `);
 
-        fixture.detectChanges();
+    let span1 = getSpan1IfAny(fixture);
 
-        let span1 = getSpan1IfAny(fixture);
+    expect(span1.classList.contains('mdl-ripple')).toBe(true);
 
-        expect(span1.classList.contains('mdl-ripple')).toBe(true);
-
-        done();
-      });
   });
 
-  it('should make the mdl-list-items css style position to relative', ( done ) => {
-    return builder
-      .overrideTemplate(MdlTestRippleComponent, `
+  it('should make the mdl-list-items css style position to relative', () => {
+
+    let fixture = getFiytureForTemplate(`
          <mdl-list>
             <mdl-list-item [mdl-ripple]="true"></mdl-list-item>
           </mdl-list>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+        `);
 
-        fixture.detectChanges();
+    let mdlListItemElement: HTMLElement = fixture.debugElement
+      .query(By.directive(MdlListItemComponent)).nativeElement;
 
-        let mdlListItemElement: HTMLElement = fixture.debugElement
-          .query(By.directive(MdlListItemComponent)).nativeElement;
+    expect(mdlListItemElement.style.position).toBe('relative');
 
-        expect(mdlListItemElement.style.position).toBe('relative');
-
-        done();
-      });
   });
 
-  it('should add the ripple toa tag for', ( done ) => {
-    builder
-      .overrideTemplate(MdlTestRippleComponent, `
-           <a [mdl-ripple]="true"></a>
-        `)
-      .createAsync(MdlTestRippleComponent).then( (fixture) => {
+  it('should add the ripple toa tag for', () => {
 
-      fixture.detectChanges();
+    let fixture = getFiytureForTemplate(`
+         <a [mdl-ripple]="true"></a>
+        `);
 
-      let span1 = getSpan1IfAny(fixture);
+    let span1 = getSpan1IfAny(fixture);
 
-      expect(span1.classList.contains('mdl-ripple')).toBe(true);
-
-      done();
-    });
+    expect(span1.classList.contains('mdl-ripple')).toBe(true);
   });
 
 });
@@ -245,8 +172,7 @@ describe('Directive: MdlRipple', () => {
 
 @Component({
   selector: 'test-ripple',
-  template: 'replaced by the test',
-  directives: [ MDL_COMMON_DIRECTIVES, MDL_LIST_DIRECTIVES]
+  template: 'replaced by the test'
 })
 class MdlTestRippleComponent {
   protected doRipple = true;

@@ -51,7 +51,7 @@ describe('App: Angular2Mdl', () => {
     let app = compFixture.componentInstance;
     expect(app.title).toEqual('Angular 2 - Material Design Lite');
   }));
-  
+
 
 });
 
