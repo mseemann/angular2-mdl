@@ -8,6 +8,7 @@ import {
 import { ButtonDemo } from './button/button.component';
 import { BadgeDemo } from './badge/badge.component';
 import { CardDemo } from './card/card.component';
+import { ChipsDemo } from './chips/chips.component';
 import { IconDemo } from './icon/icon.component';
 import { ShadowDemo } from './shadow/shadow.component';
 import { LoadingDemo } from './loading/loading.component';
@@ -42,6 +43,7 @@ export const appRoutes: RouterConfig = [
   { path: 'badge', component: BadgeDemo },
   { path: 'button', component: ButtonDemo },
   { path: 'card', component: CardDemo },
+  { path: 'chips', component: ChipsDemo },
   { path: 'icon', component: IconDemo },
   { path: 'layout', component: LayoutDemo,
     children: [

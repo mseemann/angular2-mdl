@@ -12,15 +12,9 @@ import { Subject } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 
 export class MockRouter {
-
   public events = new Subject();
-
-  public routerState = {
-    root: null
-  };
-
+  public routerState = { root: null };
   public createUrlTree() {}
-
 }
 
 describe('App: Angular2Mdl', () => {
