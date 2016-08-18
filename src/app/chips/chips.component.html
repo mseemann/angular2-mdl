@@ -5,7 +5,7 @@
     <span class="mdl-chip__text">Basic Chip</span>
 </span>
 
-<mdl-chip>Basic Chip</mdl-chip>
+<mdl-chip mdl-label="Basic Chip"></mdl-chip>
 
 <!-- Deletable Chip -->
 <span class="mdl-chip mdl-chip--deletable">
@@ -13,10 +13,14 @@
     <button type="button" class="mdl-chip__action"><mdl-icon>cancel</mdl-icon></button>
 </span>
 
+<mdl-chip mdl-delete-icon="cancel" (delete-click)="deleteChip()" mdl-label="Deletable Chip"></mdl-chip>
+
 <!-- Button Chip -->
 <button type="button" class="mdl-chip">
   <span class="mdl-chip__text">Button Chip</span>
 </button>
+
+<button type="button" mdl-chip mdl-label="Button Chip"></button>
 
 <!-- Contact Chip -->
 <span class="mdl-chip mdl-chip--contact">
@@ -24,9 +28,17 @@
     <span class="mdl-chip__text">Contact Chip</span>
 </span>
 
+<mdl-chip mdl-label="Contact Chip">
+  <span mdl-chip-contact class="mdl-color--teal mdl-color-text--white">A</span>
+</mdl-chip>
+
 <!-- Deletable Contact Chip -->
 <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
     <img class="mdl-chip__contact" src="assets/richter.jpg">
     <span class="mdl-chip__text">Deletable Contact Chip</span>
     <a href="#" class="mdl-chip__action"><mdl-icon>cancel</mdl-icon></a>
 </span>
+
+<mdl-chip mdl-delete-icon="cancel" (delete-click)="deleteChip()" mdl-label="Deletable Contact Chip">
+  <img mdl-chip-contact src="assets/richter.jpg">
+</mdl-chip>
