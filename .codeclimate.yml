@@ -32,4 +32,5 @@ exclude_paths:
 - src/scss-mdl
 - typings
 - angular-cli.json
+- angular-cli-build.js
 - src/prism.css
