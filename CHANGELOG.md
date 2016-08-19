@@ -1,3 +1,29 @@
+<a name="1.4.0"></a>
+# 1.4.0 (2016-08-19)
+
+### Features
+* Now includes the mdl version 1.2.0 with chips
+* Unfortunately there is a bug in this version that misalignes 
+the hamburger icon (https://github.com/google/material-design-lite/issues/4673). 
+A workaround is to add the followiug scss to your code:
+
+```scss
+@media screen and (min-width: 1025px) {
+  .mdl-layout__drawer-button {
+    line-height: 52px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .mdl-layout__drawer-button {
+    line-height: 50px;
+  }
+}
+```
+
+For sure this will be fixed until it is fixed in mdl!
+
+
 <a name="1.3.1"></a>
 # 1.3.1 (2016-08-18)
 

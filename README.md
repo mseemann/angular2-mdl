@@ -1,5 +1,5 @@
 
-Angular 2 components, directives and styles based on material design lite https://getmdl.io (v: 1.1.3).
+Angular 2 components, directives and styles based on material design lite https://getmdl.io (v: 1.2.0).
 
 This package assumes that you are building an Angular2 app with TypeScript. Angular CLI makes it even easier but isn't required.
 
@@ -15,11 +15,12 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 [![Build Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
 
-### Status of the npm package version 1.3 (mdl version 1.1.3; angular2 rc5)
+### Status of the npm package version 1.4 (mdl version 1.2.0; angular2 rc5)
 
 - Badges
 - Buttons 
 - Cards
+- Chips
 - Icons
 - Loading
 - Shadow
