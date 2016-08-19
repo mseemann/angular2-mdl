@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   selector: 'chips-demo',
   templateUrl: 'chips.component.html'
 })
-export class ChipsDemo {}
+export class ChipsDemo {
+
+  public deleteChip() {
+    console.log('delete the chip');
+  }
+
+}
