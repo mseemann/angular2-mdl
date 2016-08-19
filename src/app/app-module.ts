@@ -69,6 +69,13 @@ export class Angular2MdlAppModule {
   constructor(private appRef: ApplicationRef) { }
 
   public ngDoBootstrap() {
+    this.appRef.waitForAsyncInitializers().then( () => {
+      let script = document.createElement('script');
+      script.innerHTML = '';
+      script.src = 'https://buttons.github.io/buttons.js';
+      let anyScriptTag = document.getElementsByTagName('script')[0];
+      anyScriptTag.parentNode.insertBefore(script, anyScriptTag);
+    });
     this.appRef.bootstrap(Angular2MdlAppComponent);
   }
 }
