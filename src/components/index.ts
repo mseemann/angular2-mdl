@@ -39,7 +39,7 @@ import {
 import {
   MdlChipModule,
   MdlChipComponent
-} from './chips/mdl-chip.component';
+} from './chips/index';
 import {
   MdlChekboxModule,
   MdlCheckboxComponent
@@ -133,7 +133,7 @@ export * from './badge/mdl-badge.directive';
 export * from './button/mdl-button.component';
 export * from './card/mdl-card.component';
 export * from './checkbox/mdl-checkbox.component';
-export * from './chips/mdl-chip.component';
+export * from './chips/index';
 export * from './icon/mdl-icon.component';
 export * from './list/mdl-list.component';
 export * from './icon-toggle/mdl-icon-toggle.component';

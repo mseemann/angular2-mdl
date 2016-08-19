@@ -1,25 +1,25 @@
 import {
   Component,
-  NgModule,
   Input,
   EventEmitter,
-  Output
+  Output,
+  ContentChild
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MdlIconModule } from './../icon/mdl-icon.component';
+import { MdlChipContactDirective } from './mdl-chip-contact.directive';
 
 
 @Component({
   selector: 'mdl-chip',
   host: {
-    '[class.mdl-chip]': 'true'
+    '[class.mdl-chip]': 'true',
+    '[class.mdl-chip--contact]': 'chipContact'
   },
   template: `
+    <ng-content></ng-content>
     <span *ngIf="mdlLabel" class="mdl-chip__text">{{mdlLabel}}</span>
     <button *ngIf="mdlActionIcon" (click)="action()" type="button" class="mdl-chip__action">
       <mdl-icon>{{mdlActionIcon}}</mdl-icon>
     </button>
-    <ng-content></ng-content>
   `
 })
 export class MdlChipComponent {
@@ -27,6 +27,7 @@ export class MdlChipComponent {
   @Input('mdl-label') public mdlLabel;
   @Input('mdl-action-icon') public mdlActionIcon;
   @Output('action-click') private actionClick = new EventEmitter();
+  @ContentChild(MdlChipContactDirective) protected chipContact: MdlChipContactDirective;
 
   public action() {
     this.actionClick.emit();
@@ -34,11 +35,3 @@ export class MdlChipComponent {
 }
 
 
-const DIRECTIVES = [MdlChipComponent];
-
-@NgModule({
-  imports: [MdlIconModule, CommonModule],
-  exports: DIRECTIVES,
-  declarations: DIRECTIVES,
-})
-export class MdlChipModule {}

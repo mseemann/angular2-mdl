@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { MdlChipModule, MdlChipComponent } from './mdl-chip.component';
+import { MdlChipModule, MdlChipComponent } from './index';
 
 describe('Component: MdlChip', () => {
 
@@ -12,7 +12,7 @@ describe('Component: MdlChip', () => {
     });
   });
 
-  it('should add the css classmdl-chip to the host element', () => {
+  it('should add the css class mdl-chip to the host element', () => {
 
     let fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
