@@ -2,7 +2,7 @@
   "name": "angular2-mdl",
   "version": "1.4.0",
   "license": "MIT",
-  "description": "Angular 2 components, directives and styles based on material design lite https://getmdl.io (v: 1.1.3).",
+  "description": "Angular 2 components, directives and styles based on material design lite https://getmdl.io.",
   "homepage": "http://mseemann.de/angular2-mdl/",
   "keywords": [
     "angular 2",
