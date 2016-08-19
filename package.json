@@ -21,7 +21,8 @@
     "e2e": "protractor",
     "deploy-gh-pages": "ng github-pages:deploy --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\"",
     "generate-scss-from-mdl-scss": "node ./dev-scripts/generate-scss-from-mdl-scss.js",
-    "prepublish": "ng build"
+    "prepublish": "ng build",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=160aba8aa0baa5d0cab1d2162f50027cef9cda032fbc4eebefd54167ddce4c89 codeclimate-test-reporter < coverage/lcov.info"
   },
   "main": "./dist/components/index.js",
   "typings": "./dist/components/index.d.ts",
@@ -44,7 +45,9 @@
     "angular-cli": "1.0.0-beta.6",
     "broccoli-funnel": "1.0.2",
     "broccoli-merge-trees": "1.1.1",
+    "codeclimate-test-reporter": "^0.3.3",
     "codelyzer": "0.0.24",
+    "core-js": "^2.4.0",
     "coveralls": "2.11.9",
     "ember-cli-inject-live-reload": "1.4.0",
     "es6-shim": "0.35.1",
@@ -60,13 +63,12 @@
     "node-sass": "3.8.0",
     "protractor": "3.3.0",
     "remap-istanbul": "0.6.4",
+    "rxjs": "5.0.0-beta.6",
+    "systemjs": "0.19.31",
     "ts-node": "0.9.3",
     "tslint": "3.14.0",
     "typescript": "2.0.0",
     "typings": "1.3.2",
-    "core-js": "^2.4.0",
-    "rxjs": "5.0.0-beta.6",
-    "systemjs": "0.19.31",
     "zone.js": "0.6.12"
   }
 }
