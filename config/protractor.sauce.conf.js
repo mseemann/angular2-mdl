@@ -156,7 +156,8 @@ exports.config = {
       platformVersion: '9.1',
       platformName: 'iOS'
     },
-    { // not working - see https://github.com/angular/protractor/issues/3016 :(
+    { // not working - see https://github.com/angular/protractor/issues/3016
+			// this seems to be fixed but saucelab did not offer a newer edge version :(
        browserName: 'MicrosoftEdge',
        platform: 'Windows 10',
        version: '13.10586',
