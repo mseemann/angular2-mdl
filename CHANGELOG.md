@@ -1,3 +1,10 @@
+<a name="1.4.1"></a>
+# 1.4.1 (2016-08-20)
+
+### Bug Fixes
+* https://github.com/mseemann/angular2-mdl/issues/34
+
+
 <a name="1.4.0"></a>
 # 1.4.0 (2016-08-19)
 
