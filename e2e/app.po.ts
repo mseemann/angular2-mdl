@@ -1,17 +1,17 @@
 export class Angular2MdlPage {
-  navigateTo() {
-    return browser.get('/angular2-mdl');
+  public navigateTo() {
+    return browser.get('/');
   }
 
-  getHeadlineElement(){
+  public getHeadlineElement(){
     return element(by.css('.mdl-layout__header-row'));
   }
 
-  getHeadineTextElement(){
+  public getHeadineTextElement(){
     return element(by.css('.docs-layout-title'));
   }
-    
-  getParagraphText() {
+
+  public getParagraphText() {
     return this.getHeadineTextElement().getText();
   }
 }
