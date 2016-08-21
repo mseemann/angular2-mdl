@@ -122,7 +122,7 @@ exports.config = {
     },
     {
       browserName: 'Safari',
-      appiumVersion: '1.5.2',
+      appiumVersion: '1.5.3',
       deviceName: 'iPhone 6 Plus',
       deviceOrientation: 'portrait',
       name: 'iPhone 6 Plus - 9.2',
@@ -140,7 +140,7 @@ exports.config = {
     },
     {
       browserName: 'Safari',
-      appiumVersion: '1.5.2',
+      appiumVersion: '1.5.3',
       deviceName: 'iPad Retina',
       deviceOrientation: 'portrait',
       name: 'iPad Retina - 9.2',
@@ -149,11 +149,11 @@ exports.config = {
     },
     {
       browserName: 'Safari',
-      appiumVersion: '1.5.2',
+      appiumVersion: '1.5.3',
       deviceName: 'iPad Retina',
       deviceOrientation: 'portrait',
-      name: 'iPad Retina - 9.1',
-      platformVersion: '9.1',
+      name: 'iPad Retina - 9.3',
+      platformVersion: '9.3',
       platformName: 'iOS'
     },
     {
