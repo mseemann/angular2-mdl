@@ -2,10 +2,16 @@ import {
   Component,
   ViewEncapsulation
 } from '@angular/core';
+import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
+import { hostConfig } from './../animations/flyInOutTrigger-animation';
 
 @Component({
   moduleId: module.id,
   selector: 'tabs-demo',
+  host: hostConfig,
+  animations: [
+    flyInOutTrigger
+  ],
   templateUrl: 'tabs.component.html',
   styles: [
     `

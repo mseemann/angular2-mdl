@@ -31,7 +31,8 @@ module.exports = function(defaults) {
 		polyfills: [
 			'vendor/core-js/client/core.js',
 			'vendor/systemjs/dist/system.src.js',
-			'vendor/zone.js/dist/zone.js'
+			'vendor/zone.js/dist/zone.js',
+			'vendor/web-animations-js/web-animations.min.js'
 		],
     tsCompiler: {},
     sassCompiler: {
@@ -46,6 +47,7 @@ module.exports = function(defaults) {
 			'core-js/client/core.js',
 			'rxjs/**/*.+(js|js.map)',
 			'@angular/**/*.+(js|js.map)',
+			'web-animations-js/**/*'
     ]
   });
 };

@@ -5,10 +5,16 @@ import {
 import {
   MdlSnackbarService
 } from '../../components';
+import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
+import { hostConfig } from './../animations/flyInOutTrigger-animation';
 
 @Component({
   moduleId: module.id,
   selector: 'snackbar-demo',
+  host: hostConfig,
+  animations: [
+    flyInOutTrigger
+  ],
   templateUrl: 'snackbar.component.html'
 })
 export class SnackbarDemo {

@@ -1,8 +1,14 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
+import { hostConfig } from './../animations/flyInOutTrigger-animation';
 
 @Component({
   moduleId: module.id,
   selector: 'shadow-demo',
+  host: hostConfig,
+  animations: [
+    flyInOutTrigger
+  ],
   templateUrl: 'shadow.component.html',
   styles: [`
     .shadow-example {

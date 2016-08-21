@@ -4,6 +4,8 @@ import {
 import {
   RouterConfig
 } from '@angular/router';
+import { flyInOutTrigger } from './animations/flyInOutTrigger-animation';
+import { hostConfig } from './animations/flyInOutTrigger-animation';
 
 import { ButtonDemo } from './button/button.component';
 import { BadgeDemo } from './badge/badge.component';
@@ -33,6 +35,10 @@ import { MdlLayoutComponent } from '../components';
 @Component({
   moduleId: module.id,
   selector: 'home',
+  host: hostConfig,
+  animations: [
+    flyInOutTrigger
+  ],
   templateUrl: 'home.html'
 })
 export class Home {

@@ -3,6 +3,8 @@ import {
   ViewEncapsulation,
   AfterContentInit
 } from '@angular/core';
+import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
+import { hostConfig } from './../animations/flyInOutTrigger-animation';
 
 /* tslint:disable */
 @Component({
@@ -86,6 +88,10 @@ import {
       margin-bottom: 1rem;
     }
     `
+  ],
+  host: hostConfig,
+  animations: [
+    flyInOutTrigger
   ],
   encapsulation: ViewEncapsulation.None
 })

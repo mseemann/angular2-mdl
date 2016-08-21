@@ -6,6 +6,8 @@ import {
   IMdlTableModelItem,
   MdlDefaultTableModel
 } from '../../components';
+import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
+import { hostConfig } from './../animations/flyInOutTrigger-animation';
 
 export interface ITableItem extends IMdlTableModelItem {
   material: string;
@@ -17,6 +19,10 @@ export interface ITableItem extends IMdlTableModelItem {
 @Component({
   moduleId: module.id,
   selector: 'table-demo',
+  host: hostConfig,
+  animations: [
+    flyInOutTrigger
+  ],
   templateUrl: 'table.component.html'
 })
 export class TableDemo implements OnInit {
