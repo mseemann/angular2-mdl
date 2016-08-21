@@ -9,7 +9,7 @@ describe('angular2-mdl App', function() {
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Angular 2 - Material Design Lite');
+    expect(page.getParagraphText().trim()).toEqual('Angular 2 - Material Design Lite');
   });
 
 });

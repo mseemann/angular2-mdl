@@ -7,7 +7,7 @@ export class Angular2MdlPage {
     return element(by.css('.mdl-layout__header-row'));
   }
 
-  public getHeadineTextElement(){
+  public getHeadineTextElement() {
     return element(by.css('.docs-layout-title'));
   }
 

@@ -10,12 +10,13 @@ describe('angular2-mdl App', function() {
 
   it('should have primary dark background color', () => {
     page.navigateTo();
-    expect(page.getHeadlineElement().getCssValue('background-color')).toEqual('rgba(33, 150, 243, 1)');
+    expect(page.getHeadlineElement().getCssValue('background-color')).toContain('33, 150, 243');
   })
 
   it('should have theme accent colors', () => {
     page.navigateTo();
-    expect(page.getHeadlineElement().getCssValue('color')).toEqual('rgba(255, 215, 64, 1)');
+    // rgba(255, 215, 64, 1); IE Edge: rgb(255, 215, 64)
+    expect(page.getHeadlineElement().getCssValue('color')).toContain('255, 215, 64');
   });
 
 });
