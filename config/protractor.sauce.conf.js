@@ -21,7 +21,7 @@ exports.config = {
     {
       browserName: 'chrome',
       platform: 'OS X 10.11',
-      version: '49.0',
+      version: '50.0',
       name: "chrome-mac-tests",
       shardTestFiles: true,
       maxInstances: 5,
@@ -29,14 +29,14 @@ exports.config = {
     {
       browserName: 'chrome',
       platform: 'OS X 10.11',
-      version: '50.0',
+      version: '51.0',
       name: "chrome-mac-tests",
       shardTestFiles: true,
       maxInstances: 5,
     },
     {
       browserName: 'firefox',
-      version: '45.0',
+      version: '46.0',
       platform: 'OS X 10.11',
       name: "firefox-tests",
       shardTestFiles: true,
@@ -44,7 +44,7 @@ exports.config = {
     },
     {
       browserName: 'firefox',
-      version: '46.0',
+      version: '47.0',
       platform: 'OS X 10.11',
       name: "firefox-tests",
       shardTestFiles: true,
@@ -61,11 +61,19 @@ exports.config = {
     {
       browserName: 'firefox',
       platform: 'Windows 8.1',
-      version: '45.0',
+      version: '47.0',
       name: "win-firefox",
       shardTestFiles: true,
       maxInstances: 5
     },
+		{
+			browserName: 'firefox',
+			platform: 'Windows 10',
+			version: '47.0',
+			name: "win-10-firefox",
+			shardTestFiles: true,
+			maxInstances: 5
+		},
     {
       browserName: 'internet explorer',
       platform: 'Windows 8.1',
