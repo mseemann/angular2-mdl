@@ -74,8 +74,6 @@ export class MdlButtonComponent implements OnChanges {
     if ( this.mdlColoredType && MDL_COLORED_TYPES.indexOf(this.mdlColoredType) === -1) {
       throw new MdlUnsupportedColoredTypeError(this.mdlColoredType);
     }
-
-   // this.renderer.setElementAttribute()
   }
 
   public onMouseUp() {
@@ -87,7 +85,7 @@ export class MdlButtonComponent implements OnChanges {
   }
 
   public blurIt() {
-    this.element.blur();
+    this.renderer.invokeElementMethod(this.element, 'blur', []);
   }
 }
 
