@@ -119,7 +119,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
       screenX: event.screenX,
       screenY: event.screenY
     });
-    this.inputEl.nativeElement.dispatchEvent(newEvent);
+    this.renderer.invokeElementMethod(this.inputEl.nativeElement, 'dispatchEvent', [newEvent]);
   }
 }
 
