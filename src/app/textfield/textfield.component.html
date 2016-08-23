@@ -16,6 +16,9 @@
 <br/>
 <mdl-textfield type="text" label="Text...(disabled)" [(ngModel)]="text3" disabled></mdl-textfield>
 
+<br/>
+<mdl-textfield type="text" label="Text...(required)" [(ngModel)]="text3" required=""></mdl-textfield>
+
 <pre prism>
   <![CDATA[
 <mdl-textfield type="text" label="Text..." [(ngModel)]="text1"></mdl-textfield>
@@ -119,7 +122,12 @@ Just specify an icon to turn the text input field into an expandable field.
 
    <tr>
       <td>disabled</td>
-      <td>Disabled the text field if present or true.</td>
+      <td>Disable the text field if present or true.</td>
+   </tr>
+
+   <tr>
+     <td>required</td>
+     <td>Mark the text field as required.</td>
    </tr>
 
    <tr>

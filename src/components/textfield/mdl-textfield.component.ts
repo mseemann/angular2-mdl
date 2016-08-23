@@ -65,7 +65,8 @@ const IS_DIRTY = 'is-dirty';
         (focus)="onFocus()" 
         (blur)="onBlur()"
         [(ngModel)]="value"
-        [disabled]="disabled">
+        [disabled]="disabled"
+        [required]="required">
      <label class="mdl-textfield__label">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
    </div>
@@ -83,7 +84,8 @@ const IS_DIRTY = 'is-dirty';
           (focus)="onFocus()" 
           (blur)="onBlur()"
           [(ngModel)]="value"
-          [disabled]="disabled">
+          [disabled]="disabled"
+          [required]="required">
      <label class="mdl-textfield__label">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
       </div>
@@ -108,6 +110,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() public pattern;
   @Input('error-msg') public errorMessage;
   @Input() @BooleanProperty() public disabled = false;
+  @Input() @BooleanProperty() public required = false;
   @Input('floating-label') @BooleanProperty() public isFloatingLabel = false;
   @Input() public placeholder: string;
   @Input() @NumberProperty() public rows: number = null;

@@ -11,4 +11,5 @@ import { hostConfig } from './../animations/flyInOutTrigger-animation';
   ],
   templateUrl: 'textfield.component.html'
 })
-export class TextFieldDemo {}
+export class TextFieldDemo {
+}
