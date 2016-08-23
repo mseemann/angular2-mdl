@@ -1,0 +1,54 @@
+<h4>Reactive Forms Example</h4>
+
+
+<form [formGroup]="form">
+  <p>
+    <mdl-textfield label="First Name" type="text" formControlName="firstName" floating-label></mdl-textfield>
+  </p>
+  <p>
+    <mdl-textfield label="Last Name" type="test" formControlName="lastName" floating-label></mdl-textfield>
+  </p>
+  <p>
+    <mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</mdl-button>
+  </p>
+</form>
+<p>The submit is logged to the browser console.</p>
+<p>You need to add the FormsModule and the ReactiveFormsModule to your app module.</p>
+
+<pre prism>
+  <![CDATA[
+<form [formGroup]="form">
+  <p>
+    <mdl-textfield label="First Name" type="text" formControlName="firstName" floating-label></mdl-textfield>
+  </p>
+  <p>
+    <mdl-textfield label="Last Name" type="test" formControlName="lastName" floating-label></mdl-textfield>
+  </p>
+  <p>
+    <mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</mdl-button>
+  </p>
+</form>
+]]>
+</pre>
+
+<pre prism>
+  <![CDATA[
+export class ReactiveFormsDemo {
+
+  public form: FormGroup;
+  public firstName = new FormControl('');
+  public lastName = new FormControl('', Validators.required);
+
+  constructor(private fb: FormBuilder) {
+    this.form = fb.group({
+      'firstName': this.firstName,
+      'lastName': this.lastName
+    });
+  }
+
+  public onSubmit() {
+    console.log(this.form);
+  }
+}
+]]>
+</pre>

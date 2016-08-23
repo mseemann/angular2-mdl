@@ -31,6 +31,7 @@ import { TableDemo } from './tables/table.component';
 import { TabsDemo } from './tabs/tabs.component';
 import { TextFieldDemo } from './textfield/textfield.component';
 import { MdlLayoutComponent } from '../components';
+import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
 
 @Component({
   moduleId: module.id,
@@ -62,6 +63,7 @@ export const appRoutes: RouterConfig = [
   { path: 'loading', component: LoadingDemo },
   { path: 'list', component: ListDemo },
   { path: 'menu', component: MenuDemo },
+  { path: 'reactiveForms', component: ReactiveFormsDemo},
   { path: 'shadow', component: ShadowDemo },
   { path: 'slider', component: SliderDemo },
   { path: 'snackbar', component: SnackbarDemo },

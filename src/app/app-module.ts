@@ -1,6 +1,6 @@
 import {NgModule, ApplicationRef} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdlModule } from './../components/index';
 import { RouterModule } from '@angular/router';
 import { Angular2MdlAppComponent, Home, appRoutes } from './app.component';
@@ -28,11 +28,13 @@ import { TableDemo } from './tables/table.component';
 import { TabsDemo } from './tabs/tabs.component';
 import { TextFieldDemo } from './textfield/textfield.component';
 import { PrismDirective } from './prism/prism.component';
+import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MdlModule,
     RouterModule.forRoot(appRoutes)
   ],
@@ -60,7 +62,8 @@ import { PrismDirective } from './prism/prism.component';
     TableDemo,
     TabsDemo,
     TextFieldDemo,
-    PrismDirective
+    PrismDirective,
+    ReactiveFormsDemo
   ],
   entryComponents: [Angular2MdlAppComponent],
   bootstrap: [],
