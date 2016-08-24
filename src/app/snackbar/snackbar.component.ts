@@ -7,6 +7,12 @@ import {
 } from '../../components';
 import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
 import { hostConfig } from './../animations/flyInOutTrigger-animation';
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { AbstractDemoComponent } from './../abstract-demo.component';
 
 @Component({
   moduleId: module.id,
@@ -17,9 +23,15 @@ import { hostConfig } from './../animations/flyInOutTrigger-animation';
   ],
   templateUrl: 'snackbar.component.html'
 })
-export class SnackbarDemo {
+export class SnackbarDemo extends AbstractDemoComponent {
 
-  constructor(private mdlSnackbarService: MdlSnackbarService, private vcRef: ViewContainerRef) {
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    titleService: Title,
+    private mdlSnackbarService: MdlSnackbarService,
+    private vcRef: ViewContainerRef) {
+    super(router, route, titleService);
     mdlSnackbarService.setDefaultViewContainerRef(vcRef);
   }
 

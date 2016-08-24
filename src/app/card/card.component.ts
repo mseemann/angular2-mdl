@@ -5,6 +5,12 @@ import {
 } from '@angular/core';
 import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
 import { hostConfig } from './../animations/flyInOutTrigger-animation';
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { AbstractDemoComponent } from './../abstract-demo.component';
 
 /* tslint:disable */
 @Component({
@@ -96,7 +102,11 @@ import { hostConfig } from './../animations/flyInOutTrigger-animation';
   encapsulation: ViewEncapsulation.None
 })
 /* tslint:enable */
-export class CardDemo implements AfterContentInit {
+export class CardDemo extends AbstractDemoComponent implements AfterContentInit {
+
+  constructor(router: Router, route: ActivatedRoute, titleService: Title) {
+    super(router, route, titleService);
+  }
 
   public ngAfterContentInit() {
     (function(d, sc, u) {

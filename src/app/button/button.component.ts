@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { AbstractDemoComponent } from './../abstract-demo.component';
 
 @Component({
   moduleId: module.id,
@@ -13,9 +19,13 @@ import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
   ],
   templateUrl: 'button.component.html'
 })
-export class ButtonDemo {
+export class ButtonDemo extends AbstractDemoComponent {
   public buttonType = 'raised';
   public doRipple = false;
   public colored = '';
   public btnDisabled = false;
+
+  constructor(router: Router, route: ActivatedRoute, titleService: Title) {
+    super(router, route, titleService);
+  }
 }

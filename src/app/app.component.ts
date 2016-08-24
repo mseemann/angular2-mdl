@@ -1,9 +1,12 @@
 import {
   Component,
-  ViewEncapsulation } from '@angular/core';
+  ViewEncapsulation} from '@angular/core';
 import {
-  RouterConfig
+  RouterConfig,
+  ActivatedRoute,
+  Router
 } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { flyInOutTrigger } from './animations/flyInOutTrigger-animation';
 import { hostConfig } from './animations/flyInOutTrigger-animation';
 
@@ -32,6 +35,7 @@ import { TabsDemo } from './tabs/tabs.component';
 import { TextFieldDemo } from './textfield/textfield.component';
 import { MdlLayoutComponent } from '../components';
 import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
+import { AbstractDemoComponent } from './abstract-demo.component';
 
 @Component({
   moduleId: module.id,
@@ -42,17 +46,20 @@ import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
   ],
   templateUrl: 'home.html'
 })
-export class Home {
+export class Home extends AbstractDemoComponent {
+  constructor(router: Router, route: ActivatedRoute, titleService: Title) {
+    super(router, route, titleService);
+  }
 }
 
 export const appRoutes: RouterConfig = [
-  { path: '', component: Home },
-  { path: 'badge', component: BadgeDemo },
-  { path: 'button', component: ButtonDemo },
-  { path: 'card', component: CardDemo },
-  { path: 'chips', component: ChipsDemo },
-  { path: 'icon', component: IconDemo },
-  { path: 'layout', component: LayoutDemo,
+  { path: '', component: Home, data: {title: 'Home'} },
+  { path: 'badge', component: BadgeDemo, data: {title: 'Badges'} },
+  { path: 'button', component: ButtonDemo, data: {title: 'Buttons'} },
+  { path: 'card', component: CardDemo, data: {title: 'Cards'} },
+  { path: 'chips', component: ChipsDemo, data: {title: 'Chips'} },
+  { path: 'icon', component: IconDemo, data: {title: 'Icons'} },
+  { path: 'layout', component: LayoutDemo, data: {title: 'Layouts'},
     children: [
       { path: '', component: Layout0Demo },
       { path: 'l1', component: Layout1Demo },
@@ -60,18 +67,18 @@ export const appRoutes: RouterConfig = [
       { path: 'l3', component: Layout3Demo }
     ]
   },
-  { path: 'loading', component: LoadingDemo },
-  { path: 'list', component: ListDemo },
-  { path: 'menu', component: MenuDemo },
-  { path: 'reactiveForms', component: ReactiveFormsDemo},
-  { path: 'shadow', component: ShadowDemo },
-  { path: 'slider', component: SliderDemo },
-  { path: 'snackbar', component: SnackbarDemo },
-  { path: 'table', component: TableDemo },
-  { path: 'tabs', component: TabsDemo },
-  { path: 'textfield', component: TextFieldDemo },
-  { path: 'toggle', component: ToggleDemo },
-  { path: 'tooltip', component: TooltipDemo },
+  { path: 'loading', component: LoadingDemo, data: {title: 'Loading'} },
+  { path: 'list', component: ListDemo, data: {title: 'Lists'} },
+  { path: 'menu', component: MenuDemo, data: {title: 'Menus'} },
+  { path: 'reactiveForms', component: ReactiveFormsDemo, data: {title: 'Ractive Forms'} },
+  { path: 'shadow', component: ShadowDemo, data: {title: 'Shadows'} },
+  { path: 'slider', component: SliderDemo, data: {title: 'Sliders'} },
+  { path: 'snackbar', component: SnackbarDemo, data: {title: 'Snachbar'} },
+  { path: 'table', component: TableDemo, data: {title: 'Tables'} },
+  { path: 'tabs', component: TabsDemo, data: {title: 'Tabs'} },
+  { path: 'textfield', component: TextFieldDemo, data: {title: 'Textfields'} },
+  { path: 'toggle', component: ToggleDemo, data: {title: 'Toggles'} },
+  { path: 'tooltip', component: TooltipDemo, data: {title: 'Tooltips'} },
   { path: '**', redirectTo: '' },
 ];
 

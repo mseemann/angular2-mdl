@@ -1,6 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
 import { hostConfig } from './../animations/flyInOutTrigger-animation';
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { AbstractDemoComponent } from './../abstract-demo.component';
 
 @Component({
   moduleId: module.id,
@@ -35,9 +41,13 @@ import { hostConfig } from './../animations/flyInOutTrigger-animation';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class LayoutDemo {
+export class LayoutDemo extends AbstractDemoComponent {
 
   public activeIndex = 0;
+
+  constructor(router: Router, route: ActivatedRoute, titleService: Title) {
+    super(router, route, titleService);
+  }
 
   public tabChanged({index}) {
     this.activeIndex = index;

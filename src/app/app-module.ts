@@ -1,5 +1,7 @@
-import {NgModule, ApplicationRef} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule,
+  ApplicationRef } from '@angular/core';
+import { BrowserModule,
+  Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdlModule } from './../components/index';
 import { RouterModule } from '@angular/router';
@@ -64,6 +66,9 @@ import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
     TextFieldDemo,
     PrismDirective,
     ReactiveFormsDemo
+  ],
+  providers: [
+    Title
   ],
   entryComponents: [Angular2MdlAppComponent],
   bootstrap: [],

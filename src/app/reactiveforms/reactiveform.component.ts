@@ -11,6 +11,12 @@ import {
   FormBuilder
 } from '@angular/forms';
 import 'rxjs/add/operator/filter';
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { AbstractDemoComponent } from './../abstract-demo.component';
 
 @Component({
   moduleId: module.id,
@@ -21,15 +27,18 @@ import 'rxjs/add/operator/filter';
   ],
   templateUrl: 'reactiveform.component.html'
 })
-export class ReactiveFormsDemo implements OnInit {
+export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
 
   public form: FormGroup;
   public firstName = new FormControl('');
   public lastName = new FormControl('', Validators.required);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(router: Router, route: ActivatedRoute, titleService: Title, private fb:FormBuilder) {
+    super(router, route, titleService);
+  }
 
   public ngOnInit() {
+    super.ngOnInit();
     this.form = this.fb.group({
       'firstName': this.firstName,
       'lastName': this.lastName

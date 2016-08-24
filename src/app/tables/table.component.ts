@@ -8,6 +8,12 @@ import {
 } from '../../components';
 import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
 import { hostConfig } from './../animations/flyInOutTrigger-animation';
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { AbstractDemoComponent } from './../abstract-demo.component';
 
 export interface ITableItem extends IMdlTableModelItem {
   material: string;
@@ -25,7 +31,7 @@ export interface ITableItem extends IMdlTableModelItem {
   ],
   templateUrl: 'table.component.html'
 })
-export class TableDemo implements OnInit {
+export class TableDemo extends AbstractDemoComponent implements OnInit {
 
   private tableData: [ITableItem] = [
     {material: 'Acrylic (Transparent)', quantity: 25, unitPrice: 2.90, selected: true},
@@ -41,7 +47,12 @@ export class TableDemo implements OnInit {
     {key: 'unitPrice', name: 'Unit price', numeric: true}
   ]);
 
+  constructor(router: Router, route: ActivatedRoute, titleService: Title) {
+    super(router, route, titleService);
+  }
+
   public ngOnInit() {
+    super.ngOnInit();
     this.tableModel.addAll(this.tableData);
     this.selected = this.tableData.filter( data => data.selected);
   }
