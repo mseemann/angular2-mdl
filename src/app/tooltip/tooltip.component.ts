@@ -11,7 +11,7 @@ import { AbstractDemoComponent } from './../abstract-demo.component';
 @Component({
   moduleId: module.id,
   selector: 'tooltip-demo',
-  host: hostConfig,
+  // host: hostConfig, // disabled animations because of misabligned tooltips :(
   animations: [
     flyInOutTrigger
   ],
