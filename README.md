@@ -15,6 +15,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 
 [![Build Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
+Do not take a red flag to serious. Most of the time this is a sauce lab issue and not a problem with this package. :-(
 
 ### Status of the npm package version 1.4 (mdl version 1.2.0; angular2 rc5)
 
