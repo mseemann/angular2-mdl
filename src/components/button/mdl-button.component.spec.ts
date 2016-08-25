@@ -30,6 +30,22 @@ describe('Component: MdlButton', () => {
 
   });
 
+  it('should add the css class mdl-button to the host element - if mdl-button is used as attribute', ( done ) => {
+
+    TestBed.overrideComponent(MdlTestButtonComponent, { set: {
+      template: '<button mdl-button></button>' }
+    });
+
+    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    fixture.detectChanges();
+
+    let btnEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(btnEl.classList.contains('mdl-button')).toBe(true);
+
+    done();
+
+  });
+
   it('should throw if an unsupported buttontype is provided', ( done ) => {
 
     TestBed.overrideComponent(MdlTestButtonComponent, { set: {

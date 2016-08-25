@@ -76,6 +76,15 @@ describe('Directive: MdlRipple', () => {
 
   });
 
+  it('should add the ripple to button', () => {
+
+    let fixture = getFiytureForTemplate('<button mdl-ripple></button>');
+
+    let span1 = getSpan1IfAny(fixture);
+
+    expect(span1.classList.contains('mdl-ripple')).toBe(true);
+  });
+
   it('should add the ripple to mdl-radio', () => {
 
     let fixture = getFiytureForTemplate('<mdl-radio mdl-ripple></mdl-radio>');

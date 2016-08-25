@@ -37,7 +37,7 @@ const MDL_COLORED_TYPES = [
 
 
 @Component({
-  selector: 'mdl-button',
+  selector: 'mdl-button, button[mdl-button], a[mdl-button]',
   host: {
     '[attr.disabled]': 'disabled ? "disabled" : null',
     '(mouseup)': 'onMouseUp()',

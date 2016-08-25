@@ -71,9 +71,9 @@ const IS_DIRTY = 'is-dirty';
      <span class="mdl-textfield__error">{{errorMessage}}</span>
    </div>
    <div *ngIf="icon">
-      <mdl-button mdl-button-type="icon" (click)="setFocus()">
+      <button mdl-button mdl-button-type="icon" (click)="setFocus()">
          <mdl-icon>{{icon}}</mdl-icon>
-      </mdl-button>
+      </button>
       <div class="mdl-textfield__expandable-holder">
        <input
           #input
