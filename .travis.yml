@@ -11,6 +11,7 @@ node_js:
 branches:
   only:
   - master
+  - /^greenkeeper-.*$/
 
 before_install:
  - export CHROME_BIN=/usr/bin/google-chrome
