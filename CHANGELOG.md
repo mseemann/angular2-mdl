@@ -1,8 +1,30 @@
+<a name="1.4.3"></a>
+# 1.4.3 (2016-08-25)
+
+### Bug Fixes
+* https://github.com/mseemann/angular2-mdl/issues/38
+
+The mdl-button component can now also be used as attributes for button 
+elements. This make the mdl-button behave more natively as a regular html button.
+
+Both is valid. But the button element is more natively:
+
+```html
+  <button mdl-button mdl-button-type="fab" mdl-ripple>
+    <mdl-icon>add</mdl-icon>
+  </button>
+
+  <mdl-button mdl-button-type="fab" mdl-ripple>
+    <mdl-icon>add</mdl-icon>
+  </mdl-button>
+```
+
+
 <a name="1.4.2"></a>
 # 1.4.2 (2016-08-23)
 
 ### Bug Fixes
-* https://github.com/mseemann/angular2-mdl/issues/39
+* https://github.com/mseemann/angular2-mdl/issues/36
 
 
 <a name="1.4.1"></a>
