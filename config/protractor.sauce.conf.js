@@ -189,7 +189,7 @@ exports.config = {
   ],
   sauceBuild: buildNumber,
   directConnect: false,
-  baseUrl: 'http://mseemann.github.io/angular2-mdl/',
+  baseUrl: 'http://mseemann.io/angular2-mdl/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
