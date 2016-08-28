@@ -2,6 +2,8 @@
 'use strict';
 require('ts-node/register');
 
+var autoprefixer = require('broccoli-autoprefixer');
+
 const MergeTree     = require('broccoli-merge-trees');
 const Funnel        = require('broccoli-funnel');
 const Angular2App   = require('angular-cli/lib/broccoli/angular2-app');
@@ -26,7 +28,7 @@ module.exports = function(defaults) {
 
   var inputNode = _buildE2EAppInputTree();
 
-  return new Angular2App(defaults, {
+	var app =  new Angular2App(defaults, {
     //sourceDir: 'src/e2e-app',
 		polyfills: [
 			'vendor/core-js/client/core.js',
@@ -50,4 +52,6 @@ module.exports = function(defaults) {
 			'web-animations-js/**/*'
     ]
   });
+
+	return autoprefixer(app, { browsers: ['last 2 version'] });
 };

@@ -58,7 +58,6 @@ $progress-buffer-image: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+D
     background-image: linear-gradient(to right, $progress-secondary-color, $progress-secondary-color),
       linear-gradient(to right, $progress-main-color, $progress-main-color);
     mask: url('#{$progress-buffer-image}');
-    -webkit-mask: url('#{$progress-buffer-image}');
   }
 }
 

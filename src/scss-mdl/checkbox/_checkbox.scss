@@ -121,7 +121,6 @@ $svg-tick-mask-iamge: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmN
   height: 100%;
   width: 100%;
   mask: url("#{$svg-tick-mask-iamge}");
-  -webkit-mask: url("#{$svg-tick-mask-iamge}");
 
   background: transparent;
   @include material-animation-default(0.28s);
