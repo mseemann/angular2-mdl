@@ -3,6 +3,8 @@
 
 ### Bug Fixes
 * https://github.com/mseemann/angular2-mdl/issues/41 (Build 1.4.3 contains console.log statements)
+* https://github.com/mseemann/angular2-mdl/issues/46 (ripple effect not working in ff)
+* https://github.com/mseemann/angular2-mdl/issues/47 (Chrome Autofill Not Showing on TextFields)
 
 
 <a name="1.4.3"></a>

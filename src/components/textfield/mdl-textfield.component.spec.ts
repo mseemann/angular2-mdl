@@ -205,6 +205,22 @@ describe('Component: MdlTextField', () => {
 
   });
 
+  it('should add name and id to the input element if provided', ( done ) => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-textfield type="text" label="Text..." id="id-1" name="name-1"></mdl-textfield>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    expect(inputEl.name).toEqual('name-1', 'name is not set');
+    expect(inputEl.id).toEqual('id-1', 'id is not set');
+
+    done();
+  });
+
 
 });
 

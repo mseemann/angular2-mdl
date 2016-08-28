@@ -49,6 +49,8 @@ const IS_DIRTY = 'is-dirty';
         [rows]="rows"
         class="mdl-textfield__input" 
         type="text"
+        [attr.name]="name"
+        [id]="id"
         [placeholder]="placeholder ? placeholder : ''"
         (focus)="onFocus()" 
         (blur)="onBlur()"
@@ -59,7 +61,9 @@ const IS_DIRTY = 'is-dirty';
         *ngIf="!rows"
         #input
         class="mdl-textfield__input" 
-        type="{{type}}" 
+        [type]="type" 
+        [attr.name]="name"
+        [id]="id"
         [pattern]="pattern ? pattern : '.*'"
         [placeholder]="placeholder ? placeholder : ''"
         (focus)="onFocus()" 
@@ -78,7 +82,9 @@ const IS_DIRTY = 'is-dirty';
        <input
           #input
           class="mdl-textfield__input" 
-          type="{{type}}" 
+          [type]="type" 
+          [attr.name]="name"
+          [id]="id"
           [pattern]="pattern ? pattern : '.*'"
           [placeholder]="placeholder ? placeholder : ''"
           (focus)="onFocus()" 
@@ -108,6 +114,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() public type;
   @Input() public label;
   @Input() public pattern;
+  @Input() public name;
+  @Input() public id;
   @Input('error-msg') public errorMessage;
   @Input() @BooleanProperty() public disabled = false;
   @Input() @BooleanProperty() public required = false;
