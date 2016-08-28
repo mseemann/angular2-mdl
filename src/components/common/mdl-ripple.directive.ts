@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { MaterialRipple } from './ripple.vendor';
 
+// known bugs: https://github.com/google/material-design-lite/issues/4215
 export class MdlRippleDirective implements OnChanges {
 
   private RIPPLE = 'mdl-ripple';
@@ -20,7 +21,10 @@ export class MdlRippleDirective implements OnChanges {
 
   protected rippleActive: boolean | string = true;
 
-  constructor(private elementRef: ElementRef, protected renderer: Renderer, private cssContainerClasses: [string]) {
+  constructor(
+    private elementRef: ElementRef,
+    protected renderer: Renderer,
+    private cssContainerClasses: [string]) {
     this.el = elementRef.nativeElement;
   }
 
@@ -46,7 +50,7 @@ export class MdlRippleDirective implements OnChanges {
         this.rippleContainer.appendChild(rippleElement);
         this.el.appendChild(this.rippleContainer);
 
-        this.ripple = new MaterialRipple(this.rippleContainer);
+        this.ripple = new MaterialRipple(this.el);
 
       }
   }
