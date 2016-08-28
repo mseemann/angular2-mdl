@@ -1,5 +1,12 @@
+<a name="1.4.5"></a>
+# 1.4.5 (Comming soon)
+
+### Bug Fixes
+
+
+
 <a name="1.4.4"></a>
-# 1.4.4 (coming soon)
+# 1.4.4 (2016-08-28)
 
 ### Bug Fixes
 * https://github.com/mseemann/angular2-mdl/issues/41 (Build 1.4.3 contains console.log statements)
