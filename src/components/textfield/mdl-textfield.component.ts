@@ -27,6 +27,9 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   multi: true
 });
 
+const noop = () => {};
+let nextId = 0;
+
 const IS_FOCUSED = 'is-focused';
 const IS_DISABLED = 'is-disabled';
 const IS_INVALID = 'is-invalid';
@@ -71,7 +74,7 @@ const IS_DIRTY = 'is-dirty';
         [(ngModel)]="value"
         [disabled]="disabled"
         [required]="required">
-     <label class="mdl-textfield__label">{{label}}</label>
+     <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
    </div>
    <div *ngIf="icon">
@@ -92,7 +95,7 @@ const IS_DIRTY = 'is-dirty';
           [(ngModel)]="value"
           [disabled]="disabled"
           [required]="required">
-     <label class="mdl-textfield__label">{{label}}</label>
+     <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
       </div>
    </div>
@@ -115,7 +118,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() public label;
   @Input() public pattern;
   @Input() public name;
-  @Input() public id;
+  @Input() public id = `mdl-textfield-${nextId++}`;
   @Input('error-msg') public errorMessage;
   @Input() @BooleanProperty() public disabled = false;
   @Input() @BooleanProperty() public required = false;
@@ -134,8 +137,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.checkDirty();
   }
 
-  private onTouchedCallback: () => void;
-  private onChangeCallback: (_: any) => void;
+  private onTouchedCallback: () => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
 
   public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
@@ -164,9 +167,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
 
   protected onBlur() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, false);
-    if ( this.onTouchedCallback ) {
-      this.onTouchedCallback();
-    }
+    this.onTouchedCallback();
   }
 
   private checkDisabled() {

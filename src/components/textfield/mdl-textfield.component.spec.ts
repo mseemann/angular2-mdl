@@ -221,6 +221,26 @@ describe('Component: MdlTextField', () => {
     done();
   });
 
+  it('should autogenerate an id that must match the labels for-attribute', ( done ) => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-textfield type="text" label="Text..." name="name-1"></mdl-textfield>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    let id = inputEl.id;
+
+    expect(id).toBeDefined();
+
+    let labelEl: HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
+
+    expect(labelEl.htmlFor).toBeDefined(id);
+
+    done();
+  });
 
 });
 

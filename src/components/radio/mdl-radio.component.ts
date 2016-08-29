@@ -20,6 +20,7 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   multi: true
 });
 
+const noop = () => {};
 const IS_FOCUSED = 'is-focused';
 
 /*
@@ -62,8 +63,8 @@ export class MdlRadioComponent implements ControlValueAccessor {
     this.optionValue = optionValue;
   }
 
-  private onTouchedCallback: () => void;
-  private onChangeCallback: (_: any) => void;
+  private onTouchedCallback: () => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
 
   public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;

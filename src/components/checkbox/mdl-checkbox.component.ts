@@ -19,6 +19,7 @@ const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   multi: true
 });
 
+const noop = () => {};
 const IS_FOCUSED = 'is-focused';
 
 @Component({
@@ -58,9 +59,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   get value(): boolean { return this.value_; };
   set value(v: boolean) {
     this.value_ = v;
-    if (this.onChangeCallback ) {
-      this.onChangeCallback(v);
-    }
+    this.onChangeCallback(v);
 
   }
 
@@ -68,8 +67,8 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
     this.value_ = value;
   }
 
-  private onTouchedCallback: () => void;
-  private onChangeCallback: (_: any) => void;
+  private onTouchedCallback: () => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
 
   public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;

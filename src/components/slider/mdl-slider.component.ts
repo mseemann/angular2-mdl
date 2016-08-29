@@ -15,7 +15,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-
+const noop = () => {};
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlSliderComponent),
   multi: true
@@ -69,9 +69,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
   @Input() set value(v: any) {
     this.value_ = v;
     this.updateSliderUI();
-    if ( this.onChangeCallback ) {
-      this.onChangeCallback(v);
-    }
+    this.onChangeCallback(v);
   }
 
   public writeValue(value: number): void {
@@ -79,8 +77,8 @@ export class MdlSliderComponent implements ControlValueAccessor {
     this.updateSliderUI();
   }
 
-  private onTouchedCallback: () => void;
-  private onChangeCallback: (_: any) => void;
+  private onTouchedCallback: () => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
 
   public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;

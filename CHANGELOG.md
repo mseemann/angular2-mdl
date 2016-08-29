@@ -2,7 +2,7 @@
 # 1.4.5 (Comming soon)
 
 ### Bug Fixes
-
+* https://github.com/mseemann/angular2-mdl/issues/48 (id handling for input fields with label)
 
 
 <a name="1.4.4"></a>
