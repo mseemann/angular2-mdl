@@ -31,6 +31,7 @@ import { TabsDemo } from './tabs/tabs.component';
 import { TextFieldDemo } from './textfield/textfield.component';
 import { PrismDirective } from './prism/prism.component';
 import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
+import { ThemeDemo } from './theme/theme.component';
 
 @NgModule({
   imports: [
@@ -64,6 +65,7 @@ import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
     TableDemo,
     TabsDemo,
     TextFieldDemo,
+    ThemeDemo,
     PrismDirective,
     ReactiveFormsDemo
   ],

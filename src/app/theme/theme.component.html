@@ -1,0 +1,33 @@
+<h4>The Themes</h4>
+
+<pre class="language-html" [innerHTML]="cdnLink">
+</pre>
+
+
+<div class="color-column">
+  <h5>Primary</h5>
+  <div *ngFor="let color of primaryColors"
+       [style.backgroundColor]="color.name === selectedPrimaryColor?.name ? color.htmlColor : 'white'"
+       [style.borderColor]="color.htmlColor"
+       class="palette-entry"
+       (click)="selectPrimaryColor(color)" >
+    {{color.name}}
+  </div>
+</div>
+
+<div class="color-column">
+  <h5>Accent</h5>
+  <div *ngFor="let color of secondaryColors"
+       [style.backgroundColor]="color.name === selectedAccentColor?.name ? color.accentColor : 'white'"
+       [style.borderColor]="color.accentColor"
+       [ngClass]="{'not-selectable': !color.isSelectable}"
+       class="palette-entry"
+       (click)="selectAccentColor(color)">
+    {{color.name}}
+  </div>
+</div>
+
+
+
+
+

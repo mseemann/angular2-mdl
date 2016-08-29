@@ -36,6 +36,7 @@ import { TextFieldDemo } from './textfield/textfield.component';
 import { MdlLayoutComponent } from '../components';
 import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
 import { AbstractDemoComponent } from './abstract-demo.component';
+import { ThemeDemo } from './theme/theme.component';
 
 @Component({
   moduleId: module.id,
@@ -54,6 +55,7 @@ export class Home extends AbstractDemoComponent {
 
 export const appRoutes: RouterConfig = [
   { path: '', component: Home, data: {title: 'Home'} },
+  { path: 'theme', component: ThemeDemo, data: {title: 'Themes'} },
   { path: 'badge', component: BadgeDemo, data: {title: 'Badges'} },
   { path: 'button', component: ButtonDemo, data: {title: 'Buttons'} },
   { path: 'card', component: CardDemo, data: {title: 'Cards'} },
