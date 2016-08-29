@@ -122,6 +122,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input('error-msg') public errorMessage;
   @Input() @BooleanProperty() public disabled = false;
   @Input() @BooleanProperty() public required = false;
+  // @experimental
   @Input() @BooleanProperty() public disableNativeValidityChecking;
   @Input('floating-label') @BooleanProperty() public isFloatingLabel = false;
   @Input() public placeholder: string;

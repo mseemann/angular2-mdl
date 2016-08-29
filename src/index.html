@@ -5,7 +5,7 @@
   <title>Angular2Mdl</title>
   <base href="/">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   <link href="main.css" rel="stylesheet" />
+  <link href="main.css" rel="stylesheet" />
   <link href="prism.css" rel="stylesheet" />
   {{#unless environment.production}}
   <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
@@ -29,6 +29,13 @@
 			 display:inline-block;
 			 padding: 0 1em;
 		 }
+
+      @media screen and (max-width: 1024px) {
+        .mdl-layout__drawer-button {
+          line-height: 47px;
+        }
+      }
+
    </style>
 </head>
 <body>

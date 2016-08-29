@@ -7,16 +7,3 @@ $color-primary-contrast: $color-dark-contrast;
 $color-accent-contrast: $color-dark-contrast;
 
 @import 'material-design-lite';
-
-// workaround  https://github.com/google/material-design-lite/issues/4673
-@media screen and (min-width: 1025px) {
-  .mdl-layout__drawer-button {
-    line-height: 52px;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .mdl-layout__drawer-button {
-    line-height: 50px;
-  }
-}
