@@ -3,7 +3,7 @@ Angular 2 components, directives and styles based on material design lite https:
 
 This package assumes that you are building an Angular2 app with TypeScript. Angular CLI makes it even easier but isn't required.
 
-[Demo-App with all supported components and documentation](http://mseemann.github.io/angular2-mdl/)
+[Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
 
 [![Build Status](https://travis-ci.org/mseemann/angular2-mdl.svg?branch=master)](https://travis-ci.org/mseemann/angular2-mdl)
 [![CircleCI](https://circleci.com/gh/mseemann/angular2-mdl/tree/master.svg?style=shield)](https://circleci.com/gh/mseemann/angular2-mdl/tree/master)
@@ -12,7 +12,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 [![Dependencies](https://david-dm.org/mseemann/angular2-mdl.svg)](https://david-dm.org/mseemann/angular2-mdl)
 [![DevDependencies](https://david-dm.org/mseemann/angular2-mdl/dev-status.svg)](https://david-dm.org/mseemann/angular2-mdl#info=devDependencies&view=table)
 [![Code Climate](https://codeclimate.com/github/mseemann/angular2-mdl/badges/gpa.svg)](https://codeclimate.com/github/mseemann/angular2-mdl)
-[![Issue Stats](http://issuestats.com/github/mseemann/angular2-mdl/badge/issue)](http://issuestats.com/github/mseemann/angular2-mdl)
+[![Issue Stats](http://issuestats.com/github/mseemann/angular2-mdl/badge/issue?style=flat)](http://issuestats.com/github/mseemann/angular2-mdl)
 
 [![Build Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
