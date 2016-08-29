@@ -250,4 +250,6 @@ const MDL_MODULES = [
   exports: MDL_MODULES,
   providers: MDL_SERVICES
 })
-export class MdlModule {}
+export class MdlModule {
+
+}

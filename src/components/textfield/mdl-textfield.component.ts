@@ -122,13 +122,16 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input('error-msg') public errorMessage;
   @Input() @BooleanProperty() public disabled = false;
   @Input() @BooleanProperty() public required = false;
+  @Input() @BooleanProperty() public disableNativeValidityChecking;
   @Input('floating-label') @BooleanProperty() public isFloatingLabel = false;
   @Input() public placeholder: string;
   @Input() @NumberProperty() public rows: number = null;
   @Input() @NumberProperty() public maxrows: number = -1;
   @Input() public icon: string;
 
-  constructor(private renderer: Renderer, private elmRef: ElementRef) {
+  constructor(
+    private renderer: Renderer,
+    private elmRef: ElementRef) {
     this.el = elmRef.nativeElement;
   }
 
@@ -175,6 +178,9 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 
   private checkValidity() {
+    if (this.disableNativeValidityChecking) {
+      return;
+    }
     if (this.inputEl && this.inputEl.nativeElement.validity) {
       this.renderer.setElementClass(this.el, IS_INVALID, !this.inputEl.nativeElement.validity.valid);
     }

@@ -6,7 +6,28 @@
     <mdl-textfield label="First Name" name="firstname" type="text" formControlName="firstName" floating-label></mdl-textfield>
   </p>
   <p>
-    <mdl-textfield label="Last Name" name="lastname" type="test" formControlName="lastName" floating-label></mdl-textfield>
+    <mdl-textfield label="Last Name" name="lastname" type="text" formControlName="lastName" floating-label></mdl-textfield>
+  </p>
+  <p>
+    <mdl-textfield
+            label="Email"
+            name="email"
+            type="text"
+            formControlName="email"
+            floating-label
+            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
+            error-msg="Please provide a correct email!"></mdl-textfield>
+  </p>
+  <p>
+    <mdl-textfield
+            [class.is-invalid]="email2.invalid"
+            label="Email (2)"
+            name="email2"
+            type="text"
+            formControlName="email2"
+            disableNativeValidityChecking
+            error-msg="Please provide a correct email!"
+            floating-label></mdl-textfield>
   </p>
   <p>
     <button mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</button>
@@ -22,7 +43,7 @@
     <mdl-textfield label="First Name" type="text" formControlName="firstName" floating-label></mdl-textfield>
   </p>
   <p>
-    <mdl-textfield label="Last Name" type="test" formControlName="lastName" floating-label></mdl-textfield>
+    <mdl-textfield label="Last Name" type="text" formControlName="lastName" floating-label></mdl-textfield>
   </p>
   <p>
     <button mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</button>

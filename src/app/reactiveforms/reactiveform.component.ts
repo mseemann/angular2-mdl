@@ -18,6 +18,8 @@ import {
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from './../abstract-demo.component';
 
+const emailValidator = Validators.pattern('^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$');
+
 @Component({
   moduleId: module.id,
   selector: 'reactive-form-demo',
@@ -29,11 +31,14 @@ import { AbstractDemoComponent } from './../abstract-demo.component';
 })
 export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
 
+
   public form: FormGroup;
   public firstName = new FormControl('');
   public lastName = new FormControl('', Validators.required);
+  public email = new FormControl('', emailValidator);
+  public email2 = new FormControl('', emailValidator);
 
-  constructor(router: Router, route: ActivatedRoute, titleService: Title, private fb:FormBuilder) {
+  constructor(router: Router, route: ActivatedRoute, titleService: Title, private fb: FormBuilder) {
     super(router, route, titleService);
   }
 
@@ -41,16 +46,18 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
     super.ngOnInit();
     this.form = this.fb.group({
       'firstName': this.firstName,
-      'lastName': this.lastName
+      'lastName': this.lastName,
+      'email': this.email,
+      'email2': this.email2
     });
     this.form.valueChanges
       .map((formValues) => {
         formValues.firstName = formValues.firstName.toUpperCase();
         return formValues;
       })
-      .filter((formValues) => this.form.valid)
+      // .filter((formValues) => this.form.valid)
       .subscribe((formValues) => {
-        console.log('Model Driven Form valid value: ', JSON.stringify(formValues));
+        console.log(`Model Driven Form valid: ${this.form.valid} value:`, JSON.stringify(formValues));
       });
   }
 
