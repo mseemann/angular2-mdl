@@ -339,6 +339,22 @@ describe('Component: MdlTextField', () => {
 
   });
 
+  it('should emit the blur and focus event', () => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield  type="text" (focus)="onFocus($event)" (blur)="onBlur($event)"></mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    inputEl.focus();
+
+    inputEl.blur();
+  });
+
 
 });
 
@@ -349,4 +365,12 @@ describe('Component: MdlTextField', () => {
 })
 class MdlTestComponent {
   public text1 = '';
+
+  public onBlur(event: FocusEvent) {
+    console.log('blur');
+  }
+
+  public onFocus(event: FocusEvent) {
+    console.log('focus');
+  }
 }

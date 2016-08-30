@@ -23,4 +23,11 @@ export class TextFieldDemo extends AbstractDemoComponent {
     super(router, route, titleService);
   }
 
+  public onBlur(event:FocusEvent) {
+    console.log('blur', event);
+  }
+
+  public onFocus(event:FocusEvent) {
+    console.log('focus', event);
+  }
 }

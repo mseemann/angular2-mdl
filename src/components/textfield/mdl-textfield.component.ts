@@ -11,7 +11,9 @@ import {
   NgModule,
   OpaqueToken,
   Optional,
-  Inject
+  Inject,
+  EventEmitter,
+  Output
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -60,8 +62,8 @@ const IS_DIRTY = 'is-dirty';
         [attr.name]="name"
         [id]="id"
         [placeholder]="placeholder ? placeholder : ''"
-        (focus)="onFocus()" 
-        (blur)="onBlur()"
+        (focus)="onFocus($event)" 
+        (blur)="onBlur($event)"
         (keydown)="keydownTextarea($event)"
         [(ngModel)]="value"
         [disabled]="disabled"
@@ -76,8 +78,8 @@ const IS_DIRTY = 'is-dirty';
         [id]="id"
         [pattern]="pattern ? pattern : '.*'"
         [placeholder]="placeholder ? placeholder : ''"
-        (focus)="onFocus()" 
-        (blur)="onBlur()"
+        (focus)="onFocus($event)" 
+        (blur)="onBlur($event)"
         [(ngModel)]="value"
         [disabled]="disabled"
         [required]="required"
@@ -99,8 +101,8 @@ const IS_DIRTY = 'is-dirty';
           [id]="id"
           [pattern]="pattern ? pattern : '.*'"
           [placeholder]="placeholder ? placeholder : ''"
-          (focus)="onFocus()" 
-          (blur)="onBlur()"
+          (focus)="onFocus($event)" 
+          (blur)="onBlur($event)"
           [(ngModel)]="value"
           [disabled]="disabled"
           [required]="required"
@@ -116,6 +118,12 @@ const IS_DIRTY = 'is-dirty';
 export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, DoCheck {
   private value_: any;
   private el: HTMLElement;
+
+  @Output('blur')
+  private blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+
+  @Output('focus')
+  private focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
   @ViewChild('input') private inputEl: ElementRef;
 
@@ -142,7 +150,6 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
 
   // @experimental
   @Input() @BooleanProperty() public disableNativeValidityChecking;
-
 
   constructor(
     private renderer: Renderer,
@@ -180,13 +187,15 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.renderer.invokeElementMethod(this.inputEl.nativeElement, 'focus', []);
   }
 
-  protected onFocus() {
+  protected onFocus(event: FocusEvent) {
     this.renderer.setElementClass(this.el, IS_FOCUSED, true);
+    this.focusEmitter.emit(event);
   }
 
-  protected onBlur() {
+  protected onBlur(event: FocusEvent) {
     this.renderer.setElementClass(this.el, IS_FOCUSED, false);
     this.onTouchedCallback();
+    this.blurEmitter.emit(event);
   }
 
   private checkDisabled() {

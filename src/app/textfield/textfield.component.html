@@ -1,7 +1,14 @@
 <h4>Text Fields</h4>
 
 
-<mdl-textfield type="text" label="Text..." [(ngModel)]="text1" placeholder="type a text" autofocus></mdl-textfield>
+<mdl-textfield
+        type="text"
+        label="Text..."
+        [(ngModel)]="text1"
+        placeholder="type a text"
+        autofocus
+        (blur)="onBlur($event)"
+        (focus)="onFocus($event)"></mdl-textfield>
 <mdl-textfield
         type="text"
         label="Number..."
@@ -21,7 +28,15 @@
 
 <pre prism>
   <![CDATA[
-<mdl-textfield type="text" label="Text..." [(ngModel)]="text1"></mdl-textfield>
+<mdl-textfield
+        type="text"
+        label="Text..."
+        [(ngModel)]="text1"
+        placeholder="type a text"
+        autofocus
+        (blur)="onBlur($event)"
+        (focus)="onFocus($event)"></mdl-textfield>
+
 <mdl-textfield
         type="text"
         label="Number..."
@@ -165,6 +180,16 @@ Just specify an icon to turn the text input field into an expandable field.
    <tr>
      <td>autofocus</td>
      <td>Set the focus on this input field on page load.</td>
+   </tr>
+
+   <tr>
+     <td>(focus)</td>
+     <td>The event fires if the input element is getting the focus.</td>
+   </tr>
+
+   <tr>
+     <td>(blur)</td>
+     <td>The event fires if the input element is loosing the focus.</td>
    </tr>
 
    <tr>
