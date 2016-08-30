@@ -9,6 +9,11 @@
     <mdl-textfield label="Last Name" name="lastname" type="text" formControlName="lastName" floating-label></mdl-textfield>
   </p>
   <p>
+    Which breakfast do you prefer?<br/>
+    <mdl-radio name="breakfast" value="Continental" formControlName="breakfast" mdl-ripple>Continental</mdl-radio>
+    <mdl-radio name="breakfast" value="British" formControlName="breakfast" mdl-ripple>British</mdl-radio>
+  </p>
+  <p>
     <mdl-textfield
             label="Email"
             name="email"
@@ -46,6 +51,32 @@
     <mdl-textfield label="Last Name" type="text" formControlName="lastName" floating-label></mdl-textfield>
   </p>
   <p>
+    Which breakfast do you prefer?<br/>
+    <mdl-radio value="Continental" formControlName="breakfast" mdl-ripple>Continental</mdl-radio>
+    <mdl-radio value="British" formControlName="breakfast" mdl-ripple>British</mdl-radio>
+  </p>
+  <p>
+    <mdl-textfield
+            label="Email"
+            name="email"
+            type="text"
+            formControlName="email"
+            floating-label
+            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
+            error-msg="Please provide a correct email!"></mdl-textfield>
+  </p>
+  <p>
+    <mdl-textfield
+            [class.is-invalid]="email2.invalid"
+            label="Email (2)"
+            name="email2"
+            type="text"
+            formControlName="email2"
+            disableNativeValidityChecking
+            [error-msg]="'Please provide a correct email!'"
+            floating-label></mdl-textfield>
+  <br/>(disbled native checking)
+  <p>
     <button mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</button>
   </p>
 </form>
@@ -59,11 +90,17 @@ export class ReactiveFormsDemo {
   public form: FormGroup;
   public firstName = new FormControl('');
   public lastName = new FormControl('', Validators.required);
+  public email = new FormControl('', emailValidator);
+  public email2 = new FormControl('', emailValidator);
+  public breakfast = new FormControl('Continental');
 
   constructor(private fb: FormBuilder) {
     this.form = fb.group({
       'firstName': this.firstName,
-      'lastName': this.lastName
+      'lastName': this.lastName,
+      'email': this.email,
+      'email2': this.email2,
+      'breakfast': this.breakfast
     });
   }
 

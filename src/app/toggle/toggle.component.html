@@ -47,7 +47,10 @@
   ]]>
 </pre>
 
-<p>The <i>mdl-radio</i> component is <i>ngModel</i> compliant. The <i>name</i> attribute is used to group radios together.
+<p>The <i>mdl-radio</i> component is <i>ngModel</i> compliant.
+  The <i>name</i> attribute is used to group radios together. You need to provide a
+  name or a formControlName. If you provide both they must be the same. All radiobutton
+  groups must have a unique name.
 The <i>value</i> is used to set the <i>ngModel</i> value if the option is selected.
    You can provide the <i>mdl-ripple</i> directive to create a ripple effect.
 </p>
