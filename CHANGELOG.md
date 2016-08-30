@@ -1,8 +1,16 @@
+<a name="1.4.6"></a>
+# 1.4.6 (comming soon)
+
+### Bug Fixes
+
+
 <a name="1.4.5"></a>
-# 1.4.5 (Comming soon)
+# 1.4.5 (2016-08-30)
 
 ### Bug Fixes
 * https://github.com/mseemann/angular2-mdl/issues/48 (id handling for input fields with label)
+* https://github.com/mseemann/angular2-mdl/issues/49 (Pattern on Text Input invalidating Reactive Forms)
+    See https://github.com/mseemann/angular2-mdl/wiki/Mdl-Textfield-and-native-validity-checking for a detailed description.
 
 
 <a name="1.4.4"></a>
