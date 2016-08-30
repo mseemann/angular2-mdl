@@ -64,7 +64,9 @@ const IS_DIRTY = 'is-dirty';
         (blur)="onBlur()"
         (keydown)="keydownTextarea($event)"
         [(ngModel)]="value"
-        [disabled]="disabled"></textarea>
+        [disabled]="disabled"
+        [autofocus]="autofocus"
+        ></textarea>
      <input
         *ngIf="!rows"
         #input
@@ -78,7 +80,9 @@ const IS_DIRTY = 'is-dirty';
         (blur)="onBlur()"
         [(ngModel)]="value"
         [disabled]="disabled"
-        [required]="required">
+        [required]="required"
+        [autofocus]="autofocus"
+        >
      <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
    </div>
@@ -99,7 +103,9 @@ const IS_DIRTY = 'is-dirty';
           (blur)="onBlur()"
           [(ngModel)]="value"
           [disabled]="disabled"
-          [required]="required">
+          [required]="required"
+          [autofocus]="autofocus" 
+         >
      <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
       </div>
@@ -127,13 +133,16 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input('error-msg') public errorMessage;
   @Input() @BooleanProperty() public disabled = false;
   @Input() @BooleanProperty() public required = false;
-  // @experimental
-  @Input() @BooleanProperty() public disableNativeValidityChecking;
+  @Input() @BooleanProperty() public autofocus: boolean = false;
   @Input('floating-label') @BooleanProperty() public isFloatingLabel = false;
   @Input() public placeholder: string;
   @Input() @NumberProperty() public rows: number = null;
   @Input() @NumberProperty() public maxrows: number = -1;
   @Input() public icon: string;
+
+  // @experimental
+  @Input() @BooleanProperty() public disableNativeValidityChecking;
+
 
   constructor(
     private renderer: Renderer,

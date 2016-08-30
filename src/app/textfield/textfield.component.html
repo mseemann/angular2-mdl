@@ -1,7 +1,7 @@
 <h4>Text Fields</h4>
 
 
-<mdl-textfield type="text" label="Text..." [(ngModel)]="text1" placeholder="type a text"></mdl-textfield>
+<mdl-textfield type="text" label="Text..." [(ngModel)]="text1" placeholder="type a text" autofocus></mdl-textfield>
 <mdl-textfield
         type="text"
         label="Number..."
@@ -160,6 +160,11 @@ Just specify an icon to turn the text input field into an expandable field.
    <tr>
       <td>ngModel</td>
       <td>The text field is ngModel compatible.</td>
+   </tr>
+
+   <tr>
+     <td>autofocus</td>
+     <td>Set the focus on this input field on page load.</td>
    </tr>
 
    <tr>
