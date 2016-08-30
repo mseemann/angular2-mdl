@@ -102,7 +102,6 @@
     })(window.history);
 
     window.onpopstate = history.onpushstate = function(event){
-      console.log('new state', document.location.pathname);
       ga('send', {
         hitType: 'pageview',
         page: location.pathname

@@ -19,7 +19,6 @@
             error-msg="Please provide a correct email!"></mdl-textfield>
   </p>
   <p>
-    <p>(disbled native checking)</p>
     <mdl-textfield
             [class.is-invalid]="email2.invalid"
             label="Email (2)"
@@ -29,7 +28,7 @@
             disableNativeValidityChecking
             [error-msg]="'Please provide a correct email!'"
             floating-label></mdl-textfield>
-  </p>
+  <br/>(disbled native checking)
   <p>
     <button mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</button>
   </p>
