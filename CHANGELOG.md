@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 * https://github.com/mseemann/angular2-mdl/issues/51 (mdl-textfield and input attributes / events)
-
+* https://github.com/mseemann/angular2-mdl/issues/52 (Radio Buttons and Drop Down)
 
 
 <a name="1.4.5"></a>
