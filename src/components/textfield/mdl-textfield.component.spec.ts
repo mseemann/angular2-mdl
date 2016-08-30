@@ -349,10 +349,19 @@ describe('Component: MdlTextField', () => {
     let fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
+    let component = fixture.componentInstance;
+
+    spyOn(component, 'onFocus');
+    spyOn(component, 'onBlur');
+
     let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     inputEl.focus();
 
+    expect(component.onFocus).toHaveBeenCalled();
+
     inputEl.blur();
+
+    expect(component.onBlur).toHaveBeenCalled();
   });
 
 
@@ -366,11 +375,7 @@ describe('Component: MdlTextField', () => {
 class MdlTestComponent {
   public text1 = '';
 
-  public onBlur(event: FocusEvent) {
-    console.log('blur');
-  }
+  public onBlur(event: FocusEvent) {}
 
-  public onFocus(event: FocusEvent) {
-    console.log('focus');
-  }
+  public onFocus(event: FocusEvent) {}
 }
