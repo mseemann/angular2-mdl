@@ -2,6 +2,8 @@
 # 1.4.6 (comming soon)
 
 ### Bug Fixes
+* https://github.com/mseemann/angular2-mdl/issues/51 (mdl-textfield and input attributes / events)
+
 
 
 <a name="1.4.5"></a>
