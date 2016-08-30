@@ -8,7 +8,10 @@ import {
   OnChanges,
   DoCheck,
   ViewChild,
-  NgModule
+  NgModule,
+  OpaqueToken,
+  Optional,
+  Inject
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -21,6 +24,8 @@ import { MdlButtonModule } from './../button/mdl-button.component';
 import { MdlIconModule } from './../icon/mdl-icon.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
+export const DISABLE_NATIVE_VALIDITY_CHECKING = new OpaqueToken('disableNativeValidityChecking');
 
 const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
   useExisting: forwardRef(() => MdlTextFieldComponent),
@@ -132,7 +137,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
 
   constructor(
     private renderer: Renderer,
-    private elmRef: ElementRef) {
+    private elmRef: ElementRef,
+    @Optional() @Inject(DISABLE_NATIVE_VALIDITY_CHECKING) private nativeCheckGlobalDisabled: Boolean) {
     this.el = elmRef.nativeElement;
   }
 
@@ -179,7 +185,12 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 
   private checkValidity() {
-    if (this.disableNativeValidityChecking) {
+    // check the global setting - if globally disabled do no check
+    if ( this.nativeCheckGlobalDisabled === true ) {
+      return;
+    }
+    // check local setting - if locally disabled do no check
+    if ( this.disableNativeValidityChecking ) {
       return;
     }
     if (this.inputEl && this.inputEl.nativeElement.validity) {
@@ -207,7 +218,7 @@ export const MDL_TEXT_FIELD_DIRECTIVES = [MdlTextFieldComponent];
 
 @NgModule({
   imports: [MdlIconModule, MdlButtonModule, FormsModule, CommonModule],
-  exports: MDL_TEXT_FIELD_DIRECTIVES,
-  declarations: MDL_TEXT_FIELD_DIRECTIVES,
+  exports: [MdlTextFieldComponent],
+  declarations: [MdlTextFieldComponent],
 })
 export class MdlTextFieldModule {}

@@ -1,5 +1,7 @@
-import { NgModule,
-  ApplicationRef } from '@angular/core';
+import {
+  NgModule,
+  ApplicationRef
+} from '@angular/core';
 import { BrowserModule,
   Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { MdlTextFieldComponent, MdlTextFieldModule } from './mdl-textfield.component';
+import { MdlTextFieldComponent, MdlTextFieldModule, DISABLE_NATIVE_VALIDITY_CHECKING } from './mdl-textfield.component';
 import { MdlButtonComponent, MdlButtonModule } from './../button/mdl-button.component';
 import { FormsModule } from '@angular/forms';
 
@@ -241,6 +241,90 @@ describe('Component: MdlTextField', () => {
 
     done();
   });
+
+  it('should have native validity check', () => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield 
+            type="text" 
+            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$" 
+            label="Text..." name="name-1">
+        </mdl-textfield>'
+      `
+      }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    inputEl.value = 'this is not a valid email';
+
+    fixture.detectChanges();
+
+    let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    expect(el.classList.contains('is-invalid')).toBe(true, 'textfield should have css is-invalid');
+
+  });
+
+  it('should be possible to deactive native checking locally', () => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield 
+            disableNativeValidityChecking
+            type="text" 
+            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$" 
+            label="Text..." name="name-1">
+        </mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    inputEl.value = 'this is not a valid email';
+
+    fixture.detectChanges();
+
+    let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    expect(el.classList.contains('is-invalid')).toBe(false, 'textfield should not have css is-invalid');
+  });
+
+  describe('globally deactivated native check', () => {
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [MdlTextFieldModule, MdlButtonModule, FormsModule],
+        declarations: [MdlTestComponent],
+        providers: [
+          {provide: DISABLE_NATIVE_VALIDITY_CHECKING, useValue: true}
+        ]
+      });
+    });
+
+    it ('should be possible to deactive native checking globally', () => {
+      TestBed.overrideComponent(MdlTestComponent, { set: {
+        template: `
+          <mdl-textfield 
+            type="text" 
+            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$" 
+            label="Text..." name="name-1">
+        </mdl-textfield>'
+      `
+      }});
+      let fixture = TestBed.createComponent(MdlTestComponent);
+      fixture.detectChanges();
+
+      let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+      inputEl.value = 'this is not a valid email';
+
+      fixture.detectChanges();
+
+      let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+      expect(el.classList.contains('is-invalid')).toBe(false, 'textfield should not have css is-invalid');
+    });
+
+  });
+
+
 
 });
 
