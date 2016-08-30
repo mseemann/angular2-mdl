@@ -91,6 +91,24 @@
     ga('create', 'UA-83303601-1', 'auto');
     ga('send', 'pageview');
 
+    (function(history){
+      var pushState = history.pushState;
+      history.pushState = function(state) {
+        if (typeof history.onpushstate == "function") {
+          history.onpushstate({state: state});
+        }
+        return pushState.apply(history, arguments);
+      }
+    })(window.history);
+
+    window.onpopstate = history.onpushstate = function(event){
+      console.log('new state', document.location.pathname);
+      ga('send', {
+        hitType: 'pageview',
+        page: location.pathname
+      });
+    };
+
   </script>
 </body>
 </html>
