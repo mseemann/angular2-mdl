@@ -37,6 +37,7 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
   public lastName = new FormControl('', Validators.required);
   public email = new FormControl('', emailValidator);
   public email2 = new FormControl('', emailValidator);
+  public x = new FormControl('1');
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title, private fb: FormBuilder) {
     super(router, route, titleService);
@@ -48,7 +49,8 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
       'firstName': this.firstName,
       'lastName': this.lastName,
       'email': this.email,
-      'email2': this.email2
+      'email2': this.email2,
+      'x': this.x
     });
     this.form.valueChanges
       .map((formValues) => {
