@@ -38,6 +38,7 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
   public email = new FormControl('', emailValidator);
   public email2 = new FormControl('', emailValidator);
   public breakfast = new FormControl('Continental');
+  public toDrink = new FormControl('Tea')
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title, private fb: FormBuilder) {
     super(router, route, titleService);
@@ -46,11 +47,12 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
   public ngOnInit() {
     super.ngOnInit();
     this.form = this.fb.group({
-      'firstName': this.firstName,
-      'lastName': this.lastName,
-      'email': this.email,
-      'email2': this.email2,
-      'breakfast': this.breakfast
+      'firstName':  this.firstName,
+      'lastName':   this.lastName,
+      'email':      this.email,
+      'email2':     this.email2,
+      'breakfast':  this.breakfast,
+      'toDrink':    this.toDrink
     });
     this.form.valueChanges
       .map((formValues) => {
