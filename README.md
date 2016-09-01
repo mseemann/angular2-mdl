@@ -20,6 +20,8 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 
 **Please don't use github to ask questions. Use stackoverflow instead: http://stackoverflow.com/questions/tagged/angular2-mdl.**
 
+**Currently working on upgrade to angular rc6 - again a lot of breaking changes :(**
+
 
 ### Status of the npm package version 1.4 (mdl version 1.2.0; angular2 rc5)
 
