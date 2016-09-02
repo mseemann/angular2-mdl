@@ -29,12 +29,8 @@ import { CommonModule } from '@angular/common';
 
 export const DISABLE_NATIVE_VALIDITY_CHECKING = new OpaqueToken('disableNativeValidityChecking');
 
-const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
-  useExisting: forwardRef(() => MdlTextFieldComponent),
-  multi: true
-});
 
-const noop = () => {};
+const noop = (_?: any) => {};
 let nextId = 0;
 
 const IS_FOCUSED = 'is-focused';
@@ -113,7 +109,11 @@ const IS_DIRTY = 'is-dirty';
       </div>
    </div>
    `,
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR]
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => MdlTextFieldComponent),
+    multi: true
+  }]
 })
 export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, DoCheck {
   private value_: any;

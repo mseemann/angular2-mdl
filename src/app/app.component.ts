@@ -2,9 +2,8 @@ import {
   Component,
   ViewEncapsulation} from '@angular/core';
 import {
-  RouterConfig,
   ActivatedRoute,
-  Router
+  Router, Routes
 } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { flyInOutTrigger } from './animations/flyInOutTrigger-animation';
@@ -53,7 +52,7 @@ export class Home extends AbstractDemoComponent {
   }
 }
 
-export const appRoutes: RouterConfig = [
+export const appRoutes: Routes = [
   { path: '', component: Home, data: {title: 'Home'} },
   { path: 'theme', component: ThemeDemo, data: {title: 'Themes'} },
   { path: 'badge', component: BadgeDemo, data: {title: 'Badges'} },

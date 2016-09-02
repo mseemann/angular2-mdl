@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  Provider,
   Renderer,
   forwardRef,
   NgModule,
@@ -10,21 +9,23 @@ import {
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
-  ControlValueAccessor, FormsModule
+  ControlValueAccessor,
+  FormsModule
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
+const noop = (_?: any) => {};
+const IS_FOCUSED = 'is-focused';
+
+export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => MdlCheckboxComponent),
   multi: true
-});
-
-const noop = () => {};
-const IS_FOCUSED = 'is-focused';
+};
 
 @Component({
   selector: 'mdl-checkbox',
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
   host: {
     '(click)': 'onClick()',
     '[class.mdl-checkbox]': 'true',

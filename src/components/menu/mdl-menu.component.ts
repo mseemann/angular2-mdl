@@ -53,7 +53,6 @@ export class MdlMenuError extends MdlError {
       </div>
    </div>
   `,
-  directives: [MdlMenuItemComponent]
 })
 export class MdlMenuComponent implements OnInit, AfterViewInit {
   @Input('mdl-menu-position') public position: string;
@@ -112,7 +111,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
       this.hide();
     }, CLOSE_TIMEOUT);
   }
-  
+
   public hide() {
     // Remove all transition delays; menu items fade out concurrently.
     this.menuItemComponents.toArray().forEach(mi => {

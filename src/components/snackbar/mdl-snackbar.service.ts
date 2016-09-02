@@ -1,11 +1,12 @@
 import {
   Component,
   Injectable,
-  DynamicComponentLoader,
   Injector,
-  ViewContainerRef, Compiler
+  ViewContainerRef, Compiler, ComponentFactoryResolver, NgModuleFactory, ModuleWithComponentFactories, ComponentFactory,
+  ComponentRef, NgModule
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
+import {CommonModule} from "@angular/common";
 
 export class MdlSnackbarError extends MdlError {
   constructor(message: string) {
@@ -81,7 +82,6 @@ export class MdlSnackbarService {
   private defaultViewContainerRef: ViewContainerRef;
   constructor(
     private injector: Injector,
-    private dynamicComponentLoader: DynamicComponentLoader,
     private compiler: Compiler) {
   }
 
@@ -107,10 +107,13 @@ export class MdlSnackbarService {
         'Wether as by setDefaultViewContainerRef or as IMdlSnackbarMessage param.');
     }
 
-    let cFactory =  this.compiler.compileComponentSync(MdlSnackbarComponent);
+    let moduleFactories: ModuleWithComponentFactories<MdlSnackbaModule> = this.compiler.compileModuleAndAllComponentsSync(MdlSnackbaModule);
+    let cRef: ComponentRef<MdlSnackbarComponent> = null;
+    moduleFactories.componentFactories.forEach( ( cFactory: ComponentFactory<any> ) =>  {
+       cRef = viewContainerRef.createComponent(cFactory);
+    });
 
-    let cRef = viewContainerRef.createComponent(cFactory);
-    let mdlSnackbarComponent = cRef.instance;
+    let mdlSnackbarComponent = <MdlSnackbarComponent> cRef.instance;
     mdlSnackbarComponent.message = snackbarMessage.message;
 
 
@@ -138,3 +141,11 @@ export class MdlSnackbarService {
 
   }
 }
+
+@NgModule({
+  imports: [CommonModule],
+  exports: [MdlSnackbarComponent],
+  declarations: [MdlSnackbarComponent],
+  providers: [MdlSnackbarService]
+})
+export class MdlSnackbaModule {}

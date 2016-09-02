@@ -15,15 +15,15 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-const noop = () => {};
-const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
-  useExisting: forwardRef(() => MdlSliderComponent),
-  multi: true
-});
+const noop = (_?: any) => {};
 
 @Component({
   selector: 'mdl-slider',
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => MdlSliderComponent),
+    multi: true
+  }],
   host: {
     '[class.mdl-slider__container]': 'true',
     '(mouseup)': 'onMouseUp($event)',

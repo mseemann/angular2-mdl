@@ -11,6 +11,7 @@ import {
   FormBuilder
 } from '@angular/forms';
 import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
 import {
   Router,
   ActivatedRoute

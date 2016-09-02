@@ -14,15 +14,13 @@ import {
 import { MdlIconModule } from './../icon/mdl-icon.component';
 import { MdlCheckboxComponent } from './../checkbox/mdl-checkbox.component';
 
-const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
-  useExisting: forwardRef(() => MdlIconToggleComponent),
-  multi: true
-});
-
 
 @Component({
   selector: 'mdl-icon-toggle',
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => MdlIconToggleComponent),
+    multi: true }],
   host: {
     '(click)': 'onClick()',
     '[class.mdl-icon-toggle]': 'true',

@@ -6,9 +6,7 @@ import {
   forwardRef,
   NgModule
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR as DEPRECATED_NG_VALUE_ACCESSOR
-} from '@angular/common';
+
 import {
   NG_VALUE_ACCESSOR,
   FormsModule
@@ -16,18 +14,13 @@ import {
 import { MdlCheckboxComponent } from './../checkbox/mdl-checkbox.component';
 import { CommonModule } from '@angular/common';
 
-const DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(DEPRECATED_NG_VALUE_ACCESSOR, {
-  useExisting: forwardRef(() => MdlSwitchComponent),
-  multi: true
-});
-const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
-  useExisting: forwardRef(() => MdlSwitchComponent),
-  multi: true
-});
-
 @Component({
   selector: 'mdl-switch',
-  providers: [DEPRECATED_MD_INPUT_CONTROL_VALUE_ACCESSOR, MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => MdlSwitchComponent),
+    multi: true
+  }],
   host: {
     '(click)': 'onClick()',
     '[class.mdl-switch]': 'true',

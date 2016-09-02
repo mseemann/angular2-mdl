@@ -18,10 +18,6 @@ import {
 import {CommonModule} from '@angular/common';
 
 
-const MD_INPUT_CONTROL_VALUE_ACCESSOR = new Provider(NG_VALUE_ACCESSOR, {
-  useExisting: forwardRef(() => MdlRadioComponent),
-  multi: true
-});
 
 const noop = () => {};
 const IS_FOCUSED = 'is-focused';
@@ -61,7 +57,11 @@ export class MdlRadioGroupRegisty {
 
 @Component({
   selector: 'mdl-radio',
-  providers: [MD_INPUT_CONTROL_VALUE_ACCESSOR],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => MdlRadioComponent),
+    multi: true
+  }],
   host: {
     '(click)': 'onClick()',
     '[class.mdl-radio]': 'true',

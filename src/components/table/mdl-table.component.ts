@@ -49,8 +49,7 @@ let tableComponentMeta = new ComponentMetadata({
       display:inline-block;
     }
     `
-    ],
-    directives: [MDL_CHECKBOX_DIRECTIVES, MDL_COMMON_DIRECTIVES]
+    ]
 });
 @Component(tableComponentMeta)
 export class MdlTableComponent {

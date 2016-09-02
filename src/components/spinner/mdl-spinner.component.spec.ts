@@ -68,8 +68,7 @@ describe('Component: MdlProgress', () => {
 
 @Component({
   selector: 'test-progress',
-  template: 'replaced by the test',
-  directives: [MdlSpinnerComponent]
+  template: 'replaced by the test'
 })
 class MdlTestSpinnerComponent {
   public active = true;

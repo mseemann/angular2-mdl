@@ -1,6 +1,6 @@
 import {
   NgModule,
-  ApplicationRef
+  ApplicationRef, ApplicationInitStatus
 } from '@angular/core';
 import { BrowserModule,
   Title } from '@angular/platform-browser';
@@ -78,10 +78,11 @@ import { ThemeDemo } from './theme/theme.component';
   bootstrap: [],
 })
 export class Angular2MdlAppModule {
-  constructor(private appRef: ApplicationRef) { }
+
+  constructor(private appRef: ApplicationRef, private appStatus: ApplicationInitStatus) { }
 
   public ngDoBootstrap() {
-    this.appRef.waitForAsyncInitializers().then( () => {
+    this.appStatus.donePromise.then( () => {
       let script = document.createElement('script');
       script.innerHTML = '';
       script.src = 'https://buttons.github.io/buttons.js';

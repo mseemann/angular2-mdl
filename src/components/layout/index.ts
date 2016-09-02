@@ -7,15 +7,15 @@ import { MdlLayoutHeaderTransparentDirective } from './mdl-layout-header-transpa
 import { MdlLayoutHeaderRowComponent } from './mdl-layout-header-row.component';
 import { MdlLayoutTitleComponent } from './mdl-layout-title.component';
 import { MdlLayoutSpacerComponent } from './mdl-layout-spacer.component';
-import { MdlLayoutTabPanelComponent } from './mdl-layout-tab-panel.component';
+import {MdlLayoutTabPanelComponent, MdlTabPanelContent} from './mdl-layout-tab-panel.component';
 import { MdlIconModule } from './../icon/mdl-icon.component';
 import { MdlRippleModule } from './../common/mdl-ripple.directive';
 import { MdlCommonsModule } from './../common/index';
 import { CommonModule } from '@angular/common';
 import { MdlTabsModule } from '../tabs/index';
 
-/** @deprecated */
-export const MDL_LAYOUT_DIRECTIVES = [
+
+const MDL_LAYOUT_DIRECTIVES = [
   MdlLayoutComponent,
   MdlLayoutHeaderComponent,
   MdlLayoutDrawerComponent,
@@ -24,7 +24,8 @@ export const MDL_LAYOUT_DIRECTIVES = [
   MdlLayoutHeaderRowComponent,
   MdlLayoutTitleComponent,
   MdlLayoutSpacerComponent,
-  MdlLayoutTabPanelComponent
+  MdlLayoutTabPanelComponent,
+  MdlTabPanelContent
 ];
 
 export * from './mdl-layout.component';

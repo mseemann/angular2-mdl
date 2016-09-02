@@ -43,9 +43,20 @@ const barrels: string[] = [
 ];
 
 const cliSystemConfigPackages: any = {};
-barrels.forEach((barrelName: string) => {
-  cliSystemConfigPackages[barrelName] = { main: 'index' };
-});
+
+cliSystemConfigPackages['@angular/core'] = { main: 'bundles/core.umd.js' };
+cliSystemConfigPackages['@angular/forms'] = { main: 'bundles/forms.umd.js' };
+cliSystemConfigPackages['@angular/common'] = { main: 'bundles/common.umd.js' };
+cliSystemConfigPackages['@angular/compiler'] = { main: 'bundles/compiler.umd.js' };
+cliSystemConfigPackages['@angular/http'] = { main: 'bundles/http.umd.js' };
+cliSystemConfigPackages['@angular/router'] = { main: 'bundles/router.umd.js' };
+cliSystemConfigPackages['@angular/platform-browser'] = { main: 'bundles/platform-browser.umd.js' };
+cliSystemConfigPackages['@angular/platform-browser-dynamic'] = { main: 'bundles/platform-browser-dynamic.umd.js' };
+
+
+cliSystemConfigPackages['rxjs'] = { main: 'index.js' };
+cliSystemConfigPackages['app'] = { main: 'index.js' };
+
 
 /** Type declaration for ambient System. */
 declare var System: any;

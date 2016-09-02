@@ -33,6 +33,5 @@ describe('Component: MdlLayoutContent', () => {
 @Component({
   selector: 'test-layout',
   template: '<mdl-layout-content>x</mdl-layout-content>',
-  directives: [MdlLayoutContentComponent]
 })
 class MdlTestLayoutComponent {}
