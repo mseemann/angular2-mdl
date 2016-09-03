@@ -1,7 +1,12 @@
-<a name="1.4.7"></a>
-# 1.4.7 (next)
+<a name="1.5.1"></a>
+# 1.5.1 (next)
 
 ### Bug Fixes
+
+<a name="1.5.0"></a>
+# 1.5.0 (2016-09-03)
+
+Upgrade to support angular 2 RC6
 
 
 <a name="1.4.6"></a>
