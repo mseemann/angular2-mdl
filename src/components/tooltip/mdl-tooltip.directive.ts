@@ -42,11 +42,6 @@ export class AbstractMdlTooltipDirective implements OnInit {
       // it is possible that this will not be an instance of MdlSimpleTooltipComponent
       // and the app will crash
       this.tooltipComponent = <MdlSimpleTooltipComponent> cRef.instance;
-
-      // FIXME
-      // let cFactory = this.compiler.compileComponentSync(MdlSimpleTooltipComponent);
-      //
-      // this.tooltipComponent = <MdlSimpleTooltipComponent> this.vcRef.createComponent(cFactory).instance;
       this.tooltipComponent.tooltipText = <string>this.tooltip;
       this.configureTooltipComponent();
 
