@@ -21,5 +21,6 @@ export * from './mdl-tooltip.directive';
   imports: [],
   exports: MDL_TOOLTIP_DIRECTIVES,
   declarations: [...MDL_TOOLTIP_DIRECTIVES, MdlSimpleTooltipComponent ],
+  entryComponents: [MdlSimpleTooltipComponent]
 })
 export class MdlTooltipModule {}

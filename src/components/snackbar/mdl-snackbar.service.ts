@@ -2,8 +2,12 @@ import {
   Component,
   Injectable,
   Injector,
-  ViewContainerRef, Compiler, ComponentFactoryResolver, NgModuleFactory, ModuleWithComponentFactories, ComponentFactory,
-  ComponentRef, NgModule
+  ViewContainerRef,
+  Compiler,
+  ModuleWithComponentFactories,
+  ComponentFactory,
+  ComponentRef,
+  NgModule
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 import {CommonModule} from "@angular/common";

@@ -4,8 +4,9 @@ import {
   Input,
   OnInit,
   ViewContainerRef,
-  Compiler,
-  Renderer, ModuleWithComponentFactories, ComponentRef, ComponentFactory
+  Renderer,
+  ComponentRef,
+  ComponentFactoryResolver
 } from '@angular/core';
 import { MdlSimpleTooltipComponent, MdlTooltipComponent } from './mdl-tooltip.component';
 import {MdlTooltipModule} from "./index";
@@ -20,7 +21,7 @@ export class AbstractMdlTooltipDirective implements OnInit {
   constructor(
     private vcRef: ViewContainerRef,
     private large: boolean,
-    private compiler: Compiler,
+    private componentFactoryResolver: ComponentFactoryResolver,
     private renderer: Renderer) {
   }
 
@@ -30,17 +31,9 @@ export class AbstractMdlTooltipDirective implements OnInit {
     // we create a simpleTooltipComponent on the fly.
     if (!(this.tooltip instanceof MdlTooltipComponent)) {
 
-      let moduleFactories: ModuleWithComponentFactories<MdlTooltipModule> = this.compiler.compileModuleAndAllComponentsSync(MdlTooltipModule);
-      let cRef: ComponentRef<MdlSimpleTooltipComponent> = null;
-      moduleFactories.componentFactories.forEach( ( cFactory: ComponentFactory<any> ) =>  {
-        cRef = this.vcRef.createComponent(cFactory);
-        // console.log(cRef.instance instanceof MdlSimpleTooltipComponent);
-      });
-      // console.log(cRef.instance);
-      // FIXME THIS WORKS but it seems to be not the right way: each component in the module
-      // will be instanciated - but i only want to instantiate the MdlSimpleTooltipComponent
-      // it is possible that this will not be an instance of MdlSimpleTooltipComponent
-      // and the app will crash
+      let cFactory = this.componentFactoryResolver.resolveComponentFactory(MdlSimpleTooltipComponent);
+      let cRef: ComponentRef<MdlSimpleTooltipComponent> = this.vcRef.createComponent(cFactory);
+
       this.tooltipComponent = <MdlSimpleTooltipComponent> cRef.instance;
       this.tooltipComponent.tooltipText = <string>this.tooltip;
       this.configureTooltipComponent();
@@ -85,8 +78,11 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
   @Input('mdl-tooltip')           public tooltip: string|MdlTooltipComponent;
   @Input('mdl-tooltip-position')  public position: string;
 
-  constructor(vcRef: ViewContainerRef, compiler: Compiler, renderer: Renderer) {
-    super(vcRef, false, compiler, renderer);
+  constructor(
+    vcRef: ViewContainerRef,
+    componentFactoryResolver: ComponentFactoryResolver,
+    renderer: Renderer) {
+    super(vcRef, false, componentFactoryResolver, renderer);
   }
 }
 
@@ -98,7 +94,10 @@ export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
   @Input('mdl-tooltip-large')     public tooltip: string|MdlTooltipComponent;
   @Input('mdl-tooltip-position')  public position: string;
 
-  constructor(vcRef: ViewContainerRef, compiler: Compiler,  renderer: Renderer) {
-    super(vcRef, true, compiler, renderer);
+  constructor(
+    vcRef: ViewContainerRef,
+    componentFactoryResolver: ComponentFactoryResolver,
+    renderer: Renderer) {
+    super(vcRef, true, componentFactoryResolver, renderer);
   }
 }
