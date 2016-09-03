@@ -2,6 +2,7 @@
 # 1.5.1 (next)
 
 ### Bug Fixes
+* https://github.com/mseemann/angular2-mdl/issues/59 (compiler.compileComponentSync has been removed in rc6)
 
 <a name="1.5.0"></a>
 # 1.5.0 (2016-09-03)
