@@ -5,6 +5,13 @@ import {
 } from '@angular/core';
 import { MdlTabPanelTitleComponent } from './mdl-tab-panel-title.component';
 
+@Component({
+  selector: 'mdl-tab-panel-content',
+  template: '<ng-content></ng-content>'
+})
+export class MdlTabPanelContent {
+
+}
 
 @Component({
   selector: 'mdl-tab-panel',

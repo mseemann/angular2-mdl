@@ -5,6 +5,7 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { MdlRippleModule } from './../common/mdl-ripple.directive';
 import { MdlListModule, MdlListItemComponent } from './../list/mdl-list.component';
+import { MdlMenuModule } from '../menu/index';
 
 function getFiytureForTemplate(template) {
   TestBed.overrideComponent(MdlTestRippleComponent, { set: { template: template }});
@@ -17,7 +18,7 @@ describe('Directive: MdlRipple', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MdlRippleModule, MdlListModule],
+      imports: [MdlRippleModule, MdlListModule, MdlMenuModule],
       declarations: [MdlTestRippleComponent],
     });
   });
@@ -165,7 +166,7 @@ describe('Directive: MdlRipple', () => {
 
   });
 
-  it('should add the ripple toa tag for', () => {
+  it('should add the ripple tog tag for', () => {
 
     let fixture = getFiytureForTemplate(`
          <a [mdl-ripple]="true"></a>

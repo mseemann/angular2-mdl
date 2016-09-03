@@ -7,14 +7,6 @@ import { MdlTabPanelTitleComponent } from './../tabs/index';
 
 
 @Component({
-  selector: 'mdl-tab-panel-content',
-  template: '<ng-content></ng-content>'
-})
-export class MdlTabPanelContent {
-
-}
-
-@Component({
   selector: 'mdl-layout-tab-panel',
   host: {
     '[class.mdl-layout__tab-panel]': 'true',

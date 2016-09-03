@@ -25,7 +25,7 @@ describe('Component: MdlRadio', () => {
 
   });
 
-  it('should support ngModel', ( ) => {
+  it('should support ngModel', async(( ) => {
 
     let fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();
@@ -49,7 +49,7 @@ describe('Component: MdlRadio', () => {
     });
 
 
-  });
+  }));
 
   it('should mark the component as focused and blured', ( ) => {
 
@@ -88,9 +88,9 @@ describe('Component: MdlRadio', () => {
   it('should take the name from formcontrolname if no name os provided', async(() => {
     TestBed.overrideComponent(MdlTestRadioComponent, { set: {
       template: `
-        <fom [formGroup]="form">
+        <form [formGroup]="form">
           <mdl-radio formControlName="test" value="1" mdl-ripple>radio label 1</mdl-radio>
-        </fom>
+        </form>
       `
     }});
     let fixture = TestBed.createComponent(MdlTestRadioComponent);
@@ -104,10 +104,10 @@ describe('Component: MdlRadio', () => {
 
       TestBed.overrideComponent(MdlTestRadioComponent, { set: {
         template: `
-      <fom [formGroup]="form">
+      <form [formGroup]="form">
         <mdl-radio formControlName="test" value="1" mdl-ripple>radio label 1</mdl-radio>
         <mdl-radio *ngIf="radioVisible" formControlName="test" value="2" mdl-ripple>radio label 3</mdl-radio>
-      </fom>
+      </form>
     `
       }});
       let fixture = TestBed.createComponent(MdlTestRadioComponent);
