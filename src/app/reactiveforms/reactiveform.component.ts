@@ -39,7 +39,7 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
   public email = new FormControl('', emailValidator);
   public email2 = new FormControl('', emailValidator);
   public breakfast = new FormControl('Continental');
-  public toDrink = new FormControl('Tea')
+  public toDrink = new FormControl('Tea');
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title, private fb: FormBuilder) {
     super(router, route, titleService);

@@ -1,6 +1,5 @@
 import {
   Component,
-  Provider,
   forwardRef,
   Input,
   Renderer,

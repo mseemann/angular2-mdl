@@ -192,7 +192,7 @@ export class ThemeDemo extends AbstractDemoComponent {
   }
 
   public selectAccentColor(color) {
-    if (!color.isSelectable){
+    if (!color.isSelectable) {
       return;
     }
     this.selectedAccentColor = color;

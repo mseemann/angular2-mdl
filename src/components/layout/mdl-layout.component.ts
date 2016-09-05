@@ -17,7 +17,6 @@ import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from './../common/mdl-error';
 import { BooleanProperty } from './../common/boolean-property';
 import { NumberProperty } from './../common/number.property';
-import { MdlIconComponent } from './../icon/mdl-icon.component';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
 import { MdlLayoutContentComponent } from './mdl-layout-content.component';

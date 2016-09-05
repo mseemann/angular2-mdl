@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  Provider,
   Renderer,
   forwardRef,
   NgModule

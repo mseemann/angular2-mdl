@@ -50,6 +50,7 @@ System.import('system-config.js').then(function() {
 	// This will run the tests directly.
 	return Promise.all(
 		allSpecFiles.map(function (moduleName) {
+		  console.log(moduleName);
 			return System.import(moduleName).then(function(module) {
 				return module;
 			});

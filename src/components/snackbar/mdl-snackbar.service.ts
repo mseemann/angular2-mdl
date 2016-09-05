@@ -10,7 +10,7 @@ import {
   NgModule
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
-import {CommonModule} from "@angular/common";
+import { CommonModule } from '@angular/common';
 
 export class MdlSnackbarError extends MdlError {
   constructor(message: string) {
@@ -111,7 +111,8 @@ export class MdlSnackbarService {
         'Wether as by setDefaultViewContainerRef or as IMdlSnackbarMessage param.');
     }
 
-    let moduleFactories: ModuleWithComponentFactories<MdlSnackbaModule> = this.compiler.compileModuleAndAllComponentsSync(MdlSnackbaModule);
+    let moduleFactories: ModuleWithComponentFactories<MdlSnackbaModule> = this.compiler
+      .compileModuleAndAllComponentsSync(MdlSnackbaModule);
     let cRef: ComponentRef<MdlSnackbarComponent> = null;
     moduleFactories.componentFactories.forEach( ( cFactory: ComponentFactory<any> ) =>  {
        cRef = viewContainerRef.createComponent(cFactory);

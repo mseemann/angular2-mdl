@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { MdlSpinnerComponent, MdlSpinnerModule } from './mdl-spinner.component';
+import { MdlSpinnerModule } from './mdl-spinner.component';
 
 describe('Component: MdlProgress', () => {
 

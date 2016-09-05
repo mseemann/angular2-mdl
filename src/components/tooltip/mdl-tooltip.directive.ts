@@ -9,7 +9,6 @@ import {
   ComponentFactoryResolver
 } from '@angular/core';
 import { MdlSimpleTooltipComponent, MdlTooltipComponent } from './mdl-tooltip.component';
-import {MdlTooltipModule} from "./index";
 
 export class AbstractMdlTooltipDirective implements OnInit {
 

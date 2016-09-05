@@ -10,9 +10,6 @@ import {
   IMdlTableModelItem
 } from './mdl-table';
 
-import { MDL_CHECKBOX_DIRECTIVES } from './../checkbox/mdl-checkbox.component';
-import { MDL_COMMON_DIRECTIVES } from './../common/mdl-ripple.directive';
-
 let tableComponentMeta = new ComponentMetadata({
     selector: 'mdl-table',
     template: `

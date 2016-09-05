@@ -37,8 +37,7 @@ import {
   MdlCardExpandDirective
 } from './card/mdl-card.component';
 import {
-  MdlChipModule,
-  MdlChipComponent
+  MdlChipModule
 } from './chips/index';
 import {
   MdlChekboxModule,

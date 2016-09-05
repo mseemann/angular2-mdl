@@ -22,25 +22,6 @@ const packages: any = {
 /***********************************************************************************************
  * Everything underneath this line is managed by the CLI.
  **********************************************************************************************/
-const barrels: string[] = [
-  // Angular specific barrels.
-  '@angular/core',
-  '@angular/forms',
-  '@angular/common',
-  '@angular/compiler',
-  '@angular/http',
-  '@angular/router',
-  '@angular/platform-browser',
-  '@angular/platform-browser-dynamic',
-
-  // Thirdparty barrels.
-  'rxjs',
-
-  // App specific barrels.
-  'app',
-  'app/shared',
-  /** @cli-barrel */
-];
 
 const cliSystemConfigPackages: any = {};
 
@@ -62,7 +43,8 @@ cliSystemConfigPackages['@angular/core/testing'] = { main: '../bundles/core-test
 cliSystemConfigPackages['@angular/common/testing'] = { main: '../bundles/common-testing.umd.js' };
 cliSystemConfigPackages['@angular/compiler/testing'] = { main: '../bundles/compiler-testing.umd.js' };
 cliSystemConfigPackages['@angular/platform-browser/testing'] = { main: '../bundles/platform-browser-testing.umd.js' };
-cliSystemConfigPackages['@angular/platform-browser-dynamic/testing'] = { main: '../bundles/platform-browser-dynamic-testing.umd.js' };
+cliSystemConfigPackages['@angular/platform-browser-dynamic/testing'] = {
+  main: '../bundles/platform-browser-dynamic-testing.umd.js' };
 cliSystemConfigPackages['@angular/http/testing'] = { main: '../bundles/http-testing.umd.js' };
 cliSystemConfigPackages['@angular/router/testing'] = { main: '../bundles/router-testing.umd.js' };
 cliSystemConfigPackages['@angular/forms/testing'] = { main: '../bundles/forms-testing.umd.js' };

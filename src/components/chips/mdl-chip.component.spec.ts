@@ -61,6 +61,6 @@ describe('Component: MdlChip', () => {
 })
 class MdlTestComponent {
 
-  public onAction(){}
+  public onAction() {}
 
 }

@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   forwardRef,
-  Provider,
   ViewChild,
   Renderer,
   ElementRef,

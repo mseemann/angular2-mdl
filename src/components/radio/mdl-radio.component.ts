@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  Provider,
   Renderer,
   forwardRef,
   Input,
@@ -15,7 +14,7 @@ import {
   ControlValueAccessor,
   FormsModule
 } from '@angular/forms';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -43,7 +42,7 @@ export class MdlRadioGroupRegisty {
     // unselect evenry radioComponent that is not the provided radiocomponent and has the same name
     this.radioComponents.forEach( (component) => {
       if (component.name === radioComponent.name) {
-        if (component !== radioComponent){
+        if (component !== radioComponent) {
           component.deselect(radioComponent.value);
         }
       }

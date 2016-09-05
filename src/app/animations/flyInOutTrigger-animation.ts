@@ -4,8 +4,7 @@ import {
   style,
   transition,
   animate,
-  AnimationEntryMetadata
-
+  AnimationEntryMetadata // needs to be here to avoid compilation errors:(
 } from '@angular/core';
 
 export const flyInOutTrigger = trigger('flyInOut', [
