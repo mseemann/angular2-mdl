@@ -1,6 +1,8 @@
 import {
   Component,
   ElementRef,
+  Output,
+  EventEmitter,
   Renderer,
   forwardRef,
   Input,
@@ -82,8 +84,10 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
 
   @Input() public name: string;
   @Input() public formControlName: string;
-
   @Input() public value: any;
+
+  @Output() change: EventEmitter<any> = new EventEmitter<any>();
+
   public optionValue: any;
   // the internal state - used to set the underlaying radio button state.
   public checked = false;
@@ -148,6 +152,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     this.optionValue = this.value;
     this.updateCheckState();
     this.onChangeCallback();
+    this.change.emit(this.optionValue);
   }
 
   private updateCheckState() {

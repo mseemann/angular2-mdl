@@ -26,6 +26,7 @@ import { MdlCheckboxComponent } from './../checkbox/mdl-checkbox.component';
     '[class.is-upgraded]': 'true',
     '[class.is-checked]': 'value'
   },
+  outputs: ['change'],
   template: `
   <input type="checkbox" class="mdl-icon-toggle__input" 
     (focus)="onFocus()" 

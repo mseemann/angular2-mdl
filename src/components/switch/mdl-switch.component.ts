@@ -26,6 +26,7 @@ import { CommonModule } from '@angular/common';
     '[class.is-upgraded]': 'true',
     '[class.is-checked]': 'value'
   },
+  outputs: ['change'],
   template: `
     <input type="checkbox" class="mdl-switch__input" 
       (focus)="onFocus()" 
