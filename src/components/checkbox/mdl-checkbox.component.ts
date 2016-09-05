@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  EventEmitter,
   Renderer,
   forwardRef,
   NgModule,
@@ -44,10 +45,13 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   </span>
   `,
   inputs: ['value'],
+  outputs: ['change'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
+
+  private change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private value_: boolean = false;
 
@@ -61,7 +65,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   set value(v: boolean) {
     this.value_ = v;
     this.onChangeCallback(v);
-
+    this.change.emit(v);
   }
 
   public writeValue(value: any): void {
