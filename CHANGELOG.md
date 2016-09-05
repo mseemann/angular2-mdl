@@ -1,8 +1,17 @@
+<a name="1.5.2"></a>
+# 1.5.2 (next)
+
+### Bug Fixes
+
+
 <a name="1.5.1"></a>
-# 1.5.1 (next)
+# 1.5.1 (2016-09-05)
 
 ### Bug Fixes
 * https://github.com/mseemann/angular2-mdl/issues/59 (compiler.compileComponentSync has been removed in rc6)
+
+### Features
+* https://github.com/mseemann/angular2-mdl/pull/62 (add change events for toggle components; thx to @tb )
 
 <a name="1.5.0"></a>
 # 1.5.0 (2016-09-03)
