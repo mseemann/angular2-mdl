@@ -1,16 +1,17 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { MdlSwitchModule } from './mdl-switch.component';
+import { MdlSwitchModule, MdlSwitchComponent } from './mdl-switch.component';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 describe('Component: MdlSwitch', () => {
 
-  beforeEach(() => {
+  beforeEach( async(() => {
     TestBed.configureTestingModule({
       imports: [ MdlSwitchModule, FormsModule ],
       declarations: [ MdlTestSwitchComponent ],
     });
-  });
+  }));
 
   it('should add the css class mdl-switch to the host element', ( done ) => {
 
@@ -23,13 +24,28 @@ describe('Component: MdlSwitch', () => {
     done();
   });
 
+  it('should fire a change event if the state changed', async(() => {
+    let fixture = TestBed.createComponent(MdlTestSwitchComponent);
+    fixture.detectChanges();
+
+    let instance = fixture.componentInstance;
+
+    spyOn(instance, 'onChange');
+
+    fixture.debugElement.query(By.directive(MdlSwitchComponent)).nativeElement.click();
+
+    expect(instance.onChange).toHaveBeenCalledWith(true);
+  }));
 
 });
 
 
 @Component({
   selector: 'test-icon',
-  template: '<mdl-switch [(ngModel)]="checkboxValue1" mdl-ripple>switch</mdl-switch>'
+  template: '<mdl-switch [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">switch</mdl-switch>'
 })
 class MdlTestSwitchComponent {
+
+  public onChange(v: boolean) {}
+
 }

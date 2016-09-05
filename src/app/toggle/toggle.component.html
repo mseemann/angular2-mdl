@@ -2,7 +2,7 @@
 
 <h5>Checkbox</h5>
 
-<mdl-checkbox  [mdl-ripple]="true" [(ngModel)]="checkbox1">
+<mdl-checkbox  [mdl-ripple]="true" [(ngModel)]="checkbox1" (change)="onChange($event)">
   Checkbox
 </mdl-checkbox>
 {{checkbox1}}
@@ -33,8 +33,8 @@
 
 
 <h5>Radios</h5>
-<mdl-radio name="group1" value="1" [(ngModel)]="radioOption" mdl-ripple>Value 1</mdl-radio>
-<mdl-radio name="group1" value="2" [(ngModel)]="radioOption" mdl-ripple>Value 2</mdl-radio>
+<mdl-radio name="group1" value="1" [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 1</mdl-radio>
+<mdl-radio name="group1" value="2" [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 2</mdl-radio>
 
 {{radioOption}}
 
@@ -57,7 +57,7 @@ The <i>value</i> is used to set the <i>ngModel</i> value if the option is select
 
 <h5>Icon Toggle</h5>
 
-<mdl-icon-toggle  [(ngModel)]="checkbox1" mdl-ripple>format_bold</mdl-icon-toggle>
+<mdl-icon-toggle  [(ngModel)]="checkbox1" mdl-ripple (change)="onChange($event)">format_bold</mdl-icon-toggle>
 {{checkbox1}}
 <mdl-icon-toggle  [(ngModel)]="checkbox2">format_italic</mdl-icon-toggle>
 {{checkbox2}}
@@ -76,7 +76,7 @@ The <i>value</i> is used to set the <i>ngModel</i> value if the option is select
 
 <h5>Switch</h5>
 
-<mdl-switch [(ngModel)]="checkbox1" mdl-ripple>Option 1</mdl-switch>
+<mdl-switch [(ngModel)]="checkbox1" mdl-ripple (change)="onChange($event)">Option 1</mdl-switch>
 {{checkbox1}}
 <mdl-switch  [(ngModel)]="checkbox2">Option 2</mdl-switch>
 {{checkbox2}}

@@ -1,6 +1,7 @@
 import {
   inject,
-  TestBed
+  TestBed,
+  async
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component} from '@angular/core';
@@ -13,12 +14,12 @@ describe('Component: MdlCheckbox', () => {
 
   var doc: HTMLDocument;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ MdlChekboxModule, FormsModule ],
       declarations: [ MdlTestCheckboxComponent ],
     });
-  });
+  }));
 
 
   beforeEach(inject([DOCUMENT], function (document) {
@@ -103,13 +104,29 @@ describe('Component: MdlCheckbox', () => {
     done();
 
   });
+
+  it('should fire a change event if the state changed', async(() => {
+    let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
+    fixture.detectChanges();
+
+    let instance = fixture.componentInstance;
+
+    spyOn(instance, 'onChange');
+
+    fixture.debugElement.query(By.directive(MdlCheckboxComponent)).nativeElement.click();
+
+    expect(instance.onChange).toHaveBeenCalledWith(true);
+  }));
+
 });
 
 
 @Component({
   selector: 'test-icon',
-  template: '<mdl-checkbox [(ngModel)]="checkboxValue1" mdl-ripple>checkbox label</mdl-checkbox>',
+  template: '<mdl-checkbox [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">checkbox label</mdl-checkbox>',
 })
 class MdlTestCheckboxComponent {
   public checkboxValue1 = false;
+
+  public onChange(v: boolean) {}
 }

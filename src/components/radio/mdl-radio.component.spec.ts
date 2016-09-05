@@ -125,14 +125,31 @@ describe('Component: MdlRadio', () => {
 
   }));
 
+
+  it('should fire a change event if the state changed', async(() => {
+    let fixture = TestBed.createComponent(MdlTestRadioComponent);
+    fixture.detectChanges();
+
+    let instance = fixture.componentInstance;
+
+    spyOn(instance, 'onChange');
+
+    let component2 = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[1];
+    component2.nativeElement.click();
+
+    expect(instance.onChange).toHaveBeenCalledWith('2');
+  }));
+
 });
 
 
 @Component({
   selector: 'test-radio',
   template: `
-    <mdl-radio name="r" [(ngModel)]="radioValue" value="1" mdl-ripple>radio label 1</mdl-radio>
-    <mdl-radio name="r" [(ngModel)]="radioValue" value="2" mdl-ripple>radio label 2</mdl-radio>
+    <mdl-radio name="r" [(ngModel)]="radioValue" value="1" mdl-ripple 
+          (change)="onChange($event)">radio label 1</mdl-radio>
+    <mdl-radio name="r" [(ngModel)]="radioValue" value="2" mdl-ripple 
+          (change)="onChange($event)">radio label 2</mdl-radio>
   `
 })
 class MdlTestRadioComponent implements OnInit {
@@ -148,6 +165,9 @@ class MdlTestRadioComponent implements OnInit {
       'test': this.test
     });
   }
+
+
+  public onChange(v: boolean) {}
 }
 
 

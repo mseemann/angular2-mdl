@@ -27,4 +27,7 @@ export class ToggleDemo extends AbstractDemoComponent {
     super(router, route, titleService);
   }
 
+  public onChange(newValue: any) {
+    console.log(newValue);
+  }
 }
