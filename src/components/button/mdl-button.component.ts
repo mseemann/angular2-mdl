@@ -89,8 +89,8 @@ export class MdlButtonComponent implements OnChanges {
   }
 }
 
-/** @deprecated */
-export const MDL_BUTTON_DIRECTIVES = [MdlButtonComponent];
+
+const MDL_BUTTON_DIRECTIVES = [MdlButtonComponent];
 
 @NgModule({
   imports: [],

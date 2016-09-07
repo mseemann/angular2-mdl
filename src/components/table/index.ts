@@ -11,8 +11,8 @@ import { FormsModule } from '@angular/forms';
 export * from './mdl-table';
 export * from './mdl-table.component';
 
-/** @deprecated */
-export const MDL_TABLE_DIRECTIVES = [
+
+const MDL_TABLE_DIRECTIVES = [
   MdlTableComponent,
   MdlSelectableTableComponent
 ];

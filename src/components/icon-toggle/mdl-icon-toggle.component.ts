@@ -43,9 +43,7 @@ export class MdlIconToggleComponent extends MdlCheckboxComponent {
 
 }
 
-
-/** @deprecated */
-export const MDL_ICON_TOGGLE_DIRECTIVES = [MdlIconToggleComponent];
+const MDL_ICON_TOGGLE_DIRECTIVES = [MdlIconToggleComponent];
 
 @NgModule({
   imports: [ MdlIconModule, CommonModule, FormsModule],

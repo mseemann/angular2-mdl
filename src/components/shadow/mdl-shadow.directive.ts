@@ -50,8 +50,7 @@ export class MdlShadowDirective implements OnChanges {
 }
 
 
-/** @deprecated */
-export const MDL_SHADOW_DIRECTIVES = [MdlShadowDirective];
+const MDL_SHADOW_DIRECTIVES = [MdlShadowDirective];
 
 @NgModule({
   imports: [],

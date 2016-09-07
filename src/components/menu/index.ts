@@ -8,8 +8,8 @@ import {
 import { MdlMenuItemFullBleedDeviderComponent } from './mdl-menu-item.directive';
 import { CommonModule } from '@angular/common';
 
-/** @deprecated */
-export const MDL_MENU_DIRECTIVES = [
+
+const MDL_MENU_DIRECTIVES = [
   MdlMenuComponent,
   MdlMenuItemComponent,
   MdlMenuItemFullBleedDeviderComponent

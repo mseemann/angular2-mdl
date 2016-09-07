@@ -136,8 +136,8 @@ export class MdlCardBorderDirective {}
 })
 export class MdlCardExpandDirective {}
 
-/** @deprecated */
-export const MDL_CARD_DIRECTIVES = [
+
+const MDL_CARD_DIRECTIVES = [
   MdlCardComponent,
   MdlCardTitleComponent,
   MdlCardMediaComponent,

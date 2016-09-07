@@ -43,8 +43,7 @@ export class MdlProgressComponent implements OnChanges {
 
 }
 
-/** @deprecated */
-export const MDL_PROGRESS_DIRECTIVES = [MdlProgressComponent];
+const MDL_PROGRESS_DIRECTIVES = [MdlProgressComponent];
 
 @NgModule({
   imports: [CommonModule],

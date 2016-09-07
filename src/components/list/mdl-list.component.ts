@@ -206,8 +206,7 @@ export class MdlListItemIconDirective {}
 })
 export class MdlListItemAvatarDirective {}
 
-/** @deprecated */
-export const MDL_LIST_DIRECTIVES = [
+const MDL_LIST_DIRECTIVES = [
   MdlListComponent,
   MdlListItemComponent,
   MdlListItemPrimaryContentComponent,

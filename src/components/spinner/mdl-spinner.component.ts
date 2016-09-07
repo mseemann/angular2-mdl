@@ -34,8 +34,7 @@ export class MdlSpinnerComponent {
 
 }
 
-/** @deprecated */
-export const MDL_SPINNER_DIRECTIVES = [MdlSpinnerComponent];
+const MDL_SPINNER_DIRECTIVES = [MdlSpinnerComponent];
 
 @NgModule({
   imports: [CommonModule],

@@ -14,8 +14,7 @@ import {
 export class MdlIconComponent {}
 
 
-/** @deprecated */
-export const MDL_ICON_DIRECTIVES = [MdlIconComponent];
+const MDL_ICON_DIRECTIVES = [MdlIconComponent];
 
 @NgModule({
   imports: [],

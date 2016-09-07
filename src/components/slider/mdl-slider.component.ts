@@ -120,8 +120,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
   }
 }
 
-/** @deprecated */
-export const MDL_SLIDER_DIRECTIVES = [MdlSliderComponent];
+const MDL_SLIDER_DIRECTIVES = [MdlSliderComponent];
 
 @NgModule({
   imports: [FormsModule, CommonModule],

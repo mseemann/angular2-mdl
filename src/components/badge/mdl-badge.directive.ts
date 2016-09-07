@@ -24,7 +24,7 @@ export class MdlBadgeDirective implements OnChanges {
     this.el = elementRef.nativeElement;
   }
 
-  public ngOnChanges(changes: {[key: string]: SimpleChange}) {
+  public ngOnChanges() {
     this.renderer.setElementAttribute(this.el, 'data-badge', this.mdlBadgeContent);
   }
 
@@ -46,8 +46,8 @@ export class MdlBadgeOverlapDirective {}
 })
 export class MdlBadgeNoBackgroundDirective {}
 
-/** @deprecated */
-export const MDL_BADGE_DIRECTIVES = [MdlBadgeDirective, MdlBadgeOverlapDirective, MdlBadgeNoBackgroundDirective];
+
+const MDL_BADGE_DIRECTIVES = [MdlBadgeDirective, MdlBadgeOverlapDirective, MdlBadgeNoBackgroundDirective];
 
 @NgModule({
   imports: [],

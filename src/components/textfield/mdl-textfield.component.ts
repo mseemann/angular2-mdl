@@ -230,8 +230,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 }
 
-/** @deprecated */
-export const MDL_TEXT_FIELD_DIRECTIVES = [MdlTextFieldComponent];
+
+const MDL_TEXT_FIELD_DIRECTIVES = [MdlTextFieldComponent];
 
 @NgModule({
   imports: [MdlIconModule, MdlButtonModule, FormsModule, CommonModule],

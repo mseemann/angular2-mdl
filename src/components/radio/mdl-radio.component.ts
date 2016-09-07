@@ -177,13 +177,10 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
 }
 
 
-/** @deprecated */
-export const MDL_RADIO_DIRECTIVES = [MdlRadioComponent];
-
 @NgModule({
   imports: [CommonModule, FormsModule],
-  exports: MDL_RADIO_DIRECTIVES,
+  exports: [MdlRadioComponent],
   providers: [MdlRadioGroupRegisty],
-  declarations: MDL_RADIO_DIRECTIVES,
+  declarations: [MdlRadioComponent],
 })
 export class MdlRadioModule {}

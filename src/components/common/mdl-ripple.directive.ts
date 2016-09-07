@@ -167,8 +167,7 @@ export class MdlListItemRippleDirective extends MdlRippleDirective implements On
 
 }
 
-/** @deprecated */
-export const MDL_COMMON_DIRECTIVES = [
+const MDL_COMMON_DIRECTIVES = [
   MdlCheckboxRippleDirective,
   MdlButtonRippleDirective,
   MdlRadioRippleDirective,

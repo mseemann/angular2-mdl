@@ -45,8 +45,7 @@ export class MdlSwitchComponent extends MdlCheckboxComponent {
 
 }
 
-/** @deprecated */
-export const MDL_SWITCH_DIRECTIVES = [MdlSwitchComponent];
+const MDL_SWITCH_DIRECTIVES = [MdlSwitchComponent];
 
 @NgModule({
   imports: [CommonModule, FormsModule],

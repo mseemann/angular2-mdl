@@ -98,8 +98,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
 }
 
 
-/** @deprecated */
-export const MDL_CHECKBOX_DIRECTIVES = [MdlCheckboxComponent];
+const MDL_CHECKBOX_DIRECTIVES = [MdlCheckboxComponent];
 
 @NgModule({
   imports: [CommonModule, FormsModule],
