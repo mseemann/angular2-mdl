@@ -44,6 +44,8 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 
 This package no longer supports the deprecated forms APIs. You have to use the FormsModule in you app module. For example:
 
+If you are still on RC5 you can use the angular2-mdl version 1.4.6.
+
 ```JavaScript
 import { FormsModule } from '@angular/forms';
 
