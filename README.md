@@ -13,6 +13,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 [![DevDependencies](https://david-dm.org/mseemann/angular2-mdl/dev-status.svg)](https://david-dm.org/mseemann/angular2-mdl#info=devDependencies&view=table)
 [![Code Climate](https://codeclimate.com/github/mseemann/angular2-mdl/badges/gpa.svg)](https://codeclimate.com/github/mseemann/angular2-mdl)
 [![Issue Stats](http://issuestats.com/github/mseemann/angular2-mdl/badge/issue?style=flat)](http://issuestats.com/github/mseemann/angular2-mdl)
+[![Issue Stats](http://issuestats.com/github/mseemann/angular2-mdl/badge/pr?style=flat)](http://issuestats.com/github/mseemann/angular2-mdl)
 
 [![Build Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
 
@@ -44,7 +45,7 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 
 This package no longer supports the deprecated forms APIs. You have to use the FormsModule in you app module. For example:
 
-If you are still on RC5 you can use the angular2-mdl version 1.4.6.
+**If you are still on RC5 you can use the angular2-mdl version 1.4.6.**
 
 ```JavaScript
 import { FormsModule } from '@angular/forms';
