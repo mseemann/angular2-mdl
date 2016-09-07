@@ -15,15 +15,13 @@ describe('Component: MdlLayoutDrawer', () => {
     });
   });
 
-  it('should add the css class mdl-layout__header to the host element', ( done ) => {
+  it('should add the css class mdl-layout__header to the host element', () => {
 
     let fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
     let layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).nativeElement;
     expect(layoutEl.classList.contains('mdl-layout__drawer')).toBe(true);
-
-    done();
 
   });
 

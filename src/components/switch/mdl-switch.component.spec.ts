@@ -13,7 +13,7 @@ describe('Component: MdlSwitch', () => {
     });
   }));
 
-  it('should add the css class mdl-switch to the host element', ( done ) => {
+  it('should add the css class mdl-switch to the host element', () => {
 
     let fixture = TestBed.createComponent(MdlTestSwitchComponent);
     fixture.detectChanges();
@@ -21,7 +21,6 @@ describe('Component: MdlSwitch', () => {
     let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(checkboxEl.classList.contains('mdl-switch')).toBe(true);
 
-    done();
   });
 
   it('should fire a change event if the state changed', async(() => {

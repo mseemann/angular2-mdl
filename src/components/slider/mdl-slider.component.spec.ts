@@ -1,6 +1,7 @@
 import {
   inject,
-  TestBed
+  TestBed,
+  async
 } from '@angular/core/testing';
 import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component } from '@angular/core';
@@ -11,18 +12,18 @@ describe('Component: MdlSlider', () => {
 
   var doc: HTMLDocument;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ MdlSliderModule, FormsModule ],
       declarations: [ MdlTestSliderComponent],
     });
-  });
-
-  beforeEach(inject([DOCUMENT], function (document) {
-    doc = document;
   }));
 
-  it('should add the css class mdl-slider__container to the host element', ( done ) => {
+  beforeEach(async(inject([DOCUMENT], function (document) {
+    doc = document;
+  })));
+
+  it('should add the css class mdl-slider__container to the host element', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
@@ -30,10 +31,9 @@ describe('Component: MdlSlider', () => {
     let iconEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(iconEl.classList.contains('mdl-slider__container')).toBe(true);
 
-    done();
-  });
+  }));
 
-  it('should support ngModel', ( done ) => {
+  it('should support ngModel', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
@@ -51,13 +51,11 @@ describe('Component: MdlSlider', () => {
 
       expect(instance.currentValue).toEqual(88);
 
-      done();
     });
 
+  }));
 
-  });
-
-  it('should call blur on mouseup events on the host element', ( done ) => {
+  it('should call blur on mouseup events on the host element', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
@@ -74,11 +72,9 @@ describe('Component: MdlSlider', () => {
 
     expect(hostElement.blur).toHaveBeenCalled();
 
-    done();
+  }));
 
-  });
-
-  it('should propagate mousedown events on the host to the input element', ( done ) => {
+  it('should propagate mousedown events on the host to the input element', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
@@ -97,12 +93,10 @@ describe('Component: MdlSlider', () => {
 
     expect(inputElement.dispatchEvent).toHaveBeenCalledTimes(1);
 
-    done();
-
-  });
+  }));
 
 
-  it('should not propagate mousedown events to the input element on other elements than the host', ( done ) => {
+  it('should not propagate mousedown events to the input element on other elements than the host', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
@@ -120,9 +114,7 @@ describe('Component: MdlSlider', () => {
     // if it would be propagated dispatchEvent would have been called 2 times.
     expect(inputElement.dispatchEvent).toHaveBeenCalledTimes(1);
 
-    done();
-
-  });
+  }));
 
 
 });

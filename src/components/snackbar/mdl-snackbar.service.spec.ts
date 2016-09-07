@@ -1,6 +1,7 @@
 import {
   inject,
-  TestBed
+  TestBed,
+  async
 } from '@angular/core/testing';
 import { Component, ViewContainerRef } from '@angular/core';
 import { MdlSnackbarService } from './mdl-snackbar.service';
@@ -9,18 +10,18 @@ describe('Service: MdlSnackbar', () => {
 
   var mdlSnackbarServcie: MdlSnackbarService;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MdlTestViewComponent],
       providers: [MdlSnackbarService]
     });
-  });
-
-  beforeEach(inject([MdlSnackbarService], function (service: MdlSnackbarService) {
-    mdlSnackbarServcie = service;
   }));
 
-  it('should show a snackbar and close the snackbar if the aciton button is clicked', ( done ) => {
+  beforeEach(async(inject([MdlSnackbarService], function (service: MdlSnackbarService) {
+    mdlSnackbarServcie = service;
+  })));
+
+  it('should show a snackbar and close the snackbar if the aciton button is clicked', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
@@ -32,7 +33,7 @@ describe('Service: MdlSnackbar', () => {
       message: 'm1',
       action: {
         handler: () => {
-          done();
+          // now the test completes because of async
         },
         text: 'OK'
       }
@@ -47,9 +48,9 @@ describe('Service: MdlSnackbar', () => {
     });
 
 
-  });
+  }));
 
-  it('should show a toastmessage and hide the message automatically', ( done ) => {
+  it('should show a toastmessage and hide the message automatically', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
@@ -67,20 +68,19 @@ describe('Service: MdlSnackbar', () => {
 
         setTimeout(() => {
           expect(mdlSnackbarComponent.isActive()).toBe(false);
-          done();
+          // now the test completes because of async
         }, 1500); // > 1000 + 250
       });
 
 
-  });
+  }));
 
-  it('should throw if no viewContainerRef is provided', ( done ) => {
+  it('should throw if no viewContainerRef is provided', async(() => {
       expect( () => {
         mdlSnackbarServcie.showToast('toast message', 1000);
       }).toThrow();
 
-      done();
-  });
+  }));
 
 });
 

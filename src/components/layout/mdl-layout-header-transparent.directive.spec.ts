@@ -13,7 +13,7 @@ describe('Component: MdlLayoutHeaderTransparent', () => {
   });
 
 
-  it('should add the css class mdl-layout__header--transparent to the header element', ( done ) => {
+  it('should add the css class mdl-layout__header--transparent to the header element', () => {
 
     let fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
@@ -21,7 +21,6 @@ describe('Component: MdlLayoutHeaderTransparent', () => {
     let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent)).nativeElement;
     expect(headerDebugElement.classList.contains('mdl-layout__header--transparent')).toBe(true);
 
-    done();
   });
 
 });

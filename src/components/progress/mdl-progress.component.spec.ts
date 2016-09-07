@@ -12,7 +12,7 @@ describe('Component: MdlProgress', () => {
     });
   });
 
-  it('should add the css class mdl-progress to the host element', ( done ) => {
+  it('should add the css class mdl-progress to the host element', () => {
 
     TestBed.overrideComponent(MdlTestProgressComponent, { set: {
       template: '<mdl-progress progress="44"></mdl-progress>' }
@@ -23,11 +23,9 @@ describe('Component: MdlProgress', () => {
     let progressEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(progressEl.classList.contains('mdl-progress')).toBe(true);
 
-    done();
-
   });
 
-  it('should call setBuffer - if the buffer changes', ( done ) => {
+  it('should call setBuffer - if the buffer changes', () => {
 
     TestBed.overrideComponent(MdlTestProgressComponent, { set: {
       template: '<mdl-progress progress="44" [buffer]="buffer"></mdl-progress>' }
@@ -44,8 +42,6 @@ describe('Component: MdlProgress', () => {
     component.buffer = 23;
     fixture.detectChanges();
     expect(progressComponent.setBuffer).toHaveBeenCalled();
-
-    done();
 
   });
 

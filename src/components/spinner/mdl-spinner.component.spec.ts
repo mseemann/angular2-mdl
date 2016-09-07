@@ -11,7 +11,7 @@ describe('Component: MdlProgress', () => {
     });
   });
 
-  it('should add the css class mdl-spinner to the host element', ( done ) => {
+  it('should add the css class mdl-spinner to the host element', () => {
 
     TestBed.overrideComponent(MdlTestSpinnerComponent, { set: {
       template: '<mdl-spinner active></mdl-spinner>' }
@@ -22,7 +22,6 @@ describe('Component: MdlProgress', () => {
     let spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spinnerEl.classList.contains('mdl-spinner')).toBe(true);
 
-    done();
   });
 
   it('should be possible to activate or deactivate the spinner', () => {
@@ -44,7 +43,7 @@ describe('Component: MdlProgress', () => {
 
   });
 
-  it('should be possible to colorize or decolorize the spinner', ( done ) => {
+  it('should be possible to colorize or decolorize the spinner', () => {
 
     TestBed.overrideComponent(MdlTestSpinnerComponent, { set: {
       template: '<mdl-spinner [single-color]="colored"></mdl-spinner>' }
@@ -60,8 +59,6 @@ describe('Component: MdlProgress', () => {
     fixture.detectChanges();
 
     expect(spinnerEl.classList.contains('mdl-spinner--single-color')).toBe(false);
-
-    done();
   });
 });
 

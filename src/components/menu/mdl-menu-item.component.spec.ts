@@ -12,7 +12,7 @@ describe('Component: MdlMenuItem', () => {
     });
   });
 
-  it('should add the css class mdl-menu__item to the host element', ( done ) => {
+  it('should add the css class mdl-menu__item to the host element', () => {
 
     TestBed.overrideComponent(MdlTestMenuItemComponent, { set: {
       template: '<mdl-menu><mdl-menu-item>x</mdl-menu-item></mdl-menu>' }
@@ -23,10 +23,9 @@ describe('Component: MdlMenuItem', () => {
     let menuItemEl: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
     expect(menuItemEl.classList.contains('mdl-menu__item')).toBe(true);
 
-    done();
   });
 
-  it('should call hideOnItemClicked on menu if the item is clicked', ( done ) => {
+  it('should call hideOnItemClicked on menu if the item is clicked', () => {
 
     TestBed.overrideComponent(MdlTestMenuItemComponent, { set: {
       template: '<mdl-menu><mdl-menu-item>x</mdl-menu-item></mdl-menu>' }
@@ -45,11 +44,9 @@ describe('Component: MdlMenuItem', () => {
 
     expect(menu.hideOnItemClicked).toHaveBeenCalled();
 
-    done();
-
   });
 
-  it('should call hideOnItemClicked on menu if the item is touched', ( done ) => {
+  it('should call hideOnItemClicked on menu if the item is touched', () => {
     TestBed.overrideComponent(MdlTestMenuItemComponent, { set: {
       template: '<mdl-menu><mdl-menu-item>x</mdl-menu-item></mdl-menu>' }
     });
@@ -68,10 +65,9 @@ describe('Component: MdlMenuItem', () => {
 
     expect(menu.hideOnItemClicked).toHaveBeenCalled();
 
-    done();
   });
 
-  it('should not call hideOnItemClicked on menu if the item is disbaled', ( done ) => {
+  it('should not call hideOnItemClicked on menu if the item is disbaled', () => {
     TestBed.overrideComponent(MdlTestMenuItemComponent, { set: {
       template: '<mdl-menu><mdl-menu-item disabled>x</mdl-menu-item></mdl-menu>' }
     });
@@ -89,7 +85,6 @@ describe('Component: MdlMenuItem', () => {
 
     expect(menu.hideOnItemClicked).not.toHaveBeenCalled();
 
-    done();
   });
 
 });

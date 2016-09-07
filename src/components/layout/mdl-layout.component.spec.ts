@@ -23,7 +23,7 @@ describe('Component: MdlLayout', () => {
     });
   });
 
-  it('should add the css class mdl-layout__container to the child of the host element', ( done ) => {
+  it('should add the css class mdl-layout__container to the child of the host element', () => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: '<mdl-layout>x</mdl-layout>' }
@@ -37,11 +37,10 @@ describe('Component: MdlLayout', () => {
 
     let layoutMainElement = <HTMLElement>layoutContainer.children.item(0);
     expect(layoutMainElement.classList.contains('mdl-layout')).toBe(true);
-    done();
 
   });
 
-  it('should configure layout mode standard if no mode is provided', (done) => {
+  it('should configure layout mode standard if no mode is provided', () => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: '<mdl-layout mdl-layout-mode="">x</mdl-layout>' }
@@ -51,10 +50,9 @@ describe('Component: MdlLayout', () => {
 
     expect(fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance.mode).toBe('standard');
 
-    done();
   });
 
-  it('should throw if an unsupported layout type is provided', (done) => {
+  it('should throw if an unsupported layout type is provided', () => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: '<mdl-layout mdl-layout-mode="test">x</mdl-layout>' }
@@ -65,10 +63,9 @@ describe('Component: MdlLayout', () => {
       fixture.detectChanges();
     }).toThrow();
 
-    done();
   });
 
-  it('should close the obfuscator if the escape key is pressed', (done) => {
+  it('should close the obfuscator if the escape key is pressed', () => {
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: `
           <mdl-layout>
@@ -93,11 +90,9 @@ describe('Component: MdlLayout', () => {
 
     expect(layoutComponent.isDrawerVisible).toBe(false);
 
-    done();
-
   });
 
-  it('should unregister the scroll listener if a content is present', ( done ) => {
+  it('should unregister the scroll listener if a content is present', () => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: `
@@ -119,8 +114,6 @@ describe('Component: MdlLayout', () => {
     layoutComponent.ngOnDestroy();
 
     expect(layoutComponent.scrollListener).toBeNull();
-
-    done();
 
   });
 

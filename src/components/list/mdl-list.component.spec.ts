@@ -12,7 +12,7 @@ describe('Components: MdlList*', () => {
     });
   });
 
-  it('should add the css class mdl-list to the element', ( done ) => {
+  it('should add the css class mdl-list to the element', () => {
 
     let fixture = TestBed.createComponent(TestApp);
     fixture.detectChanges();
@@ -57,10 +57,9 @@ describe('Components: MdlList*', () => {
     expect(mdlListItemtextBodyElement
       .nativeElement.classList.contains('mdl-list__item-text-body')).toBe(true);
 
-    done();
   });
 
-  it('should throw if mdl-list-item has no mdl-list parent', ( done ) => {
+  it('should throw if mdl-list-item has no mdl-list parent', () => {
 
     TestBed.overrideComponent(TestApp, { set: {
       template: '<mdl-list-item></mdl-list-item>' }
@@ -69,10 +68,9 @@ describe('Components: MdlList*', () => {
 
     expect( () => fixture.detectChanges() ).toThrow();
 
-    done();
   });
 
-  it('should throw if mdl-list-item-primary-content has no mdl-list-item parent', ( done ) => {
+  it('should throw if mdl-list-item-primary-content has no mdl-list-item parent', () => {
     TestBed.overrideComponent(TestApp, { set: {
       template: '<mdl-list-item-primary-content></mdl-list-item-primary-content>' }
     });
@@ -80,10 +78,9 @@ describe('Components: MdlList*', () => {
 
     expect( () => fixture.detectChanges() ).toThrow();
 
-    done();
   });
 
-  it('should throw if mdl-list-item-secondary-content has no mdl-list-item parent', ( done ) => {
+  it('should throw if mdl-list-item-secondary-content has no mdl-list-item parent', () => {
     TestBed.overrideComponent(TestApp, { set: {
       template: '<mdl-list-item-secondary-content></mdl-list-item-secondary-content>' }
     });
@@ -91,10 +88,9 @@ describe('Components: MdlList*', () => {
 
     expect( () => fixture.detectChanges() ).toThrow();
 
-    done();
   });
 
-  it('should throw if mdl-list-item-secondary-action has no mdl-list-item parent', ( done ) => {
+  it('should throw if mdl-list-item-secondary-action has no mdl-list-item parent', () => {
     TestBed.overrideComponent(TestApp, { set: {
       template: '<mdl-list-item-secondary-action></mdl-list-item-secondary-action>' }
     });
@@ -102,10 +98,9 @@ describe('Components: MdlList*', () => {
 
     expect( () => fixture.detectChanges() ).toThrow();
 
-    done();
   });
 
-  it('should throw if mdl-list-item-sub-title has no mdl-list-item-primary-content', ( done ) => {
+  it('should throw if mdl-list-item-sub-title has no mdl-list-item-primary-content', () => {
     TestBed.overrideComponent(TestApp, { set: {
       template: '<mdl-list-item-sub-title></mdl-list-item-sub-title>' }
     });
@@ -113,10 +108,9 @@ describe('Components: MdlList*', () => {
 
     expect( () => fixture.detectChanges() ).toThrow();
 
-    done();
   });
 
-  it('should throw if mdl-list-item-secondary-info has no mdl-list-item-secondary-content', ( done ) => {
+  it('should throw if mdl-list-item-secondary-info has no mdl-list-item-secondary-content', () => {
     TestBed.overrideComponent(TestApp, { set: {
       template: '<mdl-list-item-secondary-info></mdl-list-item-secondary-info>' }
     });
@@ -124,10 +118,9 @@ describe('Components: MdlList*', () => {
 
     expect( () => fixture.detectChanges() ).toThrow();
 
-    done();
   });
 
-  it('should throw if mdl-list-item-text-body has no mdl-list-item', ( done ) => {
+  it('should throw if mdl-list-item-text-body has no mdl-list-item', () => {
     TestBed.overrideComponent(TestApp, { set: {
       template: '<mdl-list-item-text-body></mdl-list-item-text-body>' }
     });
@@ -135,18 +128,15 @@ describe('Components: MdlList*', () => {
 
     expect( () => fixture.detectChanges() ).toThrow();
 
-    done();
   });
 
-  it('should only support max 3 lines', ( done ) => {
+  it('should only support max 3 lines', () => {
     TestBed.overrideComponent(TestApp, { set: {
       template: '<mdl-list-item lines="4"></mdl-list-item>' }
     });
     let fixture = TestBed.createComponent(TestApp);
 
     expect( () => fixture.detectChanges() ).toThrow();
-
-    done();
   });
 
 });

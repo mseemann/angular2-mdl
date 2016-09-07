@@ -12,7 +12,7 @@ describe('Component: MdlLayoutTabPanel', () => {
     });
   });
 
-  it('should add the css class mdl-layout__tab-panel to the host element', ( done ) => {
+  it('should add the css class mdl-layout__tab-panel to the host element', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-layout-tab-panel>x</mdl-layout-tab-panel>' }
@@ -23,11 +23,9 @@ describe('Component: MdlLayoutTabPanel', () => {
     let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(tabPanelEl.classList.contains('mdl-layout__tab-panel')).toBe(true);
 
-    done();
-
   });
 
-  it('should add the css class isActive to the host element if the panel is active', ( done ) => {
+  it('should add the css class isActive to the host element if the panel is active', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-layout-tab-panel>x</mdl-layout-tab-panel>' }
@@ -43,8 +41,6 @@ describe('Component: MdlLayoutTabPanel', () => {
     let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
 
     expect(tabPanelEl.classList.contains('is-active')).toBe(true);
-
-    done();
 
   });
 

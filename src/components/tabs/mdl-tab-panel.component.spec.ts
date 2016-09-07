@@ -16,7 +16,7 @@ describe('Component: MdlTabsPanel', () => {
     });
   });
 
-  it('should add the css class mdl-tabs__panel to the host element', ( done ) => {
+  it('should add the css class mdl-tabs__panel to the host element', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-tab-panel>x</mdl-tab-panel>' }
@@ -27,11 +27,9 @@ describe('Component: MdlTabsPanel', () => {
     let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(tabPanelEl.classList.contains('mdl-tabs__panel')).toBe(true);
 
-    done();
-
   });
 
-  it('should add the css class isActive to the host element if the panel is active', ( done ) => {
+  it('should add the css class isActive to the host element if the panel is active', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-tab-panel>x</mdl-tab-panel>' }
@@ -48,11 +46,9 @@ describe('Component: MdlTabsPanel', () => {
 
     expect(tabPanelEl.classList.contains('is-active')).toBe(true);
 
-    done();
-
   });
 
-  it('should activate the selected tab if the selectedIndex changed programmatically', ( done ) => {
+  it('should activate the selected tab if the selectedIndex changed programmatically', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: `
@@ -75,8 +71,6 @@ describe('Component: MdlTabsPanel', () => {
       fixture.debugElement.query(By.directive(MdlTabsComponent)).componentInstance;
 
     expect(mdlLayoutComponent.selectedIndex).toBe(1);
-
-    done();
 
   });
 

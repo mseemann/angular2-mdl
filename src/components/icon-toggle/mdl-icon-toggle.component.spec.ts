@@ -17,19 +17,17 @@ describe('Component: MdlIconToggle', () => {
 
   }));
 
-  beforeEach(inject([DOCUMENT], function (document) {
+  beforeEach(async(inject([DOCUMENT], function (document) {
     doc = document;
-  }));
+  })));
 
-  it('should add the css class mdl-icon-toggle to the host element', ( done ) => {
+  it('should add the css class mdl-icon-toggle to the host element', () => {
 
     let fixture = TestBed.createComponent(MdlTestIconToggleComponent);
     fixture.detectChanges();
 
     let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(checkboxEl.classList.contains('mdl-icon-toggle')).toBe(true);
-
-    done();
 
   });
 

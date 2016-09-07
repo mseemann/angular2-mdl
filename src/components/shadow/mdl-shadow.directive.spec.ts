@@ -12,7 +12,7 @@ describe('Directive: MdlShadow', () => {
   });
 
 
-  it('should add the css class mdl-shadow--2dp to the host element', ( done ) => {
+  it('should add the css class mdl-shadow--2dp to the host element', () => {
 
     TestBed.overrideComponent(MdlTestShadowComponent, { set: {
       template: '<span mdl-shadow="2"></span>' }
@@ -23,11 +23,9 @@ describe('Directive: MdlShadow', () => {
     let spanEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spanEl.classList.contains('mdl-shadow--2dp')).toBe(true);
 
-    done();
-
   });
 
-  it('should change the class from mdl-shadow--2dp to mdl-shadow--4dp if the directive value changes', ( done ) => {
+  it('should change the class from mdl-shadow--2dp to mdl-shadow--4dp if the directive value changes', () => {
 
     TestBed.overrideComponent(MdlTestShadowComponent, { set: {
       template: '<span [mdl-shadow]="shadow"></span>' }
@@ -43,10 +41,9 @@ describe('Directive: MdlShadow', () => {
     fixture.detectChanges();
     expect(spanEl.classList.contains('mdl-shadow--4dp')).toBe(true);
 
-    done();
   });
 
-  it('should throw if an unsupported shadow value is provided', ( done ) => {
+  it('should throw if an unsupported shadow value is provided', () => {
 
     TestBed.overrideComponent(MdlTestShadowComponent, { set: {
       template: '<span mdl-shadow="200"></span>' }
@@ -55,7 +52,6 @@ describe('Directive: MdlShadow', () => {
 
     expect( () => fixture.detectChanges() ).toThrow();
 
-    done();
   });
 
 });

@@ -11,15 +11,13 @@ describe('Component: MdlLayoutSpacer', () => {
     });
   });
 
-  it('should add the css class mdl-layout-sapcer to the host element', ( done ) => {
+  it('should add the css class mdl-layout-sapcer to the host element', () => {
 
     let fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
     let spacerEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spacerEl.classList.contains('mdl-layout-spacer')).toBe(true);
-
-    done();
 
   });
 

@@ -10,15 +10,13 @@ describe('Component: MdlLayoutTitle', () => {
       declarations: [ MdlTestComponent ]
     });
   });
-  it('should add the css class mdl-layout-title to the header element', ( done ) => {
+  it('should add the css class mdl-layout-title to the header element', () => {
 
     let fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
     let titleEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(titleEl.classList.contains('mdl-layout-title')).toBe(true);
-
-    done();
 
   });
 

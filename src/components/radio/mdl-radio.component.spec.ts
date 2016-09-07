@@ -25,7 +25,7 @@ describe('Component: MdlRadio', () => {
 
   });
 
-  it('should support ngModel', async(( ) => {
+  it('should support ngModel', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();
@@ -43,6 +43,7 @@ describe('Component: MdlRadio', () => {
       component2.nativeElement.click();
       fixture.detectChanges();
       fixture.whenStable().then( () => {
+
         expect(component.componentInstance.optionValue).toEqual('2');
 
       });
@@ -51,7 +52,7 @@ describe('Component: MdlRadio', () => {
 
   }));
 
-  it('should mark the component as focused and blured', ( ) => {
+  it('should mark the component as focused and blured', () => {
 
     let fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();

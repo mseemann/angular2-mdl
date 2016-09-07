@@ -12,7 +12,7 @@ describe('Component: MdlMenuItem-Directive', () => {
     });
   });
 
-  it('should add the css class mdl-menu__item--full-bleed-divider to the host element', ( done ) => {
+  it('should add the css class mdl-menu__item--full-bleed-divider to the host element', () => {
 
     let fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
@@ -20,7 +20,6 @@ describe('Component: MdlMenuItem-Directive', () => {
     let item: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
     expect(item.classList.contains('mdl-menu__item--full-bleed-divider')).toBe(true);
 
-    done();
   });
 
 

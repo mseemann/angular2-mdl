@@ -22,11 +22,11 @@ describe('Component: MdlCheckbox', () => {
   }));
 
 
-  beforeEach(inject([DOCUMENT], function (document) {
+  beforeEach(async(inject([DOCUMENT], function (document) {
     doc = document;
-  }));
+  })));
 
-  it('should add the css class mdl-checkbox to the host element', ( done ) => {
+  it('should add the css class mdl-checkbox to the host element', () => {
 
     let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
@@ -34,11 +34,10 @@ describe('Component: MdlCheckbox', () => {
     let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(checkboxEl.classList.contains('mdl-checkbox')).toBe(true);
 
-    done();
 
   });
 
-  it('should support ngModel', ( done ) => {
+  it('should support ngModel', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
@@ -55,14 +54,14 @@ describe('Component: MdlCheckbox', () => {
 
         // but el.checked is not true ?
         expect(checkboxComponent.value).toEqual(true);
-        done();
+
       });
 
     });
 
-  });
+  }));
 
-  it('should change the value on click', ( done ) => {
+  it('should change the value on click', () => {
 
     let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
@@ -75,11 +74,9 @@ describe('Component: MdlCheckbox', () => {
 
     expect(instance.checkboxValue1).toEqual(true);
 
-    done();
-
   });
 
-  it('should mark the component as focused and blured', ( done ) => {
+  it('should mark the component as focused and blured', () => {
     let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
 
@@ -100,8 +97,6 @@ describe('Component: MdlCheckbox', () => {
 
     fixture.detectChanges();
     expect(checkboxEl.classList.contains('is-focused')).toBe(false);
-
-    done();
 
   });
 

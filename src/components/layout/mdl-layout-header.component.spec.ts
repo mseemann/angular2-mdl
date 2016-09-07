@@ -16,7 +16,7 @@ describe('Component: MdlLayoutHeader', () => {
   });
 
 
-  it('should add the css class mdl-layout__header to the host element', ( done ) => {
+  it('should add the css class mdl-layout__header to the host element', () => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: `
@@ -31,10 +31,9 @@ describe('Component: MdlLayoutHeader', () => {
     let layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent)).nativeElement;
     expect(layoutEl.classList.contains('mdl-layout__header')).toBe(true);
 
-    done();
   });
 
-  it('should decompact the header if the header is compact in waterfall mode', ( done ) => {
+  it('should decompact the header if the header is compact in waterfall mode', () => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: `
@@ -59,11 +58,9 @@ describe('Component: MdlLayoutHeader', () => {
     header.el.click();
     expect(header.isCompact).toBe(false);
 
-    done();
-
   });
 
-  it('should set animating to false if the transisition ends', ( done ) => {
+  it('should set animating to false if the transisition ends', () => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: `
@@ -84,10 +81,9 @@ describe('Component: MdlLayoutHeader', () => {
 
     expect(header.isAnimating).toBe(false);
 
-    done();
   });
 
-  it('should compact the header if the content is scrolled down and not compact on the contrary', ( done ) => {
+  it('should compact the header if the content is scrolled down and not compact on the contrary', () => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: `
@@ -114,11 +110,9 @@ describe('Component: MdlLayoutHeader', () => {
 
     expect(headerDebugElement.componentInstance.isCompact).toBe(false);
 
-    done();
-
   });
 
-  it('should not animate the header if the screen is samll', ( done ) => {
+  it('should not animate the header if the screen is samll', () => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: `
@@ -143,11 +137,9 @@ describe('Component: MdlLayoutHeader', () => {
     mdlLayout.onScroll(0);
     expect(headerDebugElement.componentInstance.isAnimating).toBe(false);
 
-    done();
-
   });
 
-  it('should not run any scroll code if the header is not in waterfall mode or is animating', ( done ) => {
+  it('should not run any scroll code if the header is not in waterfall mode or is animating', () => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: `
@@ -175,7 +167,6 @@ describe('Component: MdlLayoutHeader', () => {
     mdlLayout.onScroll(600);
     expect(headerDebugElement.componentInstance.isCompact).toBe(false);
 
-    done();
   });
 });
 

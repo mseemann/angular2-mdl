@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import {
@@ -17,7 +17,7 @@ describe('Component: MdlTooltip', () => {
     });
   });
 
-  it('should add the css class mdl-tooltip to the host element', ( done ) => {
+  it('should add the css class mdl-tooltip to the host element', () => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
       template: '<mdl-tooltip>x</mdl-tooltip>' }
@@ -28,10 +28,9 @@ describe('Component: MdlTooltip', () => {
     let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
     expect(tooltipEl.classList.contains('mdl-tooltip')).toBe(true);
 
-    done();
   });
 
-  it('should add the css class mdl-tooltip--large to the host element', ( done ) => {
+  it('should add the css class mdl-tooltip--large to the host element', () => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
       template: `
@@ -45,10 +44,9 @@ describe('Component: MdlTooltip', () => {
     let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
     expect(tooltipEl.classList.contains('mdl-tooltip--large')).toBe(true);
 
-    done();
   });
 
-  it('should add create a simpletooltipcomponent for the mdl-tooltip directive with text', ( done ) => {
+  it('should add create a simpletooltipcomponent for the mdl-tooltip directive with text', async(() => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
       template: `
@@ -67,12 +65,11 @@ describe('Component: MdlTooltip', () => {
         .query(By.directive(MdlSimpleTooltipComponent)).nativeElement;
       expect(tooltipEl.classList.contains('mdl-tooltip')).toBe(true);
 
-      done();
     }, 0);
 
-  });
+  }));
 
-  it('should add the css class is-active if the mous enters the directive element', ( done ) => {
+  it('should add the css class is-active if the mous enters the directive element', () => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
       template: `
@@ -92,11 +89,9 @@ describe('Component: MdlTooltip', () => {
     let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
     expect(tooltipEl.classList.contains('is-active')).toBe(true);
 
-    done();
-
   });
 
-  it('should remove the css class is-active if the mouse leaves the directive element', ( done ) => {
+  it('should remove the css class is-active if the mouse leaves the directive element', () => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
       template: `
@@ -117,11 +112,9 @@ describe('Component: MdlTooltip', () => {
 
     expect(tooltipEl.classList.contains('is-active')).toBe(false);
 
-    done();
-
   });
 
-  it('should add the css class mdl-tooltip--{position} if the position is set to {position}', ( done ) => {
+  it('should add the css class mdl-tooltip--{position} if the position is set to {position}', () => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
       template: `
@@ -143,7 +136,6 @@ describe('Component: MdlTooltip', () => {
       let tooltipEl: HTMLElement = debugElement.nativeElement;
       expect(tooltipEl.classList.contains(`mdl-tooltip--${position}`)).toBe(true);
 
-      done();
     });
 
   });

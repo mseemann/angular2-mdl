@@ -13,7 +13,7 @@ describe('Component: MdlMenu', () => {
     });
   });
 
-  it('should add the css class mdl-menu__container to the host element', ( done ) => {
+  it('should add the css class mdl-menu__container to the host element', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-menu>x</mdl-menu>' }
@@ -24,11 +24,9 @@ describe('Component: MdlMenu', () => {
     let menuEl: HTMLElement = fixture.debugElement.query(By.css('.mdl-menu__container')).nativeElement;
     expect(menuEl).toBeDefined();
 
-    done();
-
   });
 
-  it('should export the component instance as mdlMenu', ( done ) => {
+  it('should export the component instance as mdlMenu', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-menu #menu="mdlMenu">x</mdl-menu>' }
@@ -40,10 +38,9 @@ describe('Component: MdlMenu', () => {
 
     expect(references['menu']).toBeDefined();
 
-    done();
   });
 
-  it('should throw if toggle is called without a button', ( done ) => {
+  it('should throw if toggle is called without a button', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-menu>x</mdl-menu>' }
@@ -57,10 +54,9 @@ describe('Component: MdlMenu', () => {
       menu.toggle(null, null);
     }).toThrow();
 
-    done();
   });
 
-  it('should show the menu if the the menu button is clicked and hide if clicked again', ( done ) => {
+  it('should show the menu if the the menu button is clicked and hide if clicked again', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: `
@@ -89,10 +85,9 @@ describe('Component: MdlMenu', () => {
     expect(menu.container.style.right).toBe('');
     expect(menu.container.style.bottom).toBe('');
 
-    done();
   });
 
-  it('should be possible to show a menu bottom-right aligned', ( done ) => {
+  it('should be possible to show a menu bottom-right aligned', () => {
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: `
           <mdl-button #btn="mdlButton" (click)="m1.toggle($event, btn)">button</mdl-button>
@@ -115,11 +110,9 @@ describe('Component: MdlMenu', () => {
     expect(menu.container.style.right).not.toBe('');
     expect(menu.container.style.bottom).toBe('');
 
-    done();
-
   });
 
-  it('should be possible to show a menu top-left aligned', ( done ) => {
+  it('should be possible to show a menu top-left aligned', () => {
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: `
           <mdl-button #btn="mdlButton" (click)="m1.toggle($event, btn)">button</mdl-button>
@@ -141,11 +134,10 @@ describe('Component: MdlMenu', () => {
     expect(menu.container.style.top).toBe('');
     expect(menu.container.style.right).toBe('');
     expect(menu.container.style.bottom).not.toBe('');
-    done();
 
   });
 
-  it('should be possible to show a menu top-right aligned', ( done ) => {
+  it('should be possible to show a menu top-right aligned', () => {
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: `
           <mdl-button #btn="mdlButton" (click)="m1.toggle($event, btn)">button</mdl-button>
@@ -168,11 +160,9 @@ describe('Component: MdlMenu', () => {
     expect(menu.container.style.right).not.toBe('');
     expect(menu.container.style.bottom).not.toBe('');
 
-    done();
-
   });
 
-  it('should be possible to show a menu unaligned', ( done ) => {
+  it('should be possible to show a menu unaligned', () => {
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: `
           <mdl-button #btn="mdlButton" (click)="m1.toggle($event, btn)">button</mdl-button>
@@ -193,7 +183,6 @@ describe('Component: MdlMenu', () => {
     expect(menu.container.style.left).toBe('');
     expect(menu.container.style.top).toBe('');
     expect(menu.container.style.right).toBe('');
-    done();
 
   });
 

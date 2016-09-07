@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { MdlTextFieldComponent, MdlTextFieldModule, DISABLE_NATIVE_VALIDITY_CHECKING } from './mdl-textfield.component';
@@ -15,7 +15,7 @@ describe('Component: MdlTextField', () => {
   });
 
 
-  it('should add the css class mdl-textfield to the host element', ( done ) => {
+  it('should add the css class mdl-textfield to the host element', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" label="Text..." ></mdl-textfield>' }
@@ -26,10 +26,9 @@ describe('Component: MdlTextField', () => {
     let tfEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(tfEl.classList.contains('mdl-textfield')).toBe(true);
 
-    done();
   });
 
-  it('should support ngModel', ( done ) => {
+  it('should support ngModel', async(() => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" label="Text..." [(ngModel)]="text1"></mdl-textfield>' }
@@ -49,13 +48,12 @@ describe('Component: MdlTextField', () => {
         fixture.detectChanges();
         expect(instance.text1).toEqual('text2');
 
-        done();
       });
     });
 
-  });
+  }));
 
-  it('should mark the component as focused and blured', ( done ) => {
+  it('should mark the component as focused and blured', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" label="Text..." [(ngModel)]="text1"></mdl-textfield>' }
@@ -81,10 +79,9 @@ describe('Component: MdlTextField', () => {
     fixture.detectChanges();
     expect(hostEl.classList.contains('is-focused')).toBe(false);
 
-    done();
   });
 
-  it('should mark the component as invalid ngModel', ( done ) => {
+  it('should mark the component as invalid ngModel', async(() => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" label="Text..." [(ngModel)]="text1" pattern="a"></mdl-textfield>' }
@@ -100,12 +97,10 @@ describe('Component: MdlTextField', () => {
 
     fixture.whenStable().then( () => {
       expect(hostEl.classList.contains('is-invalid')).toBe(true);
-
-      done();
     });
-  });
+  }));
 
-  it('should create a textare if row is specified', ( done ) => {
+  it('should create a textare if row is specified', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" label="Text..." rows="3"></mdl-textfield>' }
@@ -117,11 +112,9 @@ describe('Component: MdlTextField', () => {
 
     expect(el).toBeDefined();
 
-    done();
-
   });
 
-  it('should restrict the line count if maxrows is present', ( done ) => {
+  it('should restrict the line count if maxrows is present', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" label="Text..." rows="3" [maxrows]="1"></mdl-textfield>' }
@@ -142,11 +135,10 @@ describe('Component: MdlTextField', () => {
 
     expect(e.preventDefault).toHaveBeenCalled();
 
-    done();
 
   });
 
-  it('should not restrict the line count if maxrows is -1', ( done ) => {
+  it('should not restrict the line count if maxrows is -1', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: ' <mdl-textfield type="text" label="Text..." rows="3" [maxrows]="-1"></mdl-textfield>' }
@@ -166,11 +158,9 @@ describe('Component: MdlTextField', () => {
 
     expect(e.preventDefault).not.toHaveBeenCalled();
 
-    done();
-
   });
 
-  it('should create an expandable textfield if icon is present', ( done ) => {
+  it('should create an expandable textfield if icon is present', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" icon="search"></mdl-textfield>' }
@@ -182,10 +172,9 @@ describe('Component: MdlTextField', () => {
 
     expect(el.classList.contains('mdl-textfield--expandable')).toBe(true);
 
-    done();
   });
 
-  it('should activate the expandable if the icon button is clicked', ( done ) => {
+  it('should activate the expandable if the icon button is clicked', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" icon="search"></mdl-textfield>' }
@@ -201,11 +190,9 @@ describe('Component: MdlTextField', () => {
     let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
     expect(el.classList.contains('is-focused')).toBe(true);
 
-    done();
-
   });
 
-  it('should add name and id to the input element if provided', ( done ) => {
+  it('should add name and id to the input element if provided', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" label="Text..." id="id-1" name="name-1"></mdl-textfield>' }
@@ -218,10 +205,9 @@ describe('Component: MdlTextField', () => {
     expect(inputEl.name).toEqual('name-1', 'name is not set');
     expect(inputEl.id).toEqual('id-1', 'id is not set');
 
-    done();
   });
 
-  it('should autogenerate an id that must match the labels for-attribute', ( done ) => {
+  it('should autogenerate an id that must match the labels for-attribute', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" label="Text..." name="name-1"></mdl-textfield>' }
@@ -239,7 +225,6 @@ describe('Component: MdlTextField', () => {
 
     expect(labelEl.htmlFor).toBeDefined(id);
 
-    done();
   });
 
   it('should have native validity check', () => {

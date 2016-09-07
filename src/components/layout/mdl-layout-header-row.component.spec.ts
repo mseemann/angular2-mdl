@@ -11,7 +11,7 @@ describe('Component: MdlLayoutHeaderRow', () => {
     });
   });
 
-  it('should add the css class mdl-layout__header-row to the header element', ( done ) => {
+  it('should add the css class mdl-layout__header-row to the header element', () => {
 
     let fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
@@ -19,7 +19,6 @@ describe('Component: MdlLayoutHeaderRow', () => {
     let headerEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(headerEl.classList.contains('mdl-layout__header-row')).toBe(true);
 
-    done();
   });
 
 

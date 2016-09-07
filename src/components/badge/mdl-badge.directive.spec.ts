@@ -12,7 +12,7 @@ describe('Directive: MdlBadge', () => {
     });
   });
 
-  it('should add the css class mdl-badge and the attribute data-badge to the host element', ( done ) => {
+  it('should add the css class mdl-badge and the attribute data-badge to the host element', () => {
 
    TestBed.overrideComponent(MdlTestBadgeComponent, { set: {
       template: '<span mdl-badge="3"></span>' }
@@ -25,11 +25,9 @@ describe('Directive: MdlBadge', () => {
 
     expect(spanEl.getAttribute('data-badge')).toBe('3');
 
-    done();
-
   });
 
-  it('should add the class mdl-badge--overlap and mdl-badge-no-background to the host element', ( done ) => {
+  it('should add the class mdl-badge--overlap and mdl-badge-no-background to the host element', () => {
 
     TestBed.overrideComponent(MdlTestBadgeComponent, { set: {
       template: '<span mdl-badge="3" mdl-badge-no-background mdl-badge-overlap></span>' }
@@ -42,8 +40,6 @@ describe('Directive: MdlBadge', () => {
     expect(spanEl.classList.contains('mdl-badge')).toBe(true);
     expect(spanEl.classList.contains('mdl-badge--overlap')).toBe(true);
     expect(spanEl.classList.contains('mdl-badge--no-background')).toBe(true);
-
-    done();
 
   });
 
