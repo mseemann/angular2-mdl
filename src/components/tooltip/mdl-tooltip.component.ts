@@ -2,18 +2,13 @@ import {
   Component,
   ComponentMetadata,
   ElementRef,
-  Renderer
+  Renderer, HostBinding
 } from '@angular/core';
 import { MdlTooltipPositionService } from './mdl-tooltip-position.service';
 
 const IS_ACTIVE = 'is-active';
 
-let tooltipComponentMeta = new ComponentMetadata({
-  providers: [MdlTooltipPositionService]
-});
-
-tooltipComponentMeta.selector = 'mdl-simple-tooltip';
-tooltipComponentMeta.host = {
+const host:  {[key: string]: string;} = {
   '[class.mdl-tooltip]': 'true',
   '[class.mdl-tooltip--large]': 'large',
   '[class.mdl-tooltip--left]': 'position=="left"',
@@ -21,14 +16,19 @@ tooltipComponentMeta.host = {
   '[class.mdl-tooltip--top]': 'position=="top"',
   '[class.mdl-tooltip--bottom]': 'position=="bottom"'
 };
-tooltipComponentMeta.template = '<div>{{tooltipText}}</div>';
 
-@Component(tooltipComponentMeta)
+@Component({
+  selector: 'mdl-simple-tooltip',
+  host: host,
+  template: '<div>{{tooltipText}}</div>',
+  providers: [MdlTooltipPositionService]
+})
 export class MdlSimpleTooltipComponent {
   public tooltipText: string;
   public element: HTMLElement;
   public large = false;
   public position: string;
+
 
   constructor(
     private elRef: ElementRef,
@@ -57,12 +57,13 @@ export class MdlSimpleTooltipComponent {
   }
 }
 
-
-tooltipComponentMeta.selector = 'mdl-tooltip';
-tooltipComponentMeta.template = '<div><ng-content></ng-content></div>';
-tooltipComponentMeta.exportAs = 'mdlTooltip';
-
-@Component(tooltipComponentMeta)
+@Component({
+  selector: 'mdl-tooltip',
+  template: '<div><ng-content></ng-content></div>',
+  exportAs: 'mdlTooltip',
+  host: host,
+  providers: [MdlTooltipPositionService]
+})
 export class MdlTooltipComponent extends MdlSimpleTooltipComponent {
   constructor(elRef: ElementRef, renderer: Renderer, mdlTooltipPositionService: MdlTooltipPositionService) {
     super(elRef, renderer, mdlTooltipPositionService);

@@ -21,5 +21,9 @@
   "files": [
     "main.ts",
     "typings.d.ts"
-  ]
+  ],
+
+  "angularCompilerOptions": {
+       "genDir": "aot"
+  }
 }

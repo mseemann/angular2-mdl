@@ -10,9 +10,8 @@ import {
   IMdlTableModelItem
 } from './mdl-table';
 
-let tableComponentMeta = new ComponentMetadata({
-    selector: 'mdl-table',
-    template: `
+
+const template = `
         <table class="mdl-data-table">
            <thead>
            <tr>
@@ -39,16 +38,20 @@ let tableComponentMeta = new ComponentMetadata({
            </tr>
            </tbody>
         </table>  
-    `,
-    styles: [
-      `
+    `;
+const styles = [
+  `
     :host{
       display:inline-block;
     }
     `
-    ]
-});
-@Component(tableComponentMeta)
+];
+
+@Component({
+  selector: 'mdl-table',
+  template: template,
+  styles: styles
+})
 export class MdlTableComponent {
 
   @Input('table-model') public model: IMdlTableModel;
@@ -56,8 +59,12 @@ export class MdlTableComponent {
   protected selectable = false;
 }
 
-tableComponentMeta.selector = 'mdl-table-selectable';
-@Component(tableComponentMeta)
+
+@Component({
+  selector: 'mdl-table-selectable',
+  template: template,
+  styles: styles
+})
 export class MdlSelectableTableComponent extends MdlTableComponent {
 
   @Input('table-model') public model: IMdlTableModel;

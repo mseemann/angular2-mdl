@@ -63,15 +63,17 @@ export class AbstractMdlTooltipDirective implements OnInit {
 }
 
 
-let tooltipMeta =  new DirectiveMetadata();
-tooltipMeta.host = {
+const host: {[key: string]: string;} = {
   '(mouseenter)': 'onMouseEnter($event)',
   '(touchend)': 'onMouseEnter($event)',
   '(mouseleave)': 'onMouseLeave()'
 };
-tooltipMeta.selector = '[mdl-tooltip]';
 
-@Directive(tooltipMeta)
+
+@Directive({
+  selector: '[mdl-tooltip]',
+  host: host
+})
 export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
 
   @Input('mdl-tooltip')           public tooltip: string|MdlTooltipComponent;
@@ -85,9 +87,10 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
   }
 }
 
-tooltipMeta.selector = '[mdl-tooltip-large]';
-
-@Directive(tooltipMeta)
+@Directive({
+  selector: '[mdl-tooltip-large]',
+  host: host
+})
 export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
 
   @Input('mdl-tooltip-large')     public tooltip: string|MdlTooltipComponent;
