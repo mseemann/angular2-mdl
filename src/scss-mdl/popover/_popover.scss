@@ -1,0 +1,19 @@
+@import "../variables";
+@import "../mixins";
+
+.mdl-popover__container {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  position: absolute;
+  overflow: visible;
+  visibility: hidden;
+  z-index: -1;
+
+  &.is-visible,
+  &.is-animating {
+    z-index: 999;
+    visibility: visible;
+  }
+}
