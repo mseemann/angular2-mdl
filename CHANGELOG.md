@@ -1,7 +1,13 @@
-<a name="1.5.2"></a>
-# 1.5.2 (next)
+<a name="1.5.3"></a>
+# 1.5.3 (next)
 
 ### Bug Fixes
+
+<a name="1.5.2"></a>
+# 1.5.2 (2016-09-10)
+
+### Bug Fixes
+* https://github.com/mseemann/angular2-mdl/issues/33 (Hamburger Icon misaligned in mdl 1.2.0)
 
 
 <a name="1.5.1"></a>
