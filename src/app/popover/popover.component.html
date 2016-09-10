@@ -9,24 +9,13 @@
   <mdl-icon>more_vert</mdl-icon>
 </button>
 
-<mdl-popover #p1 mdl-menu-position="bottom-left">
-  <mdl-card mdl-shadow="2">
-    <mdl-card-title>
-      <h2 mdl-card-title-text>Welcome</h2>
-    </mdl-card-title>
-    <mdl-card-supporting-text>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Mauris sagittis pellentesque lacus eleifend lacinia...
-    </mdl-card-supporting-text>
-    <mdl-card-actions mdl-card-border>
-      <button mdl-button mdl-colored mdl-ripple (click)="action('action 1')">
-        Action 1
-      </button>
-      <button mdl-button mdl-colored mdl-ripple (click)="action('action 2')">
-        Action 2
-      </button>
-    </mdl-card-actions>
-  </mdl-card>
+<mdl-popover #p1 mdl-menu-position="bottom-left" width="500px">
+  <div mdl-shadow="6" style="padding: 1rem;">
+    <div>
+      <b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit.
+      Ut sed nulla commodo, <i>dignissim magna quis</i>, tristique turpis.
+    </div>
+  </div>
 </mdl-popover>
 
 <div style="width: 50%;">
@@ -40,32 +29,76 @@
     type="text"
     label="Text..."
     [(ngModel)]="option1"
-    placeholder="select"></mdl-textfield>
-
-<mdl-popover #p2 mdl-menu-position="bottom-left" hide-on-click="true">
-  <mdl-card mdl-shadow="2">
-    <mdl-list>
-      <mdl-list-item mdl-ripple (click)="action('Bryan Cranston')">
-        <mdl-list-item-primary-content>
-          Bryan Cranston
-        </mdl-list-item-primary-content>
-      </mdl-list-item>
-      <mdl-list-item  mdl-ripple (click)="action('Aaron Paul')">
-        <mdl-list-item-primary-content>
-          Aaron Paul
-        </mdl-list-item-primary-content>
-      </mdl-list-item>
-      <mdl-list-item  mdl-ripple (click)="action('Bob Odenkirk')">
-        <mdl-list-item-primary-content>
-          Bob Odenkirk
-        </mdl-list-item-primary-content>
-      </mdl-list-item>
-    </mdl-list>
-  </mdl-card>
-</mdl-popover>
+    placeholder="select">
+  <mdl-popover #p2 mdl-menu-position="bottom-left" hide-on-click="true" width="100%">
+    <div mdl-shadow="6">
+      <mdl-list>
+        <mdl-list-item mdl-ripple [class.is-active]="option1 == 'Bryan Cranston'" (click)="action('Bryan Cranston')">
+          <mdl-list-item-primary-content>
+            Bryan Cranston
+          </mdl-list-item-primary-content>
+        </mdl-list-item>
+        <mdl-list-item  mdl-ripple [class.is-active]="option1 == 'Aaron Paul'" (click)="action('Aaron Paul')">
+          <mdl-list-item-primary-content>
+            Aaron Paul
+          </mdl-list-item-primary-content>
+        </mdl-list-item>
+        <mdl-list-item  mdl-ripple [class.is-active]="option1 == 'Bob Odenkirk'" (click)="action('Bob Odenkirk')">
+          <mdl-list-item-primary-content>
+            Bob Odenkirk
+          </mdl-list-item-primary-content>
+        </mdl-list-item>
+      </mdl-list>
+    </div>
+  </mdl-popover>
+</mdl-textfield>
 
 <div style="width: 50%;">
   Quisque euismod, leo vel egestas convallis, risus
   lacus tempor magna, nec volutpat odio neque ac ipsum.
   Nam ac dui eu odio fermentum faucibus sit amet efficitur elit.
+</div>
+
+<mdl-textfield
+    #textfield2
+    (click)="p3.toggle($event, textfield2)"
+    type="text"
+    label="Text..."
+    placeholder="multiselect">
+  <mdl-popover #p3 mdl-menu-position="bottom-left" hide-on-click="false" width="100%">
+    <div mdl-shadow="6">
+      <mdl-list>
+        <mdl-list-item mdl-ripple [class.is-active]="options.one" (click)="setOption($event,'one')">
+          <mdl-list-item-secondary-action>
+            <mdl-checkbox mdl-ripple [(ngModel)]="options.one"></mdl-checkbox>
+          </mdl-list-item-secondary-action>
+          <mdl-list-item-primary-content>
+            Bryan Cranston
+          </mdl-list-item-primary-content>
+        </mdl-list-item>
+        <mdl-list-item mdl-ripple [class.is-active]="options.two" (click)="setOption($event,'two')">
+          <mdl-list-item-secondary-action>
+            <mdl-checkbox mdl-ripple [(ngModel)]="options.two"></mdl-checkbox>
+          </mdl-list-item-secondary-action>
+          <mdl-list-item-primary-content>
+            Aaron Paul
+          </mdl-list-item-primary-content>
+        </mdl-list-item>
+        <mdl-list-item mdl-ripple [class.is-active]="options.three" (click)="setOption($event,'three')">
+          <mdl-list-item-secondary-action>
+            <mdl-checkbox mdl-ripple  [(ngModel)]="options.three"></mdl-checkbox>
+          </mdl-list-item-secondary-action>
+          <mdl-list-item-primary-content>
+            Bob Odenkirk
+          </mdl-list-item-primary-content>
+        </mdl-list-item>
+      </mdl-list>
+    </div>
+  </mdl-popover>
+</mdl-textfield>
+
+<div style="width: 50%;">
+  Nam ac dui eu odio fermentum faucibus sit amet efficitur elit.
+  Quisque euismod, leo vel egestas convallis, risus
+  lacus tempor magna, nec volutpat odio neque ac ipsum.
 </div>

@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   border: none;
+  background: #fff;
   position: absolute;
   overflow: visible;
   visibility: hidden;
@@ -15,5 +16,21 @@
   &.is-animating {
     z-index: 999;
     visibility: visible;
+  }
+
+  .mdl-list {
+    padding: 0;
+
+    .mdl-list__item {
+      cursor: pointer;
+
+      &:hover {
+        background-color: $default-item-hover-bg-color;
+      }
+
+      &.is-active {
+        background-color: $default-item-active-bg-color;
+      }
+    }
   }
 }

@@ -19,6 +19,7 @@ import { AbstractDemoComponent } from './../abstract-demo.component';
 })
 export class PopoverDemo extends AbstractDemoComponent {
   option1: string;
+  options: any = { one: true};
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
@@ -28,4 +29,10 @@ export class PopoverDemo extends AbstractDemoComponent {
     this.option1 = option;
     console.log('clicked action', option);
   }
+
+  public setOption(event, option) {
+    event.stopPropagation();
+    this.options[option] = !this.options[option];
+  }
+
 }

@@ -28,7 +28,7 @@ CSS_ALIGN_MAP[UNALIGNED] = 'mdl-menu--unaligned';
   },
   exportAs: 'mdlPopover',
   template: `
-   <div #container class="mdl-popover__container is-upgraded">
+   <div #container class="mdl-popover__container is-upgraded" [style.width]="width">
       <ng-content></ng-content>
    </div>
   `,
@@ -36,6 +36,7 @@ CSS_ALIGN_MAP[UNALIGNED] = 'mdl-menu--unaligned';
 export class MdlPopoverComponent implements OnInit, AfterViewInit {
   @Input('mdl-menu-position') public position: string;
   @Input('hide-on-click') public hideOnClick: boolean = false;
+  @Input('width') public width: string = '';
 
   @ViewChild('container') private containerChild: ElementRef;
   private container: HTMLElement;
@@ -70,6 +71,7 @@ export class MdlPopoverComponent implements OnInit, AfterViewInit {
     if (this.isVisible) {
       this.hide();
     } else {
+      this.hideAllPopovers();
       this.show(event, mdlButton);
     }
   }
@@ -77,6 +79,12 @@ export class MdlPopoverComponent implements OnInit, AfterViewInit {
   public hide() {
     this.container.classList.remove('is-visible');
     this.isVisible = false;
+  }
+
+  public hideAllPopovers() {
+    [].map.call(document.querySelectorAll('.mdl-popover__container.is-visible'), function(el) {
+      el.classList.remove('is-visible');
+    });
   }
 
   public show(event, mdlButton) {

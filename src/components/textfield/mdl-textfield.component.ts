@@ -107,6 +107,7 @@ const IS_DIRTY = 'is-dirty';
      <span class="mdl-textfield__error">{{errorMessage}}</span>
       </div>
    </div>
+   <ng-content></ng-content>
    `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
