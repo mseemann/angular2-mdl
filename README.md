@@ -23,7 +23,7 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 
 
 
-### Status of the npm package version 1.5 (mdl version 1.2.1; angular2 rc6)
+### Status of the npm package version 1.6 (mdl version 1.2.1; angular2 rc7)
 
 - Badges
 - Buttons 
@@ -45,6 +45,7 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 
 This package no longer supports the deprecated forms APIs. You have to use the FormsModule in you app module. For example:
 
+**If you are still on RC6 you can use the angular2-mdl version 1.5.1.**
 **If you are still on RC5 you can use the angular2-mdl version 1.4.6.**
 
 ```JavaScript

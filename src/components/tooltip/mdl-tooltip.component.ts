@@ -1,8 +1,7 @@
 import {
   Component,
-  ComponentMetadata,
   ElementRef,
-  Renderer, HostBinding
+  Renderer
 } from '@angular/core';
 import { MdlTooltipPositionService } from './mdl-tooltip-position.service';
 

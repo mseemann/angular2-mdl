@@ -64,6 +64,7 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
 export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChanges {
 
   @ContentChild(MdlLayoutHeaderComponent) private header;
+  // will be set to undefined, if not a direct child or not present
   @ContentChild(MdlLayoutDrawerComponent) private drawer;
   @ContentChild(MdlLayoutContentComponent) private content;
 
@@ -97,10 +98,6 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
       this.updateSelectedTabIndex();
     }
 
-    // set this.drawer to null, if the drawer is not a direct child if this layout. It may be a drywer of a sub layout.
-    if (this.drawer && !this.drawer.isDrawerDirectChildOf(this)) {
-      this.drawer = null;
-    }
   }
 
   public ngOnChanges(changes: SimpleChanges): any {
@@ -243,6 +240,6 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   }
 
   public hasDrawer() {
-    return this.drawer !== null;
+    return !!this.drawer;
   }
 }

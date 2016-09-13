@@ -1,6 +1,5 @@
 import {
   Directive,
-  DirectiveMetadata,
   Input,
   OnInit,
   ViewContainerRef,
