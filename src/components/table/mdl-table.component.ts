@@ -2,8 +2,7 @@ import {
   Component,
   Input,
   Output,
-  EventEmitter,
-  ComponentMetadata
+  EventEmitter
 } from '@angular/core';
 import {
   IMdlTableModel,

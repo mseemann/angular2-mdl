@@ -9,7 +9,6 @@ import {
   ElementRef,
   Output,
   EventEmitter,
-  NgZone,
   OnChanges,
   SimpleChanges
 } from '@angular/core';
@@ -64,6 +63,7 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
 export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChanges {
 
   @ContentChild(MdlLayoutHeaderComponent) private header;
+  // will be set to undefined, if not a direct child or not present
   @ContentChild(MdlLayoutDrawerComponent) private drawer;
   @ContentChild(MdlLayoutContentComponent) private content;
 
@@ -85,8 +85,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   constructor(
     private renderer: Renderer,
     private evm: EventManager,
-    private el: ElementRef,
-    private ngZone: NgZone) {
+    private el: ElementRef) {
   }
 
   public ngAfterContentInit() {
@@ -97,10 +96,6 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
       this.updateSelectedTabIndex();
     }
 
-    // set this.drawer to null, if the drawer is not a direct child if this layout. It may be a drywer of a sub layout.
-    if (this.drawer && !this.drawer.isDrawerDirectChildOf(this)) {
-      this.drawer = null;
-    }
   }
 
   public ngOnChanges(changes: SimpleChanges): any {
@@ -144,10 +139,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
         let query: MediaQueryList = window.matchMedia('(max-width: 1024px)');
 
         let queryListener = () => {
-          this.ngZone.run( () => {
-            // looks like the query addListener runs not in NGZone - inform manually about changes
-            this.onQueryChange(query.matches);
-          });
+          this.onQueryChange(query.matches);
         };
         query.addListener(queryListener);
         this.windowMediaQueryListener = function() {
@@ -243,6 +235,6 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   }
 
   public hasDrawer() {
-    return this.drawer !== null;
+    return !!this.drawer;
   }
 }

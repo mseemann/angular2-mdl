@@ -182,7 +182,10 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.checkDirty();
   }
 
-  protected setFocus() {
+  public setFocus() {
+    if ( !this.inputEl ) {
+      return;
+    }
     this.renderer.invokeElementMethod(this.inputEl.nativeElement, 'focus', []);
   }
 
@@ -230,8 +233,6 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 }
 
-
-const MDL_TEXT_FIELD_DIRECTIVES = [MdlTextFieldComponent];
 
 @NgModule({
   imports: [MdlIconModule, MdlButtonModule, FormsModule, CommonModule],

@@ -2,7 +2,6 @@ import {
   Directive,
   Input,
   OnChanges,
-  SimpleChange,
   ElementRef,
   Renderer,
   NgModule

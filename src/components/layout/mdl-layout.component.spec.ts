@@ -378,9 +378,7 @@ describe('Component: MdlLayout', () => {
     let fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
     let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
-
     fixture.detectChanges();
-
     expect(layoutComponent.hasDrawer()).toBe(false);
 
 

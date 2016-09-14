@@ -1,14 +1,13 @@
 import {
   Component,
-  ComponentMetadata,
   ElementRef,
-  Renderer, HostBinding
+  Renderer
 } from '@angular/core';
 import { MdlTooltipPositionService } from './mdl-tooltip-position.service';
 
 const IS_ACTIVE = 'is-active';
 
-const host:  {[key: string]: string;} = {
+const host:  { [key: string]: string; } = {
   '[class.mdl-tooltip]': 'true',
   '[class.mdl-tooltip--large]': 'large',
   '[class.mdl-tooltip--left]': 'position=="left"',
