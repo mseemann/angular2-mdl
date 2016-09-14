@@ -374,7 +374,7 @@ describe('Component: MdlTextField', () => {
 
     expect(el.classList.contains('is-focused')).toBe(true);
 
-  })
+  });
 
 });
 

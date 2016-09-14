@@ -86,7 +86,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   @Input() public formControlName: string;
   @Input() public value: any;
 
-  @Output() change: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public change: EventEmitter<any> = new EventEmitter<any>();
 
   public optionValue: any;
   // the internal state - used to set the underlaying radio button state.

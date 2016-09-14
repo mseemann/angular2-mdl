@@ -49,7 +49,11 @@ describe('Component: MdlIconToggle', () => {
 
 @Component({
   selector: 'test-icon',
-  template: '<mdl-icon-toggle [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">format_bold</mdl-icon-toggle>'
+  template: `
+    <mdl-icon-toggle [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">
+    format_bold
+    </mdl-icon-toggle>
+  `
 })
 class MdlTestIconToggleComponent {
 

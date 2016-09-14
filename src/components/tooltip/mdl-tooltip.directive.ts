@@ -62,7 +62,7 @@ export class AbstractMdlTooltipDirective implements OnInit {
 }
 
 
-const host: {[key: string]: string;} = {
+const host: { [key: string]: string; } = {
   '(mouseenter)': 'onMouseEnter($event)',
   '(touchend)': 'onMouseEnter($event)',
   '(mouseleave)': 'onMouseLeave()'
