@@ -183,6 +183,9 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 
   public setFocus() {
+    if(!this.inputEl) {
+      return;
+    }
     this.renderer.invokeElementMethod(this.inputEl.nativeElement, 'focus', []);
   }
 

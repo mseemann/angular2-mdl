@@ -356,12 +356,18 @@ describe('Component: MdlTextField', () => {
       `
     }});
     let fixture = TestBed.createComponent(MdlTestComponent);
-    fixture.detectChanges();
 
     let textFieldDebugElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
     let textFieldComonent = textFieldDebugElement.componentInstance;
     let el = textFieldDebugElement.nativeElement;
 
+    // if called here the inputEl is not set - if the setFocus didn't check for inoutEl the next line throws.
+    textFieldComonent.setFocus();
+
+
+    fixture.detectChanges();
+
+    // now it is save to call setFocus and the focus is set.
     textFieldComonent.setFocus();
 
     fixture.detectChanges();
