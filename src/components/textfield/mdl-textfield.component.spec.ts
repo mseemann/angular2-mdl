@@ -349,6 +349,26 @@ describe('Component: MdlTextField', () => {
     expect(component.onBlur).toHaveBeenCalled();
   });
 
+  it('should be possible to set the focus programmatically', () => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield  type="text"></mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let textFieldDebugElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
+    let textFieldComonent = textFieldDebugElement.componentInstance;
+    let el = textFieldDebugElement.nativeElement;
+
+    textFieldComonent.setFocus();
+
+    fixture.detectChanges();
+
+    expect(el.classList.contains('is-focused')).toBe(true);
+
+  })
 
 });
 

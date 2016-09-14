@@ -2,6 +2,9 @@
 # 1.6.1 (next)
 
 ### Bug Fixes
+### Features
+* https://github.com/mseemann/angular2-mdl/issues/81 (Make MdlTextFieldComponent::setFocus() public)
+
 
 <a name="1.6.0"></a>
 # 1.6.0 (2016-09-13)
