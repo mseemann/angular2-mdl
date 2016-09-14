@@ -9,7 +9,6 @@ import {
   ElementRef,
   Output,
   EventEmitter,
-  NgZone,
   OnChanges,
   SimpleChanges
 } from '@angular/core';
@@ -86,8 +85,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   constructor(
     private renderer: Renderer,
     private evm: EventManager,
-    private el: ElementRef,
-    private ngZone: NgZone) {
+    private el: ElementRef) {
   }
 
   public ngAfterContentInit() {
@@ -141,10 +139,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
         let query: MediaQueryList = window.matchMedia('(max-width: 1024px)');
 
         let queryListener = () => {
-          this.ngZone.run( () => {
-            // looks like the query addListener runs not in NGZone - inform manually about changes
-            this.onQueryChange(query.matches);
-          });
+          this.onQueryChange(query.matches);
         };
         query.addListener(queryListener);
         this.windowMediaQueryListener = function() {

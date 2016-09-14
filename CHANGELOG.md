@@ -4,7 +4,7 @@
 ### Bug Fixes
 ### Features
 * https://github.com/mseemann/angular2-mdl/issues/81 (Make MdlTextFieldComponent::setFocus() public)
-
+* https://github.com/mseemann/angular2-mdl/issues/82 (MediaQueryList is ngZone aware)
 
 <a name="1.6.0"></a>
 # 1.6.0 (2016-09-13)
