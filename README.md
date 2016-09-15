@@ -21,9 +21,12 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 
 **Please don't use github to ask questions. Use stackoverflow instead: http://stackoverflow.com/questions/tagged/angular2-mdl.**
 
+**If you are still on RC6 you can use the angular2-mdl version 1.5.1.**
+
+**If you are still on RC5 you can use the angular2-mdl version 1.4.6.**
 
 
-### Status of the npm package version 1.6 (mdl version 1.2.1; angular2 rc7)
+### Status of the npm package version 1.7 (mdl version 1.2.1; angular 2.0 final)
 
 - Badges
 - Buttons 
@@ -44,9 +47,6 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 - Textfields (multiline, expandable)
 
 This package no longer supports the deprecated forms APIs. You have to use the FormsModule in you app module. For example:
-
-**If you are still on RC6 you can use the angular2-mdl version 1.5.1.**
-**If you are still on RC5 you can use the angular2-mdl version 1.4.6.**
 
 ```JavaScript
 import { FormsModule } from '@angular/forms';

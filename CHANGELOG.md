@@ -1,10 +1,16 @@
-<a name="1.6.1"></a>
-# 1.6.1 (next)
+<a name="1.7.1"></a>
+# 1.7.1 (next)
+
+### Bug Fixes
+
+<a name="1.7.0"></a>
+# 1.7.0 (2016-09-15)
 
 ### Bug Fixes
 ### Features
 * https://github.com/mseemann/angular2-mdl/issues/81 (Make MdlTextFieldComponent::setFocus() public)
 * https://github.com/mseemann/angular2-mdl/issues/82 (MediaQueryList is ngZone aware)
+* update dependencies to angular 2.0.0 final
 
 <a name="1.6.0"></a>
 # 1.6.0 (2016-09-13)
