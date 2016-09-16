@@ -1,7 +1,13 @@
-<a name="1.7.1"></a>
-# 1.7.1 (next)
+<a name="1.7.2"></a>
+# 1.7.2 (next)
 
 ### Bug Fixes
+
+<a name="1.7.1"></a>
+# 1.7.1 (2016-09-16)
+
+### Bug Fixes
+* https://github.com/mseemann/angular2-mdl/issues/89 (Layout title not redrawing)
 
 <a name="1.7.0"></a>
 # 1.7.0 (2016-09-15)
