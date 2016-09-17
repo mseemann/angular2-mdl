@@ -8,9 +8,20 @@
     "angular 2",
     "angular2",
     "material",
+    "material design",
     "material design lite",
     "components",
-    "typescript"
+    "typescript",
+    "button",
+    "card",
+    "chips",
+    "snackbar",
+    "layouts",
+    "reactive forms",
+    "tables",
+    "tabs",
+    "test fields",
+    "toggle"
   ],
   "angular-cli": {},
   "scripts": {
@@ -34,26 +45,26 @@
     "type": "git",
     "url": "git+https://github.com/mseemann/angular2-mdl.git"
   },
-  "dependencies": {
-    "@angular/common": "2.0.0",
-    "@angular/core": "2.0.0",
-    "@angular/forms": "2.0.0"
+  "peerDependencies": {
+    "@angular/core": "^2.0.0",
+    "@angular/common": "^2.0.0",
+    "@angular/forms": "^2.0.0"
   },
   "devDependencies": {
     "@angular/compiler": "2.0.0",
-    "@angular/compiler-cli": "0.6.1",
+    "@angular/compiler-cli": "0.6.2",
     "@angular/http": "2.0.0",
     "@angular/platform-browser": "2.0.0",
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/platform-server": "2.0.0",
     "@angular/router": "3.0.0",
     "angular-cli": "1.0.0-beta.10",
-    "broccoli-autoprefixer": "^4.1.0",
+    "broccoli-autoprefixer": "4.1.0",
     "broccoli-funnel": "1.0.6",
     "broccoli-merge-trees": "1.1.4",
-    "codeclimate-test-reporter": "^0.3.3",
+    "codeclimate-test-reporter": "0.3.3",
     "codelyzer": "0.0.28",
-    "core-js": "^2.4.0",
+    "core-js": "2.4.1",
     "coveralls": "2.11.13",
     "ember-cli-inject-live-reload": "1.4.1",
     "es6-shim": "0.35.1",
@@ -75,7 +86,7 @@
     "tslint": "3.15.1",
     "typescript": "2.0.2",
     "typings": "1.3.3",
-    "web-animations-js": "^2.2.2",
+    "web-animations-js": "2.2.2",
     "zone.js": "0.6.23"
   }
 }

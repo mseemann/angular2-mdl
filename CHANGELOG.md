@@ -2,6 +2,10 @@
 # 1.7.2 (next)
 
 ### Bug Fixes
+### Features
+* https://github.com/mseemann/angular2-mdl/issues/90 (add semver carret to the 2.0.0 angular deps)
+* https://github.com/mseemann/angular2-mdl/issues/94 (make angular (core, common, forms) peerDependencies)
+
 
 <a name="1.7.1"></a>
 # 1.7.1 (2016-09-16)
