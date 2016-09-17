@@ -143,6 +143,12 @@ First of all you need to install node-sass for your project:
 npm install node-sass --save-dev
 ```
 
+Please make sure you have installed typings before installation.
+```bash
+npm install typings -g
+```
+(This requirement will be removed in a future release)
+
 After that you need to configure the sass compiler to use the sass files from the angular2-mdl package. 
 For that the file `angular-cli-build.js` needs to be extended:
 
