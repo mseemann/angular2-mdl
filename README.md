@@ -81,6 +81,12 @@ This means that prod builds are broken. You need to disable some minification op
 npm install angular2-mdl --save
 ```
 
+Please make sure you have installed typings before installation.
+```bash
+npm install typings -g
+```
+(This requirement will be removed in a future release)
+
 ### How to use the mdl components with the angular cli webpack version
 
 Just use it. Add the MdlModule to your NgModule imports and you are done!
@@ -142,12 +148,6 @@ First of all you need to install node-sass for your project:
 ```bash
 npm install node-sass --save-dev
 ```
-
-Please make sure you have installed typings before installation.
-```bash
-npm install typings -g
-```
-(This requirement will be removed in a future release)
 
 After that you need to configure the sass compiler to use the sass files from the angular2-mdl package. 
 For that the file `angular-cli-build.js` needs to be extended:
