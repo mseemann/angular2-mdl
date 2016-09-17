@@ -25,6 +25,7 @@ import {
   Layout3Demo
 } from './layout/layout.component';
 import { MenuDemo } from './menus/menu.component';
+import { PopoverDemo } from './popover/popover.component';
 import { ToggleDemo } from './toggle/toggle.component';
 import { TooltipDemo } from './tooltip/tooltip.component';
 import { SliderDemo } from './slider/slider.component';
@@ -71,6 +72,7 @@ export const appRoutes: Routes = [
   { path: 'loading', component: LoadingDemo, data: {title: 'Loading'} },
   { path: 'list', component: ListDemo, data: {title: 'Lists'} },
   { path: 'menu', component: MenuDemo, data: {title: 'Menus'} },
+  { path: 'popover', component: PopoverDemo, data: {title: 'Popovers'} },
   { path: 'reactiveForms', component: ReactiveFormsDemo, data: {title: 'Ractive Forms'} },
   { path: 'shadow', component: ShadowDemo, data: {title: 'Shadows'} },
   { path: 'slider', component: SliderDemo, data: {title: 'Sliders'} },
@@ -98,4 +100,3 @@ export class Angular2MdlAppComponent {
     mainLayout.closeDrawerOnSmallScreens();
   }
 }
-

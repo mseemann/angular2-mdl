@@ -18,6 +18,7 @@ import { MdlSnackbarService } from './snackbar/mdl-snackbar.service';
 import { MdlTooltipModule } from './tooltip/index';
 import { MdlTableModule } from './table/index';
 import { MdlMenuModule } from './menu/index';
+import { MdlPopoverModule } from './popover/index';
 import { MdlLayoutModule } from './layout/index';
 import { MdlTabsModule } from './tabs/index';
 import { MdlTextFieldModule } from './textfield/mdl-textfield.component';
@@ -41,6 +42,7 @@ export * from './switch/mdl-switch.component';
 export * from './table/index'
 export * from './tooltip/index';
 export * from './menu/index';
+export * from './popover/index';
 export * from './layout/index';
 export * from './tabs/index';
 export * from './textfield/mdl-textfield.component';
@@ -71,6 +73,7 @@ const MDL_MODULES = [
   MdlTooltipModule,
   MdlTableModule,
   MdlMenuModule,
+  MdlPopoverModule,
   MdlTabsModule,
   MdlTextFieldModule
 ];

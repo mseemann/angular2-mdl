@@ -24,6 +24,7 @@ import {
   Layout3Demo
 } from './layout/layout.component';
 import { MenuDemo } from './menus/menu.component';
+import { PopoverDemo } from './popover/popover.component';
 import { ToggleDemo } from './toggle/toggle.component';
 import { TooltipDemo } from './tooltip/tooltip.component';
 import { SliderDemo } from './slider/slider.component';
@@ -60,6 +61,7 @@ import { ThemeDemo } from './theme/theme.component';
     Layout2Demo,
     Layout3Demo,
     MenuDemo,
+    PopoverDemo,
     ToggleDemo,
     TooltipDemo,
     SliderDemo,
