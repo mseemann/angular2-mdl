@@ -3,7 +3,7 @@ export class Angular2MdlPage {
     return browser.get('/angular2-mdl');
   }
 
-  public getHeadlineElement(){
+  public getHeadlineElement() {
     return element(by.css('.mdl-layout__header-row'));
   }
 

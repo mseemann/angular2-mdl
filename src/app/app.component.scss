@@ -27,8 +27,8 @@ footer {
 }
 nav {
 
-  a[routerLink] {
-    padding: 8px 40px !important;
+  a[routerLink], a.routerLink {
+    padding: 8px 36px !important;
     font-size: 18px !important;
     color: unquote("rgb(#{$palette-grey-800})") !important;
 

@@ -1,6 +1,6 @@
 <mdl-layout mdl-layout-fixed-header>
    <mdl-layout-header>
-      <mdl-layout-header-row class="mdl-color--primary mdl-color-text--accent main-header">
+      <mdl-layout-header-row class="main-header">
          <div *ngIf="mainLayout.isSmallScreen" class="mdl-layout__drawer-button" (click)="mainLayout.toggleDrawer()">
             <mdl-icon>&#xE5D2;</mdl-icon>
          </div>
@@ -37,6 +37,7 @@
                <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/textfield" routerLinkActive="router-link-active">Text Fields</a>
                <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/toggle" routerLinkActive="router-link-active">Toggle</a>
                <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/tooltip" routerLinkActive="router-link-active">Tooltips</a>
+               <a class="mdl-navigation__link routerLink"  href="/angular2-mdl-ext">angular2-mdl-ext <mdl-icon class="mdl-color-text--primary">explore</mdl-icon></a>
             </nav>
          </mdl-layout-drawer>
          <mdl-layout-content class="app-main-content">
