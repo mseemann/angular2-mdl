@@ -106,7 +106,7 @@ const MD_PALETTE =  [
    .demo-theme-container {
         width: 100%;
         position: relative;
-        height: 500px;
+        height: 550px;
    }
    
    .demo-content {
