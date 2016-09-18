@@ -85,11 +85,8 @@ const MD_PALETTE =  [
   templateUrl: 'theme.component.html',
   styles: [
     `
-    .color-column {
-        float: left;
-    }
+
     .palette-entry {
-        width: 100px;
         padding: 2px;
         margin: 3px 0 3px 3px;
         box-sizing: border-box;
@@ -105,11 +102,24 @@ const MD_PALETTE =  [
         opacity: 0.3;
         cursor: default;
     }
+   
+   .demo-theme-container {
+        width: 100%;
+        position: relative;
+        height: 500px;
+   }
+   
+   .demo-content {
+    padding: 12px;
+   }
     
     `
   ]
 })
 export class ThemeDemo extends AbstractDemoComponent {
+
+  public checkbox1 = true;
+  public radioOption = '1';
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
