@@ -23,6 +23,8 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 
 **Please don't use github to ask questions. Use stackoverflow instead: http://stackoverflow.com/questions/tagged/angular2-mdl.**
 
+**Here is a plnkr if you'd like to play around http://plnkr.co/edit/5VFXY3f9Gf594vfg3VNa?p=preview.**
+
 **If you are still on RC6 you can use the angular2-mdl version 1.5.1.**
 
 **If you are still on RC5 you can use the angular2-mdl version 1.4.6.**
