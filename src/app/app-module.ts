@@ -34,6 +34,7 @@ import { TextFieldDemo } from './textfield/textfield.component';
 import { PrismDirective } from './prism/prism.component';
 import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
 import { ThemeDemo } from './theme/theme.component';
+import { DialogDemo } from './dialog/dialog.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { ThemeDemo } from './theme/theme.component';
     BadgeDemo,
     CardDemo,
     ChipsDemo,
+    DialogDemo,
     IconDemo,
     ShadowDemo,
     LoadingDemo,
