@@ -65,7 +65,7 @@
     "codeclimate-test-reporter": "0.3.3",
     "codelyzer": "0.0.28",
     "core-js": "2.4.1",
-    "coveralls": "2.11.13",
+    "coveralls": "2.11.14",
     "ember-cli-inject-live-reload": "1.4.1",
     "es6-shim": "0.35.1",
     "jasmine-core": "2.5.2",
