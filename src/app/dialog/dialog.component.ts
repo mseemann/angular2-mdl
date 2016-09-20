@@ -11,6 +11,8 @@ import {
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from './../abstract-demo.component';
 import { MdlDialogService, ConfirmResult } from '../../components/dialog/mdl-dialog.service';
+import { MdlSnackbarService } from '../../components/snackbar/mdl-snackbar.service';
+import { LoginDialogComponent } from './login-dialog.component';
 
 @Component({
   moduleId: module.id,
@@ -28,9 +30,11 @@ export class DialogDemo extends AbstractDemoComponent {
     route: ActivatedRoute,
     titleService: Title,
     private vcRef: ViewContainerRef,
-    private dialogService: MdlDialogService) {
+    private dialogService: MdlDialogService,
+    private snackbarService: MdlSnackbarService) {
 
     super(router, route, titleService);
+    snackbarService.setDefaultViewContainerRef(vcRef);
     dialogService.setDefaultViewContainerRef(vcRef);
 
   }
@@ -46,10 +50,40 @@ export class DialogDemo extends AbstractDemoComponent {
   }
 
   public showDialog() {
-
+    let pDialog = this.dialogService.showDialog({
+      message: 'Dialog with three actions',
+      actions: [
+        {
+          handler: () => {
+              this.snackbarService.showToast('Dialog closed with Button 1');
+          },
+          text: 'Button 1' ,
+          isClosingAction: true
+        },
+        {
+          handler: () => {
+            this.snackbarService.showToast('Dialog closed with Button 2');
+          },
+          text: 'Button 2'
+        },
+        {
+          handler: () => {
+            this.snackbarService.showToast('Dialog closed with Button 3');
+          },
+          text: 'Button 3' ,
+          isClosingAction: false
+        }
+      ],
+      isModal: true
+    });
+    pDialog.then( (dialog) => console.log('dialog visible') );
   }
 
   public showDialogFullWidthAction() {
-
+    let pDialog = this.dialogService.showCustomDialog({
+      component: LoginDialogComponent,
+      isModal: true
+    });
+    pDialog.then( () => console.log('dialog visible') );
   }
 }

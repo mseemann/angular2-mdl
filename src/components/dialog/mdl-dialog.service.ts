@@ -2,6 +2,7 @@ import {
   Injectable,
   ViewContainerRef
 } from '@angular/core';
+import { Type } from '@angular/core/src/type';
 import { MdlDialogComponent } from './mdl-dialog.component';
 
 
@@ -15,8 +16,15 @@ export interface IMdlDialogConfiguration {
   actions?: [{
     handler: () => void;
     text: string;
-    isClosingAction: boolean;
+    isClosingAction?: boolean;
   }];
+  fullWidthAction?: boolean;
+  vcRef?: ViewContainerRef;
+  isModal?: boolean;
+}
+
+export interface IMdlCustomDialogConfiguration {
+  component: Type<any>;
   vcRef?: ViewContainerRef;
   isModal?: boolean;
 }
@@ -31,8 +39,24 @@ export class MdlDialogService {
   }
 
   public alert(alertMessage: string, vcRef?: ViewContainerRef): Promise<void> {
+    return new Promise((resolve: (value?: void) => void, reject: (reason?: any) => void) => {
 
-    return Promise.resolve();
+      this.showDialog({
+        message: alertMessage,
+        actions: [
+          {
+            handler: () => {
+              resolve();
+            },
+            text: 'Ok',
+            isClosingAction: true
+          }
+        ],
+        vcRef: vcRef,
+        isModal: true
+      });
+
+    });
   }
 
   public confirm(
@@ -41,12 +65,38 @@ export class MdlDialogService {
     confirmText = 'Ok',
     vcRef?: ViewContainerRef): Promise<ConfirmResult> {
 
-    return Promise.resolve(ConfirmResult.Confirmed);
+    return new Promise((resolve: (value: ConfirmResult) => void, reject: (reason?: any) => void) => {
+      this.showDialog({
+        message: question,
+        actions: [
+          {
+            handler: () => {
+              resolve(ConfirmResult.Declined);
+            },
+            text: declineText,
+            isClosingAction: true
+          },
+          {
+            handler: () => {
+              resolve(ConfirmResult.Confirmed);
+            },
+            text: confirmText,
+          }
+        ],
+        vcRef: vcRef,
+        isModal: true
+      });
+    });
   }
 
   public showDialog(dialogConfiguration: IMdlDialogConfiguration): Promise<MdlDialogComponent> {
 
-    return null;
+    return Promise.resolve(null);
+  }
+
+  public showCustomDialog(dialogConfiguration: IMdlCustomDialogConfiguration): Promise<MdlDialogComponent> {
+
+    return Promise.resolve(null);
   }
 
 }
