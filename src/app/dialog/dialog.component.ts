@@ -10,7 +10,7 @@ import {
 } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from './../abstract-demo.component';
-import { MdlDialogService } from '../../components/dialog/mdl-dialog.service';
+import { MdlDialogService, ConfirmResult } from '../../components/dialog/mdl-dialog.service';
 
 @Component({
   moduleId: module.id,
@@ -29,16 +29,20 @@ export class DialogDemo extends AbstractDemoComponent {
     titleService: Title,
     private vcRef: ViewContainerRef,
     private dialogService: MdlDialogService) {
+
     super(router, route, titleService);
     dialogService.setDefaultViewContainerRef(vcRef);
+
   }
 
   public showAlert() {
-    this.dialogService.showAlert('This is a simple Alter');
+    let result = this.dialogService.alert('This is a simple Alert');
+    result.then( () => console.log('alert closed') );
   }
 
   public showConfirmMessage() {
-
+    let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
+    result.then( choosedOption => console.log( choosedOption === ConfirmResult.Confirmed ) );
   }
 
   public showDialog() {
