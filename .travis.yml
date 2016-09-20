@@ -8,11 +8,6 @@ cache:
 node_js:
   - '5.6.0'
 
-branches:
-  only:
-  - master
-  - /^greenkeeper-.*$/
-
 before_install:
  - export CHROME_BIN=/usr/bin/google-chrome
  - export DISPLAY=:99.0
