@@ -87,6 +87,12 @@
       background: $tab-highlight-color;
     }
   }
+
+  &.disabled {
+    cursor: not-allowed;
+    color: $tab-disabled-color;
+  }
+
 }
 
 .mdl-tabs__panel {

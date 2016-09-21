@@ -37,6 +37,7 @@ import { AbstractDemoComponent } from './../abstract-demo.component';
 export class TabsDemo extends AbstractDemoComponent {
 
   public activeIndex = 0;
+  public disableTargaryens = true;
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
