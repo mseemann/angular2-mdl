@@ -1,6 +1,8 @@
 import {
   Component,
-  ViewEncapsulation} from '@angular/core';
+  ViewEncapsulation,
+  ViewContainerRef
+} from '@angular/core';
 import {
   ActivatedRoute,
   Router, Routes
@@ -95,6 +97,8 @@ export const appRoutes: Routes = [
 export class Angular2MdlAppComponent {
 
   public title = 'Angular 2 - Material Design Lite';
+
+  constructor(public vcRef: ViewContainerRef) {}
 
   public componentSelected(mainLayout: MdlLayoutComponent) {
     mainLayout.closeDrawerOnSmallScreens();

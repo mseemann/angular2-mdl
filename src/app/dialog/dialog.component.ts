@@ -1,6 +1,9 @@
 import {
   Component,
-  ViewContainerRef
+  forwardRef,
+  Inject,
+  ComponentFactoryResolver,
+  ComponentRef
 } from '@angular/core';
 import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
 import { hostConfig } from './../animations/flyInOutTrigger-animation';
@@ -13,6 +16,7 @@ import { AbstractDemoComponent } from './../abstract-demo.component';
 import { MdlDialogService, ConfirmResult } from '../../components/dialog/mdl-dialog.service';
 import { MdlSnackbarService } from '../../components/snackbar/mdl-snackbar.service';
 import { LoginDialogComponent } from './login-dialog.component';
+import { Angular2MdlAppComponent } from '../app.component';
 
 @Component({
   moduleId: module.id,
@@ -29,14 +33,16 @@ export class DialogDemo extends AbstractDemoComponent {
     router: Router,
     route: ActivatedRoute,
     titleService: Title,
-    private vcRef: ViewContainerRef,
     private dialogService: MdlDialogService,
-    private snackbarService: MdlSnackbarService) {
+    private snackbarService: MdlSnackbarService,
+    @Inject(forwardRef(() => Angular2MdlAppComponent)) private app: Angular2MdlAppComponent,
+    private componentFactoryResolver: ComponentFactoryResolver ) {
 
     super(router, route, titleService);
-    snackbarService.setDefaultViewContainerRef(vcRef);
-    dialogService.setDefaultViewContainerRef(vcRef);
+    snackbarService.setDefaultViewContainerRef(this.app.vcRef);
 
+
+    dialogService.setDefaultViewContainerRef(this.app.vcRef);
   }
 
   public showAlert() {
@@ -49,8 +55,9 @@ export class DialogDemo extends AbstractDemoComponent {
     result.then( choosedOption => console.log( choosedOption === ConfirmResult.Confirmed ) );
   }
 
-  public showDialog() {
+  public showDialogFullWidthAction() {
     let pDialog = this.dialogService.showDialog({
+      title: 'Make your choice',
       message: 'Dialog with three actions',
       actions: [
         {
@@ -70,20 +77,26 @@ export class DialogDemo extends AbstractDemoComponent {
           handler: () => {
             this.snackbarService.showToast('Dialog closed with Button 3');
           },
-          text: 'Button 3' ,
-          isClosingAction: false
+          text: 'Button 3'
         }
       ],
+      fullWidthAction: true,
       isModal: true
     });
-    pDialog.then( (dialog) => console.log('dialog visible') );
+    pDialog.then( (dialogReference) => console.log('dialog visible', dialogReference) );
   }
 
-  public showDialogFullWidthAction() {
+  public showDialog() {
+
     let pDialog = this.dialogService.showCustomDialog({
       component: LoginDialogComponent,
       isModal: true
     });
-    pDialog.then( () => console.log('dialog visible') );
+    pDialog.then( (dialogReference) => {
+      console.log('dialog visible - will autohide in 10 seconds', dialogReference);
+      setTimeout( () => {
+        dialogReference.hide();
+      }, 10000);
+    });
   }
 }
