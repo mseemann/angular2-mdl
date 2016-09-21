@@ -70,8 +70,6 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
   }
 
   protected tabSelected(tab: MdlTabPanelComponent) {
-    console.log("selected tab ");
-    console.log(tab);
     let index = this.tabs.toArray().indexOf(tab);
     if (index != this.selectedIndex) {
       this.selectedIndex = index;
