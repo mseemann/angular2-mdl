@@ -35,7 +35,7 @@ describe('Component: MdlTabs', () => {
     });
     let fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
-        
+
     let mdlTabsComponent: MdlTabsComponent =
       fixture.debugElement.query(By.directive(MdlTabsComponent)).componentInstance;
 
@@ -103,6 +103,24 @@ describe('Component: MdlTabs', () => {
     let testElement = fixture.debugElement.query(By.css('.mdl-tabs__tab'));
 
     expect(testElement.nativeElement.nodeName).toBe('DIV');
+  });
+
+  it('should recognize enabled/disabled tabs', () => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-tabs [mdl-tab-active-index]="1" (mdl-tab-active-changed)="tabChanged($event)">
+            <mdl-tab-panel></mdl-tab-panel>
+            <mdl-tab-panel [disabled]="true"></mdl-tab-panel>
+          </mdl-tabs>
+        ` }
+    });
+
+
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+    let testElement = fixture.nativeElement.querySelector('.mdl-tabs__tab.disabled');
+
+    expect(testElement.nodeName).toBe('SPAN');
   });
 });
 

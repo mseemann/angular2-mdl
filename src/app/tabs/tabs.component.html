@@ -3,78 +3,79 @@
 
 <h5>Tabs</h5>
 <div>
-	active index:
-	<input type="number" [(ngModel)]="activeIndex" min="0" max="2">
+  active index:
+  <input type="number" [(ngModel)]="activeIndex" min="0" max="2">
+	<mdl-switch [(ngModel)]="disableTargaryens" mdl-ripple>Disable Targaryens</mdl-switch>
 </div>
 <div class="demo-tab-container">
-	<mdl-tabs mdl-ripple [mdl-tab-active-index]="activeIndex" (mdl-tab-active-changed)="tabChanged($event)">
-		<mdl-tab-panel>
-			<mdl-tab-panel-title>
-				<mdl-icon class="mdl-color-text--primary">person</mdl-icon><span>Starks</span>
-			</mdl-tab-panel-title>
-			<mdl-tab-panel-content>
-			<ul>
-				<li>Eddard</li>
-				<li>Catelyn</li>
-				<li>Robb</li>
-				<li>Sansa</li>
-				<li>Brandon</li>
-				<li>Arya</li>
-				<li>Rickon</li>
-			</ul>
-			</mdl-tab-panel-content>
-		</mdl-tab-panel>
-		<mdl-tab-panel mdl-tab-panel-title="Lannisters">
-			<ul>
-				<li>Tywin</li>
-				<li>Cersei</li>
-				<li>Jamie</li>
-				<li>Tyrion</li>
-			</ul>
-		</mdl-tab-panel>
-		<mdl-tab-panel mdl-tab-panel-title="Targaryens">
-			<ul>
-				<li>Viserys</li>
-				<li>Daenerys</li>
-			</ul>
-		</mdl-tab-panel>
-	</mdl-tabs>
+  <mdl-tabs mdl-ripple [mdl-tab-active-index]="activeIndex" (mdl-tab-active-changed)="tabChanged($event)">
+    <mdl-tab-panel>
+      <mdl-tab-panel-title>
+        <mdl-icon class="mdl-color-text--primary">person</mdl-icon><span>Starks</span>
+      </mdl-tab-panel-title>
+      <mdl-tab-panel-content>
+      <ul>
+        <li>Eddard</li>
+        <li>Catelyn</li>
+        <li>Robb</li>
+        <li>Sansa</li>
+        <li>Brandon</li>
+        <li>Arya</li>
+        <li>Rickon</li>
+      </ul>
+      </mdl-tab-panel-content>
+    </mdl-tab-panel>
+    <mdl-tab-panel mdl-tab-panel-title="Lannisters">
+      <ul>
+        <li>Tywin</li>
+        <li>Cersei</li>
+        <li>Jamie</li>
+        <li>Tyrion</li>
+      </ul>
+    </mdl-tab-panel>
+    <mdl-tab-panel mdl-tab-panel-title="Targaryens" [disabled]="disableTargaryens">
+      <ul>
+        <li>Viserys</li>
+        <li>Daenerys</li>
+      </ul>
+    </mdl-tab-panel>
+  </mdl-tabs>
 </div>
 
 
 <pre prism>
   <![CDATA[
 <mdl-tabs mdl-ripple mdl-tab-active-index="0" (mdl-tab-active-changed)="tabChanged($event)">
-      <mdl-tab-panel>
-				<mdl-tab-panel-title>
-					<mdl-icon class="mdl-color-text--primary">person</mdl-icon><span>Starks</span>
-				</mdl-tab-panel-title>
-				<mdl-tab-panel-content>
-				<ul>
-					<li>Eddard</li>
-					<li>Catelyn</li>
-					<li>Robb</li>
-					<li>Sansa</li>
-					<li>Brandon</li>
-					<li>Arya</li>
-					<li>Rickon</li>
-				</ul>
-				</mdl-tab-panel-content>
-      </mdl-tab-panel>
-      <mdl-tab-panel mdl-tab-panel-title="Lannisters">
-         <ul>
-            <li>Tywin</li>
-            <li>Cersei</li>
-            <li>Jamie</li>
-            <li>Tyrion</li>
-         </ul>
-      </mdl-tab-panel>
-      <mdl-tab-panel mdl-tab-panel-title="Targaryens">
-         <ul>
-            <li>Viserys</li>
-            <li>Daenerys</li>
-         </ul>
-      </mdl-tab-panel>
-   </mdl-tabs>
+    <mdl-tab-panel>
+      <mdl-tab-panel-title>
+        <mdl-icon class="mdl-color-text--primary">person</mdl-icon><span>Starks</span>
+      </mdl-tab-panel-title>
+      <mdl-tab-panel-content>
+      <ul>
+        <li>Eddard</li>
+        <li>Catelyn</li>
+        <li>Robb</li>
+        <li>Sansa</li>
+        <li>Brandon</li>
+        <li>Arya</li>
+        <li>Rickon</li>
+      </ul>
+      </mdl-tab-panel-content>
+    </mdl-tab-panel>
+    <mdl-tab-panel mdl-tab-panel-title="Lannisters">
+       <ul>
+          <li>Tywin</li>
+          <li>Cersei</li>
+          <li>Jamie</li>
+          <li>Tyrion</li>
+       </ul>
+    </mdl-tab-panel>
+    <mdl-tab-panel mdl-tab-panel-title="Targaryens" [disabled]="disableTargaryens">
+       <ul>
+          <li>Viserys</li>
+          <li>Daenerys</li>
+       </ul>
+    </mdl-tab-panel>
+ </mdl-tabs>
   ]]>
 </pre>

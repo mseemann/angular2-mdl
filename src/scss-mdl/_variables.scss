@@ -209,6 +209,8 @@ $tab-highlight-color: unquote("rgb(#{$color-primary})") !default;
 $tab-text-color: unquote("rgba(#{$color-black}, 0.54)") !default;
 $tab-active-text-color: unquote("rgba(#{$color-black}, 0.87)") !default;
 $tab-border-color: unquote("rgb(#{$palette-grey-300})") !default;
+$tab-disabled-color: unquote("rgba(#{$color-black}, 0.26)") !default;
+
 
 /* ==========  Checkboxes  ========== */
 
@@ -589,4 +591,4 @@ $tooltip-font-size-large: 14px !default;
 $chip-bg-color: rgb(222, 222, 222) !default;
 $chip-bg-active-color: rgb(214, 214, 214) !default;
 $chip-height: 32px !default;
-$chip-font-size: 13px !default; 
+$chip-font-size: 13px !default;
