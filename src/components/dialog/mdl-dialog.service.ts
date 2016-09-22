@@ -9,6 +9,8 @@ import {
   OpaqueToken,
   ReflectiveInjector
 } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { DOCUMENT } from '@angular/platform-browser';
 
 import { MdlDialogComponent } from './mdl-dialog.component';
@@ -20,11 +22,16 @@ export enum ConfirmResult {
   Declined
 };
 
-export class MdlDialogReference {
+export interface IMdlDialogReference {
+  hide();
+  onHide(): Observable<any>;
+}
+
+export class MdlDialogReference implements IMdlDialogReference {
 
   private components = new Set<ComponentRef<any>>();
+  private onHideSubject: Subject<any> = new Subject();
 
-  public dialog: MdlDialogComponent;
   public addComponentRef(cRef: ComponentRef<any>) {
     this.components.add(cRef);
   }
@@ -33,8 +40,18 @@ export class MdlDialogReference {
     this.components.forEach( (cRef) => {
       cRef.destroy();
     });
+    this.onHideSubject.next();
+    this.onHideSubject.complete();
   }
 
+  public onHide(): Observable<void> {
+    return this.onHideSubject.asObservable();
+  }
+}
+
+
+export interface IMdlCustomDialog {
+  viewContainerRef: ViewContainerRef;
 }
 
 export interface IMdlDialogAction {
@@ -46,8 +63,6 @@ export interface IMdlDialogAction {
 export interface IMdlDialogConfiguration {
   vcRef?: ViewContainerRef;
   isModal?: boolean;
-
-  viewContainerRef?: ComponentRef<any>;
 }
 
 export interface IMdlSimpleDialogConfiguration extends IMdlDialogConfiguration {
@@ -126,45 +141,49 @@ export class MdlDialogService {
     });
   }
 
-  public showDialog(dialogConfiguration: IMdlSimpleDialogConfiguration): Promise<MdlDialogReference> {
-    let dialogRef = new MdlDialogReference();
-    return this.createAndShowDialog(dialogConfiguration, dialogRef);
+  public showDialog(dialogConfiguration: IMdlSimpleDialogConfiguration): Promise<IMdlDialogReference> {
+    return this.createAndShowDialog(dialogConfiguration, new MdlDialogReference());
   }
 
-  public showCustomDialog(dialogConfiguration: IMdlCustomDialogConfiguration): Promise<MdlDialogReference> {
+  public showCustomDialog(dialogConfiguration: IMdlCustomDialogConfiguration): Promise<IMdlDialogReference> {
 
     let dialogRef = new MdlDialogReference();
 
     let customDialogComponentRef: ComponentRef<any>
       = this.createComponentRef(dialogConfiguration, dialogRef, dialogConfiguration.component);
 
+    // add the ComponentRef of the customdilaog to the dialogref - so we can later destroy is safely
     dialogRef.addComponentRef(customDialogComponentRef);
 
-    // TODO the component must implement an Interface and return the viewContainerRef
-    dialogConfiguration.viewContainerRef = customDialogComponentRef.instance.vcRef;
+    const mdlCustomDialogInstance = customDialogComponentRef.instance;
+    const customDialogViewContainerRef = mdlCustomDialogInstance.viewContainerRef;
 
-    return this.createAndShowDialog(dialogConfiguration, dialogRef);
+    if (!customDialogViewContainerRef) {
+      throw new Error('The CustomDialog should implement the interface IMdlCustomDialog');
+    }
+
+    return this.createAndShowDialog(dialogConfiguration, dialogRef, customDialogViewContainerRef);
   }
 
   private createAndShowDialog(
     dialogConfiguration: IMdlDialogConfiguration,
-    dialogRef: MdlDialogReference): Promise<MdlDialogReference> {
+    dialogRef: MdlDialogReference,
+    customDialogViewContainerRef?: ViewContainerRef): Promise<IMdlDialogReference> {
 
     return new Promise((resolve: (value: MdlDialogReference) => void, reject: (reason?: any) => void) => {
 
-      let cRef: ComponentRef<any>
+      let dialogComponentRef: ComponentRef<any>
         = this.createComponentRef(dialogConfiguration, dialogRef, MdlDialogComponent);
 
-      dialogRef.addComponentRef(cRef);
+      // add the ComponentRef of the dialog to the dialogref - so we can later destroy is safely
+      dialogRef.addComponentRef(dialogComponentRef);
 
+      // get the dialog instance and configure the instance
+      let dialogComponent                           = <MdlDialogComponent> dialogComponentRef.instance;
+      dialogComponent.dialogConfiguration           = dialogConfiguration;
+      dialogComponent.customDialogViewContainerRef  = customDialogViewContainerRef;
 
-
-      let dialogComponent = <MdlDialogComponent> cRef.instance;
-      dialogComponent.dialogConfiguration = dialogConfiguration;
-
-      dialogRef.dialog = dialogComponent;
-
-        // TODO show backdrop if modal dialog
+      // TODO show backdrop if modal dialog
       // TODO zIndex ordering
       // let overlay = this.doc.createElement('div');
       // overlay.className = 'dialog-backdrop';

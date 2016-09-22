@@ -2,8 +2,7 @@ import {
   Component,
   forwardRef,
   Inject,
-  ComponentFactoryResolver,
-  ComponentRef
+  ComponentFactoryResolver
 } from '@angular/core';
 import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
 import { hostConfig } from './../animations/flyInOutTrigger-animation';
@@ -13,7 +12,10 @@ import {
 } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from './../abstract-demo.component';
-import { MdlDialogService, ConfirmResult } from '../../components/dialog/mdl-dialog.service';
+import {
+  MdlDialogService,
+  ConfirmResult,
+  IMdlDialogReference } from '../../components/dialog/index';
 import { MdlSnackbarService } from '../../components/snackbar/mdl-snackbar.service';
 import { LoginDialogComponent } from './login-dialog.component';
 import { Angular2MdlAppComponent } from '../app.component';
@@ -57,7 +59,7 @@ export class DialogDemo extends AbstractDemoComponent {
 
   public showDialogFullWidthAction() {
     let pDialog = this.dialogService.showDialog({
-      title: 'Make your choice',
+      title: 'Your choice?',
       message: 'Dialog with three actions',
       actions: [
         {
@@ -92,7 +94,7 @@ export class DialogDemo extends AbstractDemoComponent {
       component: LoginDialogComponent,
       isModal: true
     });
-    pDialog.then( (dialogReference) => {
+    pDialog.then( (dialogReference: IMdlDialogReference) => {
       console.log('dialog visible - will autohide in 10 seconds', dialogReference);
       setTimeout( () => {
         dialogReference.hide();

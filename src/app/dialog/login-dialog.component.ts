@@ -1,8 +1,14 @@
 import {
   Component,
   ViewContainerRef,
+  ViewChild
 } from '@angular/core';
-import { MdlDialogReference } from '../../components/dialog/mdl-dialog.service';
+import {
+  MdlDialogReference,
+  IMdlCustomDialog
+} from '../../components/dialog/index';
+import 'rxjs/add/operator/scan';
+import { MdlTextFieldComponent } from '../../components/textfield/mdl-textfield.component';
 
 
 @Component({
@@ -10,11 +16,26 @@ import { MdlDialogReference } from '../../components/dialog/mdl-dialog.service';
   selector: 'login-dialog',
   templateUrl: 'login-dialog.html'
 })
-export class LoginDialogComponent {
+export class LoginDialogComponent implements IMdlCustomDialog {
+
+  @ViewChild('firstElement') private inputElement: MdlTextFieldComponent;
 
   constructor(
     public vcRef: ViewContainerRef,
-    private dialog: MdlDialogReference) {}
+    private dialog: MdlDialogReference) {
+    this.dialog.onHide().subscribe( () => console.log('login dialog hidden') );
+  }
+
+  get viewContainerRef() {
+    return this.vcRef;
+  }
+
+  public ngAfterViewInit() {
+    // set the focus - autofocus only works once :(
+    setTimeout( () => {
+      this.inputElement.setFocus();
+    }, 1);
+  }
 
   public login() {
     console.log('login', this.dialog);

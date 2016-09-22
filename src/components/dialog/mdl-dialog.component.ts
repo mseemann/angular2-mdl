@@ -3,12 +3,13 @@ import {
   ViewEncapsulation,
   HostListener,
   forwardRef,
-  Inject
+  Inject,
+  ViewContainerRef,
 } from '@angular/core';
 import {
-  IMdlDialogConfiguration,
   IMdlDialogAction,
-  MdlDialogReference, IMdlCustomDialogConfiguration, IMdlSimpleDialogConfiguration
+  MdlDialogReference,
+  IMdlDialogConfiguration
 } from './mdl-dialog.service';
 
 // @experimental
@@ -21,9 +22,9 @@ import {
   },
   template: `
       <div 
-        *ngIf="dialogConfiguration?.viewContainerRef" 
-        [append-view-container-ref]="dialogConfiguration?.viewContainerRef"></div>
-      <div *ngIf="!dialogConfiguration?.viewContainerRef">
+        *ngIf="customDialogViewContainerRef" 
+        [append-view-container-ref]="customDialogViewContainerRef"></div>
+      <div *ngIf="!customDialogViewContainerRef">
         <h3 class="mdl-dialog__title" *ngIf="dialogConfiguration?.title">{{dialogConfiguration?.title}}</h3>
         <div class="mdl-dialog__content">
           <p>
@@ -85,9 +86,12 @@ import {
 export class MdlDialogComponent {
 
   public dialogConfiguration: IMdlDialogConfiguration;
+  public customDialogViewContainerRef: ViewContainerRef;
 
   // why do i need forwardRef at this point, the demo LoginDialog dosn't need this!?!?
-  constructor(@Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference) {}
+  constructor(
+    @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference) {}
+
 
   public actionClicked(action: IMdlDialogAction) {
     action.handler();
