@@ -15,7 +15,7 @@ import { AbstractDemoComponent } from './../abstract-demo.component';
 import {
   MdlDialogService,
   ConfirmResult,
-  IMdlDialogReference } from '../../components/dialog/index';
+  MdlDialogReference } from '../../components/dialog/index';
 import { MdlSnackbarService } from '../../components/snackbar/mdl-snackbar.service';
 import { LoginDialogComponent } from './login-dialog.component';
 import { Angular2MdlAppComponent } from '../app.component';
@@ -60,26 +60,26 @@ export class DialogDemo extends AbstractDemoComponent {
   public showDialogFullWidthAction() {
     let pDialog = this.dialogService.showDialog({
       title: 'Your choice?',
-      message: 'Dialog with three actions',
+      message: 'What drink do you prefer to your meal?',
       actions: [
         {
           handler: () => {
-              this.snackbarService.showToast('Dialog closed with Button 1');
+              this.snackbarService.showToast('Coke');
           },
-          text: 'Button 1' ,
+          text: 'One Coke' ,
           isClosingAction: true
         },
         {
           handler: () => {
-            this.snackbarService.showToast('Dialog closed with Button 2');
+            this.snackbarService.showToast('Vine');
           },
-          text: 'Button 2'
+          text: 'A bottle of vine'
         },
         {
           handler: () => {
-            this.snackbarService.showToast('Dialog closed with Button 3');
+            this.snackbarService.showToast('Beer');
           },
-          text: 'Button 3'
+          text: 'A pint of beer'
         }
       ],
       fullWidthAction: true,
@@ -94,11 +94,8 @@ export class DialogDemo extends AbstractDemoComponent {
       component: LoginDialogComponent,
       isModal: true
     });
-    pDialog.then( (dialogReference: IMdlDialogReference) => {
-      console.log('dialog visible - will autohide in 10 seconds', dialogReference);
-      setTimeout( () => {
-        dialogReference.hide();
-      }, 10000);
+    pDialog.then( (dialogReference: MdlDialogReference) => {
+      console.log('dialog visible', dialogReference);
     });
   }
 }
