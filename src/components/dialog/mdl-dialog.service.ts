@@ -137,7 +137,7 @@ export interface IMdlSimpleDialogConfiguration extends IMdlDialogConfiguration {
   /**
    * the actions that are used for this dialog (the order will be reversed by mdl.
    */
-  actions?: [IMdlDialogAction];
+  actions: [IMdlDialogAction];
   /**
    * should the actions be displayed as full width actions. every aciton is one row.
    */
@@ -194,19 +194,20 @@ export class MdlDialogService {
   }
 
   /**
+   * FIXME add title as an option; document okText
    * Shows a dialog that is just an alert - e.g. with one button.
    * @param alertMessage The message that should be displayed.
-   * @param vcRef The ViewContainerRef where the aletr dialog should be attached to.
+   * @param vcRef The ViewContainerRef where the alert dialog should be attached to.
    * Must not be provided if setDefaultViewContainerRef was set.
    * @returns A promise that is called if the user hits the Ok button.
    */
-  public alert(alertMessage: string, vcRef?: ViewContainerRef): Promise<void> {
+  public alert(alertMessage: string, okText = 'Ok', vcRef?: ViewContainerRef): Promise<void> {
     return new Promise((resolve: (value?: void) => void, reject: (reason?: any) => void) => {
 
       this.showDialog({
         message: alertMessage,
         actions: [
-          { handler: () => resolve(), text: 'Ok', isClosingAction: true }
+          { handler: () => resolve(), text: okText}
         ],
         vcRef: vcRef,
         isModal: true
@@ -249,6 +250,10 @@ export class MdlDialogService {
    * @returns A promise that returns the MdlDialogReference.
    */
   public showDialog(config: IMdlSimpleDialogConfiguration): Promise<MdlDialogReference> {
+
+    if(config.actions.length === 0 ){
+      throw new Error('a dialog mus have at least one aciton');
+    }
 
     let internalDialogRef = new InternalMdlDialogReference();
     let dialogRef = new MdlDialogReference(internalDialogRef);
@@ -328,7 +333,7 @@ export class MdlDialogService {
     // +1 because the overlay may have MIN_DIALOG_Z_INDEX if the dialog is modal.
     let zIndex = MIN_DIALOG_Z_INDEX + 1;
 
-    console.log(this.openDialogs);
+
     this.openDialogs.forEach( (iDialogRef) => {
       iDialogRef.hostDialog.zIndex = zIndex;
       // +2 to make room for the overlay if a dialog is modal
