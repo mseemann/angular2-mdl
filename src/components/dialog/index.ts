@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MdlDialogService } from './mdl-dialog.service';
 import { MdlDialogComponent } from './mdl-dialog.component';
 import { MdlCommonsModule } from '../common/index';
-import { MdlDialogHostComponent } from './md-dialog-host.component';
+import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 
 export * from './mdl-dialog.service';
 

@@ -14,7 +14,7 @@ import { Subject } from 'rxjs/Subject';
 import { DOCUMENT } from '@angular/platform-browser';
 
 import { MdlDialogComponent } from './mdl-dialog.component';
-import { MdlDialogHostComponent } from './md-dialog-host.component';
+import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 
 export const MDL_CONFIGUARTION = new OpaqueToken('MDL_CONFIGUARTION');
 export const MDL_CONTENT_VIEW_CONTAINER_REF = new OpaqueToken('MDL_CONTENT_VIEW_CONTAINER_REF');
@@ -23,7 +23,7 @@ export const MIN_DIALOG_Z_INDEX = 100000;
 export enum ConfirmResult {
   Confirmed,
   Declined
-};
+}
 
 export class InternalMdlDialogReference {
 // TODO internal DialogReference?
