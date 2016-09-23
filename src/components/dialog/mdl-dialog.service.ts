@@ -18,29 +18,43 @@ import { MdlDialogHostComponent } from './md-dialog-host.component';
 
 export const MDL_CONFIGUARTION = new OpaqueToken('MDL_CONFIGUARTION');
 export const MDL_CONTENT_VIEW_CONTAINER_REF = new OpaqueToken('MDL_CONTENT_VIEW_CONTAINER_REF');
+export const MIN_DIALOG_Z_INDEX = 100000;
 
 export enum ConfirmResult {
   Confirmed,
   Declined
 };
 
+export class InternalMdlDialogReference {
+// TODO internal DialogReference?
+}
+
 export class MdlDialogReference {
 
   private components = new Set<ComponentRef<any>>();
   private onHideSubject: Subject<any> = new Subject();
+  public hostDialog: MdlDialogHostComponent;
+  public closeCallback: () => void;
+
+  // constructor(internaleRef: InternalMdlDialogReference) {
+  //
+  // }
 
   public addComponentRef(cRef: ComponentRef<any>) {
     this.components.add(cRef);
   }
 
+  // TODO this should be a method a user should see
   public hide() {
     this.components.forEach( (cRef) => {
       cRef.destroy();
     });
     this.onHideSubject.next();
     this.onHideSubject.complete();
+    this.closeCallback();
   }
 
+  // TODO this should be a method a user should see
   public onHide(): Observable<void> {
     return this.onHideSubject.asObservable();
   }
@@ -188,23 +202,33 @@ export class MdlDialogService {
     let hostDialogComponent
       = this.createComponentInstance(dialogConfig.vcRef, providers, MdlDialogHostComponent);
 
+    dialogRef.hostDialog = hostDialogComponent;
 
-    //
-    // if ( dialogConfiguration.isModal ) {
-    //   // TODO show backdrop if modal dialog
-    //   // let overlay = this.doc.createElement('div');
-    //   // overlay.className = 'dialog-backdrop';
-    //   // this.doc.body.appendChild(overlay);
-    // }
-    //
+    dialogRef.closeCallback = () => {
+      this.popDialog(dialogRef);
+    };
+    this.pushDialog(dialogRef);
+
+    if ( dialogConfig.isModal ) {
+      // TODO show backdrop if modal dialog
+      let overlay = this.doc.createElement('div');
+      overlay.className = 'dialog-backdrop';
+      overlay.style.zIndex = String(MIN_DIALOG_Z_INDEX);
+      this.doc.body.appendChild(overlay);
+    }
+
     // // TODO zIndex ordering
 
-    return new Promise((resolve: (value: MdlDialogReference) => void, reject: (reason?: any) => void) => {
-      resolve(dialogRef);
-    });
+    return Promise.resolve(dialogRef);
   }
 
+  private pushDialog(dialogRef: MdlDialogReference) {
+      console.log('pushDialog');
+  }
 
+  private popDialog(dialogRef: MdlDialogReference) {
+    console.log('popDialog');
+  }
 
   private createComponentInstance <T> (targetVCRef: ViewContainerRef, providers: Provider[], component: Type<T> ): T {
 

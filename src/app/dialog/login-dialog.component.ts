@@ -21,9 +21,11 @@ export class LoginDialogComponent implements IMdlCustomDialog {
   @ViewChild('firstElement') private inputElement: MdlTextFieldComponent;
 
   constructor(
-    public vcRef: ViewContainerRef,
+    private vcRef: ViewContainerRef,
     private dialog: MdlDialogReference) {
+
     this.dialog.onHide().subscribe( () => console.log('login dialog hidden') );
+
   }
 
   get viewContainerRef() {

@@ -5,7 +5,10 @@ import {
   Inject,
   forwardRef
 } from '@angular/core';
-import { MDL_CONTENT_VIEW_CONTAINER_REF } from './mdl-dialog.service';
+import {
+  MDL_CONTENT_VIEW_CONTAINER_REF,
+  MIN_DIALOG_Z_INDEX
+} from './mdl-dialog.service';
 
 
 // @experimental
@@ -14,7 +17,8 @@ import { MDL_CONTENT_VIEW_CONTAINER_REF } from './mdl-dialog.service';
   host: {
     '[class.mdl-dialog]': 'true',
     '[class.open]': 'true',
-    '[class.fixed]': 'true'
+    '[class.fixed]': 'true',
+    '[style.zIndex]': 'zIndex'
   },
   template: `<div [append-view-container-ref]="dialogContentViewContainerRef"></div>`,
   styles: [
@@ -58,6 +62,8 @@ import { MDL_CONTENT_VIEW_CONTAINER_REF } from './mdl-dialog.service';
   encapsulation: ViewEncapsulation.None
 })
 export class MdlDialogHostComponent {
+
+  public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
 
   constructor(
     @Inject( forwardRef( () => MDL_CONTENT_VIEW_CONTAINER_REF) )
