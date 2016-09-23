@@ -83,7 +83,7 @@ export class DialogDemo extends AbstractDemoComponent {
         }
       ],
       fullWidthAction: true,
-      isModal: true
+      isModal: false
     });
     pDialog.then( (dialogReference) => console.log('dialog visible', dialogReference) );
   }

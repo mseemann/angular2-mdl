@@ -36,6 +36,7 @@ export class InternalMdlDialogReference {
   private onHideSubject: Subject<any> = new Subject();
   public hostDialog: MdlDialogHostComponent;
   public closeCallback: () => void;
+  public isModal = false;
 
   public addComponentRef(cRef: ComponentRef<any>) {
     this.components.add(cRef);
@@ -172,9 +173,21 @@ export class MdlDialogService {
 
   private defaultViewContainerRef: ViewContainerRef;
 
+  private openDialogs = new Array<InternalMdlDialogReference>();
+  private overlay: HTMLElement;
+
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    @Inject(DOCUMENT) private doc: HTMLDocument) {}
+    @Inject(DOCUMENT) private doc: HTMLDocument) {
+
+    // create the overlay - that we will need to block the ui in case of modal dialogs
+    // TODO bad angular design
+    this.overlay = this.doc.createElement('div');
+    this.overlay.className = 'dialog-backdrop';
+    this.overlay.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  }
 
   public setDefaultViewContainerRef(vcRef: ViewContainerRef) {
     this.defaultViewContainerRef = vcRef;
@@ -290,32 +303,58 @@ export class MdlDialogService {
     let hostDialogComponent
       = this.createComponentInstance(dialogConfig.vcRef, providers, MdlDialogHostComponent);
 
-    internalDialogRef.hostDialog = hostDialogComponent;
+    internalDialogRef.hostDialog  = hostDialogComponent;
+    internalDialogRef.isModal     = dialogConfig.isModal;
 
     internalDialogRef.closeCallback = () => {
       this.popDialog(internalDialogRef);
     };
     this.pushDialog(internalDialogRef);
 
-    if ( dialogConfig.isModal ) {
-      // TODO show backdrop if modal dialog
-      let overlay = this.doc.createElement('div');
-      overlay.className = 'dialog-backdrop';
-      overlay.style.zIndex = String(MIN_DIALOG_Z_INDEX);
-      this.doc.body.appendChild(overlay);
-    }
-
-    // // TODO zIndex ordering
-
     return Promise.resolve(dialogRef);
   }
 
   private pushDialog(dialogRef: InternalMdlDialogReference) {
-      console.log('pushDialog');
+    this.openDialogs.push(dialogRef);
+    this.orderDialogStack();
   }
 
   private popDialog(dialogRef: InternalMdlDialogReference) {
-    console.log('popDialog');
+    this.openDialogs.splice(this.openDialogs.indexOf(dialogRef), 1);
+    this.orderDialogStack();
+  }
+
+  private orderDialogStack() {
+    // +1 because the overlay may have MIN_DIALOG_Z_INDEX if the dialog is modal.
+    let zIndex = MIN_DIALOG_Z_INDEX + 1;
+
+    console.log(this.openDialogs);
+    this.openDialogs.forEach( (iDialogRef) => {
+      iDialogRef.hostDialog.zIndex = zIndex;
+      // +2 to make room for the overlay if a dialog is modal
+      zIndex += 2;
+    });
+
+    // if there is a modal dialog append the overloay to the dom - if not remove the overlay from the body
+    let topMostModalDialog: InternalMdlDialogReference = null;
+    for (var i = (this.openDialogs.length - 1); i >= 0; i--) {
+      if (this.openDialogs[i].isModal) {
+        topMostModalDialog = this.openDialogs[i];
+        break;
+      }
+    }
+
+    if (this.overlay.parentElement) {
+      this.overlay.parentElement.removeChild(this.overlay);
+    }
+
+    if (topMostModalDialog) {
+      // append the overlay - TODO bad angular design
+      this.doc.body.appendChild(this.overlay);
+      // move the overlay diredct under the topmos modal dialog
+      this.overlay.style.zIndex = String(topMostModalDialog.hostDialog.zIndex - 1);
+    }
+
   }
 
   private createComponentInstance <T> (targetVCRef: ViewContainerRef, providers: Provider[], component: Type<T> ): T {
