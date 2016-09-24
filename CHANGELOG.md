@@ -1,10 +1,23 @@
-<a name="1.7.2"></a>
-# 1.7.2 (next)
+
+<a name="1.8.1"></a>
+# 1.8.1 (next)
 
 ### Bug Fixes
 ### Features
+
+
+
+<a name="1.8.0"></a>
+# 1.8.0 (2016-09-26)
+
+### Bug Fixes
+* https://github.com/mseemann/angular2-mdl/issues/104 (Reactive Forms Disabled not handled)
+### Features
 * https://github.com/mseemann/angular2-mdl/issues/90 (add semver carret to the 2.0.0 angular deps)
 * https://github.com/mseemann/angular2-mdl/issues/94 (make angular (core, common, forms) peerDependencies)
+* https://github.com/mseemann/angular2-mdl/issues/44 (Add MDL Dialog)
+  See the [docu](http://mseemann.io/angular2-mdl/dialogs) for mor information how to use the *MdlDialogService*
+* https://github.com/mseemann/angular2-mdl/issues/99 (Missing min/max on textfield)
 
 
 <a name="1.7.1"></a>
