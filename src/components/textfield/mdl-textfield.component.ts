@@ -179,6 +179,10 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.onTouchedCallback = fn;
   }
 
+  public setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
   public ngOnChanges() {
     this.checkDisabled();
   }

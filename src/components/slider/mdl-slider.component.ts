@@ -13,6 +13,7 @@ import {
   FormsModule
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BooleanProperty } from './../common/boolean-property';
 
 const noop = (_?: any) => {};
 
@@ -34,6 +35,7 @@ const noop = (_?: any) => {};
             [min]="min" 
             [max]="max" 
             [(ngModel)]="value" 
+            [disabled]="disabled"
             tabindex="0"
             #input>
     <div class="mdl-slider__background-flex">
@@ -60,6 +62,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
   @ViewChild('lower') private lowerEl: ElementRef;
   @ViewChild('uppper') private upperEl: ElementRef;
   @ViewChild('input') private inputEl: ElementRef;
+  @Input() @BooleanProperty() public disabled = false;
 
   constructor(private renderer: Renderer, private elRef: ElementRef) {
   }
@@ -85,6 +88,10 @@ export class MdlSliderComponent implements ControlValueAccessor {
 
   public registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
+  }
+
+  public setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 
   private updateSliderUI() {

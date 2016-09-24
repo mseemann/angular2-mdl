@@ -3,7 +3,8 @@ import {
   ElementRef,
   Renderer,
   forwardRef,
-  NgModule
+  NgModule,
+  Input
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -12,7 +13,6 @@ import {
 } from '@angular/forms';
 import { MdlIconModule } from './../icon/mdl-icon.component';
 import { MdlCheckboxComponent } from './../checkbox/mdl-checkbox.component';
-
 
 @Component({
   selector: 'mdl-icon-toggle',
@@ -24,13 +24,15 @@ import { MdlCheckboxComponent } from './../checkbox/mdl-checkbox.component';
     '(click)': 'onClick()',
     '[class.mdl-icon-toggle]': 'true',
     '[class.is-upgraded]': 'true',
-    '[class.is-checked]': 'value'
+    '[class.is-checked]': 'value',
+    '[class.is-disabled]': 'disabled'
   },
   outputs: ['change'],
   template: `
   <input type="checkbox" class="mdl-icon-toggle__input" 
     (focus)="onFocus()" 
     (blur)="onBlur()"
+    [disabled]="disabled"
     [(ngModel)]="value">
   <mdl-icon class="mdl-icon-toggle__label"><ng-content></ng-content></mdl-icon>
   `,

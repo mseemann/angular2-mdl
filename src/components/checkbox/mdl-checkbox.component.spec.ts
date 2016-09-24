@@ -113,18 +113,37 @@ describe('Component: MdlCheckbox', () => {
     expect(instance.onChange).toHaveBeenCalledWith(true);
   }));
 
+  it('should be possible to disable the checkbox', async(() => {
+    let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
+    fixture.detectChanges();
+
+    let instance = fixture.componentInstance;
+    let cbDebugElem = fixture.debugElement.query(By.directive(MdlCheckboxComponent));
+
+    cbDebugElem.componentInstance.setDisabledState(true);
+    fixture.detectChanges();
+
+    let checkboxEl: HTMLElement = cbDebugElem.nativeElement;
+    expect(checkboxEl.classList.contains('is-disabled')).toBe(true, 'should have css is-disabled');
+
+    // should not change on click
+    cbDebugElem.nativeElement.click();
+    expect(instance.checkboxValue1).toEqual(false);
+
+  }));
 });
 
 
 @Component({
   selector: 'test-icon',
-  template: `<mdl-checkbox [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">
+  template: `<mdl-checkbox [disabled]="false" [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">
               checkbox label
             </mdl-checkbox>
   `,
 })
 class MdlTestCheckboxComponent {
   public checkboxValue1 = false;
+
 
   public onChange(v: boolean) {}
 }

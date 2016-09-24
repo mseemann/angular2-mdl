@@ -414,6 +414,31 @@ describe('Component: MdlTextField', () => {
 
   });
 
+
+  it('should be possible to disable the textinputfield', async(() => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield  type="text"></mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+
+    let cbDebugElem = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
+
+    cbDebugElem.componentInstance.setDisabledState(true);
+    fixture.detectChanges();
+
+    let textInputElement: HTMLElement = cbDebugElem.nativeElement;
+    expect(textInputElement.classList.contains('is-disabled')).toBe(true, 'should have css is-disabled');
+
+    fixture.whenStable().then(() => {
+      let inputElement: HTMLInputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
+      expect(inputElement.getAttribute('disabled')).toBe('', 'the underlaying input element should be disbaled');
+
+    });
+
+  }));
+
 });
 
 

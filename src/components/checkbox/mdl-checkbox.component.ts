@@ -6,7 +6,8 @@ import {
   forwardRef,
   NgModule,
   ViewEncapsulation,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Input
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -14,10 +15,10 @@ import {
   FormsModule
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BooleanProperty } from './../common/boolean-property'
 
 const noop = (_?: any) => {};
 const IS_FOCUSED = 'is-focused';
-
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => MdlCheckboxComponent),
@@ -31,12 +32,14 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     '(click)': 'onClick()',
     '[class.mdl-checkbox]': 'true',
     '[class.is-upgraded]': 'true',
-    '[class.is-checked]': 'value'
+    '[class.is-checked]': 'value',
+    '[class.is-disabled]': 'disabled'
   },
   template: `
   <input type="checkbox" class="mdl-checkbox__input" 
     (focus)="onFocus()" 
     (blur)="onBlur()"
+    [disabled]="disabled"
     [ngModel]="value">
   <span class="mdl-checkbox__label"><ng-content></ng-content></span>
   <span class="mdl-checkbox__focus-helper"></span>
@@ -50,6 +53,8 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
+
+  @Input() @BooleanProperty() public disabled = false;
 
   private change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -83,6 +88,10 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
+  public setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
   protected onFocus() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, true);
   }
@@ -93,6 +102,9 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   }
 
   protected onClick() {
+    if (this.disabled) {
+      return;
+    }
     this.value = !this.value;
   }
 }

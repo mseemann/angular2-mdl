@@ -44,18 +44,39 @@ describe('Component: MdlIconToggle', () => {
     expect(instance.onChange).toHaveBeenCalledWith(true);
   }));
 
+  // the following test, tests implicity that annotation are inherited (@Input @BooleanPorperty is defined in the
+  // class MdlCheckboxComponent and not in MdlTestIconToggleComponent
+  it('should be possible to disable the icon toggle', async(() => {
+    let fixture = TestBed.createComponent(MdlTestIconToggleComponent);
+    fixture.detectChanges();
+
+    let instance = fixture.componentInstance;
+    let cbDebugElem = fixture.debugElement.query(By.directive(MdlIconToggleComponent));
+
+    cbDebugElem.componentInstance.setDisabledState(true);
+    fixture.detectChanges();
+
+    let checkboxEl: HTMLElement = cbDebugElem.nativeElement;
+    expect(checkboxEl.classList.contains('is-disabled')).toBe(true, 'should have css is-disabled');
+
+    // should not change on click
+    cbDebugElem.nativeElement.click();
+    expect(instance.checkboxValue1).toEqual(false);
+
+  }));
 });
 
 
 @Component({
   selector: 'test-icon',
   template: `
-    <mdl-icon-toggle [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">
+    <mdl-icon-toggle [disabled]="false" [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">
     format_bold
     </mdl-icon-toggle>
   `
 })
 class MdlTestIconToggleComponent {
 
+  public checkboxValue1 = false;
   public onChange(v: boolean) {}
 }
