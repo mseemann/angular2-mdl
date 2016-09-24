@@ -64,7 +64,8 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
 export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChanges {
 
   @ContentChild(MdlLayoutHeaderComponent) private header;
-  // will be set to undefined, if not a direct child or not present
+  // will be set to undefined, if not a direct child or not present in 2.0.0 i
+  // n 2.0.1 it is now the grand child drawer again :(
   @ContentChild(MdlLayoutDrawerComponent) private drawer;
   @ContentChild(MdlLayoutContentComponent) private content;
 
@@ -96,6 +97,11 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     if (this.header && this.content && this.content.tabs) {
       this.header.tabs = this.content.tabs;
       this.updateSelectedTabIndex();
+    }
+
+    // set this.drawer to null, if the drawer is not a direct child if this layout. It may be a drywer of a sub layout.
+    if (this.drawer && !this.drawer.isDrawerDirectChildOf(this)) {
+      this.drawer = null;
     }
 
   }
