@@ -1,7 +1,8 @@
 import {
   Component,
   ViewContainerRef,
-  ViewChild
+  ViewChild,
+  HostListener
 } from '@angular/core';
 import {
   MdlDialogReference,
@@ -42,5 +43,10 @@ export class LoginDialogComponent implements IMdlCustomDialog {
   public login() {
     console.log('login', this.dialog);
     this.dialog.hide();
+  }
+
+  @HostListener('keydown.esc')
+  public onEsc(): void {
+      this.dialog.hide();
   }
 }

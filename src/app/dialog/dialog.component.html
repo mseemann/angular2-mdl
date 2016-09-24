@@ -1,6 +1,6 @@
 <h4>The Dialog</h4>
 
-<p>
+<p class="mdl-color-text--primary">
 The dialog implementation is experimental! This means the API may change in future releases. Going
 this way is the only possibility to get feedback from a broad range of users.
 </p>
@@ -16,7 +16,8 @@ this way is the only possibility to get feedback from a broad range of users.
 <p>
   If you want to create a custom dialog - e.g. you have full control regarding the content of the dialog - you need to
   implement a component. This component must implement the interface <i>IMdlCustomDialog</i> and you need to add
-  this component to the entryComponents of your app module!
+  this component to the entryComponents of your app module! Also you should implement an event lister that closes the
+  dialog if the users hits the esc key.
 </p>
 
 <h5>Alert</h5>
@@ -135,6 +136,11 @@ this way is the only possibility to get feedback from a broad range of users.
     public login() {
       console.log('login', this.dialog);
       this.dialog.hide();
+    }
+
+    @HostListener('keydown.esc')
+    public onEsc(): void {
+        this.dialog.hide();
     }
   }
 </scriptx>

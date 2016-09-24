@@ -8,7 +8,8 @@ import {
   AfterViewInit,
   ViewChildren,
   QueryList,
-  ElementRef
+  ElementRef,
+  NgZone
 } from '@angular/core';
 import {
   IMdlDialogAction,
@@ -53,7 +54,8 @@ export class MdlDialogComponent implements IMdlCustomDialog, AfterViewInit {
   constructor(
     private vcRef: ViewContainerRef,
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private dialogConfiguration: IMdlSimpleDialogConfiguration,
-    @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference) {}
+    @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference,
+    private ngZone: NgZone) {}
 
   get viewContainerRef() {
     return this.vcRef;
@@ -61,9 +63,9 @@ export class MdlDialogComponent implements IMdlCustomDialog, AfterViewInit {
 
   public ngAfterViewInit() {
     // set the focus to the first focuable element
-    setTimeout( () => {
+    this.ngZone.onMicrotaskEmpty.subscribe( () => {
       this.buttons.first.nativeElement.focus();
-    }, 1);
+    });
   }
 
   public actionClicked(action: IMdlDialogAction) {
@@ -72,7 +74,6 @@ export class MdlDialogComponent implements IMdlCustomDialog, AfterViewInit {
   }
 
 
-  // TODO Docu: if you create a custom dialog you need to implement this functionality by yourself.
   @HostListener('keydown.esc')
   public onEsc(): void {
     // run the first action that is marked as closing action
