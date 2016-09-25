@@ -1,5 +1,5 @@
 {
-  "name": "prism",
+  "name": "@mseemann/prism",
   "version": "0.0.1",
   "description": "Angular 2 Prism Component",
   "main": "./index.js",
