@@ -194,17 +194,19 @@ export class MdlDialogService {
   }
 
   /**
-   * FIXME add title as an option; document okText
    * Shows a dialog that is just an alert - e.g. with one button.
    * @param alertMessage The message that should be displayed.
+   * @param okTex The text that the button should have
+   * @param title The optional title of the dialog
    * @param vcRef The ViewContainerRef where the alert dialog should be attached to.
    * Must not be provided if setDefaultViewContainerRef was set.
    * @returns A promise that is called if the user hits the Ok button.
    */
-  public alert(alertMessage: string, okText = 'Ok', vcRef?: ViewContainerRef): Promise<void> {
+  public alert(alertMessage: string, okText = 'Ok', title?: string, vcRef?: ViewContainerRef): Promise<void> {
     return new Promise((resolve: (value?: void) => void, reject: (reason?: any) => void) => {
 
       this.showDialog({
+        title: title,
         message: alertMessage,
         actions: [
           { handler: () => resolve(), text: okText}
