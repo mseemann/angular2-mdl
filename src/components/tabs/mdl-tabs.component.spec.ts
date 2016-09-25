@@ -122,6 +122,49 @@ describe('Component: MdlTabs', () => {
 
     expect(testElement.nodeName).toBe('A');
   });
+
+
+  it('should not bepossible to to select a disabled tab', () => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-tabs [mdl-tab-active-index]="0" (mdl-tab-active-changed)="tabChanged($event)">
+            <mdl-tab-panel></mdl-tab-panel>
+            <mdl-tab-panel></mdl-tab-panel>
+            <mdl-tab-panel [disabled]="true"></mdl-tab-panel>
+            <mdl-tab-panel [disabled]="true">
+              <mdl-tab-panel-title>
+                <span class="test">Test</span>
+              </mdl-tab-panel-title>
+            </mdl-tab-panel>
+          </mdl-tabs>
+        ` }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let testComponent = fixture.componentInstance;
+
+    let mdlTabsComponent: MdlTabsComponent =
+      fixture.debugElement.query(By.directive(MdlTabsComponent)).componentInstance;
+
+    let aDebugElements = fixture.debugElement.queryAll(By.css('a.disabled'));
+
+    aDebugElements[0].nativeElement.click();
+
+    fixture.detectChanges();
+
+    expect(mdlTabsComponent.selectedIndex).toBe(0);
+
+
+    let titleDebugElements = fixture.debugElement.queryAll(By.css('div.disabled'));
+
+    titleDebugElements[0].nativeElement.click();
+
+    fixture.detectChanges();
+
+    expect(mdlTabsComponent.selectedIndex).toBe(0);
+  });
 });
 
 
