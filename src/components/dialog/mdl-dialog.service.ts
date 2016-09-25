@@ -178,7 +178,7 @@ export class MdlDialogService {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    @Inject(DOCUMENT) private doc: HTMLDocument) {
+    @Inject(DOCUMENT) private doc: any) {
 
     // create the overlay - that we will need to block the ui in case of modal dialogs
     // TODO bad angular design
