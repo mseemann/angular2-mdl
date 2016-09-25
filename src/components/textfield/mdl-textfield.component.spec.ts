@@ -81,7 +81,7 @@ describe('Component: MdlTextField', () => {
 
   });
 
-  it('should mark the component as invalid ngModel', async(() => {
+  it('should mark the component as invalid ngModel (pattern)', async(() => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" label="Text..." [(ngModel)]="text1" pattern="a"></mdl-textfield>' }
@@ -100,7 +100,45 @@ describe('Component: MdlTextField', () => {
     });
   }));
 
-  it('should create a textare if row is specified', () => {
+  it('should mark the component as invalid ngModel (min)', async(() => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-textfield type="number" label="Text..." [(ngModel)]="text1" min="2"></mdl-textfield>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    el.value = '1';
+    fixture.detectChanges();
+
+    fixture.whenStable().then( () => {
+      expect(hostEl.classList.contains('is-invalid')).toBe(true);
+    });
+  }));
+
+  it('should mark the component as invalid ngModel (max)', async(() => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-textfield type="number" label="Text..." [(ngModel)]="text1" max="1"></mdl-textfield>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    el.value = '2';
+    fixture.detectChanges();
+
+    fixture.whenStable().then( () => {
+      expect(hostEl.classList.contains('is-invalid')).toBe(true);
+    });
+  }));
+
+  it('should create a textarea if row is specified', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: '<mdl-textfield type="text" label="Text..." rows="3"></mdl-textfield>' }
@@ -375,6 +413,31 @@ describe('Component: MdlTextField', () => {
     expect(el.classList.contains('is-focused')).toBe(true);
 
   });
+
+
+  it('should be possible to disable the textinputfield', async(() => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield  type="text"></mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+
+    let cbDebugElem = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
+
+    cbDebugElem.componentInstance.setDisabledState(true);
+    fixture.detectChanges();
+
+    let textInputElement: HTMLElement = cbDebugElem.nativeElement;
+    expect(textInputElement.classList.contains('is-disabled')).toBe(true, 'should have css is-disabled');
+
+    fixture.whenStable().then(() => {
+      let inputElement: HTMLInputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
+      expect(inputElement.getAttribute('disabled')).toBe('', 'the underlaying input element should be disbaled');
+
+    });
+
+  }));
 
 });
 

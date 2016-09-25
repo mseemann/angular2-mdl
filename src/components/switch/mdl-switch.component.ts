@@ -24,13 +24,15 @@ import { CommonModule } from '@angular/common';
     '(click)': 'onClick()',
     '[class.mdl-switch]': 'true',
     '[class.is-upgraded]': 'true',
-    '[class.is-checked]': 'value'
+    '[class.is-checked]': 'value',
+    '[class.is-disabled]': 'disabled'
   },
   outputs: ['change'],
   template: `
     <input type="checkbox" class="mdl-switch__input" 
       (focus)="onFocus()" 
       (blur)="onBlur()"
+      [disabled]="disabled"
       [(ngModel)]="value">
     <span class="mdl-switch__label"><ng-content></ng-content></span>
     <div class="mdl-switch__track"></div>

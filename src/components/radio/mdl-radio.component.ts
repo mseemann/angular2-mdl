@@ -17,8 +17,7 @@ import {
   FormsModule
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
-
+import { BooleanProperty } from './../common/boolean-property'
 
 const noop = () => {};
 const IS_FOCUSED = 'is-focused';
@@ -67,13 +66,15 @@ export class MdlRadioGroupRegisty {
     '(click)': 'onClick()',
     '[class.mdl-radio]': 'true',
     '[class.is-upgraded]': 'true',
-    '[class.is-checked]': 'checked'
+    '[class.is-checked]': 'checked',
+    '[class.is-disabled]': 'disabled'
   },
   template: `
   <input type="checkbox" class="mdl-radio__button" 
     [attr.name]="name"
     (focus)="onFocus()" 
     (blur)="onBlur()"
+    [disabled]="disabled"
     [(ngModel)]="checked">
   <span class="mdl-radio__label"><ng-content></ng-content></span>
   <span class="mdl-radio__outer-circle"></span>
@@ -85,6 +86,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   @Input() public name: string;
   @Input() public formControlName: string;
   @Input() public value: any;
+  @Input() @BooleanProperty() public disabled = false;
 
   @Output() public change: EventEmitter<any> = new EventEmitter<any>();
 
@@ -140,6 +142,10 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     this.onTouchedCallback = fn;
   }
 
+  public setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
   protected onFocus() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, true);
   }
@@ -149,6 +155,9 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   }
 
   protected onClick() {
+    if(this.disabled){
+      return;
+    }
     this.optionValue = this.value;
     this.updateCheckState();
     this.onChangeCallback();

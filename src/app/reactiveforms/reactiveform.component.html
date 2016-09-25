@@ -43,6 +43,9 @@
     <button mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</button>
   </p>
 </form>
+<mdl-checkbox  [mdl-ripple]="true" [(ngModel)]="disableForm" (change)="onDisableForm($event)">
+  Disable the form.
+</mdl-checkbox>
 <p>The submit is logged to the browser console.</p>
 <p>You need to add the FormsModule and the ReactiveFormsModule to your app module.</p>
 
@@ -85,6 +88,9 @@
     <button mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</button>
   </p>
 </form>
+  <mdl-checkbox  [mdl-ripple]="true" [(ngModel)]="disableForm" (change)="onDisableForm($event)">
+  Disable the form.
+</mdl-checkbox>
 ]]>
 </pre>
 
@@ -96,6 +102,7 @@
   <![CDATA[
 export class ReactiveFormsDemo {
 
+  public disableForm = false;
   public form: FormGroup;
   public firstName = new FormControl('');
   public lastName = new FormControl('', Validators.required);
@@ -116,6 +123,15 @@ export class ReactiveFormsDemo {
   public onSubmit() {
     console.log(this.form);
   }
+
+  public onDisableForm(formDisabled: boolean) {
+    if ( formDisabled ) {
+      this.form.disable();
+    } else {
+      this.form.enable();
+    }
+  }
+
 }
 ]]>
 </pre>

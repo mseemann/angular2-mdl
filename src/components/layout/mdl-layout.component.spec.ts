@@ -381,7 +381,6 @@ describe('Component: MdlLayout', () => {
     fixture.detectChanges();
     expect(layoutComponent.hasDrawer()).toBe(false);
 
-
     done();
   });
 });

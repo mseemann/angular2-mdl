@@ -7,6 +7,10 @@
 </mdl-checkbox>
 {{checkbox1}}
 
+<mdl-checkbox  [mdl-ripple]="true" [disabled]="true" [(ngModel)]="checkbox1" (change)="onChange($event)">
+  Checkbox Disabled
+</mdl-checkbox>
+
 <pre prism>
   <![CDATA[
   <mdl-checkbox [mdl-ripple]="true" [(ngModel)]="checkbox1">
@@ -33,8 +37,9 @@
 
 
 <h5>Radios</h5>
-<mdl-radio name="group1" value="1" [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 1</mdl-radio>
+<mdl-radio name="group1" value="1"  [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 1</mdl-radio>
 <mdl-radio name="group1" value="2" [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 2</mdl-radio>
+<mdl-radio name="group1" value="3" [disabled]="true"  [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 3 (disabled)</mdl-radio>
 
 {{radioOption}}
 
@@ -42,6 +47,7 @@
   <![CDATA[
   <mdl-radio name="group1" value="1" [(ngModel)]="radioOption" mdl-ripple>Value 1</mdl-radio>
   <mdl-radio name="group1" value="2" [(ngModel)]="radioOption" mdl-ripple>Value 2</mdl-radio>
+  <mdl-radio name="group1" value="3" [disabled]="true"  [(ngModel)]="radioOption" mdl-ripple>Value 3 (disabled)</mdl-radio>
 
   {x{radioOption}}
   ]]>
@@ -61,6 +67,8 @@ The <i>value</i> is used to set the <i>ngModel</i> value if the option is select
 {{checkbox1}}
 <mdl-icon-toggle  [(ngModel)]="checkbox2">format_italic</mdl-icon-toggle>
 {{checkbox2}}
+<mdl-icon-toggle  [(ngModel)]="checkbox2" [disabled]="true">format_italic</mdl-icon-toggle>
+(disabled) {{checkbox2}}
 
 <pre prism>
   <![CDATA[
@@ -68,6 +76,8 @@ The <i>value</i> is used to set the <i>ngModel</i> value if the option is select
   {x{checkbox1}}
   <mdl-icon-toggle  [(ngModel)]="checkbox2">format_italic</mdl-icon-toggle>
   {x{checkbox2}}
+  <mdl-icon-toggle  [(ngModel)]="checkbox2" [disabled]="true">format_italic</mdl-icon-toggle>
+  (disabled) {x{checkbox2}}
   ]]>
 </pre>
 
@@ -80,12 +90,16 @@ The <i>value</i> is used to set the <i>ngModel</i> value if the option is select
 {{checkbox1}}
 <mdl-switch  [(ngModel)]="checkbox2">Option 2</mdl-switch>
 {{checkbox2}}
+<mdl-switch  [(ngModel)]="checkbox2" [disabled]="true">Option 3 (disabled)</mdl-switch>
+{{checkbox2}}
 
 <pre prism>
   <![CDATA[
   <mdl-switch [(ngModel)]="checkbox1" mdl-ripple>Option 1</mdl-switch>
   {x{checkbox1}}
   <mdl-switch  [(ngModel)]="checkbox2">Option 2</mdl-switch>
+  {x{checkbox2}}
+  <mdl-switch  [(ngModel)]="checkbox2" [disabled]="true">Option 3 (disabled)</mdl-switch>
   {x{checkbox2}}
   ]]>
 </pre>

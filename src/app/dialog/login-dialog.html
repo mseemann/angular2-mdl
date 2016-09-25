@@ -1,0 +1,11 @@
+<div>
+  <h3 class="mdl-dialog__title">App Login</h3>
+  <div class="mdl-dialog__content">
+    <mdl-textfield #firstElement type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
+    <br/>
+    <mdl-textfield type="password" label="Password" [(ngModel)]="password" floating-label></mdl-textfield>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button mdl-button (click)="login()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Login</button>
+  </div>
+</div>

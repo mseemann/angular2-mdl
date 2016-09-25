@@ -117,6 +117,26 @@ describe('Component: MdlSlider', () => {
   }));
 
 
+  it('should be possible to disable the slider', async(() => {
+    let fixture = TestBed.createComponent(MdlTestSliderComponent);
+    fixture.detectChanges();
+
+    let cbDebugElem = fixture.debugElement.query(By.directive(MdlSliderComponent));
+
+    cbDebugElem.componentInstance.setDisabledState(true);
+    fixture.detectChanges();
+
+    expect(cbDebugElem.componentInstance.disabled).toBe(true, 'the internal disbaled prop should be true');
+
+    fixture.whenStable().then(() => {
+      let inputElement: HTMLInputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
+      expect(inputElement.getAttribute('disabled')).toBe('', 'the underlaying input element should be disbaled');
+
+    });
+
+  }));
+
+
 });
 
 

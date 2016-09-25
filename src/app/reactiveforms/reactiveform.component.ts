@@ -32,7 +32,7 @@ const emailValidator = Validators.pattern('^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5
 })
 export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
 
-
+  public disableForm = false;
   public form: FormGroup;
   public firstName = new FormControl('');
   public lastName = new FormControl('', Validators.required);
@@ -40,6 +40,7 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
   public email2 = new FormControl('', emailValidator);
   public breakfast = new FormControl('Continental');
   public toDrink = new FormControl('Tea');
+
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title, private fb: FormBuilder) {
     super(router, route, titleService);
@@ -68,5 +69,13 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
 
   public onSubmit() {
     console.log(this.form);
+  }
+
+  public onDisableForm(formDisabled: boolean) {
+    if ( formDisabled ) {
+      this.form.disable();
+    } else {
+      this.form.enable();
+    }
   }
 }

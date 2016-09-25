@@ -5,7 +5,8 @@ import {
   ViewContainerRef,
   Renderer,
   ComponentRef,
-  ComponentFactoryResolver
+  ComponentFactoryResolver,
+  HostListener
 } from '@angular/core';
 import { MdlSimpleTooltipComponent, MdlTooltipComponent } from './mdl-tooltip.component';
 
@@ -41,11 +42,9 @@ export class AbstractMdlTooltipDirective implements OnInit {
       this.configureTooltipComponent();
     }
 
-    this.renderer.listenGlobal('window', 'touchstart', () => {
-      this.onMouseLeave();
-    });
-
   }
+
+
 
   private configureTooltipComponent() {
     this.tooltipComponent.large = this.large;
@@ -56,6 +55,7 @@ export class AbstractMdlTooltipDirective implements OnInit {
     this.tooltipComponent.mouseEnter(event);
   }
 
+  @HostListener('window:touchstart')
   protected onMouseLeave() {
     this.tooltipComponent.mouseLeave();
   }

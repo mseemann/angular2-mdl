@@ -34,6 +34,8 @@ import { TextFieldDemo } from './textfield/textfield.component';
 import { PrismDirective } from './prism/prism.component';
 import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
 import { ThemeDemo } from './theme/theme.component';
+import { DialogDemo } from './dialog/dialog.component';
+import { LoginDialogComponent } from './dialog/login-dialog.component';
 
 @NgModule({
   imports: [
@@ -50,6 +52,8 @@ import { ThemeDemo } from './theme/theme.component';
     BadgeDemo,
     CardDemo,
     ChipsDemo,
+    DialogDemo,
+    LoginDialogComponent,
     IconDemo,
     ShadowDemo,
     LoadingDemo,
@@ -74,7 +78,7 @@ import { ThemeDemo } from './theme/theme.component';
   providers: [
     Title
   ],
-  entryComponents: [Angular2MdlAppComponent],
+  entryComponents: [Angular2MdlAppComponent, LoginDialogComponent],
   bootstrap: [],
 })
 export class Angular2MdlAppModule {
