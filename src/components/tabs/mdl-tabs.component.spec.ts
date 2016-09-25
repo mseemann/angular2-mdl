@@ -120,7 +120,7 @@ describe('Component: MdlTabs', () => {
     fixture.detectChanges();
     let testElement = fixture.nativeElement.querySelector('.mdl-tabs__tab.disabled');
 
-    expect(testElement.nodeName).toBe('SPAN');
+    expect(testElement.nodeName).toBe('A');
   });
 });
 
