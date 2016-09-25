@@ -5,10 +5,10 @@
 <div>
   active index:
   <input type="number" [(ngModel)]="activeIndex" min="0" max="2">
-	<mdl-switch [(ngModel)]="disableTargaryens" mdl-ripple>Disable Targaryens</mdl-switch>
-  <mdl-switch [(ngModel)]="disableBaratheon" mdl-ripple>Disable Baratheon</mdl-switch>
 </div>
 <div class="demo-tab-container">
+  <mdl-switch [(ngModel)]="disableTargaryens" mdl-ripple>Disable Targaryens</mdl-switch>
+  <mdl-switch [(ngModel)]="disableBaratheon" mdl-ripple>Disable Baratheon</mdl-switch>
   <mdl-tabs mdl-ripple [mdl-tab-active-index]="activeIndex" (mdl-tab-active-changed)="tabChanged($event)">
     <mdl-tab-panel>
       <mdl-tab-panel-title>
@@ -59,6 +59,8 @@
 
 <pre prism>
   <![CDATA[
+<mdl-switch [(ngModel)]="disableTargaryens" mdl-ripple>Disable Targaryens</mdl-switch>
+<mdl-switch [(ngModel)]="disableBaratheon" mdl-ripple>Disable Baratheon</mdl-switch>
 <mdl-tabs mdl-ripple mdl-tab-active-index="0" (mdl-tab-active-changed)="tabChanged($event)">
     <mdl-tab-panel>
       <mdl-tab-panel-title>
@@ -89,6 +91,19 @@
           <li>Viserys</li>
           <li>Daenerys</li>
        </ul>
+    </mdl-tab-panel>
+    <mdl-tab-panel mdl-tab-panel-title="Baratheon" [disabled]="disableBaratheon">
+      <mdl-tab-panel-title>
+        <mdl-icon class="mdl-color-text--primary">person</mdl-icon><span>Baratheon</span>
+      </mdl-tab-panel-title>
+      <ul>
+        <li>Robert</li>
+        <li>Renly</li>
+        <li>Stanis</li>
+        <li>Joffrey</li>
+        <li>Myrcella</li>
+        <li>Tommen</li>
+      </ul>
     </mdl-tab-panel>
  </mdl-tabs>
   ]]>
