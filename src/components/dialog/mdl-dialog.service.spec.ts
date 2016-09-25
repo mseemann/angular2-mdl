@@ -189,7 +189,35 @@ describe('Service: MdlDialog', () => {
     }).toThrow();
   });
 
-  
+  it('should not hide the dialog on esc key  if there is no closing action', ( done: () => void ) => {
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+    let viewRef = fixture.debugElement.query(By.directive(ViewRefHolderComponent)).componentInstance.viewRef;
+
+    mdlDialogService.setDefaultViewContainerRef(viewRef);
+
+    let pDialogRef = mdlDialogService.showDialog({
+      message: 'm',
+      actions: [
+        { handler: () => {}, text: 'ok'}
+      ]
+    });
+
+    pDialogRef.then( (dialogRef: MdlDialogReference) => {
+
+      spyOn(dialogRef, 'hide');
+      let dialog = fixture.debugElement.query(By.directive(MdlDialogComponent)).componentInstance;
+      // sending an keybord event to the dialog would be better
+      dialog.onEsc();
+
+      expect(dialogRef.hide).not.toHaveBeenCalled();
+
+      done();
+    });
+
+  });
+
 });
 
 
