@@ -45,7 +45,8 @@
    <tbody>
 
    <tr>
-      <td>setDefaultViewContainerRef(vcRef: ViewContainerRef)</td>
+      <td>setDefaultViewContainerRef(<br/>
+        vcRef: ViewContainerRef)</td>
       <td>
          Every SnackBar needs a reference to the <i>ViewContainerRef</i> where it can be added. You can provide
          a default <i>ViewContainerRef</i> for every Snackbar or provide a <i>ViewContainerRef</i> during each show call.
@@ -54,7 +55,11 @@
    </tr>
 
    <tr>
-      <td>showToast(message: string, timeout?: number, vcRef?: ViewContainerRef): Promise&lt;MdlSnackbarComponent&gt; </td>
+      <td>showToast(<br/>
+        message: string,<br/>
+        timeout?: number,<br/>
+        vcRef?: ViewContainerRef)<br/>
+        : Promise&lt;MdlSnackbarComponent&gt; </td>
       <td>
         Shorthand version for
          <pre>
@@ -69,7 +74,9 @@ return this.showSnackbar(&#123;
    </tr>
 
    <tr>
-      <td>showSnackbar(snackbarMessage: IMdlSnackbarMessage): Promise&lt;MdlSnackbarComponent&gt;</td>
+      <td>showSnackbar(<br/>
+        snackbarMessage: IMdlSnackbarMessage)<br/>
+        : Promise&lt;MdlSnackbarComponent&gt;</td>
       <td>
          Shows a snackbar. The <i>IMdlSnackbarMessage</i> is:
          <pre>
