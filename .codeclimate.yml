@@ -27,7 +27,7 @@ exclude_paths:
 - dev-scripts
 - scripts
 - src/app
-- src/scss-mdl
+- src/scss
 - typings
 - angular-cli.json
 - angular-cli-build.js
