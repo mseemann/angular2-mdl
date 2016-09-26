@@ -23,17 +23,14 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 
 **Here is a plnkr if you'd like to play around http://plnkr.co/edit/I3dLfLUDIH2xlEJqj0da?p=preview.**
 
-**If you are still on RC6 you can use the angular2-mdl version 1.5.1.**
 
-**If you are still on RC5 you can use the angular2-mdl version 1.4.6.**
-
-
-### Status of the npm package version 1.7 (mdl version 1.2.1; angular 2.0 final)
+### Status of the npm package version 1.8 (mdl version 1.2.1; angular 2.0 final)
 
 - Badges
 - Buttons 
 - Cards
 - Chips
+- Dialogs
 - Icons
 - Loading
 - Shadow
