@@ -77,6 +77,8 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   @Input('mdl-ripple') @BooleanProperty() protected isRipple = false;
   @Input('mdl-layout-no-drawer-button') @BooleanProperty() public isNoDrawer = false;
   @Output('mdl-layout-tab-active-changed') public selectedTabEmitter = new EventEmitter();
+  @Output('mdl-layout-tab-mouseover') public mouseoverTabEmitter = new EventEmitter();
+  @Output('mdl-layout-tab-mouseout') public mouseoutTabEmitter = new EventEmitter();
 
   public isDrawerVisible = false;
   public isSmallScreen = false;
@@ -237,6 +239,18 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
       this.updateSelectedTabIndex();
       this.selectedTabEmitter.emit({index: this.selectedIndex});
     }
+  }
+
+  // triggered from mdl-layout-header.component
+  public onTabMouseover(tab) {
+    let index = this.header.tabs.toArray().indexOf(tab);
+    this.mouseoverTabEmitter.emit({index: index});
+  }
+
+  // triggered from mdl-layout-header.component
+  public onTabMouseout(tab) {
+    let index = this.header.tabs.toArray().indexOf(tab);
+    this.mouseoutTabEmitter.emit({index: index});
   }
 
   public closeDrawerOnSmallScreens() {

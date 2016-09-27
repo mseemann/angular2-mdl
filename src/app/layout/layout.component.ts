@@ -56,6 +56,14 @@ export class LayoutDemo extends AbstractDemoComponent {
   public tabChanged({index}) {
     this.activeIndex = index;
   }
+
+  public tabMouseover({index}) {
+    console.log(`mouseover: ${index}`);
+  }
+
+  public tabMouseout({index}) {
+    console.log(`mouseout: ${index}`);
+  }
 }
 
 @Component({

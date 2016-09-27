@@ -295,7 +295,11 @@ The screen width must be wider than 1024px to see the header in any case.
 <h6>Fixed tabs</h6>
 
 <div class="demo-container" mdl-shadow="2">
-   <mdl-layout mdl-layout-fixed-header [mdl-layout-tab-active-index]="activeIndex" (mdl-layout-tab-active-changed)="tabChanged($event)">
+   <mdl-layout mdl-layout-fixed-header
+               [mdl-layout-tab-active-index]="activeIndex"
+               (mdl-layout-tab-active-changed)="tabChanged($event)"
+               (mdl-layout-tab-mouseover)="tabMouseover($event)"
+               (mdl-layout-tab-mouseout)="tabMouseout($event)">
       <mdl-layout-header>
          <mdl-layout-header-row>
           <mdl-layout-title>Title</mdl-layout-title>
@@ -478,6 +482,18 @@ Please visit the original <a href="https://getmdl.io/components/index.html#layou
      <td>mdl-layout-tab-active-index</td>
      <td>Secifies the index of the active tab. Needs
        <i>mdl-layout-tab-panel</i> components within the <i>mdl-layout-content</i>.</td>
+   </tr>
+
+   <tr>
+    <td>mdl-layout-tab-mouseout</td>
+    <td>Event-listener function that will be fired if the mouse is over a tab. The index
+     is stored in the <i>index</i> property of the event object.</td>
+   </tr>
+
+   <tr>
+    <td>mdl-layout-tab-mouseover</td>
+    <td>Event-listener function that will be fired if the mouse is out of a tab. The index
+      is stored in the <i>index</i> property of the event object.</td>
    </tr>
 
    <tr>

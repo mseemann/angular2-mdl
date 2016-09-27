@@ -257,7 +257,7 @@ describe('Component: MdlLayout', () => {
 
   });
 
-  it('should be possible to listen to chanegs to the active tab', ( done ) => {
+  it('should be possible to listen to changes to the active tab', ( done ) => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: `
@@ -383,6 +383,42 @@ describe('Component: MdlLayout', () => {
 
     done();
   });
+
+  it('shoudl be possible to listen to mouseover/mouseout events on tabs', () => {
+    TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
+      template: `
+          <mdl-layout 
+              (mdl-layout-tab-mouseover)="tabMouseover($event)"
+              (mdl-layout-tab-mouseout)="tabMouseout($event)">
+           <mdl-layout-header></mdl-layout-header>
+              <mdl-layout-content>
+                <mdl-layout-tab-panel mdl-layout-tab-panel-title="t1"></mdl-layout-tab-panel>
+                <mdl-layout-tab-panel mdl-layout-tab-panel-title="t2"></mdl-layout-tab-panel>
+              </mdl-layout-content>
+         </mdl-layout>
+        ` }
+    });
+    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
+
+    let testComponent = fixture.componentInstance;
+
+    spyOn(testComponent, 'tabMouseover');
+    spyOn(testComponent, 'tabMouseout');
+
+    let tab1Elem = fixture.debugElement.query(By.css('.mdl-layout__tab')).nativeElement;
+
+    let eventMouseover = new Event('mouseover', {});
+    tab1Elem.dispatchEvent(eventMouseover);
+
+    let eventMouseout = new Event('mouseout', {});
+    tab1Elem.dispatchEvent(eventMouseout);
+
+    expect(testComponent.tabMouseover).toHaveBeenCalledWith({index: 0});
+    expect(testComponent.tabMouseout).toHaveBeenCalledWith({index: 0});
+
+  });
+
 });
 
 
@@ -399,4 +435,8 @@ class MdlTestLayoutComponent {
   public tabChanged($event) {
     this.selectedIndexOutput = $event.index;
   }
+
+  public tabMouseover($event) {}
+
+  public tabMouseout($event) {}
 }
