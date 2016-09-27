@@ -8,12 +8,12 @@ import {
 } from '@angular/core';
 
 export const flyInOutTrigger = trigger('flyInOut', [
-  state('*', style({transform: 'translateX(0)', opacity: 1})),
+  state('*', style({})),
   transition('void => *', [
-    style({transform: 'translateX(-100%)', opacity: 0}),
-    animate(300)
+    style({transform: 'translateX(-100%)'}),
+    animate(3000)
   ]),
-  transition('* => void', animate(300, style({transform: 'translateX(100%)', opacity: 0})))
+  transition('* => void', animate(3000, style({transform: 'translateX(100%)'})))
 ]);
 
 export const hostConfig: {[key: string]: string} = {
