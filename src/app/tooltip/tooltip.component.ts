@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
+import { flyInOutTrigger, hostConfig } from './../animations/flyInOutTrigger-animation';
 import {
   Router,
   ActivatedRoute
@@ -10,7 +10,7 @@ import { AbstractDemoComponent } from './../abstract-demo.component';
 @Component({
   moduleId: module.id,
   selector: 'tooltip-demo',
-  // host: hostConfig, // disabled animations because of misabligned tooltips :(
+  host: hostConfig,
   animations: [
     flyInOutTrigger
   ],
