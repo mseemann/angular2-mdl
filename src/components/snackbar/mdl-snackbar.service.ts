@@ -7,7 +7,8 @@ import {
   ModuleWithComponentFactories,
   ComponentFactory,
   ComponentRef,
-  NgModule
+  NgModule,
+  ViewEncapsulation
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 import { CommonModule } from '@angular/common';
@@ -29,6 +30,7 @@ const ANIMATION_TIME = 250;
       <button *ngIf="onAction" class="mdl-snackbar__action" type="button" (click)="onClick()" >{{actionText}}</button>
     </div>
   `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlSnackbarComponent {
   public message: string;

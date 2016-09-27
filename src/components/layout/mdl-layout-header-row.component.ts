@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation
+} from '@angular/core';
 
 
 @Component({
@@ -6,6 +9,7 @@ import { Component } from '@angular/core';
   host: {
     '[class.mdl-layout__header-row]': 'true'
   },
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlLayoutHeaderRowComponent {}

@@ -3,7 +3,8 @@ import {
   ElementRef,
   Renderer,
   forwardRef,
-  NgModule
+  NgModule,
+  ViewEncapsulation
 } from '@angular/core';
 
 import {
@@ -37,7 +38,8 @@ import { CommonModule } from '@angular/common';
     <span class="mdl-switch__label"><ng-content></ng-content></span>
     <div class="mdl-switch__track"></div>
     <div class="mdl-switch__thumb"><span class="mdl-switch__focus-helper"></span></div>
-  `
+  `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlSwitchComponent extends MdlCheckboxComponent {
 

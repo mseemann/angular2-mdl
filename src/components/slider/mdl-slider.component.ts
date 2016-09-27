@@ -5,7 +5,8 @@ import {
   ViewChild,
   Renderer,
   ElementRef,
-  NgModule
+  NgModule,
+  ViewEncapsulation
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -52,7 +53,8 @@ const noop = (_?: any) => {};
         -moz-user-select: none;
     }
     `
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlSliderComponent implements ControlValueAccessor {
   private value_: any;

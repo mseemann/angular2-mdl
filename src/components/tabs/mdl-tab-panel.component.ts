@@ -1,13 +1,15 @@
 import {
   Component,
   Input,
-  ContentChild
+  ContentChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { MdlTabPanelTitleComponent } from './mdl-tab-panel-title.component';
 
 @Component({
   selector: 'mdl-tab-panel-content',
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlTabPanelContent {
 
@@ -23,7 +25,8 @@ export class MdlTabPanelContent {
     `
    <ng-content *ngIf="titleComponent" select="mdl-tab-panel-content"></ng-content>
    <ng-content *ngIf="!titleComponent"></ng-content>
-   `
+   `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlTabPanelComponent {
 

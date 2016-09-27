@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation
+} from '@angular/core';
 
 
 @Component({
@@ -6,6 +9,7 @@ import { Component } from '@angular/core';
   host: {
     '[class.mdl-layout-spacer]': 'true'
   },
-  template: ''
+  template: '',
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlLayoutSpacerComponent {}

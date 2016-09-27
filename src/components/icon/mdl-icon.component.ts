@@ -1,6 +1,7 @@
 import {
   Component,
-  NgModule
+  NgModule,
+  ViewEncapsulation
 } from '@angular/core';
 
 
@@ -9,7 +10,8 @@ import {
   host: {
     '[class.material-icons]': 'true'
   },
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlIconComponent {}
 
