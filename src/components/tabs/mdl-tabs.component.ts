@@ -23,18 +23,18 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
   `
    <div class="mdl-tabs__tab-bar">
       <div *ngFor="let tab of tabs.toArray()">
-        <div 
-          *ngIf="tab.titleComponent" 
-          class="mdl-tabs__tab" 
+        <div
+          *ngIf="tab.titleComponent"
+          class="mdl-tabs__tab"
           (click)="tabSelected(tab)"
           [mdl-ripple]="isRipple"
-          [ngClass]="{'is-active': tab.isActive}"
+          [ngClass]="{'is-active': tab.isActive, 'disabled': tab.disabled}"
           [append-view-container-ref]="tab.titleComponent.vcRef"></div>
-        <a *ngIf="!tab.titleComponent" href="javascript:void(0)"   
+        <a *ngIf="!tab.titleComponent" href="javascript:void(0)"
               (click)="tabSelected(tab)"
-              class="mdl-tabs__tab" 
+              class="mdl-tabs__tab"
               [mdl-ripple]="isRipple"
-              [ngClass]="{'is-active': tab.isActive}">{{tab.title}}</a>
+              [ngClass]="{'is-active': tab.isActive, 'disabled': tab.disabled}">{{tab.title}}</a>
        </div>
   </div>
   <ng-content></ng-content>
@@ -68,6 +68,10 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
   }
 
   protected tabSelected(tab: MdlTabPanelComponent) {
+    if(tab.disabled){
+      return;
+    }
+
     let index = this.tabs.toArray().indexOf(tab);
     if (index != this.selectedIndex) {
       this.selectedIndex = index;
