@@ -11,9 +11,9 @@ export const flyInOutTrigger = trigger('flyInOut', [
   state('*', style({})),
   transition('void => *', [
     style({transform: 'translateX(-100%)'}),
-    animate(3000)
+    animate(300)
   ]),
-  transition('* => void', animate(3000, style({transform: 'translateX(100%)'})))
+  transition('* => void', animate(300, style({transform: 'translateX(100%)'})))
 ]);
 
 export const hostConfig: {[key: string]: string} = {
