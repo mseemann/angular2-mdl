@@ -12,7 +12,8 @@ import {
   Optional,
   Inject,
   EventEmitter,
-  Output
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -116,7 +117,8 @@ const IS_DIRTY = 'is-dirty';
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => MdlTextFieldComponent),
     multi: true
-  }]
+  }],
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, DoCheck {
   private value_: any;

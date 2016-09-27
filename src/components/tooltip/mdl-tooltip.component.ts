@@ -1,7 +1,8 @@
 import {
   Component,
   ElementRef,
-  Renderer
+  Renderer,
+  ViewEncapsulation
 } from '@angular/core';
 import { MdlTooltipPositionService } from './mdl-tooltip-position.service';
 
@@ -20,7 +21,8 @@ const host:  { [key: string]: string; } = {
   selector: 'mdl-simple-tooltip',
   host: host,
   template: '<div>{{tooltipText}}</div>',
-  providers: [MdlTooltipPositionService]
+  providers: [MdlTooltipPositionService],
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlSimpleTooltipComponent {
   public tooltipText: string;
@@ -61,7 +63,8 @@ export class MdlSimpleTooltipComponent {
   template: '<div><ng-content></ng-content></div>',
   exportAs: 'mdlTooltip',
   host: host,
-  providers: [MdlTooltipPositionService]
+  providers: [MdlTooltipPositionService],
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlTooltipComponent extends MdlSimpleTooltipComponent {
   constructor(elRef: ElementRef, renderer: Renderer, mdlTooltipPositionService: MdlTooltipPositionService) {

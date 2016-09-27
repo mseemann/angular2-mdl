@@ -4,7 +4,7 @@ import {
   Renderer,
   forwardRef,
   NgModule,
-  Input
+  ViewEncapsulation
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -36,6 +36,7 @@ import { MdlCheckboxComponent } from './../checkbox/mdl-checkbox.component';
     [(ngModel)]="value">
   <mdl-icon class="mdl-icon-toggle__label"><ng-content></ng-content></mdl-icon>
   `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlIconToggleComponent extends MdlCheckboxComponent {
 

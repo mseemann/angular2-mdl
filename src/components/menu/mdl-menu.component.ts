@@ -7,7 +7,8 @@ import {
   ElementRef,
   ContentChildren,
   QueryList,
-  Renderer
+  Renderer,
+  ViewEncapsulation
 } from '@angular/core';
 import { MdlButtonComponent } from './../button/mdl-button.component';
 import { MdlMenuItemComponent }  from './mdl-menu-item.component';
@@ -53,6 +54,7 @@ export class MdlMenuError extends MdlError {
       </div>
    </div>
   `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlMenuComponent implements OnInit, AfterViewInit {
   @Input('mdl-menu-position') public position: string;

@@ -7,7 +7,8 @@ import {
   Output,
   EventEmitter,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  ViewEncapsulation
 } from '@angular/core';
 import { BooleanProperty } from './../common/boolean-property';
 import { NumberProperty } from './../common/number.property';
@@ -38,7 +39,8 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
        </div>
   </div>
   <ng-content></ng-content>
-  `
+  `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlTabsComponent implements AfterContentInit, OnChanges {
 

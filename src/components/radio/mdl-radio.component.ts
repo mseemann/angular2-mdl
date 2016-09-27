@@ -9,7 +9,8 @@ import {
   NgModule,
   OnInit,
   Injectable,
-  OnDestroy
+  OnDestroy,
+  ViewEncapsulation
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -79,7 +80,8 @@ export class MdlRadioGroupRegisty {
   <span class="mdl-radio__label"><ng-content></ng-content></span>
   <span class="mdl-radio__outer-circle"></span>
   <span class="mdl-radio__inner-circle"></span>
-  `
+  `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestroy {
 

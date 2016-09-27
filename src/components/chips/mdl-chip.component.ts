@@ -3,7 +3,8 @@ import {
   Input,
   EventEmitter,
   Output,
-  ContentChild
+  ContentChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { MdlChipContactDirective } from './mdl-chip-contact.directive';
 
@@ -20,7 +21,8 @@ import { MdlChipContactDirective } from './mdl-chip-contact.directive';
     <button *ngIf="mdlActionIcon" (click)="action()" type="button" class="mdl-chip__action">
       <mdl-icon>{{mdlActionIcon}}</mdl-icon>
     </button>
-  `
+  `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlChipComponent {
 
