@@ -39,7 +39,7 @@ module.exports = function(defaults) {
     tsCompiler: {},
     sassCompiler: {
       includePaths: [
-        'src/scss-mdl'
+        'src/scss'
       ]
     },
     vendorNpmFiles: [

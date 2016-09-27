@@ -29,6 +29,7 @@ export class MdlTabPanelComponent {
 
   @ContentChild(MdlTabPanelTitleComponent) public titleComponent;
   @Input('mdl-tab-panel-title') public title;
+  @Input('disabled') public disabled;
   public isActive = false;
 
 }
