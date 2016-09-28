@@ -7,17 +7,22 @@ import {
   Type,
   ReflectiveInjector,
   OpaqueToken,
-  Provider
+  Provider,
+  EmbeddedViewRef
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import { DOCUMENT } from '@angular/platform-browser';
 
 import { MdlDialogComponent } from './mdl-dialog.component';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
+import {
+  IMdlDialogConfiguration,
+  IMdlCustomDialogConfiguration,
+  IMdlSimpleDialogConfiguration
+} from './mdl-dialog-configuration';
+import { InternalMdlDialogReference } from './internal-dialog-reference';
 
 export const MDL_CONFIGUARTION = new OpaqueToken('MDL_CONFIGUARTION');
-export const MDL_CONTENT_VIEW_CONTAINER_REF = new OpaqueToken('MDL_CONTENT_VIEW_CONTAINER_REF');
 export const MIN_DIALOG_Z_INDEX = 100000;
 
 export enum ConfirmResult {
@@ -26,42 +31,13 @@ export enum ConfirmResult {
 }
 
 /**
- * Internal representation of the dialog ref. the service
- * user should not have access to the created components
- * and internal implementations.
- */
-export class InternalMdlDialogReference {
-
-  private components = new Set<ComponentRef<any>>();
-  private onHideSubject: Subject<any> = new Subject();
-  public hostDialog: MdlDialogHostComponent;
-  public closeCallback: () => void;
-  public isModal = false;
-
-  public addComponentRef(cRef: ComponentRef<any>) {
-    this.components.add(cRef);
-  }
-
-  public hide() {
-    this.components.forEach( (cRef) => {
-      cRef.destroy();
-    });
-    this.onHideSubject.next();
-    this.onHideSubject.complete();
-    this.closeCallback();
-  }
-
-  public onHide(): Observable<void> {
-    return this.onHideSubject.asObservable();
-  }
-}
-
-/**
  * The reference to the created and displayed dialog.
  */
 export class MdlDialogReference {
 
-  constructor(private internaleRef: InternalMdlDialogReference) {}
+  constructor(private internaleRef: InternalMdlDialogReference) {
+    internaleRef.dialogRef = this;
+  }
 
   /**
    * closes the dialog
@@ -77,90 +53,6 @@ export class MdlDialogReference {
   public onHide(): Observable<void> {
     return this.internaleRef.onHide();
   }
-}
-
-/**
- * Every custom dialog should implement this interface. This is needed to get
- * hold of the viewContainerRef of the dialog. The viewcontainerref will be
- * inlcuded in the host dialog. the host dialog is managed by this service.
- */
-export interface IMdlCustomDialog {
-  viewContainerRef: ViewContainerRef;
-}
-
-/**
- * The simple Dialog can have as much actions as needed by the user.
- */
-export interface IMdlDialogAction {
-  /**
-   * the handler is a callback function. this funciton will be called if
-   * the action button was clicked.
-   */
-  handler: () => void;
-  /**
-   * the text of the action button
-   */
-  text: string;
-  /**
-   * is this a closing aciton? means the action is called if the user pressed the esc key.
-   */
-  isClosingAction?: boolean;
-}
-
-/**
- * Dialog configuration for all dialogs (simple or custom)
- */
-export interface IMdlDialogConfiguration {
-  /**
-   * The viewcontainerref the dialog will be attached to.
-   * required if not provided by setDefaultViewContainerRef.
-   */
-  vcRef?: ViewContainerRef;
-  /**
-   * true if the dialog should be opened as modal.
-   */
-  isModal?: boolean;
-}
-
-/**
- * The simple dialog. Easy to use - dosn't need a special component.
- */
-export interface IMdlSimpleDialogConfiguration extends IMdlDialogConfiguration {
-  /**
-   * the title of the dialog
-   */
-  title?: string;
-  /**
-   * the message that should be displayed
-   */
-  message: string;
-  /**
-   * the actions that are used for this dialog (the order will be reversed by mdl.
-   */
-  actions: [IMdlDialogAction];
-  /**
-   * should the actions be displayed as full width actions. every aciton is one row.
-   */
-  fullWidthAction?: boolean;
-}
-
-/**
- * Configuration for a custom dialog. You need to provide a component that
- * should be used as the content of the dialog. the component mus match the
- * fowllowing conditions:
- * - must implement IMdlCustomDialog
- * - must be an entrycompnent (property of your module)
- * If youn need acces to the MdlDialogReference you may inject it in your constructor:
- *
- * export class MyDialog implements IMdlCustomDialog {
- *
- *   constructor(private dialogref: MdlDialogReference){}
- *
- *   ...
- * }
- */
-export interface IMdlCustomDialogConfiguration extends IMdlDialogConfiguration {
-  component: Type<any>;
 }
 
 /**
@@ -253,22 +145,22 @@ export class MdlDialogService {
    */
   public showDialog(config: IMdlSimpleDialogConfiguration): Promise<MdlDialogReference> {
 
-    if(config.actions.length === 0 ){
+    if (config.actions.length === 0 ) {
       throw new Error('a dialog mus have at least one aciton');
     }
 
     let internalDialogRef = new InternalMdlDialogReference();
-    let dialogRef = new MdlDialogReference(internalDialogRef);
 
     let providers = [
-      { provide: MdlDialogReference, useValue: dialogRef },
-      { provide: InternalMdlDialogReference, useValue: internalDialogRef },
-      {provide: MDL_CONFIGUARTION, useValue: config}
+      { provide: MdlDialogReference, useValue: new MdlDialogReference(internalDialogRef) },
+      { provide: MDL_CONFIGUARTION, useValue: config}
     ];
 
-    let contentDialog = this.createComponentInstance(config.vcRef, providers, MdlDialogComponent);
+    let hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
-    return this.createHostDialog(dialogRef, internalDialogRef, contentDialog, config);
+    this.createAttachedComponentInstance(hostComponentRef, providers, MdlDialogComponent);
+
+    return Promise.resolve(internalDialogRef.dialogRef);
   }
 
   /**
@@ -279,38 +171,25 @@ export class MdlDialogService {
   public showCustomDialog(config: IMdlCustomDialogConfiguration): Promise<MdlDialogReference> {
 
     let internalDialogRef = new InternalMdlDialogReference();
-    let dialogRef = new MdlDialogReference(internalDialogRef);
 
     let providers = [
-      { provide: MdlDialogReference, useValue: dialogRef },
-      { provide: InternalMdlDialogReference, useValue: internalDialogRef }
+      { provide: MdlDialogReference, useValue: new MdlDialogReference(internalDialogRef) }
     ];
 
-    let contentDialog = this.createComponentInstance(config.vcRef, providers, config.component);
+    let hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
-    return this.createHostDialog(dialogRef, internalDialogRef, contentDialog, config);
+    this.createAttachedComponentInstance(hostComponentRef, providers, config.component);
+
+    return Promise.resolve(internalDialogRef.dialogRef);
   }
 
-  private createHostDialog(
-    dialogRef: MdlDialogReference,
-    internalDialogRef: InternalMdlDialogReference,
-    contentDialog: any,
-    dialogConfig: IMdlDialogConfiguration) {
+  private createHostDialog(internalDialogRef: InternalMdlDialogReference, dialogConfig: IMdlDialogConfiguration) {
 
-    if ( !contentDialog.viewContainerRef ) {
-      throw new Error('The CustomDialog should implement the interface IMdlCustomDialog');
-    }
-
-    let providers = [
-      { provide: MdlDialogReference, useValue: dialogRef },
-      { provide: InternalMdlDialogReference, useValue: internalDialogRef },
-      { provide: MDL_CONTENT_VIEW_CONTAINER_REF, useValue: contentDialog.viewContainerRef}
-    ];
-
+    console.log('create host in', (dialogConfig.vcRef || this.defaultViewContainerRef));
     let hostDialogComponent
-      = this.createComponentInstance(dialogConfig.vcRef, providers, MdlDialogHostComponent);
+      = this.createComponentInstance(dialogConfig.vcRef, [], MdlDialogHostComponent);
 
-    internalDialogRef.hostDialog  = hostDialogComponent;
+    internalDialogRef.hostDialogComponentRef = hostDialogComponent;
     internalDialogRef.isModal     = dialogConfig.isModal;
 
     internalDialogRef.closeCallback = () => {
@@ -318,7 +197,7 @@ export class MdlDialogService {
     };
     this.pushDialog(internalDialogRef);
 
-    return Promise.resolve(dialogRef);
+    return hostDialogComponent;
   }
 
   private pushDialog(dialogRef: InternalMdlDialogReference) {
@@ -364,7 +243,9 @@ export class MdlDialogService {
 
   }
 
-  private createComponentInstance <T> (targetVCRef: ViewContainerRef, providers: Provider[], component: Type<T> ): T {
+  private createComponentInstance <T> (
+    targetVCRef: ViewContainerRef,
+    providers: Provider[], component: Type<T> ): ComponentRef<any> {
 
     let cFactory            = this.componentFactoryResolver.resolveComponentFactory(component);
     let viewContainerRef    = targetVCRef || this.defaultViewContainerRef;
@@ -373,16 +254,31 @@ export class MdlDialogService {
     let parentInjector      = viewContainerRef.parentInjector;
     let childInjector       = ReflectiveInjector.fromResolvedProviders(resolvedProviders, parentInjector);
 
-    let componentRef = viewContainerRef.createComponent(cFactory, viewContainerRef.length, childInjector);
-
-    const internalDialogRef: InternalMdlDialogReference = childInjector.get(InternalMdlDialogReference);
-
-    // add the componentref to the internalDialogRef - this will later be used to
-    // call componentref.destroy if the dialog goes hidden.
-    internalDialogRef.addComponentRef(componentRef);
-
-    return componentRef.instance;
+    // because the dom structure is changed (see hostViewRef.element.nativeElement.appendChild(hostView.rootNodes[0]);
+    // the view must always be craeted at index 0 - otherwise it woud be inserted in the last craeted view and
+    // not as a child of the targetViewRef :(
+    return viewContainerRef.createComponent(cFactory, 0, childInjector);
   }
 
+  /**
+   * create a ComponentRef and attache the component node to the host component view (DOM)
+   * @param hostComponentRef
+   * @param providers
+   * @param component
+   * @returns {ComponentRef<any>}
+   */
+  private createAttachedComponentInstance <T> (
+    hostComponentRef: ComponentRef<any>,
+    providers: Provider[],
+    component: Type<T>): ComponentRef<any> {
+
+    let hostViewRef = hostComponentRef.instance.viewContainerRef;
+    let componentRef = this.createComponentInstance(hostViewRef, providers, component);
+
+    let hostView = <EmbeddedViewRef<any>> componentRef.hostView;
+    hostViewRef.element.nativeElement.appendChild(hostView.rootNodes[0]);
+
+    return componentRef;
+  }
 
 }

@@ -4,7 +4,7 @@ import {
   async
 } from '@angular/core/testing';
 import { Component, ViewContainerRef } from '@angular/core';
-import { MdlSnackbarService } from './mdl-snackbar.service';
+import { MdlSnackbarService, MdlSnackbaModule } from './mdl-snackbar.service';
 
 describe('Service: MdlSnackbar', () => {
 
@@ -13,6 +13,7 @@ describe('Service: MdlSnackbar', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MdlTestViewComponent],
+      imports: [MdlSnackbaModule],
       providers: [MdlSnackbarService]
     });
   }));

@@ -6,10 +6,10 @@ import {
 import { Component, ViewContainerRef, NgModule } from '@angular/core';
 import { DOCUMENT, By } from '@angular/platform-browser';
 import { MdlDialogModule } from './index';
-import { MdlDialogService, ConfirmResult, MdlDialogReference, IMdlDialogAction } from './mdl-dialog.service';
+import { MdlDialogService, ConfirmResult, MdlDialogReference } from './mdl-dialog.service';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import { MdlDialogComponent } from './mdl-dialog.component';
-
+import { IMdlDialogAction } from './mdl-dialog-configuration';
 
 
 describe('Service: MdlDialog', () => {
@@ -134,23 +134,6 @@ describe('Service: MdlDialog', () => {
       // call close by calling hide on the dialog reference
       customDialogComponent.close();
     });
-
-  });
-
-  it('should not be possible to use a custom dialog component that dosen\'t implement IMdlCustomDialog', () => {
-
-    let fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
-
-    let viewRef = fixture.debugElement.query(By.directive(ViewRefHolderComponent)).componentInstance.viewRef;
-
-    mdlDialogService.setDefaultViewContainerRef(viewRef);
-
-    expect( () => {
-
-      mdlDialogService.showCustomDialog({component: TestFailCustomDialog});
-
-    }).toThrow();
 
   });
 
