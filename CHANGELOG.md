@@ -1,10 +1,15 @@
 
-<a name="1.8.1"></a>
-# 1.8.1 (next)
+<a name="1.8.2"></a>
+# 1.8.2 (next)
 
 ### Bug Fixes
 ### Features
 
+<a name="1.8.1"></a>
+# 1.8.1 (2016-09-28)
+
+### Features
+* https://github.com/mseemann/angular2-mdl/issues/114 (mouseover event on tab (layout))
 
 
 <a name="1.8.0"></a>
