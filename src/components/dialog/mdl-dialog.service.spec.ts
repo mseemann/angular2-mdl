@@ -6,10 +6,10 @@ import {
 import { Component, ViewContainerRef, NgModule } from '@angular/core';
 import { DOCUMENT, By } from '@angular/platform-browser';
 import { MdlDialogModule } from './index';
-import { MdlDialogService, ConfirmResult, MdlDialogReference, IMdlDialogAction } from './mdl-dialog.service';
+import { MdlDialogService, ConfirmResult, MdlDialogReference } from './mdl-dialog.service';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import { MdlDialogComponent } from './mdl-dialog.component';
-
+import { IMdlDialogAction } from './mdl-dialog-configuration';
 
 
 describe('Service: MdlDialog', () => {
