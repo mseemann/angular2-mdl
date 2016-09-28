@@ -1,12 +1,18 @@
 import {
   Component,
   ViewEncapsulation,
-  ViewContainerRef,
-  Inject,
-  forwardRef
+  ViewContainerRef
 } from '@angular/core';
 import {
-  MDL_CONTENT_VIEW_CONTAINER_REF,
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  AnimationEntryMetadata // needs to be here to avoid compilation errors:(
+} from '@angular/core';
+
+import {
   MIN_DIALOG_Z_INDEX
 } from './mdl-dialog.service';
 
@@ -18,9 +24,25 @@ import {
     '[class.mdl-dialog]': 'true',
     '[class.open]': 'true',
     '[class.fixed]': 'true',
-    '[style.zIndex]': 'zIndex'
+    '[style.zIndex]': 'zIndex',
+    '[@flyInOut]': 'true'
   },
-  template: `<div [append-view-container-ref]="dialogContentViewContainerRef"></div>`,
+  animations: [
+    trigger('flyInOut', [
+      transition('void => *', [
+        style({
+          transform: 'translate(0, -70%)',
+          opacity: 1
+        }),
+        animate(200)
+      ]),
+      transition('* => void', animate(200, style({
+        transform: 'translate(0, -30%)',
+        opacity: 0
+      })))
+    ])
+  ],
+  template: ``,
   styles: [
     `
     mdl-dialog-host-component {
@@ -65,8 +87,6 @@ export class MdlDialogHostComponent {
 
   public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
 
-  constructor(
-    @Inject( forwardRef( () => MDL_CONTENT_VIEW_CONTAINER_REF) )
-    public dialogContentViewContainerRef: ViewContainerRef ) {}
+  constructor(public viewContainerRef: ViewContainerRef ) {}
 
 }

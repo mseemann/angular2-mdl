@@ -2,7 +2,7 @@ import {
   Component,
   forwardRef,
   Inject,
-  ComponentFactoryResolver
+  ComponentFactoryResolver, ViewContainerRef
 } from '@angular/core';
 import { flyInOutTrigger } from './../animations/flyInOutTrigger-animation';
 import { hostConfig } from './../animations/flyInOutTrigger-animation';
@@ -38,10 +38,13 @@ export class DialogDemo extends AbstractDemoComponent {
     private dialogService: MdlDialogService,
     private snackbarService: MdlSnackbarService,
     @Inject(forwardRef(() => Angular2MdlAppComponent)) private app: Angular2MdlAppComponent,
-    private componentFactoryResolver: ComponentFactoryResolver ) {
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private vcRef: ViewContainerRef) {
 
     super(router, route, titleService);
-    snackbarService.setDefaultViewContainerRef(this.app.vcRef);
+    // TODO why is ot not possibe to use this.app.vcRef instead of vcRef?
+    // -> animaito errors if option dialog is present
+    snackbarService.setDefaultViewContainerRef(vcRef);
 
 
     dialogService.setDefaultViewContainerRef(this.app.vcRef);

@@ -15,7 +15,7 @@ import { MdlListModule } from './list/mdl-list.component';
 import { MdlSpinnerModule } from './spinner/mdl-spinner.component';
 import { MdlSliderModule }  from './slider/mdl-slider.component';
 import { MdlSwitchModule } from './switch/mdl-switch.component';
-import { MdlSnackbarService } from './snackbar/mdl-snackbar.service';
+import { MdlSnackbaModule } from './snackbar/mdl-snackbar.service';
 import { MdlTooltipModule } from './tooltip/index';
 import { MdlTableModule } from './table/index';
 import { MdlMenuModule } from './menu/index';
@@ -48,10 +48,6 @@ export * from './tabs/index';
 export * from './textfield/mdl-textfield.component';
 
 
-const MDL_SERVICES = [
-  MdlSnackbarService
-];
-
 
 const MDL_MODULES = [
   MdlButtonModule,
@@ -71,6 +67,7 @@ const MDL_MODULES = [
   MdlListModule,
   MdlSliderModule,
   MdlSwitchModule,
+  MdlSnackbaModule,
   MdlTooltipModule,
   MdlTableModule,
   MdlMenuModule,
@@ -80,8 +77,7 @@ const MDL_MODULES = [
 
 @NgModule({
   imports: MDL_MODULES,
-  exports: MDL_MODULES,
-  providers: MDL_SERVICES
+  exports: MDL_MODULES
 })
 export class MdlModule {
 

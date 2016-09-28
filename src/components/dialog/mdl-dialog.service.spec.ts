@@ -137,23 +137,6 @@ describe('Service: MdlDialog', () => {
 
   });
 
-  it('should not be possible to use a custom dialog component that dosen\'t implement IMdlCustomDialog', () => {
-
-    let fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
-
-    let viewRef = fixture.debugElement.query(By.directive(ViewRefHolderComponent)).componentInstance.viewRef;
-
-    mdlDialogService.setDefaultViewContainerRef(viewRef);
-
-    expect( () => {
-
-      mdlDialogService.showCustomDialog({component: TestFailCustomDialog});
-
-    }).toThrow();
-
-  });
-
   it('should stop propagaton on overlay clicks', () => {
 
     let fixture = TestBed.createComponent(MdlTestViewComponent);

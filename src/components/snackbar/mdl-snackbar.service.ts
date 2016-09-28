@@ -3,10 +3,7 @@ import {
   Injectable,
   Injector,
   ViewContainerRef,
-  Compiler,
-  ModuleWithComponentFactories,
-  ComponentFactory,
-  ComponentRef,
+  ComponentFactoryResolver,
   NgModule,
   ViewEncapsulation
 } from '@angular/core';
@@ -88,7 +85,7 @@ export class MdlSnackbarService {
   private defaultViewContainerRef: ViewContainerRef;
   constructor(
     private injector: Injector,
-    private compiler: Compiler) {
+    private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   public setDefaultViewContainerRef(vcRef: ViewContainerRef) {
@@ -113,12 +110,8 @@ export class MdlSnackbarService {
         'Wether as by setDefaultViewContainerRef or as IMdlSnackbarMessage param.');
     }
 
-    let moduleFactories: ModuleWithComponentFactories<MdlSnackbaModule> = this.compiler
-      .compileModuleAndAllComponentsSync(MdlSnackbaModule);
-    let cRef: ComponentRef<MdlSnackbarComponent> = null;
-    moduleFactories.componentFactories.forEach( ( cFactory: ComponentFactory<any> ) =>  {
-       cRef = viewContainerRef.createComponent(cFactory);
-    });
+    let cFactory  = this.componentFactoryResolver.resolveComponentFactory(MdlSnackbarComponent);
+    let cRef = viewContainerRef.createComponent(cFactory);
 
     let mdlSnackbarComponent = <MdlSnackbarComponent> cRef.instance;
     mdlSnackbarComponent.message = snackbarMessage.message;
@@ -153,6 +146,7 @@ export class MdlSnackbarService {
   imports: [CommonModule],
   exports: [MdlSnackbarComponent],
   declarations: [MdlSnackbarComponent],
-  providers: [MdlSnackbarService]
+  providers: [MdlSnackbarService],
+  entryComponents: [MdlSnackbarComponent]
 })
 export class MdlSnackbaModule {}
