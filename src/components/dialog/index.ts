@@ -6,6 +6,7 @@ import { MdlCommonsModule } from '../common/index';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 
 export * from './mdl-dialog.service';
+export * from './mdl-dialog-configuration';
 
 @NgModule({
   imports: [CommonModule, MdlCommonsModule],

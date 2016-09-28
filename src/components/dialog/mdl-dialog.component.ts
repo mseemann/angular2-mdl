@@ -11,11 +11,13 @@ import {
   NgZone
 } from '@angular/core';
 import {
-  IMdlDialogAction,
   MdlDialogReference,
-  MDL_CONFIGUARTION,
-  IMdlSimpleDialogConfiguration
+  MDL_CONFIGUARTION
 } from './mdl-dialog.service';
+import {
+  IMdlDialogAction,
+  IMdlSimpleDialogConfiguration
+} from './mdl-dialog-configuration';
 
 // @experimental
 @Component({
