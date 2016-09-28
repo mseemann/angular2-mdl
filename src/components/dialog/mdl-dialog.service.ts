@@ -254,7 +254,10 @@ export class MdlDialogService {
     let parentInjector      = viewContainerRef.parentInjector;
     let childInjector       = ReflectiveInjector.fromResolvedProviders(resolvedProviders, parentInjector);
 
-    return viewContainerRef.createComponent(cFactory, viewContainerRef.length, childInjector);
+    // because the dom structure is changed (see hostViewRef.element.nativeElement.appendChild(hostView.rootNodes[0]);
+    // the view must always be craeted at index 0 - otherwise it woud be inserted in the last craeted view and
+    // not as a child of the targetViewRef :(
+    return viewContainerRef.createComponent(cFactory, 0, childInjector);
   }
 
   /**
@@ -272,7 +275,6 @@ export class MdlDialogService {
     let hostViewRef = hostComponentRef.instance.viewContainerRef;
     let componentRef = this.createComponentInstance(hostViewRef, providers, component);
 
-    // FIXME this results in strange dom structures!
     let hostView = <EmbeddedViewRef<any>> componentRef.hostView;
     hostViewRef.element.nativeElement.appendChild(hostView.rootNodes[0]);
 

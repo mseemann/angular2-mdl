@@ -5,11 +5,9 @@ import {
 } from '@angular/core';
 import {
   trigger,
-  state,
   style,
   transition,
-  animate,
-  AnimationEntryMetadata // needs to be here to avoid compilation errors:(
+  animate
 } from '@angular/core';
 
 import {
@@ -25,18 +23,18 @@ import {
     '[class.open]': 'true',
     '[class.fixed]': 'true',
     '[style.zIndex]': 'zIndex',
-    '[@flyInOut]': 'true'
+    '[@flyInOut]': 'animateState'
   },
   animations: [
     trigger('flyInOut', [
-      transition('void => *', [
+      transition('void => animate', [
         style({
           transform: 'translate(0, -70%)',
           opacity: 1
         }),
         animate(200)
       ]),
-      transition('* => void', animate(200, style({
+      transition('animate => void', animate(150, style({
         transform: 'translate(0, -30%)',
         opacity: 0
       })))
@@ -86,6 +84,12 @@ import {
 export class MdlDialogHostComponent {
 
   public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
+
+  get animateState(){
+    return this.animate ? 'animate' : '';
+  }
+  // open for later extensions - animate or not
+  public animate = true;
 
   constructor(public viewContainerRef: ViewContainerRef ) {}
 
