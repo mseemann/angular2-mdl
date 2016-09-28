@@ -1,12 +1,10 @@
 import {
   Component,
-  ViewContainerRef,
   ViewChild,
   HostListener
 } from '@angular/core';
 import {
-  MdlDialogReference,
-  IMdlCustomDialog
+  MdlDialogReference
 } from '../../components/dialog/index';
 import 'rxjs/add/operator/scan';
 import { MdlTextFieldComponent } from '../../components/textfield/mdl-textfield.component';
@@ -17,20 +15,12 @@ import { MdlTextFieldComponent } from '../../components/textfield/mdl-textfield.
   selector: 'login-dialog',
   templateUrl: 'login-dialog.html'
 })
-export class LoginDialogComponent implements IMdlCustomDialog {
+export class LoginDialogComponent {
 
   @ViewChild('firstElement') private inputElement: MdlTextFieldComponent;
 
-  constructor(
-    private vcRef: ViewContainerRef,
-    private dialog: MdlDialogReference) {
-
+  constructor(private dialog: MdlDialogReference) {
     this.dialog.onHide().subscribe( () => console.log('login dialog hidden') );
-
-  }
-
-  get viewContainerRef() {
-    return this.vcRef;
   }
 
   public ngAfterViewInit() {

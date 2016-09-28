@@ -1,12 +1,16 @@
 import {
   Component,
   ViewEncapsulation,
-  ViewContainerRef,
-  Inject,
-  forwardRef
+  ViewContainerRef
 } from '@angular/core';
 import {
-  MDL_CONTENT_VIEW_CONTAINER_REF,
+  trigger,
+  style,
+  transition,
+  animate
+} from '@angular/core';
+
+import {
   MIN_DIALOG_Z_INDEX
 } from './mdl-dialog.service';
 
@@ -18,9 +22,25 @@ import {
     '[class.mdl-dialog]': 'true',
     '[class.open]': 'true',
     '[class.fixed]': 'true',
-    '[style.zIndex]': 'zIndex'
+    '[style.zIndex]': 'zIndex',
+    '[@flyInOut]': 'animateState'
   },
-  template: `<div [append-view-container-ref]="dialogContentViewContainerRef"></div>`,
+  animations: [
+    trigger('flyInOut', [
+      transition('void => animate', [
+        style({
+          transform: 'translate(0, -70%)',
+          opacity: 1
+        }),
+        animate(200)
+      ]),
+      transition('animate => void', animate(150, style({
+        transform: 'translate(0, -30%)',
+        opacity: 0
+      })))
+    ])
+  ],
+  template: ``,
   styles: [
     `
     mdl-dialog-host-component {
@@ -65,8 +85,12 @@ export class MdlDialogHostComponent {
 
   public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
 
-  constructor(
-    @Inject( forwardRef( () => MDL_CONTENT_VIEW_CONTAINER_REF) )
-    public dialogContentViewContainerRef: ViewContainerRef ) {}
+  get animateState(){
+    return this.animate ? 'animate' : '';
+  }
+  // open for later extensions - animate or not
+  public animate = true;
+
+  constructor(public viewContainerRef: ViewContainerRef ) {}
 
 }

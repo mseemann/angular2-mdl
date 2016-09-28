@@ -4,7 +4,8 @@ import {
   ElementRef,
   forwardRef,
   Renderer,
-  Inject
+  Inject,
+  ViewEncapsulation
 } from '@angular/core';
 import { MdlMenuComponent } from './mdl-menu.component';
 import { BooleanProperty } from './../common/boolean-property';
@@ -18,7 +19,8 @@ import { BooleanProperty } from './../common/boolean-property';
     '(click)': 'onClick($event)',
     '(touchstart)': 'onTouch($event)'
   },
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlMenuItemComponent {
 

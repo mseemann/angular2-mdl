@@ -1,6 +1,7 @@
 import {
   Component,
-  ViewContainerRef
+  ViewContainerRef,
+  ViewEncapsulation
 } from '@angular/core';
 
 
@@ -9,7 +10,8 @@ import {
   template:
     `
    <ng-content></ng-content>
-   `
+   `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlTabPanelTitleComponent {
 

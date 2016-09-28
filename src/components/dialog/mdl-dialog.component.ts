@@ -4,7 +4,6 @@ import {
   HostListener,
   forwardRef,
   Inject,
-  ViewContainerRef,
   AfterViewInit,
   ViewChildren,
   QueryList,
@@ -12,12 +11,13 @@ import {
   NgZone
 } from '@angular/core';
 import {
-  IMdlDialogAction,
   MdlDialogReference,
-  IMdlCustomDialog,
-  MDL_CONFIGUARTION,
-  IMdlSimpleDialogConfiguration
+  MDL_CONFIGUARTION
 } from './mdl-dialog.service';
+import {
+  IMdlDialogAction,
+  IMdlSimpleDialogConfiguration
+} from './mdl-dialog-configuration';
 
 // @experimental
 @Component({
@@ -46,20 +46,15 @@ import {
   `,
   encapsulation: ViewEncapsulation.None
 })
-export class MdlDialogComponent implements IMdlCustomDialog, AfterViewInit {
+export class MdlDialogComponent implements AfterViewInit {
 
   @ViewChildren('button') private buttons: QueryList<ElementRef>;
 
   // why do i need forwardRef at this point, the demo LoginDialog dosn't need this!?!?
   constructor(
-    private vcRef: ViewContainerRef,
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private dialogConfiguration: IMdlSimpleDialogConfiguration,
     @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference,
     private ngZone: NgZone) {}
-
-  get viewContainerRef() {
-    return this.vcRef;
-  }
 
   public ngAfterViewInit() {
     // set the focus to the first focuable element
@@ -72,7 +67,6 @@ export class MdlDialogComponent implements IMdlCustomDialog, AfterViewInit {
     action.handler();
     this.dialog.hide();
   }
-
 
   @HostListener('keydown.esc')
   public onEsc(): void {

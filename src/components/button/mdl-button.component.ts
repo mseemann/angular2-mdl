@@ -4,7 +4,8 @@ import {
   ElementRef,
   OnChanges,
   Renderer,
-  NgModule
+  NgModule,
+  ViewEncapsulation
 } from '@angular/core';
 import { MdlError } from './../common/mdl-error';
 import { BooleanProperty } from './../common/boolean-property';
@@ -51,7 +52,8 @@ const MDL_COLORED_TYPES = [
     '[class.mdl-button--accent]' :  'mdlColoredType == "accent"'
   },
   exportAs: 'mdlButton',
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlButtonComponent implements OnChanges {
 
