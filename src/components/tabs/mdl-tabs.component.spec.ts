@@ -143,8 +143,6 @@ describe('Component: MdlTabs', () => {
     let fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let testComponent = fixture.componentInstance;
-
     let mdlTabsComponent: MdlTabsComponent =
       fixture.debugElement.query(By.directive(MdlTabsComponent)).componentInstance;
 

@@ -158,7 +158,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   }
 
   protected onClick() {
-    if(this.disabled){
+    if (this.disabled) {
       return;
     }
     this.optionValue = this.value;

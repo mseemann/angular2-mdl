@@ -24,9 +24,9 @@ describe('Service: MdlDialog', () => {
     });
   }));
 
-  beforeEach(async(inject([MdlDialogService, DOCUMENT], function (service: MdlDialogService, _doc) {
+  beforeEach(async(inject([MdlDialogService, DOCUMENT], function (service: MdlDialogService, doc_) {
     mdlDialogService = service;
-    doc = _doc;
+    doc = doc_;
   })));
 
   it('should show a an alert', ( done: () => void ) => {
