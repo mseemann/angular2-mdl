@@ -1,7 +1,8 @@
 import {
   Component,
   NgModule,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 
 
@@ -23,4 +24,11 @@ const MDL_ICON_DIRECTIVES = [MdlIconComponent];
   exports: MDL_ICON_DIRECTIVES,
   declarations: MDL_ICON_DIRECTIVES,
 })
-export class MdlIconModule {}
+export class MdlIconModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlIconModule,
+      providers: []
+    };
+  }
+}

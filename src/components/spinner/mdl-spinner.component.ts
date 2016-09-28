@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   NgModule,
+  ModuleWithProviders,
   ViewEncapsulation
 } from '@angular/core';
 import { BooleanProperty } from './../common/boolean-property';
@@ -43,4 +44,11 @@ const MDL_SPINNER_DIRECTIVES = [MdlSpinnerComponent];
   exports: MDL_SPINNER_DIRECTIVES,
   declarations: MDL_SPINNER_DIRECTIVES,
 })
-export class MdlSpinnerModule {}
+export class MdlSpinnerModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlSpinnerModule,
+      providers: []
+    };
+  }
+}

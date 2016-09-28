@@ -20,7 +20,7 @@ describe('Service: MdlDialog', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MdlTestViewComponent, ViewRefHolderComponent],
-      imports: [MdlDialogModule, TestDialogModul],
+      imports: [MdlDialogModule.forRoot(), TestDialogModul],
     });
   }));
 

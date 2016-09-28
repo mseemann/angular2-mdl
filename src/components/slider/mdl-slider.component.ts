@@ -6,7 +6,8 @@ import {
   Renderer,
   ElementRef,
   NgModule,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -136,4 +137,11 @@ const MDL_SLIDER_DIRECTIVES = [MdlSliderComponent];
   exports: MDL_SLIDER_DIRECTIVES,
   declarations: MDL_SLIDER_DIRECTIVES,
 })
-export class MdlSliderModule {}
+export class MdlSliderModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlSliderModule,
+      providers: []
+    };
+  }
+}

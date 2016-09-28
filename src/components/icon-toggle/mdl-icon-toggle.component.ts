@@ -4,7 +4,8 @@ import {
   Renderer,
   forwardRef,
   NgModule,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -53,4 +54,11 @@ const MDL_ICON_TOGGLE_DIRECTIVES = [MdlIconToggleComponent];
   exports: MDL_ICON_TOGGLE_DIRECTIVES,
   declarations: MDL_ICON_TOGGLE_DIRECTIVES,
 })
-export class MdlIconToggleModule {}
+export class MdlIconToggleModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlIconToggleModule,
+      providers: []
+    };
+  }
+}

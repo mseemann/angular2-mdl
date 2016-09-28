@@ -10,7 +10,8 @@ import {
   OnInit,
   Injectable,
   OnDestroy,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -18,7 +19,7 @@ import {
   FormsModule
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BooleanProperty } from './../common/boolean-property'
+import { BooleanProperty } from './../common/boolean-property';
 
 const noop = () => {};
 const IS_FOCUSED = 'is-focused';
@@ -191,7 +192,13 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
 @NgModule({
   imports: [CommonModule, FormsModule],
   exports: [MdlRadioComponent],
-  providers: [MdlRadioGroupRegisty],
-  declarations: [MdlRadioComponent],
+  declarations: [MdlRadioComponent]
 })
-export class MdlRadioModule {}
+export class MdlRadioModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlRadioModule,
+      providers: [MdlRadioGroupRegisty]
+    };
+  }
+}

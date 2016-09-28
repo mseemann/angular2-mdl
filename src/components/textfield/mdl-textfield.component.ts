@@ -13,7 +13,8 @@ import {
   Inject,
   EventEmitter,
   Output,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -251,4 +252,11 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   exports: [MdlTextFieldComponent],
   declarations: [MdlTextFieldComponent],
 })
-export class MdlTextFieldModule {}
+export class MdlTextFieldModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlTextFieldModule,
+      providers: []
+    };
+  }
+}

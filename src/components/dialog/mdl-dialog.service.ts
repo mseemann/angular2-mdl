@@ -185,7 +185,6 @@ export class MdlDialogService {
 
   private createHostDialog(internalDialogRef: InternalMdlDialogReference, dialogConfig: IMdlDialogConfiguration) {
 
-    console.log('create host in', (dialogConfig.vcRef || this.defaultViewContainerRef));
     let hostDialogComponent
       = this.createComponentInstance(dialogConfig.vcRef, [], MdlDialogHostComponent);
 

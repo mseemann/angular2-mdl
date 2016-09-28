@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdlDialogService } from './mdl-dialog.service';
 import { MdlDialogComponent } from './mdl-dialog.component';
@@ -12,7 +12,13 @@ export * from './mdl-dialog-configuration';
   imports: [CommonModule, MdlCommonsModule],
   exports: [MdlDialogComponent],
   declarations: [MdlDialogComponent, MdlDialogHostComponent],
-  providers: [MdlDialogService],
   entryComponents: [MdlDialogComponent, MdlDialogHostComponent]
 })
-export class MdlDialogModule {}
+export class MdlDialogModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlDialogModule,
+      providers: [MdlDialogService]
+    };
+  }
+}

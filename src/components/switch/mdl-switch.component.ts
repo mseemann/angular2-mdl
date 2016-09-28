@@ -4,7 +4,8 @@ import {
   Renderer,
   forwardRef,
   NgModule,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 
 import {
@@ -56,4 +57,11 @@ const MDL_SWITCH_DIRECTIVES = [MdlSwitchComponent];
   exports: MDL_SWITCH_DIRECTIVES,
   declarations: MDL_SWITCH_DIRECTIVES,
 })
-export class MdlSwitchModule {}
+export class MdlSwitchModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlSwitchModule,
+      providers: []
+    };
+  }
+}

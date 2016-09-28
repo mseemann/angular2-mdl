@@ -4,7 +4,8 @@ import {
   OnChanges,
   ElementRef,
   Renderer,
-  NgModule
+  NgModule,
+  ModuleWithProviders
 } from '@angular/core';
 
 @Directive({
@@ -53,4 +54,11 @@ const MDL_BADGE_DIRECTIVES = [MdlBadgeDirective, MdlBadgeOverlapDirective, MdlBa
   exports: MDL_BADGE_DIRECTIVES,
   declarations: MDL_BADGE_DIRECTIVES,
 })
-export class MdlBadgeModule {}
+export class MdlBadgeModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlBadgeModule,
+      providers: []
+    };
+  }
+}

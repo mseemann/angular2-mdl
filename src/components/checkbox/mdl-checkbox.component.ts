@@ -7,7 +7,8 @@ import {
   NgModule,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input
+  Input,
+  ModuleWithProviders
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -15,7 +16,7 @@ import {
   FormsModule
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BooleanProperty } from './../common/boolean-property'
+import { BooleanProperty } from './../common/boolean-property';
 
 const noop = (_?: any) => {};
 const IS_FOCUSED = 'is-focused';
@@ -117,4 +118,11 @@ const MDL_CHECKBOX_DIRECTIVES = [MdlCheckboxComponent];
   exports: MDL_CHECKBOX_DIRECTIVES,
   declarations: MDL_CHECKBOX_DIRECTIVES,
 })
-export class MdlChekboxModule {}
+export class MdlCheckboxModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlCheckboxModule,
+      providers: []
+    };
+  }
+}

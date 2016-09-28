@@ -9,7 +9,7 @@ describe('Component: MdlRadio', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MdlRadioModule, FormsModule, ReactiveFormsModule ],
+      imports: [ MdlRadioModule.forRoot(), FormsModule, ReactiveFormsModule ],
       declarations: [ MdlTestRadioComponent ],
     });
   }));

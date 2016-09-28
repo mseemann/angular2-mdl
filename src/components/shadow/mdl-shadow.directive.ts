@@ -5,7 +5,8 @@ import {
   SimpleChange,
   ElementRef,
   Renderer,
-  NgModule
+  NgModule,
+  ModuleWithProviders
 } from '@angular/core';
 import { MdlError } from './../common/mdl-error';
 import { NumberProperty } from './../common/number.property';
@@ -57,4 +58,11 @@ const MDL_SHADOW_DIRECTIVES = [MdlShadowDirective];
   exports: MDL_SHADOW_DIRECTIVES,
   declarations: MDL_SHADOW_DIRECTIVES,
 })
-export class MdlShadowModule {}
+export class MdlShadowModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlShadowModule,
+      providers: []
+    };
+  }
+}

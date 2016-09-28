@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import {
   MdlTooltipComponent, MdlSimpleTooltipComponent
 } from './mdl-tooltip.component';
@@ -23,4 +23,11 @@ export * from './mdl-tooltip.directive';
   declarations: [...MDL_TOOLTIP_DIRECTIVES, MdlSimpleTooltipComponent ],
   entryComponents: [MdlSimpleTooltipComponent]
 })
-export class MdlTooltipModule {}
+export class MdlTooltipModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlTooltipModule,
+      providers: []
+    };
+  }
+}

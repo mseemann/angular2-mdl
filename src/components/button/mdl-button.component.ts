@@ -5,6 +5,7 @@ import {
   OnChanges,
   Renderer,
   NgModule,
+  ModuleWithProviders,
   ViewEncapsulation
 } from '@angular/core';
 import { MdlError } from './../common/mdl-error';
@@ -99,4 +100,11 @@ const MDL_BUTTON_DIRECTIVES = [MdlButtonComponent];
   exports: MDL_BUTTON_DIRECTIVES,
   declarations: MDL_BUTTON_DIRECTIVES,
 })
-export class MdlButtonModule {}
+export class MdlButtonModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlButtonModule,
+      providers: []
+    };
+  }
+}

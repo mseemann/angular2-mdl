@@ -5,7 +5,8 @@ import {
   SimpleChange,
   NgModule,
   ViewEncapsulation,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ModuleWithProviders
 } from '@angular/core';
 import { BooleanProperty } from './../common/boolean-property';
 import { CommonModule } from '@angular/common';
@@ -50,4 +51,11 @@ const MDL_PROGRESS_DIRECTIVES = [MdlProgressComponent];
   exports: MDL_PROGRESS_DIRECTIVES,
   declarations: MDL_PROGRESS_DIRECTIVES,
 })
-export class MdlProgressModule {}
+export class MdlProgressModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlProgressModule,
+      providers: []
+    };
+  }
+}

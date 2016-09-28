@@ -42,7 +42,7 @@ import { LoginDialogComponent } from './dialog/login-dialog.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    MdlModule,
+    MdlModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [

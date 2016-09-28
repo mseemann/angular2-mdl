@@ -5,7 +5,8 @@ import {
   ViewContainerRef,
   ComponentFactoryResolver,
   NgModule,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 import { CommonModule } from '@angular/common';
@@ -146,7 +147,13 @@ export class MdlSnackbarService {
   imports: [CommonModule],
   exports: [MdlSnackbarComponent],
   declarations: [MdlSnackbarComponent],
-  providers: [MdlSnackbarService],
   entryComponents: [MdlSnackbarComponent]
 })
-export class MdlSnackbaModule {}
+export class MdlSnackbaModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlSnackbaModule,
+      providers: [MdlSnackbarService]
+    };
+  }
+}

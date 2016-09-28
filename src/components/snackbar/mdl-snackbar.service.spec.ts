@@ -13,8 +13,8 @@ describe('Service: MdlSnackbar', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MdlTestViewComponent],
-      imports: [MdlSnackbaModule],
-      providers: [MdlSnackbarService]
+      imports: [MdlSnackbaModule.forRoot()],
+      providers: []
     });
   }));
 

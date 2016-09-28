@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { MdlLayoutComponent } from './mdl-layout.component';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
@@ -41,4 +41,11 @@ export * from './mdl-layout-tab-panel.component';
   exports: MDL_LAYOUT_DIRECTIVES,
   declarations: MDL_LAYOUT_DIRECTIVES,
 })
-export class MdlLayoutModule {}
+export class MdlLayoutModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlLayoutModule,
+      providers: []
+    };
+  }
+}
