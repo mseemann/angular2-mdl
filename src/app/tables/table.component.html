@@ -21,7 +21,7 @@
 {{selected | json}}
 
 
-<pre prism>
+<pre prism ngNonBindable>
   <![CDATA[
    <mdl-table-selectable mdl-shadow="2"
        [table-model]="tableModel"
@@ -29,7 +29,7 @@
        (table-model-selectionChanged)="selectionChanged($event)">
    </mdl-table-selectable>
 
-   {x{selected | json}}
+   {{selected | json}}
   ]]>
 </pre>
 
