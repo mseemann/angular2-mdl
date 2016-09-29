@@ -7,7 +7,8 @@ import {
   trigger,
   style,
   transition,
-  animate
+  animate,
+  state
 } from '@angular/core';
 
 import {
@@ -30,7 +31,7 @@ import {
       transition('void => animate', [
         style({
           transform: 'translate(0, -70%)',
-          opacity: 1
+          opacity: 0.9
         }),
         animate(200)
       ]),
@@ -59,6 +60,7 @@ import {
       color: black;
       display: none;
       z-index: 1;
+      opacity: 1;
     }
     
     mdl-dialog-host-component.open {
