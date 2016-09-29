@@ -7,8 +7,11 @@
   <input type="number" [(ngModel)]="activeIndex" min="0" max="2">
 </div>
 <div class="demo-tab-container">
-  <mdl-switch [(ngModel)]="disableTargaryens" mdl-ripple>Disable Targaryens</mdl-switch>
-  <mdl-switch [(ngModel)]="disableBaratheon" mdl-ripple>Disable Baratheon</mdl-switch>
+  <div class="demo-toggle-disabled-container">
+    <mdl-switch [(ngModel)]="disableTargaryens" mdl-ripple>Disable Targaryens</mdl-switch>
+    <mdl-switch [(ngModel)]="disableBaratheon" mdl-ripple>Disable Baratheon</mdl-switch>
+  </div>
+
   <mdl-tabs mdl-ripple [mdl-tab-active-index]="activeIndex" (mdl-tab-active-changed)="tabChanged($event)">
     <mdl-tab-panel>
       <mdl-tab-panel-title>

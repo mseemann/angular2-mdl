@@ -28,13 +28,13 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
           *ngIf="tab.titleComponent"
           class="mdl-tabs__tab"
           (click)="tabSelected(tab)"
-          [mdl-ripple]="isRipple"
+          [mdl-ripple]="isRipple && !tab.disabled"
           [ngClass]="{'is-active': tab.isActive, 'disabled': tab.disabled}"
           [append-view-container-ref]="tab.titleComponent.vcRef"></div>
         <a *ngIf="!tab.titleComponent" href="javascript:void(0)"
               (click)="tabSelected(tab)"
               class="mdl-tabs__tab"
-              [mdl-ripple]="isRipple"
+              [mdl-ripple]="isRipple && !tab.disabled"
               [ngClass]="{'is-active': tab.isActive, 'disabled': tab.disabled}">{{tab.title}}</a>
        </div>
   </div>
