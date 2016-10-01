@@ -9,7 +9,7 @@ export class AbstractDemoComponent {
 
   private sub;
 
-  private windowTitle = 'A2-MDL';
+  private windowTitle = 'angular2-mdl';
 
   constructor(private router: Router, private route: ActivatedRoute, private titleService: Title) {}
 
