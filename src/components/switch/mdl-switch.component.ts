@@ -3,7 +3,9 @@ import {
   ElementRef,
   Renderer,
   forwardRef,
-  NgModule
+  NgModule,
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 
 import {
@@ -37,7 +39,8 @@ import { CommonModule } from '@angular/common';
     <span class="mdl-switch__label"><ng-content></ng-content></span>
     <div class="mdl-switch__track"></div>
     <div class="mdl-switch__thumb"><span class="mdl-switch__focus-helper"></span></div>
-  `
+  `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlSwitchComponent extends MdlCheckboxComponent {
 
@@ -54,4 +57,11 @@ const MDL_SWITCH_DIRECTIVES = [MdlSwitchComponent];
   exports: MDL_SWITCH_DIRECTIVES,
   declarations: MDL_SWITCH_DIRECTIVES,
 })
-export class MdlSwitchModule {}
+export class MdlSwitchModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlSwitchModule,
+      providers: []
+    };
+  }
+}

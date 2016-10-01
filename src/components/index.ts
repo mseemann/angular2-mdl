@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { MdlRippleModule } from './common/mdl-ripple.directive';
 import { MdlButtonModule } from './button/mdl-button.component';
 import { MdlBadgeModule } from './badge/mdl-badge.directive';
@@ -6,7 +6,7 @@ import { MdlShadowModule } from './shadow/mdl-shadow.directive';
 import { MdlCardModule } from './card/mdl-card.component';
 import { MdlChipModule } from './chips/index';
 import { MdlDialogModule } from './dialog/index';
-import { MdlChekboxModule } from './checkbox/mdl-checkbox.component';
+import { MdlCheckboxModule } from './checkbox/mdl-checkbox.component';
 import { MdlRadioModule } from './radio/mdl-radio.component';
 import { MdlProgressModule } from './progress/mdl-progress.component';
 import { MdlIconModule } from './icon/mdl-icon.component';
@@ -15,7 +15,7 @@ import { MdlListModule } from './list/mdl-list.component';
 import { MdlSpinnerModule } from './spinner/mdl-spinner.component';
 import { MdlSliderModule }  from './slider/mdl-slider.component';
 import { MdlSwitchModule } from './switch/mdl-switch.component';
-import { MdlSnackbarService } from './snackbar/mdl-snackbar.service';
+import { MdlSnackbaModule } from './snackbar/mdl-snackbar.service';
 import { MdlTooltipModule } from './tooltip/index';
 import { MdlTableModule } from './table/index';
 import { MdlMenuModule } from './menu/index';
@@ -48,15 +48,11 @@ export * from './tabs/index';
 export * from './textfield/mdl-textfield.component';
 
 
-const MDL_SERVICES = [
-  MdlSnackbarService
-];
-
 
 const MDL_MODULES = [
   MdlButtonModule,
   MdlLayoutModule,
-  MdlChekboxModule,
+  MdlCheckboxModule,
   MdlChipModule,
   MdlDialogModule,
   MdlSpinnerModule,
@@ -71,6 +67,7 @@ const MDL_MODULES = [
   MdlListModule,
   MdlSliderModule,
   MdlSwitchModule,
+  MdlSnackbaModule,
   MdlTooltipModule,
   MdlTableModule,
   MdlMenuModule,
@@ -78,11 +75,44 @@ const MDL_MODULES = [
   MdlTextFieldModule
 ];
 
+
+@NgModule({
+  imports: [
+    MdlButtonModule.forRoot(),
+    MdlLayoutModule.forRoot(),
+    MdlCheckboxModule.forRoot(),
+    MdlChipModule.forRoot(),
+    MdlDialogModule.forRoot(),
+    MdlSpinnerModule.forRoot(),
+    MdlRippleModule.forRoot(),
+    MdlBadgeModule.forRoot(),
+    MdlShadowModule.forRoot(),
+    MdlCardModule.forRoot(),
+    MdlRadioModule.forRoot(),
+    MdlProgressModule.forRoot(),
+    MdlIconModule.forRoot(),
+    MdlIconToggleModule.forRoot(),
+    MdlListModule.forRoot(),
+    MdlSliderModule.forRoot(),
+    MdlSwitchModule.forRoot(),
+    MdlSnackbaModule.forRoot(),
+    MdlTooltipModule.forRoot(),
+    MdlTableModule.forRoot(),
+    MdlMenuModule.forRoot(),
+    MdlTabsModule.forRoot(),
+    MdlTextFieldModule.forRoot()
+  ],
+  exports: MDL_MODULES,
+  providers: []
+})
+export class MdlRootModule {}
+
 @NgModule({
   imports: MDL_MODULES,
-  exports: MDL_MODULES,
-  providers: MDL_SERVICES
+  exports: MDL_MODULES
 })
 export class MdlModule {
-
+  public static forRoot(): ModuleWithProviders {
+    return {ngModule: MdlRootModule};
+  }
 }

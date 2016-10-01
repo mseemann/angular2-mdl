@@ -4,7 +4,8 @@ import {
   Renderer,
   forwardRef,
   NgModule,
-  Input
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -36,6 +37,7 @@ import { MdlCheckboxComponent } from './../checkbox/mdl-checkbox.component';
     [(ngModel)]="value">
   <mdl-icon class="mdl-icon-toggle__label"><ng-content></ng-content></mdl-icon>
   `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlIconToggleComponent extends MdlCheckboxComponent {
 
@@ -52,4 +54,11 @@ const MDL_ICON_TOGGLE_DIRECTIVES = [MdlIconToggleComponent];
   exports: MDL_ICON_TOGGLE_DIRECTIVES,
   declarations: MDL_ICON_TOGGLE_DIRECTIVES,
 })
-export class MdlIconToggleModule {}
+export class MdlIconToggleModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlIconToggleModule,
+      providers: []
+    };
+  }
+}

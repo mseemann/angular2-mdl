@@ -6,7 +6,8 @@ import {
   OnInit,
   Optional,
   ViewEncapsulation,
-  NgModule
+  NgModule,
+  ModuleWithProviders
 } from '@angular/core';
 import {
   MdlError,
@@ -225,4 +226,11 @@ const MDL_LIST_DIRECTIVES = [
   exports: MDL_LIST_DIRECTIVES,
   declarations: MDL_LIST_DIRECTIVES,
 })
-export class MdlListModule {}
+export class MdlListModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlListModule,
+      providers: []
+    };
+  }
+}

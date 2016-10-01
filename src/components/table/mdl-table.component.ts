@@ -2,7 +2,8 @@ import {
   Component,
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
+  ViewEncapsulation
 } from '@angular/core';
 import {
   IMdlTableModel,
@@ -49,7 +50,8 @@ const styles = [
 @Component({
   selector: 'mdl-table',
   template: template,
-  styles: styles
+  styles: styles,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlTableComponent {
 
@@ -62,7 +64,8 @@ export class MdlTableComponent {
 @Component({
   selector: 'mdl-table-selectable',
   template: template,
-  styles: styles
+  styles: styles,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlSelectableTableComponent extends MdlTableComponent {
 

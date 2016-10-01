@@ -4,7 +4,9 @@ import {
   ElementRef,
   OnChanges,
   Renderer,
-  NgModule
+  NgModule,
+  ModuleWithProviders,
+  ViewEncapsulation
 } from '@angular/core';
 import { MdlError } from './../common/mdl-error';
 import { BooleanProperty } from './../common/boolean-property';
@@ -51,7 +53,8 @@ const MDL_COLORED_TYPES = [
     '[class.mdl-button--accent]' :  'mdlColoredType == "accent"'
   },
   exportAs: 'mdlButton',
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlButtonComponent implements OnChanges {
 
@@ -97,4 +100,11 @@ const MDL_BUTTON_DIRECTIVES = [MdlButtonComponent];
   exports: MDL_BUTTON_DIRECTIVES,
   declarations: MDL_BUTTON_DIRECTIVES,
 })
-export class MdlButtonModule {}
+export class MdlButtonModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlButtonModule,
+      providers: []
+    };
+  }
+}

@@ -1,4 +1,4 @@
-import {   NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdlIconModule } from './../icon/mdl-icon.component';
 import { MdlChipComponent } from './mdl-chip.component';
@@ -14,4 +14,11 @@ const DIRECTIVES = [MdlChipComponent, MdlChipContactDirective];
   exports: DIRECTIVES,
   declarations: DIRECTIVES,
 })
-export class MdlChipModule {}
+export class MdlChipModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlChipModule,
+      providers: []
+    };
+  }
+}

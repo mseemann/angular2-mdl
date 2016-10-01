@@ -6,7 +6,7 @@ import {
 import { Prism } from './prism.vendor';
 
 @Directive({
-  selector: '[prism]',
+  selector: '[prism]'
 })
 export class PrismDirective implements OnInit {
 
@@ -15,10 +15,7 @@ export class PrismDirective implements OnInit {
   }
 
   public ngOnInit() {
-
     var rawHtml = this.el.nativeElement.textContent.replace(new RegExp('=""', 'g'), '');
-    // REMOVE the escaped exression so angular ignores the content :(
-    rawHtml = rawHtml.replace(new RegExp('{x{', 'g'), '{{');
     var html = Prism.highlight(rawHtml, Prism.languages.html);
     this.el.nativeElement.innerHTML = html;
   }

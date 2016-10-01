@@ -4,7 +4,8 @@ import {
   OnInit,
   Optional,
   ViewEncapsulation,
-  NgModule
+  NgModule,
+  ModuleWithProviders
 } from '@angular/core';
 import { MdlStructureError } from './../common/mdl-error';
 
@@ -154,4 +155,11 @@ const MDL_CARD_DIRECTIVES = [
   exports: MDL_CARD_DIRECTIVES,
   declarations: MDL_CARD_DIRECTIVES,
 })
-export class MdlCardModule {}
+export class MdlCardModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlCardModule,
+      providers: []
+    };
+  }
+}

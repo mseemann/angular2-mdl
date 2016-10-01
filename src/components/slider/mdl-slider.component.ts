@@ -5,7 +5,9 @@ import {
   ViewChild,
   Renderer,
   ElementRef,
-  NgModule
+  NgModule,
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -52,7 +54,8 @@ const noop = (_?: any) => {};
         -moz-user-select: none;
     }
     `
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlSliderComponent implements ControlValueAccessor {
   private value_: any;
@@ -134,4 +137,11 @@ const MDL_SLIDER_DIRECTIVES = [MdlSliderComponent];
   exports: MDL_SLIDER_DIRECTIVES,
   declarations: MDL_SLIDER_DIRECTIVES,
 })
-export class MdlSliderModule {}
+export class MdlSliderModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlSliderModule,
+      providers: []
+    };
+  }
+}

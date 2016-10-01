@@ -1,7 +1,9 @@
 import {
   Component,
   Input,
-  NgModule
+  NgModule,
+  ModuleWithProviders,
+  ViewEncapsulation
 } from '@angular/core';
 import { BooleanProperty } from './../common/boolean-property';
 import { CommonModule } from '@angular/common';
@@ -24,7 +26,8 @@ import { CommonModule } from '@angular/common';
       </div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div>
     </div>
   `
-  /* tslint:enable */
+  /* tslint:enable */,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlSpinnerComponent {
   protected layers = [1, 2, 3, 4];
@@ -41,4 +44,11 @@ const MDL_SPINNER_DIRECTIVES = [MdlSpinnerComponent];
   exports: MDL_SPINNER_DIRECTIVES,
   declarations: MDL_SPINNER_DIRECTIVES,
 })
-export class MdlSpinnerModule {}
+export class MdlSpinnerModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlSpinnerModule,
+      providers: []
+    };
+  }
+}

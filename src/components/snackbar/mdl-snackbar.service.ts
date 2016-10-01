@@ -3,11 +3,10 @@ import {
   Injectable,
   Injector,
   ViewContainerRef,
-  Compiler,
-  ModuleWithComponentFactories,
-  ComponentFactory,
-  ComponentRef,
-  NgModule
+  ComponentFactoryResolver,
+  NgModule,
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 import { CommonModule } from '@angular/common';
@@ -29,6 +28,7 @@ const ANIMATION_TIME = 250;
       <button *ngIf="onAction" class="mdl-snackbar__action" type="button" (click)="onClick()" >{{actionText}}</button>
     </div>
   `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlSnackbarComponent {
   public message: string;
@@ -86,7 +86,7 @@ export class MdlSnackbarService {
   private defaultViewContainerRef: ViewContainerRef;
   constructor(
     private injector: Injector,
-    private compiler: Compiler) {
+    private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   public setDefaultViewContainerRef(vcRef: ViewContainerRef) {
@@ -111,12 +111,8 @@ export class MdlSnackbarService {
         'Wether as by setDefaultViewContainerRef or as IMdlSnackbarMessage param.');
     }
 
-    let moduleFactories: ModuleWithComponentFactories<MdlSnackbaModule> = this.compiler
-      .compileModuleAndAllComponentsSync(MdlSnackbaModule);
-    let cRef: ComponentRef<MdlSnackbarComponent> = null;
-    moduleFactories.componentFactories.forEach( ( cFactory: ComponentFactory<any> ) =>  {
-       cRef = viewContainerRef.createComponent(cFactory);
-    });
+    let cFactory  = this.componentFactoryResolver.resolveComponentFactory(MdlSnackbarComponent);
+    let cRef = viewContainerRef.createComponent(cFactory);
 
     let mdlSnackbarComponent = <MdlSnackbarComponent> cRef.instance;
     mdlSnackbarComponent.message = snackbarMessage.message;
@@ -151,6 +147,13 @@ export class MdlSnackbarService {
   imports: [CommonModule],
   exports: [MdlSnackbarComponent],
   declarations: [MdlSnackbarComponent],
-  providers: [MdlSnackbarService]
+  entryComponents: [MdlSnackbarComponent]
 })
-export class MdlSnackbaModule {}
+export class MdlSnackbaModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlSnackbaModule,
+      providers: [MdlSnackbarService]
+    };
+  }
+}

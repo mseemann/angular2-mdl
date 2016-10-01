@@ -7,7 +7,7 @@ import { By, DOCUMENT } from '@angular/platform-browser';
 import { Component} from '@angular/core';
 import {
   MdlCheckboxComponent,
-  MdlChekboxModule} from './mdl-checkbox.component';
+  MdlCheckboxModule} from './mdl-checkbox.component';
 import { FormsModule } from '@angular/forms';
 
 describe('Component: MdlCheckbox', () => {
@@ -16,7 +16,7 @@ describe('Component: MdlCheckbox', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MdlChekboxModule, FormsModule ],
+      imports: [ MdlCheckboxModule, FormsModule ],
       declarations: [ MdlTestCheckboxComponent ],
     });
   }));

@@ -6,7 +6,8 @@ import {
   SimpleChange,
   Renderer,
   OnInit,
-  NgModule
+  NgModule,
+  ModuleWithProviders
 } from '@angular/core';
 import { MaterialRipple } from './ripple.vendor';
 
@@ -183,4 +184,11 @@ const MDL_COMMON_DIRECTIVES = [
   exports: MDL_COMMON_DIRECTIVES,
   declarations: MDL_COMMON_DIRECTIVES,
 })
-export class MdlRippleModule {}
+export class MdlRippleModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlRippleModule,
+      providers: []
+    };
+  }
+}

@@ -1,6 +1,8 @@
 import {
   Component,
-  NgModule
+  NgModule,
+  ViewEncapsulation,
+  ModuleWithProviders
 } from '@angular/core';
 
 
@@ -9,7 +11,8 @@ import {
   host: {
     '[class.material-icons]': 'true'
   },
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlIconComponent {}
 
@@ -21,4 +24,11 @@ const MDL_ICON_DIRECTIVES = [MdlIconComponent];
   exports: MDL_ICON_DIRECTIVES,
   declarations: MDL_ICON_DIRECTIVES,
 })
-export class MdlIconModule {}
+export class MdlIconModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlIconModule,
+      providers: []
+    };
+  }
+}
