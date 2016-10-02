@@ -1,29 +1,24 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "declaration": true,
+    "target": "es5",
+    "lib": ["es6", "es2015", "dom"],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noEmitOnError": true,
+    "removeComments": false,
     "noImplicitAny": false,
-    "outDir": "../dist/",
-    "rootDir": "..",
-    "target": "es5",
-    "inlineSources": false,
-    "mapRoot": "dist",
-    "sourceMap": true,
-    "inlineSourceMap": false,
-    "stripInternal": true
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [
+      "node",
+      "jasmine",
+      "protractor",
+      "selenium-webdriver"
+    ],
+    "outDir": "./../dist"
   },
-
-  "files": [
-    "main.ts",
-    "typings.d.ts"
-  ],
-
-  "angularCompilerOptions": {
-       "genDir": "aot"
+  "awesomeTypescriptLoaderOptions": {
+    "useWebpackText": true // Allows other loaders to be chained to awesome-typescript-loader.
   }
 }
