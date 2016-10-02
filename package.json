@@ -27,12 +27,6 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config config/webpack/webpack.prod.js --progress --profile ",
-    "lint": "tslint \"src/**/*.ts\"",
-    "test": "ng version; tsc -v; ng test --watch false",
-    "posttest": "remap-istanbul -i coverage/coverage-final.json -o coverage/coverage-mapped.json -t lcovonly -o coverage/lcov.info; remap-istanbul -i coverage/coverage-final.json -o coverage/coverage-mapped.json -t html -o coverage/coverage-remap",
-    "pree2e": "webdriver-manager update; tsc --project e2e",
-    "e2e": "protractor",
-    "deploy-gh-pages": "ng github-pages:deploy --message \"Deploy gh-pages from commit $(git rev-parse HEAD)  [ci skip]\"",
     "generate-scss-from-mdl-scss": "node ./dev-scripts/generate-scss-from-mdl-scss.js",
     "codeclimate": "CODECLIMATE_REPO_TOKEN=160aba8aa0baa5d0cab1d2162f50027cef9cda032fbc4eebefd54167ddce4c89 codeclimate-test-reporter < coverage/lcov.info"
   },
