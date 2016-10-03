@@ -54,12 +54,12 @@ const IS_DIRTY = 'is-dirty';
         *ngIf="rows"
         #input
         [rows]="rows"
-        class="mdl-textfield__input" 
+        class="mdl-textfield__input"
         type="text"
         [attr.name]="name"
         [id]="id"
         [placeholder]="placeholder ? placeholder : ''"
-        (focus)="onFocus($event)" 
+        (focus)="onFocus($event)"
         (blur)="onBlur($event)"
         (keydown)="keydownTextarea($event)"
         [(ngModel)]="value"
@@ -69,15 +69,16 @@ const IS_DIRTY = 'is-dirty';
      <input
         *ngIf="!rows"
         #input
-        class="mdl-textfield__input" 
-        [type]="type" 
+        class="mdl-textfield__input"
+        [type]="type"
         [attr.name]="name"
         [id]="id"
         [pattern]="pattern ? pattern : '.*'"
         [attr.min]="min"
         [attr.max]="max"
         [placeholder]="placeholder ? placeholder : ''"
-        (focus)="onFocus($event)" 
+        [autocomplete]="autocomplete ? autocomplete : ''"
+        (focus)="onFocus($event)"
         (blur)="onBlur($event)"
         [(ngModel)]="value"
         [disabled]="disabled"
@@ -94,20 +95,21 @@ const IS_DIRTY = 'is-dirty';
       <div class="mdl-textfield__expandable-holder">
        <input
           #input
-          class="mdl-textfield__input" 
-          [type]="type" 
+          class="mdl-textfield__input"
+          [type]="type"
           [attr.name]="name"
           [id]="id"
           [pattern]="pattern ? pattern : '.*'"
           [attr.min]="min"
           [attr.max]="max"
           [placeholder]="placeholder ? placeholder : ''"
-          (focus)="onFocus($event)" 
+          [autocomplete]="autocomplete ? autocomplete : ''"
+          (focus)="onFocus($event)"
           (blur)="onBlur($event)"
           [(ngModel)]="value"
           [disabled]="disabled"
           [required]="required"
-          [autofocus]="autofocus" 
+          [autofocus]="autofocus"
          >
      <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
@@ -152,6 +154,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() @BooleanProperty() public autofocus: boolean = false;
   @Input('floating-label') @BooleanProperty() public isFloatingLabel = false;
   @Input() public placeholder: string;
+  @Input() public autocomplete: string;
   @Input() @NumberProperty() public rows: number = null;
   @Input() @NumberProperty() public maxrows: number = -1;
   @Input() public icon: string;
