@@ -3,7 +3,7 @@ const webpack = require('webpack');
 module.exports = {
 	entry: './src/lib/components/index.ts',
 	output: {
-		path: './dist/umd',
+		path: './dist/bundle',
 		filename: 'angular2-mdl.js',
 		libraryTarget: 'umd',
 		library: 'angular2Mdl'

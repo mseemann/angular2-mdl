@@ -1,33 +1,16 @@
 {
   "name": "angular2-mdl",
-  "version": "1.8.1",
+  "version": "0.0.0",
   "license": "MIT",
   "description": "Angular 2 components, directives and styles based on material design lite https://getmdl.io.",
   "homepage": "http://mseemann.io/angular2-mdl/",
-  "keywords": [
-    "angular 2",
-    "angular2",
-    "material",
-    "material design",
-    "material design lite",
-    "components",
-    "typescript",
-    "button",
-    "card",
-    "chips",
-    "snackbar",
-    "layouts",
-    "reactive forms",
-    "tables",
-    "tabs",
-    "test fields",
-    "toggle"
-  ],
-  "angular-cli": {},
+  "keywords": [],
   "scripts": {
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config config/webpack/webpack.prod.js --progress --profile",
     "build:clean": "rimraf dist",
-    "build:dist": "npm run build:clean && npm run build:umd",
+    "build:dist": "npm run build:clean && npm run build:umd && npm run build:esm && npm run build:scss && cp src/lib/package.json dist",
+    "build:esm": "ngc -p src/lib/tsconfig-ngc.json",
+    "build:scss": "ncp src/lib/scss dist/scss",
     "build:umd": "webpack --config config/webpack/webpack.config.umd.js --progress",
     "codeclimate": "CODECLIMATE_REPO_TOKEN=160aba8aa0baa5d0cab1d2162f50027cef9cda032fbc4eebefd54167ddce4c89 codeclimate-test-reporter < coverage/lcov.info",
     "e2e": "protractor config/protractor.sauce.conf.js",
@@ -37,17 +20,10 @@
     "test": "karma start config/karma.conf.js",
     "test:watch": "karma start config/karma.conf.js --watch"
   },
-  "main": "./dist/components/index.js",
-  "typings": "./dist/components/index.d.ts",
-  "private": false,
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mseemann/angular2-mdl.git"
-  },
-  "peerDependencies": {
-    "@angular/core": "^2.0.0",
-    "@angular/common": "^2.0.0",
-    "@angular/forms": "^2.0.0"
   },
   "devDependencies": {
     "@angular/common": "2.0.1",
