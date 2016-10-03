@@ -65,7 +65,7 @@
     "broccoli-autoprefixer": "4.1.0",
     "broccoli-funnel": "1.0.7",
     "broccoli-merge-trees": "1.1.4",
-    "codeclimate-test-reporter": "0.3.3",
+    "codeclimate-test-reporter": "0.4.0",
     "codelyzer": "0.0.28",
     "core-js": "2.4.1",
     "coveralls": "2.11.14",
