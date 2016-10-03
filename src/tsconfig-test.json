@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es6", "es2015", "dom"],
+    "lib": ["es6", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
@@ -15,7 +14,6 @@
       "jasmine",
       "protractor",
       "selenium-webdriver"
-    ],
-    "outDir": "./../dist"
+    ]
   }
 }

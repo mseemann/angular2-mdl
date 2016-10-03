@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es6", "es2015", "dom"],
+    "lib": ["es6", "dom"],
     "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -11,12 +11,8 @@
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
     "types": [
-      "node",
-      "jasmine",
-      "protractor",
-      "selenium-webdriver"
-    ],
-    "outDir": "./../dist"
+      "node"
+    ]
   },
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true // Allows other loaders to be chained to awesome-typescript-loader.
