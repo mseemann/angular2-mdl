@@ -33,6 +33,6 @@ after_success:
   #  give github a little bit of time to update the github page
   # - sleep 10
   # run e2e test
-  - npm run e2e config/protractor.sauce.conf.js
+  # - npm run e2e config/protractor.sauce.conf.js
 
 after_script:

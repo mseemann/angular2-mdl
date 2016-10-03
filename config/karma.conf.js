@@ -1,10 +1,8 @@
-
 const WATCH = process.argv.indexOf('--watch') > -1;
 
 module.exports = function (config) {
 
   var testWebpackConfig = require('./webpack/webpack.test.js');
-
 
   config.set({
     basePath: '..',
@@ -22,11 +20,19 @@ module.exports = function (config) {
     ],
     preprocessors: {
       'config/test.spec.ts': ['webpack']
-    },
+		},
+
+		remapIstanbulReporter: {
+			reports: {
+				html: 'coverage/remaped-html',
+				lcovonly: 'coverage/lcov.info',
+				'text-summary': null
+			}
+		},
     webpack: testWebpackConfig,
     // Webpack should show only errors on the console
     webpackMiddleware: { stats: 'errors-only'},
-    reporters: ['spec'],
+    reporters: ['spec', 'karma-remap-istanbul'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_ERROR,

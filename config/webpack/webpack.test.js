@@ -1,27 +1,32 @@
-
-var util = require('./util');
+const util = require('./util');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
 module.exports = {
+
+	devtool: 'inline-source-map',
 
   resolve: {
     extensions: ['.js', '.ts'],
   },
 
   module: {
-    loaders: [
+
+    rules: [
       {
         test: /\.ts$/,
-        loaders: ['awesome-typescript-loader?tsconfig=./src/tsconfig.json', 'angular2-template-loader']
+        loaders: ['awesome-typescript-loader?tsconfig=./src/tsconfig-test.json']
       },
-      {
-        test: /\.html$/,
-        loader: 'raw'
-      }
+			{
+				enforce: 'post',
+				test: /\.(js|ts)$/, loader: 'sourcemap-istanbul-instrumenter-loader?force-sourcemap=true',
+				include: util.root('src', 'lib'),
+				exclude: [
+					/\.(spec)\.ts$/,
+					/\.(vendor)\.ts$/
+				]
+			}
     ]
-  },
-
-  plugins: []
+  }
 
 };
