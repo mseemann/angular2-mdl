@@ -27,7 +27,10 @@ module.exports = webpackMerge(commonConfig, {
 			debug: false
 		}),
 		new webpack.optimize.UglifyJsPlugin({
-      comments: false
+      comments: false,
+      compress: {
+        warnings: false
+      }
 		}),
 		new ExtractTextPlugin('[name].[hash].css'),
 		new webpack.DefinePlugin({

@@ -1,13 +1,15 @@
+
+const WATCH = process.argv.indexOf('--watch') > -1;
+
 module.exports = function (config) {
+
+  var testWebpackConfig = require('./webpack/webpack.test.js');
+
+
   config.set({
     basePath: '..',
     frameworks: ['jasmine'],
-    plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-coverage'),
-      require('karma-spec-reporter')
-    ],
+    browserNoActivityTimeout: 20000,
     customLaunchers: {
       // chrome setup for travis CI using chromium
       Chrome_travis_ci: {
@@ -16,46 +18,20 @@ module.exports = function (config) {
       }
     },
     files: [
-      {pattern: 'dist/vendor/core-js/client/core.js', included: true, watched: false},
-      {pattern: 'dist/vendor/systemjs/dist/system-polyfills.js', included: true, watched: false},
-      {pattern: 'dist/vendor/systemjs/dist/system.src.js', included: true, watched: false},
-      'dist/vendor/zone.js/dist/zone.js',
-      'dist/vendor/zone.js/dist/long-stack-trace-zone.js',
-      'dist/vendor/zone.js/dist/async-test.js',
-      'dist/vendor/zone.js/dist/fake-async-test.js',
-      'dist/vendor/zone.js/dist/sync-test.js',
-      'dist/vendor/zone.js/dist/proxy.js',
-      'dist/vendor/zone.js/dist/jasmine-patch.js',
-
-      { pattern: 'config/karma-test-shim.js', included: true, watched: true },
-
-      // Distribution folder.
-      { pattern: 'dist/**/*', included: false, watched: true }
-    ],
-    exclude: [
-      // Vendor packages might include spec files. We don't want to use those.
-      'dist/vendor/**/*.spec.js'
+      'config/test.spec.ts'
     ],
     preprocessors: {
-      'dist/components/**/!(*spec|*vendor).js': ['coverage']
+      'config/test.spec.ts': ['webpack']
     },
-    coverageReporter: {
-      dir : 'coverage/',
-      reporters: [
-        { type: 'html' },
-        { type: 'lcov' },
-        { type: 'json',
-          subdir: '.',
-          file: 'coverage-final.json'
-        }
-      ]
-    },
-    reporters: ['spec', 'coverage'],
+    webpack: testWebpackConfig,
+    // Webpack should show only errors on the console
+    webpackMiddleware: { stats: 'errors-only'},
+    reporters: ['spec'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_ERROR,
-    autoWatch: true,
+    autoWatch: WATCH,
     browsers: ['Chrome'],
-    singleRun: false
+    singleRun: !WATCH
   });
 };

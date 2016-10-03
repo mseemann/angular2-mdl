@@ -1,6 +1,6 @@
 import {
   MdlDefaultTableModel
-} from './mdl-table';
+} from './mdl-table.component';
 
 describe('Component: MdlTableModel', () => {
 
