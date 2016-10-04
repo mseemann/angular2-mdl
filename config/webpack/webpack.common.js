@@ -35,7 +35,10 @@ module.exports = {
 			},
 			{
 				test: /\.html$/,
-				loader: 'html'
+				loader: 'html',
+				query: {
+					minimize: false
+				}
 			},
 			{
 				test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
@@ -64,6 +67,12 @@ module.exports = {
 
 
 	plugins: [
+		// should fix: https://github.com/angular/angular/issues/11580
+		new webpack.ContextReplacementPlugin(
+			// The (\\|\/) piece accounts for path separators in *nix and Windows
+			/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+			util.root('src')
+		),
     new CopyWebpackPlugin([{ from: util.root('src', 'demo-app', 'assets') , to: 'assets'}], {copyUnmodified: true}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['app', 'vendor', 'polyfills']
