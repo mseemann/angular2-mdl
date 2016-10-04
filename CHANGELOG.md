@@ -11,13 +11,19 @@
 
 ### Bug Fixes
 ### Features
-* AOT is now supported - e.g. the metadata is generated
+* [127](https://github.com/mseemann/angular2-mdl/issues/127) (Autocomplete on inputs)
+* [109](https://github.com/mseemann/angular2-mdl/issues/109) (AOT is now supported - e.g. the metadata files are generated)
+* [121](https://github.com/mseemann/angular2-mdl/issues/121) (avoid editing the copied scss source from mdl)
+* [118](https://github.com/mseemann/angular2-mdl/pull/118) (Add animation to mdl-dialogs)
+* [113](https://github.com/mseemann/angular2-mdl/pull/113) (Disabled tabs)
+* [112](https://github.com/mseemann/angular2-mdl/issues/112) (ViewEncapsulation.None for all components)
+* [111](https://github.com/mseemann/angular2-mdl/issues/111) (forRoot module)
 
 ### Breaking Changes
 * The distribution structure has change:
     - The scss folder is now located at scss and no longer in src/scss
     - The package is now distributed as umd bundle and  esm bundle. The bundle file is bundle/angular2-mdl.js. The esm entry point is components/index.js
-
+* The module *MdlRootModule* is a replacement for *MdlModule*. The *MdlRootModule* makes sure that all providers are loaded into the root injector of the app. You can still use *MdlModule*. But you should be aware that the providers are possibly not singletons. You also can use *MdlModule.forRoot*. This is the same as *MdlRootModule*.
 
 <a name="1.8.1"></a>
 # 1.8.1 (2016-09-28)

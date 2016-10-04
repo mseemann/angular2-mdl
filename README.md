@@ -79,10 +79,10 @@ You may include the material-deisgn-lite css in your html and you're done!
 <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
-Under https://getmdl.io/customize/index.html you'll find a customizing tool to change the theme colors.
+Under http://mseemann.io/angular2-mdl/theme you'll find a customizing tool to change the theme colors.
 
 ### How to use the scss files from material-design-lite
-But there is also another way. This package includes the scss files from material-design-lite.
+This package includes the scss files from material-design-lite.
 With these files you are able to change the colors and other variables in your own scss files:
 
 ```scss
@@ -97,7 +97,7 @@ $color-accent-contrast: $color-dark-contrast;
 @import 'material-design-lite';
 ```
 
-To make this working you need to find out the way how you cold tell your build system where the scss is located.
+To make this working you need to find out the way how you could tell your build system where the scss is located.
 For example with webpack this can be done in this way:
 
 ```JavaScript
