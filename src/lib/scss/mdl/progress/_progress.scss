@@ -41,7 +41,7 @@
 
 .mdl-progress > .bufferbar {
   background-image: linear-gradient(to right, $progress-secondary-color, $progress-secondary-color),
-  linear-gradient(to right, $progress-main-color, $progress-main-color);
+    linear-gradient(to right, $progress-main-color, $progress-main-color);
   z-index: 0;
   left: 0;
 }
@@ -55,7 +55,7 @@
   .mdl-progress:not(.mdl-progress--indeterminate):not(.mdl-progress--indeterminate) > .auxbar,
   .mdl-progress:not(.mdl-progress__indeterminate):not(.mdl-progress__indeterminate) > .auxbar {
     background-image: linear-gradient(to right, $progress-secondary-color, $progress-secondary-color),
-    linear-gradient(to right, $progress-main-color, $progress-main-color);
+      linear-gradient(to right, $progress-main-color, $progress-main-color);
     mask: url('#{$progress-image-path}/buffer.svg?embed');
   }
 }
@@ -63,7 +63,7 @@
 .mdl-progress:not(.mdl-progress--indeterminate) > .auxbar,
 .mdl-progress:not(.mdl-progress__indeterminate) > .auxbar {
   background-image: linear-gradient(to right, $progress-fallback-buffer-color, $progress-fallback-buffer-color),
-  linear-gradient(to right, $progress-main-color, $progress-main-color);
+    linear-gradient(to right, $progress-main-color, $progress-main-color);
 }
 
 .mdl-progress.mdl-progress--indeterminate > .bar1,

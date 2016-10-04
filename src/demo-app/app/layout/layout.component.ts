@@ -36,9 +36,6 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
     .mdl-layout__tab {
         cursor: pointer;
     }
-    .demo-container .mdl-layout__drawer-button {
-        line-height: 42px;
-    }
     
     `
   ],

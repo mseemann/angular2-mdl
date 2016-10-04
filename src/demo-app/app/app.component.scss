@@ -6,6 +6,11 @@ $color-accent: $palette-amber-A200;
 $color-primary-contrast: $color-dark-contrast;
 $color-accent-contrast: $color-dark-contrast;
 
+// this looks really better than the mdl defautlt :(
+.mdl-layout__drawer-button {
+  line-height: 42px;
+}
+
 .router-outlet {
   flex-grow: 1;
   flex-shrink: 0;
