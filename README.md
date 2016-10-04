@@ -24,13 +24,13 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 **Here is a plnkr if you'd like to play around http://plnkr.co/edit/I3dLfLUDIH2xlEJqj0da?p=preview.**
 
 
-### Status of the npm package version 1.8 (mdl version 1.2.1; angular 2.0 final)
+### Status of the npm package version 2.0 (mdl version 1.2.1; angular 2.0 final)
 
 - Badges
 - Buttons
 - Cards
 - Chips
-- Dialogs
+- Dialogs (still experimental - e.g. the API is not stable)
 - Icons
 - Loading
 - Shadow
@@ -45,34 +45,6 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 - Tabs
 - Textfields (multiline, expandable)
 
-This package no longer supports the deprecated forms APIs. You have to use the FormsModule in you app module. For example:
-
-```JavaScript
-import { FormsModule } from '@angular/forms';
-
-@NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    MdlModule
-  ],
-  declarations: [
-    Angular2MdlAppComponent
-  ],
-  entryComponents: [Angular2MdlAppComponent],
-  bootstrap: [],
-})
-export class Angular2MdlAppModule {
-  constructor(private appRef: ApplicationRef) { }
-
-  public ngDoBootstrap() {
-    this.appRef.bootstrap(Angular2MdlAppComponent);
-  }
-}
-```
-
-There are still a lot of bugs in angular2 rc5. For example: https://github.com/angular/angular/issues/10618.
-This means that prod builds are broken. You need to disable some minification options. See the comments in the mentioned ticket.
 
 ### Installation
 
@@ -80,31 +52,14 @@ This means that prod builds are broken. You need to disable some minification op
 npm install angular2-mdl --save
 ```
 
-Please make sure you have installed typings before installation.
-```bash
-npm install typings -g
-```
-(This requirement will be removed in a future release)
 
-### How to use the mdl components with the angular cli webpack version
+### How to use the mdl components with webpack
 
-Just use it. Add the MdlModule to your NgModule imports and you are done!
+Just use it. Add the MdlRootModule to your NgModule imports and you are done!
 
-### How to use the mdl components with the angular cli system js version
+### How to use the mdl components with system js
 
-You need to extend the `angular-cli-build.js` file to include `angular2-mdl` as a vendor package:
-
-```JavaScript
-return new Angular2App(defaults, {
-
-    vendorNpmFiles: [
-      ...
-      'angular2-mdl/**/*'
-    ]
-  });
-```
-
-Next you need to configure your `system-config.js` file:
+You need to configure your `system-config.js` file:
 
 ```JavaScript
 const map: any = {
@@ -117,18 +72,6 @@ const packages: any = {
 };
 ```
 
-After that you may use the angular2-mdl module in your app module:
-```JavaScript
-import { MdlModule } from 'angular2-mdl';
-
-@NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    MdlModule
-  ],
-  ...
-```
 
 ### css from material-design-lite
 You may include the material-deisgn-lite css in your html and you're done!
@@ -142,31 +85,6 @@ Under https://getmdl.io/customize/index.html you'll find a customizing tool to c
 But there is also another way. This package includes the scss files from material-design-lite.
 With these files you are able to change the colors and other variables in your own scss files:
 
-First of all you need to install node-sass for your project:
-
-```bash
-npm install node-sass --save-dev
-```
-
-After that you need to configure the sass compiler to use the sass files from the angular2-mdl package.
-For that the file `angular-cli-build.js` needs to be extended:
-
-```JavaScript
-return new Angular2App(defaults, {
-
-    sassCompiler: {
-      includePaths: [
-        `${__dirname}/node_modules/angular2-mdl/src/scss`
-      ]
-    },
-    vendorNpmFiles: [
-      ...
-    ]
-  });
-```
-
-Now you can use the sass sources form angular-material-lite and change the used colors in your app:
-
 ```scss
 @import "color-definitions";
 
@@ -179,19 +97,15 @@ $color-accent-contrast: $color-dark-contrast;
 @import 'material-design-lite';
 ```
 
+To make this working you need to find out the way how you cold tell your build system where the scss is located.
+For example with webpack this can be done in this way:
 
-[comment]: <> (in angular-cli/lib/broccoli/angular-broccoli-bundle.js set { minify: true, mangle: false })
-
+```JavaScript
+sassLoader: {
+	includePaths: [util.root('node_modules', 'angular2-mdl', 'scss')]
+}
+```
 
 # Contributing
 
-*The contributing section is a work in progress, please be aware that changes are still being suggested and your PR may need to go through a couple revisions prior to acceptance*
-
-* This package should only provide what is provided by material design lite so far (to keep it clean, maintainable and predictable what is included)
-* Any extensions need to be things that the packaging of mdl into @angular makes it very hard to extend (to be reviewed and accepted/rejected based on merit by the owners of this repository).
-
-## SCSS
-
-* This package must work with the CSS from [the CDN](https://code.getmdl.io/1.2.1/material.indigo-pink.min.css)
-  * We pull the source directly with a script into app/scss/mdl
-  * All extensions must exist outside of the mdl directory or they will be overwritten the next time we pull from mdl
+Every contribution is welcome. Please checkout the [CONRIBUTION.md](https://github.com/mseemann/angular2-mdl/blob/master/CONTRIBUTION.md) file.
