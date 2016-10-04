@@ -10,6 +10,7 @@
     "removeComments": false,
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
+    "outDir": "../tmp/src",
     "types": [
       "node"
     ]
