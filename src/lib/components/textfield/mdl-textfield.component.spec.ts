@@ -265,12 +265,25 @@ describe('Component: MdlTextField', () => {
 
   });
 
+  it('should pass autocomplete through to input', () => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-textfield type="text" label="Name" autocomplete="name"></mdl-textfield>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    expect(inputEl.getAttribute('autocomplete')).toBe('name', 'The autocomplete attribute should pass to the input.');
+  });
+
   it('should have native validity check', () => {
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: `
-          <mdl-textfield 
-            type="text" 
-            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$" 
+          <mdl-textfield
+            type="text"
+            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
             label="Text..." name="name-1">
         </mdl-textfield>'
       `
@@ -291,10 +304,10 @@ describe('Component: MdlTextField', () => {
   it('should be possible to deactive native checking locally', () => {
     TestBed.overrideComponent(MdlTestComponent, { set: {
       template: `
-          <mdl-textfield 
+          <mdl-textfield
             disableNativeValidityChecking
-            type="text" 
-            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$" 
+            type="text"
+            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
             label="Text..." name="name-1">
         </mdl-textfield>'
       `
@@ -326,9 +339,9 @@ describe('Component: MdlTextField', () => {
     it ('should be possible to deactive native checking globally', () => {
       TestBed.overrideComponent(MdlTestComponent, { set: {
         template: `
-          <mdl-textfield 
-            type="text" 
-            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$" 
+          <mdl-textfield
+            type="text"
+            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
             label="Text..." name="name-1">
         </mdl-textfield>'
       `
