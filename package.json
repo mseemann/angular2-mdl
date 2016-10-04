@@ -15,7 +15,7 @@
     "codeclimate": "CODECLIMATE_REPO_TOKEN=160aba8aa0baa5d0cab1d2162f50027cef9cda032fbc4eebefd54167ddce4c89 codeclimate-test-reporter < coverage/lcov.info",
     "deploy-gh-pages": "npm run build && ./scripts/deploy.sh --message \"Deploy gh-pages from commit $(git rev-parse HEAD)  [ci skip]\" -n",
     "e2e": "protractor config/protractor.sauce.conf.js",
-    "generate-scss-from-mdl-scss": "rimraf src/lib/scss/mdl && node ./dev-scripts/generate-scss-from-mdl-scss.js",
+    "generate-scss-from-mdl-scss": "rimraf src/lib/scss/mdl && node ./scripts/generate-scss-from-mdl-scss.js",
     "pree2e": "webdriver-manager update; tsc --project e2e",
     "start": "webpack-dev-server",
     "test": "karma start config/karma.conf.js",
