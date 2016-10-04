@@ -3,7 +3,9 @@
 <div>
 
 <!-- Simple Tooltip -->
-<mdl-icon  class="icon material-icons" [mdl-tooltip]="tt1" mdl-tooltip-position="top">add</mdl-icon>
+<div class="tooltip-demo-container">
+  <mdl-icon  class="icon material-icons" [mdl-tooltip]="tt1" mdl-tooltip-position="top">add</mdl-icon>
+</div>
 
 <pre prism>
   <![CDATA[
@@ -18,7 +20,9 @@
 </pre>
 
 <!-- Large Tooltip -->
-<mdl-icon  class="icon material-icons" mdl-tooltip-large="Print">print</mdl-icon>
+<div class="tooltip-demo-container">
+  <mdl-icon  class="icon material-icons" mdl-tooltip-large="Print">print</mdl-icon>
+</div>
 
 <pre prism>
 <![CDATA[
@@ -28,10 +32,12 @@
 </pre>
 
 <!-- Rich Tooltip -->
-<mdl-icon [mdl-tooltip]="tt3" >cloud_upload</mdl-icon>
-<mdl-tooltip #tt3="mdlTooltip">
-  Upload <strong>file.zip</strong>
-</mdl-tooltip>
+<div class="tooltip-demo-container">
+  <mdl-icon [mdl-tooltip]="tt3" >cloud_upload</mdl-icon>
+  <mdl-tooltip #tt3="mdlTooltip">
+    Upload <strong>file.zip</strong>
+  </mdl-tooltip>
+</div>
 
 <pre prism>
   <![CDATA[
@@ -44,10 +50,12 @@
 </pre>
 
 <!-- Multiline Tooltip -->
-<mdl-icon [mdl-tooltip-large]="tt4">share</mdl-icon>
-<mdl-tooltip #tt4="mdlTooltip">
-  Share your content<br>via social media
-</mdl-tooltip>
+<div class="tooltip-demo-container">
+  <mdl-icon [mdl-tooltip-large]="tt4">share</mdl-icon>
+  <mdl-tooltip #tt4="mdlTooltip">
+    Share your content<br>via social media
+  </mdl-tooltip>
+  </div>
 
 <pre prism>
   <![CDATA[

@@ -13,7 +13,14 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
   animations: [
     flyInOutTrigger
   ],
-  templateUrl: 'tooltip.component.html'
+  templateUrl: 'tooltip.component.html',
+  styles: [
+    `
+    .tooltip-demo-container {
+      text-align: center;
+    }
+    `
+  ]
 })
 export class TooltipDemo extends AbstractDemoComponent {
   protected tt1 = 'Follow';

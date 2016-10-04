@@ -12,7 +12,9 @@
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "../tmp/src",
     "types": [
-      "node"
+      "node",
+      "protractor",
+      "jasmin"
     ]
   },
   "awesomeTypescriptLoaderOptions": {
