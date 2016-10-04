@@ -19,6 +19,35 @@ this way is the only possibility to get feedback from a broad range of users.
   Also you should implement an event lister that closes the dialog if the users hits the esc key.
 </p>
 
+
+
+
+
+<h5>A custom Dialog - template</h5>
+<button
+    mdl-button
+    mdl-button-type="raised"
+    mdl-colored="primary"
+    mdl-ripple
+    (click)="loginDialog.show()">Show Dialog</button>
+
+<mdl-dialog #loginDialog>
+  <h3 class="mdl-dialog__title">App Login</h3>
+  <div class="mdl-dialog__content">
+    <mdl-textfield #firstElement type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
+    <br/>
+    <mdl-textfield type="password" label="Password" [(ngModel)]="password" floating-label></mdl-textfield>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button mdl-button (click)="login()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Login</button>
+  </div>
+</mdl-dialog>
+
+
+
+
+
+
 <h5>Alert</h5>
 
 <button
@@ -177,3 +206,4 @@ this way is the only possibility to get feedback from a broad range of users.
 
 Checkout the demo code at <a href="https://github.com/mseemann/angular2-mdl/tree/master/src/app/dialog">githiub</a>
 for a complete source code example.
+
