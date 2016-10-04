@@ -1,9 +1,23 @@
-
-<a name="1.8.2"></a>
-# 1.8.2 (next)
+<a name="2.0.1"></a>
+# 2.0.1 (next)
 
 ### Bug Fixes
 ### Features
+
+
+
+<a name="2.0.0"></a>
+# 2.0.0 (next)
+
+### Bug Fixes
+### Features
+* AOT is now supported - e.g. the metadata is generated
+
+### Breaking Changes
+* The distribution structure has change:
+    - The scss folder is now located at scss and no longer in src/scss
+    - The package is now distributed as umd bundle and  esm bundle. The bundle file is bundle/angular2-mdl.js. The esm entry point is components/index.js
+
 
 <a name="1.8.1"></a>
 # 1.8.1 (2016-09-28)
