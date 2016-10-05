@@ -1,8 +1,6 @@
 import {
   Component,
-  forwardRef,
-  Inject,
-  ComponentFactoryResolver, ViewContainerRef
+  ViewContainerRef
 } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
@@ -18,7 +16,6 @@ import {
   MdlDialogReference } from '../../../lib/components/dialog/index';
 import { MdlSnackbarService } from '../../../lib/components/snackbar/mdl-snackbar.service';
 import { LoginDialogComponent } from './login-dialog.component';
-import { Angular2MdlAppComponent } from '../app.component';
 
 @Component({
   selector: 'dialog-demo',
@@ -36,17 +33,12 @@ export class DialogDemo extends AbstractDemoComponent {
     titleService: Title,
     private dialogService: MdlDialogService,
     private snackbarService: MdlSnackbarService,
-    @Inject(forwardRef(() => Angular2MdlAppComponent)) private app: Angular2MdlAppComponent,
-    private componentFactoryResolver: ComponentFactoryResolver,
     private vcRef: ViewContainerRef) {
 
     super(router, route, titleService);
     // TODO why is ot not possibe to use this.app.vcRef instead of vcRef?
     // -> animaito errors if option dialog is present
     snackbarService.setDefaultViewContainerRef(vcRef);
-
-
-    dialogService.setDefaultViewContainerRef(this.app.vcRef);
   }
 
   public showAlert() {

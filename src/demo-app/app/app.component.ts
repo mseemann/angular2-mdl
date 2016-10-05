@@ -10,6 +10,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { flyInOutTrigger } from './animations/flyInOutTrigger-animation';
 import { hostConfig } from './animations/flyInOutTrigger-animation';
+import { MdlDialogService } from '../../lib/components/dialog/index';
 
 import { ButtonDemo } from './button/button.component';
 import { BadgeDemo } from './badge/badge.component';
@@ -96,7 +97,10 @@ export class Angular2MdlAppComponent {
 
   public title = 'Angular 2 - Material Design Lite';
 
-  constructor(public vcRef: ViewContainerRef) {}
+  constructor(private dialogService: MdlDialogService,
+              public vcRef: ViewContainerRef) {
+    dialogService.setDefaultViewContainerRef(vcRef);
+  }
 
   public componentSelected(mainLayout: MdlLayoutComponent) {
     mainLayout.closeDrawerOnSmallScreens();
