@@ -32,7 +32,7 @@ export class MdlDialogComponent {
   public show() {
     this.visible = true;
   }
-  public hide() {
+  public close() {
     this.visible = false;
   }
 }

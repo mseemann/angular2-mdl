@@ -1,5 +1,6 @@
 import {
   Component,
+  ViewChild,
   ViewContainerRef
 } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
@@ -11,6 +12,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
 import {
+  MdlDialogComponent,
   MdlDialogService,
   ConfirmResult,
   MdlDialogReference } from '../../../lib/components/dialog/index';
@@ -26,6 +28,8 @@ import { LoginDialogComponent } from './login-dialog.component';
   templateUrl: 'dialog.component.html'
 })
 export class DialogDemo extends AbstractDemoComponent {
+  username: string = 'testuser';
+  @ViewChild('editUserDialog') editUserDialog: MdlDialogComponent;
 
   constructor(
     router: Router,
@@ -91,5 +95,10 @@ export class DialogDemo extends AbstractDemoComponent {
     pDialog.then( (dialogReference: MdlDialogReference) => {
       console.log('dialog visible', dialogReference);
     });
+  }
+
+  public saveUser() {
+    console.log('user saved!');
+    this.editUserDialog.close();
   }
 }

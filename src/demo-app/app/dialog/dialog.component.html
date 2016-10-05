@@ -24,22 +24,24 @@ this way is the only possibility to get feedback from a broad range of users.
 
 
 <h5>A custom Dialog - template</h5>
+
+<p>Username: {{ username }}</p>
+
 <button
     mdl-button
     mdl-button-type="raised"
     mdl-colored="primary"
     mdl-ripple
-    (click)="loginDialog.show()">Show Dialog</button>
+    (click)="editUserDialog.show()">Edit User Dialog</button>
 
-<mdl-dialog #loginDialog>
-  <h3 class="mdl-dialog__title">App Login</h3>
+<mdl-dialog #editUserDialog>
+  <h3 class="mdl-dialog__title">Edit User</h3>
   <div class="mdl-dialog__content">
-    <mdl-textfield #firstElement type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
-    <br/>
-    <mdl-textfield type="password" label="Password" [(ngModel)]="password" floating-label></mdl-textfield>
+    <mdl-textfield type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
   </div>
   <div class="mdl-dialog__actions">
-    <button mdl-button (click)="login()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Login</button>
+    <button mdl-button (click)="saveUser()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+    <button mdl-button (click)="editUserDialog.close()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Cancel</button>
   </div>
 </mdl-dialog>
 
