@@ -177,7 +177,7 @@ describe('Service: MdlDialog', () => {
     expect(event.stopPropagation).toHaveBeenCalled();
   });
 
-  it('should not be possible to create a simple dialog witzhout actions', () => {
+  it('should not be possible to create a simple dialog without actions', () => {
 
     expect( () => {
 
@@ -218,6 +218,14 @@ describe('Service: MdlDialog', () => {
 
   });
 
+  it('should throw an error if now viewcontainerref is provided', () => {
+
+    expect( () => {
+
+      mdlDialogService.showCustomDialog({component: TestFailCustomDialog});
+
+    }).toThrow();
+  });
 });
 
 

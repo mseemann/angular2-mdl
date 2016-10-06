@@ -369,6 +369,10 @@ export class MdlDialogService {
     let cFactory            = this.componentFactoryResolver.resolveComponentFactory(component);
     let viewContainerRef    = targetVCRef || this.defaultViewContainerRef;
 
+    if (!viewContainerRef) {
+      throw new Error('You did not provide a ViewContainerRef. Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService')
+    }
+
     let resolvedProviders   = ReflectiveInjector.resolve(providers);
     let parentInjector      = viewContainerRef.parentInjector;
     let childInjector       = ReflectiveInjector.fromResolvedProviders(resolvedProviders, parentInjector);

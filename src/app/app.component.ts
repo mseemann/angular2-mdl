@@ -39,6 +39,8 @@ import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
 import { AbstractDemoComponent } from './abstract-demo.component';
 import { ThemeDemo } from './theme/theme.component';
 import { DialogDemo } from './dialog/dialog.component';
+import { MdlDialogService } from '../components/dialog/mdl-dialog.service';
+import { MdlSnackbarService } from '../components/snackbar/mdl-snackbar.service';
 
 @Component({
   moduleId: module.id,
@@ -98,7 +100,14 @@ export class Angular2MdlAppComponent {
 
   public title = 'Angular 2 - Material Design Lite';
 
-  constructor(public vcRef: ViewContainerRef) {}
+  constructor(
+    private vcRef: ViewContainerRef,
+    private dialogService: MdlDialogService,
+    private snackbarService: MdlSnackbarService) {
+
+    dialogService.setDefaultViewContainerRef(vcRef);
+    snackbarService.setDefaultViewContainerRef(vcRef);
+  }
 
   public componentSelected(mainLayout: MdlLayoutComponent) {
     mainLayout.closeDrawerOnSmallScreens();

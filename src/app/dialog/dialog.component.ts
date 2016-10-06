@@ -37,14 +37,10 @@ export class DialogDemo extends AbstractDemoComponent {
     titleService: Title,
     private dialogService: MdlDialogService,
     private snackbarService: MdlSnackbarService,
-    @Inject(forwardRef(() => Angular2MdlAppComponent)) private app: Angular2MdlAppComponent,
     private componentFactoryResolver: ComponentFactoryResolver ) {
 
     super(router, route, titleService);
-    snackbarService.setDefaultViewContainerRef(this.app.vcRef);
 
-
-    dialogService.setDefaultViewContainerRef(this.app.vcRef);
   }
 
   public showAlert() {
