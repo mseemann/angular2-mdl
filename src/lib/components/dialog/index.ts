@@ -2,19 +2,38 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdlDialogService } from './mdl-dialog.service';
 import { MdlDialogComponent } from './mdl-dialog.component';
-import { MdlDialogDefaultComponent } from './mdl-dialog.component';
+import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
 import { MdlCommonsModule } from '../common/index';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
+import { MdlDialogOutletComponent, MdlDialogInnerOutletComponent } from './mdl-dialog-outlet.component';
 
 export * from './mdl-dialog.component';
 export * from './mdl-dialog.service';
 export * from './mdl-dialog-configuration';
 
+const PUBLIC_COMPONENTS = [
+  MdlDialogComponent,
+  MdlDialogInnerOutletComponent
+]
+
+const PRIVATE_COMPONENTS = [
+  MdlDialogHostComponent,
+  MdlSimpleDialogComponent,
+  MdlDialogOutletComponent
+]
+
 @NgModule({
   imports: [CommonModule, MdlCommonsModule],
-  exports: [MdlDialogComponent, MdlDialogDefaultComponent],
-  declarations: [MdlDialogComponent, MdlDialogDefaultComponent, MdlDialogHostComponent],
-  entryComponents: [MdlDialogComponent, MdlDialogDefaultComponent, MdlDialogHostComponent]
+  exports: PUBLIC_COMPONENTS,
+  declarations: [
+    ...PUBLIC_COMPONENTS,
+    ...PRIVATE_COMPONENTS
+  ],
+  entryComponents: [
+    ...PUBLIC_COMPONENTS,
+    ...PRIVATE_COMPONENTS
+  ],
+  bootstrap: []
 })
 export class MdlDialogModule {
   public static forRoot(): ModuleWithProviders {

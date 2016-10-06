@@ -8,12 +8,12 @@ import {
   ReflectiveInjector,
   OpaqueToken,
   Provider,
-  EmbeddedViewRef
+  EmbeddedViewRef, ApplicationRef
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { DOCUMENT } from '@angular/platform-browser';
 
-import { MdlDialogDefaultComponent } from './mdl-dialog.component';
+import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import {
   IMdlDialogConfiguration,
@@ -21,6 +21,8 @@ import {
   IMdlSimpleDialogConfiguration
 } from './mdl-dialog-configuration';
 import { InternalMdlDialogReference } from './internal-dialog-reference';
+import { MdlDialogOutletComponent } from './mdl-dialog-outlet.component';
+
 
 export const MDL_CONFIGUARTION = new OpaqueToken('MDL_CONFIGUARTION');
 export const MIN_DIALOG_Z_INDEX = 100000;
@@ -70,7 +72,17 @@ export class MdlDialogService {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    @Inject(DOCUMENT) private doc: any) {
+    @Inject(DOCUMENT) private doc: any,
+    private appRef: ApplicationRef) {
+
+
+    // let x = this.appRef.bootstrap(MdlDialogOutletComponent);
+    //
+    // // check, of the component is already present
+    // this.appRef.components.forEach( (comp) => {
+    //   console.log(comp.instance);
+    //   console.log(comp.instance instanceof MdlDialogOutletComponent);
+    // })
 
     // create the overlay - that we will need to block the ui in case of modal dialogs
     // TODO bad angular design
@@ -158,7 +170,7 @@ export class MdlDialogService {
 
     let hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
-    this.createAttachedComponentInstance(hostComponentRef, providers, MdlDialogDefaultComponent);
+    this.createAttachedComponentInstance(hostComponentRef, providers, MdlSimpleDialogComponent);
 
     return Promise.resolve(internalDialogRef.dialogRef);
   }

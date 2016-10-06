@@ -33,8 +33,8 @@
     "url": "git+https://github.com/mseemann/angular2-mdl.git"
   },
   "peerDependencies": {
-    "@angular/core": "^2.0.1",
-    "@angular/common": "^2.0.1",
-    "@angular/forms": "^2.0.1"
+    "@angular/core": "^2.0.2",
+    "@angular/common": "^2.0.2",
+    "@angular/forms": "^2.0.2"
   }
 }

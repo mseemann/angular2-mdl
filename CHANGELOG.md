@@ -25,6 +25,13 @@
     - The package is now distributed as umd bundle and  esm bundle. The bundle file is bundle/angular2-mdl.js. The esm entry point is components/index.js
 * The module *MdlRootModule* is a replacement for *MdlModule*. The *MdlRootModule* makes sure that all providers are loaded into the root injector of the app. You can still use *MdlModule*. But you should be aware that the providers are possibly not singletons. You also can use *MdlModule.forRoot*. This is the same as *MdlRootModule*.
 
+<a name="1.8.2"></a>
+# 1.8.2 (2016-10-06)
+
+### Bug Fixes
+* [134](https://github.com/mseemann/angular2-mdl/issues/134) (throw an error if there is no viewcontainerref for the dialogs)
+
+
 <a name="1.8.1"></a>
 # 1.8.1 (2016-09-28)
 
