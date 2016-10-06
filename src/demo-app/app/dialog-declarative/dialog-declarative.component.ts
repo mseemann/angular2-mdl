@@ -1,9 +1,7 @@
 import {
-  Component
+  Component,
+  ViewChild
 } from '@angular/core';
-import {
-  MdlSnackbarService
-} from '../../../lib/components';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
 import {
@@ -12,34 +10,34 @@ import {
 } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
+import {
+  MdlDialogComponent
+} from '../../../lib/components/dialog/index';
 
 @Component({
-  selector: 'snackbar-demo',
+  selector: 'dialog-declarative-demo',
   host: hostConfig,
   animations: [
     flyInOutTrigger
   ],
-  templateUrl: 'snackbar.component.html'
+  templateUrl: 'dialog-declarative.component.html'
 })
-export class SnackbarDemo extends AbstractDemoComponent {
+export class DialogDeclarativeDemo extends AbstractDemoComponent {
+
+  public username: string = 'testuser';
+
+  @ViewChild('editUserDialog') private  editUserDialog: MdlDialogComponent;
 
   constructor(
     router: Router,
     route: ActivatedRoute,
-    titleService: Title,
-    private mdlSnackbarService: MdlSnackbarService) {
+    titleService: Title) {
     super(router, route, titleService);
   }
 
-  public showSnackbar() {
-    this.mdlSnackbarService.showSnackbar({
-      message: 'The Message',
-      action: {
-        handler: () => {
-          this.mdlSnackbarService.showToast('You hit the ok Button');
-        },
-        text: 'OK'
-      }
-    });
+
+  public saveUser() {
+    console.log('user saved!');
+    this.editUserDialog.close();
   }
 }

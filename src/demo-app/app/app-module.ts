@@ -5,7 +5,7 @@ import {
 import { BrowserModule,
   Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdlModule } from './../../lib/components/index';
+import { MdlModule, MdlRootModule } from './../../lib/components/index';
 import { RouterModule } from '@angular/router';
 import { Angular2MdlAppComponent, Home, appRoutes } from './app.component';
 import { ButtonDemo } from './button/button.component';
@@ -35,6 +35,7 @@ import { PrismDirective } from './prism/prism.component';
 import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
 import { ThemeDemo } from './theme/theme.component';
 import { DialogDemo } from './dialog/dialog.component';
+import { DialogDeclarativeDemo } from './dialog-declarative/dialog-declarative.component';
 import { LoginDialogComponent } from './dialog/login-dialog.component';
 
 @NgModule({
@@ -42,7 +43,7 @@ import { LoginDialogComponent } from './dialog/login-dialog.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    MdlModule.forRoot(),
+    MdlRootModule,
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [
@@ -53,6 +54,7 @@ import { LoginDialogComponent } from './dialog/login-dialog.component';
     CardDemo,
     ChipsDemo,
     DialogDemo,
+    DialogDeclarativeDemo,
     LoginDialogComponent,
     IconDemo,
     ShadowDemo,

@@ -112,7 +112,7 @@ export class MdlSnackbarService {
     }
 
     let cFactory  = this.componentFactoryResolver.resolveComponentFactory(MdlSnackbarComponent);
-    let cRef = viewContainerRef.createComponent(cFactory);
+    let cRef = viewContainerRef.createComponent(cFactory, 0);
 
     let mdlSnackbarComponent = <MdlSnackbarComponent> cRef.instance;
     mdlSnackbarComponent.message = snackbarMessage.message;

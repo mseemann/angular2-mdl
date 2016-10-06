@@ -40,6 +40,8 @@ import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
 import { AbstractDemoComponent } from './abstract-demo.component';
 import { ThemeDemo } from './theme/theme.component';
 import { DialogDemo } from './dialog/dialog.component';
+import { MdlSnackbarService } from '../../lib/components/snackbar/mdl-snackbar.service';
+import { DialogDeclarativeDemo } from './dialog-declarative/dialog-declarative.component';
 
 @Component({
   selector: 'home',
@@ -62,7 +64,8 @@ export const appRoutes: Routes = [
   { path: 'button', component: ButtonDemo, data: {title: 'Buttons'} },
   { path: 'card', component: CardDemo, data: {title: 'Cards'} },
   { path: 'chips', component: ChipsDemo, data: {title: 'Chips'} },
-  { path: 'dialogs', component: DialogDemo, data: {title: 'Dialog'} },
+  { path: 'dialogs', component: DialogDemo, data: {title: 'Dialog (imperative)'} },
+  { path: 'dialogs-declarative', component: DialogDeclarativeDemo, data: {title: 'Dialog (declarative)'} },
   { path: 'icon', component: IconDemo, data: {title: 'Icons'} },
   { path: 'layout', component: LayoutDemo, data: {title: 'Layouts'},
     children: [
@@ -98,8 +101,10 @@ export class Angular2MdlAppComponent {
   public title = 'Angular 2 - Material Design Lite';
 
   constructor(private dialogService: MdlDialogService,
+              private snackbarService: MdlSnackbarService,
               public vcRef: ViewContainerRef) {
     dialogService.setDefaultViewContainerRef(vcRef);
+    snackbarService.setDefaultViewContainerRef(vcRef);
   }
 
   public componentSelected(mainLayout: MdlLayoutComponent) {

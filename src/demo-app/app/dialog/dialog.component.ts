@@ -1,7 +1,5 @@
 import {
-  Component,
-  ViewChild,
-  ViewContainerRef
+  Component
 } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
@@ -12,7 +10,6 @@ import {
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
 import {
-  MdlDialogComponent,
   MdlDialogService,
   ConfirmResult,
   MdlDialogReference } from '../../../lib/components/dialog/index';
@@ -28,21 +25,16 @@ import { LoginDialogComponent } from './login-dialog.component';
   templateUrl: 'dialog.component.html'
 })
 export class DialogDemo extends AbstractDemoComponent {
-  username: string = 'testuser';
-  @ViewChild('editUserDialog') editUserDialog: MdlDialogComponent;
 
   constructor(
     router: Router,
     route: ActivatedRoute,
     titleService: Title,
     private dialogService: MdlDialogService,
-    private snackbarService: MdlSnackbarService,
-    private vcRef: ViewContainerRef) {
+    private snackbarService: MdlSnackbarService) {
 
     super(router, route, titleService);
-    // TODO why is ot not possibe to use this.app.vcRef instead of vcRef?
-    // -> animaito errors if option dialog is present
-    snackbarService.setDefaultViewContainerRef(vcRef);
+
   }
 
   public showAlert() {
@@ -97,8 +89,4 @@ export class DialogDemo extends AbstractDemoComponent {
     });
   }
 
-  public saveUser() {
-    console.log('user saved!');
-    this.editUserDialog.close();
-  }
 }

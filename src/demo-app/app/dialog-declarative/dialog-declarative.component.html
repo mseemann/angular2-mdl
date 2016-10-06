@@ -1,0 +1,32 @@
+<h4>The Dialog</h4>
+
+<p class="mdl-color-text--primary">
+The dialog implementation is experimental! This means the API may change in future releases. Going
+this way is the only possibility to get feedback from a broad range of users.
+</p>
+
+
+
+
+<h5>A custom Dialog - template</h5>
+
+<p>Username: {{ username }}</p>
+
+<button
+    mdl-button
+    mdl-button-type="raised"
+    mdl-colored="primary"
+    mdl-ripple
+    (click)="editUserDialog.show()">Edit User Dialog</button>
+
+<mdl-dialog #editUserDialog>
+  <h3 class="mdl-dialog__title">Edit User</h3>
+  <div class="mdl-dialog__content">
+    <mdl-textfield type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button mdl-button (click)="saveUser()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+    <button mdl-button (click)="editUserDialog.close()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Cancel</button>
+  </div>
+</mdl-dialog>
+
