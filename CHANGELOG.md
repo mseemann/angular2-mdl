@@ -1,9 +1,10 @@
 
 <a name="1.8.2"></a>
-# 1.8.2 (next)
+# 1.8.2 (2016-10-06)
 
 ### Bug Fixes
-### Features
+* [134](https://github.com/mseemann/angular2-mdl/issues/134) (throw an error if there is no viewcontainerref for the dialogs)
+
 
 <a name="1.8.1"></a>
 # 1.8.1 (2016-09-28)
