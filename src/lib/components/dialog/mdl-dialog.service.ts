@@ -13,7 +13,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { DOCUMENT } from '@angular/platform-browser';
 
-import { MdlDialogComponent } from './mdl-dialog.component';
+import { MdlDialogDefaultComponent } from './mdl-dialog.component';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import {
   IMdlDialogConfiguration,
@@ -158,7 +158,7 @@ export class MdlDialogService {
 
     let hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
-    this.createAttachedComponentInstance(hostComponentRef, providers, MdlDialogComponent);
+    this.createAttachedComponentInstance(hostComponentRef, providers, MdlDialogDefaultComponent);
 
     return Promise.resolve(internalDialogRef.dialogRef);
   }

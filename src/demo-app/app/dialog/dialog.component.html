@@ -19,6 +19,37 @@ this way is the only possibility to get feedback from a broad range of users.
   Also you should implement an event lister that closes the dialog if the users hits the esc key.
 </p>
 
+
+
+
+
+<h5>A custom Dialog - template</h5>
+
+<p>Username: {{ username }}</p>
+
+<button
+    mdl-button
+    mdl-button-type="raised"
+    mdl-colored="primary"
+    mdl-ripple
+    (click)="editUserDialog.show()">Edit User Dialog</button>
+
+<mdl-dialog #editUserDialog>
+  <h3 class="mdl-dialog__title">Edit User</h3>
+  <div class="mdl-dialog__content">
+    <mdl-textfield type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button mdl-button (click)="saveUser()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+    <button mdl-button (click)="editUserDialog.close()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Cancel</button>
+  </div>
+</mdl-dialog>
+
+
+
+
+
+
 <h5>Alert</h5>
 
 <button
@@ -177,3 +208,4 @@ this way is the only possibility to get feedback from a broad range of users.
 
 Checkout the demo code at <a href="https://github.com/mseemann/angular2-mdl/tree/master/src/app/dialog">githiub</a>
 for a complete source code example.
+

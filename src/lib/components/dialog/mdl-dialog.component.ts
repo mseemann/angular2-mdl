@@ -19,6 +19,24 @@ import {
   IMdlSimpleDialogConfiguration
 } from './mdl-dialog-configuration';
 
+@Component({
+  selector: 'mdl-dialog',
+  host: {
+    '[class.mdl-dialog]': 'true',
+    '[class.open]': 'visible',
+  },
+  template: `<ng-content></ng-content>`
+})
+export class MdlDialogComponent {
+  private visible: boolean = false;
+  public show() {
+    this.visible = true;
+  }
+  public close() {
+    this.visible = false;
+  }
+}
+
 // @experimental
 @Component({
   selector: 'mdl-dialog-component',
@@ -46,7 +64,7 @@ import {
   `,
   encapsulation: ViewEncapsulation.None
 })
-export class MdlDialogComponent implements AfterViewInit {
+export class MdlDialogDefaultComponent implements AfterViewInit {
 
   @ViewChildren('button') private buttons: QueryList<ElementRef>;
 

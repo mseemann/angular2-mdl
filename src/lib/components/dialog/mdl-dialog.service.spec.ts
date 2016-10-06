@@ -8,7 +8,7 @@ import { DOCUMENT, By } from '@angular/platform-browser';
 import { MdlDialogModule } from './index';
 import { MdlDialogService, ConfirmResult, MdlDialogReference } from './mdl-dialog.service';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
-import { MdlDialogComponent } from './mdl-dialog.component';
+import { MdlDialogDefaultComponent } from './mdl-dialog.component';
 import { IMdlDialogAction } from './mdl-dialog-configuration';
 
 
@@ -50,13 +50,13 @@ describe('Service: MdlDialog', () => {
     let dialogHostComponent = fixture.debugElement.query(By.directive(MdlDialogHostComponent)).componentInstance;
     expect(dialogHostComponent.zIndex).toBe(100001, 'the zIndex should be 100001');
 
-    // let dialogComponent = fixture.debugElement.query(By.directive(MdlDialogComponent)).componentInstance;
+    // let dialogComponent = fixture.debugElement.query(By.directive(MdlDialogDefaultComponent)).componentInstance;
 
     // the backdrop shoud be visible and hav an zIndex of 100000
     let backdrop = <HTMLDivElement> doc.querySelector('.dialog-backdrop');
     expect(backdrop.style.zIndex).toBe('100000');
 
-    let dialogComponentDebugElem = fixture.debugElement.query(By.directive(MdlDialogComponent));
+    let dialogComponentDebugElem = fixture.debugElement.query(By.directive(MdlDialogDefaultComponent));
     let titleDiv = dialogComponentDebugElem.query(By.css('.mdl-dialog__content')).nativeElement;
     expect(titleDiv.innerText).toBe(title);
 
@@ -107,7 +107,7 @@ describe('Service: MdlDialog', () => {
 
     fixture.detectChanges();
 
-    let dialog = fixture.debugElement.query(By.directive(MdlDialogComponent)).componentInstance;
+    let dialog = fixture.debugElement.query(By.directive(MdlDialogDefaultComponent)).componentInstance;
     // sending an keybord event to the dialog would be better
     dialog.onEsc();
   });
@@ -190,7 +190,7 @@ describe('Service: MdlDialog', () => {
     pDialogRef.then( (dialogRef: MdlDialogReference) => {
 
       spyOn(dialogRef, 'hide');
-      let dialog = fixture.debugElement.query(By.directive(MdlDialogComponent)).componentInstance;
+      let dialog = fixture.debugElement.query(By.directive(MdlDialogDefaultComponent)).componentInstance;
       // sending an keybord event to the dialog would be better
       dialog.onEsc();
 
