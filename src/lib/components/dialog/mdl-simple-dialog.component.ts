@@ -30,7 +30,7 @@ import {
   template: `
       <div>
         <h3 class="mdl-dialog__title" *ngIf="dialogConfiguration?.title">{{dialogConfiguration?.title}}</h3>
-        <div class="mdl-dialog__content">{{dialogConfiguration?.message}}</div>
+        <div class="mdl-dialog__content" [innerHTML]="dialogConfiguration?.message"></div>
         <div 
           class="mdl-dialog__actions" 
           [ngClass]="{'mdl-dialog__actions--full-width': dialogConfiguration?.fullWidthAction}">

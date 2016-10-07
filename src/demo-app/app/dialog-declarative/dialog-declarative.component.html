@@ -5,7 +5,21 @@ The dialog implementation is experimental! This means the API may change in futu
 this way is the only possibility to get feedback from a broad range of users.
 </p>
 
+<h5>Alert</h5>
 
+<button
+  mdl-button
+  mdl-button-type="raised"
+  mdl-colored="accent"
+  mdl-ripple
+  (click)="alert.show()">Show Alert</button>
+
+<mdl-alert
+  #alert="mdlAlert"
+  title="Title (optional)"
+  message="This is a <em class='mdl-color-text--primary'>simple</em> Alert"
+  okText="Got it!"
+  (confirmed)="alertConfirmd()"></mdl-alert>
 
 
 <h5>A custom Dialog - template</h5>

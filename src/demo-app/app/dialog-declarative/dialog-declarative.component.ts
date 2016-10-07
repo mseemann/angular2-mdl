@@ -35,6 +35,9 @@ export class DialogDeclarativeDemo extends AbstractDemoComponent {
     super(router, route, titleService);
   }
 
+  public alertConfirmd(){
+    console.log('alertConfirmd');
+  }
 
   public saveUser() {
     console.log('user saved!');

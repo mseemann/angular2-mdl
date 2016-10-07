@@ -6,17 +6,16 @@ import {
 @Component({
   selector: 'mdl-dialog',
   host: {
-    '[class.mdl-dialog]': 'true',
-    '[class.open]': 'visible',
+    '[style.display]': '"none"'
   },
   template: `<ng-content></ng-content>`
 })
 export class MdlDialogComponent {
-  private visible: boolean = false;
+
   public show() {
-    this.visible = true;
+
   }
   public close() {
-    this.visible = false;
+
   }
 }
