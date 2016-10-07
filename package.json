@@ -26,6 +26,7 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng server",
+    "build": "ng build",
     "postinstall": "typings install",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng version; tsc -v; ng test --watch false",

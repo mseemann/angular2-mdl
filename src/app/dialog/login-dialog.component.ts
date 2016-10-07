@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import {
   MdlDialogReference,
-  IMdlCustomDialog   // willbe removed in verion 2.X
+  IMdlCustomDialog   // will be removed in verion 2.X
 } from '../../components/dialog/index';
 import 'rxjs/add/operator/scan';
 import { MdlTextFieldComponent } from '../../components/textfield/mdl-textfield.component';
