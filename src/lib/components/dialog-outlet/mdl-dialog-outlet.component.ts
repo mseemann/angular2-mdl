@@ -36,8 +36,6 @@ export class MdlDialogInnerOutletComponent {
   constructor(
     private vCRef: ViewContainerRef,
     @Inject( forwardRef( () => MdlDialogOutletService)) service: MdlDialogOutletService) {
-
     service.setDefaultViewContainerRef(vCRef);
-    // this.service.internaleDialogOutletPresent(this.vCref);
   }
 }

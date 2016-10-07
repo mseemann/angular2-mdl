@@ -89,11 +89,9 @@ export class MdlDialogService {
    * @param alertMessage The message that should be displayed.
    * @param okTex The text that the button should have
    * @param title The optional title of the dialog
-   * @param vcRef The ViewContainerRef where the alert dialog should be attached to.
-   * Must not be provided if setDefaultViewContainerRef was set.
    * @returns A promise that is called if the user hits the Ok button.
    */
-  public alert(alertMessage: string, okText = 'Ok', title?: string, vcRef?: ViewContainerRef): Promise<void> {
+  public alert(alertMessage: string, okText = 'Ok', title?: string): Promise<void> {
     return new Promise((resolve: (value?: void) => void, reject: (reason?: any) => void) => {
 
       this.showDialog({
@@ -102,7 +100,6 @@ export class MdlDialogService {
         actions: [
           { handler: () => resolve(), text: okText}
         ],
-        vcRef: vcRef,
         isModal: true
       });
 
@@ -114,15 +111,12 @@ export class MdlDialogService {
    * @param question The question that should be displayed.
    * @param declineText The text for decline button. defaults to Cancel
    * @param confirmText The text for the confirm button . defaults to Ok
-   * @param vcRef The ViewContainerRef where the aletr dialog should be attached to.
-   * Must not be provided if setDefaultViewContainerRef was set.
    * @returns A promise that is called if the user hits the Ok button.
    */
   public confirm(
     question: string,
     declineText = 'Cancel',
-    confirmText = 'Ok',
-    vcRef?: ViewContainerRef): Promise<ConfirmResult> {
+    confirmText = 'Ok'): Promise<ConfirmResult> {
 
     return new Promise((resolve: (value: ConfirmResult) => void, reject: (reason?: any) => void) => {
       this.showDialog({
@@ -131,7 +125,6 @@ export class MdlDialogService {
           { handler: () => resolve(ConfirmResult.Confirmed), text: confirmText },
           { handler: () => resolve(ConfirmResult.Declined), text: declineText, isClosingAction: true }
         ],
-        vcRef: vcRef,
         isModal: true
       });
     });
@@ -184,8 +177,7 @@ export class MdlDialogService {
 
   private createHostDialog(internalDialogRef: InternalMdlDialogReference, dialogConfig: IMdlDialogConfiguration) {
 
-    let hostDialogComponent
-      = this.createComponentInstance(dialogConfig.vcRef, [], MdlDialogHostComponent);
+    let hostDialogComponent = this.createComponentInstance([], MdlDialogHostComponent);
 
     internalDialogRef.hostDialogComponentRef = hostDialogComponent;
     internalDialogRef.isModal     = dialogConfig.isModal;
@@ -241,12 +233,10 @@ export class MdlDialogService {
 
   }
 
-  private createComponentInstance <T> (
-    targetVCRef: ViewContainerRef,
-    providers: Provider[], component: Type<T> ): ComponentRef<any> {
+  private createComponentInstance <T> (providers: Provider[], component: Type<T> ): ComponentRef<any> {
 
     let cFactory            = this.componentFactoryResolver.resolveComponentFactory(component);
-    let viewContainerRef    = targetVCRef || this.mdlDialogOutletService.getViewContainerRef();
+    let viewContainerRef    = this.mdlDialogOutletService.getViewContainerRef();
 
     if (!viewContainerRef) {
       throw new Error('You did not provide a ViewContainerRef. ' +
@@ -276,7 +266,7 @@ export class MdlDialogService {
     component: Type<T>): ComponentRef<any> {
 
     let hostViewRef = hostComponentRef.instance.viewContainerRef;
-    let componentRef = this.createComponentInstance(hostViewRef, providers, component);
+    let componentRef = this.createComponentInstance(providers, component);
 
     let hostView = <EmbeddedViewRef<any>> componentRef.hostView;
     hostViewRef.element.nativeElement.appendChild(hostView.rootNodes[0]);

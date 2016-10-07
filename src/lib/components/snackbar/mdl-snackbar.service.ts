@@ -8,7 +8,6 @@ import {
   ViewEncapsulation,
   ModuleWithProviders
 } from '@angular/core';
-import { MdlError } from '../common/mdl-error';
 import { CommonModule } from '@angular/common';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
@@ -73,7 +72,6 @@ export interface IMdlSnackbarMessage {
     handler: () => void;
     text: string;
   };
-  vcRef?: ViewContainerRef;
 }
 
 @Injectable()
@@ -89,15 +87,14 @@ export class MdlSnackbarService {
   public showToast(message: string, timeout?: number, vcRef?: ViewContainerRef): Promise<MdlSnackbarComponent> {
     return this.showSnackbar({
       message: message,
-      timeout: timeout,
-      vcRef: vcRef
+      timeout: timeout
     });
   }
 
   public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Promise<MdlSnackbarComponent> {
 
     let optTimeout        = snackbarMessage.timeout || 2750;
-    let viewContainerRef  = snackbarMessage.vcRef || this.dialogOutletService.getViewContainerRef();
+    let viewContainerRef  = this.dialogOutletService.getViewContainerRef();
 
     if (!viewContainerRef) {
       throw new Error('You did not provide a ViewContainerRef. ' +

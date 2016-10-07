@@ -11,8 +11,9 @@ export class MdlDialogOutletService {
   constructor(private appRef: ApplicationRef) {
     try {
       let dialogOutletCompRef = this.appRef.bootstrap(MdlDialogOutletComponent);
-      this.viewContainerRef = dialogOutletCompRef.instance.viewContainerRef;
+      this.setDefaultViewContainerRef(dialogOutletCompRef.instance.viewContainerRef);
     } catch ( e) {
+      // the user did not use the dialog.outlet element outside of his root app.
     }
 
 

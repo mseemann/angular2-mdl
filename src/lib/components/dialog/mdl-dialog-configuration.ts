@@ -34,11 +34,6 @@ export interface IMdlDialogAction {
  */
 export interface IMdlDialogConfiguration {
   /**
-   * The viewcontainerref the dialog will be attached to.
-   * required if not provided by setDefaultViewContainerRef.
-   */
-  vcRef?: ViewContainerRef;
-  /**
    * true if the dialog should be opened as modal.
    */
   isModal?: boolean;
