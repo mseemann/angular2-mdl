@@ -3,23 +3,28 @@ import {
   TestBed,
   async
 } from '@angular/core/testing';
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { MdlSnackbarService, MdlSnackbaModule } from './mdl-snackbar.service';
+import { MdlDialogOutletModule } from '../dialog-outlet/index';
+import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
 
 describe('Service: MdlSnackbar', () => {
 
-  var mdlSnackbarServcie: MdlSnackbarService;
+  let mdlSnackbarServcie: MdlSnackbarService;
+  let mdlDialogOutletService: MdlDialogOutletService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MdlTestViewComponent],
-      imports: [MdlSnackbaModule.forRoot()],
+      imports: [MdlSnackbaModule.forRoot(), MdlDialogOutletModule],
       providers: []
     });
   }));
 
-  beforeEach(async(inject([MdlSnackbarService], function (service: MdlSnackbarService) {
-    mdlSnackbarServcie = service;
+  beforeEach(async(inject([MdlSnackbarService, MdlDialogOutletService],
+    function (service: MdlSnackbarService, mdlDialogOutletService_: MdlDialogOutletService) {
+      mdlSnackbarServcie = service;
+      mdlDialogOutletService = mdlDialogOutletService_;
   })));
 
   it('should show a snackbar and close the snackbar if the aciton button is clicked', async(() => {
@@ -27,9 +32,6 @@ describe('Service: MdlSnackbar', () => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-    let viewRef = fixture.debugElement.componentInstance.viewRef;
-
-    mdlSnackbarServcie.setDefaultViewContainerRef(viewRef);
     let p = mdlSnackbarServcie.showSnackbar({
       message: 'm1',
       action: {
@@ -56,9 +58,6 @@ describe('Service: MdlSnackbar', () => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-
-      let viewRef = fixture.debugElement.componentInstance.viewRef;
-      mdlSnackbarServcie.setDefaultViewContainerRef(viewRef);
       let p = mdlSnackbarServcie.showToast('toast message', 1000);
 
       fixture.detectChanges();
@@ -77,9 +76,12 @@ describe('Service: MdlSnackbar', () => {
   }));
 
   it('should throw if no viewContainerRef is provided', async(() => {
-      expect( () => {
-        mdlSnackbarServcie.showToast('toast message', 1000);
-      }).toThrow();
+
+    mdlDialogOutletService.setDefaultViewContainerRef(null);
+
+    expect( () => {
+      mdlSnackbarServcie.showToast('toast message', 1000);
+    }).toThrow();
 
   }));
 
@@ -88,13 +90,9 @@ describe('Service: MdlSnackbar', () => {
 
 @Component({
   selector: 'test-view',
-  template: '<div></div>',
+  template: '<div></div><dialog-outlet></dialog-outlet>',
   providers: [MdlSnackbarService]
 })
 class MdlTestViewComponent {
 
-  protected viewRef: ViewContainerRef;
-  constructor(viewRef: ViewContainerRef) {
-    this.viewRef = viewRef;
-  }
 }

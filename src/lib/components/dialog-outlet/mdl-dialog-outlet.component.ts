@@ -1,5 +1,6 @@
 import { Component, ViewContainerRef, forwardRef, Inject } from '@angular/core';
-import { MdlDialogService } from './mdl-dialog.service';
+
+import { MdlDialogOutletService } from './mdl-dialog-outlet.service';
 
 
 // the componnet is used outside the app-root. injecting MdlDialogService would not work
@@ -34,7 +35,7 @@ export class MdlDialogInnerOutletComponent {
 
   constructor(
     private vCRef: ViewContainerRef,
-    @Inject( forwardRef( () => MdlDialogService)) service: MdlDialogService) {
+    @Inject( forwardRef( () => MdlDialogOutletService)) service: MdlDialogOutletService) {
 
     service.setDefaultViewContainerRef(vCRef);
     // this.service.internaleDialogOutletPresent(this.vCref);

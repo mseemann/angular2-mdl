@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MdlDialogModule } from './index';
 import { By } from '@angular/platform-browser';
 import { MdlAlertComponent } from './mdl-alert.component';
+import { MdlDialogOutletModule } from '../dialog-outlet/index';
 
 
 
@@ -10,7 +11,7 @@ describe('MdlAlert', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MdlDialogModule.forRoot()],
+      imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
       declarations: [MdlTestComponent],
     });
   }));

@@ -21,7 +21,7 @@ import {
   IMdlSimpleDialogConfiguration
 } from './mdl-dialog-configuration';
 import { InternalMdlDialogReference } from './internal-dialog-reference';
-import { MdlDialogOutletComponent } from './mdl-dialog-outlet.component';
+import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
 
 
 export const MDL_CONFIGUARTION = new OpaqueToken('MDL_CONFIGUARTION');
@@ -65,24 +65,15 @@ export class MdlDialogReference {
 @Injectable()
 export class MdlDialogService {
 
-  private defaultViewContainerRef: ViewContainerRef;
-
   private openDialogs = new Array<InternalMdlDialogReference>();
   private overlay: HTMLElement;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     @Inject(DOCUMENT) private doc: any,
-    private appRef: ApplicationRef) {
+    private appRef: ApplicationRef,
+    private mdlDialogOutletService: MdlDialogOutletService) {
 
-
-    // let x = this.appRef.bootstrap(MdlDialogOutletComponent);
-    //
-    // // check, of the component is already present
-    // this.appRef.components.forEach( (comp) => {
-    //   console.log(comp.instance);
-    //   console.log(comp.instance instanceof MdlDialogOutletComponent);
-    // })
 
     // create the overlay - that we will need to block the ui in case of modal dialogs
     // TODO bad angular design
@@ -91,10 +82,6 @@ export class MdlDialogService {
     this.overlay.addEventListener('click', (e) => {
       e.stopPropagation();
     });
-  }
-
-  public setDefaultViewContainerRef(vcRef: ViewContainerRef) {
-    this.defaultViewContainerRef = vcRef;
   }
 
   /**
@@ -259,7 +246,12 @@ export class MdlDialogService {
     providers: Provider[], component: Type<T> ): ComponentRef<any> {
 
     let cFactory            = this.componentFactoryResolver.resolveComponentFactory(component);
-    let viewContainerRef    = targetVCRef || this.defaultViewContainerRef;
+    let viewContainerRef    = targetVCRef || this.mdlDialogOutletService.getViewContainerRef();
+
+    if (!viewContainerRef) {
+      throw new Error('You did not provide a ViewContainerRef. ' +
+        'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
+    }
 
     let resolvedProviders   = ReflectiveInjector.resolve(providers);
     let parentInjector      = viewContainerRef.parentInjector;

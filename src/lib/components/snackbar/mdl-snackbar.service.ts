@@ -10,12 +10,8 @@ import {
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 import { CommonModule } from '@angular/common';
-
-export class MdlSnackbarError extends MdlError {
-  constructor(message: string) {
-    super(`${message}`);
-  }
-}
+import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
+import { MdlDialogOutletModule } from '../dialog-outlet/index';
 
 
 const ANIMATION_TIME = 250;
@@ -83,15 +79,12 @@ export interface IMdlSnackbarMessage {
 @Injectable()
 export class MdlSnackbarService {
 
-  private defaultViewContainerRef: ViewContainerRef;
   constructor(
     private injector: Injector,
-    private componentFactoryResolver: ComponentFactoryResolver) {
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private dialogOutletService: MdlDialogOutletService) {
   }
 
-  public setDefaultViewContainerRef(vcRef: ViewContainerRef) {
-    this.defaultViewContainerRef = vcRef;
-  }
 
   public showToast(message: string, timeout?: number, vcRef?: ViewContainerRef): Promise<MdlSnackbarComponent> {
     return this.showSnackbar({
@@ -104,11 +97,11 @@ export class MdlSnackbarService {
   public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Promise<MdlSnackbarComponent> {
 
     let optTimeout        = snackbarMessage.timeout || 2750;
-    let viewContainerRef  = snackbarMessage.vcRef || this.defaultViewContainerRef;
+    let viewContainerRef  = snackbarMessage.vcRef || this.dialogOutletService.getViewContainerRef();
 
     if (!viewContainerRef) {
-      throw new MdlSnackbarError('A viewContainerRef must be present. ' +
-        'Wether as by setDefaultViewContainerRef or as IMdlSnackbarMessage param.');
+      throw new Error('You did not provide a ViewContainerRef. ' +
+        'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
     }
 
     let cFactory  = this.componentFactoryResolver.resolveComponentFactory(MdlSnackbarComponent);
@@ -144,7 +137,7 @@ export class MdlSnackbarService {
 }
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, MdlDialogOutletModule.forRoot()],
   exports: [MdlSnackbarComponent],
   declarations: [MdlSnackbarComponent],
   entryComponents: [MdlSnackbarComponent]

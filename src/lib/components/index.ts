@@ -6,6 +6,7 @@ import { MdlShadowModule } from './shadow/mdl-shadow.directive';
 import { MdlCardModule } from './card/mdl-card.component';
 import { MdlChipModule } from './chips/index';
 import { MdlDialogModule } from './dialog/index';
+import { MdlDialogOutletModule } from './dialog-outlet/index';
 import { MdlCheckboxModule } from './checkbox/mdl-checkbox.component';
 import { MdlRadioModule } from './radio/mdl-radio.component';
 import { MdlProgressModule } from './progress/mdl-progress.component';
@@ -23,6 +24,7 @@ import { MdlLayoutModule } from './layout/index';
 import { MdlTabsModule } from './tabs/index';
 import { MdlTextFieldModule } from './textfield/mdl-textfield.component';
 
+
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
 export * from './button/mdl-button.component';
@@ -30,6 +32,7 @@ export * from './card/mdl-card.component';
 export * from './checkbox/mdl-checkbox.component';
 export * from './chips/index';
 export * from './dialog/index';
+export * from './dialog-outlet/index';
 export * from './icon/mdl-icon.component';
 export * from './list/mdl-list.component';
 export * from './icon-toggle/mdl-icon-toggle.component';
@@ -55,6 +58,7 @@ const MDL_MODULES = [
   MdlCheckboxModule,
   MdlChipModule,
   MdlDialogModule,
+  MdlDialogOutletModule,
   MdlSpinnerModule,
   MdlRippleModule,
   MdlBadgeModule,
@@ -83,6 +87,7 @@ const MDL_MODULES = [
     MdlCheckboxModule.forRoot(),
     MdlChipModule.forRoot(),
     MdlDialogModule.forRoot(),
+    MdlDialogOutletModule.forRoot(),
     MdlSpinnerModule.forRoot(),
     MdlRippleModule.forRoot(),
     MdlBadgeModule.forRoot(),

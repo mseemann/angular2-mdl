@@ -5,8 +5,8 @@ import { MdlDialogComponent } from './mdl-dialog.component';
 import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
 import { MdlCommonsModule } from '../common/index';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
-import { MdlDialogOutletComponent, MdlDialogInnerOutletComponent } from './mdl-dialog-outlet.component';
 import { MdlAlertComponent } from './mdl-alert.component';
+import { MdlDialogOutletModule } from '../dialog-outlet/index';
 
 export * from './mdl-dialog.component';
 export * from './mdl-dialog.service';
@@ -14,18 +14,20 @@ export * from './mdl-dialog-configuration';
 
 const PUBLIC_COMPONENTS = [
   MdlDialogComponent,
-  MdlDialogInnerOutletComponent,
   MdlAlertComponent
 ];
 
 const PRIVATE_COMPONENTS = [
   MdlDialogHostComponent,
-  MdlSimpleDialogComponent,
-  MdlDialogOutletComponent
+  MdlSimpleDialogComponent
 ];
 
 @NgModule({
-  imports: [CommonModule, MdlCommonsModule],
+  imports: [
+    CommonModule,
+    MdlCommonsModule,
+    MdlDialogOutletModule.forRoot()
+  ],
   exports: PUBLIC_COMPONENTS,
   declarations: [
     ...PUBLIC_COMPONENTS,

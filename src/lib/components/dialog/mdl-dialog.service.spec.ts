@@ -10,6 +10,7 @@ import { MdlDialogService, ConfirmResult, MdlDialogReference } from './mdl-dialo
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
 import { IMdlDialogAction } from './mdl-dialog-configuration';
+import { MdlDialogOutletModule } from '../dialog-outlet/index';
 
 
 describe('Service: MdlDialog', () => {
@@ -19,8 +20,8 @@ describe('Service: MdlDialog', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MdlTestViewComponent, ViewRefHolderComponent],
-      imports: [MdlDialogModule.forRoot(), TestDialogModul],
+      declarations: [MdlTestViewComponent],
+      imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule, TestDialogModul],
     });
   }));
 
@@ -34,10 +35,6 @@ describe('Service: MdlDialog', () => {
     let title = 'Alert';
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
-
-    let viewRef = fixture.debugElement.query(By.directive(ViewRefHolderComponent)).componentInstance.viewRef;
-
-    mdlDialogService.setDefaultViewContainerRef(viewRef);
 
     let result = mdlDialogService.alert(title);
     result.then( () => {
@@ -70,9 +67,6 @@ describe('Service: MdlDialog', () => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-    let viewRef = fixture.debugElement.query(By.directive(ViewRefHolderComponent)).componentInstance.viewRef;
-
-    mdlDialogService.setDefaultViewContainerRef(viewRef);
 
     let result = mdlDialogService.confirm('?', 'no', 'yes');
     result.then( (r: ConfirmResult) => {
@@ -94,10 +88,6 @@ describe('Service: MdlDialog', () => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-    let viewRef = fixture.debugElement.query(By.directive(ViewRefHolderComponent)).componentInstance.viewRef;
-
-    mdlDialogService.setDefaultViewContainerRef(viewRef);
-
     let result = mdlDialogService.confirm('?', 'no', 'yes');
     result.then( (r: ConfirmResult) => {
       // test passed because the action was called
@@ -115,10 +105,6 @@ describe('Service: MdlDialog', () => {
   it('should be possible to open a custom dialog', ( done: () => void ) => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
-
-    let viewRef = fixture.debugElement.query(By.directive(ViewRefHolderComponent)).componentInstance.viewRef;
-
-    mdlDialogService.setDefaultViewContainerRef(viewRef);
 
     let p = mdlDialogService.showCustomDialog({
       component: TestCustomDialog
@@ -142,9 +128,6 @@ describe('Service: MdlDialog', () => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-    let viewRef = fixture.debugElement.query(By.directive(ViewRefHolderComponent)).componentInstance.viewRef;
-
-    mdlDialogService.setDefaultViewContainerRef(viewRef);
 
     mdlDialogService.alert('Alert');
 
@@ -160,7 +143,7 @@ describe('Service: MdlDialog', () => {
     expect(event.stopPropagation).toHaveBeenCalled();
   });
 
-  it('should not be possible to create a simple dialog witzhout actions', () => {
+  it('should not be possible to create a simple dialog without actions', () => {
 
     expect( () => {
 
@@ -176,9 +159,6 @@ describe('Service: MdlDialog', () => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-    let viewRef = fixture.debugElement.query(By.directive(ViewRefHolderComponent)).componentInstance.viewRef;
-
-    mdlDialogService.setDefaultViewContainerRef(viewRef);
 
     let pDialogRef = mdlDialogService.showDialog({
       message: 'm',
@@ -204,23 +184,14 @@ describe('Service: MdlDialog', () => {
 });
 
 
-@Component({
-  selector: 'view-ref-holder',
-  template: '<div></div>'
-})
-class ViewRefHolderComponent {
-
-  constructor(public viewRef: ViewContainerRef) {}
-}
 
 @Component({
   selector: 'test-view',
-  template: '<div><view-ref-holder></view-ref-holder></div>'
+  template: '<div></div><dialog-outlet></dialog-outlet>'
 })
 class MdlTestViewComponent {
 
-  constructor(public viewRef: ViewContainerRef) {
-  }
+
 }
 
 @Component({

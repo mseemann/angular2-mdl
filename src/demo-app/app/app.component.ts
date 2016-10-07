@@ -1,7 +1,6 @@
 import {
   Component,
-  ViewEncapsulation,
-  ViewContainerRef
+  ViewEncapsulation
 } from '@angular/core';
 import {
   ActivatedRoute,
@@ -10,7 +9,6 @@ import {
 import { Title } from '@angular/platform-browser';
 import { flyInOutTrigger } from './animations/flyInOutTrigger-animation';
 import { hostConfig } from './animations/flyInOutTrigger-animation';
-import { MdlDialogService } from '../../lib/components/dialog/index';
 
 import { ButtonDemo } from './button/button.component';
 import { BadgeDemo } from './badge/badge.component';
@@ -40,7 +38,6 @@ import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
 import { AbstractDemoComponent } from './abstract-demo.component';
 import { ThemeDemo } from './theme/theme.component';
 import { DialogDemo } from './dialog/dialog.component';
-import { MdlSnackbarService } from '../../lib/components/snackbar/mdl-snackbar.service';
 import { DialogDeclarativeDemo } from './dialog-declarative/dialog-declarative.component';
 
 @Component({
@@ -100,12 +97,7 @@ export class Angular2MdlAppComponent {
 
   public title = 'Angular 2 - Material Design Lite';
 
-  constructor(private dialogService: MdlDialogService,
-              private snackbarService: MdlSnackbarService,
-              public vcRef: ViewContainerRef) {
-    dialogService.setDefaultViewContainerRef(vcRef);
-    snackbarService.setDefaultViewContainerRef(vcRef);
-  }
+  constructor() {}
 
   public componentSelected(mainLayout: MdlLayoutComponent) {
     mainLayout.closeDrawerOnSmallScreens();

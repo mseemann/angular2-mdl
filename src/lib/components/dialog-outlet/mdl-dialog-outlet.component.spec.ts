@@ -5,9 +5,8 @@ import {
 } from '@angular/core/testing';
 import { Component, NgModule, ApplicationRef } from '@angular/core';
 import { DOCUMENT, By } from '@angular/platform-browser';
-import { MdlDialogModule } from './index';
-import { MdlDialogService } from './mdl-dialog.service';
 import { MdlDialogInnerOutletComponent, MdlDialogOutletComponent } from './mdl-dialog-outlet.component';
+import { MdlDialogOutletModule } from './index';
 
 
 describe('MdlDialogOutletComponent', () => {
@@ -45,7 +44,6 @@ describe('MdlDialogOutletComponent', () => {
 
 describe('MdlDialogInnerOutletComponent', () => {
 
-  let mdlDialogService: MdlDialogService;
   let doc: HTMLDocument;
 
   beforeEach(async(() => {
@@ -55,8 +53,7 @@ describe('MdlDialogInnerOutletComponent', () => {
     });
   }));
 
-  beforeEach(async(inject([MdlDialogService, DOCUMENT], function (service: MdlDialogService, doc_) {
-    mdlDialogService = service;
+  beforeEach(async(inject([DOCUMENT], function (doc_) {
     doc = doc_;
   })));
 
@@ -82,7 +79,7 @@ class MdlTestViewComponent {
 
 
 @NgModule({
-  imports: [MdlDialogModule.forRoot()],
+  imports: [MdlDialogOutletModule.forRoot()],
   exports: [MdlTestViewComponent],
   declarations: [MdlTestViewComponent]
 })
