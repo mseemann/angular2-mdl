@@ -1,7 +1,6 @@
 import {
   Inject,
   Injectable,
-  ViewContainerRef,
   ComponentFactoryResolver,
   ComponentRef,
   Type,
@@ -66,22 +65,12 @@ export class MdlDialogReference {
 export class MdlDialogService {
 
   private openDialogs = new Array<InternalMdlDialogReference>();
-  private overlay: HTMLElement;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     @Inject(DOCUMENT) private doc: any,
     private appRef: ApplicationRef,
     private mdlDialogOutletService: MdlDialogOutletService) {
-
-
-    // create the overlay - that we will need to block the ui in case of modal dialogs
-    // TODO bad angular design
-    this.overlay = this.doc.createElement('div');
-    this.overlay.className = 'dialog-backdrop';
-    this.overlay.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
   }
 
   /**
@@ -220,15 +209,11 @@ export class MdlDialogService {
       }
     }
 
-    if (this.overlay.parentElement) {
-      this.overlay.parentElement.removeChild(this.overlay);
-    }
+    this.mdlDialogOutletService.hideBackdrop();
 
     if (topMostModalDialog) {
-      // append the overlay - TODO bad angular design
-      this.doc.body.appendChild(this.overlay);
       // move the overlay diredct under the topmos modal dialog
-      this.overlay.style.zIndex = String(topMostModalDialog.hostDialog.zIndex - 1);
+      this.mdlDialogOutletService.showBackdropWithZIndex(topMostModalDialog.hostDialog.zIndex - 1);
     }
 
   }
@@ -236,7 +221,7 @@ export class MdlDialogService {
   private createComponentInstance <T> (providers: Provider[], component: Type<T> ): ComponentRef<any> {
 
     let cFactory            = this.componentFactoryResolver.resolveComponentFactory(component);
-    let viewContainerRef    = this.mdlDialogOutletService.getViewContainerRef();
+    let viewContainerRef    = this.mdlDialogOutletService.viewContainerRef;
 
     if (!viewContainerRef) {
       throw new Error('You did not provide a ViewContainerRef. ' +

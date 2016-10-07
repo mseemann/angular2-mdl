@@ -4,6 +4,7 @@ import {
   MdlDialogInnerOutletComponent
 } from './mdl-dialog-outlet.component';
 import { MdlDialogOutletService } from './mdl-dialog-outlet.service';
+import { MdlBackdropOverlayComponent } from './mdl-backdrop-overlay.component';
 
 export * from './mdl-dialog-outlet.component';
 
@@ -12,7 +13,8 @@ const PUBLIC_COMPONENTS = [
 ];
 
 const PRIVATE_COMPONENTS = [
-  MdlDialogOutletComponent
+  MdlDialogOutletComponent,
+  MdlBackdropOverlayComponent
 ];
 
 @NgModule({
@@ -23,7 +25,8 @@ const PRIVATE_COMPONENTS = [
     ...PRIVATE_COMPONENTS
   ],
   entryComponents: [
-    MdlDialogOutletComponent
+    MdlDialogOutletComponent,
+    MdlBackdropOverlayComponent
   ]
 })
 export class MdlDialogOutletModule {

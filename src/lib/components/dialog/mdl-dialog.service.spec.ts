@@ -11,6 +11,7 @@ import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
 import { IMdlDialogAction } from './mdl-dialog-configuration';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
+import { MdlBackdropOverlayComponent } from '../dialog-outlet/mdl-backdrop-overlay.component';
 
 
 describe('Service: MdlDialog', () => {
@@ -50,8 +51,9 @@ describe('Service: MdlDialog', () => {
     // let dialogComponent = fixture.debugElement.query(By.directive(MdlSimpleDialogComponent)).componentInstance;
 
     // the backdrop shoud be visible and hav an zIndex of 100000
-    let backdrop = <HTMLDivElement> doc.querySelector('.dialog-backdrop');
-    expect(backdrop.style.zIndex).toBe('100000');
+    let backdrop = fixture.debugElement.query(By.directive(MdlBackdropOverlayComponent)).componentInstance;
+
+    expect(backdrop.zIndex).toBe(100000, 'the zIndex of the background should be 100000');
 
     let dialogComponentDebugElem = fixture.debugElement.query(By.directive(MdlSimpleDialogComponent));
     let titleDiv = dialogComponentDebugElem.query(By.css('.mdl-dialog__content')).nativeElement;

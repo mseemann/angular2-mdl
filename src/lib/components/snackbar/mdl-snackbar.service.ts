@@ -94,7 +94,7 @@ export class MdlSnackbarService {
   public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Promise<MdlSnackbarComponent> {
 
     let optTimeout        = snackbarMessage.timeout || 2750;
-    let viewContainerRef  = this.dialogOutletService.getViewContainerRef();
+    let viewContainerRef  = this.dialogOutletService.viewContainerRef;
 
     if (!viewContainerRef) {
       throw new Error('You did not provide a ViewContainerRef. ' +

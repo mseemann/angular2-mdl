@@ -22,11 +22,6 @@ import {
 // @experimental
 @Component({
   selector: 'mdl-dialog-component',
-  host: {
-    '[class.mdl-dialog]': 'true',
-    '[class.open]': 'true',
-    '[class.fixed]': 'true'
-  },
   template: `
       <div>
         <h3 class="mdl-dialog__title" *ngIf="dialogConfiguration?.title">{{dialogConfiguration?.title}}</h3>

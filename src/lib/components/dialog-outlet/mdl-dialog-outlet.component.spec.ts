@@ -27,7 +27,7 @@ describe('MdlDialogOutletComponent', () => {
 
 
   // now we can boostrap our MdlDialogOutletComponent component
-  it('should create the dialog-outlet if outside the app-root',
+  it('should create the dialog-outlet outside the app-root',
     async(inject([ApplicationRef],
       (ref: ApplicationRef) => {
 

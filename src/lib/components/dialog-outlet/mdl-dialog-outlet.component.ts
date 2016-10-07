@@ -8,9 +8,6 @@ import { MdlDialogOutletService } from './mdl-dialog-outlet.service';
 //    let x = this.appRef.bootstrap(MdlDialogOutletComponent);
 @Component({
   selector: 'dialog-outlet',
-  host: {
-    '[class.dialog-outlet]': 'true',
-  },
   template: ''
 })
 export class MdlDialogOutletComponent {
@@ -26,9 +23,6 @@ export class MdlDialogOutletComponent {
 // is exported from the module
 @Component({
   selector: 'dialog-outlet',
-  host: {
-    '[class.dialog-outlet]': 'true',
-  },
   template: ''
 })
 export class MdlDialogInnerOutletComponent {
