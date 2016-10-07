@@ -23,10 +23,7 @@ export class LoginDialogComponent {
   }
 
   public ngAfterViewInit() {
-    // set the focus - autofocus only works once :(
-    setTimeout( () => {
-      this.inputElement.setFocus();
-    }, 1);
+    this.inputElement.setFocus();
   }
 
   public login() {

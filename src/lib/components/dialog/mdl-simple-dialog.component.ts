@@ -7,8 +7,7 @@ import {
   AfterViewInit,
   ViewChildren,
   QueryList,
-  ElementRef,
-  NgZone
+  ElementRef
 } from '@angular/core';
 import {
   MdlDialogReference,
@@ -48,14 +47,10 @@ export class MdlSimpleDialogComponent implements AfterViewInit {
   // why do i need forwardRef at this point, the demo LoginDialog dosn't need this!?!?
   constructor(
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private dialogConfiguration: IMdlSimpleDialogConfiguration,
-    @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference,
-    private ngZone: NgZone) {}
+    @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference) {}
 
   public ngAfterViewInit() {
-    // set the focus to the first focuable element
-    this.ngZone.onMicrotaskEmpty.subscribe( () => {
-      this.buttons.first.nativeElement.focus();
-    });
+    this.buttons.first.nativeElement.focus();
   }
 
   public actionClicked(action: IMdlDialogAction) {
