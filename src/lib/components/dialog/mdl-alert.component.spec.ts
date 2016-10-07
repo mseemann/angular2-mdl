@@ -1,14 +1,12 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { MdlDialogModule } from './index';
-import { By, DOCUMENT } from '@angular/platform-browser';
+import { By } from '@angular/platform-browser';
 import { MdlAlertComponent } from './mdl-alert.component';
 
 
 
 describe('MdlAlert', () => {
-
-  let doc: HTMLDocument;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -16,11 +14,6 @@ describe('MdlAlert', () => {
       declarations: [MdlTestComponent],
     });
   }));
-
-  beforeEach(async(inject([DOCUMENT], function (doc_) {
-    doc = doc_;
-  })));
-
 
   it('should create, show and close the dialog', async(() => {
 

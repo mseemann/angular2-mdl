@@ -28,9 +28,9 @@ module.exports = webpackMerge(commonConfig, {
 		}),
 		new webpack.optimize.UglifyJsPlugin({
       comments: false,
-      compress: {
-        warnings: false
-      }
+      beautify: false,
+      mangle: { screw_ie8 : true },
+      compress: { screw_ie8: true, warnings: false }
 		}),
 		new ExtractTextPlugin('[name].[hash].css'),
 		new webpack.DefinePlugin({
