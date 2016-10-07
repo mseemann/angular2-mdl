@@ -2,8 +2,7 @@ import {
   Component,
   Input,
   Output,
-  EventEmitter,
-  ViewContainerRef
+  EventEmitter
 } from '@angular/core';
 import { MdlDialogService } from './mdl-dialog.service';
 
