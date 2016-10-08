@@ -20,6 +20,22 @@ this way is the only possibility to get feedback from a broad range of users.
   okText="Got it!"
   (confirmed)="alertConfirmd()"></mdl-alert>
 
+<pre prism>
+  <![CDATA[
+<button
+  mdl-button
+  mdl-button-type="raised"
+  mdl-colored="accent"
+  mdl-ripple
+  (click)="alert.show()">Show Alert</button>
+
+<mdl-alert
+  #alert="mdlAlert"
+  message="This is a <em class='mdl-color-text--primary'>simple</em> Alert"
+  okText="Got it!"
+  (confirmed)="alertConfirmd()"></mdl-alert>
+]]>
+</pre>
 
 <h5>A custom Dialog - template</h5>
 
