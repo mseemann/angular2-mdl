@@ -30,7 +30,7 @@ export class MdlAlertComponent {
 
   public show() {
 
-    this.mdlDialogService.alert(this.message, this.okText, this.title).then( () => {
+    this.mdlDialogService.alert(this.message, this.okText, this.title).subscribe( () => {
       this.confirmed.emit();
     });
 

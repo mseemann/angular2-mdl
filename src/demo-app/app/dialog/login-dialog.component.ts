@@ -59,6 +59,7 @@ export class LoginDialogComponent implements OnInit {
   public login() {
     this.processingLogin = true;
     this.statusMessage = 'checking your credentials ...';
+
     let obs = this.loginService.login(this.username.value, this.password.value);
     obs.subscribe( () => {
 

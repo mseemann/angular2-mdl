@@ -38,7 +38,7 @@ describe('Service: MdlDialog', () => {
     fixture.detectChanges();
 
     let result = mdlDialogService.alert(title);
-    result.then( () => {
+    result.subscribe( () => {
       // test passed because the action was called
       done();
     } );

@@ -9,8 +9,9 @@ import {
   Provider,
   EmbeddedViewRef, ApplicationRef, TemplateRef, ViewContainerRef
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { DOCUMENT } from '@angular/platform-browser';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
@@ -21,6 +22,7 @@ import {
 } from './mdl-dialog-configuration';
 import { InternalMdlDialogReference } from './internal-dialog-reference';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
+
 
 
 export const MDL_CONFIGUARTION = new OpaqueToken('MDL_CONFIGUARTION');
@@ -78,21 +80,24 @@ export class MdlDialogService {
    * @param alertMessage The message that should be displayed.
    * @param okTex The text that the button should have
    * @param title The optional title of the dialog
-   * @returns A promise that is called if the user hits the Ok button.
+   * @returns An Observable that is called if the user hits the Ok button.
    */
-  public alert(alertMessage: string, okText = 'Ok', title?: string): Promise<void> {
-    return new Promise((resolve: (value?: void) => void, reject: (reason?: any) => void) => {
+  public alert(alertMessage: string, okText = 'Ok', title?: string): Observable<void> {
+    let result: Subject<any> = new Subject();
 
-      this.showDialog({
+    this.showDialog({
         title: title,
         message: alertMessage,
         actions: [
-          { handler: () => resolve(), text: okText}
+          { handler: () => {
+            result.next(null);
+            result.complete();
+          }, text: okText}
         ],
         isModal: true
       });
 
-    });
+    return result;
   }
 
   /**

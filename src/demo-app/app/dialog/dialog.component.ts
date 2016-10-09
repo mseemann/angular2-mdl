@@ -39,7 +39,7 @@ export class DialogDemo extends AbstractDemoComponent {
 
   public showAlert() {
     let result = this.dialogService.alert('This is a simple Alert');
-    result.then( () => console.log('alert closed') );
+    result.subscribe( () => console.log('alert closed') );
   }
 
   public showConfirmMessage() {
