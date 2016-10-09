@@ -50,7 +50,9 @@ export * from './layout/index';
 export * from './tabs/index';
 export * from './textfield/mdl-textfield.component';
 
-
+export { MdlBackdropOverlayComponent as Private1 } from './dialog-outlet/mdl-backdrop-overlay.component';
+export { MdlDialogHostComponent as Private2 } from './dialog/mdl-dialog-host.component';
+export { MdlSimpleDialogComponent as Private3 } from './dialog/mdl-simple-dialog.component';
 
 const MDL_MODULES = [
   MdlButtonModule,

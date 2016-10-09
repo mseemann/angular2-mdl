@@ -1,5 +1,22 @@
 <h4>The Dialog</h4>
 
+<h5>Prerequisites</h5>
+<p>
+  Every Dialog needs a place to be attached to the dom. The easiest way to achieve this is a dialog-outlet html
+  element within your body element:
+</p>
+<pre prism ngNonBindable>
+  <![CDATA[
+<html>
+  <head>...</head>
+  <body>
+    <app-root>...</app-root>
+    <dialog-outlet></dialog-outlet>
+  </body>
+</html>
+]]>
+</pre>
+<p>It is no problem, that this component is outside of your root app-component!</p>
 
 <h5>Alert</h5>
 

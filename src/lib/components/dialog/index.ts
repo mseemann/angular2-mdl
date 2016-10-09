@@ -11,6 +11,7 @@ import { MdlDialogOutletModule } from '../dialog-outlet/index';
 export * from './mdl-dialog.component';
 export * from './mdl-dialog.service';
 export * from './mdl-dialog-configuration';
+export * from './mdl-alert.component';
 
 const PUBLIC_COMPONENTS = [
   MdlDialogComponent,
