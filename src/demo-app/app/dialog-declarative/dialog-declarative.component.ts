@@ -1,9 +1,6 @@
 import {
   Component,
-  ViewChild,
-  ViewChildren,
-  QueryList,
-  OnInit, AfterContentInit, ContentChildren, AfterViewInit, AfterViewChecked
+  ViewChild
 } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
@@ -17,6 +14,7 @@ import {
   MdlDialogComponent
 } from '../../../lib/components/dialog/index';
 import { MdlTextFieldComponent } from '../../../lib/components/textfield/mdl-textfield.component';
+import { MdlDialogReference } from '../../../lib/components/dialog/mdl-dialog.service';
 
 @Component({
   selector: 'dialog-declarative-demo',
@@ -26,12 +24,12 @@ import { MdlTextFieldComponent } from '../../../lib/components/textfield/mdl-tex
   ],
   templateUrl: 'dialog-declarative.component.html'
 })
-export class DialogDeclarativeDemo extends AbstractDemoComponent implements AfterViewInit {
+export class DialogDeclarativeDemo extends AbstractDemoComponent {
 
   public username: string = 'testuser';
 
   @ViewChild('editUserDialog') private  editUserDialog: MdlDialogComponent;
-  @ViewChildren(MdlTextFieldComponent) private tfList: QueryList<MdlTextFieldComponent>;
+  @ViewChild(MdlTextFieldComponent) private tfName: MdlTextFieldComponent;
 
   constructor(
     router: Router,
@@ -40,28 +38,23 @@ export class DialogDeclarativeDemo extends AbstractDemoComponent implements Afte
     super(router, route, titleService);
   }
 
-  public ngAfterViewInit() {
-    console.log('afterviewinit', this.tfList);
-    if(this.tfList){
-      console.log(this.tfList.first);
-      this.tfList.first.setFocus();
-      this.tfList.changes.subscribe( (x) => {
-        console.log(x);
-      })
-    }
-  }
-
   public alertConfirmd(){
     console.log('alertConfirmd');
   }
 
   public saveUser() {
-    console.log('user saved!', this.tfList);
+    console.log('user saved!');
     this.editUserDialog.close();
   }
 
-  public onDialogShow(){
+  public onDialogShow(dialogRef: MdlDialogReference){
+    console.log(`dialog shown ${dialogRef}`);
+    setTimeout( () => {
+      this.tfName.setFocus();
+    });
+  }
 
-    console.log('dialog shown');
+  public onDialogHide(){
+    console.log(`dialog hidden`);
   }
 }

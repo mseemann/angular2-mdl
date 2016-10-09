@@ -2,10 +2,13 @@ import {
   Component,
   ViewChild,
   TemplateRef,
-  Input
+  Input,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { MdlDialogService, MdlDialogReference } from './mdl-dialog.service';
 import { BooleanProperty } from './../common/boolean-property';
+
 
 
 @Component({
@@ -20,7 +23,9 @@ export class MdlDialogComponent {
 
   @ViewChild(TemplateRef) private template: TemplateRef<any>;
 
-  @Input('modal') @BooleanProperty() public modal = true;
+  @Input('mdl-modal') @BooleanProperty() public modal = true;
+  @Output('show') public showEmitter: EventEmitter<MdlDialogReference> = new EventEmitter<MdlDialogReference>();
+  @Output('hide') public hideEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   private dialogRef : MdlDialogReference;
 
@@ -31,6 +36,10 @@ export class MdlDialogComponent {
     let p = this.dialogService.showDialogTemplate(this.template, {isModal: this.modal});
     p.then( (dialogRef: MdlDialogReference) => {
         this.dialogRef = dialogRef;
+        this.showEmitter.emit(dialogRef);
+        this.dialogRef.onHide().subscribe( () => {
+          this.hideEmitter.emit(null);
+        })
     })
     return p;
   }

@@ -44,7 +44,7 @@
     mdl-ripple
     (click)="editUserDialog.show()">Edit User Dialog</button>
 
-<mdl-dialog #editUserDialog (show)="onDialogShow()">
+<mdl-dialog #editUserDialog [mdl-modal]="true" (show)="onDialogShow(dialogRef)" (hide)="onDialogHide()">
   <h3 class="mdl-dialog__title">Edit User</h3>
   <div class="mdl-dialog__content">
     <mdl-textfield type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
@@ -55,3 +55,24 @@
   </div>
 </mdl-dialog>
 
+<pre prism>
+<![CDATA[
+<button
+        mdl-button
+        mdl-button-type="raised"
+        mdl-colored="primary"
+        mdl-ripple
+        (click)="editUserDialog.show()">Edit User Dialog</button>
+
+<mdl-dialog #editUserDialog [mdl-modal]="true" (show)="onDialogShow(dialogRef)" (hide)="onDialogHide()">
+  <h3 class="mdl-dialog__title">Edit User</h3>
+  <div class="mdl-dialog__content">
+    <mdl-textfield type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button mdl-button (click)="saveUser()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+    <button mdl-button (click)="editUserDialog.close()" mdl-button-type="raised" mdl-ripple>Cancel</button>
+  </div>
+</mdl-dialog>
+]]>
+</pre>
