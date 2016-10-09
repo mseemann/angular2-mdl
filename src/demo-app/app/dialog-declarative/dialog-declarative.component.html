@@ -44,14 +44,14 @@
     mdl-ripple
     (click)="editUserDialog.show()">Edit User Dialog</button>
 
-<mdl-dialog #editUserDialog>
+<mdl-dialog #editUserDialog (show)="onDialogShow()">
   <h3 class="mdl-dialog__title">Edit User</h3>
   <div class="mdl-dialog__content">
     <mdl-textfield type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
   </div>
   <div class="mdl-dialog__actions">
     <button mdl-button (click)="saveUser()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
-    <button mdl-button (click)="editUserDialog.close()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Cancel</button>
+    <button mdl-button (click)="editUserDialog.close()" mdl-button-type="raised" mdl-ripple>Cancel</button>
   </div>
 </mdl-dialog>
 

@@ -8,7 +8,7 @@ import {
   OpaqueToken,
   Provider,
   ApplicationRef,
-  ViewContainerRef
+  ViewContainerRef, TemplateRef
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Subject } from 'rxjs/Subject';
@@ -184,6 +184,22 @@ export class MdlDialogService {
 
     return Promise.resolve(internalDialogRef.dialogRef);
   }
+
+  public showDialogTemplate(template: TemplateRef<any>, config: IMdlDialogConfiguration): Promise<MdlDialogReference> {
+
+    let internalDialogRef = new InternalMdlDialogReference();
+
+    // FIXME bad design. this should be done in INternalMdlDialogReference
+    new MdlDialogReference(internalDialogRef)
+
+    let hostComponentRef = this.createHostDialog(internalDialogRef, config);
+
+    hostComponentRef.instance.dialogTarget.createEmbeddedView(template);
+
+    return Promise.resolve(internalDialogRef.dialogRef);
+  }
+
+
 
   private createHostDialog(internalDialogRef: InternalMdlDialogReference, dialogConfig: IMdlDialogConfiguration) {
 
