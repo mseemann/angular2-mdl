@@ -2,38 +2,78 @@ import {
   Component,
   ViewChild,
   HostListener,
-  AfterViewInit
+  OnInit
 } from '@angular/core';
-import {
-  MdlDialogReference
-} from '../../../lib/components/dialog/index';
-import 'rxjs/add/operator/scan';
-import { MdlTextFieldComponent } from '../../../lib/components/textfield/mdl-textfield.component';
+import { LoginService } from './login.service';
+import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
+import { MdlTextFieldComponent } from '../../../lib/components';
+import { MdlDialogReference } from '../../../lib/components';
+
 
 
 @Component({
   selector: 'login-dialog',
-  templateUrl: 'login-dialog.html'
+  templateUrl: 'login-dialog.html',
+  styles: [
+    `
+     .status-bar {
+         text-align: center;
+     }
+    `
+  ]
 })
-export class LoginDialogComponent implements AfterViewInit {
+export class LoginDialogComponent implements OnInit {
 
   @ViewChild('firstElement') private inputElement: MdlTextFieldComponent;
 
-  constructor(private dialog: MdlDialogReference) {
+  public form: FormGroup;
+  public username = new FormControl('',  Validators.required);
+  public password = new FormControl('', Validators.required);
+
+  public processingLogin = false;
+  public statusMessage = '';
+
+  constructor(
+    private dialog: MdlDialogReference,
+    private fb: FormBuilder,
+    private loginService: LoginService) {
+
+    // just if you want to be informed if the dialog is hidden
     this.dialog.onHide().subscribe( () => console.log('login dialog hidden') );
+
   }
 
+  public ngOnInit() {
+    this.form = this.fb.group({
+      'username':  this.username,
+      'password':   this.password
+    });
+  }
+
+
   public ngAfterViewInit() {
+    // set the focus - autofocus only works once :(
     this.inputElement.setFocus();
   }
 
   public login() {
-    console.log('login', this.dialog);
-    this.dialog.hide();
+    this.processingLogin = true;
+    this.statusMessage = 'checking your credentials ...';
+    let obs = this.loginService.login(this.username.value, this.password.value);
+    obs.subscribe( () => {
+
+      this.processingLogin = false;
+      this.statusMessage = 'you are logged in ...';
+
+      setTimeout( () => {
+        this.dialog.hide();
+      }, 500);
+
+    });
   }
 
   @HostListener('keydown.esc')
   public onEsc(): void {
-      this.dialog.hide();
+    this.dialog.hide();
   }
 }

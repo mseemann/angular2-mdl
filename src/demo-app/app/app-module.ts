@@ -36,7 +36,8 @@ import { ReactiveFormsDemo } from './reactiveforms/reactiveform.component';
 import { ThemeDemo } from './theme/theme.component';
 import { DialogDemo } from './dialog/dialog.component';
 import { DialogDeclarativeDemo } from './dialog-declarative/dialog-declarative.component';
-import { LoginDialogComponent } from './dialog/login-dialog.component';
+import { LoginModule } from './dialog/login.module';
+
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { LoginDialogComponent } from './dialog/login-dialog.component';
     FormsModule,
     ReactiveFormsModule,
     MdlRootModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    LoginModule
   ],
   declarations: [
     Angular2MdlAppComponent,
@@ -55,7 +57,6 @@ import { LoginDialogComponent } from './dialog/login-dialog.component';
     ChipsDemo,
     DialogDemo,
     DialogDeclarativeDemo,
-    LoginDialogComponent,
     IconDemo,
     ShadowDemo,
     LoadingDemo,
@@ -80,7 +81,7 @@ import { LoginDialogComponent } from './dialog/login-dialog.component';
   providers: [
     Title
   ],
-  entryComponents: [Angular2MdlAppComponent, LoginDialogComponent],
+  entryComponents: [Angular2MdlAppComponent],
   bootstrap: [],
 })
 export class Angular2MdlAppModule {
