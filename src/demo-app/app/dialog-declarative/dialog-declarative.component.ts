@@ -27,6 +27,7 @@ import { MdlDialogReference } from '../../../lib/components/dialog/mdl-dialog.se
 export class DialogDeclarativeDemo extends AbstractDemoComponent {
 
   public username: string = 'testuser';
+  public editedUsername: string;
 
   @ViewChild('editUserDialog') private  editUserDialog: MdlDialogComponent;
   @ViewChild(MdlTextFieldComponent) private tfName: MdlTextFieldComponent;
@@ -44,10 +45,12 @@ export class DialogDeclarativeDemo extends AbstractDemoComponent {
 
   public saveUser() {
     console.log('user saved!');
+    this.username = this.editedUsername;
     this.editUserDialog.close();
   }
 
   public onDialogShow(dialogRef: MdlDialogReference){
+    this.editedUsername = this.username;
     console.log(`dialog shown`, dialogRef);
     setTimeout( () => {
       this.tfName.setFocus();
