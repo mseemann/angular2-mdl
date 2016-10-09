@@ -44,7 +44,7 @@
     mdl-ripple
     (click)="editUserDialog.show()">Edit User Dialog</button>
 
-<mdl-dialog #editUserDialog [mdl-modal]="true" (show)="onDialogShow(dialogRef)" (hide)="onDialogHide()">
+<mdl-dialog #editUserDialog [mdl-modal]="false" (show)="onDialogShow($event)" (hide)="onDialogHide()">
   <h3 class="mdl-dialog__title">Edit User</h3>
   <div class="mdl-dialog__content">
     <mdl-textfield type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>

@@ -27,19 +27,28 @@ export class MdlDialogComponent {
   @Output('show') public showEmitter: EventEmitter<MdlDialogReference> = new EventEmitter<MdlDialogReference>();
   @Output('hide') public hideEmitter: EventEmitter<void> = new EventEmitter<void>();
 
-  private dialogRef : MdlDialogReference;
+  private dialogRef : MdlDialogReference = null;
 
   constructor(private dialogService: MdlDialogService) {}
 
 
   public show(): Promise<MdlDialogReference> {
+
+    if(this.dialogRef){
+      throw new Error('Only one instance of an embedded mdl-dialog can exist!');
+    }
+
     let p = this.dialogService.showDialogTemplate(this.template, {isModal: this.modal});
     p.then( (dialogRef: MdlDialogReference) => {
-        this.dialogRef = dialogRef;
-        this.showEmitter.emit(dialogRef);
-        this.dialogRef.onHide().subscribe( () => {
-          this.hideEmitter.emit(null);
-        })
+
+      this.dialogRef = dialogRef;
+      this.showEmitter.emit(dialogRef);
+
+      this.dialogRef.onHide().subscribe( () => {
+        this.hideEmitter.emit(null);
+        this.dialogRef = null;
+      });
+
     })
     return p;
   }

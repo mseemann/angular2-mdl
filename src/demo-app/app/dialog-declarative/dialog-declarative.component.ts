@@ -48,7 +48,7 @@ export class DialogDeclarativeDemo extends AbstractDemoComponent {
   }
 
   public onDialogShow(dialogRef: MdlDialogReference){
-    console.log(`dialog shown ${dialogRef}`);
+    console.log(`dialog shown`, dialogRef);
     setTimeout( () => {
       this.tfName.setFocus();
     });
