@@ -6,7 +6,7 @@ import {
   ComponentFactoryResolver,
   NgModule,
   ViewEncapsulation,
-  ModuleWithProviders
+  ModuleWithProviders, ComponentFactory
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
@@ -49,7 +49,7 @@ export class MdlSnackbarComponent {
         setTimeout(() => {
           resolve();
         }, ANIMATION_TIME);
-      }, 1);
+      }, 10);
     });
 
   }
@@ -77,10 +77,14 @@ export interface IMdlSnackbarMessage {
 @Injectable()
 export class MdlSnackbarService {
 
+  private cFactory: ComponentFactory<any>;
+
   constructor(
     private injector: Injector,
     private componentFactoryResolver: ComponentFactoryResolver,
     private dialogOutletService: MdlDialogOutletService) {
+
+    this.cFactory  = this.componentFactoryResolver.resolveComponentFactory(MdlSnackbarComponent);
   }
 
 
@@ -101,8 +105,8 @@ export class MdlSnackbarService {
         'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
     }
 
-    let cFactory  = this.componentFactoryResolver.resolveComponentFactory(MdlSnackbarComponent);
-    let cRef = viewContainerRef.createComponent(cFactory, viewContainerRef.length);
+
+    let cRef = viewContainerRef.createComponent(this.cFactory, viewContainerRef.length);
 
     let mdlSnackbarComponent = <MdlSnackbarComponent> cRef.instance;
     mdlSnackbarComponent.message = snackbarMessage.message;
