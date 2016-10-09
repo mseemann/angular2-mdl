@@ -7,7 +7,7 @@ import {
   ReflectiveInjector,
   OpaqueToken,
   Provider,
-  EmbeddedViewRef, ApplicationRef
+  EmbeddedViewRef, ApplicationRef, TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -139,7 +139,11 @@ export class MdlDialogService {
 
     let hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
-    this.createAttachedComponentInstance(hostComponentRef, providers, MdlSimpleDialogComponent);
+    let cRef = this.createComponentInstance(
+      hostComponentRef.instance.dialogTarget,
+      providers,
+      MdlSimpleDialogComponent);
+
 
     return Promise.resolve(internalDialogRef.dialogRef);
   }
@@ -159,20 +163,27 @@ export class MdlDialogService {
 
     let hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
-    this.createAttachedComponentInstance(hostComponentRef, providers, config.component);
+    this.createComponentInstance(hostComponentRef.instance.dialogTarget, providers, config.component);
 
     return Promise.resolve(internalDialogRef.dialogRef);
   }
 
   private createHostDialog(internalDialogRef: InternalMdlDialogReference, dialogConfig: IMdlDialogConfiguration) {
 
-    let hostDialogComponent = this.createComponentInstance([], MdlDialogHostComponent);
+    let viewContainerRef = this.mdlDialogOutletService.viewContainerRef;
+    if (!viewContainerRef) {
+      throw new Error('You did not provide a ViewContainerRef. ' +
+        'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
+    }
 
-    internalDialogRef.hostDialogComponentRef = hostDialogComponent;
-    internalDialogRef.isModal     = dialogConfig.isModal;
+    let hostDialogComponent = this.createComponentInstance(viewContainerRef, [], MdlDialogHostComponent);
+
+    internalDialogRef.hostDialogComponentRef  = hostDialogComponent;
+    internalDialogRef.isModal                 = dialogConfig.isModal;
 
     internalDialogRef.closeCallback = () => {
       this.popDialog(internalDialogRef);
+      hostDialogComponent.destroy();
     };
     this.pushDialog(internalDialogRef);
 
@@ -218,45 +229,19 @@ export class MdlDialogService {
 
   }
 
-  private createComponentInstance <T> (providers: Provider[], component: Type<T> ): ComponentRef<any> {
+  private createComponentInstance <T> (
+    viewContainerRef: ViewContainerRef,
+    providers: Provider[],
+    component: Type<T> ): ComponentRef<any> {
 
     let cFactory            = this.componentFactoryResolver.resolveComponentFactory(component);
-    let viewContainerRef    = this.mdlDialogOutletService.viewContainerRef;
-
-    if (!viewContainerRef) {
-      throw new Error('You did not provide a ViewContainerRef. ' +
-        'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
-    }
 
     let resolvedProviders   = ReflectiveInjector.resolve(providers);
     let parentInjector      = viewContainerRef.parentInjector;
     let childInjector       = ReflectiveInjector.fromResolvedProviders(resolvedProviders, parentInjector);
 
-    // because the dom structure is changed (see hostViewRef.element.nativeElement.appendChild(hostView.rootNodes[0]);
-    // the view must always be craeted at index 0 - otherwise it woud be inserted in the last craeted view and
-    // not as a child of the targetViewRef :(
-    return viewContainerRef.createComponent(cFactory, 0, childInjector);
+    return viewContainerRef.createComponent(cFactory, viewContainerRef.length, childInjector);
   }
 
-  /**
-   * create a ComponentRef and attache the component node to the host component view (DOM)
-   * @param hostComponentRef
-   * @param providers
-   * @param component
-   * @returns {ComponentRef<any>}
-   */
-  private createAttachedComponentInstance <T> (
-    hostComponentRef: ComponentRef<any>,
-    providers: Provider[],
-    component: Type<T>): ComponentRef<any> {
-
-    let hostViewRef = hostComponentRef.instance.viewContainerRef;
-    let componentRef = this.createComponentInstance(providers, component);
-
-    let hostView = <EmbeddedViewRef<any>> componentRef.hostView;
-    hostViewRef.element.nativeElement.appendChild(hostView.rootNodes[0]);
-
-    return componentRef;
-  }
 
 }

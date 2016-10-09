@@ -1,7 +1,7 @@
 import {
   Component,
   ViewEncapsulation,
-  ViewContainerRef
+  ViewContainerRef, Directive, TemplateRef, Inject, forwardRef, ViewChild
 } from '@angular/core';
 import {
   trigger,
@@ -12,8 +12,9 @@ import {
 } from '@angular/core';
 
 import {
-  MIN_DIALOG_Z_INDEX
+  MIN_DIALOG_Z_INDEX, MdlDialogService
 } from './mdl-dialog.service';
+import { selector } from 'rxjs/operator/publish';
 
 
 // @experimental
@@ -41,7 +42,7 @@ import {
       })))
     ])
   ],
-  template: ``,
+  template: `<div #dialogTarget></div>`,
   styles: [
     `
     mdl-dialog-host-component {
@@ -79,6 +80,8 @@ import {
 })
 export class MdlDialogHostComponent {
 
+  @ViewChild('dialogTarget', {read: ViewContainerRef}) public dialogTarget;
+
   public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
 
   get animateState(){
@@ -86,7 +89,5 @@ export class MdlDialogHostComponent {
   }
   // open for later extensions - animate or not
   public animate = true;
-
-  constructor(public viewContainerRef: ViewContainerRef ) {}
 
 }

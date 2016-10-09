@@ -17,12 +17,11 @@ export class InternalMdlDialogReference {
   public isModal = false;
   public dialogRef: MdlDialogReference;
 
-  get  hostDialog(){
+  get  hostDialog() {
     return this.hostDialogComponentRef.instance;
   }
 
   public hide() {
-    this.hostDialogComponentRef.destroy();
     this.onHideSubject.next();
     this.onHideSubject.complete();
     this.closeCallback();

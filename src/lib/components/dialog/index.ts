@@ -28,7 +28,9 @@ const PRIVATE_COMPONENTS = [
     MdlCommonsModule,
     MdlDialogOutletModule.forRoot()
   ],
-  exports: PUBLIC_COMPONENTS,
+  exports: [
+    ...PUBLIC_COMPONENTS
+  ],
   declarations: [
     ...PUBLIC_COMPONENTS,
     ...PRIVATE_COMPONENTS

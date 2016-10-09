@@ -1,7 +1,8 @@
 import {
   Component,
   ViewChild,
-  HostListener
+  HostListener,
+  AfterViewInit
 } from '@angular/core';
 import {
   MdlDialogReference
@@ -14,7 +15,7 @@ import { MdlTextFieldComponent } from '../../../lib/components/textfield/mdl-tex
   selector: 'login-dialog',
   templateUrl: 'login-dialog.html'
 })
-export class LoginDialogComponent {
+export class LoginDialogComponent implements AfterViewInit {
 
   @ViewChild('firstElement') private inputElement: MdlTextFieldComponent;
 
