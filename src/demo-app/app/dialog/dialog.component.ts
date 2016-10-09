@@ -12,7 +12,11 @@ import {
   MdlDialogReference
 } from '../../../lib/components/dialog/index';
 import { MdlSnackbarService } from '../../../lib/components/snackbar/mdl-snackbar.service';
-import { LoginDialogComponent } from './login-dialog.component';
+import {
+  LoginDialogComponent,
+  TEST_VALUE
+} from './login-dialog.component';
+
 
 @Component({
   selector: 'dialog-demo',
@@ -86,6 +90,7 @@ export class DialogDemo extends AbstractDemoComponent {
 
     let pDialog = this.dialogService.showCustomDialog({
       component: LoginDialogComponent,
+      providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
       isModal: true
     });
     pDialog.then( (dialogReference: MdlDialogReference) => {

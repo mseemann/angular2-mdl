@@ -1,6 +1,7 @@
 import {
   ViewContainerRef,
-  Type
+  Type,
+  Provider
 } from '@angular/core';
 
 /**
@@ -63,13 +64,12 @@ export interface IMdlSimpleDialogConfiguration extends IMdlDialogConfiguration {
 
 /**
  * Configuration for a custom dialog. You need to provide a component that
- * should be used as the content of the dialog. the component mus match the
+ * should be used as the content of the dialog. the component must match the
  * fowllowing conditions:
- * - must implement IMdlCustomDialog
- * - must be an entrycompnent (property of your module)
- * If youn need acces to the MdlDialogReference you may inject it in your constructor:
+ * - must be an entrycomponent (property of your module)
+ * If youn need access to the MdlDialogReference you may inject it in your constructor:
  *
- * export class MyDialog implements IMdlCustomDialog {
+ * export class MyDialog {
  *
  *   constructor(private dialogref: MdlDialogReference){}
  *
@@ -78,4 +78,5 @@ export interface IMdlSimpleDialogConfiguration extends IMdlDialogConfiguration {
  */
 export interface IMdlCustomDialogConfiguration extends IMdlDialogConfiguration {
   component: Type<any>;
+  providers?: Provider[];
 }

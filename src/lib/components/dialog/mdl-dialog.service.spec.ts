@@ -3,7 +3,7 @@ import {
   TestBed,
   async
 } from '@angular/core/testing';
-import { Component, ViewContainerRef, NgModule } from '@angular/core';
+import { Component, ViewContainerRef, NgModule, Optional, Inject, OpaqueToken } from '@angular/core';
 import { DOCUMENT, By } from '@angular/platform-browser';
 import { MdlDialogModule } from './index';
 import {
@@ -15,11 +15,14 @@ import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
 import { IMdlDialogAction } from './mdl-dialog-configuration';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
 import { MdlBackdropOverlayComponent } from '../dialog-outlet/mdl-backdrop-overlay.component';
+import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
 
+const TEST = new OpaqueToken('test');
 
 describe('Service: MdlDialog', () => {
 
   let mdlDialogService: MdlDialogService;
+  let mdlDialogOutletService: MdlDialogOutletService;
   let doc: HTMLDocument;
 
   beforeEach(async(() => {
@@ -29,8 +32,10 @@ describe('Service: MdlDialog', () => {
     });
   }));
 
-  beforeEach(async(inject([MdlDialogService, DOCUMENT], function (service: MdlDialogService, doc_) {
+  beforeEach(async(inject([MdlDialogService, MdlDialogOutletService, DOCUMENT],
+    function (service: MdlDialogService, mdlDialogOutletService_: MdlDialogOutletService, doc_) {
     mdlDialogService = service;
+    mdlDialogOutletService = mdlDialogOutletService_;
     doc = doc_;
   })));
 
@@ -110,7 +115,8 @@ describe('Service: MdlDialog', () => {
     fixture.detectChanges();
 
     let p = mdlDialogService.showCustomDialog({
-      component: TestCustomDialog
+      component: TestCustomDialog,
+      providers: [{ provide: TEST, useValue: 'test'}]
     });
 
     p.then( ( dialogRef ) => {
@@ -120,6 +126,10 @@ describe('Service: MdlDialog', () => {
       });
 
       let customDialogComponent = fixture.debugElement.query(By.directive(TestCustomDialog)).componentInstance;
+
+      // value should be jnjected
+      expect(customDialogComponent.test).toBe("test");
+
       // call close by calling hide on the dialog reference
       customDialogComponent.close();
     });
@@ -184,6 +194,15 @@ describe('Service: MdlDialog', () => {
 
   });
 
+  it('should throw if no viewContainerRef is provided', async(() => {
+
+    mdlDialogOutletService.setDefaultViewContainerRef(null);
+
+    expect( () => {
+      mdlDialogService.alert('m');
+    }).toThrow();
+
+  }));
 });
 
 
@@ -205,11 +224,8 @@ class TestCustomDialog {
 
   constructor(
     private viewRef: ViewContainerRef,
-    private dialog: MdlDialogReference) {}
-
-  get viewContainerRef() {
-    return this.viewRef;
-  }
+    private dialog: MdlDialogReference,
+    @Optional() @Inject(TEST) public test: string) {}
 
   public close() {
     this.dialog.hide();

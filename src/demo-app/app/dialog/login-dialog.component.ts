@@ -2,13 +2,16 @@ import {
   Component,
   ViewChild,
   HostListener,
-  OnInit
+  OnInit,
+  Inject,
+  OpaqueToken
 } from '@angular/core';
 import { LoginService } from './login.service';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { MdlTextFieldComponent } from '../../../lib/components';
 import { MdlDialogReference } from '../../../lib/components';
 
+export const TEST_VALUE = new OpaqueToken('test value');
 
 
 @Component({
@@ -36,7 +39,10 @@ export class LoginDialogComponent implements OnInit {
   constructor(
     private dialog: MdlDialogReference,
     private fb: FormBuilder,
-    private loginService: LoginService) {
+    private loginService: LoginService,
+    @Inject( TEST_VALUE) testValue: string) {
+
+    console.log(`injected test value: ${testValue}`);
 
     // just if you want to be informed if the dialog is hidden
     this.dialog.onHide().subscribe( () => console.log('login dialog hidden') );

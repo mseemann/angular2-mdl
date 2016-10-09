@@ -170,9 +170,13 @@ export class MdlDialogService {
 
     let internalDialogRef = new InternalMdlDialogReference();
 
-    let providers = [
+    let providers: Provider[] = [
       { provide: MdlDialogReference, useValue: new MdlDialogReference(internalDialogRef) }
     ];
+
+    if (config.providers){
+      providers.push(...config.providers);
+    }
 
     let hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
