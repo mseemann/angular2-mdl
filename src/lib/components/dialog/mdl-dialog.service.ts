@@ -7,7 +7,8 @@ import {
   ReflectiveInjector,
   OpaqueToken,
   Provider,
-  EmbeddedViewRef, ApplicationRef, TemplateRef, ViewContainerRef
+  ApplicationRef,
+  ViewContainerRef
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Subject } from 'rxjs/Subject';
@@ -27,11 +28,6 @@ import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.servi
 
 export const MDL_CONFIGUARTION = new OpaqueToken('MDL_CONFIGUARTION');
 export const MIN_DIALOG_Z_INDEX = 100000;
-
-export enum ConfirmResult {
-  Confirmed,
-  Declined
-}
 
 /**
  * The reference to the created and displayed dialog.
@@ -105,23 +101,35 @@ export class MdlDialogService {
    * @param question The question that should be displayed.
    * @param declineText The text for decline button. defaults to Cancel
    * @param confirmText The text for the confirm button . defaults to Ok
-   * @returns A promise that is called if the user hits the Ok button.
+   * @returns An Observable that is called if the user hits the Ok button.
    */
   public confirm(
     question: string,
     declineText = 'Cancel',
-    confirmText = 'Ok'): Promise<ConfirmResult> {
+    confirmText = 'Ok'): Observable<void> {
 
-    return new Promise((resolve: (value: ConfirmResult) => void, reject: (reason?: any) => void) => {
-      this.showDialog({
-        message: question,
-        actions: [
-          { handler: () => resolve(ConfirmResult.Confirmed), text: confirmText },
-          { handler: () => resolve(ConfirmResult.Declined), text: declineText, isClosingAction: true }
-        ],
-        isModal: true
-      });
+    let result: Subject<any> = new Subject();
+
+    this.showDialog({
+      message: question,
+      actions: [
+        {
+          handler: () => {
+            result.next(null);
+            result.complete();
+          }, text: confirmText
+        },
+        {
+          handler: () => {
+            result.error(null);
+
+          }, text: declineText, isClosingAction: true
+        }
+      ],
+      isModal: true
     });
+
+    return result;
   }
 
   /**
@@ -132,7 +140,7 @@ export class MdlDialogService {
   public showDialog(config: IMdlSimpleDialogConfiguration): Promise<MdlDialogReference> {
 
     if (config.actions.length === 0 ) {
-      throw new Error('a dialog mus have at least one aciton');
+      throw new Error('a dialog mus have at least one action');
     }
 
     let internalDialogRef = new InternalMdlDialogReference();

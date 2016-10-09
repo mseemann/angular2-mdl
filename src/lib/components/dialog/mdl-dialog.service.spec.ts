@@ -6,7 +6,10 @@ import {
 import { Component, ViewContainerRef, NgModule } from '@angular/core';
 import { DOCUMENT, By } from '@angular/platform-browser';
 import { MdlDialogModule } from './index';
-import { MdlDialogService, ConfirmResult, MdlDialogReference } from './mdl-dialog.service';
+import {
+  MdlDialogService,
+  MdlDialogReference
+} from './mdl-dialog.service';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
 import { IMdlDialogAction } from './mdl-dialog-configuration';
@@ -71,9 +74,8 @@ describe('Service: MdlDialog', () => {
 
 
     let result = mdlDialogService.confirm('?', 'no', 'yes');
-    result.then( (r: ConfirmResult) => {
+    result.subscribe( () => {
       // test passed because the action was called
-      expect(r).toBe(ConfirmResult.Confirmed, 'confirm dialog should be closed with confirmed state');
       done();
     } );
 
@@ -91,9 +93,8 @@ describe('Service: MdlDialog', () => {
     fixture.detectChanges();
 
     let result = mdlDialogService.confirm('?', 'no', 'yes');
-    result.then( (r: ConfirmResult) => {
-      // test passed because the action was called
-      expect(r).toBe(ConfirmResult.Declined, 'confirm dialog should be closed with declined');
+    result.subscribe( () => {}, () => {
+      // test passed because the action was called;
       done();
     } );
 

@@ -29,6 +29,10 @@
       - use MdlDialogOutletSevrice and setDefaultViewContainerRef
       - use the <dialog-outlet></dialog-outlet> component. This component can be anywhere in your html site. the best place is the last child of the body element
       - the possibility to ste a viewcontainerref for each dialog or snackbar has been removed
+      - alert and confirm return an observable and no longer a promise (ConfirmResult for confirm dilalog removed)
+      
+      
+      
 <a name="1.8.2"></a>
 # 1.8.2 (2016-10-06)
 

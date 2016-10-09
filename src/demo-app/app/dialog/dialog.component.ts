@@ -1,6 +1,4 @@
-import {
-  Component
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
 import {
@@ -11,8 +9,8 @@ import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
 import {
   MdlDialogService,
-  ConfirmResult,
-  MdlDialogReference } from '../../../lib/components/dialog/index';
+  MdlDialogReference
+} from '../../../lib/components/dialog/index';
 import { MdlSnackbarService } from '../../../lib/components/snackbar/mdl-snackbar.service';
 import { LoginDialogComponent } from './login-dialog.component';
 
@@ -44,7 +42,13 @@ export class DialogDemo extends AbstractDemoComponent {
 
   public showConfirmMessage() {
     let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
-    result.then( choosedOption => console.log( choosedOption === ConfirmResult.Confirmed ) );
+    result.subscribe( () => {
+        console.log('confirmed');
+      },
+      (err: any) => {
+        console.log('declined');
+      }
+    );
   }
 
   public showDialogFullWidthAction() {
