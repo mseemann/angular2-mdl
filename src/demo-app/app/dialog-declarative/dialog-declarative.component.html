@@ -4,11 +4,8 @@
 <h5>Alert</h5>
 
 <button
-  mdl-button
-  mdl-button-type="raised"
-  mdl-colored="accent"
-  mdl-ripple
-  (click)="alert.show()">Show Alert</button>
+  mdl-button mdl-button-type="raised" mdl-colored="accent"
+  mdl-ripple (click)="alert.show()">Show Alert</button>
 
 <mdl-alert
   #alert="mdlAlert"
@@ -19,11 +16,8 @@
 <pre prism>
   <![CDATA[
 <button
-  mdl-button
-  mdl-button-type="raised"
-  mdl-colored="accent"
-  mdl-ripple
-  (click)="alert.show()">Show Alert</button>
+  mdl-button mdl-button-type="raised" mdl-colored="accent"
+  mdl-ripple (click)="alert.show()">Show Alert</button>
 
 <mdl-alert
   #alert="mdlAlert"
@@ -33,16 +27,57 @@
 ]]>
 </pre>
 
+<h5>Attributes of the mdl-alert component</h5>
+
+<table class="docu" mdl-shadow="2">
+  <thead>
+  <tr>
+    <th>Attribute</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+    <td>message</td>
+    <td>
+      The message the alert should display
+    </td>
+  </tr>
+
+  <tr>
+    <td>okText</td>
+    <td>
+      The text of the ok button. Defaults to 'Ok'.
+    </td>
+  </tr>
+
+  <tr>
+    <td>title</td>
+    <td>
+      The title of the alert - can be omitted.
+    </td>
+  </tr>
+
+  <tr>
+    <td>confirmed</td>
+    <td>
+      Event will be triggered if the dialog is closed.
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
 <h5>A custom Dialog - template</h5>
+
+You can only show one intance of an embedded dialog.
 
 <p>Username: {{ username }}</p>
 
 <button
-    mdl-button
-    mdl-button-type="raised"
-    mdl-colored="primary"
-    mdl-ripple
-    (click)="editUserDialog.show()">Edit User Dialog</button>
+    mdl-button mdl-button-type="raised" mdl-colored="primary"
+    mdl-ripple (click)="editUserDialog.show()">Edit User Dialog</button>
 
 <mdl-dialog #editUserDialog [mdl-modal]="false" (show)="onDialogShow($event)" (hide)="onDialogHide()">
   <h3 class="mdl-dialog__title">Edit User</h3>
@@ -57,12 +92,8 @@
 
 <pre prism>
 <![CDATA[
-<button
-        mdl-button
-        mdl-button-type="raised"
-        mdl-colored="primary"
-        mdl-ripple
-        (click)="editUserDialog.show()">Edit User Dialog</button>
+<button mdl-button mdl-button-type="raised" mdl-colored="primary"
+        mdl-ripple (click)="editUserDialog.show()">Edit User Dialog</button>
 
 <mdl-dialog #editUserDialog [mdl-modal]="true" (show)="onDialogShow(dialogRef)" (hide)="onDialogHide()">
   <h3 class="mdl-dialog__title">Edit User</h3>
@@ -76,3 +107,38 @@
 </mdl-dialog>
 ]]>
 </pre>
+
+<h5>Attributes of the mdl-dialog component</h5>
+
+<table class="docu" mdl-shadow="2">
+  <thead>
+  <tr>
+    <th>Attribute</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+    <td>mdl-modal</td>
+    <td>
+      Set the dialog to modal or not. Default value is modal.
+    </td>
+  </tr>
+
+  <tr>
+    <td>hide</td>
+    <td>
+      Event will be triggered is the dialog is hidden.
+    </td>
+  </tr>
+
+  <tr>
+    <td>hide</td>
+    <td>
+      Event will be triggered if the dialog is visible.
+    </td>
+  </tr>
+
+  </tbody>
+</table>

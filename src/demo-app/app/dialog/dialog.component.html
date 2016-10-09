@@ -1,20 +1,34 @@
-<h4>The Dialog</h4>
+<h4>The Dialog (imperative)</h4>
 
+These dialogs are created by the <i>MdlDialogService</i>.
 
 <h5>Prerequisites</h5>
 <p>
-  Every Dialog needs a place where it would be attached to. This place is determined by a <i>ViewContainerRef</i>.
-  The most suitable <i>ViewContainerRef</i> is the <i>ViewContainerRef</i> of your root app
-  (e.g. your bootstrap or entry component). Because the dialogs
-  are open with a service you may inject this service in your root app and call setDefaultViewContainerRef to set
-  the <i>ViewContainerRef</i> for all dialogs of your application
+  Every Dialog needs a place to be attached to the dom. The easiest way to achieve this is a dialog-outlet html
+  element within your body element:
+</p>
+<pre prism ngNonBindable>
+  <![CDATA[
+<html>
+  <head>...</head>
+  <body>
+    <app-root>...</app-root>
+    <dialog-outlet></dialog-outlet>
+  </body>
+</html>
+]]>
+</pre>
+<p>It is no problem, that this component is outside of your root app-component!</p>
+<p>
+  Technically: This place is determined by a <i>ViewContainerRef</i>. You may also set this <i>ViewContainerRef</i> in your
+  code. Just inject the <i>MdlDialogOutletService</i> and call the <i>setDefaultViewContainerRef</i> method.
 </p>
 <p>
   If you want to create a custom dialog - e.g. you have full control regarding the content of the dialog - you need to
   implement a component. You need to add this component to the entryComponents of your app module!
-  Also you should implement an event lister that closes the dialog if the users hits the esc key.
+  Also you should implement an event lister that closes the dialog if the users hits the esc key. The the login dialog
+  example at the end of this page.
 </p>
-
 
 
 <h5>Alert</h5>
@@ -107,7 +121,7 @@
         mdl-ripple
         (click)="showDialog()">Show Login Dialog</button>
 
-<h4>The component</h4>
+<h4>The login dialog component</h4>
 <pre prism>
   <![CDATA[
 <scriptx>
@@ -137,7 +151,7 @@
 ]]>
 </pre>
 
-<h4>The dialog template</h4>
+<h4>The login dialog template</h4>
 <pre prism>
   <![CDATA[
 <div>
