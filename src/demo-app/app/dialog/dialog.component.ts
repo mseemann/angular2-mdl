@@ -83,7 +83,7 @@ export class DialogDemo extends AbstractDemoComponent {
       fullWidthAction: true,
       isModal: false
     });
-    pDialog.then( (dialogReference) => console.log('dialog visible', dialogReference) );
+    pDialog.subscribe( (dialogReference) => console.log('dialog visible', dialogReference) );
   }
 
   public showDialog() {
@@ -93,7 +93,7 @@ export class DialogDemo extends AbstractDemoComponent {
       providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
       isModal: true
     });
-    pDialog.then( (dialogReference: MdlDialogReference) => {
+    pDialog.subscribe( (dialogReference: MdlDialogReference) => {
       console.log('dialog visible', dialogReference);
     });
   }

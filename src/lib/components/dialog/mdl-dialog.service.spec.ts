@@ -119,7 +119,7 @@ describe('Service: MdlDialog', () => {
       providers: [{ provide: TEST, useValue: 'test'}]
     });
 
-    p.then( ( dialogRef ) => {
+    p.subscribe( ( dialogRef ) => {
 
       dialogRef.onHide().subscribe( ( ) => {
         done();
@@ -180,7 +180,7 @@ describe('Service: MdlDialog', () => {
       ]
     });
 
-    pDialogRef.then( (dialogRef: MdlDialogReference) => {
+    pDialogRef.subscribe( (dialogRef: MdlDialogReference) => {
 
       spyOn(dialogRef, 'hide');
       let dialog = fixture.debugElement.query(By.directive(MdlSimpleDialogComponent)).componentInstance;

@@ -8,7 +8,8 @@ import {
   OpaqueToken,
   Provider,
   ApplicationRef,
-  ViewContainerRef, TemplateRef
+  ViewContainerRef,
+  TemplateRef,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Subject } from 'rxjs/Subject';
@@ -137,7 +138,7 @@ export class MdlDialogService {
    * @param config The simple dialog configuration.
    * @returns A promise that returns the MdlDialogReference.
    */
-  public showDialog(config: IMdlSimpleDialogConfiguration): Promise<MdlDialogReference> {
+  public showDialog(config: IMdlSimpleDialogConfiguration): Observable<MdlDialogReference> {
 
     if (config.actions.length === 0 ) {
       throw new Error('a dialog mus have at least one action');
@@ -158,15 +159,15 @@ export class MdlDialogService {
       MdlSimpleDialogComponent);
 
 
-    return Promise.resolve(internalDialogRef.dialogRef);
+    return Observable.of(internalDialogRef.dialogRef);
   }
 
   /**
    * Shows a dialog that is specified by the provided configuration.
    * @param config The custom dialog configuration.
-   * @returns A promise that returns the MdlDialogReference.
+   * @returns Am Observable that returns the MdlDialogReference.
    */
-  public showCustomDialog(config: IMdlCustomDialogConfiguration): Promise<MdlDialogReference> {
+  public showCustomDialog(config: IMdlCustomDialogConfiguration): Observable<MdlDialogReference> {
 
     let internalDialogRef = new InternalMdlDialogReference();
 
@@ -182,7 +183,7 @@ export class MdlDialogService {
 
     this.createComponentInstance(hostComponentRef.instance.dialogTarget, providers, config.component);
 
-    return Promise.resolve(internalDialogRef.dialogRef);
+    return Observable.of(internalDialogRef.dialogRef);
   }
 
   public showDialogTemplate(template: TemplateRef<any>, config: IMdlDialogConfiguration): Promise<MdlDialogReference> {

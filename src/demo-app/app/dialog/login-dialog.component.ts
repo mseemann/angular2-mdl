@@ -16,7 +16,7 @@ export const TEST_VALUE = new OpaqueToken('test value');
 
 @Component({
   selector: 'login-dialog',
-  templateUrl: 'login-dialog.html',
+  templateUrl: 'login-dialog.component.html',
   styles: [
     `
      .status-bar {

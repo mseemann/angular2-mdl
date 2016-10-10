@@ -49,7 +49,7 @@ export interface IMdlSimpleDialogConfiguration extends IMdlDialogConfiguration {
    */
   title?: string;
   /**
-   * the message that should be displayed
+   * the message that should be displayed (can be html)
    */
   message: string;
   /**

@@ -9,7 +9,6 @@ import { MdlModule } from '../../../lib/components/index';
 @NgModule({
   imports: [MdlModule, CommonModule, ReactiveFormsModule],
   declarations: [LoginDialogComponent],
-  exports: [LoginDialogComponent],
   entryComponents: [LoginDialogComponent],
   providers: [LoginService]
 })
