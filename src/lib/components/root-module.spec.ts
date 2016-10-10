@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { MdlRootModule } from './index';
+import { MdlModule } from './index';
 
-describe('NgModule: MdlRootModule', () => {
+describe('NgModule: MdlModule', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ MdlRootModule ],
+      imports: [ MdlModule ],
       declarations: [ MdlTestComponent ],
     });
   });
