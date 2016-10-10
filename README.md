@@ -15,7 +15,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 [![DevDependencies](https://david-dm.org/mseemann/angular2-mdl/dev-status.svg)](https://david-dm.org/mseemann/angular2-mdl#info=devDependencies&view=table)
 [![Code Climate](https://codeclimate.com/github/mseemann/angular2-mdl/badges/gpa.svg)](https://codeclimate.com/github/mseemann/angular2-mdl)
 
-[![Build Status](https://saucelabs.com/browser-matrix/angular2-mdl.svg)](https://saucelabs.com/u/angular2-mdl)
+
 
 Do not take a red flag to serious. Most of the time this is a sauce lab issue and not a problem with this package. :-(
 
