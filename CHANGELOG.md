@@ -1,11 +1,3 @@
-<a name="2.0.1"></a>
-# 2.0.1 (next)
-
-### Bug Fixes
-### Features
-
-
-
 <a name="2.0.0"></a>
 # 2.0.0 (next)
 
