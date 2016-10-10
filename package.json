@@ -8,7 +8,7 @@
   "scripts": {
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config config/webpack/webpack.prod.js --progress --profile",
     "build:clean": "rimraf dist",
-    "build:dist": "npm run build:clean && npm run build:umd && npm run build:esm && npm run build:scss && cp src/lib/package.json dist",
+    "build:dist": "npm run build:clean && npm run build:umd && npm run build:esm && npm run build:scss && cp src/lib/package.json dist && cp README.md dist",
     "build:esm": "ngc -p src/lib/tsconfig-ngc.json",
     "build:scss": "ncp src/lib/scss dist/scss",
     "build:umd": "webpack --config config/webpack/webpack.config.umd.js --progress",
