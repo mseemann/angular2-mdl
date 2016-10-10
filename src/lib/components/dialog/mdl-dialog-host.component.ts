@@ -31,8 +31,9 @@ import { selector } from 'rxjs/operator/publish';
     trigger('flyInOut', [
       transition('void => animate', [
         style({
-          transform: 'translate(0, -70%)',
-          opacity: 0.9
+          // the animation behaves different with native animate and polyfill :(((
+          //transform: 'translate(0, -70%)',
+          opacity: 0.4
         }),
         animate(200)
       ]),

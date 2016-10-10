@@ -9,3 +9,5 @@ if (process.env.ENV === 'production') {
   Error['stackTraceLimit'] = Infinity;
   require('zone.js/dist/long-stack-trace-zone');
 }
+
+import 'web-animations-js';
