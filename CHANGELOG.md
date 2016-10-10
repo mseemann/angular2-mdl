@@ -1,5 +1,5 @@
 <a name="2.0.0"></a>
-# 2.0.0 (next)
+# 2.0.0 (2016-10-10)
 
 ### Bug Fixes
 ### Features
