@@ -136,7 +136,7 @@ export class MdlDialogService {
   /**
    * Shows a dialog that is specified by the provided configuration.
    * @param config The simple dialog configuration.
-   * @returns A promise that returns the MdlDialogReference.
+   * @returns An Observable that returns the MdlDialogReference.
    */
   public showDialog(config: IMdlSimpleDialogConfiguration): Observable<MdlDialogReference> {
 
@@ -186,7 +186,7 @@ export class MdlDialogService {
     return Observable.of(internalDialogRef.dialogRef);
   }
 
-  public showDialogTemplate(template: TemplateRef<any>, config: IMdlDialogConfiguration): Promise<MdlDialogReference> {
+  public showDialogTemplate(template: TemplateRef<any>, config: IMdlDialogConfiguration): Observable<MdlDialogReference> {
 
     let internalDialogRef = new InternalMdlDialogReference();
 
@@ -197,7 +197,7 @@ export class MdlDialogService {
 
     hostComponentRef.instance.dialogTarget.createEmbeddedView(template);
 
-    return Promise.resolve(internalDialogRef.dialogRef);
+    return Observable.of(internalDialogRef.dialogRef);
   }
 
 

@@ -43,7 +43,7 @@ describe('Service: MdlSnackbar', () => {
     });
 
     fixture.detectChanges();
-    p.then( (mdlSnackbarComponent) => {
+    p.subscribe( (mdlSnackbarComponent) => {
 
       expect(mdlSnackbarComponent.isActive()).toBe(true);
       mdlSnackbarComponent.onClick();
@@ -62,7 +62,7 @@ describe('Service: MdlSnackbar', () => {
 
       fixture.detectChanges();
 
-      p.then( (mdlSnackbarComponent) => {
+      p.subscribe( (mdlSnackbarComponent) => {
 
         expect(mdlSnackbarComponent.isActive()).toBe(true);
 

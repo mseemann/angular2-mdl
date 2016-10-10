@@ -11,6 +11,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
+import { Observable, Subject } from 'rxjs';
 
 
 const ANIMATION_TIME = 250;
@@ -39,29 +40,35 @@ export class MdlSnackbarComponent {
     return this.showIt;
   }
 
-  public show(): Promise<void> {
-
-    return new Promise<void>((resolve, reject) => {
+  public show(): Observable<void> {
+    let result: Subject<any> = new Subject();
       // wait unit the dom is in place - then showIt will change the css class
       setTimeout(() => {
         this.showIt = true;
         // fire after the view animation is done
         setTimeout(() => {
-          resolve();
+          result.next(null);
+          result.complete();
         }, ANIMATION_TIME);
       }, 10);
-    });
 
+
+    return result.asObservable();
   }
 
-  public hide(): Promise<void> {
+  public hide(): Observable<void> {
     this.showIt = false;
-    return new Promise<void>(function(resolve, reject) {
-      // fire after the view animation is done
-      setTimeout(() => {
-        resolve();
-      }, ANIMATION_TIME);
-    });
+
+    let result: Subject<any> = new Subject();
+
+    // fire after the view animation is done
+    setTimeout(() => {
+      result.next(null);
+      result.complete();
+    }, ANIMATION_TIME);
+
+
+    return result.asObservable();
   }
 }
 
@@ -88,14 +95,14 @@ export class MdlSnackbarService {
   }
 
 
-  public showToast(message: string, timeout?: number, vcRef?: ViewContainerRef): Promise<MdlSnackbarComponent> {
+  public showToast(message: string, timeout?: number, vcRef?: ViewContainerRef): Observable<MdlSnackbarComponent> {
     return this.showSnackbar({
       message: message,
       timeout: timeout
     });
   }
 
-  public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Promise<MdlSnackbarComponent> {
+  public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Observable<MdlSnackbarComponent> {
 
     let optTimeout        = snackbarMessage.timeout || 2750;
     let viewContainerRef  = this.dialogOutletService.viewContainerRef;
@@ -118,22 +125,25 @@ export class MdlSnackbarService {
     if (snackbarMessage.action) {
       mdlSnackbarComponent.actionText = snackbarMessage.action.text;
       mdlSnackbarComponent.onAction = () => {
-        mdlSnackbarComponent.hide().then(() => {
+        mdlSnackbarComponent.hide().subscribe(() => {
           cRef.destroy();
           snackbarMessage.action.handler();
         });
       };
     } else {
       setTimeout( () => {
-        mdlSnackbarComponent.hide().then(() => {cRef.destroy(); });
+        mdlSnackbarComponent.hide().subscribe(() => {cRef.destroy(); });
       }, optTimeout);
     }
 
+    let result: Subject<MdlSnackbarComponent> = new Subject<MdlSnackbarComponent>();
 
-    return mdlSnackbarComponent.show().then( () => {
-      return mdlSnackbarComponent;
+    mdlSnackbarComponent.show().subscribe( () => {
+      result.next(mdlSnackbarComponent);
+      result.complete();
     });
 
+    return result.asObservable();
   }
 }
 

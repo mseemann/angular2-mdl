@@ -29,7 +29,7 @@ describe('MdlDialog (embedded/declarative)', () => {
     spyOn(fixture.componentInstance, 'onDialogShow').and.callThrough();
     spyOn(fixture.componentInstance, 'onDialogHide');
 
-    dialog.show().then( () => {
+    dialog.show().subscribe( () => {
 
       dialog.close();
 

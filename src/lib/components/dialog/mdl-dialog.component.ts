@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { MdlDialogService, MdlDialogReference } from './mdl-dialog.service';
 import { BooleanProperty } from './../common/boolean-property';
+import { Observable } from 'rxjs';
 
 
 
@@ -33,7 +34,7 @@ export class MdlDialogComponent {
   constructor(private dialogService: MdlDialogService) {}
 
 
-  public show(): Promise<MdlDialogReference> {
+  public show(): Observable<MdlDialogReference> {
 
     if(this.isShown){
       throw new Error('Only one instance of an embedded mdl-dialog can exist!');
@@ -41,7 +42,7 @@ export class MdlDialogComponent {
     this.isShown = true;
 
     let p = this.dialogService.showDialogTemplate(this.template, {isModal: this.modal});
-    p.then( (dialogRef: MdlDialogReference) => {
+    p.subscribe( (dialogRef: MdlDialogReference) => {
 
       this.dialogRef = dialogRef;
       this.showEmitter.emit(dialogRef);

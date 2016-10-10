@@ -11,6 +11,7 @@
 * [112](https://github.com/mseemann/angular2-mdl/issues/112) (ViewEncapsulation.None for all components)
 * [111](https://github.com/mseemann/angular2-mdl/issues/111) (forRoot module)
 * [131](https://github.com/mseemann/angular2-mdl/issues/131) (Dialog design)
+* [139](https://github.com/mseemann/angular2-mdl/issues/139) (change return types from Promise to Observable)
 
 ### Breaking Changes
 * The distribution structure has change:
@@ -22,9 +23,9 @@
       - use `MdlDialogOutletService` and `setDefaultViewContainerRef`
       - use the `<dialog-outlet></dialog-outlet>` component. This component can be anywhere in your html site. The best place is the last child of the `body` element. (see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService for more information)
     - The possibility to set a `ViewContainerRef` for each dialog or snackbar has been removed.
-    - `alert` and `confirm` return an `Observable` and no longer a `Promise` (the enum `ConfirmResult` has been removed)
+    - `alert` and `confirm` , `showDialog*` return an `Observable` and no longer a `Promise` (the enum `ConfirmResult` has been removed)
 * This version now supports AOT - but you should be aware that AOT seems not to be ready for production. AOT behaves in many cases different then JIT. (see https://github.com/angular/angular/issues/11606)
-      
+* The MdlSnachbarService returns now an Observable and no longer a Promise. Just change from `then` to `subscribe`.
       
 <a name="1.8.2"></a>
 # 1.8.2 (2016-10-06)
