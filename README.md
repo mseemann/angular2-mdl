@@ -30,7 +30,7 @@ Do not take a red flag to serious. Most of the time this is a sauce lab issue an
 - Buttons
 - Cards
 - Chips
-- Dialogs (still experimental - e.g. the API is not stable)
+- Dialogs (imperative and declarative)
 - Icons
 - Loading
 - Shadow
@@ -55,7 +55,7 @@ npm install angular2-mdl --save
 
 ### How to use the mdl components with webpack
 
-Just use it. Add the MdlRootModule to your NgModule imports and you are done!
+Just use it. Add the MdlModule to your NgModule imports and you are done!
 
 ### How to use the mdl components with system js
 
@@ -68,7 +68,7 @@ const map: any = {
 
 /** User packages configuration. */
 const packages: any = {
-  'angular2-mdl': { main: 'dist/components/index.js'}
+  'angular2-mdl': { main: 'components/index.js'}
 };
 ```
 
@@ -86,7 +86,7 @@ This package includes the scss files from material-design-lite.
 With these files you are able to change the colors and other variables in your own scss files:
 
 ```scss
-@import "color-definitions";
+@import "~angular2-mdl/scss/color-definitions";
 
 $color-primary: $palette-blue-500;
 $color-primary-dark: $palette-blue-700;
@@ -94,11 +94,11 @@ $color-accent: $palette-amber-A200;
 $color-primary-contrast: $color-dark-contrast;
 $color-accent-contrast: $color-dark-contrast;
 
-@import 'material-design-lite';
+@import '~angular2-mdl/scss/material-design-lite';
 ```
 
 To make this working you need to find out the way how you could tell your build system where the scss is located.
-For example with webpack this can be done in this way:
+For example with webpack you can use the special `~angular2-mdl` syntax or you can configure the includePaths:
 
 ```JavaScript
 sassLoader: {

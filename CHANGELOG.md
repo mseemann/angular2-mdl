@@ -20,7 +20,7 @@
 * MdlDialogService and MdlSnackbarService have changed:
     - There is no longer a `setDefaultViewContainerRef` method. There are two ways to specify a `ViewContainerRef` where dynamic Components will be attached:
       - use `MdlDialogOutletService` and `setDefaultViewContainerRef`
-      - use the `<dialog-outlet></dialog-outlet>` component. This component can be anywhere in your html site. the best place is the last child of the `body` element. (see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService for more information)
+      - use the `<dialog-outlet></dialog-outlet>` component. This component can be anywhere in your html site. The best place is the last child of the `body` element. (see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService for more information)
     - The possibility to set a `ViewContainerRef` for each dialog or snackbar has been removed.
     - `alert` and `confirm` return an `Observable` and no longer a `Promise` (the enum `ConfirmResult` has been removed)
 * This version now supports AOT - but you should be aware that AOT seems not to be ready for production. AOT behaves in many cases different then JIT. (see https://github.com/angular/angular/issues/11606)
