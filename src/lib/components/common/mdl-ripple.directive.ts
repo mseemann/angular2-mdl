@@ -12,7 +12,7 @@ import {
 import { MaterialRipple } from './ripple.vendor';
 
 // known bugs: https://github.com/google/material-design-lite/issues/4215
-export class MdlRippleDirective implements OnChanges {
+export class MdlRippleDirective implements OnChanges{
 
   private RIPPLE = 'mdl-ripple';
 
@@ -29,7 +29,8 @@ export class MdlRippleDirective implements OnChanges {
     this.el = elementRef.nativeElement;
   }
 
-  public ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+
+  public ngOnChanges() {
 
       // remove any existing ripple container
       if (this.rippleContainer) {
@@ -69,6 +70,8 @@ export class MdlButtonRippleDirective extends MdlRippleDirective {
     super(elementRef, renderer, ['mdl-button__ripple-container']);
   }
 
+  // AOT is not able to call lifecycle hooks if a base class :(
+  public ngOnChanges() {super.ngOnChanges();}
 }
 
 @Directive({
@@ -82,6 +85,8 @@ export class MdlCheckboxRippleDirective extends MdlRippleDirective {
     super(elementRef, renderer, ['mdl-checkbox__ripple-container', 'mdl-ripple--center']);
   }
 
+  // AOT is not able to call lifecycle hooks if a base class :(
+  public ngOnChanges() {super.ngOnChanges();}
 }
 
 @Directive({
@@ -95,6 +100,8 @@ export class MdlRadioRippleDirective extends MdlRippleDirective {
     super(elementRef, renderer, ['mdl-radio__ripple-container', 'mdl-ripple--center']);
   }
 
+  // AOT is not able to call lifecycle hooks if a base class :(
+  public ngOnChanges() {super.ngOnChanges();}
 }
 
 @Directive({
@@ -107,6 +114,9 @@ export class MdlIconToggleRippleDirective extends MdlRippleDirective {
   constructor(elementRef: ElementRef, renderer: Renderer) {
     super(elementRef, renderer, ['mdl-icon-toggle__ripple-container', 'mdl-ripple--center']);
   }
+
+  // AOT is not able to call lifecycle hooks if a base class :(
+  public ngOnChanges() {super.ngOnChanges();}
 
 }
 
@@ -121,6 +131,8 @@ export class MdlSwitchRippleDirective extends MdlRippleDirective {
     super(elementRef, renderer, ['mdl-switch__ripple-container', 'mdl-ripple--center']);
   }
 
+  // AOT is not able to call lifecycle hooks if a base class :(
+  public ngOnChanges() {super.ngOnChanges();}
 }
 
 @Directive({
@@ -134,6 +146,8 @@ export class MdlMenuItemRippleDirective extends MdlRippleDirective {
     super(elementRef, renderer, ['mdl-menu__item--ripple-container']);
   }
 
+  // AOT is not able to call lifecycle hooks if a base class :(
+  public ngOnChanges() {super.ngOnChanges();}
 }
 
 @Directive({
@@ -147,6 +161,8 @@ export class MdlAnchorRippleDirective extends MdlRippleDirective {
     super(elementRef, renderer, ['mdl-tabs__ripple-container', 'mdl-layout__tab-ripple-container']);
   }
 
+  // AOT is not able to call lifecycle hooks if a base class :(
+  public ngOnChanges() {super.ngOnChanges();}
 }
 
 @Directive({
@@ -166,6 +182,8 @@ export class MdlListItemRippleDirective extends MdlRippleDirective implements On
     this.renderer.setElementStyle(this.el, 'position', 'relative');
   }
 
+  // AOT is not able to call lifecycle hooks if a base class :(
+  public ngOnChanges() {super.ngOnChanges();}
 }
 
 const MDL_COMMON_DIRECTIVES = [

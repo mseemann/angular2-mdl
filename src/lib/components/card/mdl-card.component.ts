@@ -47,6 +47,8 @@ export class MdlCardTitleComponent extends MdlCardChildStructure {
     super(mdlCardComponent, 'mdl-card-title');
   }
 
+  public ngOnInit() { super.ngOnInit(); }
+
 }
 
 @Component({
@@ -63,6 +65,7 @@ export class MdlCardSupportingTextComponent extends MdlCardChildStructure {
     super(mdlCardComponent, 'mdl-card-supporting-text');
   }
 
+  public ngOnInit() { super.ngOnInit(); }
 }
 
 @Component({
@@ -79,6 +82,7 @@ export class MdlCardMediaComponent extends MdlCardChildStructure {
     super(mdlCardComponent, 'mdl-card-media');
   }
 
+  public ngOnInit() { super.ngOnInit(); }
 }
 
 @Component({
@@ -95,6 +99,7 @@ export class MdlCardActionsComponent extends MdlCardChildStructure {
     super(mdlCardComponent, 'mdl-card-actions');
   }
 
+  public ngOnInit() { super.ngOnInit(); }
 }
 
 @Component({
@@ -111,6 +116,7 @@ export class MdlCardMenuComponent extends MdlCardChildStructure {
     super(mdlCardComponent, 'mdl-card-menu');
   }
 
+  public ngOnInit() { super.ngOnInit(); }
 }
 
 @Directive({

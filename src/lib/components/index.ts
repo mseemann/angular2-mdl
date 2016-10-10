@@ -50,6 +50,7 @@ export * from './layout/index';
 export * from './tabs/index';
 export * from './textfield/mdl-textfield.component';
 
+// AOT :( https://github.com/angular/angular/issues/11606
 export { MdlBackdropOverlayComponent as Private1 } from './dialog-outlet/mdl-backdrop-overlay.component';
 export { MdlDialogHostComponent as Private2 } from './dialog/mdl-dialog-host.component';
 export { MdlSimpleDialogComponent as Private3 } from './dialog/mdl-simple-dialog.component';
@@ -112,14 +113,14 @@ const MDL_MODULES = [
   exports: MDL_MODULES,
   providers: []
 })
-export class MdlRootModule {}
+export class MdlModule {}
 
 @NgModule({
   imports: MDL_MODULES,
   exports: MDL_MODULES
 })
-export class MdlModule {
+export class MdlNonRootModule {
   public static forRoot(): ModuleWithProviders {
-    return {ngModule: MdlRootModule};
+    return {ngModule: MdlModule};
   }
 }

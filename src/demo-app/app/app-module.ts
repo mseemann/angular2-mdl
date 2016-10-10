@@ -5,7 +5,7 @@ import {
 import { BrowserModule,
   Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdlRootModule } from './../../lib/components/index';
+import { MdlModule } from './../../lib/components/index';
 import { RouterModule } from '@angular/router';
 import { Angular2MdlAppComponent, Home, appRoutes } from './app.component';
 import { ButtonDemo } from './button/button.component';
@@ -44,7 +44,7 @@ import { LoginModule } from './dialog/login.module';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    MdlRootModule,
+    MdlModule,
     RouterModule.forRoot(appRoutes),
     LoginModule
   ],

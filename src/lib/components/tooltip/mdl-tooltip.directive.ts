@@ -84,6 +84,8 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
     renderer: Renderer) {
     super(vcRef, false, componentFactoryResolver, renderer);
   }
+
+  public ngOnInit() { super.ngOnInit(); }
 }
 
 @Directive({
@@ -101,4 +103,6 @@ export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
     renderer: Renderer) {
     super(vcRef, true, componentFactoryResolver, renderer);
   }
+
+  public ngOnInit() { super.ngOnInit(); }
 }
