@@ -12,8 +12,8 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
