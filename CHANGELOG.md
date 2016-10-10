@@ -10,6 +10,7 @@
 * [113](https://github.com/mseemann/angular2-mdl/pull/113) (Disabled tabs)
 * [112](https://github.com/mseemann/angular2-mdl/issues/112) (ViewEncapsulation.None for all components)
 * [111](https://github.com/mseemann/angular2-mdl/issues/111) (forRoot module)
+* [131](https://github.com/mseemann/angular2-mdl/issues/131) (Dialog design)
 
 ### Breaking Changes
 * The distribution structure has change:
