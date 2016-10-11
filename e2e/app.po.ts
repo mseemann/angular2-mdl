@@ -1,6 +1,6 @@
 export class Angular2MdlPage {
   public navigateTo() {
-    return browser.get('/angular2-mdl');
+    return browser.get('/');
   }
 
   public getHeadlineElement() {
