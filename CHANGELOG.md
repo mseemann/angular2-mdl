@@ -1,3 +1,9 @@
+<a name="2.0.1"></a>
+# 2.0.0 (2016-10-11)
+
+### Bug Fixes
+* [140](https://github.com/mseemann/angular2-mdl/issues/140) (dialog animation behaves different if native or polyfill is used)
+
 <a name="2.0.0"></a>
 # 2.0.0 (2016-10-10)
 
