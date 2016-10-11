@@ -93,7 +93,7 @@ export class DialogDemo extends AbstractDemoComponent {
       providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
       isModal: true
     });
-    pDialog.subscrib( (dialogReference: MdlDialogReference) => {
+    pDialog.subscribe( (dialogReference: MdlDialogReference) => {
       console.log('dialog visible', dialogReference);
     });
   }
