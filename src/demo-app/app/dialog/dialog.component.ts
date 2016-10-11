@@ -46,6 +46,7 @@ export class DialogDemo extends AbstractDemoComponent {
 
   public showConfirmMessage() {
     let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
+    // if you need booth answers
     result.subscribe( () => {
         console.log('confirmed');
       },
@@ -53,6 +54,10 @@ export class DialogDemo extends AbstractDemoComponent {
         console.log('declined');
       }
     );
+    // if you only need the conform answer
+    result.onErrorResumeNext().subscribe( () => {
+      console.log('confirmed 2');
+    })
   }
 
   public showDialogFullWidthAction() {
