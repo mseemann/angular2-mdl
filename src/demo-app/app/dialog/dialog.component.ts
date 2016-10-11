@@ -48,6 +48,9 @@ export class DialogDemo extends AbstractDemoComponent {
     let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
     result.subscribe( () => {
         console.log('confirmed');
+      },
+      (err: any) => {
+        console.log('declined');
       }
     );
   }
@@ -90,7 +93,7 @@ export class DialogDemo extends AbstractDemoComponent {
       providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
       isModal: true
     });
-    pDialog.subscribe( (dialogReference: MdlDialogReference) => {
+    pDialog.subscrib( (dialogReference: MdlDialogReference) => {
       console.log('dialog visible', dialogReference);
     });
   }
