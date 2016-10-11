@@ -130,7 +130,7 @@ export class MdlDialogService {
       isModal: true
     });
 
-    return result;
+    return result.asObservable();
   }
 
   /**
