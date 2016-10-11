@@ -1,7 +1,7 @@
 export class TogglePage {
 
   public navigateTo() {
-    return browser.get('/');
+    return browser.get('/angular2-mdl');
   }
 
   public getFirstCheckboxElement() {
