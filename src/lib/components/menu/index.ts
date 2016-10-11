@@ -7,12 +7,14 @@ import {
 } from './mdl-menu-item.component';
 import { MdlMenuItemFullBleedDeviderComponent } from './mdl-menu-item.directive';
 import { CommonModule } from '@angular/common';
+import { MdlToggleMenuDirective } from './mdl-toggle-menu.directive';
 
 
 const MDL_MENU_DIRECTIVES = [
   MdlMenuComponent,
   MdlMenuItemComponent,
-  MdlMenuItemFullBleedDeviderComponent
+  MdlMenuItemFullBleedDeviderComponent,
+  MdlToggleMenuDirective
 ];
 
 export * from './mdl-menu.component';

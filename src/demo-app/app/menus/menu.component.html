@@ -35,7 +35,7 @@
       <div class="container" mdl-shadow="2">
          <div class="background"></div>
          <div class="bar mdl-color--primary">
-            <button mdl-button #btn3="mdlButton" (click)="m3.toggle($event, btn3)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+            <button mdl-button #btn3="mdlButton" [mdl-toggle-menu]="m3" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
             <mdl-menu #m3="mdlMenu" mdl-menu-position="top-left">
                <mdl-menu-item mdl-ripple>Some Action</mdl-menu-item>
                <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
@@ -50,7 +50,7 @@
          <div class="background"></div>
          <div class="bar mdl-color--primary">
             <div class="top-right">
-               <button mdl-button #btn4="mdlButton" (click)="m4.toggle($event, btn4)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+               <button mdl-button #btn4="mdlButton" [mdl-toggle-menu]="m4" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
                <mdl-menu #m4="mdlMenu" mdl-menu-position="top-right">
                   <mdl-menu-item mdl-ripple>Some Action</mdl-menu-item>
                   <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
@@ -90,7 +90,7 @@
 
 <pre prism>
   <![CDATA[
-<button mdl-button #btn3="mdlButton" (click)="m3.toggle($event, btn3)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+<button mdl-button #btn3="mdlButton" [mdl-toggle-menu]="m3" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
 <mdl-menu #m3="mdlMenu" mdl-menu-position="top-left">
    ...
 </mdl-menu>
@@ -99,7 +99,7 @@
 
 <pre prism>
   <![CDATA[
-<button mdl-button #btn4="mdlButton" (click)="m4.toggle($event, btn4)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+<button mdl-button #btn4="mdlButton" [mdl-toggle-menu]="m4" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
 <mdl-menu #m4="mdlMenu" mdl-menu-position="top-right">
    ...
 </mdl-menu>
