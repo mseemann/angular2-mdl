@@ -1,5 +1,8 @@
 <a name="2.1.0"></a>
-# 2.1.0 (2016-10-12)
+# 2.1.0 (2016-10-13)
+
+### Bug Fixes
+* Make dialog-outlet workaround possible. (https://github.com/mseemann/angular2-mdl/pull/149)
 
 ### Features
 * [129](https://github.com/mseemann/angular2-mdl/issues/129) (set only local reference of menu template)
