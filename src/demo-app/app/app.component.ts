@@ -1,6 +1,6 @@
 import {
   Component,
-  ViewEncapsulation
+  ViewEncapsulation, ViewContainerRef
 } from '@angular/core';
 import {
   ActivatedRoute,
@@ -39,6 +39,7 @@ import { AbstractDemoComponent } from './abstract-demo.component';
 import { ThemeDemo } from './theme/theme.component';
 import { DialogDemo } from './dialog/dialog.component';
 import { DialogDeclarativeDemo } from './dialog-declarative/dialog-declarative.component';
+import { MdlDialogOutletService } from '../../lib/components/dialog-outlet/mdl-dialog-outlet.service';
 
 @Component({
   selector: 'home',
@@ -97,7 +98,11 @@ export class Angular2MdlAppComponent {
 
   public title = 'Angular 2 - Material Design Lite';
 
-  constructor() {}
+  constructor(
+    private dilalogOuletService: MdlDialogOutletService,
+    private viewConatinerRef: ViewContainerRef) {
+    this.dilalogOuletService.setDefaultViewContainerRef(this.viewConatinerRef);
+  }
 
   public componentSelected(mainLayout: MdlLayoutComponent) {
     mainLayout.closeDrawerOnSmallScreens();

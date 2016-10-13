@@ -45,7 +45,7 @@ import { LoginModule } from './dialog/login.module';
     FormsModule,
     ReactiveFormsModule,
     MdlModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {enableTracing: false}),
     LoginModule
   ],
   declarations: [
