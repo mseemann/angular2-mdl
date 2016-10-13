@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
 import {
@@ -33,7 +33,8 @@ export class DialogDemo extends AbstractDemoComponent {
     route: ActivatedRoute,
     titleService: Title,
     private dialogService: MdlDialogService,
-    private snackbarService: MdlSnackbarService) {
+    private snackbarService: MdlSnackbarService,
+    private renderer: Renderer) {
 
     super(router, route, titleService);
 
@@ -99,6 +100,9 @@ export class DialogDemo extends AbstractDemoComponent {
       isModal: true
     });
     pDialog.subscribe( (dialogReference: MdlDialogReference) => {
+      console.log(dialogReference.getHostDialog().elementRef.nativeElement);
+      this.renderer.setElementStyle(dialogReference.getHostDialog().elementRef.nativeElement, 'width', '350px');
+      dialogReference.getHostDialog().animate = false;
       console.log('dialog visible', dialogReference);
     });
   }

@@ -39,6 +39,10 @@ export class MdlDialogReference {
     internaleRef.dialogRef = this;
   }
 
+  public getHostDialog() : MdlDialogHostComponent {
+    return this.internaleRef.hostDialog;
+  }
+
   /**
    * closes the dialog
    */
@@ -79,7 +83,7 @@ export class MdlDialogService {
    * @param title The optional title of the dialog
    * @returns An Observable that is called if the user hits the Ok button.
    */
-  public alert(alertMessage: string, okText = 'Ok', title?: string): Observable<void> {
+  public alert(alertMessage: string, okText = 'Ok', title?: string, animate = true): Observable<void> {
     let result: Subject<any> = new Subject();
 
     this.showDialog({

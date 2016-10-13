@@ -1,7 +1,7 @@
 import {
   Component,
   ViewEncapsulation,
-  ViewContainerRef, Directive, TemplateRef, Inject, forwardRef, ViewChild
+  ViewContainerRef, Directive, TemplateRef, Inject, forwardRef, ViewChild, ElementRef
 } from '@angular/core';
 import {
   trigger,
@@ -82,6 +82,8 @@ export class MdlDialogHostComponent {
 
   @ViewChild('dialogTarget', {read: ViewContainerRef}) public dialogTarget;
 
+  constructor(public elementRef: ElementRef){}
+
   public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
 
   get animateState(){
@@ -89,5 +91,4 @@ export class MdlDialogHostComponent {
   }
   // open for later extensions - animate or not
   public animate = true;
-
 }
