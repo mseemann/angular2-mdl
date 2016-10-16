@@ -56,8 +56,6 @@ describe('Service: MdlDialog', () => {
     let dialogHostComponent = fixture.debugElement.query(By.directive(MdlDialogHostComponent)).componentInstance;
     expect(dialogHostComponent.zIndex).toBe(100001, 'the zIndex should be 100001');
 
-    // let dialogComponent = fixture.debugElement.query(By.directive(MdlSimpleDialogComponent)).componentInstance;
-
     // the backdrop shoud be visible and hav an zIndex of 100000
     let backdrop = fixture.debugElement.query(By.directive(MdlBackdropOverlayComponent)).componentInstance;
 
@@ -203,6 +201,109 @@ describe('Service: MdlDialog', () => {
     }).toThrow();
 
   }));
+
+  it('should close the dialog on click on the backdrop if clickOutsideToClose true', () => {
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      isModal: true,
+      clickOutsideToClose: true
+    });
+
+    p.subscribe( ( dialogRef ) => {
+
+      let backdrop = <HTMLDivElement> doc.querySelector('.dialog-backdrop');
+
+      var event = new MouseEvent('click', {});
+
+      backdrop.dispatchEvent(event);
+
+      fixture.detectChanges();
+      fixture.whenStable().then( () => {
+        let dialogHost = fixture.debugElement.query(By.directive(MdlDialogHostComponent));
+
+        expect(dialogHost).toBeNull('dialog host should be null - because it is closed.');
+
+      });
+
+    });
+  })
+
+  it('should not close the dialog on click on the backdrop if clickOutsideToClose true', () => {
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      isModal: true,
+      clickOutsideToClose: false
+    });
+
+    p.subscribe( ( dialogRef ) => {
+
+      let backdrop = <HTMLDivElement> doc.querySelector('.dialog-backdrop');
+
+      var event = new MouseEvent('click', {});
+
+      backdrop.dispatchEvent(event);
+
+      fixture.detectChanges();
+      fixture.whenStable().then( () => {
+        let dialogHost = fixture.debugElement.query(By.directive(MdlDialogHostComponent));
+
+        expect(dialogHost).toBeDefined('dialog host should not be null - because it is not closed.');
+
+      });
+
+    });
+  });
+
+
+  it('should disable animations if animate is false', () => {
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      animate: false
+    });
+
+    fixture.detectChanges();
+
+    fixture.whenStable().then( () => {
+
+      let dialogHost = fixture.debugElement.query(By.directive(MdlDialogHostComponent));
+
+      expect(dialogHost.componentInstance.animateState).toBe('', 'animate should be an empty string');
+    })
+
+  });
+
+  it('should add additional classes and styles to the dialog host', () => {
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      styles: {'width':'350px'},
+      classes: 'a b'
+    });
+
+    fixture.detectChanges();
+
+    fixture.whenStable().then( () => {
+
+      let dialogHost = fixture.debugElement.query(By.directive(MdlDialogHostComponent)).nativeElement;
+
+      expect(dialogHost.style.width).toBe('350px');
+      expect(dialogHost.classList.contains('a')).toBe(true, 'should contian class a');
+      expect(dialogHost.classList.contains('b')).toBe(true, 'should contian class b');
+    })
+  });
+
+
 });
 
 

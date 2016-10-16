@@ -9,6 +9,7 @@ import {
 import { MdlDialogService, MdlDialogReference } from './mdl-dialog.service';
 import { BooleanProperty } from './../common/boolean-property';
 import { Observable } from 'rxjs';
+import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 
 
 
@@ -24,7 +25,9 @@ export class MdlDialogComponent {
 
   @ViewChild(TemplateRef) private template: TemplateRef<any>;
 
+  // @deprecated use mdl-dialog-config instead
   @Input('mdl-modal') @BooleanProperty() public modal = true;
+  @Input('mdl-dialog-config') public config: IMdlDialogConfiguration;
   @Output('show') public showEmitter: EventEmitter<MdlDialogReference> = new EventEmitter<MdlDialogReference>();
   @Output('hide') public hideEmitter: EventEmitter<void> = new EventEmitter<void>();
 
@@ -41,7 +44,12 @@ export class MdlDialogComponent {
     }
     this.isShown = true;
 
-    let p = this.dialogService.showDialogTemplate(this.template, {isModal: this.modal});
+    let mergedConfig: IMdlDialogConfiguration = this.config || {};
+    if(this.modal){
+      mergedConfig.isModal = true;
+    }
+
+    let p = this.dialogService.showDialogTemplate(this.template, mergedConfig);
     p.subscribe( (dialogRef: MdlDialogReference) => {
 
       this.dialogRef = dialogRef;

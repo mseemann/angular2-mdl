@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
 import {
@@ -91,12 +91,14 @@ export class DialogDemo extends AbstractDemoComponent {
     pDialog.subscribe( (dialogReference) => console.log('dialog visible', dialogReference) );
   }
 
-  public showDialog() {
+  public showDialog($event: MouseEvent) {
 
     let pDialog = this.dialogService.showCustomDialog({
       component: LoginDialogComponent,
       providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
-      isModal: true
+      isModal: true,
+      styles: {'width': '350px'},
+      clickOutsideToClose: true
     });
     pDialog.subscribe( (dialogReference: MdlDialogReference) => {
       console.log('dialog visible', dialogReference);

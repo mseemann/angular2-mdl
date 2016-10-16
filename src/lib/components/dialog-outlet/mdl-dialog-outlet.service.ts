@@ -1,4 +1,4 @@
-import { ViewContainerRef, Injectable, ApplicationRef, ComponentFactoryResolver } from '@angular/core';
+import { ViewContainerRef, Injectable, ApplicationRef, ComponentFactoryResolver, EventEmitter } from '@angular/core';
 import { MdlDialogOutletComponent } from './mdl-dialog-outlet.component';
 import { MdlBackdropOverlayComponent } from './mdl-backdrop-overlay.component';
 
@@ -7,8 +7,9 @@ import { MdlBackdropOverlayComponent } from './mdl-backdrop-overlay.component';
 export class MdlDialogOutletService {
 
   private viewContainerRef_: ViewContainerRef;
-  private backdropCompoenet: MdlBackdropOverlayComponent;
+  private backdropComponet: MdlBackdropOverlayComponent;
 
+  public backdropClickEmitter: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private appRef: ApplicationRef,
@@ -37,15 +38,18 @@ export class MdlDialogOutletService {
 
     if (this.viewContainerRef_) {
       let cFactory = this.componentFactoryResolver.resolveComponentFactory(MdlBackdropOverlayComponent);
-      this.backdropCompoenet = this.viewContainerRef_.createComponent(cFactory).instance;
+      this.backdropComponet = this.viewContainerRef_.createComponent(cFactory).instance;
+      this.backdropComponet.clickEmitter.subscribe( () => {
+        this.backdropClickEmitter.emit();
+      })
     }
   }
 
   public hideBackdrop() {
-    this.backdropCompoenet.hide();
+    this.backdropComponet.hide();
   }
 
   public showBackdropWithZIndex(zIndex: number) {
-    this.backdropCompoenet.showWithZIndex(zIndex);
+    this.backdropComponet.showWithZIndex(zIndex);
   }
 }

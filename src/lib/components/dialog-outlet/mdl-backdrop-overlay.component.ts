@@ -1,4 +1,5 @@
-import { Component, HostListener, HostBinding, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, HostBinding, ViewEncapsulation, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'mdl-backdrop-overlay',
@@ -19,6 +20,8 @@ import { Component, HostListener, HostBinding, ViewEncapsulation } from '@angula
 })
 export class MdlBackdropOverlayComponent {
 
+  public clickEmitter: EventEmitter<any> = new EventEmitter();
+
   @HostBinding('style.display')
   get display() {
     return this.visible ? null : 'none';
@@ -30,6 +33,7 @@ export class MdlBackdropOverlayComponent {
 
   @HostListener('click', ['$event'])
   public onBackdropClick(e) {
+    this.clickEmitter.emit();
     e.stopPropagation();
   }
 
