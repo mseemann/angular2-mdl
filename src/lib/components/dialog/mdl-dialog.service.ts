@@ -39,10 +39,6 @@ export class MdlDialogReference {
     internaleRef.dialogRef = this;
   }
 
-  public getHostDialog() : MdlDialogHostComponent {
-    return this.internaleRef.hostDialog;
-  }
-
   /**
    * closes the dialog
    */
@@ -74,6 +70,10 @@ export class MdlDialogService {
     @Inject(DOCUMENT) private doc: any,
     private appRef: ApplicationRef,
     private mdlDialogOutletService: MdlDialogOutletService) {
+
+    this.mdlDialogOutletService.backdropClickEmitter.subscribe( () => {
+      this.onBackdropClick();
+    });
   }
 
   /**
@@ -83,7 +83,7 @@ export class MdlDialogService {
    * @param title The optional title of the dialog
    * @returns An Observable that is called if the user hits the Ok button.
    */
-  public alert(alertMessage: string, okText = 'Ok', title?: string, animate = true): Observable<void> {
+  public alert(alertMessage: string, okText = 'Ok', title?: string): Observable<void> {
     let result: Subject<any> = new Subject();
 
     this.showDialog({
@@ -148,7 +148,7 @@ export class MdlDialogService {
       throw new Error('a dialog mus have at least one action');
     }
 
-    let internalDialogRef = new InternalMdlDialogReference();
+    let internalDialogRef = new InternalMdlDialogReference(config);
 
     let providers = [
       { provide: MdlDialogReference, useValue: new MdlDialogReference(internalDialogRef) },
@@ -173,7 +173,7 @@ export class MdlDialogService {
    */
   public showCustomDialog(config: IMdlCustomDialogConfiguration): Observable<MdlDialogReference> {
 
-    let internalDialogRef = new InternalMdlDialogReference();
+    let internalDialogRef = new InternalMdlDialogReference(config);
 
     let providers: Provider[] = [
       { provide: MdlDialogReference, useValue: new MdlDialogReference(internalDialogRef) }
@@ -192,7 +192,7 @@ export class MdlDialogService {
 
   public showDialogTemplate(template: TemplateRef<any>, config: IMdlDialogConfiguration): Observable<MdlDialogReference> {
 
-    let internalDialogRef = new InternalMdlDialogReference();
+    let internalDialogRef = new InternalMdlDialogReference(config);
 
     // FIXME bad design. this should be done in INternalMdlDialogReference
     new MdlDialogReference(internalDialogRef)
@@ -214,7 +214,11 @@ export class MdlDialogService {
         'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
     }
 
-    let hostDialogComponent = this.createComponentInstance(viewContainerRef, [], MdlDialogHostComponent);
+    let providers: Provider[] = [
+      { provide: MDL_CONFIGUARTION, useValue: dialogConfig }
+    ];
+
+    let hostDialogComponent = this.createComponentInstance(viewContainerRef, providers, MdlDialogHostComponent);
 
     internalDialogRef.hostDialogComponentRef  = hostDialogComponent;
     internalDialogRef.isModal                 = dialogConfig.isModal;
@@ -250,7 +254,8 @@ export class MdlDialogService {
     });
 
     // if there is a modal dialog append the overloay to the dom - if not remove the overlay from the body
-    let topMostModalDialog: InternalMdlDialogReference = null;
+    let topMostModalDialog: InternalMdlDialogReference = this.getTopMostInternalDialogRef();
+
     for (var i = (this.openDialogs.length - 1); i >= 0; i--) {
       if (this.openDialogs[i].isModal) {
         topMostModalDialog = this.openDialogs[i];
@@ -265,6 +270,25 @@ export class MdlDialogService {
       this.mdlDialogOutletService.showBackdropWithZIndex(topMostModalDialog.hostDialog.zIndex - 1);
     }
 
+  }
+
+  private getTopMostInternalDialogRef(): InternalMdlDialogReference {
+    let topMostModalDialog: InternalMdlDialogReference = null;
+
+    for (var i = (this.openDialogs.length - 1); i >= 0; i--) {
+      if (this.openDialogs[i].isModal) {
+        topMostModalDialog = this.openDialogs[i];
+        break;
+      }
+    }
+    return topMostModalDialog;
+  }
+
+  private onBackdropClick(){
+    let topMostModalDialog: InternalMdlDialogReference = this.getTopMostInternalDialogRef();
+    if (topMostModalDialog.config.clickOutsideToClose){
+      topMostModalDialog.hide();
+    }
   }
 
   private createComponentInstance <T> (

@@ -3,6 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 import { MdlDialogReference } from './mdl-dialog.service';
+import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 
 /**
  * Internal representation of the dialog ref. the service
@@ -16,6 +17,8 @@ export class InternalMdlDialogReference {
   public closeCallback: () => void;
   public isModal = false;
   public dialogRef: MdlDialogReference;
+
+  constructor(public config: IMdlDialogConfiguration){}
 
   get  hostDialog() {
     return this.hostDialogComponentRef.instance;

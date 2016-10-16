@@ -34,10 +34,34 @@ export interface IMdlDialogAction {
  * Dialog configuration for all dialogs (simple or custom)
  */
 export interface IMdlDialogConfiguration {
+
   /**
    * true if the dialog should be opened as modal.
    */
   isModal?: boolean;
+
+  /**
+   * true if the dialogs should animate. defaults to true.
+   */
+  animate?: boolean
+
+  /**
+   * css classes as space delimted list of classes applied to
+   * the dialog-host component. (e.g. a b -> <mdl-dialog-host-component class="a b"...
+   */
+  classes?: any;
+
+  /**
+   * Key Value object with additional styles that will be applied to
+   * the dialog-host component. for example: {'width': '350px'}
+   */
+  styles?: {[key: string]: string};
+
+  /**
+   * Close the dialog if the user clicks on the backdrop.
+   */
+  clickOutsideToClose?:boolean;
+
 }
 
 /**

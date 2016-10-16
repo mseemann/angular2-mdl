@@ -33,8 +33,7 @@ export class DialogDemo extends AbstractDemoComponent {
     route: ActivatedRoute,
     titleService: Title,
     private dialogService: MdlDialogService,
-    private snackbarService: MdlSnackbarService,
-    private renderer: Renderer) {
+    private snackbarService: MdlSnackbarService) {
 
     super(router, route, titleService);
 
@@ -92,17 +91,16 @@ export class DialogDemo extends AbstractDemoComponent {
     pDialog.subscribe( (dialogReference) => console.log('dialog visible', dialogReference) );
   }
 
-  public showDialog() {
+  public showDialog($event: MouseEvent) {
 
     let pDialog = this.dialogService.showCustomDialog({
       component: LoginDialogComponent,
       providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
-      isModal: true
+      isModal: true,
+      styles: {'width': '350px'},
+      clickOutsideToClose: true
     });
     pDialog.subscribe( (dialogReference: MdlDialogReference) => {
-      console.log(dialogReference.getHostDialog().elementRef.nativeElement);
-      this.renderer.setElementStyle(dialogReference.getHostDialog().elementRef.nativeElement, 'width', '350px');
-      dialogReference.getHostDialog().animate = false;
       console.log('dialog visible', dialogReference);
     });
   }

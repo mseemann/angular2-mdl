@@ -1,7 +1,7 @@
 import {
   Component,
   ViewEncapsulation,
-  ViewContainerRef, Directive, TemplateRef, Inject, forwardRef, ViewChild, ElementRef
+  ViewContainerRef, Directive, TemplateRef, Inject, forwardRef, ViewChild, HostBinding, Renderer, ElementRef, OnInit
 } from '@angular/core';
 import {
   trigger,
@@ -12,20 +12,24 @@ import {
 } from '@angular/core';
 
 import {
-  MIN_DIALOG_Z_INDEX, MdlDialogService
+  MIN_DIALOG_Z_INDEX, MdlDialogService, MDL_CONFIGUARTION
 } from './mdl-dialog.service';
 import { selector } from 'rxjs/operator/publish';
+import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 
 
 // @experimental
 @Component({
   selector: 'mdl-dialog-host-component',
   host: {
+    '[class]': 'classes',
     '[class.mdl-dialog]': 'true',
     '[class.open]': 'true',
     '[class.fixed]': 'true',
     '[style.zIndex]': 'zIndex',
-    '[@flyInOut]': 'animateState'
+    '[@flyInOut]': 'animateState',
+    '(@flyInOut.start)': 'animationStarted($event)',
+    '(@flyInOut.done)': 'animationDone($event)'
   },
   animations: [
     trigger('flyInOut', [
@@ -78,17 +82,48 @@ import { selector } from 'rxjs/operator/publish';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class MdlDialogHostComponent {
+export class MdlDialogHostComponent implements OnInit {
 
   @ViewChild('dialogTarget', {read: ViewContainerRef}) public dialogTarget;
 
-  constructor(public elementRef: ElementRef){}
+  constructor(
+    private renderer: Renderer,
+    private elementRef: ElementRef,
+    @Inject(forwardRef( () => MDL_CONFIGUARTION)) private config: IMdlDialogConfiguration){
+  }
 
   public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
 
   get animateState(){
-    return this.animate ? 'animate' : '';
+    // not present assume it is true.
+    if (!this.config.animate){
+      return 'animate'
+    }
+    return this.config.animate ? 'animate' : '';
   }
-  // open for later extensions - animate or not
-  public animate = true;
+
+  get classes() {
+    return this.config.classes ? this.config.classes : ''
+  }
+
+
+  public animationStarted($event){
+    // something like
+    // {fromState: "void", toState: "animate", totalTime: 200}
+    // {fromState: "animate", toState: "void", totalTime: 150}
+  }
+
+  public animationDone($event){}
+
+
+  public ngOnInit() {
+    // apply the styles
+    let styles = this.config.styles;
+    if (styles) {
+      for (let style in styles){
+        this.renderer.setElementStyle(this.elementRef.nativeElement, style, styles[style]);
+      }
+    }
+  }
+
 }

@@ -50,7 +50,6 @@ export class DialogDeclarativeDemo extends AbstractDemoComponent {
   }
 
   public onDialogShow(dialogRef: MdlDialogReference){
-    dialogRef.getHostDialog().animate = false;
     this.editedUsername = this.username;
     console.log(`dialog shown`, dialogRef);
     setTimeout( () => {
