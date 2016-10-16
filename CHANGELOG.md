@@ -1,4 +1,11 @@
 <a name="2.1.0"></a>
+# 2.2.0 (2016-10-16)
+
+### Features
+* [148](https://github.com/mseemann/angular2-mdl/issues/148) (dialog width + more config options)
+
+
+<a name="2.1.0"></a>
 # 2.1.0 (2016-10-13)
 
 ### Bug Fixes
