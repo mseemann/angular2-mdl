@@ -194,9 +194,6 @@ export class MdlDialogService {
 
     let internalDialogRef = new InternalMdlDialogReference(config);
 
-    // FIXME bad design. this should be done in INternalMdlDialogReference
-    new MdlDialogReference(internalDialogRef)
-
     let hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
     hostComponentRef.instance.dialogTarget.createEmbeddedView(template);

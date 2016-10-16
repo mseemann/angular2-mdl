@@ -18,7 +18,9 @@ export class InternalMdlDialogReference {
   public isModal = false;
   public dialogRef: MdlDialogReference;
 
-  constructor(public config: IMdlDialogConfiguration){}
+  constructor(public config: IMdlDialogConfiguration){
+    this.dialogRef = new MdlDialogReference(this);
+  }
 
   get  hostDialog() {
     return this.hostDialogComponentRef.instance;
