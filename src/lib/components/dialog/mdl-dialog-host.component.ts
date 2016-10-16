@@ -1,7 +1,13 @@
 import {
   Component,
   ViewEncapsulation,
-  ViewContainerRef, Directive, TemplateRef, Inject, forwardRef, ViewChild, HostBinding, Renderer, ElementRef, OnInit
+  ViewContainerRef,
+  Inject,
+  forwardRef,
+  ViewChild,
+  Renderer,
+  ElementRef,
+  OnInit
 } from '@angular/core';
 import {
   trigger,
@@ -12,9 +18,8 @@ import {
 } from '@angular/core';
 
 import {
-  MIN_DIALOG_Z_INDEX, MdlDialogService, MDL_CONFIGUARTION
+  MIN_DIALOG_Z_INDEX, MDL_CONFIGUARTION
 } from './mdl-dialog.service';
-import { selector } from 'rxjs/operator/publish';
 import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 
 
@@ -90,13 +95,14 @@ export class MdlDialogHostComponent implements OnInit {
     private renderer: Renderer,
     private elementRef: ElementRef,
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private config: IMdlDialogConfiguration){
+
   }
 
   public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
 
   get animateState(){
     // not present assume it is true.
-    if (!this.config.animate){
+    if (typeof this.config.animate === 'undefined'){
       return 'animate'
     }
     return this.config.animate ? 'animate' : '';

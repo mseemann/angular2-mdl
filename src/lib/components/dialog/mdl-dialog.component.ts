@@ -46,7 +46,7 @@ export class MdlDialogComponent {
 
     let mergedConfig: IMdlDialogConfiguration = this.config || {};
     if(this.modal){
-      mergedConfig.isModal = this.modal;
+      mergedConfig.isModal = true;
     }
 
     let p = this.dialogService.showDialogTemplate(this.template, mergedConfig);
