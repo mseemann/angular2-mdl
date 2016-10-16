@@ -97,7 +97,7 @@ You can only show one intance of an embedded dialog.
     mdl-ripple (click)="editUserDialog.show()">Edit User Dialog</button>
 
 <mdl-dialog #editUserDialog
-            [mdl-dialog-config]="{clickOutsideToClose: true, styles:{'width': '350px'}, modal:true}"
+            [mdl-dialog-config]="{clickOutsideToClose: true, styles:{'width': '350px'}, isModal:true}"
             (show)="onDialogShow($event)"
             (hide)="onDialogHide()">
   <h3 class="mdl-dialog__title">Edit User</h3>
@@ -116,7 +116,7 @@ You can only show one intance of an embedded dialog.
         mdl-ripple (click)="editUserDialog.show()">Edit User Dialog</button>
 
 <mdl-dialog #editUserDialog
-            [mdl-dialog-config]="{clickOutsideToClose: true, styles:{'width': '350px'}, modal:true}"
+            [mdl-dialog-config]="{clickOutsideToClose: true, styles:{'width': '350px'}, isModal:true}"
             (show)="onDialogShow(dialogRef)"
             (hide)="onDialogHide()">
   <h3 class="mdl-dialog__title">Edit User</h3>
