@@ -1,4 +1,10 @@
-<a name="2.1.0"></a>
+<a name="2.2.1"></a>
+# 2.2.1 (2016-10-17)
+
+### Bug Fixes
+* [157](https://github.com/mseemann/angular2-mdl/issues/157) (modal for mld-dialog conflicts with config.isModal)
+
+<a name="2.2.0"></a>
 # 2.2.0 (2016-10-16)
 
 ### Features
