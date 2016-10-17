@@ -250,18 +250,10 @@ export class MdlDialogService {
       zIndex += 2;
     });
 
-    // if there is a modal dialog append the overloay to the dom - if not remove the overlay from the body
-    let topMostModalDialog: InternalMdlDialogReference = this.getTopMostInternalDialogRef();
-
-    for (var i = (this.openDialogs.length - 1); i >= 0; i--) {
-      if (this.openDialogs[i].isModal) {
-        topMostModalDialog = this.openDialogs[i];
-        break;
-      }
-    }
-
     this.mdlDialogOutletService.hideBackdrop();
 
+    // if there is a modal dialog append the overloay to the dom - if not remove the overlay from the body
+    let topMostModalDialog: InternalMdlDialogReference = this.getTopMostInternalDialogRef();
     if (topMostModalDialog) {
       // move the overlay diredct under the topmos modal dialog
       this.mdlDialogOutletService.showBackdropWithZIndex(topMostModalDialog.hostDialog.zIndex - 1);

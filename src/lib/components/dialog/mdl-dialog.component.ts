@@ -26,7 +26,7 @@ export class MdlDialogComponent {
   @ViewChild(TemplateRef) private template: TemplateRef<any>;
 
   // @deprecated use mdl-dialog-config instead
-  @Input('mdl-modal') @BooleanProperty() public modal = true;
+  @Input('mdl-modal') @BooleanProperty() public modal;
   @Input('mdl-dialog-config') public config: IMdlDialogConfiguration;
   @Output('show') public showEmitter: EventEmitter<MdlDialogReference> = new EventEmitter<MdlDialogReference>();
   @Output('hide') public hideEmitter: EventEmitter<void> = new EventEmitter<void>();
@@ -45,10 +45,14 @@ export class MdlDialogComponent {
     this.isShown = true;
 
     let mergedConfig: IMdlDialogConfiguration = this.config || {};
-    if(this.modal){
+
+    // mdl-modal overwrites config.isModal if present
+    mergedConfig.isModal = typeof this.modal !== 'undefined' ? this.modal : mergedConfig.isModal;
+    // default is true
+    if (typeof mergedConfig.isModal === 'undefined'){
       mergedConfig.isModal = true;
     }
-
+    
     let p = this.dialogService.showDialogTemplate(this.template, mergedConfig);
     p.subscribe( (dialogRef: MdlDialogReference) => {
 

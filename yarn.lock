@@ -4976,9 +4976,9 @@ trim-newlines@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/trim-newlines/-/trim-newlines-1.0.0.tgz#5887966bb582a4503a41eb524f7d35011815a613"
 
-ts-node@1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-1.5.2.tgz#d1376ad812447fd01b27d9e3367e2484b181eea2"
+ts-node@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-1.6.0.tgz#a1eb6a62eb0c4011a66fb322b2687eea00866ee7"
   dependencies:
     arrify "^1.0.0"
     chalk "^1.1.1"

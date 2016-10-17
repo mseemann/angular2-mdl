@@ -1,7 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import {
   Component,
-  ViewChild
+  ViewChild,
+  Type
 } from '@angular/core';
 import { MdlDialogModule } from './index';
 import { By } from '@angular/platform-browser';
@@ -16,7 +17,11 @@ describe('MdlDialog (embedded/declarative)', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
-      declarations: [MdlTestComponent, MdlTestConfigComponent],
+      declarations: [
+        MdlTestComponent,
+        ModalTrueConfigFalseComponent,
+        ModalFalseConfigTrueComponent,
+        ModalComponent],
     });
   }));
 
@@ -57,21 +62,51 @@ describe('MdlDialog (embedded/declarative)', () => {
 
   it('should be possible to override mdl-dialog-config with mdl-modal', () => {
 
-    let fixture = TestBed.createComponent(MdlTestConfigComponent);
+    checkModalConfig(
+      ModalTrueConfigFalseComponent,
+      'config is false; mdl-modal is true - so the backdrop should not have display none');
+    checkModalConfig(
+      ModalFalseConfigTrueComponent,
+      'modal is false, config true -> should be false'
+    );
+  })
+
+  it('should open a modal dialog if no config for modal is set', () => {
+    let fixture = TestBed.createComponent(ModalComponent);
     fixture.detectChanges();
 
     let dialog = fixture.componentInstance.dialog;
     dialog.show().subscribe( () => {
       let backdrop = fixture.debugElement.query(By.directive(MdlBackdropOverlayComponent)).componentInstance;
 
-      expect(backdrop.display)
-        .toBe(null, 'config is false; mdl-modal is true - so the backdrop should not have display none');
+      expect(backdrop.display).toBeDefined('should open as modal - because there is no config provided')
     });
+  })
 
+  it('should be possible to call close on a dialog that wasn\'t shown yet', () => {
+
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+    let dialog = fixture.componentInstance.dialog;
+
+    // throws if the guard for dialogRef is not present.
+    dialog.close();
   })
 
 });
 
+
+function checkModalConfig(component: Type<any>, failMessage: string){
+  let fixture = TestBed.createComponent(component);
+  fixture.detectChanges();
+
+  let dialog = fixture.componentInstance.dialog;
+  dialog.show().subscribe( () => {
+    let backdrop = fixture.debugElement.query(By.directive(MdlBackdropOverlayComponent)).componentInstance;
+
+    expect(backdrop.display).toBe(null, failMessage);
+  });
+}
 
 @Component({
   selector: 'test-component',
@@ -96,16 +131,45 @@ class MdlTestComponent {
 }
 
 @Component({
-  selector: 'test-component2',
+  selector: 'test-component-2',
   template: `
     <mdl-dialog #dialog [mdl-modal]="true" 
     [mdl-dialog-config]="{isModal: false}">
-
     </mdl-dialog>
     <dialog-outlet></dialog-outlet>
   `
 })
-class MdlTestConfigComponent {
+class ModalTrueConfigFalseComponent {
+
+  @ViewChild('dialog') public  dialog: MdlDialogComponent;
+
+}
+
+@Component({
+  selector: 'test-component-4',
+  template: `
+    <mdl-dialog #dialog [mdl-modal]="false" 
+    [mdl-dialog-config]="{isModal: true}">
+    </mdl-dialog>
+    <dialog-outlet></dialog-outlet>
+  `
+})
+class ModalFalseConfigTrueComponent {
+
+  @ViewChild('dialog') public  dialog: MdlDialogComponent;
+
+}
+
+@Component({
+  selector: 'test-component-4',
+  template: `
+    <mdl-dialog #dialog 
+    [mdl-dialog-config]="{}">
+    </mdl-dialog>
+    <dialog-outlet></dialog-outlet>
+  `
+})
+class ModalComponent {
 
   @ViewChild('dialog') public  dialog: MdlDialogComponent;
 
