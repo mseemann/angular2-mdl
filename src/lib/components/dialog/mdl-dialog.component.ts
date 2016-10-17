@@ -4,7 +4,7 @@ import {
   TemplateRef,
   Input,
   Output,
-  EventEmitter
+  EventEmitter, ViewEncapsulation
 } from '@angular/core';
 import { MdlDialogService, MdlDialogReference } from './mdl-dialog.service';
 import { BooleanProperty } from './../common/boolean-property';
@@ -19,7 +19,8 @@ import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
     <div *dialogTemplate>
       <ng-content></ng-content>
     </div>
-  `
+  `,
+  encapsulation: ViewEncapsulation.None
 })
 export class MdlDialogComponent {
 

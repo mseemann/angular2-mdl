@@ -22,6 +22,8 @@ import {
 } from './mdl-dialog.service';
 import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 
+const enterTransitionDuration = 300;
+const leaveTransitionDuration = 300;
 
 // @experimental
 @Component({
@@ -38,17 +40,8 @@ import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
   },
   animations: [
     trigger('flyInOut', [
-      transition('void => animate', [
-        style({
-          top: '38%',
-          opacity: 0.9
-        }),
-        animate(200)
-      ]),
-      transition('animate => void', animate(150, style({
-        top: '63%',
-        opacity: 0
-      })))
+      transition('void => animate', animate(enterTransitionDuration)),
+      transition('animate => void', animate(leaveTransitionDuration))
     ])
   ],
   template: `<div #dialogTarget></div>`,
@@ -71,6 +64,7 @@ import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
       display: none;
       z-index: 1;
       opacity: 1;
+      transition-property: top opacity transform;
     }
     
     mdl-dialog-host-component.open {
@@ -90,6 +84,32 @@ import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 export class MdlDialogHostComponent implements OnInit {
 
   @ViewChild('dialogTarget', {read: ViewContainerRef}) public dialogTarget;
+
+  private beforeShowStyles = {
+    opacity: '0.8',
+    top: '38%',
+    //transform: 'translate(0, -50%) scale(0.5, 0.5)'
+    transform: 'translate(0, -50%)',
+    transitionDuration: `${enterTransitionDuration/1000}s`
+  };
+
+  private showAnimationEndStyle = {
+    transitionTimingFunction: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+    top: '50%',
+    opacity: '1',
+    transform: 'translate(0px, -50%) scale(1.0, 1.0)',
+  };
+
+  private beforeAnimationEndStyles = {
+    transitionDuration: `${leaveTransitionDuration/1000}s`
+  };
+
+  private hideAnimationEndStyles = {
+    transitionTimingFunction: 'cubic-bezier(0.4, 0.0, 1, 1)',
+    top: '63%',
+    opacity: '0',
+    //transform: 'scale(0.5, 0.5)'
+  };
 
   constructor(
     private renderer: Renderer,
@@ -114,22 +134,35 @@ export class MdlDialogHostComponent implements OnInit {
 
 
   public animationStarted($event){
-    // something like
-    // {fromState: "void", toState: "animate", totalTime: 200}
-    // {fromState: "animate", toState: "void", totalTime: 150}
+    console.log('start', $event);
+    if ($event.fromState === 'void' && $event.toState == 'animate'){
+      setTimeout( ()=> { this.applyStyle(this.showAnimationEndStyle);})
+    }
+
+    if ($event.fromState === 'animate' && $event.toState == 'void'){
+      setTimeout( ()=> { this.applyStyle(this.hideAnimationEndStyles); });
+    }
   }
 
-  public animationDone($event){}
+  public animationDone($event){
+    if ($event.fromState === 'void' && $event.toState == 'animate'){
+      setTimeout( ()=> { this.applyStyle(this.beforeAnimationEndStyles) })
+    }
+  }
 
 
   public ngOnInit() {
-    // apply the styles
-    let styles = this.config.styles;
+
+    this.applyStyle(this.config.styles);
+
+    this.applyStyle(this.beforeShowStyles);
+  }
+
+  private applyStyle(styles: {[key: string]: string}) {
     if (styles) {
       for (let style in styles){
         this.renderer.setElementStyle(this.elementRef.nativeElement, style, styles[style]);
       }
     }
   }
-
 }
