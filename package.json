@@ -86,7 +86,9 @@
     "webpack": "2.1.0-beta.25",
     "webpack-dev-server": "2.1.0-beta.4",
     "webpack-merge": "0.14.1",
-    "zone.js": "0.6.25",
+    "zone.js": "0.6.25"
+  },
+  "optionalDependencies": {
     "fsevents": "^1.0.14"
   }
 }
