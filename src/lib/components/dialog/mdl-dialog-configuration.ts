@@ -1,7 +1,7 @@
 import {
   ViewContainerRef,
   Type,
-  Provider
+  Provider, ElementRef
 } from '@angular/core';
 
 /**
@@ -61,6 +61,16 @@ export interface IMdlDialogConfiguration {
    * Close the dialog if the user clicks on the backdrop.
    */
   clickOutsideToClose?:boolean;
+
+  /**
+   * Element or mouse event the dialog open animation should start from.
+   */
+  openFrom?: ElementRef | MouseEvent;
+
+  /**
+   * Element or mouse event the dialog close animation shoul end.
+   */
+  closeTo?: ElementRef | MouseEvent;
 
 }
 
