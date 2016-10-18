@@ -97,8 +97,9 @@ export class DialogDemo extends AbstractDemoComponent {
       component: LoginDialogComponent,
       providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
       isModal: true,
-      styles: {'width': '350px'},
-      clickOutsideToClose: true
+      styles: {'width': '300px'},
+      clickOutsideToClose: true,
+      openFrom: $event
     });
     pDialog.subscribe( (dialogReference: MdlDialogReference) => {
       console.log('dialog visible', dialogReference);

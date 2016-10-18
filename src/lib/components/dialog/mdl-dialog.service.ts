@@ -162,6 +162,7 @@ export class MdlDialogService {
       providers,
       MdlSimpleDialogComponent);
 
+    hostComponentRef.instance.show();
 
     return Observable.of(internalDialogRef.dialogRef);
   }
@@ -187,6 +188,8 @@ export class MdlDialogService {
 
     this.createComponentInstance(hostComponentRef.instance.dialogTarget, providers, config.component);
 
+    hostComponentRef.instance.show();
+
     return Observable.of(internalDialogRef.dialogRef);
   }
 
@@ -197,6 +200,8 @@ export class MdlDialogService {
     let hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
     hostComponentRef.instance.dialogTarget.createEmbeddedView(template);
+
+    hostComponentRef.instance.show();
 
     return Observable.of(internalDialogRef.dialogRef);
   }
@@ -222,7 +227,7 @@ export class MdlDialogService {
 
     internalDialogRef.closeCallback = () => {
       this.popDialog(internalDialogRef);
-      hostDialogComponent.destroy();
+      hostDialogComponent.instance.hide(hostDialogComponent);
     };
     this.pushDialog(internalDialogRef);
 
