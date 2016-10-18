@@ -277,9 +277,7 @@ describe('Service: MdlDialog', () => {
       let dialogHost = fixture.debugElement.query(By.directive(MdlDialogHostComponent));
 
       expect(dialogHost.componentInstance.isAnimateEnabled()).toBe(false, 'animate should be false');
-
-      p.subscribe( (dialogRef) => {
-      }, ()=>{}, ()=>{ console.log('on complete x');})
+      
     })
 
   });
