@@ -68,14 +68,14 @@ const leaveTransitionDuration = 300;
       transition-property: all;
       transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
       transition-duration: ${enterTransitionDuration/1000}s;
-      animation-delay: 0.01s;
+      /*animation-delay: 0.01s;*/
     }
     
     .transition-out {
       transition-property: all;
       transition-timing-function: cubic-bezier(0.4, 0.0, 1, 1);
       transition-duration: ${leaveTransitionDuration/1000}s;
-      animation-delay: 0.01s;
+      /*animation-delay: 0.01s;*/
     }
     
     `
@@ -120,9 +120,12 @@ export class MdlDialogHostComponent implements OnInit {
 
   public show() {
 
-    if (this.isAnimateEnabled()){
-      this.ngZone.runOutsideAngular( () => {
-        if (this.config.openFrom || this.config.closeTo){
+    if (!this.isAnimateEnabled()) {
+      this.visible = true;
+      this.internalDialogRef.visible();
+    } else {
+      this.ngZone.runOutsideAngular(() => {
+        if (this.config.openFrom || this.config.closeTo) {
 
           const targetClientRect = this.elementRef.nativeElement.getBoundingClientRect();
 
@@ -149,22 +152,27 @@ export class MdlDialogHostComponent implements OnInit {
 
         this.applyStyle(this.beforeShowDefaultPosition);
 
-        setTimeout( () => {
+        setTimeout(() => {
           this.renderer.setElementClass(this.elementRef.nativeElement, 'transition-in', true);
           this.applyStyle(this.showAnimationEndStyle);
+
+          this.ngZone.onStable.subscribe(() => {
+
+              this.internalDialogRef.visible();
+
+
+          });
+
         });
 
         let l = this.renderer.listen(this.elementRef.nativeElement, 'transitionend', (e) => {
-          if(e.target === this.elementRef.nativeElement){
+          if (e.target === this.elementRef.nativeElement) {
             l();
-            this.internalDialogRef.visible();
+            //this.internalDialogRef.visible();
           }
         });
 
       })
-    } else {
-      this.visible = true;
-      this.internalDialogRef.visible();
     }
   }
 

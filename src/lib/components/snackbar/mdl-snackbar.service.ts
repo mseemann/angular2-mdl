@@ -6,7 +6,7 @@ import {
   ComponentFactoryResolver,
   NgModule,
   ViewEncapsulation,
-  ModuleWithProviders, ComponentFactory
+  ModuleWithProviders, ComponentFactory, NgZone
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
@@ -32,6 +32,8 @@ export class MdlSnackbarComponent {
   private showIt = false;
   public onAction: () => void;
 
+  constructor(private ngZone: NgZone){}
+
   public onClick() {
     this.onAction();
   }
@@ -43,14 +45,14 @@ export class MdlSnackbarComponent {
   public show(): Observable<void> {
     let result: Subject<any> = new Subject();
       // wait unit the dom is in place - then showIt will change the css class
+    this.ngZone.onStable.subscribe(() => {
+      this.showIt = true;
+      // fire after the view animation is done
       setTimeout(() => {
-        this.showIt = true;
-        // fire after the view animation is done
-        setTimeout(() => {
-          result.next(null);
-          result.complete();
-        }, ANIMATION_TIME);
-      }, 10);
+        result.next(null);
+        result.complete();
+      }, ANIMATION_TIME);
+    });
 
 
     return result.asObservable();
