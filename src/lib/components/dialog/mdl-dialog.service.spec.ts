@@ -39,7 +39,7 @@ describe('Service: MdlDialog', () => {
     doc = doc_;
   })));
 
-  it('should show a an alert', ( done: () => void ) => {
+  it('should show an alert', ( done: () => void ) => {
 
     let title = 'Alert';
     let fixture = TestBed.createComponent(MdlTestViewComponent);
@@ -62,8 +62,9 @@ describe('Service: MdlDialog', () => {
     expect(backdrop.zIndex).toBe(100000, 'the zIndex of the background should be 100000');
 
     let dialogComponentDebugElem = fixture.debugElement.query(By.directive(MdlSimpleDialogComponent));
+
     let titleDiv = dialogComponentDebugElem.query(By.css('.mdl-dialog__content')).nativeElement;
-    expect(titleDiv.innerText).toBe(title);
+    expect(titleDiv.textContent).toBe(title);
 
     // close the dialog by clicking the ok button
     let buttonEl = fixture.debugElement.query(By.css('button')).nativeElement;
