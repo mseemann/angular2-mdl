@@ -1,8 +1,10 @@
 import {
   ViewContainerRef,
   Type,
-  Provider, ElementRef
+  Provider,
+  ElementRef
 } from '@angular/core';
+import { MdlButtonComponent } from '../button/mdl-button.component';
 
 /**
  * @deprecated cusotm dialogs no longer need to implement this interface
@@ -63,14 +65,14 @@ export interface IMdlDialogConfiguration {
   clickOutsideToClose?:boolean;
 
   /**
-   * Element or mouse event the dialog open animation should start from.
+   * MdlButtonComponent or mouse event the dialog open animation should start from.
    */
-  openFrom?: ElementRef | MouseEvent;
+  openFrom?: MdlButtonComponent | MouseEvent;
 
   /**
-   * Element or mouse event the dialog close animation shoul end.
+   *  MdlButtonComponent or mouse event  the dialog close animation shoul end.
    */
-  closeTo?: ElementRef | MouseEvent;
+  closeTo?: MdlButtonComponent | MouseEvent;
 
 }
 

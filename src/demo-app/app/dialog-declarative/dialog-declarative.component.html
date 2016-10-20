@@ -93,11 +93,16 @@ You can only show one intance of an embedded dialog.
 <p>Username: {{ username }}</p>
 
 <button
+    #editUserButton
     mdl-button mdl-button-type="raised" mdl-colored="primary"
     mdl-ripple (click)="editUserDialog.show()">Edit User Dialog</button>
 
 <mdl-dialog #editUserDialog
-            [mdl-dialog-config]="{clickOutsideToClose: true, styles:{'width': '350px'}, isModal: true}"
+            [mdl-dialog-config]="{
+              clickOutsideToClose: true,
+              styles:{'width': '350px'},
+              isModal: true,
+              openFrom: editUserButton }"
             (show)="onDialogShow($event)"
             (hide)="onDialogHide()">
   <h3 class="mdl-dialog__title">Edit User</h3>
@@ -112,11 +117,15 @@ You can only show one intance of an embedded dialog.
 
 <pre prism>
 <![CDATA[
-<button mdl-button mdl-button-type="raised" mdl-colored="primary"
+<button #editUserButton mdl-button mdl-button-type="raised" mdl-colored="primary"
         mdl-ripple (click)="editUserDialog.show()">Edit User Dialog</button>
 
 <mdl-dialog #editUserDialog
-            [mdl-dialog-config]="{clickOutsideToClose: true, styles:{'width': '300px'}, isModal:true}"
+            [mdl-dialog-config]="{
+              clickOutsideToClose: true,
+              styles:{'width': '300px'},
+              isModal:true,
+              openFrom: editUserButton}"
             (show)="onDialogShow(dialogRef)"
             (hide)="onDialogHide()">
   <h3 class="mdl-dialog__title">Edit User</h3>

@@ -46,6 +46,9 @@ export class LoginDialogComponent implements OnInit {
 
     // just if you want to be informed if the dialog is hidden
     this.dialog.onHide().subscribe( () => console.log('login dialog hidden') );
+    this.dialog.onVisible().subscribe( () => {
+      this.inputElement.setFocus();
+    });
 
   }
 
@@ -54,12 +57,6 @@ export class LoginDialogComponent implements OnInit {
       'username':  this.username,
       'password':   this.password
     });
-  }
-
-
-  public ngAfterViewInit() {
-    // set the focus - autofocus only works once :(
-    this.inputElement.setFocus();
   }
 
   public login() {

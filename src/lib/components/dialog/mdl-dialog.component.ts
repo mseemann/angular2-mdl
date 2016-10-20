@@ -4,7 +4,8 @@ import {
   TemplateRef,
   Input,
   Output,
-  EventEmitter, ViewEncapsulation
+  EventEmitter,
+  ViewEncapsulation
 } from '@angular/core';
 import { MdlDialogService, MdlDialogReference } from './mdl-dialog.service';
 import { BooleanProperty } from './../common/boolean-property';

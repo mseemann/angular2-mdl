@@ -53,6 +53,10 @@ export class MdlDialogReference {
   public onHide(): Observable<void> {
     return this.internaleRef.onHide();
   }
+
+  public onVisible(): Observable<void> {
+    return this.internaleRef.onVisible();
+  }
 }
 
 /**
@@ -188,7 +192,10 @@ export class MdlDialogService {
 
     this.createComponentInstance(hostComponentRef.instance.dialogTarget, providers, config.component);
 
-    hostComponentRef.instance.show();
+    // the browser need some time to render the dialog content.
+    setTimeout( ()=>{
+      hostComponentRef.instance.show();
+    })
 
     return Observable.of(internalDialogRef.dialogRef);
   }
@@ -217,7 +224,8 @@ export class MdlDialogService {
     }
 
     let providers: Provider[] = [
-      { provide: MDL_CONFIGUARTION, useValue: dialogConfig }
+      { provide: MDL_CONFIGUARTION, useValue: dialogConfig },
+      { provide: InternalMdlDialogReference, useValue: internalDialogRef}
     ];
 
     let hostDialogComponent = this.createComponentInstance(viewContainerRef, providers, MdlDialogHostComponent);

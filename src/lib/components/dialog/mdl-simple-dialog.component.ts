@@ -4,7 +4,6 @@ import {
   HostListener,
   forwardRef,
   Inject,
-  AfterViewInit,
   ViewChildren,
   QueryList,
   ElementRef
@@ -37,17 +36,17 @@ import {
   `,
   encapsulation: ViewEncapsulation.None
 })
-export class MdlSimpleDialogComponent implements AfterViewInit {
+export class MdlSimpleDialogComponent {
 
   @ViewChildren('button') private buttons: QueryList<ElementRef>;
 
   // why do i need forwardRef at this point, the demo LoginDialog dosn't need this!?!?
   constructor(
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private dialogConfiguration: IMdlSimpleDialogConfiguration,
-    @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference) {}
-
-  public ngAfterViewInit() {
-    this.buttons.first.nativeElement.focus();
+    @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference) {
+    this.dialog.onVisible().subscribe(() => {
+      this.buttons.first.nativeElement.focus();
+    })
   }
 
   public actionClicked(action: IMdlDialogAction) {

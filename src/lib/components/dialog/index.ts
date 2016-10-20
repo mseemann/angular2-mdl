@@ -7,6 +7,7 @@ import { MdlCommonsModule } from '../common/index';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import { MdlAlertComponent } from './mdl-alert.component';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
+import { MdlButtonModule } from '../button/mdl-button.component';
 
 export * from './mdl-dialog.component';
 export * from './mdl-dialog.service';
@@ -27,6 +28,7 @@ const PRIVATE_COMPONENTS = [
   imports: [
     CommonModule,
     MdlCommonsModule,
+    MdlButtonModule,
     MdlDialogOutletModule.forRoot()
   ],
   exports: [

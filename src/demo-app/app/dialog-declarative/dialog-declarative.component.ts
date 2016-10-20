@@ -52,7 +52,7 @@ export class DialogDeclarativeDemo extends AbstractDemoComponent {
   public onDialogShow(dialogRef: MdlDialogReference){
     this.editedUsername = this.username;
     console.log(`dialog shown`, dialogRef);
-    setTimeout( () => {
+    dialogRef.onVisible().subscribe( () => {
       this.tfName.setFocus();
     });
   }
