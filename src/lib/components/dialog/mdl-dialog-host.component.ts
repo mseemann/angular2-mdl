@@ -68,14 +68,12 @@ const leaveTransitionDuration = 300;
       transition-property: all;
       transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
       transition-duration: ${enterTransitionDuration/1000}s;
-      /*animation-delay: 0.01s;*/
     }
     
     .transition-out {
       transition-property: all;
       transition-timing-function: cubic-bezier(0.4, 0.0, 1, 1);
       transition-duration: ${leaveTransitionDuration/1000}s;
-      /*animation-delay: 0.01s;*/
     }
     
     `
@@ -152,27 +150,28 @@ export class MdlDialogHostComponent implements OnInit {
 
         this.applyStyle(this.beforeShowDefaultPosition);
 
+
         setTimeout(() => {
-          this.renderer.setElementClass(this.elementRef.nativeElement, 'transition-in', true);
-          this.applyStyle(this.showAnimationEndStyle);
+          window.requestAnimationFrame( () =>{
+            this.renderer.setElementClass(this.elementRef.nativeElement, 'transition-in', true);
+            this.applyStyle(this.showAnimationEndStyle);
 
-          this.ngZone.onStable.subscribe(() => {
+            setTimeout(()=>{
+              // let l = this.renderer.listen(this.elementRef.nativeElement, 'transitionend', (e) => {
+              //   if(e.target === this.elementRef.nativeElement){
+              //     l();
+                  this.ngZone.run(() => {
+                    this.internalDialogRef.visible();
+                  });
+                // }
+              // });
+            }, enterTransitionDuration*0.1);
 
-              this.internalDialogRef.visible();
+          })
 
+        }, 90);
 
-          });
-
-        });
-
-        let l = this.renderer.listen(this.elementRef.nativeElement, 'transitionend', (e) => {
-          if (e.target === this.elementRef.nativeElement) {
-            l();
-            //this.internalDialogRef.visible();
-          }
-        });
-
-      })
+     })
     }
   }
 
