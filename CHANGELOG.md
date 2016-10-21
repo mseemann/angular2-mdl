@@ -1,3 +1,9 @@
+<a name="2.2.2"></a>
+# 2.2.2 (2016-10-21)
+
+### Bug Fixes
+* [165](https://github.com/mseemann/angular2-mdl/issues/165) (Unable to compile AOT)
+
 <a name="2.2.1"></a>
 # 2.2.1 (2016-10-17)
 
