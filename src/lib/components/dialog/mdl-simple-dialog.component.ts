@@ -45,7 +45,9 @@ export class MdlSimpleDialogComponent {
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private dialogConfiguration: IMdlSimpleDialogConfiguration,
     @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference) {
     this.dialog.onVisible().subscribe(() => {
-      this.buttons.first.nativeElement.focus();
+      if (this.buttons) {
+        this.buttons.first.nativeElement.focus();
+      }
     })
   }
 
