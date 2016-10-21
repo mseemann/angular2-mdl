@@ -22,6 +22,6 @@ after_success:
   # send code coverage to codeclimate
   - npm run codeclimate
   # run e2e test
-  - npm run e2e
+  # - npm run e2e
 
 after_script:
