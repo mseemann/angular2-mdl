@@ -95,7 +95,7 @@ export class MdlSnackbarService {
   }
 
 
-  public showToast(message: string, timeout?: number, vcRef?: ViewContainerRef): Observable<MdlSnackbarComponent> {
+  public showToast(message: string, timeout?: number): Observable<MdlSnackbarComponent> {
     return this.showSnackbar({
       message: message,
       timeout: timeout
