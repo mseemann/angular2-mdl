@@ -166,7 +166,9 @@ export class MdlDialogService {
       providers,
       MdlSimpleDialogComponent);
 
-    hostComponentRef.instance.show();
+    setTimeout( ()=>{
+      hostComponentRef.instance.show();
+    });
 
     return Observable.of(internalDialogRef.dialogRef);
   }
@@ -195,7 +197,7 @@ export class MdlDialogService {
     // the browser need some time to render the dialog content.
     setTimeout( ()=>{
       hostComponentRef.instance.show();
-    })
+    });
 
     return Observable.of(internalDialogRef.dialogRef);
   }
@@ -208,7 +210,9 @@ export class MdlDialogService {
 
     hostComponentRef.instance.dialogTarget.createEmbeddedView(template);
 
-    hostComponentRef.instance.show();
+    setTimeout( ()=>{
+      hostComponentRef.instance.show();
+    });
 
     return Observable.of(internalDialogRef.dialogRef);
   }

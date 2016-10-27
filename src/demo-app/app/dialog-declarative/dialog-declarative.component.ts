@@ -1,6 +1,6 @@
 import {
   Component,
-  ViewChild
+  ViewChild, AfterViewInit
 } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
@@ -24,7 +24,7 @@ import { MdlDialogReference } from '../../../lib/components/dialog/mdl-dialog.se
   ],
   templateUrl: 'dialog-declarative.component.html'
 })
-export class DialogDeclarativeDemo extends AbstractDemoComponent {
+export class DialogDeclarativeDemo extends AbstractDemoComponent implements AfterViewInit {
 
   public username: string = 'Marvin';
   public editedUsername: string;
@@ -53,8 +53,13 @@ export class DialogDeclarativeDemo extends AbstractDemoComponent {
     this.editedUsername = this.username;
     console.log(`dialog shown`, dialogRef);
     dialogRef.onVisible().subscribe( () => {
-      this.tfName.setFocus();
+      //console.log('set focus');
+      //this.tfName.setFocus();
     });
+  }
+
+  public ngAfterViewInit() {
+    this.tfName.setFocus();
   }
 
   public onDialogHide(){

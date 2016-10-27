@@ -4,7 +4,7 @@ import {
   HostListener,
   OnInit,
   Inject,
-  OpaqueToken
+  OpaqueToken, AfterContentInit
 } from '@angular/core';
 import { LoginService } from './login.service';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
@@ -51,6 +51,7 @@ export class LoginDialogComponent implements OnInit {
     });
 
   }
+
 
   public ngOnInit() {
     this.form = this.fb.group({

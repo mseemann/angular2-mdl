@@ -20,6 +20,7 @@ import {
 import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 import { MdlButtonComponent } from '../button/mdl-button.component';
 import { InternalMdlDialogReference } from './internal-dialog-reference';
+import { AnimationDriver } from '@angular/platform-browser';
 
 const enterTransitionDuration = 300;
 const leaveTransitionDuration = 300;
@@ -46,7 +47,7 @@ const leaveTransitionDuration = 300;
       padding: 1em;
       background: white;
       color: black;
-      opacity: 0;
+      opacity: 1;
       visibility: hidden;
       display: block;
       position: fixed;
@@ -55,25 +56,12 @@ const leaveTransitionDuration = 300;
       right: 0;
       transition: all;
       top: 50%;
-      opacity: 0;
       transform: translate(0, -50%) scale(1.0);
     }
     
     mdl-dialog-host-component.open {
       visibility: visible;
       opacity: 1;
-    }
-    
-    .transition-in {
-      transition-property: all;
-      transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
-      transition-duration: ${enterTransitionDuration/1000}s;
-    }
-    
-    .transition-out {
-      transition-property: all;
-      transition-timing-function: cubic-bezier(0.4, 0.0, 1, 1);
-      transition-duration: ${leaveTransitionDuration/1000}s;
     }
     
     `
@@ -88,22 +76,30 @@ export class MdlDialogHostComponent implements OnInit {
 
   private beforeShowDefaultPosition: {[key: string]: string} = {
     top: '38%',
+    opacity: '0',
+    visibility: 'visible',
     transform: 'translate(0, -50%)',
   }
 
-  private showAnimationEndStyle = {
+  private showAnimationEndStyle: {[key: string]: string} = {
     top: '50%',
     opacity: '1',
     visibility: 'visible',
     transform: 'translate(0, -50%) scale(1.0)'
   };
 
-  private hideAnimationEndStyles = {
-    opacity: '0'
+  private hideAnimationEndStyles:  {[key: string]: string} = {
+    top: '50%',
+    opacity: '0',
+    visibility: 'visible',
+    transform: 'translate(0, -50%) scale(1.0)'
   };
 
   private hideAnimationEndPosition: {[key: string]: string} = {
-    top: '63%'
+    top: '63%',
+    opacity: '0',
+    visibility: 'visible',
+    transform: 'translate(0, -50%) scale(1.0)'
   }
 
   constructor(
@@ -111,7 +107,8 @@ export class MdlDialogHostComponent implements OnInit {
     private renderer: Renderer,
     private elementRef: ElementRef,
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private config: IMdlDialogConfiguration,
-    private internalDialogRef: InternalMdlDialogReference){
+    private internalDialogRef: InternalMdlDialogReference,
+    private animator: AnimationDriver){
   }
 
   public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
@@ -142,34 +139,39 @@ export class MdlDialogHostComponent implements OnInit {
 
           this.beforeShowDefaultPosition = {
             top: `${targetClientRect.top}px`,
+            opacity: '0',
+            visibility: 'visible',
             transform: `translate(${translationFrom.x}px, ${translationFrom.y}px) scale(${translationFrom.scaleX}, ${translationFrom.scaleY})`
           }
-          // openfro = closeTo
+          // openfrom = closeTo
           this.hideAnimationEndPosition = this.beforeShowDefaultPosition;
         }
+        
+        var animation = this.elementRef.nativeElement.animate([
+          this.beforeShowDefaultPosition,
+          this.showAnimationEndStyle
+        ], {
+          fill: 'forwards',
+          easing: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+          duration: enterTransitionDuration,
+        });
 
-        this.applyStyle(this.beforeShowDefaultPosition);
+        this.ngZone.run( () => {
+          this.internalDialogRef.visible();
+        });
 
 
-        setTimeout(() => {
-          window.requestAnimationFrame( () =>{
-            this.renderer.setElementClass(this.elementRef.nativeElement, 'transition-in', true);
-            this.applyStyle(this.showAnimationEndStyle);
+        // let player = this.animator.animate(this.elementRef.nativeElement, {styles: []}, [kf], 10000, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
+        //   player.onStart(() => {
+        //     console.log('start');
+        //   })
+        //   player.onDone(() => {
+        //     console.log('done');
+        //     this.applyStyle(this.showAnimationEndStyle);
+        //     this.internalDialogRef.visible();
+        //   })
+        // player.play();
 
-            setTimeout(()=>{
-              // let l = this.renderer.listen(this.elementRef.nativeElement, 'transitionend', (e) => {
-              //   if(e.target === this.elementRef.nativeElement){
-              //     l();
-                  this.ngZone.run(() => {
-                    this.internalDialogRef.visible();
-                  });
-                // }
-              // });
-            }, enterTransitionDuration*0.1);
-
-          })
-
-        }, 90);
 
      })
     }
@@ -177,18 +179,21 @@ export class MdlDialogHostComponent implements OnInit {
 
   public hide(selfComponentRef: ComponentRef<MdlDialogHostComponent>){
     if (this.isAnimateEnabled()){
-      let l = this.renderer.listen(this.elementRef.nativeElement, 'transitionend', (e) => {
-        if(e.target === this.elementRef.nativeElement){
-          l();
+      var animation = this.elementRef.nativeElement.animate([
+        this.showAnimationEndStyle,
+        this.hideAnimationEndPosition
+      ], {
+        fill: 'forwards',
+        easing: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+        duration: leaveTransitionDuration,
+      });
+
+      animation.onfinish = ()=>{
+        this.ngZone.run( () => {
           selfComponentRef.destroy();
-        }
-      });
-      this.renderer.setElementClass(this.elementRef.nativeElement, 'transition-in', false);
-      this.renderer.setElementClass(this.elementRef.nativeElement, 'transition-out', true);
-      setTimeout(()=> {
-        this.applyStyle(this.hideAnimationEndStyles);
-        this.applyStyle(this.hideAnimationEndPosition)
-      });
+        });
+      };
+
     } else {
       selfComponentRef.destroy();
     }
