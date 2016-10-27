@@ -25,7 +25,8 @@
    * @constructor
    * @param {HTMLElement} element The element that will be upgraded.
    */
-  export function MaterialRipple(element) {
+  export function MaterialRipple(renderer, element) {
+    this.renderer_ = renderer;
     this.element_ = element;
 
     // Initialize instance.
@@ -80,7 +81,7 @@
       this.rippleElement_.style.height = this.rippleSize_ + 'px';
     }
 
-    this.rippleElement_.classList.add(this.CssClasses_.IS_VISIBLE);
+    this.renderer_.setElementClass(this.rippleElement_, this.CssClasses_.IS_VISIBLE, true);
 
     if (event.type === 'mousedown' && this.ignoringMouseDown_) {
       this.ignoringMouseDown_ = false;
@@ -125,7 +126,7 @@
       // shows for tap events, which seem to trigger a mouseup too soon after
       // mousedown.
       setTimeout(function() {
-        this.rippleElement_.classList.remove(this.CssClasses_.IS_VISIBLE);
+        this.renderer_.setElementClass(this.rippleElement_, this.CssClasses_.IS_VISIBLE, false);
       }.bind(this), 0);
     }
   };
@@ -224,11 +225,7 @@
             this.rippleElement_.style.msTransform = transformString;
             this.rippleElement_.style.transform = transformString;
 
-            if (start) {
-              this.rippleElement_.classList.remove(this.CssClasses_.IS_ANIMATING);
-            } else {
-              this.rippleElement_.classList.add(this.CssClasses_.IS_ANIMATING);
-            }
+            this.renderer_.setElementClass(this.rippleElement_, this.CssClasses_.IS_ANIMATING, !start);
           }
         };
 

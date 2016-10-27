@@ -127,9 +127,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
 
     // Turn on animation, and apply the final clip. Also make invisible.
     // This triggers the transitions.
-    this.menuElement.classList.add('is-animating');
+    this.renderer.setElementClass(this.menuElement, 'is-animating', true);
     this.applyClip(height, width);
-    this.container.classList.remove('is-visible');
+    this.renderer.setElementClass(this.container, 'is-visible', false);
 
     // Clean up after the animation is complete.
     this.addAnimationEndListener();
@@ -189,9 +189,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
     // Apply the initial clip to the text before we start animating.
     this.applyClip(height, width);
 
-    this.container.classList.add('is-visible');
+    this.renderer.setElementClass(this.container, 'is-visible', true);
     this.menuElement.style.clip = 'rect(0 ' + width + 'px ' + height + 'px 0)';
-    this.menuElement.classList.add('is-animating');
+    this.renderer.setElementClass(this.menuElement, 'is-animating', true);
 
     this.addAnimationEndListener();
 
@@ -201,7 +201,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
 
   private addAnimationEndListener() {
     this.renderer.listen(this.menuElement, 'transitionend', () => {
-      this.menuElement.classList.remove('is-animating');
+      this.renderer.setElementClass(this.menuElement, 'is-animating', false);
     });
   }
 
