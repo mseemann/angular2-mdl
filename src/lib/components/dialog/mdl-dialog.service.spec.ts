@@ -3,7 +3,7 @@ import {
   TestBed,
   async
 } from '@angular/core/testing';
-import { Component, ViewContainerRef, NgModule, Optional, Inject, OpaqueToken } from '@angular/core';
+import { Component, ViewContainerRef, NgModule, Optional, Inject, OpaqueToken, ViewChild } from '@angular/core';
 import { DOCUMENT, By } from '@angular/platform-browser';
 import { MdlDialogModule } from './index';
 import {
@@ -16,6 +16,7 @@ import { IMdlDialogAction } from './mdl-dialog-configuration';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
 import { MdlBackdropOverlayComponent } from '../dialog-outlet/mdl-backdrop-overlay.component';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
+import { MdlButtonComponent, MdlButtonModule } from '../button/mdl-button.component';
 
 const TEST = new OpaqueToken('test');
 
@@ -28,7 +29,11 @@ describe('Service: MdlDialog', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MdlTestViewComponent],
-      imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule, TestDialogModul],
+      imports: [
+        MdlDialogModule.forRoot(),
+        MdlDialogOutletModule,
+        TestDialogModul,
+        MdlButtonModule.forRoot()],
     });
   }));
 
@@ -301,6 +306,27 @@ describe('Service: MdlDialog', () => {
     })
   }));
 
+  it('shoudl open a dialog if openForm is specified', async(() => {
+
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      styles: {'width':'350px'},
+      classes: 'a b',
+      openFrom: fixture.componentInstance.button
+    });
+
+    p.subscribe( ( dialogRef ) => {
+
+      dialogRef.hide();
+
+    });
+
+  }));
+
 
 });
 
@@ -308,10 +334,11 @@ describe('Service: MdlDialog', () => {
 
 @Component({
   selector: 'test-view',
-  template: '<div></div><dialog-outlet></dialog-outlet>'
+  template: '<div></div><button mdl-button #btn></button><dialog-outlet></dialog-outlet>'
 })
 class MdlTestViewComponent {
 
+  @ViewChild('btn') button: MdlButtonComponent;
 
 }
 

@@ -8,7 +8,6 @@ import {
   Renderer,
   ElementRef,
   OnInit,
-  AnimationTransitionEvent,
   ComponentRef,
   NgZone
 } from '@angular/core';
@@ -20,16 +19,14 @@ import {
 import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 import { MdlButtonComponent } from '../button/mdl-button.component';
 import { InternalMdlDialogReference } from './internal-dialog-reference';
-import { AnimationDriver } from '@angular/platform-browser';
 
 const enterTransitionDuration = 300;
-const leaveTransitionDuration = 300;
+const leaveTransitionDuration = 250;
 
 // @experimental
 @Component({
   selector: 'mdl-dialog-host-component',
   host: {
-    //'[class]': 'classes',
     '[class.mdl-dialog]': 'true',
     '[class.open]': 'visible',
     '[style.zIndex]': 'zIndex',
@@ -106,8 +103,7 @@ export class MdlDialogHostComponent implements OnInit {
     private renderer: Renderer,
     private elementRef: ElementRef,
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private config: IMdlDialogConfiguration,
-    private internalDialogRef: InternalMdlDialogReference,
-    private animator: AnimationDriver){
+    private internalDialogRef: InternalMdlDialogReference){
   }
 
   public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
@@ -116,6 +112,7 @@ export class MdlDialogHostComponent implements OnInit {
 
     if (!this.isAnimateEnabled()) {
       this.visible = true;
+      // give the dialogs time to draw so that a focus can be set
       setTimeout( () => {
         this.internalDialogRef.visible();
       })
