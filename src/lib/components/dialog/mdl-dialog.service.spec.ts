@@ -39,7 +39,7 @@ describe('Service: MdlDialog', () => {
     doc = doc_;
   })));
 
-  it('should show an alert', ( done: () => void ) => {
+  it('should show an alert', async(() => {
 
     let title = 'Alert';
     let fixture = TestBed.createComponent(MdlTestViewComponent);
@@ -48,7 +48,7 @@ describe('Service: MdlDialog', () => {
     let result = mdlDialogService.alert(title);
     result.subscribe( () => {
       // test passed because the action was called
-      done();
+      // async makes sure this is called
     } );
 
     fixture.detectChanges();
@@ -70,9 +70,9 @@ describe('Service: MdlDialog', () => {
     let buttonEl = fixture.debugElement.query(By.css('button')).nativeElement;
     buttonEl.click();
 
-  });
+  }));
 
-  it('should show a confirm dialog which is modal and can be closed with click on confirm', ( done: () => void ) => {
+  it('should show a confirm dialog which is modal and can be closed with click on confirm', async(() => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -80,7 +80,7 @@ describe('Service: MdlDialog', () => {
     let result = mdlDialogService.confirm('?', 'no', 'yes');
     result.subscribe( () => {
       // test passed because the action was called
-      done();
+      // async makes sure this is called
     } );
 
     fixture.detectChanges();
@@ -89,17 +89,17 @@ describe('Service: MdlDialog', () => {
     let buttonDebugElements = fixture.debugElement.queryAll(By.css('.mdl-button'));
     let buttonEl = buttonDebugElements[0].nativeElement;
     buttonEl.click();
-  });
+  }));
 
 
-  it('should show a confirm dialog which is modal and can be closed esc', ( done: () => void ) => {
+  it('should show a confirm dialog which is modal and can be closed esc', async(() => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
     let result = mdlDialogService.confirm('?', 'no', 'yes');
     result.subscribe( () => {}, () => {
       // test passed because the action was called;
-      done();
+      // async makes sure this is called
     } );
 
     fixture.detectChanges();
@@ -107,9 +107,9 @@ describe('Service: MdlDialog', () => {
     let dialog = fixture.debugElement.query(By.directive(MdlSimpleDialogComponent)).componentInstance;
     // sending an keybord event to the dialog would be better
     dialog.onEsc();
-  });
+  }));
 
-  it('should be possible to open a custom dialog', ( done: () => void ) => {
+  it('should be possible to open a custom dialog', async(() => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -121,7 +121,7 @@ describe('Service: MdlDialog', () => {
     p.subscribe( ( dialogRef ) => {
 
       dialogRef.onHide().subscribe( ( ) => {
-        done();
+        // async makes sure this is called
       });
 
       let customDialogComponent = fixture.debugElement.query(By.directive(TestCustomDialog)).componentInstance;
@@ -133,9 +133,9 @@ describe('Service: MdlDialog', () => {
       customDialogComponent.close();
     });
 
-  });
+  }));
 
-  it('should stop propagaton on overlay clicks', () => {
+  it('should stop propagaton on overlay clicks', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
@@ -153,9 +153,9 @@ describe('Service: MdlDialog', () => {
     backdrop.dispatchEvent(event);
 
     expect(event.stopPropagation).toHaveBeenCalled();
-  });
+  }));
 
-  it('should not be possible to create a simple dialog without actions', () => {
+  it('should not be possible to create a simple dialog without actions', async(() => {
 
     expect( () => {
 
@@ -165,9 +165,9 @@ describe('Service: MdlDialog', () => {
       });
 
     }).toThrow();
-  });
+  }));
 
-  it('should not hide the dialog on esc key  if there is no closing action', ( done: () => void ) => {
+  it('should not hide the dialog on esc key  if there is no closing action', async(() => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -188,10 +188,9 @@ describe('Service: MdlDialog', () => {
 
       expect(dialogRef.hide).not.toHaveBeenCalled();
 
-      done();
     });
 
-  });
+  }));
 
   it('should throw if no viewContainerRef is provided', async(() => {
 
@@ -203,7 +202,7 @@ describe('Service: MdlDialog', () => {
 
   }));
 
-  it('should close the dialog on click on the backdrop if clickOutsideToClose true', () => {
+  it('should close the dialog on click on the backdrop if clickOutsideToClose true', async(() => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -215,24 +214,20 @@ describe('Service: MdlDialog', () => {
 
     p.subscribe( ( dialogRef ) => {
 
+      dialogRef.onHide().subscribe( () => {
+         // async -> this have to been called to fullfill all open obseravbles
+      });
+
       let backdrop = <HTMLDivElement> doc.querySelector('.dialog-backdrop');
 
       var event = new MouseEvent('click', {});
 
       backdrop.dispatchEvent(event);
 
-      fixture.detectChanges();
-      fixture.whenStable().then( () => {
-        let dialogHost = fixture.debugElement.query(By.directive(MdlDialogHostComponent));
-
-        expect(dialogHost).toBeNull('dialog host should be null - because it is closed.');
-
-      });
-
     });
-  })
+  }));
 
-  it('should not close the dialog on click on the backdrop if clickOutsideToClose true', () => {
+  it('should not close the dialog on click on the backdrop if clickOutsideToClose true', async(() => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -245,6 +240,7 @@ describe('Service: MdlDialog', () => {
     p.subscribe( ( dialogRef ) => {
 
       let backdrop = <HTMLDivElement> doc.querySelector('.dialog-backdrop');
+      expect(backdrop).toBeDefined('dialog-backdrop should be present')
 
       var event = new MouseEvent('click', {});
 
@@ -259,10 +255,10 @@ describe('Service: MdlDialog', () => {
       });
 
     });
-  });
+  }));
 
 
-  it('should disable animations if animate is false', () => {
+  it('should disable animations if animate is false', async(() => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -281,9 +277,9 @@ describe('Service: MdlDialog', () => {
 
     })
 
-  });
+  }));
 
-  it('should add additional classes and styles to the dialog host', () => {
+  it('should add additional classes and styles to the dialog host', async(() => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -303,7 +299,7 @@ describe('Service: MdlDialog', () => {
       expect(dialogHost.classList.contains('a')).toBe(true, 'should contian class a');
       expect(dialogHost.classList.contains('b')).toBe(true, 'should contian class b');
     })
-  });
+  }));
 
 
 });
