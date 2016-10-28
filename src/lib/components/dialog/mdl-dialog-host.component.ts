@@ -23,6 +23,25 @@ import { InternalMdlDialogReference } from './internal-dialog-reference';
 const enterTransitionDuration = 300;
 const leaveTransitionDuration = 250;
 
+// helper defintions - these classes are private in angular
+// but render.animate is public and uses theese defintions
+
+declare abstract class AnimationPlayer {
+  abstract onDone(fn: () => void): void;
+  abstract onStart(fn: () => void): void;
+  abstract init(): void;
+  abstract hasStarted(): boolean;
+  abstract play(): void;
+  abstract pause(): void;
+  abstract restart(): void;
+  abstract finish(): void;
+  abstract destroy(): void;
+  abstract reset(): void;
+  abstract setPosition(p: any): void;
+  abstract getPosition(): number;
+  parentPlayer: AnimationPlayer;
+}
+
 // @experimental
 @Component({
   selector: 'mdl-dialog-host-component',
@@ -70,28 +89,21 @@ export class MdlDialogHostComponent implements OnInit {
 
   public visible = false;
 
-  private beforeShowDefaultPosition: {[key: string]: string} = {
+  private showAnimationStartStyle: {[key: string]: string} = {
     top: '38%',
     opacity: '0',
     visibility: 'visible',
     transform: 'translate(0, -50%)',
   }
 
-  private showAnimationEndStyle: {[key: string]: string} = {
+  private showStyle: {[key: string]: string} = {
     top: '50%',
     opacity: '1',
     visibility: 'visible',
     transform: 'translate(0, -50%) scale(1.0)'
   };
 
-  private hideAnimationEndStyles:  {[key: string]: string} = {
-    top: '50%',
-    opacity: '0',
-    visibility: 'visible',
-    transform: 'translate(0, -50%) scale(1.0)'
-  };
-
-  private hideAnimationEndPosition: {[key: string]: string} = {
+  private hideAnimationEndStyle: {[key: string]: string} = {
     top: '63%',
     opacity: '0',
     visibility: 'visible',
@@ -127,6 +139,7 @@ export class MdlDialogHostComponent implements OnInit {
 
         const centerTarget = this.getCenterInScreen(targetClientRect);
         const centerFrom = this.getCenterInScreen(openFromRect);
+        const centerTo = this.getCenterInScreen(closeToRect) || centerFrom;
 
         const translationFrom = {
           x: Math.round(centerFrom.cx - centerTarget.cx),
@@ -135,63 +148,67 @@ export class MdlDialogHostComponent implements OnInit {
           scaleY: Math.round(100 * Math.min(0.25, openFromRect.height / targetClientRect.height)) / 100
         }
 
-        this.beforeShowDefaultPosition = {
+        this.showAnimationStartStyle = {
           top: `${targetClientRect.top}px`,
           opacity: '0',
           visibility: 'visible',
           transform: `translate(${translationFrom.x}px, ${translationFrom.y}px) scale(${translationFrom.scaleX}, ${translationFrom.scaleY})`
         }
-        // openfrom = closeTo
-        this.hideAnimationEndPosition = this.beforeShowDefaultPosition;
+
+        const translationTo = {
+          x: Math.round(centerTo.cx - centerTarget.cx),
+          y: Math.round(centerTo.cy - centerTarget.cy),
+          scaleX: Math.round(100 * Math.min(0.25, closeToRect.width / targetClientRect.width)) / 100,
+          scaleY: Math.round(100 * Math.min(0.25, closeToRect.height / targetClientRect.height)) / 100
+        }
+
+        this.hideAnimationEndStyle  = {
+          top: `${targetClientRect.top}px`,
+          opacity: '0',
+          visibility: 'visible',
+          transform: `translate(${translationTo.x}px, ${translationTo.y}px) scale(${translationTo.scaleX}, ${translationTo.scaleY})`
+        }
       }
 
-      var animation = this.elementRef.nativeElement.animate([
-        this.beforeShowDefaultPosition,
-        this.showAnimationEndStyle
-      ], {
-        fill: 'forwards',
-        easing: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
-        duration: enterTransitionDuration,
-      });
+      let animation: AnimationPlayer = this.renderer.animate(
+        this.elementRef.nativeElement, null,
+        [
+          {offset:0, styles: { styles: [this.showAnimationStartStyle]}},
+          {offset:1, styles: { styles: [this.showStyle]}}
+        ],
+        enterTransitionDuration, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
 
-      animation.onfinish = ()=>{
+      animation.onDone( () => {
         this.ngZone.run( () => {
           this.visible = true;
         });
-      };
+      });
+
+      animation.play();
 
       this.internalDialogRef.visible();
 
-
-      // let player = this.animator.animate(this.elementRef.nativeElement, {styles: []}, [kf], 10000, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
-      //   player.onStart(() => {
-      //     console.log('start');
-      //   })
-      //   player.onDone(() => {
-      //     console.log('done');
-      //     this.applyStyle(this.showAnimationEndStyle);
-      //     this.internalDialogRef.visible();
-      //   })
-      // player.play();
     }
   }
 
   public hide(selfComponentRef: ComponentRef<MdlDialogHostComponent>){
     if (this.isAnimateEnabled()){
-      var animation = this.elementRef.nativeElement.animate([
-        this.showAnimationEndStyle,
-        this.hideAnimationEndPosition
-      ], {
-        fill: 'forwards',
-        easing: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
-        duration: leaveTransitionDuration,
-      });
 
-      animation.onfinish = ()=>{
+      let animation: AnimationPlayer = this.renderer.animate(
+        this.elementRef.nativeElement, null,
+        [
+          {offset:0, styles: { styles: [this.showStyle]}},
+          {offset:1, styles: { styles: [this.hideAnimationEndStyle]}}
+        ],
+        leaveTransitionDuration, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
+
+      animation.onDone( () => {
         this.ngZone.run( () => {
           selfComponentRef.destroy();
         });
-      };
+      });
+
+      animation.play();
 
     } else {
       selfComponentRef.destroy();
