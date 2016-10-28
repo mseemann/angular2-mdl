@@ -61,7 +61,6 @@ const leaveTransitionDuration = 300;
     
     mdl-dialog-host-component.open {
       visibility: visible;
-      opacity: 1;
     }
     
     `
@@ -117,63 +116,66 @@ export class MdlDialogHostComponent implements OnInit {
 
     if (!this.isAnimateEnabled()) {
       this.visible = true;
-      this.internalDialogRef.visible();
+      setTimeout( () => {
+        this.internalDialogRef.visible();
+      })
+
     } else {
-      this.ngZone.runOutsideAngular(() => {
-        if (this.config.openFrom || this.config.closeTo) {
+      if (this.config.openFrom || this.config.closeTo) {
 
-          const targetClientRect = this.elementRef.nativeElement.getBoundingClientRect();
+        const targetClientRect = this.elementRef.nativeElement.getBoundingClientRect();
 
-          const openFromRect = this.getClientRect(this.config.openFrom);
-          const closeToRect = this.config.closeTo ? this.getClientRect(this.config.closeTo) : openFromRect;
+        const openFromRect = this.getClientRect(this.config.openFrom);
+        const closeToRect = this.config.closeTo ? this.getClientRect(this.config.closeTo) : openFromRect;
 
-          const centerTarget = this.getCenterInScreen(targetClientRect);
-          const centerFrom = this.getCenterInScreen(openFromRect);
+        const centerTarget = this.getCenterInScreen(targetClientRect);
+        const centerFrom = this.getCenterInScreen(openFromRect);
 
-          const translationFrom = {
-            x: Math.round(centerFrom.cx - centerTarget.cx),
-            y: Math.round(centerFrom.cy - centerTarget.cy),
-            scaleX: Math.round(100 * Math.min(0.25, openFromRect.width / targetClientRect.width)) / 100,
-            scaleY: Math.round(100 * Math.min(0.25, openFromRect.height / targetClientRect.height)) / 100
-          }
-
-          this.beforeShowDefaultPosition = {
-            top: `${targetClientRect.top}px`,
-            opacity: '0',
-            visibility: 'visible',
-            transform: `translate(${translationFrom.x}px, ${translationFrom.y}px) scale(${translationFrom.scaleX}, ${translationFrom.scaleY})`
-          }
-          // openfrom = closeTo
-          this.hideAnimationEndPosition = this.beforeShowDefaultPosition;
+        const translationFrom = {
+          x: Math.round(centerFrom.cx - centerTarget.cx),
+          y: Math.round(centerFrom.cy - centerTarget.cy),
+          scaleX: Math.round(100 * Math.min(0.25, openFromRect.width / targetClientRect.width)) / 100,
+          scaleY: Math.round(100 * Math.min(0.25, openFromRect.height / targetClientRect.height)) / 100
         }
-        
-        var animation = this.elementRef.nativeElement.animate([
-          this.beforeShowDefaultPosition,
-          this.showAnimationEndStyle
-        ], {
-          fill: 'forwards',
-          easing: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
-          duration: enterTransitionDuration,
-        });
 
+        this.beforeShowDefaultPosition = {
+          top: `${targetClientRect.top}px`,
+          opacity: '0',
+          visibility: 'visible',
+          transform: `translate(${translationFrom.x}px, ${translationFrom.y}px) scale(${translationFrom.scaleX}, ${translationFrom.scaleY})`
+        }
+        // openfrom = closeTo
+        this.hideAnimationEndPosition = this.beforeShowDefaultPosition;
+      }
+
+      var animation = this.elementRef.nativeElement.animate([
+        this.beforeShowDefaultPosition,
+        this.showAnimationEndStyle
+      ], {
+        fill: 'forwards',
+        easing: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+        duration: enterTransitionDuration,
+      });
+
+      animation.onfinish = ()=>{
         this.ngZone.run( () => {
-          this.internalDialogRef.visible();
+          this.visible = true;
         });
+      };
+
+      this.internalDialogRef.visible();
 
 
-        // let player = this.animator.animate(this.elementRef.nativeElement, {styles: []}, [kf], 10000, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
-        //   player.onStart(() => {
-        //     console.log('start');
-        //   })
-        //   player.onDone(() => {
-        //     console.log('done');
-        //     this.applyStyle(this.showAnimationEndStyle);
-        //     this.internalDialogRef.visible();
-        //   })
-        // player.play();
-
-
-     })
+      // let player = this.animator.animate(this.elementRef.nativeElement, {styles: []}, [kf], 10000, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
+      //   player.onStart(() => {
+      //     console.log('start');
+      //   })
+      //   player.onDone(() => {
+      //     console.log('done');
+      //     this.applyStyle(this.showAnimationEndStyle);
+      //     this.internalDialogRef.visible();
+      //   })
+      // player.play();
     }
   }
 

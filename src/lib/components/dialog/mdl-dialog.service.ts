@@ -166,17 +166,13 @@ export class MdlDialogService {
       providers,
       MdlSimpleDialogComponent);
 
-    setTimeout( ()=>{
-      hostComponentRef.instance.show();
-    });
-
-    return Observable.of(internalDialogRef.dialogRef);
+    return this.showHostDialog(internalDialogRef.dialogRef, hostComponentRef);
   }
 
   /**
    * Shows a dialog that is specified by the provided configuration.
    * @param config The custom dialog configuration.
-   * @returns Am Observable that returns the MdlDialogReference.
+   * @returns An Observable that returns the MdlDialogReference.
    */
   public showCustomDialog(config: IMdlCustomDialogConfiguration): Observable<MdlDialogReference> {
 
@@ -194,12 +190,7 @@ export class MdlDialogService {
 
     this.createComponentInstance(hostComponentRef.instance.dialogTarget, providers, config.component);
 
-    // the browser need some time to render the dialog content.
-    setTimeout( ()=>{
-      hostComponentRef.instance.show();
-    });
-
-    return Observable.of(internalDialogRef.dialogRef);
+    return this.showHostDialog(internalDialogRef.dialogRef, hostComponentRef);
   }
 
   public showDialogTemplate(template: TemplateRef<any>, config: IMdlDialogConfiguration): Observable<MdlDialogReference> {
@@ -210,14 +201,21 @@ export class MdlDialogService {
 
     hostComponentRef.instance.dialogTarget.createEmbeddedView(template);
 
-    setTimeout( ()=>{
+    return this.showHostDialog(internalDialogRef.dialogRef, hostComponentRef);
+  }
+
+  private showHostDialog(dialogRef: MdlDialogReference, hostComponentRef: ComponentRef<MdlDialogHostComponent> ) {
+
+    let result: Subject<any> = new Subject();
+
+    setTimeout( () => {
+      result.next(dialogRef);
+      result.complete();
       hostComponentRef.instance.show();
     });
 
-    return Observable.of(internalDialogRef.dialogRef);
+    return result.asObservable();
   }
-
-
 
   private createHostDialog(internalDialogRef: InternalMdlDialogReference, dialogConfig: IMdlDialogConfiguration) {
 

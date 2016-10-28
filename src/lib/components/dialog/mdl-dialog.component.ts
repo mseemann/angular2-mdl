@@ -7,9 +7,11 @@ import {
   EventEmitter,
   ViewEncapsulation
 } from '@angular/core';
+import { Subject } from 'rxjs';
+import { Observable } from 'rxjs';
+
 import { MdlDialogService, MdlDialogReference } from './mdl-dialog.service';
 import { BooleanProperty } from './../common/boolean-property';
-import { Observable } from 'rxjs';
 import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 
 
@@ -55,11 +57,20 @@ export class MdlDialogComponent {
       mergedConfig.isModal = true;
     }
 
+    let result: Subject<any> = new Subject();
+
     let p = this.dialogService.showDialogTemplate(this.template, mergedConfig);
     p.subscribe( (dialogRef: MdlDialogReference) => {
 
       this.dialogRef = dialogRef;
-      this.showEmitter.emit(dialogRef);
+
+      this.dialogRef.onVisible().subscribe( () => {
+        this.showEmitter.emit(dialogRef);
+
+        result.next(dialogRef);
+        result.complete();
+
+      });
 
       this.dialogRef.onHide().subscribe( () => {
         this.hideEmitter.emit(null);
@@ -68,7 +79,7 @@ export class MdlDialogComponent {
       });
 
     })
-    return p;
+    return result.asObservable();
   }
 
   public close() {

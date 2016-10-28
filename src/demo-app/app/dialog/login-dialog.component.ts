@@ -4,7 +4,7 @@ import {
   HostListener,
   OnInit,
   Inject,
-  OpaqueToken, AfterContentInit
+  OpaqueToken
 } from '@angular/core';
 import { LoginService } from './login.service';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
@@ -46,7 +46,9 @@ export class LoginDialogComponent implements OnInit {
 
     // just if you want to be informed if the dialog is hidden
     this.dialog.onHide().subscribe( () => console.log('login dialog hidden') );
+
     this.dialog.onVisible().subscribe( () => {
+      console.log('set focus');
       this.inputElement.setFocus();
     });
 
@@ -59,6 +61,7 @@ export class LoginDialogComponent implements OnInit {
       'password':   this.password
     });
   }
+
 
   public login() {
     this.processingLogin = true;

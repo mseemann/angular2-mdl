@@ -6,7 +6,7 @@ import {
   Inject,
   ViewChildren,
   QueryList,
-  ElementRef, AfterViewInit
+  ElementRef
 } from '@angular/core';
 import {
   MdlDialogReference,
@@ -36,7 +36,7 @@ import {
   `,
   encapsulation: ViewEncapsulation.None
 })
-export class MdlSimpleDialogComponent implements AfterViewInit {
+export class MdlSimpleDialogComponent {
 
   @ViewChildren('button') private buttons: QueryList<ElementRef>;
 
@@ -44,17 +44,12 @@ export class MdlSimpleDialogComponent implements AfterViewInit {
   constructor(
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private dialogConfiguration: IMdlSimpleDialogConfiguration,
     @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference) {
-    this.dialog.onVisible().subscribe(() => {
-      console.log(this.buttons);
-      if (this.buttons) {
+
+    dialog.onVisible().subscribe( () => {
+      if(this.buttons){
         this.buttons.first.nativeElement.focus();
       }
     })
-  }
-
-  public ngAfterViewInit(){
-    console.log(this.buttons);
-    this.buttons.first.nativeElement.focus();
   }
 
   public actionClicked(action: IMdlDialogAction) {
