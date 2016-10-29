@@ -1,3 +1,10 @@
+<a name="2.3.1"></a>
+# 2.3.1 (2016-10-29)
+
+### Bug Fixes
+* [175](https://github.com/mseemann/angular2-mdl/issues/175) ( dialog animation broken if animation polyfill is used)
+
+
 <a name="2.3.0"></a>
 # 2.3.0 (2016-10-29)
 
