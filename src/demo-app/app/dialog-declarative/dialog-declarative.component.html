@@ -176,7 +176,9 @@ You can only show one intance of an embedded dialog.
 </table>
 
 <h5>Dialog configuration object</h5>
-
+<p>Not all of these parameters are available for <i>alert</i> and <i>confirm</i>. If you need these
+  parameters please use the <i>showDialog</i> method of the <i>MdlDialogService</i> to create these
+  dialogs.</p>
 <table class="docu" mdl-shadow="2">
   <thead>
   <tr>
@@ -224,5 +226,22 @@ You can only show one intance of an embedded dialog.
     </td>
   </tr>
 
+  <tr>
+    <td>openFrom?: <br/>MdlButtonComponent | <br/>MouseEvent | <br/>OpenCloseRect</td>
+    <td>
+      Use a show animation for the dialag that starts at a MdlButtonComponent, a MousEvent or a OpenCloseRect. From all
+      of these types the top, left, width and height will be used to create the starting point and startings size of
+      the dialog animation.
+    </td>
+  </tr>
+
+  <tr>
+    <td>closeTo?: <br/>MdlButtonComponent | <br/>MouseEvent | <br/>OpenCloseRect</td>
+    <td>
+      Use a show animation for the dialag that ends at a MdlButtonComponent, a MousEvent or a OpenCloseRect. From all
+      of these types the top, left, width and height will be used to create the end point and end size of
+      the dialog animation.
+    </td>
+  </tr>
   </tbody>
 </table>

@@ -16,6 +16,7 @@ import {
   LoginDialogComponent,
   TEST_VALUE
 } from './login-dialog.component';
+import { OpenCloseRect } from '../../../lib/components/dialog/mdl-dialog-configuration';
 
 
 @Component({
@@ -60,7 +61,7 @@ export class DialogDemo extends AbstractDemoComponent {
     })
   }
 
-  public showDialogFullWidthAction() {
+  public showDialogFullWidthAction($event: MouseEvent) {
     let pDialog = this.dialogService.showDialog({
       title: 'Your choice?',
       message: 'What drink do you prefer to your meal?',
@@ -86,7 +87,13 @@ export class DialogDemo extends AbstractDemoComponent {
         }
       ],
       fullWidthAction: true,
-      isModal: false
+      isModal: false,
+      openFrom: $event,
+      closeTo: {
+        left: document.body.offsetWidth/2,
+        height: 0,
+        top: document.body.offsetHeight/2,
+        width: 0} as OpenCloseRect
     });
     pDialog.subscribe( (dialogReference) => console.log('dialog visible', dialogReference) );
   }

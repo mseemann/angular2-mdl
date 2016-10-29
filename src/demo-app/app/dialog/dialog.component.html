@@ -73,7 +73,7 @@ These dialogs are created by the <i>MdlDialogService</i>.
         mdl-button-type="raised"
         mdl-colored="primary"
         mdl-ripple
-        (click)="showDialogFullWidthAction()">Show Dialog with full width actions</button>
+        (click)="showDialogFullWidthAction($event)">Show Dialog with full width actions</button>
 
 
 <pre prism>
@@ -105,7 +105,13 @@ These dialogs are created by the <i>MdlDialogService</i>.
       }
     ],
     fullWidthAction: true,
-    isModal: false
+    isModal: false,
+    openFrom: $event,
+    closeTo: {
+      left: document.body.offsetWidth/2,
+      height: 0,
+      top: document.body.offsetHeight/2,
+      width: 0} as OpenCloseRect
   });
   pDialog.then( (dialogReference) => console.log('dialog visible', dialogReference) );
 
