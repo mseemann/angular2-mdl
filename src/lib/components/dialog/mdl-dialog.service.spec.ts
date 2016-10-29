@@ -12,7 +12,7 @@ import {
 } from './mdl-dialog.service';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
-import { IMdlDialogAction } from './mdl-dialog-configuration';
+import { IMdlDialogAction, OpenCloseRect } from './mdl-dialog-configuration';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
 import { MdlBackdropOverlayComponent } from '../dialog-outlet/mdl-backdrop-overlay.component';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
@@ -361,6 +361,26 @@ describe('Service: MdlDialog', () => {
       classes: 'a b',
       openFrom: fixture.componentInstance.button,
       closeTo: fixture.componentInstance.getFakeMouseEvent()
+    });
+
+    p.subscribe( ( dialogRef ) => {
+
+      dialogRef.hide();
+
+    });
+
+  }));
+
+  it('should open a dialog from a OpenCloseRect ', async(() => {
+
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      styles: {'width':'350px'},
+      classes: 'a b',
+      openFrom: ({ height: 10, left: 0, top: 0, width: 0} as OpenCloseRect)
     });
 
     p.subscribe( ( dialogRef ) => {

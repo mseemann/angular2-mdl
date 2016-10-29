@@ -16,7 +16,7 @@ import {
   MIN_DIALOG_Z_INDEX,
   MDL_CONFIGUARTION
 } from './mdl-dialog.service';
-import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
+import { IMdlDialogConfiguration, OpenCloseRect } from './mdl-dialog-configuration';
 import { MdlButtonComponent } from '../button/mdl-button.component';
 import { InternalMdlDialogReference } from './internal-dialog-reference';
 
@@ -242,26 +242,37 @@ export class MdlDialogHostComponent implements OnInit {
     return this.config.animate;
   }
 
-  private getClientRect(input: MdlButtonComponent | MouseEvent): ClientRect {
+  private getClientRect(input: MdlButtonComponent | MouseEvent | OpenCloseRect): OpenCloseRect {
 
     if(input instanceof MdlButtonComponent){
 
       const elRef = (input as MdlButtonComponent).elementRef;
-      return elRef.nativeElement.getBoundingClientRect();
+      const rect: ClientRect = elRef.nativeElement.getBoundingClientRect();
+      return this.createOpenCloseRect(rect);
 
-    } else if(input instanceof MouseEvent){
+    } else if (input instanceof MouseEvent) {
 
       const evt: MouseEvent = input as MouseEvent;
       // just to make it possible to test this code with a fake event - target is
       // readonly and con not be mutated.
       const htmlElement = (evt.target || evt['testtarget']) as HTMLElement;
-      return htmlElement.getBoundingClientRect();
+      const rect: ClientRect = htmlElement.getBoundingClientRect();
+      return this.createOpenCloseRect(rect);
 
     }
-
+    return input as OpenCloseRect;
   }
 
-  private getCenterInScreen(rect: ClientRect) {
+  private createOpenCloseRect(rect: ClientRect) : OpenCloseRect {
+    return {
+      height: rect.top - rect.bottom,
+      left: rect.left,
+      top: rect.top,
+      width: rect.right-rect.left
+    }
+  }
+
+  private getCenterInScreen(rect: OpenCloseRect) {
     return {
       cx: Math.round(rect.left + (rect.width / 2)),
       cy: Math.round(rect.top + (rect.height / 2))
