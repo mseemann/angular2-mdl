@@ -12,7 +12,7 @@ import {
 } from './mdl-dialog.service';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
-import { IMdlDialogAction, OpenCloseRect } from './mdl-dialog-configuration';
+import { IMdlDialogAction, IOpenCloseRect } from './mdl-dialog-configuration';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
 import { MdlBackdropOverlayComponent } from '../dialog-outlet/mdl-backdrop-overlay.component';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
@@ -380,7 +380,7 @@ describe('Service: MdlDialog', () => {
       component: TestCustomDialog,
       styles: {'width':'350px'},
       classes: 'a b',
-      openFrom: ({ height: 10, left: 0, top: 0, width: 0} as OpenCloseRect)
+      openFrom: ({ height: 10, left: 0, top: 0, width: 0} as IOpenCloseRect)
     });
 
     p.subscribe( ( dialogRef ) => {

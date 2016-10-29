@@ -35,7 +35,7 @@ export interface IMdlDialogAction {
 /**
  * rect from where the dialog should be opened or closed to.
  */
-export interface OpenCloseRect {
+export interface IOpenCloseRect {
   height: number;
   left: number;
   top: number;
@@ -76,12 +76,12 @@ export interface IMdlDialogConfiguration {
   /**
    * MdlButtonComponent or mouse event the dialog open animation should start from.
    */
-  openFrom?: MdlButtonComponent | MouseEvent | OpenCloseRect;
+  openFrom?: MdlButtonComponent | MouseEvent | IOpenCloseRect;
 
   /**
    *  MdlButtonComponent or mouse event  the dialog close animation shoul end.
    */
-  closeTo?: MdlButtonComponent | MouseEvent | OpenCloseRect;
+  closeTo?: MdlButtonComponent | MouseEvent | IOpenCloseRect;
 
 }
 

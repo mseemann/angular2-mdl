@@ -16,7 +16,7 @@ import {
   MIN_DIALOG_Z_INDEX,
   MDL_CONFIGUARTION
 } from './mdl-dialog.service';
-import { IMdlDialogConfiguration, OpenCloseRect } from './mdl-dialog-configuration';
+import { IMdlDialogConfiguration, IOpenCloseRect } from './mdl-dialog-configuration';
 import { MdlButtonComponent } from '../button/mdl-button.component';
 import { InternalMdlDialogReference } from './internal-dialog-reference';
 
@@ -242,7 +242,7 @@ export class MdlDialogHostComponent implements OnInit {
     return this.config.animate;
   }
 
-  private getClientRect(input: MdlButtonComponent | MouseEvent | OpenCloseRect): OpenCloseRect {
+  private getClientRect(input: MdlButtonComponent | MouseEvent | IOpenCloseRect): IOpenCloseRect {
 
     if(input instanceof MdlButtonComponent){
 
@@ -260,10 +260,10 @@ export class MdlDialogHostComponent implements OnInit {
       return this.createOpenCloseRect(rect);
 
     }
-    return input as OpenCloseRect;
+    return input as IOpenCloseRect;
   }
 
-  private createOpenCloseRect(rect: ClientRect) : OpenCloseRect {
+  private createOpenCloseRect(rect: ClientRect) : IOpenCloseRect {
     return {
       height: rect.top - rect.bottom,
       left: rect.left,
@@ -272,7 +272,7 @@ export class MdlDialogHostComponent implements OnInit {
     }
   }
 
-  private getCenterInScreen(rect: OpenCloseRect) {
+  private getCenterInScreen(rect: IOpenCloseRect) {
     return {
       cx: Math.round(rect.left + (rect.width / 2)),
       cy: Math.round(rect.top + (rect.height / 2))

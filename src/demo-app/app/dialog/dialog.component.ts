@@ -16,7 +16,7 @@ import {
   LoginDialogComponent,
   TEST_VALUE
 } from './login-dialog.component';
-import { OpenCloseRect } from '../../../lib/components/dialog/mdl-dialog-configuration';
+import { IOpenCloseRect } from '../../../lib/components/dialog/mdl-dialog-configuration';
 
 
 @Component({
@@ -93,7 +93,7 @@ export class DialogDemo extends AbstractDemoComponent {
         left: document.body.offsetWidth/2,
         height: 0,
         top: document.body.offsetHeight/2,
-        width: 0} as OpenCloseRect
+        width: 0} as IOpenCloseRect
     });
     pDialog.subscribe( (dialogReference) => console.log('dialog visible', dialogReference) );
   }
