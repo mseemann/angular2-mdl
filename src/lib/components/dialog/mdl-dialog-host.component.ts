@@ -72,7 +72,7 @@ declare abstract class AnimationPlayer {
       right: 0;
       transition: all;
       top: 50%;
-      transform: translate(0, -50%) scale(1.0);
+      transform: translate(0, -50%);
     }
     
     mdl-dialog-host-component.open {
@@ -92,22 +92,19 @@ export class MdlDialogHostComponent implements OnInit {
   private showAnimationStartStyle: {[key: string]: string} = {
     top: '38%',
     opacity: '0',
-    visibility: 'visible',
-    transform: 'translate(0, -50%)',
+    visibility: 'visible'
   }
 
   private showStyle: {[key: string]: string} = {
     top: '50%',
     opacity: '1',
-    visibility: 'visible',
-    transform: 'translate(0, -50%) scale(1.0)'
+    visibility: 'visible'
   };
 
   private hideAnimationEndStyle: {[key: string]: string} = {
     top: '63%',
     opacity: '0',
-    visibility: 'visible',
-    transform: 'translate(0, -50%) scale(1.0)'
+    visibility: 'visible'
   }
 
   constructor(
@@ -131,6 +128,9 @@ export class MdlDialogHostComponent implements OnInit {
 
     } else {
       if (this.config.openFrom || this.config.closeTo) {
+
+        // transform is modified during anmiation and must be part of each animation keyframe.
+        this.showStyle['transform'] = 'translate(0, -50%) scale(1.0)';
 
         const targetClientRect = this.elementRef.nativeElement.getBoundingClientRect();
 
