@@ -12,8 +12,8 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { Subject } from 'rxjs';
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 import { MdlSimpleDialogComponent } from './mdl-simple-dialog.component';
 import { MdlDialogHostComponent } from './mdl-dialog-host.component';
@@ -52,6 +52,10 @@ export class MdlDialogReference {
    */
   public onHide(): Observable<void> {
     return this.internaleRef.onHide();
+  }
+
+  public onVisible(): Observable<void> {
+    return this.internaleRef.onVisible();
   }
 }
 
@@ -162,14 +166,13 @@ export class MdlDialogService {
       providers,
       MdlSimpleDialogComponent);
 
-
-    return Observable.of(internalDialogRef.dialogRef);
+    return this.showHostDialog(internalDialogRef.dialogRef, hostComponentRef);
   }
 
   /**
    * Shows a dialog that is specified by the provided configuration.
    * @param config The custom dialog configuration.
-   * @returns Am Observable that returns the MdlDialogReference.
+   * @returns An Observable that returns the MdlDialogReference.
    */
   public showCustomDialog(config: IMdlCustomDialogConfiguration): Observable<MdlDialogReference> {
 
@@ -187,7 +190,7 @@ export class MdlDialogService {
 
     this.createComponentInstance(hostComponentRef.instance.dialogTarget, providers, config.component);
 
-    return Observable.of(internalDialogRef.dialogRef);
+    return this.showHostDialog(internalDialogRef.dialogRef, hostComponentRef);
   }
 
   public showDialogTemplate(template: TemplateRef<any>, config: IMdlDialogConfiguration): Observable<MdlDialogReference> {
@@ -198,10 +201,21 @@ export class MdlDialogService {
 
     hostComponentRef.instance.dialogTarget.createEmbeddedView(template);
 
-    return Observable.of(internalDialogRef.dialogRef);
+    return this.showHostDialog(internalDialogRef.dialogRef, hostComponentRef);
   }
 
+  private showHostDialog(dialogRef: MdlDialogReference, hostComponentRef: ComponentRef<MdlDialogHostComponent> ) {
 
+    let result: Subject<any> = new Subject();
+
+    setTimeout( () => {
+      result.next(dialogRef);
+      result.complete();
+      hostComponentRef.instance.show();
+    });
+
+    return result.asObservable();
+  }
 
   private createHostDialog(internalDialogRef: InternalMdlDialogReference, dialogConfig: IMdlDialogConfiguration) {
 
@@ -212,7 +226,8 @@ export class MdlDialogService {
     }
 
     let providers: Provider[] = [
-      { provide: MDL_CONFIGUARTION, useValue: dialogConfig }
+      { provide: MDL_CONFIGUARTION, useValue: dialogConfig },
+      { provide: InternalMdlDialogReference, useValue: internalDialogRef}
     ];
 
     let hostDialogComponent = this.createComponentInstance(viewContainerRef, providers, MdlDialogHostComponent);
@@ -222,7 +237,7 @@ export class MdlDialogService {
 
     internalDialogRef.closeCallback = () => {
       this.popDialog(internalDialogRef);
-      hostDialogComponent.destroy();
+      hostDialogComponent.instance.hide(hostDialogComponent);
     };
     this.pushDialog(internalDialogRef);
 

@@ -50,12 +50,11 @@ export class DialogDeclarativeDemo extends AbstractDemoComponent {
   }
 
   public onDialogShow(dialogRef: MdlDialogReference){
-    this.editedUsername = this.username;
     console.log(`dialog shown`, dialogRef);
-    setTimeout( () => {
-      this.tfName.setFocus();
-    });
+    this.editedUsername = this.username;
+    this.tfName.setFocus();
   }
+
 
   public onDialogHide(){
     console.log(`dialog hidden`);

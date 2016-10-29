@@ -103,6 +103,20 @@ describe('Component: MdlButton', () => {
 
   });
 
+  it('should expose the elementRef to be used as openFrom for dialogs', () => {
+
+    TestBed.overrideComponent(MdlTestButtonComponent, { set: {
+      template: '<mdl-button>x</mdl-button>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+
+    fixture.detectChanges();
+
+    let button = fixture.debugElement.query(By.directive(MdlButtonComponent)).componentInstance;
+
+    expect(button.elementRef).toBeDefined('elementRef must be present!')
+  });
+
 });
 
 

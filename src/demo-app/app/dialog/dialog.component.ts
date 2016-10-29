@@ -16,6 +16,7 @@ import {
   LoginDialogComponent,
   TEST_VALUE
 } from './login-dialog.component';
+import { OpenCloseRect } from '../../../lib/components/dialog/mdl-dialog-configuration';
 
 
 @Component({
@@ -54,13 +55,13 @@ export class DialogDemo extends AbstractDemoComponent {
         console.log('declined');
       }
     );
-    // if you only need the conform answer
+    // if you only need the confirm answer
     result.onErrorResumeNext().subscribe( () => {
       console.log('confirmed 2');
     })
   }
 
-  public showDialogFullWidthAction() {
+  public showDialogFullWidthAction($event: MouseEvent) {
     let pDialog = this.dialogService.showDialog({
       title: 'Your choice?',
       message: 'What drink do you prefer to your meal?',
@@ -86,7 +87,13 @@ export class DialogDemo extends AbstractDemoComponent {
         }
       ],
       fullWidthAction: true,
-      isModal: false
+      isModal: false,
+      openFrom: $event,
+      closeTo: {
+        left: document.body.offsetWidth/2,
+        height: 0,
+        top: document.body.offsetHeight/2,
+        width: 0} as OpenCloseRect
     });
     pDialog.subscribe( (dialogReference) => console.log('dialog visible', dialogReference) );
   }
@@ -97,8 +104,9 @@ export class DialogDemo extends AbstractDemoComponent {
       component: LoginDialogComponent,
       providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
       isModal: true,
-      styles: {'width': '350px'},
-      clickOutsideToClose: true
+      styles: {'width': '300px'},
+      clickOutsideToClose: true,
+      openFrom: $event
     });
     pDialog.subscribe( (dialogReference: MdlDialogReference) => {
       console.log('dialog visible', dialogReference);

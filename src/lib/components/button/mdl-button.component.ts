@@ -64,7 +64,7 @@ export class MdlButtonComponent implements OnChanges {
   @Input('mdl-colored') private mdlColoredType: 'primary' | 'accent' | '';
   @Input() @BooleanProperty() public disabled = false;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+  constructor(public elementRef: ElementRef, private renderer: Renderer) {
     this.element = elementRef.nativeElement;
   }
 

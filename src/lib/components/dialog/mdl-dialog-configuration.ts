@@ -1,8 +1,10 @@
 import {
   ViewContainerRef,
   Type,
-  Provider
+  Provider,
+  ElementRef
 } from '@angular/core';
+import { MdlButtonComponent } from '../button/mdl-button.component';
 
 /**
  * @deprecated cusotm dialogs no longer need to implement this interface
@@ -30,6 +32,15 @@ export interface IMdlDialogAction {
   isClosingAction?: boolean;
 }
 
+/**
+ * rect from where the dialog should be opened or closed to.
+ */
+export interface OpenCloseRect {
+  height: number;
+  left: number;
+  top: number;
+  width: number;
+}
 /**
  * Dialog configuration for all dialogs (simple or custom)
  */
@@ -61,6 +72,16 @@ export interface IMdlDialogConfiguration {
    * Close the dialog if the user clicks on the backdrop.
    */
   clickOutsideToClose?:boolean;
+
+  /**
+   * MdlButtonComponent or mouse event the dialog open animation should start from.
+   */
+  openFrom?: MdlButtonComponent | MouseEvent | OpenCloseRect;
+
+  /**
+   *  MdlButtonComponent or mouse event  the dialog close animation shoul end.
+   */
+  closeTo?: MdlButtonComponent | MouseEvent | OpenCloseRect;
 
 }
 
