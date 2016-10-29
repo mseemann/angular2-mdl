@@ -139,7 +139,7 @@ export class MdlDialogHostComponent implements OnInit {
 
         const centerTarget = this.getCenterInScreen(targetClientRect);
         const centerFrom = this.getCenterInScreen(openFromRect);
-        const centerTo = this.getCenterInScreen(closeToRect) || centerFrom;
+        const centerTo = this.getCenterInScreen(closeToRect);
 
         const translationFrom = {
           x: Math.round(centerFrom.cx - centerTarget.cx),
@@ -246,23 +246,22 @@ export class MdlDialogHostComponent implements OnInit {
 
     if(input instanceof MdlButtonComponent){
 
-      const elRef = (this.config.openFrom as MdlButtonComponent).elementRef;
+      const elRef = (input as MdlButtonComponent).elementRef;
       return elRef.nativeElement.getBoundingClientRect();
 
     } else if(input instanceof MouseEvent){
 
-      const evt: MouseEvent = this.config.openFrom as MouseEvent;
-      return (evt.target as HTMLElement).getBoundingClientRect();
+      const evt: MouseEvent = input as MouseEvent;
+      // just to make it possible to test this code with a fake event - target is
+      // readonly and con not be mutated.
+      const htmlElement = (evt.target || evt['testtarget']) as HTMLElement;
+      return htmlElement.getBoundingClientRect();
 
     }
 
-    return null;
   }
 
   private getCenterInScreen(rect: ClientRect) {
-    if (!rect){
-      return {cx:0, cy:0};
-    }
     return {
       cx: Math.round(rect.left + (rect.width / 2)),
       cy: Math.round(rect.top + (rect.height / 2))

@@ -54,7 +54,7 @@ export class DialogDemo extends AbstractDemoComponent {
         console.log('declined');
       }
     );
-    // if you only need the conform answer
+    // if you only need the confirm answer
     result.onErrorResumeNext().subscribe( () => {
       console.log('confirmed 2');
     })

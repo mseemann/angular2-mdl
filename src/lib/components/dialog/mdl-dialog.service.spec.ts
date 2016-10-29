@@ -86,13 +86,16 @@ describe('Service: MdlDialog', () => {
     result.subscribe( () => {
       // test passed because the action was called
       // async makes sure this is called
+    }, () => {
     } );
 
     fixture.detectChanges();
 
     // the yes button
-    let buttonDebugElements = fixture.debugElement.queryAll(By.css('.mdl-button'));
+    let dialogDebugEl = fixture.debugElement.query(By.directive(MdlSimpleDialogComponent));
+    let buttonDebugElements = dialogDebugEl.queryAll(By.css('.mdl-button'));
     let buttonEl = buttonDebugElements[0].nativeElement;
+
     buttonEl.click();
   }));
 
@@ -327,6 +330,47 @@ describe('Service: MdlDialog', () => {
 
   }));
 
+  it('should open a dialog if animation is false', async(() => {
+
+
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      animate: false
+    });
+
+    p.subscribe( ( dialogRef ) => {
+
+      dialogRef.hide();
+
+    });
+
+  }));
+
+  it('should open a dialog from a button and close to a mouse event position', async(() => {
+
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      styles: {'width':'350px'},
+      classes: 'a b',
+      openFrom: fixture.componentInstance.button,
+      closeTo: fixture.componentInstance.getFakeMouseEvent()
+    });
+
+    p.subscribe( ( dialogRef ) => {
+
+      dialogRef.hide();
+
+    });
+
+  }));
+
 
 });
 
@@ -334,11 +378,25 @@ describe('Service: MdlDialog', () => {
 
 @Component({
   selector: 'test-view',
-  template: '<div></div><button mdl-button #btn></button><dialog-outlet></dialog-outlet>'
+  template: `
+    <div></div>
+    <button mdl-button #targetBtn></button>
+    <button mdl-button #btn></button>
+    <dialog-outlet></dialog-outlet>
+  `
 })
 class MdlTestViewComponent {
 
+
+
   @ViewChild('btn') button: MdlButtonComponent;
+  @ViewChild('targetBtn') targetBtn: MdlButtonComponent;
+
+  public getFakeMouseEvent(){
+    let mouseEvent = new MouseEvent('click');
+    mouseEvent['testtarget'] = this.targetBtn.elementRef.nativeElement;
+    return mouseEvent;
+  }
 
 }
 
