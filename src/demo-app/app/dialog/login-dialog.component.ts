@@ -47,7 +47,13 @@ export class LoginDialogComponent implements OnInit {
     // just if you want to be informed if the dialog is hidden
     this.dialog.onHide().subscribe( () => console.log('login dialog hidden') );
 
+    this.dialog.onVisible().subscribe( () => {
+      console.log('set focus');
+      this.inputElement.setFocus();
+    });
+
   }
+
 
   public ngOnInit() {
     this.form = this.fb.group({
@@ -56,11 +62,6 @@ export class LoginDialogComponent implements OnInit {
     });
   }
 
-
-  public ngAfterViewInit() {
-    // set the focus - autofocus only works once :(
-    this.inputElement.setFocus();
-  }
 
   public login() {
     this.processingLogin = true;

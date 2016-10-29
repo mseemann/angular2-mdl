@@ -14,6 +14,7 @@ export class InternalMdlDialogReference {
 
   public hostDialogComponentRef: ComponentRef<any>;
   private onHideSubject: Subject<any> = new Subject();
+  private onVisibleSubject: Subject<any> = new Subject();
   public closeCallback: () => void;
   public isModal = false;
   public dialogRef: MdlDialogReference;
@@ -32,7 +33,16 @@ export class InternalMdlDialogReference {
     this.closeCallback();
   }
 
+  public visible() {
+    this.onVisibleSubject.next();
+    this.onVisibleSubject.complete();
+  }
+
   public onHide(): Observable<void> {
     return this.onHideSubject.asObservable();
+  }
+
+  public onVisible(): Observable<void> {
+    return this.onVisibleSubject.asObservable();
   }
 }

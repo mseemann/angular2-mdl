@@ -31,9 +31,7 @@
   <scriptx>
   export class SnackbarDemo {
 
-    constructor(private mdlSnackbarService: MdlSnackbarService, private vcRef: ViewContainerRef) {
-      mdlSnackbarService.setDefaultViewContainerRef(vcRef);
-    }
+    constructor(private mdlSnackbarService: MdlSnackbarService) {}
 
     showSnackbar() {
       this.mdlSnackbarService.showSnackbar({
@@ -63,28 +61,16 @@
    <tbody>
 
    <tr>
-      <td>setDefaultViewContainerRef(<br/>
-        vcRef: ViewContainerRef)</td>
-      <td>
-         Every SnackBar needs a reference to the <i>ViewContainerRef</i> where it can be added. You can provide
-         a default <i>ViewContainerRef</i> for every Snackbar or provide a <i>ViewContainerRef</i> during each show call.
-         A <i>ViewContainerRef</i> can be injected to every component in the constructor.
-      </td>
-   </tr>
-
-   <tr>
       <td>showToast(<br/>
         message: string,<br/>
-        timeout?: number,<br/>
-        vcRef?: ViewContainerRef)<br/>
+        timeout?: number)<br/>
         : Promise&lt;MdlSnackbarComponent&gt; </td>
       <td>
         Shorthand version for
          <pre>
 return this.showSnackbar(&#123;
    message: message,
-   timeout: timeout,
-   vcRef: vcRef
+   timeout?: timeout
  &#125;);
          </pre>
          Shows an auto hiding text.
@@ -103,13 +89,11 @@ return this.showSnackbar(&#123;
   action?:&#123;
     handler: () => void;
     text: string;&#125;
-  vcRef?: ViewContainerRef;&#125;
 
          </pre>
          <pre>message</pre> The message that should be shown.
          <pre>timeout</pre> for how long should the message be visible. Defaults to 2750 ms. Is ignored if an action is proivded.
          <pre>action</pre> Consists of a handler fuction and an aciton text. The text will be the buttons label. The action is called if the button is clicked.
-         <pre>vcRef</pre> The <i>ViewContainerRef</i> where the Snackbar is attached.
          <p>
             Returns a Promis with the created <i>MdlSnackbarComponent</i>. You can use this instance to
             manipulate the <i>MdlSnackbarComponent</i> and be informed if the Snackbar is shown to the user.
