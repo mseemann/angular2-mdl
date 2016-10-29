@@ -54,6 +54,10 @@ export class MdlDialogReference {
     return this.internaleRef.onHide();
   }
 
+  /**
+   * Observable that emits, if the dialog is really visible and not only created.
+   * @returns {Observable<void>}
+   */
   public onVisible(): Observable<void> {
     return this.internaleRef.onVisible();
   }

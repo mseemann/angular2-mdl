@@ -1,3 +1,12 @@
+<a name="2.3.0"></a>
+# 2.3.0 (2016-10-29)
+
+### Bug Fixes
+* [169](https://github.com/mseemann/angular2-mdl/issues/169) (fix docu for snackbar and remove viewRef param from snackbar api)
+### Features
+* [143](https://github.com/mseemann/angular2-mdl/issues/143) (Dialog that starts animating from a specific element)
+
+
 <a name="2.2.2"></a>
 # 2.2.2 (2016-10-21)
 
