@@ -42,7 +42,7 @@
     "@types/node": "6.0.38",
     "@types/protractor": "1.5.20",
     "@types/selenium-webdriver": "2.44.29",
-    "angular2-template-loader": "0.5.0",
+    "angular2-template-loader": "0.6.0",
     "autoprefixer": "6.5.1",
     "awesome-typescript-loader": "2.2.4",
     "codeclimate-test-reporter": "0.4.0",
