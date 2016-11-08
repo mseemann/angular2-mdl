@@ -83,6 +83,16 @@ export interface IMdlDialogConfiguration {
    */
   closeTo?: MdlButtonComponent | MouseEvent | IOpenCloseRect;
 
+
+  /**
+   * The curation for the enter animation in ms. defaults to 300ms
+   */
+  enterTransitionDuration?: number;
+
+  /**
+   * The curation for the leave animation in ms. defaults to 250ms
+   */
+  leaveTransitionDuration?: number;
 }
 
 /**

@@ -106,7 +106,9 @@ export class DialogDemo extends AbstractDemoComponent {
       isModal: true,
       styles: {'width': '300px'},
       clickOutsideToClose: true,
-      openFrom: $event
+      openFrom: $event,
+      enterTransitionDuration: 400,
+      leaveTransitionDuration: 400
     });
     pDialog.subscribe( (dialogReference: MdlDialogReference) => {
       console.log('dialog visible', dialogReference);

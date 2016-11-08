@@ -102,7 +102,9 @@ You can only show one intance of an embedded dialog.
               clickOutsideToClose: true,
               styles:{'width': '350px'},
               isModal: true,
-              openFrom: editUserButton }"
+              openFrom: editUserButton,
+              enterTransitionDuration: 400,
+              leaveTransitionDuration: 400}"
             (show)="onDialogShow($event)"
             (hide)="onDialogHide()">
   <h3 class="mdl-dialog__title">Edit User</h3>
@@ -125,7 +127,9 @@ You can only show one intance of an embedded dialog.
               clickOutsideToClose: true,
               styles:{'width': '300px'},
               isModal:true,
-              openFrom: editUserButton}"
+              openFrom: editUserButton,
+              enterTransitionDuration: 400,
+              leaveTransitionDuration: 400}"
             (show)="onDialogShow(dialogRef)"
             (hide)="onDialogHide()">
   <h3 class="mdl-dialog__title">Edit User</h3>
@@ -244,5 +248,20 @@ You can only show one intance of an embedded dialog.
       to create the end point and end size of the dialog animation.
     </td>
   </tr>
+
+  <tr>
+    <td>enterTransitionDuration?: number;</td>
+    <td>
+      Alter the the transition duration for the enter animation in ms. Defaults to 300ms.
+    </td>
+  </tr>
+
+  <tr>
+    <td>leaveTransitionDuration?: number;</td>
+    <td>
+      Alter the the transition duration for the leave animation in ms. Defaults to 250ms.
+    </td>
+  </tr>
+
   </tbody>
 </table>

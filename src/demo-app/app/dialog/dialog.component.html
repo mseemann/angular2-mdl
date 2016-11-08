@@ -186,7 +186,9 @@ These dialogs are created by the <i>MdlDialogService</i>.
       providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
       isModal: true,
       styles: {'width': '350px'},
-      clickOutsideToClose: true
+      clickOutsideToClose: true,
+      enterTransitionDuration: 400,
+      leaveTransitionDuration: 400
     });
     pDialog.then( (dialogReference: MdlDialogReference) => {
       console.log('dialog visible', dialogReference);

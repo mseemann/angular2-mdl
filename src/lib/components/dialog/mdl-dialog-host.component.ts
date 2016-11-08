@@ -176,7 +176,7 @@ export class MdlDialogHostComponent implements OnInit {
           {offset:0, styles: { styles: [this.showAnimationStartStyle]}},
           {offset:1, styles: { styles: [this.showStyle]}}
         ],
-        enterTransitionDuration, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
+        this.config.enterTransitionDuration || enterTransitionDuration, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
 
       animation.onDone( () => {
         this.ngZone.run( () => {
@@ -200,7 +200,7 @@ export class MdlDialogHostComponent implements OnInit {
           {offset:0, styles: { styles: [this.showStyle]}},
           {offset:1, styles: { styles: [this.hideAnimationEndStyle]}}
         ],
-        leaveTransitionDuration, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
+        this.config.leaveTransitionDuration || leaveTransitionDuration, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
 
       animation.onDone( () => {
         this.ngZone.run( () => {
