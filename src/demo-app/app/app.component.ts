@@ -56,7 +56,7 @@ export class Home extends AbstractDemoComponent {
 }
 
 export const appRoutes: Routes = [
-  { path: '', component: Home, data: {title: 'Home'} },
+  { path: '', component: Home },
   { path: 'theme', component: ThemeDemo, data: {title: 'Themes'} },
   { path: 'badge', component: BadgeDemo, data: {title: 'Badges'} },
   { path: 'button', component: ButtonDemo, data: {title: 'Buttons'} },
