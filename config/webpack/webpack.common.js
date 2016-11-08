@@ -9,7 +9,7 @@ module.exports = {
 
 	entry: {
 		'polyfills': './src/demo-app/polyfills.ts',
-    'vendor': './src/demo-app/vendor.ts',
+    'test': './src/demo-app/vendor.ts',
 		'app': './src/demo-app/main.ts'
 	},
 
