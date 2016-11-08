@@ -1,3 +1,9 @@
+<a name="2.4.0"></a>
+# 2.4.0 (2016-11-08)
+
+### Features
+* [186](https://github.com/mseemann/angular2-mdl/issues/186) (dialog animations (duration and curve) should be configurable)
+
 <a name="2.3.1"></a>
 # 2.3.1 (2016-10-29)
 
