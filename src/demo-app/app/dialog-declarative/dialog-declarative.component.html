@@ -250,16 +250,30 @@ You can only show one intance of an embedded dialog.
   </tr>
 
   <tr>
-    <td>enterTransitionDuration?: number;</td>
+    <td>enterTransitionDuration?: number</td>
     <td>
       Alter the the transition duration for the enter animation in ms. Defaults to 300ms.
     </td>
   </tr>
 
   <tr>
-    <td>leaveTransitionDuration?: number;</td>
+    <td>enterTransitionEasingCurve?: string</td>
+    <td>
+      The easing curve for the enter animation. defaults to cubic-bezier(0.0, 0.0, 0.2, 1)
+    </td>
+  </tr>
+
+  <tr>
+    <td>leaveTransitionDuration?: number</td>
     <td>
       Alter the the transition duration for the leave animation in ms. Defaults to 250ms.
+    </td>
+  </tr>
+
+  <tr>
+    <td>leaveTransitionEasingCurve?: string</td>
+    <td>
+      The easing curve for the leave animation. defaults to cubic-bezier(0.0, 0.0, 0.2, 1)
     </td>
   </tr>
 

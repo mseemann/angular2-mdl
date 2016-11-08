@@ -23,6 +23,9 @@ import { InternalMdlDialogReference } from './internal-dialog-reference';
 const enterTransitionDuration = 300;
 const leaveTransitionDuration = 250;
 
+const enterTransitionEasingCurve = 'cubic-bezier(0.0, 0.0, 0.2, 1)';
+const leaveTransitionEasingCurve = 'cubic-bezier(0.0, 0.0, 0.2, 1)';
+
 // helper defintions - these classes are private in angular
 // but render.animate is public and uses theese defintions
 
@@ -176,7 +179,9 @@ export class MdlDialogHostComponent implements OnInit {
           {offset:0, styles: { styles: [this.showAnimationStartStyle]}},
           {offset:1, styles: { styles: [this.showStyle]}}
         ],
-        this.config.enterTransitionDuration || enterTransitionDuration, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
+        this.config.enterTransitionDuration || enterTransitionDuration,
+        0,
+        this.config.enterTransitionEasingCurve || enterTransitionEasingCurve);
 
       animation.onDone( () => {
         this.ngZone.run( () => {
@@ -200,7 +205,9 @@ export class MdlDialogHostComponent implements OnInit {
           {offset:0, styles: { styles: [this.showStyle]}},
           {offset:1, styles: { styles: [this.hideAnimationEndStyle]}}
         ],
-        this.config.leaveTransitionDuration || leaveTransitionDuration, 0, 'cubic-bezier(0.0, 0.0, 0.2, 1)');
+        this.config.leaveTransitionDuration || leaveTransitionDuration,
+        0,
+        this.config.leaveTransitionEasingCurve || leaveTransitionEasingCurve);
 
       animation.onDone( () => {
         this.ngZone.run( () => {

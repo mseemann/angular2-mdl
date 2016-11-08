@@ -90,9 +90,19 @@ export interface IMdlDialogConfiguration {
   enterTransitionDuration?: number;
 
   /**
+   * The easing curve for the enter animation. defaults to cubic-bezier(0.0, 0.0, 0.2, 1)
+   */
+  enterTransitionEasingCurve?: string;
+
+  /**
    * The curation for the leave animation in ms. defaults to 250ms
    */
   leaveTransitionDuration?: number;
+
+  /**
+   * The easing curve for the leave animation. defaults to cubic-bezier(0.0, 0.0, 0.2, 1)
+   */
+  leaveTransitionEasingCurve?: string;
 }
 
 /**
