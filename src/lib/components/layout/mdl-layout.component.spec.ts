@@ -65,10 +65,10 @@ describe('Component: MdlLayout', () => {
 
   });
 
-  it('should close the obfuscator if the escape key is pressed', () => {
+  it('should close the obfuscator if the escape key is pressed', async(() => {
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
       template: `
-          <mdl-layout>
+          <mdl-layout (open)="onDrawerOpen()" (close)="onDrawerClose()">
             <mdl-layout-header></mdl-layout-header>
             <mdl-layout-drawer></mdl-layout-drawer>
             <mdl-layout-content></mdl-layout-content>
@@ -78,8 +78,16 @@ describe('Component: MdlLayout', () => {
     let fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
+    let testComponent = fixture.componentInstance;
+
+    spyOn(testComponent, 'onDrawerOpen').and.callThrough();
+    spyOn(testComponent, 'onDrawerClose').and.callThrough();
+
     let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
-    layoutComponent.isDrawerVisible = true;
+    layoutComponent.toggleDrawer();
+
+    expect(testComponent.onDrawerOpen).toHaveBeenCalled();
+
 
     let obfuscatorElement =  fixture.debugElement.query(By.css('.mdl-layout__obfuscator')).nativeElement;
 
@@ -90,7 +98,9 @@ describe('Component: MdlLayout', () => {
 
     expect(layoutComponent.isDrawerVisible).toBe(false);
 
-  });
+    expect(testComponent.onDrawerClose).toHaveBeenCalled();
+
+  }));
 
   it('should unregister the scroll listener if a content is present', () => {
 
@@ -439,4 +449,7 @@ class MdlTestLayoutComponent {
   public tabMouseover($event) {}
 
   public tabMouseout($event) {}
+
+  public onDrawerClose(){}
+  public onDrawerOpen(){}
 }

@@ -80,6 +80,9 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   @Output('mdl-layout-tab-mouseover') public mouseoverTabEmitter = new EventEmitter();
   @Output('mdl-layout-tab-mouseout') public mouseoutTabEmitter = new EventEmitter();
 
+  @Output('open') onOpen = new EventEmitter<void>();
+  @Output('close') onClose = new EventEmitter<void>();
+
   public isDrawerVisible = false;
   public isSmallScreen = false;
 
@@ -203,15 +206,20 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   public toggleDrawer() {
     this.isDrawerVisible = !this.isDrawerVisible;
     if (this.drawer) {
-      this.drawer.isDrawerVisible = this.isDrawerVisible;
+      this.setDrawerVisible(this.isDrawerVisible);
     }
   }
 
   public closeDrawer() {
     this.isDrawerVisible = false;
     if (this.drawer) {
-      this.drawer.isDrawerVisible = false;
+      this.setDrawerVisible(false);
     }
+  }
+
+  private setDrawerVisible(visible: boolean){
+    this.drawer.isDrawerVisible = visible;
+    this.drawer.isDrawerVisible ? this.onOpen.emit() : this.onClose.emit();
   }
 
   public obfuscatorKeyDown($event) {

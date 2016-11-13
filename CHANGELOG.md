@@ -1,3 +1,10 @@
+<a name="2.4.1"></a>
+# 2.4.1 (2016-11-13)
+
+### Features
+* [196](https://github.com/mseemann/angular2-mdl/issues/196) (provide open and close events for the layout drawer)
+
+
 <a name="2.4.0"></a>
 # 2.4.0 (2016-11-08)
 
