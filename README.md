@@ -64,7 +64,7 @@ const map: any = {
 
 /** User packages configuration. */
 const packages: any = {
-  'angular2-mdl': { main: 'components/index.js'}
+  'angular2-mdl': { main: 'bundle/angular2-mdl.js'}
 };
 ```
 
