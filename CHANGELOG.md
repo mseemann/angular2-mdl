@@ -1,3 +1,13 @@
+<a name="2.4.2"></a>
+# 2.4.2 (2016-11-18)
+
+### Bug Fixes
+* [200](https://github.com/mseemann/angular2-mdl/issues/200) (close menu if another menu will be opened)
+
+### Features
+* [201](https://github.com/mseemann/angular2-mdl/issues/201) (Step in text fields)
+
+
 <a name="2.4.1"></a>
 # 2.4.1 (2016-11-13)
 
