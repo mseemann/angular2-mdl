@@ -67,7 +67,7 @@
     "karma-webpack": "1.8.0",
     "material-design-lite": "1.2.1",
     "ncp": "2.0.0",
-    "node-sass": "3.12.0",
+    "node-sass": "3.12.1",
     "postcss-loader": "1.1.1",
     "protractor": "4.0.11",
     "raw-loader": "0.5.1",
