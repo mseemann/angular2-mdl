@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import {
-  MdlMenuComponent
+  MdlMenuComponent, MdlMenuRegisty
 } from './mdl-menu.component';
 import {
   MdlMenuItemComponent
@@ -30,7 +30,7 @@ export class MdlMenuModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlMenuModule,
-      providers: []
+      providers: [MdlMenuRegisty]
     };
   }
 }

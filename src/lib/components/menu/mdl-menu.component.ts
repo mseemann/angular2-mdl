@@ -8,7 +8,7 @@ import {
   ContentChildren,
   QueryList,
   Renderer,
-  ViewEncapsulation
+  ViewEncapsulation, Injectable, OnDestroy
 } from '@angular/core';
 import { MdlButtonComponent } from '../button/mdl-button.component';
 import { MdlMenuItemComponent }  from './mdl-menu-item.component';
@@ -39,6 +39,30 @@ CSS_ALIGN_MAP[UNALIGNED] = 'mdl-menu--unaligned';
 export class MdlMenuError extends MdlError {
 }
 
+@Injectable()
+export class MdlMenuRegisty {
+
+  private menuComponents: any[] = [];
+
+  public add(menuComponent: MdlMenuComponent) {
+    this.menuComponents.push(menuComponent);
+  }
+
+  public remove(menuComponent: MdlMenuComponent) {
+    this.menuComponents.slice(this.menuComponents.indexOf(menuComponent), 1);
+  }
+
+  public hideAllExcept(menuComponent: MdlMenuComponent) {
+
+    this.menuComponents.forEach( (component) => {
+      if (component !== menuComponent) {
+        component.hide();
+      }
+    });
+  }
+}
+
+
 @Component({
   selector: 'mdl-menu',
   host: {
@@ -56,7 +80,7 @@ export class MdlMenuError extends MdlError {
   `,
   encapsulation: ViewEncapsulation.None
 })
-export class MdlMenuComponent implements OnInit, AfterViewInit {
+export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('mdl-menu-position') public position: string;
 
   @ViewChild('container') private containerChild: ElementRef;
@@ -74,7 +98,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
 
   private isVisible   = false;
 
-  constructor(private renderer: Renderer) {}
+  constructor(private renderer: Renderer, private menuRegistry: MdlMenuRegisty) {
+    this.menuRegistry.add(this);
+  }
 
   public ngOnInit() {
     this.cssPosition = CSS_ALIGN_MAP[this.position] || BOTTOM_LEFT;
@@ -127,9 +153,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
 
     // Turn on animation, and apply the final clip. Also make invisible.
     // This triggers the transitions.
-    this.menuElement.classList.add('is-animating');
+    this.renderer.setElementClass(this.menuElement, 'is-animating', true);
     this.applyClip(height, width);
-    this.container.classList.remove('is-visible');
+    this.renderer.setElementClass(this.container, 'is-visible', false);
 
     // Clean up after the animation is complete.
     this.addAnimationEndListener();
@@ -138,6 +164,8 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
   }
 
   public show(event, mdlButton) {
+
+    this.menuRegistry.hideAllExcept(this);
 
     event.stopPropagation();
 
@@ -189,9 +217,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
     // Apply the initial clip to the text before we start animating.
     this.applyClip(height, width);
 
-    this.container.classList.add('is-visible');
+    this.renderer.setElementClass(this.container, 'is-visible', true);
     this.menuElement.style.clip = 'rect(0 ' + width + 'px ' + height + 'px 0)';
-    this.menuElement.classList.add('is-animating');
+    this.renderer.setElementClass(this.menuElement, 'is-animating', true);
 
     this.addAnimationEndListener();
 
@@ -201,7 +229,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
 
   private addAnimationEndListener() {
     this.renderer.listen(this.menuElement, 'transitionend', () => {
-      this.menuElement.classList.remove('is-animating');
+      this.renderer.setElementClass(this.menuElement, 'is-animating', false);
     });
   }
 
@@ -222,6 +250,10 @@ export class MdlMenuComponent implements OnInit, AfterViewInit {
       // Default: do not clip (same as clipping to the top left corner).
       this.menuElement.style.clip = '';
     }
+  }
+
+  public ngOnDestroy() {
+    this.menuRegistry.remove(this);
   }
 }
 

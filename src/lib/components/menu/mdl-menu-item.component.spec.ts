@@ -2,12 +2,14 @@ import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { MdlMenuComponent, MdlMenuItemComponent, MdlMenuModule} from './index';
+import { MdlMenuRegisty } from './mdl-menu.component';
 
 describe('Component: MdlMenuItem', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MdlMenuModule],
+      providers: [ MdlMenuRegisty ],
       declarations: [ MdlTestMenuItemComponent ],
     });
   });

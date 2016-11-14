@@ -18,7 +18,7 @@ describe('Directive: MdlRipple', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MdlRippleModule, MdlListModule, MdlMenuModule],
+      imports: [MdlRippleModule, MdlListModule, MdlMenuModule.forRoot()],
       declarations: [MdlTestRippleComponent],
     });
   });

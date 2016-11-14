@@ -45,14 +45,14 @@ export class MdlRippleDirective implements OnChanges{
 
         this.rippleContainer = this.renderer.createElement(null, 'span');
         this.cssContainerClasses.forEach( ( cssClass ) => {
-          this.rippleContainer.classList.add(cssClass);
+          this.renderer.setElementClass(this.rippleContainer, cssClass, true);
         });
         var rippleElement = this.renderer.createElement(null, 'span');
-        rippleElement.classList.add(this.RIPPLE);
+        this.renderer.setElementClass(rippleElement, this.RIPPLE, true);
         this.rippleContainer.appendChild(rippleElement);
         this.el.appendChild(this.rippleContainer);
 
-        this.ripple = new MaterialRipple(this.el);
+        this.ripple = new MaterialRipple(this.renderer, this.el);
 
       }
   }

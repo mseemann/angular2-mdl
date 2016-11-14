@@ -3,13 +3,14 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { MdlMenuModule, MdlMenuItemComponent } from './index';
 import { MdlButtonComponent, MdlButtonModule } from '../button/mdl-button.component';
-import { MdlMenuComponent } from './mdl-menu.component';
+import { MdlMenuComponent, MdlMenuRegisty } from './mdl-menu.component';
 
 describe('Component: MdlToggleMenu-Directive', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MdlMenuModule, MdlButtonModule],
+      providers: [ MdlMenuRegisty ],
       declarations: [ MdlTestMenuItemComponent ],
     });
   });
