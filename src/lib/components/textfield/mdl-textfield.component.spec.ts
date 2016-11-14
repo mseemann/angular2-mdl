@@ -138,6 +138,27 @@ describe('Component: MdlTextField', () => {
     });
   }));
 
+
+  it('should mark the component as invalid ngModel (step)', async(() => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-textfield type="number" label="Text..." [(ngModel)]="text1" min="0" step="1"></mdl-textfield>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    el.value = '0.1';
+    fixture.detectChanges();
+
+    fixture.whenStable().then( () => {
+      expect(hostEl.classList.contains('is-invalid')).toBe(true);
+    });
+  }));
+
+
   it('should create a textarea if row is specified', () => {
 
     TestBed.overrideComponent(MdlTestComponent, { set: {
