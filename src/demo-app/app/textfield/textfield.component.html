@@ -77,6 +77,36 @@
   ]]>
 </pre>
 
+<h5>Number with min and step restrictions</h5>
+
+<mdl-textfield
+        name="number1"
+        type="number"
+        label="Number..."
+        min="0"
+        step="0.01"
+        error-msg="Input is not a number!"
+        [(ngModel)]="number1"
+        floating-label ></mdl-textfield>
+
+<br/>
+{{number1}}
+
+<pre prism>
+  <![CDATA[
+<mdl-textfield
+        name="number1"
+        type="number"
+        label="Number..."
+        min="0"
+        step="0.01"
+        error-msg="Input is not a number!"
+        [(ngModel)]="number1"
+        floating-label ></mdl-textfield>
+  ]]>
+</pre>
+
+
 <h5>Multiline Textfield</h5>
 aka Textarea. Add the attribute row to turn the input field to a textarea. Specify maxrows to restrict the
 possible lines.<br/>
@@ -171,6 +201,12 @@ Just specify an icon to turn the text input field into an expandable field.
    <tr>
      <td>min</td>
      <td>Restrict the value for type number to a min value.</td>
+   </tr>
+
+   <tr>
+     <td>step</td>
+     <td>Restrict the value for type number to a be based on the given step (e.g. 0.01
+       for numbers with two decimal places).</td>
    </tr>
 
    <tr>

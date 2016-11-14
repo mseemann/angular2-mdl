@@ -76,6 +76,7 @@ const IS_DIRTY = 'is-dirty';
         [pattern]="pattern ? pattern : '.*'"
         [attr.min]="min"
         [attr.max]="max"
+        [attr.step]="step"
         [placeholder]="placeholder ? placeholder : ''"
         [autocomplete]="autocomplete ? autocomplete : ''"
         (focus)="onFocus($event)"
@@ -102,6 +103,7 @@ const IS_DIRTY = 'is-dirty';
           [pattern]="pattern ? pattern : '.*'"
           [attr.min]="min"
           [attr.max]="max"
+          [attr.step]="step"
           [placeholder]="placeholder ? placeholder : ''"
           [autocomplete]="autocomplete ? autocomplete : ''"
           (focus)="onFocus($event)"
@@ -146,6 +148,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() public pattern;
   @Input() public min;
   @Input() public max;
+  @Input() public step;
   @Input() public name;
   @Input() public id = `mdl-textfield-${nextId++}`;
   @Input('error-msg') public errorMessage;
