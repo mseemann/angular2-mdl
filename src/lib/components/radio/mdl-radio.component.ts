@@ -12,13 +12,13 @@ import {
   OnDestroy,
   ViewEncapsulation,
   ModuleWithProviders,
-  Optional,
-  Inject, SkipSelf, Directive
+  Optional
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor,
-  FormsModule, FormGroupName
+  FormsModule,
+  FormGroupName
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BooleanProperty } from '../common/boolean-property';
