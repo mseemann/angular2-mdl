@@ -18,7 +18,7 @@ import {
 import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor,
-  FormsModule
+  FormsModule, FormGroupName
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BooleanProperty } from '../common/boolean-property';
@@ -34,13 +34,13 @@ const IS_FOCUSED = 'is-focused';
 @Injectable()
 export class MdlRadioGroupRegisty {
 
-  private defaultRadioGroup  = new MdlRadioGroup();
-  private radioComponents: {radio: MdlRadioComponent, group:MdlRadioGroup}[] = [];
+  private defaultFormGroup  = 'defaultFromGroup';
+  private radioComponents: {radio: MdlRadioComponent, group: FormGroupName | string}[] = [];
 
-  public add(radioComponent: MdlRadioComponent, mdlRadioGroup: MdlRadioGroup) {
+  public add(radioComponent: MdlRadioComponent, formGroupName: FormGroupName) {
     this.radioComponents.push({
       radio: radioComponent,
-      group: mdlRadioGroup || this.defaultRadioGroup
+      group: formGroupName || this.defaultFormGroup
     });
   }
 
@@ -50,24 +50,18 @@ export class MdlRadioGroupRegisty {
     });
   }
 
-  public select(radioComponent: MdlRadioComponent, mdlRadioGroup: MdlRadioGroup) {
+  public select(radioComponent: MdlRadioComponent, formGroupName: FormGroupName) {
     // unselect every radioComponent that is not the provided radiocomponent
     // and has the same name and is in teh same group.
-    let testGroup = mdlRadioGroup || this.defaultRadioGroup;
+    let groupToTest = formGroupName || this.defaultFormGroup;
     this.radioComponents.forEach( (component) => {
-      if (component.radio.name === radioComponent.name && component.group === testGroup) {
+      if (component.radio.name === radioComponent.name && component.group === groupToTest) {
         if (component.radio !== radioComponent) {
           component.radio.deselect(radioComponent.value);
         }
       }
     });
   }
-}
-
-@Directive({
-  selector: '[formGroupName][mdl-radio-group]'
-})
-export class MdlRadioGroup {
 }
 
 /*
@@ -123,7 +117,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     private elementRef: ElementRef,
     private renderer: Renderer,
     private ragioGroupRegisty: MdlRadioGroupRegisty,
-    @Optional() private mdlRadioGroup: MdlRadioGroup) {
+    @Optional() private formGroupName: FormGroupName) {
     this.el = elementRef.nativeElement;
   }
 
@@ -132,8 +126,9 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     // a radio group without name is useless.
     this.checkName();
     // register the radio button - this is the only chance to unselect the
-    // radio button that is no longer active
-    this.ragioGroupRegisty.add(this, this.mdlRadioGroup);
+    // radio button that is no longer active - scope the radio button with it's group
+    // if there is one.
+    this.ragioGroupRegisty.add(this, this.formGroupName);
   }
 
   public ngOnDestroy() {
@@ -155,7 +150,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     // wrap the callback, so that we can call select on the registry
     this.onChangeCallback = () => {
       fn(this.value);
-      this.ragioGroupRegisty.select(this, this.mdlRadioGroup);
+      this.ragioGroupRegisty.select(this, this.formGroupName);
     };
   }
 
@@ -209,8 +204,8 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
 
 @NgModule({
   imports: [CommonModule, FormsModule],
-  exports: [MdlRadioComponent, MdlRadioGroup],
-  declarations: [MdlRadioComponent, MdlRadioGroup]
+  exports: [MdlRadioComponent],
+  declarations: [MdlRadioComponent]
 })
 export class MdlRadioModule {
   public static forRoot(): ModuleWithProviders {
