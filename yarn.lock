@@ -52,39 +52,39 @@
   dependencies:
     tsickle "^0.1.7"
 
+"@types/chai@^3.4.34":
+  version "3.4.34"
+  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-3.4.34.tgz#d5335792823bb09cddd5e38c3d211b709183854d"
+
 "@types/jasmine@^2.5.36":
   version "2.5.36"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.36.tgz#6d804b79a57e9380d766a2680e9362c17d9556d2"
 
-"@types/jasmine@2.2.33":
-  version "2.2.33"
-  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.2.33.tgz#4715cfd2ca7fbd632fc7f1784f13e637bed028c5"
+"@types/jasmine@2.5.38":
+  version "2.5.38"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.38.tgz#a4379124c4921d4e21de54ec74669c9e9b356717"
 
 "@types/node@^6.0.46":
   version "6.0.46"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.46.tgz#8d9e48572831f05b11cc4c793754d43437219d62"
 
-"@types/node@6.0.38":
-  version "6.0.38"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.38.tgz#7371eb8b4d62951c420298dbfeecf054971fb918"
+"@types/node@6.0.48":
+  version "6.0.48"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.48.tgz#86ccc15f66b73cbbc5eb3483398936c585122b3c"
 
-"@types/protractor@1.5.20":
-  version "1.5.20"
-  resolved "https://registry.yarnpkg.com/@types/protractor/-/protractor-1.5.20.tgz#7437e94b89af90d507eec9b9261a81a69a367300"
+"@types/protractor@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/protractor/-/protractor-4.0.0.tgz#11915845b38d483f7060d74ec8e2eeee43573999"
   dependencies:
-    "@types/selenium-webdriver" "*"
+    protractor "*"
 
 "@types/q@^0.0.32":
   version "0.0.32"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-0.0.32.tgz#bd284e57c84f1325da702babfc82a5328190c0c5"
 
-"@types/selenium-webdriver@*", "@types/selenium-webdriver@~2.53.31":
+"@types/selenium-webdriver@~2.53.31":
   version "2.53.33"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.33.tgz#64672bae3acedf9d9e6bcfa8bdb7c37497751c3d"
-
-"@types/selenium-webdriver@2.44.29":
-  version "2.44.29"
-  resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.44.29.tgz#5be245a74e9aa3336429ab853e93ddbdce86a717"
 
 abbrev@1, abbrev@1.0.x:
   version "1.0.9"
@@ -3397,9 +3397,9 @@ node-pre-gyp@^0.6.29:
     tar "~2.2.0"
     tar-pack "~3.1.0"
 
-node-sass@3.12.1:
-  version "3.12.1"
-  resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-3.12.1.tgz#c48315edec4175266f938b0df8af9c372465b866"
+node-sass@3.12.3:
+  version "3.12.3"
+  resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-3.12.3.tgz#ce528eb34d79bf3f08fdd731f352c4388219dc4c"
   dependencies:
     async-foreach "^0.1.3"
     chalk "^1.1.1"
@@ -4106,7 +4106,7 @@ promise-finally@^2.0.1, promise-finally@^2.2.1:
   dependencies:
     any-promise "^1.3.0"
 
-protractor@4.0.11:
+protractor@*, protractor@4.0.11:
   version "4.0.11"
   resolved "https://registry.yarnpkg.com/protractor/-/protractor-4.0.11.tgz#fc4bf8d75deec8516b600f87ea5b95ecf537d059"
   dependencies:
@@ -4547,9 +4547,9 @@ ripemd160@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
 
-rxjs@5.0.0-beta.12:
-  version "5.0.0-beta.12"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.0-beta.12.tgz#cdfde2d8c4639d20ae7794bff8fddf32da7ad337"
+rxjs@5.0.0-rc.2:
+  version "5.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.0-rc.2.tgz#d38206f50eeb1e77b0832a74c1c2adeeed5ec2b7"
   dependencies:
     symbol-observable "^1.0.1"
 
@@ -5179,9 +5179,9 @@ typescript@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.0.3.tgz#33dec9eae86b8eee327dd419ca050c853cabd514"
 
-typescript@2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.0.8.tgz#c249f530890e0f992e71733b2e0554d792cb8970"
+typescript@2.0.9:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.0.9.tgz#b4f5fecc3f44d5c717f3b3e7c331e5bbb147a53d"
 
 typings-core@^2.0.0:
   version "2.0.0"
@@ -5491,9 +5491,9 @@ webpack-dev-server@2.1.0-beta.4:
     webpack-dev-middleware "^1.4.0"
     yargs "^4.7.1"
 
-webpack-merge@0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-0.15.0.tgz#f6a930516d5eccba0baabeb30ea96b6a6737c193"
+webpack-merge@0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-0.16.0.tgz#1b76bfd7d69f349cd805e2094a36dbfccf63bc99"
   dependencies:
     lodash.find "^3.2.1"
     lodash.isequal "^4.2.0"
@@ -5703,7 +5703,7 @@ zip-object@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/zip-object/-/zip-object-0.1.0.tgz#c1a0da04c88c837756e248680a03ff902ec3f53a"
 
-zone.js@0.6.25:
-  version "0.6.25"
-  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.6.25.tgz#a41b57fe8c0ff3b8f077de3b193a86a234420301"
+zone.js@0.6.26:
+  version "0.6.26"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.6.26.tgz#067c13b8b80223a89b62e9dc82680f09762c4636"
 
