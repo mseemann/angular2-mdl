@@ -11,7 +11,9 @@ import {
   Injectable,
   OnDestroy,
   ViewEncapsulation,
-  ModuleWithProviders
+  ModuleWithProviders,
+  Optional,
+  Inject, SkipSelf, Directive
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -20,6 +22,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BooleanProperty } from '../common/boolean-property';
+
 
 const noop = () => {};
 const IS_FOCUSED = 'is-focused';
@@ -31,26 +34,40 @@ const IS_FOCUSED = 'is-focused';
 @Injectable()
 export class MdlRadioGroupRegisty {
 
-  private radioComponents: any[] = [];
+  private defaultRadioGroup  = new MdlRadioGroup();
+  private radioComponents: {radio: MdlRadioComponent, group:MdlRadioGroup}[] = [];
 
-  public add(radioComponent: MdlRadioComponent) {
-    this.radioComponents.push(radioComponent);
+  public add(radioComponent: MdlRadioComponent, mdlRadioGroup: MdlRadioGroup) {
+    this.radioComponents.push({
+      radio: radioComponent,
+      group: mdlRadioGroup || this.defaultRadioGroup
+    });
   }
 
   public remove(radioComponent: MdlRadioComponent) {
-    this.radioComponents.slice(this.radioComponents.indexOf(radioComponent), 1);
+    this.radioComponents = this.radioComponents.filter( (radioComponentInArray) => {
+      return (radioComponentInArray.radio !== radioComponent);
+    });
   }
 
-  public select(radioComponent: MdlRadioComponent) {
-    // unselect evenry radioComponent that is not the provided radiocomponent and has the same name
+  public select(radioComponent: MdlRadioComponent, mdlRadioGroup: MdlRadioGroup) {
+    // unselect every radioComponent that is not the provided radiocomponent
+    // and has the same name and is in teh same group.
+    let testGroup = mdlRadioGroup || this.defaultRadioGroup;
     this.radioComponents.forEach( (component) => {
-      if (component.name === radioComponent.name) {
-        if (component !== radioComponent) {
-          component.deselect(radioComponent.value);
+      if (component.radio.name === radioComponent.name && component.group === testGroup) {
+        if (component.radio !== radioComponent) {
+          component.radio.deselect(radioComponent.value);
         }
       }
     });
   }
+}
+
+@Directive({
+  selector: '[formGroupName][mdl-radio-group]'
+})
+export class MdlRadioGroup {
 }
 
 /*
@@ -105,7 +122,8 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer,
-    private ragioGroupRegisty: MdlRadioGroupRegisty) {
+    private ragioGroupRegisty: MdlRadioGroupRegisty,
+    @Optional() private mdlRadioGroup: MdlRadioGroup) {
     this.el = elementRef.nativeElement;
   }
 
@@ -115,7 +133,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     this.checkName();
     // register the radio button - this is the only chance to unselect the
     // radio button that is no longer active
-    this.ragioGroupRegisty.add(this);
+    this.ragioGroupRegisty.add(this, this.mdlRadioGroup);
   }
 
   public ngOnDestroy() {
@@ -137,7 +155,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     // wrap the callback, so that we can call select on the registry
     this.onChangeCallback = () => {
       fn(this.value);
-      this.ragioGroupRegisty.select(this);
+      this.ragioGroupRegisty.select(this, this.mdlRadioGroup);
     };
   }
 
@@ -191,8 +209,8 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
 
 @NgModule({
   imports: [CommonModule, FormsModule],
-  exports: [MdlRadioComponent],
-  declarations: [MdlRadioComponent]
+  exports: [MdlRadioComponent, MdlRadioGroup],
+  declarations: [MdlRadioComponent, MdlRadioGroup]
 })
 export class MdlRadioModule {
   public static forRoot(): ModuleWithProviders {

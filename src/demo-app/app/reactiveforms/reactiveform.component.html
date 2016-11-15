@@ -137,3 +137,18 @@ export class ReactiveFormsDemo {
 </pre>
 <a href="https://gist.github.com/mseemann/39d50d07a191be1df2c2d8f5ea244f7d" target="gist_angular2-mdl">Complete SourceCode</a>
 <br/>
+
+<div>
+GroupTest:
+<form [formGroup]="testForm">
+  <div formGroupName="group1" mdl-radio-group>
+    <mdl-radio formControlName="type" value="type1"></mdl-radio>
+    <mdl-radio formControlName="type" value="type2"></mdl-radio>
+  </div>
+  <div formGroupName="group2">
+    <mdl-radio formControlName="type" value="type1"></mdl-radio>
+    <mdl-radio formControlName="type" value="type2"></mdl-radio>
+  </div>
+</form>
+ <br/>
+</div>
