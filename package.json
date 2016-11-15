@@ -39,7 +39,7 @@
     "@angular/platform-server": "2.2.0",
     "@angular/router": "3.2.0",
     "@types/jasmine": "2.5.38",
-    "@types/node": "6.0.47",
+    "@types/node": "6.0.48",
     "@types/protractor": "4.0.0",
     "@types/selenium-webdriver": "2.53.35",
     "angular2-template-loader": "0.6.0",
