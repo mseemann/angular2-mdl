@@ -23,5 +23,7 @@ after_success:
   - npm run codeclimate
   # run e2e test
   # - npm run e2e
+  # create a build - should test the tooling to create dist build
+  - npm run build:dist
 
 after_script:
