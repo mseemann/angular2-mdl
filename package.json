@@ -41,7 +41,6 @@
     "@types/chai": "^3.4.34",
     "@types/jasmine": "2.5.38",
     "@types/node": "6.0.48",
-    "@types/protractor": "4.0.0",
     "angular2-template-loader": "0.6.0",
     "autoprefixer": "6.5.3",
     "awesome-typescript-loader": "2.2.4",
