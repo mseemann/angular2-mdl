@@ -799,10 +799,12 @@ codeclimate-test-reporter@0.4.0:
     lcov-parse "0.0.10"
     request "~2.74.0"
 
-codelyzer@0.0.28:
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-0.0.28.tgz#294d31224f99f5268ab5e40b7e71060ddb942fa3"
+codelyzer@1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-1.0.0-beta.4.tgz#9b5e39222a024500a5bbbecfc95d6392ab851d03"
   dependencies:
+    css-selector-tokenizer "^0.7.0"
+    cssauron "^1.4.0"
     sprintf-js "^1.0.3"
 
 color-convert@^1.3.0:
@@ -1127,9 +1129,23 @@ css-selector-tokenizer@^0.6.0:
     fastparse "^1.1.1"
     regexpu-core "^1.0.0"
 
+css-selector-tokenizer@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/css-selector-tokenizer/-/css-selector-tokenizer-0.7.0.tgz#e6988474ae8c953477bf5e7efecfceccd9cf4c86"
+  dependencies:
+    cssesc "^0.1.0"
+    fastparse "^1.1.1"
+    regexpu-core "^1.0.0"
+
 css-what@2.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.0.tgz#9467d032c38cfaefb9f2d79501253062f87fa1bd"
+
+cssauron@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/cssauron/-/cssauron-1.4.0.tgz#a6602dff7e04a8306dc0db9a551e92e8b5662ad8"
+  dependencies:
+    through X.X.X
 
 cssesc@^0.1.0:
   version "0.1.0"
@@ -3397,9 +3413,9 @@ node-pre-gyp@^0.6.29:
     tar "~2.2.0"
     tar-pack "~3.1.0"
 
-node-sass@3.12.3:
-  version "3.12.3"
-  resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-3.12.3.tgz#ce528eb34d79bf3f08fdd731f352c4388219dc4c"
+node-sass@3.13.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-3.13.0.tgz#d08b95bdebf40941571bd2c16a9334b980f8924f"
   dependencies:
     async-foreach "^0.1.3"
     chalk "^1.1.1"
@@ -5020,7 +5036,7 @@ throat@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-3.0.0.tgz#e7c64c867cbb3845f10877642f7b60055b8ec0d6"
 
-through@~2.3.6:
+through@~2.3.6, through@X.X.X:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
@@ -5179,9 +5195,9 @@ typescript@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.0.3.tgz#33dec9eae86b8eee327dd419ca050c853cabd514"
 
-typescript@2.0.9:
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.0.9.tgz#b4f5fecc3f44d5c717f3b3e7c331e5bbb147a53d"
+typescript@2.0.10:
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.0.10.tgz#ccdd4ed86fd5550a407101a0814012e1b3fac3dd"
 
 typings-core@^2.0.0:
   version "2.0.0"
@@ -5491,9 +5507,9 @@ webpack-dev-server@2.1.0-beta.4:
     webpack-dev-middleware "^1.4.0"
     yargs "^4.7.1"
 
-webpack-merge@0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-0.16.0.tgz#1b76bfd7d69f349cd805e2094a36dbfccf63bc99"
+webpack-merge@0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-0.17.0.tgz#3548ef319e3a72676f831edfe7cba687aa781c84"
   dependencies:
     lodash.find "^3.2.1"
     lodash.isequal "^4.2.0"
