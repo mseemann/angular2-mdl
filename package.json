@@ -30,7 +30,7 @@
   "devDependencies": {
     "@angular/common": "2.2.0",
     "@angular/compiler": "2.2.0",
-    "@angular/compiler-cli": "2.2.0",
+    "@angular/compiler-cli": "2.2.1",
     "@angular/core": "2.2.0",
     "@angular/forms": "2.2.0",
     "@angular/http": "2.2.0",
