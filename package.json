@@ -28,7 +28,7 @@
     "url": "git+https://github.com/mseemann/angular2-mdl.git"
   },
   "devDependencies": {
-    "@angular/common": "2.2.0",
+    "@angular/common": "2.2.1",
     "@angular/compiler": "2.2.0",
     "@angular/compiler-cli": "2.2.0",
     "@angular/core": "2.2.0",
