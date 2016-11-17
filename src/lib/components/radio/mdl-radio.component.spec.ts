@@ -10,7 +10,7 @@ describe('Component: MdlRadio', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ MdlRadioModule.forRoot(), FormsModule, ReactiveFormsModule ],
-      declarations: [ MdlTestRadioComponent ],
+      declarations: [ MdlTestRadioComponent, MdlTestUseSameRadioInGroupsComponent ],
     });
   }));
 
@@ -161,6 +161,29 @@ describe('Component: MdlRadio', () => {
 
   }));
 
+
+  it('should be possible to use the same radio buttons in different groups', () => {
+    let fixture = TestBed.createComponent(MdlTestUseSameRadioInGroupsComponent);
+    fixture.detectChanges();
+
+    let g1t1Elem = fixture.debugElement.query(By.css('#g1t1')).nativeElement;
+    let g1t2Elem = fixture.debugElement.query(By.css('#g1t2')).nativeElement;
+    let g2t1Elem = fixture.debugElement.query(By.css('#g2t1')).nativeElement;
+
+    g1t1Elem.click();
+    fixture.detectChanges();
+
+    expect(g1t1Elem.classList.contains('is-checked')).toBe(true, 'the clicked one should be selected');
+    expect(g2t1Elem.classList.contains('is-checked')).toBe(false, 'the not clicked one should not be selected');
+
+    g1t2Elem.click();
+    fixture.detectChanges();
+
+    expect(g1t1Elem.classList.contains('is-checked')).toBe(false, 'the not clicked one should not be selected');
+    expect(g2t1Elem.classList.contains('is-checked')).toBe(false, 'the not clicked one should not be selected');
+
+
+  });
 });
 
 
@@ -192,3 +215,36 @@ class MdlTestRadioComponent implements OnInit {
 }
 
 
+@Component({
+  selector: 'test-radio',
+  template: `
+    <form [formGroup]="testForm">
+      <div formGroupName="group1" mdl-radio-group>
+        <mdl-radio formControlName="type" value="type1" id="g1t1"></mdl-radio>
+        <mdl-radio formControlName="type" value="type2" id="g1t2"></mdl-radio>
+      </div>
+      <div formGroupName="group2">
+        <mdl-radio formControlName="type" value="type1" id="g2t1"></mdl-radio>
+        <mdl-radio formControlName="type" value="type2" id="g2t2"></mdl-radio>
+      </div>
+    </form>
+  `
+})
+class MdlTestUseSameRadioInGroupsComponent implements OnInit {
+
+  public testForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {}
+
+  public ngOnInit() {
+    this.testForm = new FormGroup({
+      group1: new FormGroup({
+        type: new FormControl('')
+      }),
+      group2: new FormGroup({
+        type: new FormControl('')
+      })
+    });
+  }
+
+}

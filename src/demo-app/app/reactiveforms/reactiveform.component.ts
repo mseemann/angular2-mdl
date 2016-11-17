@@ -40,6 +40,7 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
   public breakfast = new FormControl('Continental');
   public toDrink = new FormControl('Tea');
 
+  public testForm: FormGroup;
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title, private fb: FormBuilder) {
     super(router, route, titleService);
@@ -64,6 +65,16 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
       .subscribe((formValues) => {
         console.log(`Model Driven Form valid: ${this.form.valid} value:`, JSON.stringify(formValues));
       });
+
+    // testform radio buttons inside groups
+    this.testForm = new FormGroup({
+      group1: new FormGroup({
+        type: new FormControl('')
+      }),
+      group2: new FormGroup({
+        type: new FormControl('')
+      })
+    });
   }
 
   public onSubmit() {
