@@ -23,13 +23,13 @@ export class MdlBackdropOverlayComponent {
   public clickEmitter: EventEmitter<any> = new EventEmitter();
 
   @HostBinding('style.display')
-  get display() {
+  public get display() {
     return this.visible ? null : 'none';
   }
   private visible = false;
 
   @HostBinding('style.zIndex')
-  private zIndex = 0;
+  public zIndex = 0;
 
   @HostListener('click', ['$event'])
   public onBackdropClick(e) {
