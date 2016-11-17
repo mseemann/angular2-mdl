@@ -1,8 +1,10 @@
 <a name="2.4.2"></a>
-# 2.4.2 (2016-11-18)
+# 2.4.2 (2016-11-17)
 
 ### Bug Fixes
 * [200](https://github.com/mseemann/angular2-mdl/issues/200) (close menu if another menu will be opened)
+* [205](https://github.com/mseemann/angular2-mdl/issues/205) (group nested radios not working)
+* [216](https://github.com/mseemann/angular2-mdl/issues/216) (AOT fail for dialogs)
 
 ### Features
 * [201](https://github.com/mseemann/angular2-mdl/issues/201) (Step in text fields)
