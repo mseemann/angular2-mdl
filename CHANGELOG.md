@@ -1,3 +1,9 @@
+<a name="2.4.3"></a>
+# 2.4.3 (2016-11-18)
+
+### Bug Fixes
+* [216](https://github.com/mseemann/angular2-mdl/issues/216) (AOT fails because of private members)
+
 <a name="2.4.2"></a>
 # 2.4.2 (2016-11-17)
 
