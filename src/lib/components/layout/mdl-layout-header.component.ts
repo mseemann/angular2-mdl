@@ -53,7 +53,7 @@ export class MdlLayoutHeaderComponent {
 
   // set from MdlLayoutComponent
   public mode: string;
-  protected el: HTMLElement;
+  public el: HTMLElement;
   public isCompact = false;
   public isAnimating = false;
   public isSeamed = false;

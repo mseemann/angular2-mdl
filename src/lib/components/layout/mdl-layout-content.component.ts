@@ -20,7 +20,7 @@ export class MdlLayoutContentComponent {
 
   @ContentChildren(MdlLayoutTabPanelComponent) public tabs: QueryList<MdlLayoutTabPanelComponent>;
 
-  protected el: HTMLElement;
+  public el: HTMLElement;
 
   constructor(private elRef: ElementRef) {
     this.el = elRef.nativeElement;

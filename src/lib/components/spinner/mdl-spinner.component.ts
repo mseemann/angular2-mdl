@@ -30,7 +30,7 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None
 })
 export class MdlSpinnerComponent {
-  protected layers = [1, 2, 3, 4];
+  public layers = [1, 2, 3, 4];
 
   @Input() @BooleanProperty() public active: boolean;
   @Input('single-color') @BooleanProperty() public singleColor: boolean;

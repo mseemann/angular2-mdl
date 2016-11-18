@@ -60,8 +60,8 @@ export class MdlButtonComponent implements OnChanges {
 
   private element: HTMLElement;
 
-  @Input('mdl-button-type') private mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '' ;
-  @Input('mdl-colored') private mdlColoredType: 'primary' | 'accent' | '';
+  @Input('mdl-button-type') public mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '' ;
+  @Input('mdl-colored') public mdlColoredType: 'primary' | 'accent' | '';
   @Input() @BooleanProperty() public disabled = false;
 
   constructor(public elementRef: ElementRef, private renderer: Renderer) {

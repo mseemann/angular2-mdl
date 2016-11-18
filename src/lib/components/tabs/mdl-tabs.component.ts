@@ -69,7 +69,7 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
     }
   }
 
-  protected tabSelected(tab: MdlTabPanelComponent) {
+  public tabSelected(tab: MdlTabPanelComponent) {
     if (tab.disabled) {
       return;
     }

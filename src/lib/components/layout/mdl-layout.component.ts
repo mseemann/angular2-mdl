@@ -74,14 +74,14 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   @Input('mdl-layout-fixed-header') @BooleanProperty() public isFixedHeader = false;
   @Input('mdl-layout-header-seamed') @BooleanProperty() public isSeamed = false;
   @Input('mdl-layout-tab-active-index') @NumberProperty() public selectedIndex: number = 0;
-  @Input('mdl-ripple') @BooleanProperty() protected isRipple = false;
+  @Input('mdl-ripple') @BooleanProperty() public isRipple = false;
   @Input('mdl-layout-no-drawer-button') @BooleanProperty() public isNoDrawer = false;
   @Output('mdl-layout-tab-active-changed') public selectedTabEmitter = new EventEmitter();
   @Output('mdl-layout-tab-mouseover') public mouseoverTabEmitter = new EventEmitter();
   @Output('mdl-layout-tab-mouseout') public mouseoutTabEmitter = new EventEmitter();
 
-  @Output('open') onOpen = new EventEmitter<void>();
-  @Output('close') onClose = new EventEmitter<void>();
+  @Output('open') public onOpen = new EventEmitter<void>();
+  @Output('close') public onClose = new EventEmitter<void>();
 
   public isDrawerVisible = false;
   public isSmallScreen = false;

@@ -130,10 +130,10 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   private el: HTMLElement;
 
   @Output('blur')
-  private blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+  public blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
   @Output('focus')
-  private focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+  public focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
   @ViewChild('input') private inputEl: ElementRef;
 

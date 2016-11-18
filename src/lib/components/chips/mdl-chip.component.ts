@@ -28,8 +28,8 @@ export class MdlChipComponent {
 
   @Input('mdl-label') public mdlLabel;
   @Input('mdl-action-icon') public mdlActionIcon;
-  @Output('action-click') private actionClick = new EventEmitter();
-  @ContentChild(MdlChipContactDirective) protected chipContact: MdlChipContactDirective;
+  @Output('action-click') public actionClick = new EventEmitter();
+  @ContentChild(MdlChipContactDirective) public chipContact: MdlChipContactDirective;
 
   public action() {
     this.actionClick.emit();

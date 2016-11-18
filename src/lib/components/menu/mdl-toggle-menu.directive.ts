@@ -9,7 +9,7 @@ import { MdlButtonComponent } from '../button/mdl-button.component';
 })
 export class MdlToggleMenuDirective {
 
-  @Input('mdl-toggle-menu') menu: MdlMenuComponent;
+  @Input('mdl-toggle-menu') public menu: MdlMenuComponent;
 
   constructor(private button: MdlButtonComponent){}
 

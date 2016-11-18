@@ -57,7 +57,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
 
   @Input() @BooleanProperty() public disabled = false;
 
-  private change: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private value_: boolean = false;
 

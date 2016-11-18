@@ -44,7 +44,7 @@ export class MdlListComponent {}
 })
 export class MdlListItemComponent implements OnInit, OnChanges {
 
-  @Input() @NumberProperty() private lines: number = 1;
+  @Input() @NumberProperty() public lines: number = 1;
 
   constructor(@Optional() private mdlListComponent: MdlListComponent) {}
 

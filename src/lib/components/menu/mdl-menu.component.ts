@@ -94,7 +94,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ContentChildren(MdlMenuItemComponent) private menuItemComponents: QueryList<MdlMenuItemComponent>;
 
-  private cssPosition = 'mdl-menu--bottom-left';
+  public cssPosition = 'mdl-menu--bottom-left';
 
   private isVisible   = false;
 

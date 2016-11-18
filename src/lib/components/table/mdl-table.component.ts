@@ -85,7 +85,7 @@ export class MdlTableComponent {
 
   @Input('table-model') public model: IMdlTableModel;
 
-  protected selectable = false;
+  public selectable = false;
 }
 
 
@@ -101,8 +101,8 @@ export class MdlSelectableTableComponent extends MdlTableComponent {
   @Input('table-model-selected') public selected: Array<IMdlTableModelItem>;
   @Output('table-model-selectionChanged') public selectionChange = new EventEmitter();
 
-  protected selectable = true;
-  protected allSelected = false;
+  public selectable = true;
+  public allSelected = false;
 
   public isAllSelected() {
     return this.model.data.every( data => data.selected);

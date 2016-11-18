@@ -18,7 +18,7 @@ export class MdlBadgeDirective implements OnChanges {
 
   private el: HTMLElement;
 
-  @Input('mdl-badge') private mdlBadgeContent: string;
+  @Input('mdl-badge') public mdlBadgeContent: string;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer) {
     this.el = elementRef.nativeElement;

@@ -12,7 +12,7 @@ import {
 import { MaterialRipple } from './ripple.vendor';
 
 // known bugs: https://github.com/google/material-design-lite/issues/4215
-export class MdlRippleDirective implements OnChanges{
+export class MdlRippleDirective implements OnChanges {
 
   private RIPPLE = 'mdl-ripple';
 
