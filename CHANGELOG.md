@@ -1,3 +1,9 @@
+<a name="2.4.4"></a>
+# 2.4.4 (2016-11-20)
+
+### Bug Fixes
+* [2126](https://github.com/mseemann/angular2-mdl/issues/226) (mdl-layout-tab-panel-title is not moarked correctly if active)
+
 <a name="2.4.3"></a>
 # 2.4.3 (2016-11-18)
 
