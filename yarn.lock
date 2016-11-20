@@ -1297,9 +1297,9 @@ di@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/di/-/di-0.0.1.tgz#806649326ceaa7caa3306d75d985ea2748ba913c"
 
-diff@^2.2.1:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/diff/-/diff-2.2.3.tgz#60eafd0d28ee906e4e8ff0a52c1229521033bf99"
+diff@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-3.0.1.tgz#a52d90cc08956994be00877bff97110062582c35"
 
 diffie-hellman@^5.0.0:
   version "5.0.2"
@@ -1931,7 +1931,7 @@ glob@^6.0.4:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.0, glob@^7.0.3, glob@^7.0.5:
+glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.1.tgz#805211df04faaf1c63a3600306cdf5ade50b2ec8"
   dependencies:
@@ -4536,9 +4536,9 @@ ripemd160@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
 
-rxjs@5.0.0-rc.2:
-  version "5.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.0-rc.2.tgz#d38206f50eeb1e77b0832a74c1c2adeeed5ec2b7"
+rxjs@5.0.0-rc.4:
+  version "5.0.0-rc.4"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.0-rc.4.tgz#a4d08bc5d7f30d48ed7130e2995490c326a325c4"
   dependencies:
     symbol-observable "^1.0.1"
 
@@ -5123,17 +5123,18 @@ tslint-loader@2.1.5:
     rimraf "^2.4.4"
     strip-json-comments "^1.0.2"
 
-tslint@3.15.1:
-  version "3.15.1"
-  resolved "https://registry.yarnpkg.com/tslint/-/tslint-3.15.1.tgz#da165ca93d8fdc2c086b51165ee1bacb48c98ea5"
+tslint@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.0.1.tgz#42ae8ac2b994331a6f61c5809916df86411fd880"
   dependencies:
     colors "^1.1.2"
-    diff "^2.2.1"
+    diff "^3.0.1"
     findup-sync "~0.3.0"
-    glob "^7.0.3"
+    glob "^7.1.1"
     optimist "~0.6.0"
     resolve "^1.1.7"
     underscore.string "^3.3.4"
+    update-notifier "^1.0.2"
 
 tty-browserify@0.0.0:
   version "0.0.0"
@@ -5285,7 +5286,7 @@ unzip-response@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-1.0.1.tgz#4a73959f2989470fa503791cefb54e1dbbc68412"
 
-update-notifier@^1.0.0:
+update-notifier@^1.0.0, update-notifier@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/update-notifier/-/update-notifier-1.0.2.tgz#27c90519196dc15015be02a34ea52986feab8877"
   dependencies:

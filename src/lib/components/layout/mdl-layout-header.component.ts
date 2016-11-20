@@ -41,6 +41,7 @@ import { MdlLayoutComponent } from './mdl-layout.component';
                     href="javascript:void(0)"   
                     (click)="mdlLayout.tabSelected(tab)"
                     class="mdl-layout__tab" 
+                    [ngClass]="{'is-active': tab.isActive}"
                     [mdl-ripple]="isRipple"
                    >{{tab.title}}</a>
              </div>
