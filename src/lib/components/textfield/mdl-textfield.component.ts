@@ -66,6 +66,7 @@ const IS_DIRTY = 'is-dirty';
         [disabled]="disabled"
         [required]="required"
         [autofocus]="autofocus"
+        [readonly]="readonly"
         ></textarea>
      <input
         *ngIf="!rows"
@@ -86,6 +87,7 @@ const IS_DIRTY = 'is-dirty';
         [disabled]="disabled"
         [required]="required"
         [autofocus]="autofocus"
+         [readonly]="readonly"
         >
      <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
@@ -113,6 +115,7 @@ const IS_DIRTY = 'is-dirty';
           [disabled]="disabled"
           [required]="required"
           [autofocus]="autofocus"
+          [readonly]="readonly"
          >
      <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
@@ -154,6 +157,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() public id = `mdl-textfield-${nextId++}`;
   @Input('error-msg') public errorMessage;
   @Input() @BooleanProperty() public disabled = false;
+  @Input() @BooleanProperty() public readonly = false;
   @Input() @BooleanProperty() public required = false;
   @Input() @BooleanProperty() public autofocus: boolean = false;
   @Input('floating-label') @BooleanProperty() public isFloatingLabel = false;

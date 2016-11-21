@@ -1,3 +1,10 @@
+<a name="2.4.5"></a>
+# 2.4.5 (2016-11-21)
+
+### Bug Fixes
+* [232](https://github.com/mseemann/angular2-mdl/issues/232) (expose readonly for mdl-textfiled)
+* [229](https://github.com/mseemann/angular2-mdl/issues/229) (<textarea> didn't use the "required" attribute)
+
 <a name="2.4.4"></a>
 # 2.4.4 (2016-11-20)
 
