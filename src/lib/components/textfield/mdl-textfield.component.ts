@@ -64,6 +64,7 @@ const IS_DIRTY = 'is-dirty';
         (keydown)="keydownTextarea($event)"
         [(ngModel)]="value"
         [disabled]="disabled"
+        [required]="required"
         [autofocus]="autofocus"
         ></textarea>
      <input
