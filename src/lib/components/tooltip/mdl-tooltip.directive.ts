@@ -13,7 +13,7 @@ import { MdlSimpleTooltipComponent, MdlTooltipComponent } from './mdl-tooltip.co
 export class AbstractMdlTooltipDirective implements OnInit {
 
   protected tooltip: string|MdlTooltipComponent;
-  protected position: string;
+  protected position: 'left' | 'right' | 'top' | 'bottom';
 
   protected tooltipComponent: MdlSimpleTooltipComponent;
 
@@ -76,7 +76,7 @@ const host: { [key: string]: string; } = {
 export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
 
   @Input('mdl-tooltip')           public tooltip: string|MdlTooltipComponent;
-  @Input('mdl-tooltip-position')  public position: string;
+  @Input('mdl-tooltip-position')  public position: 'left' | 'right' | 'top' | 'bottom';
 
   constructor(
     vcRef: ViewContainerRef,
@@ -95,7 +95,7 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
 export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
 
   @Input('mdl-tooltip-large')     public tooltip: string|MdlTooltipComponent;
-  @Input('mdl-tooltip-position')  public position: string;
+  @Input('mdl-tooltip-position')  public position: 'left' | 'right' | 'top' | 'bottom';
 
   constructor(
     vcRef: ViewContainerRef,

@@ -28,8 +28,8 @@ export class MdlSimpleTooltipComponent {
   public tooltipText: string;
   public element: HTMLElement;
   public large = false;
-  public position: string;
-
+  public position: 'left' | 'right' | 'top' | 'bottom';
+  private active = false;
 
   constructor(
     private elRef: ElementRef,
@@ -40,11 +40,15 @@ export class MdlSimpleTooltipComponent {
   }
 
   public mouseLeave() {
-    this.renderer.setElementClass(this.elRef.nativeElement, IS_ACTIVE, false);
+    this.setActive(false);
   }
 
   public mouseEnter(event: any) {
-    let props = event.target.getBoundingClientRect();
+    this.show(event.target);
+  }
+
+  public show(element: HTMLElement){
+    let props = element.getBoundingClientRect();
     let offsetWidth = this.element.offsetWidth;
     let offsetHeight = this.element.offsetHeight;
 
@@ -54,7 +58,21 @@ export class MdlSimpleTooltipComponent {
       this.renderer.setElementStyle(this.elRef.nativeElement, key, style[key]);
     }
 
-    this.renderer.setElementClass(this.elRef.nativeElement, IS_ACTIVE, true);
+    this.setActive(true);
+  }
+
+  public hide() {
+    this.mouseLeave();
+  }
+
+  private setActive(active: boolean){
+    this.active = active;
+    this.renderer.setElementClass(this.elRef.nativeElement, IS_ACTIVE, active);
+
+  }
+
+  public isActive() {
+    return this.active;
   }
 }
 

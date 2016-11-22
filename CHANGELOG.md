@@ -1,3 +1,10 @@
+<a name="2.5.0"></a>
+# 2.5.0 (2016-11-22)
+
+### Features
+* [235](https://github.com/mseemann/angular2-mdl/issues/235) (Show/close tooltip)
+
+
 <a name="2.4.5"></a>
 # 2.4.5 (2016-11-21)
 

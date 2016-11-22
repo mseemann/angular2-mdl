@@ -83,6 +83,7 @@
   ]]>
 </pre>
 
+
 <p>A tooltip can be created from a directive or a combination of directive and compontent. Under the hood every
 tooltip uses the tooltip component.</p>
 
@@ -95,5 +96,50 @@ the attribute can be a string or a reference to a <i>mdl-tooltip</i> component i
 <p>If you want the tooltip to be large use the <i>mdl-tooltip-large</i> to show the tooltip.</p>
 
 <p>The tooltip attribute <i>mdl-tooltip-position</i> can be used to specify the position of the tooltip (left, right, top, bottom).</p>
+
+
+<!-- programmatic tooltip -->
+<p>It is possible to show/hide a tooltip programmatically:</p>
+<div class="tooltip-demo-container">
+  <button  mdl-button mdl-button-type="raised" mdl-ripple (click)="toggleTooltip(tt5)">Toggle Tooltip</button>
+
+  <div>
+    <span #tipTarget>Tooltip goes here</span>
+  </div>
+
+
+  <mdl-tooltip #tt5="mdlTooltip">
+    Show and hide programmatically
+  </mdl-tooltip>
+</div>
+  <pre prism>
+  <![CDATA[
+  <button  mdl-button mdl-button-type="raised" mdl-ripple (click)="toggleTooltip(tt5)">Toggle Tooltip</button>
+
+  <div>
+    <span #tipTarget>Tooltip goes here</span>
+  </div>
+
+
+  <mdl-tooltip #tt5="mdlTooltip">
+    Show and hide programmatically
+  </mdl-tooltip>
+
+  <scriptx>
+  @ViewChild('tipTarget', {read: ElementRef}) tipTarget;
+
+
+  public toggleTooltip(tooltip: MdlTooltipComponent){
+    tooltip.position = 'right';
+    if ( tooltip.isActive() ){
+      tooltip.hide();
+    } else {
+      tooltip.show(this.tipTarget.nativeElement);
+    }
+  }
+
+  </scriptx>
+  ]]>
+</pre>
 
 </div>

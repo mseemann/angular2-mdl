@@ -68,9 +68,9 @@
   version "6.0.46"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.46.tgz#8d9e48572831f05b11cc4c793754d43437219d62"
 
-"@types/node@6.0.48":
-  version "6.0.48"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.48.tgz#86ccc15f66b73cbbc5eb3483398936c585122b3c"
+"@types/node@6.0.49":
+  version "6.0.49"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.49.tgz#c644f7305e0d64bd797c939af833f22d150e1d33"
 
 "@types/q@^0.0.32":
   version "0.0.32"
@@ -4927,13 +4927,13 @@ strip-indent@^1.0.1:
   dependencies:
     get-stdin "^4.0.1"
 
-strip-json-comments@^1.0.2, strip-json-comments@~1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-1.0.4.tgz#1e15fbcac97d3ee99bf2d73b4c656b082bbafb91"
-
 strip-json-comments@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
+
+strip-json-comments@~1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-1.0.4.tgz#1e15fbcac97d3ee99bf2d73b4c656b082bbafb91"
 
 style-loader@0.13.1:
   version "0.13.1"
@@ -5113,15 +5113,14 @@ tsickle@^0.1.7:
     source-map "^0.4.2"
     source-map-support "^0.3.1"
 
-tslint-loader@2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/tslint-loader/-/tslint-loader-2.1.5.tgz#77abdfd9bf13d7133a6efa4447a1690783c4bb49"
+tslint-loader@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/tslint-loader/-/tslint-loader-3.0.0.tgz#7926524ebae3212ff337535e42621c040f97ebff"
   dependencies:
     loader-utils "^0.2.7"
     mkdirp "^0.5.1"
     object-assign "^4.0.1"
     rimraf "^2.4.4"
-    strip-json-comments "^1.0.2"
 
 tslint@4.0.1:
   version "4.0.1"
