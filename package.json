@@ -32,7 +32,7 @@
     "@angular/compiler": "2.2.2",
     "@angular/compiler-cli": "2.2.2",
     "@angular/core": "2.2.2",
-    "@angular/forms": "2.2.2",
+    "@angular/forms": "2.2.3",
     "@angular/http": "2.2.2",
     "@angular/platform-browser": "2.2.2",
     "@angular/platform-browser-dynamic": "2.2.2",
