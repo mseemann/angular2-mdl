@@ -26,18 +26,8 @@ import { MdlTooltipComponent } from '../../../lib/components/tooltip/mdl-tooltip
 export class TooltipDemo extends AbstractDemoComponent {
   protected tt1 = 'Follow';
 
-  @ViewChild('tipTarget', {read: ElementRef}) tipTarget;
-
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
   }
 
-  public toggleTooltip(tooltip: MdlTooltipComponent){
-    tooltip.position = 'right';
-    if ( tooltip.isActive() ){
-      tooltip.hide();
-    } else {
-      tooltip.show(this.tipTarget.nativeElement);
-    }
-  }
 }

@@ -62,13 +62,9 @@
   version "2.5.38"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.38.tgz#a4379124c4921d4e21de54ec74669c9e9b356717"
 
-"@types/node@6.0.51":
+"@types/node@6.0.51", "@types/node@^6.0.46":
   version "6.0.51"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.51.tgz#84cbf25111516ec9304d0b61469dc0fa9d12ba32"
-
-"@types/node@^6.0.46":
-  version "6.0.46"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.46.tgz#8d9e48572831f05b11cc4c793754d43437219d62"
 
 "@types/q@^0.0.32":
   version "0.0.32"
@@ -5428,9 +5424,9 @@ webpack-dev-server@2.1.0-beta.4:
     webpack-dev-middleware "^1.4.0"
     yargs "^4.7.1"
 
-webpack-merge@0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-0.18.0.tgz#287c737c18209d35ec5826e4ac69e9b2ed1e0564"
+webpack-merge@0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-0.19.0.tgz#a5bd927e0c069d3ffe8b99c7f176a388a96aa5dd"
   dependencies:
     lodash.find "^3.2.1"
     lodash.isequal "^4.2.0"
