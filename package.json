@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@angular/common": "2.2.3",
-    "@angular/compiler": "2.2.3",
+    "@angular/compiler": "2.2.4",
     "@angular/compiler-cli": "2.2.3",
     "@angular/core": "2.2.3",
     "@angular/forms": "2.2.3",
