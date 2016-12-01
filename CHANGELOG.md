@@ -1,3 +1,11 @@
+<a name="2.5.1"></a>
+# 2.5.1 (2016-12-01)
+
+### Bug Fixes
+- rebuild to get the right metadata for aot
+
+
+
 <a name="2.5.0"></a>
 # 2.5.0 (2016-11-22)
 
