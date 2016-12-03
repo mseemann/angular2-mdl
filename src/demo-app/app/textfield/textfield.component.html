@@ -85,12 +85,13 @@
         label="Number..."
         min="0"
         step="0.01"
-        error-msg="Input is not a number!"
+        error-msg="invalid number!"
         [(ngModel)]="number1"
         floating-label ></mdl-textfield>
 
 <br/>
 {{number1}}
+{{valueType}}
 
 <pre prism>
   <![CDATA[

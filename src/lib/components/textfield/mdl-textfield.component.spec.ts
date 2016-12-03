@@ -473,6 +473,37 @@ describe('Component: MdlTextField', () => {
 
   }));
 
+  it('should keep type number if the input field is type number', async(() => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield  type="number" [(ngModel)]="numberValue"></mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    expect(typeof fixture.componentInstance.numberValue).toBe('number');
+
+    let tfFieldComp = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
+    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    el.value = '1';
+    tfFieldComp.componentInstance.triggerChange(<any> {target: el});
+    fixture.detectChanges();
+
+    expect(tfFieldComp.componentInstance.value).toBe(1);
+    expect(typeof tfFieldComp.componentInstance.value).toBe('number');
+
+    el.value = '';
+    tfFieldComp.componentInstance.triggerChange(<any> {target: el});
+    fixture.detectChanges();
+
+    expect(tfFieldComp.componentInstance.value).toBe(null);
+    expect(typeof tfFieldComp.componentInstance.value).toBe('object');
+
+  }));
+
 });
 
 
@@ -482,6 +513,8 @@ describe('Component: MdlTextField', () => {
 })
 class MdlTestComponent {
   public text1 = '';
+
+  public numberValue = 0;
 
   public onBlur(event: FocusEvent) {}
 

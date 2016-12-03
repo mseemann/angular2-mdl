@@ -32,7 +32,7 @@ module.exports = function (config) {
     webpack: testWebpackConfig,
     // Webpack should show only errors on the console
     webpackMiddleware: { stats: 'errors-only'},
-    reporters: ['spec', 'karma-remap-istanbul'],
+    reporters: (WATCH ? ['progress'] : ['spec', 'karma-remap-istanbul']),
     port: 9876,
     colors: true,
     logLevel: config.LOG_ERROR,

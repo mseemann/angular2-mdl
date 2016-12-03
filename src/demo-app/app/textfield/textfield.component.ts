@@ -18,6 +18,12 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
 })
 export class TextFieldDemo extends AbstractDemoComponent {
 
+  public number1: number = null;
+
+  get valueType() {
+    return typeof this.number1;
+  }
+
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
   }

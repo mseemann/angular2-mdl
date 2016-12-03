@@ -143,8 +143,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
 
   get value(): any { return this.value_; };
   @Input() set value(v: any) {
-    this.value_ = v;
-    this.onChangeCallback(v);
+    this.value_ = this.type === 'number' ? ( v === '' ? null : parseFloat(v)) : v;
+    this.onChangeCallback(this.value);
   }
 
   @Input() public type;
@@ -254,6 +254,13 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
         $event.preventDefault();
       }
     }
+  }
+
+  // hm only for test purposes to simulate a change to the input field that will change the
+  // model value.
+  triggerChange(event: Event) {
+    this.value = (event.target as HTMLInputElement).value;
+    this.onTouchedCallback();
   }
 }
 
