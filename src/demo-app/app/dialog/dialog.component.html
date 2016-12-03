@@ -142,7 +142,9 @@ These dialogs are created by the <i>MdlDialogService</i>.
       // register a listener if you want to be informed if the dialog is closed.
       this.dialog.onHide().subscribe( (user) => {
         console.log('login dialog hidden');
-        if (user) console.log('authenticated user', user);
+        if (user) {
+          console.log('authenticated user', user);
+        }
       });
     }
 

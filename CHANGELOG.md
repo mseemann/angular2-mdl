@@ -1,3 +1,12 @@
+<a name="2.6.0"></a>
+# 2.6.0 (2016-12-XX)
+
+### Bug Fixes
+* [275](https://github.com/mseemann/angular2-mdl/issues/275) (keep type number for input type number)
+### Features
+* [263](https://github.com/mseemann/angular2-mdl/issues/263) (pass a value for dialog hide)
+
+
 <a name="2.5.1"></a>
 # 2.5.1 (2016-12-01)
 

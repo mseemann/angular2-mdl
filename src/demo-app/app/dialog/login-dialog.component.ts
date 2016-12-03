@@ -47,7 +47,9 @@ export class LoginDialogComponent implements OnInit {
     // just if you want to be informed if the dialog is hidden
     this.dialog.onHide().subscribe( (user) => {
       console.log('login dialog hidden');
-      if (user) console.log('authenticated user', user);
+      if (user) {
+        console.log('authenticated user', user);
+      }
     });
 
     this.dialog.onVisible().subscribe( () => {
