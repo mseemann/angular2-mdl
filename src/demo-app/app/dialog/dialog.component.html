@@ -140,7 +140,10 @@ These dialogs are created by the <i>MdlDialogService</i>.
     constructor(private dialog: MdlDialogReference) {
 
       // register a listener if you want to be informed if the dialog is closed.
-      this.dialog.onHide().subscribe( () => console.log('login dialog hidden') );
+      this.dialog.onHide().subscribe( (user) => {
+        console.log('login dialog hidden');
+        if (user) console.log('authenticated user', user);
+      });
     }
 
     public login() {
@@ -200,4 +203,3 @@ These dialogs are created by the <i>MdlDialogService</i>.
 
 Checkout the demo code at <a href="https://github.com/mseemann/angular2-mdl/tree/master/src/app/dialog">githiub</a>
 for a complete source code example.
-

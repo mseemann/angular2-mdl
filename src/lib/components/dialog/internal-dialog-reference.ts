@@ -27,8 +27,8 @@ export class InternalMdlDialogReference {
     return this.hostDialogComponentRef.instance;
   }
 
-  public hide() {
-    this.onHideSubject.next();
+  public hide(data?: any) {
+    this.onHideSubject.next(data);
     this.onHideSubject.complete();
     this.closeCallback();
   }

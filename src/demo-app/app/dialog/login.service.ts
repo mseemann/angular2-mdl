@@ -5,8 +5,8 @@ import 'rxjs/add/operator/delay';
 @Injectable()
 export class LoginService {
 
-  public login(username, password): Observable<void> {
+  public login(username, password): Observable<any> {
     console.log(`login for ${username}/${password}`);
-    return Observable.of(null).delay(2000);
+    return Observable.of({username: username}).delay(2000);
   }
 }

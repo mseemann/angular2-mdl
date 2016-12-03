@@ -42,8 +42,8 @@ export class MdlDialogReference {
   /**
    * closes the dialog
    */
-  public hide() {
-    this.internaleRef.hide();
+  public hide(data?: any) {
+    this.internaleRef.hide(data);
   }
 
   /**
