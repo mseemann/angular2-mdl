@@ -143,6 +143,28 @@ describe('Service: MdlDialog', () => {
 
   }));
 
+  it('should be able to pass data when hiding a custom dialog', async(() => {
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog
+    });
+
+    p.subscribe( ( dialogRef ) => {
+
+      dialogRef.onHide().subscribe( ( data ) => {
+        // async makes sure this is called
+        expect(data).toEqual('teststring');
+      });
+
+      let customDialogComponent = fixture.debugElement.query(By.directive(TestCustomDialog)).componentInstance;
+
+      // call close by calling hide on the dialog reference
+      customDialogComponent.close('teststring');
+    });
+  }));
+
   it('should stop propagaton on overlay clicks', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestViewComponent);
@@ -309,7 +331,7 @@ describe('Service: MdlDialog', () => {
     })
   }));
 
-  it('shoudl open a dialog if openForm is specified', async(() => {
+  it('should open a dialog if openForm is specified', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
@@ -431,8 +453,8 @@ class TestCustomDialog {
     private dialog: MdlDialogReference,
     @Optional() @Inject(TEST) public test: string) {}
 
-  public close() {
-    this.dialog.hide();
+  public close(data?: any) {
+    this.dialog.hide(data);
   }
 
 }
