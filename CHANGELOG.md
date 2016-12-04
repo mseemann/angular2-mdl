@@ -1,5 +1,5 @@
 <a name="2.6.0"></a>
-# 2.6.0 (2016-12-XX)
+# 2.6.0 (2016-12-04)
 
 ### Bug Fixes
 * [275](https://github.com/mseemann/angular2-mdl/issues/275) (keep type number for input type number)
