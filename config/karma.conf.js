@@ -15,6 +15,9 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     },
+    mime: {
+      'text/x-typescript': ['ts','tsx']
+    },
     files: [
       'config/test.spec.ts'
     ],

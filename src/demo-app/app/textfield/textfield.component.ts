@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ContentChild, ViewChild } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
 import {
@@ -7,6 +7,7 @@ import {
 } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
+import { MdlTextFieldComponent } from '../../../../dist/components/textfield/mdl-textfield.component';
 
 @Component({
   selector: 'textfield-demo',
@@ -16,7 +17,9 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
   ],
   templateUrl: 'textfield.component.html'
 })
-export class TextFieldDemo extends AbstractDemoComponent {
+export class TextFieldDemo extends AbstractDemoComponent implements AfterViewInit {
+
+  @ViewChild('theFirstTextfield') tf: MdlTextFieldComponent;
 
   public number1: number = null;
 
@@ -34,5 +37,9 @@ export class TextFieldDemo extends AbstractDemoComponent {
 
   public onFocus(event: FocusEvent) {
     console.log('focus', event);
+  }
+
+  public ngAfterViewInit(){
+    this.tf.setFocus();
   }
 }
