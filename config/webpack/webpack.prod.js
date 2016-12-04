@@ -23,7 +23,7 @@ module.exports = webpackMerge(commonConfig, {
 		// waiting for fix: https://github.com/webpack/webpack/issues/2644
 		// new webpack.optimize.DedupePlugin(),
 		new webpack.LoaderOptionsPlugin({
-			minimize: true,
+			//minimize: true, do not minimize for any loader - this will result in weird, unpredictable behavior
 			debug: false
 		}),
 		new webpack.optimize.UglifyJsPlugin({
