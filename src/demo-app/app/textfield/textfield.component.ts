@@ -7,7 +7,8 @@ import {
 } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
-import { MdlTextFieldComponent } from '../../../../dist/components/textfield/mdl-textfield.component';
+import { MdlTextFieldComponent } from '../../../lib/components/textfield/mdl-textfield.component';
+
 
 @Component({
   selector: 'textfield-demo',
