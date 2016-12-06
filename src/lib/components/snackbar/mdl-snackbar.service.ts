@@ -1,12 +1,11 @@
 import {
   Component,
   Injectable,
-  Injector,
-  ViewContainerRef,
+  ComponentRef,
   ComponentFactoryResolver,
   NgModule,
   ViewEncapsulation,
-  ModuleWithProviders, ComponentFactory, NgZone
+  ModuleWithProviders, ComponentFactory
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
@@ -33,7 +32,7 @@ export class MdlSnackbarComponent {
   private showIt = false;
   public onAction: () => void;
 
-  constructor(private ngZone: NgZone){}
+  constructor(){}
 
   public onClick() {
     this.onAction();
@@ -53,7 +52,7 @@ export class MdlSnackbarComponent {
         result.next(null);
         result.complete();
       }, ANIMATION_TIME);
-    }, 10);
+    }, ANIMATION_TIME);
 
 
     return result.asObservable();
@@ -88,9 +87,9 @@ export interface IMdlSnackbarMessage {
 export class MdlSnackbarService {
 
   private cFactory: ComponentFactory<any>;
+  static previousSnack: {component: MdlSnackbarComponent, cRef: ComponentRef<any>};
 
   constructor(
-    private injector: Injector,
     private componentFactoryResolver: ComponentFactoryResolver,
     private dialogOutletService: MdlDialogOutletService) {
 
@@ -115,15 +114,24 @@ export class MdlSnackbarService {
         'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
     }
 
-
     let cRef = viewContainerRef.createComponent(this.cFactory, viewContainerRef.length);
 
     let mdlSnackbarComponent = <MdlSnackbarComponent> cRef.instance;
     mdlSnackbarComponent.message = snackbarMessage.message;
 
+    if(MdlSnackbarService.previousSnack) {
+      let previousSnack = MdlSnackbarService.previousSnack;
+      let subscription = previousSnack['component'].hide()
+        .subscribe(() => {
+          previousSnack['cRef'].destroy();
+          subscription.unsubscribe();
+        });
+    }
 
-    // TODO make sure only one snackbar is visible at one time
-    // observable? push the configured instance and consume one after another?
+    MdlSnackbarService.previousSnack = {
+      component: mdlSnackbarComponent,
+      cRef: cRef
+    };
 
     if (snackbarMessage.action) {
       mdlSnackbarComponent.actionText = snackbarMessage.action.text;
