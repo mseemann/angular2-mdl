@@ -147,7 +147,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.onChangeCallback(this.value);
   }
 
-  @Input() public type;
+  @Input() public type = 'text';
   @Input() public label;
   @Input() public pattern;
   @Input() public min;

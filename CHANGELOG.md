@@ -1,3 +1,12 @@
+<a name="2.7.0"></a>
+# 2.7.0 (2016-12-XX)
+
+### Bug Fixes
+* [282](https://github.com/mseemann/angular2-mdl/issues/282) (Add default type=text to mdl-textfield)
+### Features
+
+
+
 <a name="2.6.0"></a>
 # 2.6.0 (2016-12-04)
 

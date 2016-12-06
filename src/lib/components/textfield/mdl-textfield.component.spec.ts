@@ -504,6 +504,20 @@ describe('Component: MdlTextField', () => {
 
   }));
 
+
+  it('should add the type text to the input field if no type is specified', () => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-textfield ></mdl-textfield>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    expect(el.type).toBe('text');
+
+  });
+
 });
 
 
