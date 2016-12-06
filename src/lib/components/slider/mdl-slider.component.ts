@@ -36,6 +36,7 @@ const noop = (_?: any) => {};
             type="range" 
             [min]="min" 
             [max]="max" 
+            [step]="step" 
             [(ngModel)]="value" 
             [disabled]="disabled"
             tabindex="0"
@@ -62,6 +63,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
 
   @Input() public min: number;
   @Input() public max: number;
+  @Input() public step: number;
   @ViewChild('lower') private lowerEl: ElementRef;
   @ViewChild('uppper') private upperEl: ElementRef;
   @ViewChild('input') private inputEl: ElementRef;

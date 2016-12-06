@@ -4,7 +4,7 @@
 ### Bug Fixes
 * [282](https://github.com/mseemann/angular2-mdl/issues/282) (Add default type=text to mdl-textfield)
 ### Features
-
+* [281](https://github.com/mseemann/angular2-mdl/issues/281) (step attribute for slider component)
 
 
 <a name="2.6.0"></a>

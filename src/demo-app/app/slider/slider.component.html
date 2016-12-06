@@ -5,7 +5,7 @@
 </div>
 
 <div style="width: 300px;">
-  <mdl-slider [min]="minValue" [max]="maxValue" [(ngModel)]="currentValue"></mdl-slider>
+  <mdl-slider [min]="minValue" [max]="maxValue" [step]="5" [(ngModel)]="currentValue"></mdl-slider>
 </div>
 
 currentValue is: {{currentValue}}
@@ -17,7 +17,7 @@ currentValue is: {{currentValue}}
 </div>
 
 <div style="width: 300px;">
-  <mdl-slider [min]="minValue" [max]="maxValue" [(ngModel)]="currentValue"></mdl-slider>
+  <mdl-slider [min]="minValue" [max]="maxValue" [step]="5" [(ngModel)]="currentValue"></mdl-slider>
 </div>
 
 currentValue is: {{currentValue}}
@@ -53,6 +53,13 @@ currentValue is: {{currentValue}}
       <td>
          Defines the minimum possible value.
       </td>
+   </tr>
+
+   <tr>
+     <td>step</td>
+     <td>
+       Defines the step the value can change.
+     </td>
    </tr>
 
    <tr>

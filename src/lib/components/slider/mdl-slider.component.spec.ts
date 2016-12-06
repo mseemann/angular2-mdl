@@ -10,18 +10,12 @@ import { FormsModule } from '@angular/forms';
 
 describe('Component: MdlSlider', () => {
 
-  var doc: HTMLDocument;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ MdlSliderModule, FormsModule ],
       declarations: [ MdlTestSliderComponent],
     });
   }));
-
-  beforeEach(async(inject([DOCUMENT], function (document) {
-    doc = document;
-  })));
 
   it('should add the css class mdl-slider__container to the host element', async(() => {
 
@@ -64,7 +58,7 @@ describe('Component: MdlSlider', () => {
 
     spyOn(hostElement, 'blur');
 
-    var evt = doc.createEvent('HTMLEvents');
+    var evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
     evt.initEvent('mouseup', true, true);
     hostElement.dispatchEvent(evt);
 
@@ -85,7 +79,7 @@ describe('Component: MdlSlider', () => {
 
     spyOn(inputElement, 'dispatchEvent').and.callThrough();
 
-    var evt = doc.createEvent('HTMLEvents');
+    var evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
     evt.initEvent('mousedown', true, true);
     hostElement.dispatchEvent(evt);
 
@@ -105,7 +99,7 @@ describe('Component: MdlSlider', () => {
 
     spyOn(inputElement, 'dispatchEvent').and.callThrough();
 
-    var evt = doc.createEvent('HTMLEvents');
+    var evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
     evt.initEvent('mousedown', true, true);
     inputElement.dispatchEvent(evt);
 
@@ -136,6 +130,20 @@ describe('Component: MdlSlider', () => {
 
   }));
 
+  it('should support the min, max and step attributes', async(() => {
+
+    TestBed.overrideComponent(MdlTestSliderComponent, { set: {
+      template: '<mdl-slider [min]="1" [max]="2" [step]="5"></mdl-slider>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestSliderComponent);
+    fixture.detectChanges();
+
+    let inputElement: HTMLInputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
+    expect(inputElement.min).toBe('1');
+    expect(inputElement.max).toBe('2');
+    expect(inputElement.step).toBe('5');
+
+  }));
 
 });
 
