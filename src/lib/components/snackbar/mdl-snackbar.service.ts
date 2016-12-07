@@ -77,6 +77,7 @@ export class MdlSnackbarComponent {
 export interface IMdlSnackbarMessage {
   message: string;
   timeout?: number;
+  closeAfterTimeout?: boolean;
   action?: {
     handler: () => void;
     text: string;
@@ -87,7 +88,7 @@ export interface IMdlSnackbarMessage {
 export class MdlSnackbarService {
 
   private cFactory: ComponentFactory<any>;
-  static previousSnack: {component: MdlSnackbarComponent, cRef: ComponentRef<any>};
+  previousSnack: {component: MdlSnackbarComponent, cRef: ComponentRef<any>};
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -107,6 +108,7 @@ export class MdlSnackbarService {
   public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Observable<MdlSnackbarComponent> {
 
     let optTimeout        = snackbarMessage.timeout || 2750;
+    let closeAfterTimeout = !!snackbarMessage.closeAfterTimeout;
     let viewContainerRef  = this.dialogOutletService.viewContainerRef;
 
     if (!viewContainerRef) {
@@ -119,21 +121,29 @@ export class MdlSnackbarService {
     let mdlSnackbarComponent = <MdlSnackbarComponent> cRef.instance;
     mdlSnackbarComponent.message = snackbarMessage.message;
 
-    if(MdlSnackbarService.previousSnack) {
-      let previousSnack = MdlSnackbarService.previousSnack;
-      let subscription = previousSnack['component'].hide()
+    if(this.previousSnack) {
+      let previousSnack = this.previousSnack;
+      let subscription = previousSnack.component.hide()
         .subscribe(() => {
-          previousSnack['cRef'].destroy();
+          previousSnack.cRef.destroy();
           subscription.unsubscribe();
         });
     }
 
-    MdlSnackbarService.previousSnack = {
+    this.previousSnack = {
       component: mdlSnackbarComponent,
       cRef: cRef
     };
 
     if (snackbarMessage.action) {
+      if(closeAfterTimeout) {
+        setTimeout( () => {
+          mdlSnackbarComponent.hide()
+            .subscribe(() => {
+              cRef.destroy();
+            });
+        }, optTimeout);
+      }
       mdlSnackbarComponent.actionText = snackbarMessage.action.text;
       mdlSnackbarComponent.onAction = () => {
         mdlSnackbarComponent.hide().subscribe(() => {
@@ -141,13 +151,14 @@ export class MdlSnackbarService {
           snackbarMessage.action.handler();
         });
       };
+    } else {
+      setTimeout( () => {
+        mdlSnackbarComponent.hide()
+          .subscribe(() => {
+            cRef.destroy();
+          });
+      }, optTimeout);
     }
-    setTimeout( () => {
-      mdlSnackbarComponent.hide()
-        .subscribe(() => {
-          cRef.destroy();
-        });
-    }, optTimeout);
 
     let result: Subject<MdlSnackbarComponent> = new Subject<MdlSnackbarComponent>();
 
