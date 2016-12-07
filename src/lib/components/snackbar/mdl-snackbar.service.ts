@@ -1,12 +1,11 @@
 import {
   Component,
   Injectable,
-  Injector,
-  ViewContainerRef,
+  ComponentRef,
   ComponentFactoryResolver,
   NgModule,
   ViewEncapsulation,
-  ModuleWithProviders, ComponentFactory, NgZone
+  ModuleWithProviders, ComponentFactory
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
@@ -33,7 +32,7 @@ export class MdlSnackbarComponent {
   private showIt = false;
   public onAction: () => void;
 
-  constructor(private ngZone: NgZone){}
+  constructor(){}
 
   public onClick() {
     this.onAction();
@@ -45,15 +44,15 @@ export class MdlSnackbarComponent {
 
   public show(): Observable<void> {
     let result: Subject<any> = new Subject();
-      // wait unit the dom is in place - then showIt will change the css class
+    // wait unit the dom is in place - then showIt will change the css class
+    setTimeout(() => {
+      this.showIt = true;
+      // fire after the view animation is done
       setTimeout(() => {
-        this.showIt = true;
-        // fire after the view animation is done
-        setTimeout(() => {
-          result.next(null);
-          result.complete();
-        }, ANIMATION_TIME);
-      }, 10);
+        result.next(null);
+        result.complete();
+      }, ANIMATION_TIME);
+    }, ANIMATION_TIME);
 
 
     return result.asObservable();
@@ -78,6 +77,7 @@ export class MdlSnackbarComponent {
 export interface IMdlSnackbarMessage {
   message: string;
   timeout?: number;
+  closeAfterTimeout?: boolean;
   action?: {
     handler: () => void;
     text: string;
@@ -88,12 +88,11 @@ export interface IMdlSnackbarMessage {
 export class MdlSnackbarService {
 
   private cFactory: ComponentFactory<any>;
+  private previousSnack: {component: MdlSnackbarComponent, cRef: ComponentRef<any>};
 
   constructor(
-    private injector: Injector,
     private componentFactoryResolver: ComponentFactoryResolver,
     private dialogOutletService: MdlDialogOutletService) {
-
     this.cFactory  = this.componentFactoryResolver.resolveComponentFactory(MdlSnackbarComponent);
   }
 
@@ -108,6 +107,7 @@ export class MdlSnackbarService {
   public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Observable<MdlSnackbarComponent> {
 
     let optTimeout        = snackbarMessage.timeout || 2750;
+    let closeAfterTimeout = !!snackbarMessage.closeAfterTimeout;
     let viewContainerRef  = this.dialogOutletService.viewContainerRef;
 
     if (!viewContainerRef) {
@@ -115,17 +115,29 @@ export class MdlSnackbarService {
         'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
     }
 
-
     let cRef = viewContainerRef.createComponent(this.cFactory, viewContainerRef.length);
 
     let mdlSnackbarComponent = <MdlSnackbarComponent> cRef.instance;
     mdlSnackbarComponent.message = snackbarMessage.message;
 
+    if(this.previousSnack) {
+      let previousSnack = this.previousSnack;
+      let subscription = previousSnack.component.hide()
+        .subscribe(() => {
+          previousSnack.cRef.destroy();
+          subscription.unsubscribe();
+        });
+    }
 
-    // TODO make sure only one snackbar is visible at one time
-    // observable? push the configured instance and consume one after another?
+    this.previousSnack = {
+      component: mdlSnackbarComponent,
+      cRef: cRef
+    };
 
     if (snackbarMessage.action) {
+      if(closeAfterTimeout) {
+        this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout)
+      }
       mdlSnackbarComponent.actionText = snackbarMessage.action.text;
       mdlSnackbarComponent.onAction = () => {
         mdlSnackbarComponent.hide().subscribe(() => {
@@ -134,9 +146,7 @@ export class MdlSnackbarService {
         });
       };
     } else {
-      setTimeout( () => {
-        mdlSnackbarComponent.hide().subscribe(() => {cRef.destroy(); });
-      }, optTimeout);
+      this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout)
     }
 
     let result: Subject<MdlSnackbarComponent> = new Subject<MdlSnackbarComponent>();
@@ -147,6 +157,15 @@ export class MdlSnackbarService {
     });
 
     return result.asObservable();
+  }
+
+  private hideAndDestroySnack(component, componentRef, timeOut) {
+    setTimeout( () => {
+      component.hide()
+        .subscribe(() => {
+          componentRef.destroy();
+        });
+    }, timeOut);
   }
 }
 

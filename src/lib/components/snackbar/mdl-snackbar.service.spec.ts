@@ -53,6 +53,31 @@ describe('Service: MdlSnackbar', () => {
 
   }));
 
+  it('should show a snackbar and close the snackbar if the action button is clicked or after timeout', async(() => {
+
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+    let p = mdlSnackbarServcie.showSnackbar({
+      message: 'm1',
+      timeout: 1000,
+      closeAfterTimeout: true,
+      action: {
+        handler: () => {
+          // now the test completes because of async
+        },
+        text: 'OK'
+      }
+    });
+    fixture.detectChanges();
+    p.subscribe( (mdlSnackbarComponent) => {
+      expect(mdlSnackbarComponent.isActive()).toBe(true);
+      setTimeout(() => {
+        expect(mdlSnackbarComponent.isActive()).toBe(false);
+      }, 1500)
+    });
+
+  }));
+
   it('should show a toastmessage and hide the message automatically', async(() => {
 
     let fixture = TestBed.createComponent(MdlTestViewComponent);
@@ -82,6 +107,42 @@ describe('Service: MdlSnackbar', () => {
     expect( () => {
       mdlSnackbarServcie.showToast('toast message', 1000);
     }).toThrow();
+
+  }));
+
+  it('should show one snackbar at a time', async(() => {
+
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+    let p = mdlSnackbarServcie.showSnackbar({
+      message: 'm1',
+      action: {
+        handler: () => {
+          // now the test completes because of async
+        },
+        text: 'OK'
+      }
+    });
+    let q = mdlSnackbarServcie.showSnackbar({
+      message: 'm2',
+      action: {
+        handler: () => {
+          // now the test completes because of async
+        },
+        text: 'OK'
+      }
+    });
+    fixture.detectChanges();
+
+    q.subscribe((mdlSnackbarComponentQ) => {
+      expect(mdlSnackbarServcie.previousSnack).toBeDefined();
+      expect(mdlSnackbarComponentQ.isActive()).toBe(true);
+      setTimeout(()=> {
+        p.subscribe((mdlSnackbarComponentP) => {
+          expect(mdlSnackbarComponentP.isActive()).toBe(false);
+        })
+      }, 500);
+    });
 
   }));
 
