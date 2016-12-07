@@ -45,15 +45,15 @@ export class MdlSnackbarComponent {
 
   public show(): Observable<void> {
     let result: Subject<any> = new Subject();
-      // wait unit the dom is in place - then showIt will change the css class
+    // wait unit the dom is in place - then showIt will change the css class
+    setTimeout(() => {
+      this.showIt = true;
+      // fire after the view animation is done
       setTimeout(() => {
-        this.showIt = true;
-        // fire after the view animation is done
-        setTimeout(() => {
-          result.next(null);
-          result.complete();
-        }, ANIMATION_TIME);
-      }, 10);
+        result.next(null);
+        result.complete();
+      }, ANIMATION_TIME);
+    }, 10);
 
 
     return result.asObservable();
@@ -133,11 +133,13 @@ export class MdlSnackbarService {
           snackbarMessage.action.handler();
         });
       };
-    } else {
-      setTimeout( () => {
-        mdlSnackbarComponent.hide().subscribe(() => {cRef.destroy(); });
-      }, optTimeout);
     }
+    setTimeout( () => {
+      mdlSnackbarComponent.hide()
+        .subscribe(() => {
+          cRef.destroy();
+        });
+    }, optTimeout);
 
     let result: Subject<MdlSnackbarComponent> = new Subject<MdlSnackbarComponent>();
 
