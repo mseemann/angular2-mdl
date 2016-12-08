@@ -17,6 +17,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BooleanProperty } from '../common/boolean-property';
+import { NumberProperty } from '../common/number.property';
 
 const noop = (_?: any) => {};
 const IS_FOCUSED = 'is-focused';
@@ -41,6 +42,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     (focus)="onFocus()" 
     (blur)="onBlur()"
     [disabled]="disabled"
+    [tabindex]="tabindex"
     [ngModel]="value">
   <span class="mdl-checkbox__label"><ng-content></ng-content></span>
   <span class="mdl-checkbox__focus-helper"></span>
@@ -56,6 +58,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 export class MdlCheckboxComponent implements ControlValueAccessor {
 
   @Input() @BooleanProperty() public disabled = false;
+  @Input() @NumberProperty() public tabindex: number = 1;
 
   public change: EventEmitter<boolean> = new EventEmitter<boolean>();
 

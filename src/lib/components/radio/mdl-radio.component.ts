@@ -1,27 +1,28 @@
 import {
-  Component,
-  ElementRef,
-  Output,
-  EventEmitter,
-  Renderer,
-  forwardRef,
-  Input,
-  NgModule,
-  OnInit,
-  Injectable,
-  OnDestroy,
-  ViewEncapsulation,
-  ModuleWithProviders,
-  Optional
+    Component,
+    ElementRef,
+    Output,
+    EventEmitter,
+    Renderer,
+    forwardRef,
+    Input,
+    NgModule,
+    OnInit,
+    Injectable,
+    OnDestroy,
+    ViewEncapsulation,
+    ModuleWithProviders,
+    Optional
 } from '@angular/core';
 import {
-  NG_VALUE_ACCESSOR,
-  ControlValueAccessor,
-  FormsModule,
-  FormGroupName
+    NG_VALUE_ACCESSOR,
+    ControlValueAccessor,
+    FormsModule,
+    FormGroupName
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BooleanProperty } from '../common/boolean-property';
+import { NumberProperty } from '../common/number.property';
 
 
 const noop = () => {};
@@ -87,7 +88,9 @@ export class MdlRadioGroupRegisty {
     [attr.name]="name"
     (focus)="onFocus()" 
     (blur)="onBlur()"
+    (keyup.space)="spaceKeyPress($event)"
     [disabled]="disabled"
+    [tabindex]="tabindex"
     [(ngModel)]="checked">
   <span class="mdl-radio__label"><ng-content></ng-content></span>
   <span class="mdl-radio__outer-circle"></span>
@@ -101,6 +104,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   @Input() public formControlName: string;
   @Input() public value: any;
   @Input() @BooleanProperty() public disabled = false;
+  @Input() @NumberProperty() public tabindex: number = 1;
 
   @Output() public change: EventEmitter<any> = new EventEmitter<any>();
 
@@ -114,10 +118,10 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
 
 
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer,
-    private ragioGroupRegisty: MdlRadioGroupRegisty,
-    @Optional() private formGroupName: FormGroupName) {
+      private elementRef: ElementRef,
+      private renderer: Renderer,
+      private ragioGroupRegisty: MdlRadioGroupRegisty,
+      @Optional() private formGroupName: FormGroupName) {
     this.el = elementRef.nativeElement;
   }
 
@@ -198,6 +202,10 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
       If you define both a name and a formControlName attribute on your radio button, their values
       must match. Ex: <mdl-radio formControlName="food" name="food"></mdl-radio>
     `);
+  }
+
+  spaceKeyPress(event) {
+    this.checked = false;//in case of space key is pressed radio button value must remain same
   }
 }
 
