@@ -22,6 +22,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BooleanProperty } from '../common/boolean-property';
+import { NumberProperty } from '../common/number.property';
 
 
 const noop = () => {};
@@ -88,6 +89,7 @@ export class MdlRadioGroupRegisty {
     (focus)="onFocus()" 
     (blur)="onBlur()"
     [disabled]="disabled"
+    [tabindex]="tabindex"
     [(ngModel)]="checked">
   <span class="mdl-radio__label"><ng-content></ng-content></span>
   <span class="mdl-radio__outer-circle"></span>
@@ -101,6 +103,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   @Input() public formControlName: string;
   @Input() public value: any;
   @Input() @BooleanProperty() public disabled = false;
+  @Input() @NumberProperty() public tabindex: number = 1;
 
   @Output() public change: EventEmitter<any> = new EventEmitter<any>();
 
@@ -119,6 +122,11 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     private ragioGroupRegisty: MdlRadioGroupRegisty,
     @Optional() private formGroupName: FormGroupName) {
     this.el = elementRef.nativeElement;
+    renderer.listen(elementRef.nativeElement, 'keyup', (event) => {
+      if(event.keyCode === 32 && this.checked) { //in case of space key is pressed radio button value must remain same
+        this.checked = false;
+      }
+    })
   }
 
   public ngOnInit() {
