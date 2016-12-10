@@ -112,6 +112,7 @@ export class MdlDialogService {
   /**
    * Shows a dialog that is just a confirm message - e.g. with two button.
    * @param question The question that should be displayed.
+   * @param title The title that should be displayed on top of Question.
    * @param declineText The text for decline button. defaults to Cancel
    * @param confirmText The text for the confirm button . defaults to Ok
    * @returns An Observable that is called if the user hits the Ok button.
@@ -119,11 +120,13 @@ export class MdlDialogService {
   public confirm(
     question: string,
     declineText = 'Cancel',
-    confirmText = 'Ok'): Observable<void> {
+    confirmText = 'Ok',
+    title?: string): Observable<void> {
 
     let result: Subject<any> = new Subject();
 
     this.showDialog({
+      title: title,
       message: question,
       actions: [
         {
