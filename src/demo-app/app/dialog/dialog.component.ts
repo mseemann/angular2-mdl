@@ -61,6 +61,22 @@ export class DialogDemo extends AbstractDemoComponent {
     })
   }
 
+  public showConfirmMessageWithTitle() {
+    let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes', 'Excuse me');
+    // if you need booth answers
+    result.subscribe( () => {
+        console.log('confirmed');
+      },
+      (err: any) => {
+        console.log('declined');
+      }
+    );
+    // if you only need the confirm answer
+    result.onErrorResumeNext().subscribe( () => {
+      console.log('confirmed 2');
+    })
+  }
+
   public showDialogFullWidthAction($event: MouseEvent) {
     let pDialog = this.dialogService.showDialog({
       title: 'Your choice?',

@@ -55,12 +55,30 @@ These dialogs are created by the <i>MdlDialogService</i>.
   mdl-button-type="raised"
   mdl-colored="primary"
   mdl-ripple
-  (click)="showConfirmMessage()">Show Confirm Message</button>
+  (click)="showConfirmMessage()">Show Confirm Message
+</button>
 
 <pre prism>
   <![CDATA[
 <scripts>
   let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
+  result.then( choosedOption => console.log( choosedOption === ConfirmResult.Confirmed ) );
+</scripts>
+]]>
+</pre>
+
+<h5>Confirm With Title</h5>
+<button
+  mdl-button
+  mdl-button-type="raised"
+  mdl-colored="primary"
+  mdl-ripple
+  (click)="showConfirmMessageWithTitle()">Show Confirm Message With Title</button>
+
+<pre prism>
+  <![CDATA[
+<scripts>
+  let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes', 'Excuse me');
   result.then( choosedOption => console.log( choosedOption === ConfirmResult.Confirmed ) );
 </scripts>
 ]]>
