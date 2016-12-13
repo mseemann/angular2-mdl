@@ -161,6 +161,26 @@ describe('Component: MdlRadio', () => {
 
   }));
 
+  it('should not change its current state if it is already checked', async(() => {
+
+    let fixture = TestBed.createComponent(MdlTestRadioComponent);
+    fixture.detectChanges();
+
+    let spaceEvent = <any>new Event('keyup.space');
+    spaceEvent.keyCode = 32;
+
+    let instance = fixture.componentInstance;
+    let cbDebugElem1 = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[0];
+    let checkboxEl: HTMLElement = cbDebugElem1.nativeElement;
+
+    checkboxEl.addEventListener('keyup.space', () => {
+      expect(cbDebugElem1.componentInstance.checked).toBe(false);
+    });
+
+    checkboxEl.dispatchEvent(spaceEvent);
+
+  }));
+
 
   it('should be possible to use the same radio buttons in different groups', () => {
     let fixture = TestBed.createComponent(MdlTestUseSameRadioInGroupsComponent);

@@ -87,7 +87,8 @@ const IS_DIRTY = 'is-dirty';
         [disabled]="disabled"
         [required]="required"
         [autofocus]="autofocus"
-         [readonly]="readonly"
+        [readonly]="readonly"
+        [tabindex]="tabindex"
         >
      <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
@@ -116,6 +117,7 @@ const IS_DIRTY = 'is-dirty';
           [required]="required"
           [autofocus]="autofocus"
           [readonly]="readonly"
+          [tabindex]="tabindex"
          >
      <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
@@ -166,6 +168,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() @NumberProperty() public rows: number = null;
   @Input() @NumberProperty() public maxrows: number = -1;
   @Input() public icon: string;
+  @Input() @NumberProperty() public tabindex: number = 1;
 
   // @experimental
   @Input() @BooleanProperty() public disableNativeValidityChecking;

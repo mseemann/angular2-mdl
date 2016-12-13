@@ -135,8 +135,6 @@ describe('Service: MdlSnackbar', () => {
     fixture.detectChanges();
 
     q.subscribe((mdlSnackbarComponentQ) => {
-      // check a private property - keep tsc quiet
-      expect(mdlSnackbarServcie['previousSnack']).toBeDefined();
       expect(mdlSnackbarComponentQ.isActive()).toBe(true);
       setTimeout(()=> {
         p.subscribe((mdlSnackbarComponentP) => {
