@@ -1,11 +1,10 @@
 <a name="2.8.0"></a>
 # 2.8.0 (2016-12-13)
 
-### Bug Fixes
-* [](https://github.com/mseemann/angular2-mdl/issues/) ()
 ### Features
 * [283](https://github.com/mseemann/angular2-mdl/issues/283) (consecutive snackbars)
 * [284](https://github.com/mseemann/angular2-mdl/issues/284) (auto aciton on snackbar timeout)
+* [288](https://github.com/mseemann/angular2-mdl/issues/288) (tab index)
 * [300](https://github.com/mseemann/angular2-mdl/issues/300) (confirm dialog with heading)
 
 
