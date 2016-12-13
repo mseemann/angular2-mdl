@@ -69,7 +69,7 @@
     "material-design-lite": "1.2.1",
     "ncp": "2.0.0",
     "node-sass": "3.13.1",
-    "postcss-loader": "1.2.0",
+    "postcss-loader": "1.2.1",
     "protractor": "4.0.13",
     "raw-loader": "0.5.1",
     "rimraf": "2.5.4",
