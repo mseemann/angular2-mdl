@@ -17,7 +17,7 @@ export class MdlUnsupportedShadowValueError extends MdlError {
   }
 }
 
-const MDL_SHADOW_VALUES = [2, 3, 4, 6, 8, 16, 24];
+const MDL_SHADOW_VALUES = [0, 2, 3, 4, 6, 8, 16, 24];
 
 @Directive({
   selector: '[mdl-shadow]'
