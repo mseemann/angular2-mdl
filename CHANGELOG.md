@@ -1,3 +1,12 @@
+<a name="2.9.0"></a>
+# 2.9.0 (2016-12-16)
+
+### Features
+* [325](https://github.com/mseemann/angular2-mdl/issues/325) (mdl-shadow supports 0 as valid value)
+* [329](https://github.com/mseemann/angular2-mdl/issues/329) (adaptable layout-screen-size-treshold)
+* [331](https://github.com/mseemann/angular2-mdl/issues/331) (screensize service - listen to screen size changes)
+
+
 <a name="2.8.0"></a>
 # 2.8.0 (2016-12-13)
 
