@@ -11,7 +11,7 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  NgZone
+  NgZone, OpaqueToken, Optional, Inject
 } from '@angular/core';
 import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from '../common/mdl-error';
@@ -26,6 +26,21 @@ const ESCAPE = 27;
 const STANDARD = 'standard';
 const WATERFALL = 'waterfall';
 const SCROLL = 'scroll';
+
+/**
+ * The LAYOUT_SCREEN_SIZE_THRESHOLD can be changed at the root module. Just provide a value for this OpaqueToken:
+ *
+ * providers: [
+ *  {provide:LAYOUT_SCREEN_SIZE_THRESHOLD, useValue: 768 }
+ * ]
+ *
+ * you also need to change the scss variable to the same value: $layout-screen-size-threshold: 768px.
+ *
+ * It should be clear that this can only be used if you are using the scss and not the pre compiled css from getmdl.io.
+ *
+ * @type {OpaqueToken}
+ */
+export const LAYOUT_SCREEN_SIZE_THRESHOLD = new OpaqueToken('layoutScreenSizeThreshold');
 
 export class MdLUnsupportedLayoutTypeError extends MdlError {
   constructor(type: string) {
@@ -93,7 +108,8 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     private renderer: Renderer,
     private evm: EventManager,
     private el: ElementRef,
-    private ngZone: NgZone) {
+    private ngZone: NgZone,
+    @Optional() @Inject(LAYOUT_SCREEN_SIZE_THRESHOLD) private layoutScreenSizeThreshold = 1024) {
   }
 
   public ngAfterContentInit() {
@@ -149,7 +165,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
       // do not try to access the window object if rendered on the server
       if (typeof window === 'object' && 'matchMedia' in window) {
 
-        let query: MediaQueryList = window.matchMedia('(max-width: 1024px)');
+        let query: MediaQueryList = window.matchMedia(`(max-width: ${this.layoutScreenSizeThreshold}px)`);
 
         let queryListener = () => {
           this.ngZone.run( () => {
