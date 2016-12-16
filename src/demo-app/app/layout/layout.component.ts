@@ -7,6 +7,7 @@ import {
 } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
+import { MdlScreenSizeService } from '../../../lib/components/layout/mdl-layout.component';
 
 @Component({
   selector: 'layout-demo',
@@ -45,8 +46,13 @@ export class LayoutDemo extends AbstractDemoComponent {
 
   public activeIndex = 0;
 
-  constructor(router: Router, route: ActivatedRoute, titleService: Title) {
+  constructor(router: Router, route: ActivatedRoute, titleService: Title, mdlScreenSizeService: MdlScreenSizeService) {
     super(router, route, titleService);
+
+    mdlScreenSizeService.sizes().subscribe( (isSmall) => {
+      console.log(`is ${isSmall? 'small' : 'large'} screen`);
+    });
+
   }
 
   public tabChanged({index}) {

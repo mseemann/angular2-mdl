@@ -13,7 +13,7 @@ import {
 } from './index';
 import { MdlRippleModule } from '../common/mdl-ripple.directive';
 import { MdlTabsModule } from '../tabs/index';
-import { LAYOUT_SCREEN_SIZE_THRESHOLD } from './mdl-layout.component';
+import { LAYOUT_SCREEN_SIZE_THRESHOLD, MdlScreenSizeService } from './mdl-layout.component';
 
 describe('Component: MdlLayout', () => {
 
@@ -21,6 +21,7 @@ describe('Component: MdlLayout', () => {
     TestBed.configureTestingModule({
       imports: [MdlLayoutModule, MdlRippleModule, MdlTabsModule],
       declarations: [ MdlTestLayoutComponent ],
+      providers: [MdlScreenSizeService]
     });
   });
 
@@ -430,31 +431,26 @@ describe('Component: MdlLayout', () => {
 
   });
 
-  describe('LAYOUT_SCREEN_SIZE_THRESHOLD', () => {
+  describe('MdlScreenSizeService', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [MdlLayoutModule, MdlRippleModule, MdlTabsModule],
         declarations: [ MdlTestLayoutComponent ],
         providers: [
+          MdlScreenSizeService,
           {provide: LAYOUT_SCREEN_SIZE_THRESHOLD, useValue: 768}
         ]
       });
     });
 
     it('should be possible to override the LAYOUT_SCREEN_SIZE_THRESHOLD', () => {
-      TestBed.overrideComponent(MdlTestLayoutComponent, {
-        set: {
-          template: '<mdl-layout>x</mdl-layout>'
-        },
-
-      });
       let fixture = TestBed.createComponent(MdlTestLayoutComponent);
       fixture.detectChanges();
 
-      let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+      let service =TestBed.get(MdlScreenSizeService);
       // access a private property
-      expect(layoutComponent['layoutScreenSizeThreshold']).toBe(768);
+      expect(service['layoutScreenSizeThreshold']).toBe(768);
     });
   });
 

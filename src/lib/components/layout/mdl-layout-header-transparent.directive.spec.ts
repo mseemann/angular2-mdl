@@ -7,7 +7,7 @@ describe('Component: MdlLayoutHeaderTransparent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ MdlLayoutModule ],
+      imports: [ MdlLayoutModule.forRoot() ],
       declarations: [ MdlTestComponent ]
     });
   });

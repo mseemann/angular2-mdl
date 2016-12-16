@@ -10,7 +10,7 @@ describe('Component: MdlLayoutHeader', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ MdlLayoutModule ],
+      imports: [ MdlLayoutModule.forRoot() ],
       declarations: [ MdlTestLayoutComponent ],
     });
   });

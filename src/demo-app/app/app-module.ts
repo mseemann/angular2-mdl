@@ -37,7 +37,6 @@ import { ThemeDemo } from './theme/theme.component';
 import { DialogDemo } from './dialog/dialog.component';
 import { DialogDeclarativeDemo } from './dialog-declarative/dialog-declarative.component';
 import { LoginModule } from './dialog/login.module';
-import { LAYOUT_SCREEN_SIZE_THRESHOLD } from '../../lib/components/layout/mdl-layout.component';
 
 
 @NgModule({

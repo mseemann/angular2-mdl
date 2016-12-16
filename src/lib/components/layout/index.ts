@@ -1,5 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { MdlLayoutComponent } from './mdl-layout.component';
+import { MdlLayoutComponent, MdlScreenSizeService } from './mdl-layout.component';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
 import { MdlLayoutContentComponent } from './mdl-layout-content.component';
@@ -45,7 +45,9 @@ export class MdlLayoutModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlLayoutModule,
-      providers: []
+      providers: [
+        MdlScreenSizeService
+      ]
     };
   }
 }

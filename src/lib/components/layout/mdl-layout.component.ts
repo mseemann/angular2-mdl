@@ -11,7 +11,7 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  NgZone, OpaqueToken, Optional, Inject
+  NgZone, OpaqueToken, Optional, Inject, Injectable
 } from '@angular/core';
 import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from '../common/mdl-error';
@@ -20,6 +20,7 @@ import { NumberProperty } from '../common/number.property';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
 import { MdlLayoutContentComponent } from './mdl-layout-content.component';
+import { Subject, Observable } from 'rxjs';
 
 const ESCAPE = 27;
 
@@ -48,6 +49,55 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
   }
 }
 
+@Injectable()
+export class MdlScreenSizeService {
+
+  private sizesSubject: Subject<boolean> = new Subject();
+  private windowMediaQueryListener: Function;
+
+  constructor(
+    private ngZone: NgZone,
+    @Optional() @Inject(LAYOUT_SCREEN_SIZE_THRESHOLD) private layoutScreenSizeThreshold: number) {
+
+    // if no value is injected the default size wil be used. same as $layout-screen-size-threshold in scss
+    if (!this.layoutScreenSizeThreshold) {
+      this.layoutScreenSizeThreshold = 1024;
+    }
+
+    // do not try to access the window object if rendered on the server
+    if (typeof window === 'object' && 'matchMedia' in window) {
+
+      let query: MediaQueryList = window.matchMedia(`(max-width: ${this.layoutScreenSizeThreshold}px)`);
+
+      let queryListener = () => {
+        this.ngZone.run( () => {
+          // looks like the query addListener runs not in NGZone - inform manually about changes
+          this.sizesSubject.next(query.matches);
+        });
+      };
+      query.addListener(queryListener);
+      this.windowMediaQueryListener = function() {
+        query.removeListener(queryListener);
+      };
+      // set the initial state
+      setTimeout(() => {
+        this.sizesSubject.next(query.matches);
+      });
+
+    }
+  }
+
+  public sizes(): Observable<boolean> {
+    return this.sizesSubject.asObservable();
+  }
+
+  destroy(){
+    if (this.windowMediaQueryListener) {
+      this.windowMediaQueryListener();
+      this.windowMediaQueryListener = null;
+    }
+  }
+}
 
 @Component({
   selector: 'mdl-layout',
@@ -102,14 +152,13 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   public isSmallScreen = false;
 
   private scrollListener: Function;
-  private windowMediaQueryListener: Function;
 
   constructor(
     private renderer: Renderer,
     private evm: EventManager,
     private el: ElementRef,
     private ngZone: NgZone,
-    @Optional() @Inject(LAYOUT_SCREEN_SIZE_THRESHOLD) private layoutScreenSizeThreshold = 1024) {
+    private screenSizeService: MdlScreenSizeService) {
   }
 
   public ngAfterContentInit() {
@@ -162,27 +211,9 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
          this.onScroll(this.content.el.scrollTop);
       });
 
-      // do not try to access the window object if rendered on the server
-      if (typeof window === 'object' && 'matchMedia' in window) {
-
-        let query: MediaQueryList = window.matchMedia(`(max-width: ${this.layoutScreenSizeThreshold}px)`);
-
-        let queryListener = () => {
-          this.ngZone.run( () => {
-            // looks like the query addListener runs not in NGZone - inform manually about changes
-            this.onQueryChange(query.matches);
-          });
-        };
-        query.addListener(queryListener);
-        this.windowMediaQueryListener = function() {
-          query.removeListener(queryListener);
-        };
-        // set the initial state
-        setTimeout(() => {
-          this.onQueryChange(query.matches);
-        });
-
-      }
+      this.screenSizeService.sizes().subscribe( (isSmall: boolean) => {
+        this.onQueryChange(isSmall);
+      });
     }
 
   }
@@ -249,10 +280,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
       this.scrollListener();
       this.scrollListener = null;
     }
-    if (this.windowMediaQueryListener) {
-      this.windowMediaQueryListener();
-      this.windowMediaQueryListener = null;
-    }
+    this.screenSizeService.destroy();
   }
 
   // triggered from mdl-layout-header.component
