@@ -1,3 +1,9 @@
+<a name="2.10.0"></a>
+# 2.10.0 (2016-12-22)
+### Features
+* [364](https://github.com/mseemann/angular2-mdl/issues/364) (upgrade mdl to version 1.3.0)
+
+
 <a name="2.9.0"></a>
 # 2.9.0 (2016-12-16)
 

@@ -20,7 +20,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 **Here is a plnkr if you'd like to play around http://plnkr.co/edit/I3dLfLUDIH2xlEJqj0da?p=preview.**
 
 
-### Status of the npm package version 2 (mdl version 1.2.1; angular 2 final)
+### Status of the npm package version 2 (mdl version 1.3.0; angular 2 final)
 
 - Badges
 - Buttons
