@@ -30,7 +30,7 @@
   "dependencies": {
     "@angular/core": "2.3.1",
     "@angular/common": "2.3.1",
-    "@angular/forms": "2.3.1"
+    "@angular/forms": "2.4.1"
   },
   "devDependencies": {
     "@angular/compiler": "2.3.1",
