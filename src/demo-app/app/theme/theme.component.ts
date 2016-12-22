@@ -141,7 +141,7 @@ export class ThemeDemo extends AbstractDemoComponent implements OnInit {
       return '';
     }
 
-    let styleUrl = `https://code.getmdl.io/1.2.1/material.${this.primaryColorName}-${this.accentColorName}.min.css`;
+    let styleUrl = `https://code.getmdl.io/1.3.0/material.${this.primaryColorName}-${this.accentColorName}.min.css`;
     return styleUrl;
   }
 
