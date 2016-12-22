@@ -13,6 +13,12 @@
     "sourceMap": true,
     "sourceRoot": "/",
     "target": "es5",
-    "outDir": "../tmp/e2e"
+    "lib": ["es6", "dom"],
+    "outDir": "../tmp/e2e",
+    "typeRoots": ["./../node_modules/@types"],
+    "types": [
+      "protractor",
+      "jasmine"
+    ]
   }
 }
