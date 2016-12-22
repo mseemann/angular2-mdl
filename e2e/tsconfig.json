@@ -14,11 +14,6 @@
     "sourceRoot": "/",
     "target": "es5",
     "lib": ["es6", "dom"],
-    "outDir": "../tmp/e2e",
-    "typeRoots": ["./../node_modules/@types"],
-    "types": [
-      "protractor",
-      "jasmine"
-    ]
+    "outDir": "../tmp/e2e"
   }
 }
