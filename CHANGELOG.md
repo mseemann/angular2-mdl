@@ -1,5 +1,5 @@
 <a name="2.11.0"></a>
-# 2.11.0 (2016-12-XX)
+# 2.11.0 (2016-12-26)
 
 ### Bug Fixes
 * [370](https://github.com/mseemann/angular2-mdl/issues/370) (do not set the tabindex to 1 as the default value)
