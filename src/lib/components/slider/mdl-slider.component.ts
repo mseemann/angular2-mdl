@@ -15,7 +15,7 @@ import {
   FormsModule
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BooleanProperty } from '../common/boolean-property';
+import { toBoolean } from '../common/boolean-property';
 
 const noop = (_?: any) => {};
 
@@ -67,7 +67,11 @@ export class MdlSliderComponent implements ControlValueAccessor {
   @ViewChild('lower') private lowerEl: ElementRef;
   @ViewChild('uppper') private upperEl: ElementRef;
   @ViewChild('input') private inputEl: ElementRef;
-  @Input() @BooleanProperty() public disabled = false;
+
+  private _disabled: boolean = false;
+  @Input()
+  get disabled(): boolean { return this._disabled; }
+  set disabled(value) { this._disabled = toBoolean(value); }
 
   constructor(private renderer: Renderer, private elRef: ElementRef) {
   }

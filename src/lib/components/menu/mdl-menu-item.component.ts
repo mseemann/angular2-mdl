@@ -8,7 +8,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { MdlMenuComponent } from './mdl-menu.component';
-import { BooleanProperty } from '../common/boolean-property';
+import { toBoolean } from '../common/boolean-property';
 
 
 @Component({
@@ -24,7 +24,10 @@ import { BooleanProperty } from '../common/boolean-property';
 })
 export class MdlMenuItemComponent {
 
-  @Input('disabled') @BooleanProperty() public disabled: boolean;
+  private _disabled: boolean = false;
+  @Input()
+  get disabled(): boolean { return this._disabled; }
+  set disabled(value) { this._disabled = toBoolean(value); }
 
   public element: HTMLElement;
   // forwardRef is needed because of he circular dependency menu queries menuitems; menuitem needs the parent

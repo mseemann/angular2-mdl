@@ -9,7 +9,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
-import { BooleanProperty } from '../common/boolean-property';
+import { toBoolean } from '../common/boolean-property';
 
 export class MdlUnsupportedButtonTypeError extends MdlError {
   constructor(type: string) {
@@ -60,9 +60,14 @@ export class MdlButtonComponent implements OnChanges {
 
   private element: HTMLElement;
 
+
   @Input('mdl-button-type') public mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '' ;
   @Input('mdl-colored') public mdlColoredType: 'primary' | 'accent' | '';
-  @Input() @BooleanProperty() public disabled = false;
+
+  private _disabled: boolean = false;
+  @Input()
+  get disabled(): boolean { return this._disabled; }
+  set disabled(value) { this._disabled = toBoolean(value); }
 
   constructor(public elementRef: ElementRef, private renderer: Renderer) {
     this.element = elementRef.nativeElement;

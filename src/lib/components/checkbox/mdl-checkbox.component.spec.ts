@@ -3,7 +3,7 @@ import {
   TestBed,
   async
 } from '@angular/core/testing';
-import { By, DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT, By } from '@angular/platform-browser';
 import { Component} from '@angular/core';
 import {
   MdlCheckboxComponent,
@@ -12,7 +12,6 @@ import { FormsModule } from '@angular/forms';
 
 describe('Component: MdlCheckbox', () => {
 
-  var doc: HTMLDocument;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,11 +19,6 @@ describe('Component: MdlCheckbox', () => {
       declarations: [ MdlTestCheckboxComponent ],
     });
   }));
-
-
-  beforeEach(async(inject([DOCUMENT], function (document) {
-    doc = document;
-  })));
 
   it('should add the css class mdl-checkbox to the host element', () => {
 
@@ -82,6 +76,7 @@ describe('Component: MdlCheckbox', () => {
 
     let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
+    let doc = TestBed.get(DOCUMENT);
     var evt = doc.createEvent('HTMLEvents');
     evt.initEvent('focus', true, true);
     inputEl.dispatchEvent(evt);
@@ -131,6 +126,20 @@ describe('Component: MdlCheckbox', () => {
     expect(instance.checkboxValue1).toEqual(false);
 
   }));
+
+  it('should be possible to set a tabindex', () => {
+
+    TestBed.overrideComponent(MdlTestCheckboxComponent, { set: {
+      template: '<mdl-checkbox tabindex="2"></mdl-checkbox>' }
+    });
+
+    let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
+    fixture.detectChanges();
+
+    let btnEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    expect(btnEl.tabIndex).toBe(2);
+
+  });
 });
 
 

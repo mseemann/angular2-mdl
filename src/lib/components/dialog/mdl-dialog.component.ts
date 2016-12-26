@@ -11,7 +11,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 import { MdlDialogService, MdlDialogReference } from './mdl-dialog.service';
-import { BooleanProperty } from './../common/boolean-property';
+import { toBoolean } from './../common/boolean-property';
 import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 
 
@@ -30,7 +30,11 @@ export class MdlDialogComponent {
   @ViewChild(TemplateRef) private template: TemplateRef<any>;
 
   // @deprecated use mdl-dialog-config instead (will be removed in 3.0.0)
-  @Input('mdl-modal') @BooleanProperty() public modal;
+  private _modal: boolean;
+  @Input('mdl-modal')
+  get modal(): boolean { return this._modal; }
+  set modal(value) { this._modal = toBoolean(value); }
+
   @Input('mdl-dialog-config') public config: IMdlDialogConfiguration;
   @Output('show') public showEmitter: EventEmitter<MdlDialogReference> = new EventEmitter<MdlDialogReference>();
   @Output('hide') public hideEmitter: EventEmitter<void> = new EventEmitter<void>();

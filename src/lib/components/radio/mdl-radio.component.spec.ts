@@ -166,18 +166,14 @@ describe('Component: MdlRadio', () => {
     let fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();
 
-    let spaceEvent = <any>new Event('keyup.space');
-    spaceEvent.keyCode = 32;
-
-    let instance = fixture.componentInstance;
     let cbDebugElem1 = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[0];
-    let checkboxEl: HTMLElement = cbDebugElem1.nativeElement;
+    let cbInputEl = cbDebugElem1.query(By.css('input'));
 
-    checkboxEl.addEventListener('keyup.space', () => {
-      expect(cbDebugElem1.componentInstance.checked).toBe(false);
-    });
+    expect(cbDebugElem1.componentInstance.checked).toBe(false);
 
-    checkboxEl.dispatchEvent(spaceEvent);
+    cbInputEl.triggerEventHandler('keyup.space', {});
+    fixture.detectChanges();
+    expect(cbDebugElem1.componentInstance.checked).toBe(false);
 
   }));
 
@@ -202,6 +198,20 @@ describe('Component: MdlRadio', () => {
     expect(g1t1Elem.classList.contains('is-checked')).toBe(false, 'the not clicked one should not be selected');
     expect(g2t1Elem.classList.contains('is-checked')).toBe(false, 'the not clicked one should not be selected');
 
+
+  });
+
+  it('should be possible to set a tabindex', () => {
+
+    TestBed.overrideComponent(MdlTestRadioComponent, { set: {
+      template: '<mdl-radio tabindex="2"></mdl-radio>' }
+    });
+
+    let fixture = TestBed.createComponent(MdlTestRadioComponent);
+    fixture.detectChanges();
+
+    let btnEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    expect(btnEl.tabIndex).toBe(2);
 
   });
 });

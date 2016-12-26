@@ -538,6 +538,50 @@ describe('Component: MdlTextField', () => {
     expect(el.getAttribute('tabindex')).toBe('-1');
   });
 
+  it('shoud support the readonly attribute', () => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield  type="text" readonly></mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    expect(inputEl.readOnly).toBe(true, 'the readonly attribute should be set');
+
+  });
+
+  it('shoud support the required attribute', () => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield  type="text" [required]="true"></mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    expect(inputEl.required).toBe(true, 'the required attribute should be set');
+
+  });
+
+  it('shoud support the floating-label attribute', () => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield  type="text" floating-label></mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let tfEl = fixture.debugElement.query(By.css('.mdl-textfield--floating-label'));
+
+    expect(tfEl).toBeDefined();
+
+  });
 });
 
 

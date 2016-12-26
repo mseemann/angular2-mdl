@@ -9,7 +9,7 @@ import {
   ModuleWithProviders
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
-import { NumberProperty } from '../common/number.property';
+import { toNumber } from '../common/number.property';
 
 export class MdlUnsupportedShadowValueError extends MdlError {
   constructor(value: number | string ) {
@@ -26,7 +26,10 @@ export class MdlShadowDirective implements OnChanges {
 
   private el: HTMLElement;
 
-  @Input('mdl-shadow') @NumberProperty() public mdlShadow: number = 2;
+  private _mdlShadow: number = 2;
+  @Input('mdl-shadow')
+  get mdlShadow() { return this._mdlShadow; }
+  set mdlShadow(value) { this._mdlShadow = toNumber(value); }
 
   constructor(private elementRef: ElementRef, private renderer: Renderer) {
     this.el = elementRef.nativeElement;

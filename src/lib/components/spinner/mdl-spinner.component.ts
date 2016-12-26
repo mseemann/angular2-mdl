@@ -5,7 +5,7 @@ import {
   ModuleWithProviders,
   ViewEncapsulation
 } from '@angular/core';
-import { BooleanProperty } from '../common/boolean-property';
+import { toBoolean } from '../common/boolean-property';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -32,8 +32,15 @@ import { CommonModule } from '@angular/common';
 export class MdlSpinnerComponent {
   public layers = [1, 2, 3, 4];
 
-  @Input() @BooleanProperty() public active: boolean;
-  @Input('single-color') @BooleanProperty() public singleColor: boolean;
+  private _active: boolean = false;
+  @Input()
+  get active() { return this._active; }
+  set active(value) { this._active = toBoolean(value); }
+
+  private _singleColor: boolean = false;
+  @Input('single-color')
+  get singleColor() { return this._singleColor; }
+  set singleColor(value) { this._singleColor = toBoolean(value); }
 
 }
 

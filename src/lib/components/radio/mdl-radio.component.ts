@@ -21,8 +21,8 @@ import {
     FormGroupName
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BooleanProperty } from '../common/boolean-property';
-import { NumberProperty } from '../common/number.property';
+import { toBoolean } from '../common/boolean-property';
+import { toNumber } from '../common/number.property';
 
 
 const noop = () => {};
@@ -103,8 +103,16 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   @Input() public name: string;
   @Input() public formControlName: string;
   @Input() public value: any;
-  @Input() @BooleanProperty() public disabled = false;
-  @Input() @NumberProperty() public tabindex: number = 1;
+
+  private _disabled: boolean = false;
+  @Input()
+  get disabled(): boolean { return this._disabled; }
+  set disabled(value) { this._disabled = toBoolean(value); }
+
+  private _tabindex = 1;
+  @Input()
+  get tabindex(): number { return this._tabindex; }
+  set tabindex(value) { this._tabindex = toNumber(value); }
 
   @Output() public change: EventEmitter<any> = new EventEmitter<any>();
 

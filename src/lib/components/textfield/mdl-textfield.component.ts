@@ -21,8 +21,8 @@ import {
   ControlValueAccessor
 } from '@angular/forms';
 
-import { BooleanProperty } from '../common/boolean-property';
-import { NumberProperty } from '../common/number.property';
+import { toBoolean } from '../common/boolean-property';
+import { toNumber } from '../common/number.property';
 import { MdlButtonModule } from '../button/mdl-button.component';
 import { MdlIconModule } from '../icon/mdl-icon.component';
 import { FormsModule } from '@angular/forms';
@@ -158,20 +158,56 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() public name;
   @Input() public id = `mdl-textfield-${nextId++}`;
   @Input('error-msg') public errorMessage;
-  @Input() @BooleanProperty() public disabled = false;
-  @Input() @BooleanProperty() public readonly = false;
-  @Input() @BooleanProperty() public required = false;
-  @Input() @BooleanProperty() public autofocus: boolean = false;
-  @Input('floating-label') @BooleanProperty() public isFloatingLabel = false;
+
+  private _disabled: boolean = false;
+  @Input()
+  get disabled(): boolean { return this._disabled; }
+  set disabled(value) { this._disabled = toBoolean(value); }
+
+  private _readonly: boolean = false;
+  @Input()
+  get readonly() { return this._readonly; }
+  set readonly(value) { this._readonly = toBoolean(value); }
+
+  private _required: boolean = false;
+  @Input()
+  get required() { return this._required; }
+  set required(value) { this._required = toBoolean(value); }
+
+  private _autofocus: boolean = false;
+  @Input()
+  get autofocus() { return this._autofocus; }
+  set autofocus(value) { this._autofocus = toBoolean(value); }
+
+  private _isFloatingLabel: boolean = false;
+  @Input('floating-label')
+  get isFloatingLabel() { return this._isFloatingLabel; }
+  set isFloatingLabel(value) { this._isFloatingLabel = toBoolean(value); }
+
   @Input() public placeholder: string;
   @Input() public autocomplete: string;
-  @Input() @NumberProperty() public rows: number = null;
-  @Input() @NumberProperty() public maxrows: number = -1;
+
+  private _rows: number = null;
+  @Input()
+  get rows() { return this._rows; }
+  set rows(value) { this._rows = toNumber(value); }
+
+  private _maxrows: number = -1;
+  @Input()
+  get maxrows() { return this._maxrows; }
+  set maxrows(value) { this._maxrows = toNumber(value); }
   @Input() public icon: string;
-  @Input() @NumberProperty() public tabindex: number = 1;
+
+  private _tabindex = 1;
+  @Input()
+  get tabindex(): number { return this._tabindex; }
+  set tabindex(value) { this._tabindex = toNumber(value); }
 
   // @experimental
-  @Input() @BooleanProperty() public disableNativeValidityChecking;
+  private _disableNativeValidityChecking: boolean = false;
+  @Input()
+  get disableNativeValidityChecking() { return this._disableNativeValidityChecking; }
+  set disableNativeValidityChecking(value) { this._disableNativeValidityChecking = toBoolean(value);}
 
   constructor(
     private renderer: Renderer,

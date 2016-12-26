@@ -10,8 +10,8 @@ import {
   SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
-import { BooleanProperty } from '../common/boolean-property';
-import { NumberProperty } from '../common/number.property';
+import { toBoolean } from '../common/boolean-property';
+import { toNumber } from '../common/number.property';
 import { MdlTabPanelComponent } from './mdl-tab-panel.component';
 
 @Component({
@@ -44,8 +44,16 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
 })
 export class MdlTabsComponent implements AfterContentInit, OnChanges {
 
-  @Input('mdl-tab-active-index') @NumberProperty() public selectedIndex: number = 0;
-  @Input('mdl-ripple') @BooleanProperty() protected isRipple = false;
+  private _selectedIndex: number = 0;
+  @Input('mdl-tab-active-index')
+  get selectedIndex() { return this._selectedIndex; }
+  set selectedIndex(value) { this._selectedIndex = toNumber(value); }
+
+  private _isRipple = false;
+  @Input('mdl-ripple')
+  get isRipple() { return this._isRipple; }
+  set isRipple(value) { this._isRipple = toBoolean(value); }
+
   @Output('mdl-tab-active-changed') public selectedTabEmitter = new EventEmitter();
 
   @ContentChildren(MdlTabPanelComponent) protected tabs: QueryList<MdlTabPanelComponent>;

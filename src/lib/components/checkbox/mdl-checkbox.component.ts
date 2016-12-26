@@ -16,8 +16,8 @@ import {
   FormsModule
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BooleanProperty } from '../common/boolean-property';
-import { NumberProperty } from '../common/number.property';
+import { toBoolean } from '../common/boolean-property';
+import { toNumber } from '../common/number.property';
 
 const noop = (_?: any) => {};
 const IS_FOCUSED = 'is-focused';
@@ -57,8 +57,15 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
 
-  @Input() @BooleanProperty() public disabled = false;
-  @Input() @NumberProperty() public tabindex: number = 1;
+  private _disabled: boolean = false;
+  @Input()
+  get disabled(): boolean { return this._disabled; }
+  set disabled(value) { this._disabled = toBoolean(value); }
+
+  private _tabindex = 1;
+  @Input()
+  get tabindex(): number { return this._tabindex; }
+  set tabindex(value) { this._tabindex = toNumber(value); }
 
   public change: EventEmitter<boolean> = new EventEmitter<boolean>();
 

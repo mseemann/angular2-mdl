@@ -45,6 +45,20 @@ describe('Component: MdlProgress', () => {
 
   });
 
+
+  it('should be possible to set the indeterminate state', () => {
+
+    TestBed.overrideComponent(MdlTestProgressComponent, { set: {
+      template: '<mdl-progress [indeterminate]="true"></mdl-progress>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestProgressComponent);
+    fixture.detectChanges();
+
+    let progressEl: HTMLElement = fixture.nativeElement.children.item(0);
+    expect(progressEl.classList.contains('mdl-progress__indeterminate')).toBe(true);
+
+  });
+
 });
 
 

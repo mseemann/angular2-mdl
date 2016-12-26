@@ -13,7 +13,7 @@ import {
   MdlError,
   MdlStructureError
 } from '../common/mdl-error';
-import { NumberProperty } from '../common/number.property';
+import { toNumber } from '../common/number.property';
 
 export class MdlUnsupportedCountOfListItemLinesError extends MdlError {
   constructor(lines: number|string) {
@@ -44,7 +44,10 @@ export class MdlListComponent {}
 })
 export class MdlListItemComponent implements OnInit, OnChanges {
 
-  @Input() @NumberProperty() public lines: number = 1;
+  private _lines: number = 1;
+  @Input()
+  get lines() { return this._lines; }
+  set lines(value) { this._lines = toNumber(value); }
 
   constructor(@Optional() private mdlListComponent: MdlListComponent) {}
 

@@ -1,3 +1,9 @@
+<a name="2.11.0"></a>
+# 2.11.0 (2016-12-XX)
+### Features
+* [191](https://github.com/mseemann/angular2-mdl/issues/191) (Custom Decorators are a stumbling block for treeshaking
+
+
 <a name="2.10.0"></a>
 # 2.10.0 (2016-12-22)
 ### Features

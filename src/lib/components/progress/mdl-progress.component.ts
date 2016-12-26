@@ -8,7 +8,7 @@ import {
   ChangeDetectionStrategy,
   ModuleWithProviders
 } from '@angular/core';
-import { BooleanProperty } from '../common/boolean-property';
+import { toBoolean } from '../common/boolean-property';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -30,7 +30,10 @@ export class MdlProgressComponent implements OnChanges {
   @Input() public buffer = 100;
   @Input() public aux = 0;
 
-  @Input() @BooleanProperty() public indeterminate: boolean;
+  private _indeterminate: boolean = false;
+  @Input()
+  get indeterminate() { return this._indeterminate; }
+  set indeterminate(value) { this._indeterminate = toBoolean(value); }
 
   public ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
     if (changes['buffer']) {

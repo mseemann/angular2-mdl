@@ -15,8 +15,8 @@ import {
 } from '@angular/core';
 import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from '../common/mdl-error';
-import { BooleanProperty } from '../common/boolean-property';
-import { NumberProperty } from '../common/number.property';
+import { toBoolean } from '../common/boolean-property';
+import { toNumber } from '../common/number.property';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
 import { MdlLayoutContentComponent } from './mdl-layout-content.component';
@@ -136,12 +136,37 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   @ContentChild(MdlLayoutContentComponent) private content;
 
   @Input('mdl-layout-mode') public mode: string = STANDARD;
-  @Input('mdl-layout-fixed-drawer') @BooleanProperty() public isFixedDrawer = false;
-  @Input('mdl-layout-fixed-header') @BooleanProperty() public isFixedHeader = false;
-  @Input('mdl-layout-header-seamed') @BooleanProperty() public isSeamed = false;
-  @Input('mdl-layout-tab-active-index') @NumberProperty() public selectedIndex: number = 0;
-  @Input('mdl-ripple') @BooleanProperty() public isRipple = false;
-  @Input('mdl-layout-no-drawer-button') @BooleanProperty() public isNoDrawer = false;
+
+  private _isFixedDrawer: boolean = false;
+  @Input('mdl-layout-fixed-drawer')
+  get isFixedDrawer() { return this._isFixedDrawer; }
+  set isFixedDrawer(value) { this._isFixedDrawer = toBoolean(value); }
+
+  private _isFixedHeader: boolean = false;
+  @Input('mdl-layout-fixed-header')
+  get isFixedHeader() { return this._isFixedHeader; }
+  set isFixedHeader(value) { this._isFixedHeader = toBoolean(value); }
+
+  private _isSeamed: boolean = false;
+  @Input('mdl-layout-header-seamed')
+  get isSeamed() { return this._isSeamed; }
+  set isSeamed(value) { this._isSeamed = toBoolean(value); }
+
+  private _selectedIndex: number = 0;
+  @Input('mdl-layout-tab-active-index')
+  get selectedIndex() { return this._selectedIndex; }
+  set selectedIndex(value) { this._selectedIndex = toNumber(value); }
+
+  private _isRipple: boolean = false;
+  @Input('mdl-ripple')
+  get isRipple() { return this._isRipple; }
+  set isRipple(value) { this._isRipple = toBoolean(value); }
+
+  private _isNoDrawer: boolean = false;
+  @Input('mdl-layout-no-drawer-button')
+  get isNoDrawer() { return this._isNoDrawer; }
+  set isNoDrawer(value) { this._isNoDrawer = toBoolean(value); }
+
   @Output('mdl-layout-tab-active-changed') public selectedTabEmitter = new EventEmitter();
   @Output('mdl-layout-tab-mouseover') public mouseoverTabEmitter = new EventEmitter();
   @Output('mdl-layout-tab-mouseout') public mouseoutTabEmitter = new EventEmitter();

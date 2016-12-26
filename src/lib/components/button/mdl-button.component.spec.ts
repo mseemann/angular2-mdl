@@ -117,6 +117,19 @@ describe('Component: MdlButton', () => {
     expect(button.elementRef).toBeDefined('elementRef must be present!')
   });
 
+  it('should be possible to disable a button', () => {
+
+    TestBed.overrideComponent(MdlTestButtonComponent, { set: {
+      template: '<button mdl-button disabled="true"></button>' }
+    });
+
+    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    fixture.detectChanges();
+
+    let btnEl: HTMLButtonElement = fixture.nativeElement.children.item(0);
+    expect(btnEl.disabled).toBe(true);
+
+  });
 });
 
 

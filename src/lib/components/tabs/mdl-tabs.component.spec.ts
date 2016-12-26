@@ -5,6 +5,7 @@ import {
   MdlTabsModule,
   MdlTabsComponent
 } from './index';
+import { MdlAnchorRippleDirective } from '../common/mdl-ripple.directive';
 
 describe('Component: MdlTabs', () => {
 
@@ -162,6 +163,19 @@ describe('Component: MdlTabs', () => {
     fixture.detectChanges();
 
     expect(mdlTabsComponent.selectedIndex).toBe(0);
+  });
+
+  it('should be possible to create a ripple tab', () => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-tabs mdl-ripple="true"><mdl-tab-panel></mdl-tab-panel></mdl-tabs>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let rippleDirective = fixture.debugElement.query(By.directive(MdlAnchorRippleDirective));
+
+    expect(rippleDirective).toBeDefined();
   });
 });
 
