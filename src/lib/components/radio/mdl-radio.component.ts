@@ -90,7 +90,7 @@ export class MdlRadioGroupRegisty {
     (blur)="onBlur()"
     (keyup.space)="spaceKeyPress($event)"
     [disabled]="disabled"
-    [tabindex]="tabindex"
+    [attr.tabindex]="tabindex"
     [(ngModel)]="checked">
   <span class="mdl-radio__label"><ng-content></ng-content></span>
   <span class="mdl-radio__outer-circle"></span>
@@ -109,10 +109,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   get disabled(): boolean { return this._disabled; }
   set disabled(value) { this._disabled = toBoolean(value); }
 
-  private _tabindex = 1;
-  @Input()
-  get tabindex(): number { return this._tabindex; }
-  set tabindex(value) { this._tabindex = toNumber(value); }
+  @Input() public tabindex = null;
 
   @Output() public change: EventEmitter<any> = new EventEmitter<any>();
 

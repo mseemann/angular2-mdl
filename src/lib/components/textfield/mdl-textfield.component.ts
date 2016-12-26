@@ -88,7 +88,7 @@ const IS_DIRTY = 'is-dirty';
         [required]="required"
         [autofocus]="autofocus"
         [readonly]="readonly"
-        [tabindex]="tabindex"
+        [attr.tabindex]="tabindex"
         >
      <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
@@ -117,7 +117,7 @@ const IS_DIRTY = 'is-dirty';
           [required]="required"
           [autofocus]="autofocus"
           [readonly]="readonly"
-          [tabindex]="tabindex"
+          [attr.tabindex]="tabindex"
          >
      <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
      <span class="mdl-textfield__error">{{errorMessage}}</span>
@@ -198,10 +198,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   set maxrows(value) { this._maxrows = toNumber(value); }
   @Input() public icon: string;
 
-  private _tabindex = 1;
-  @Input()
-  get tabindex(): number { return this._tabindex; }
-  set tabindex(value) { this._tabindex = toNumber(value); }
+  @Input() public tabindex: number = null;
+
 
   // @experimental
   private _disableNativeValidityChecking: boolean = false;

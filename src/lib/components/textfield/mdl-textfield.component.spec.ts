@@ -518,15 +518,6 @@ describe('Component: MdlTextField', () => {
 
   });
 
-  it('should initialize tabindex with value 1 if not defined explicitly', () => {
-    TestBed.overrideComponent(MdlTestComponent, { set: {
-      template: '<mdl-textfield ></mdl-textfield>' }
-    });
-    let fixture = TestBed.createComponent(MdlTestComponent);
-    fixture.detectChanges();
-    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
-    expect(el.getAttribute('tabindex')).toBe('1');
-  });
 
   it('should set given tabindex value', () => {
     TestBed.overrideComponent(MdlTestComponent, { set: {
@@ -536,6 +527,19 @@ describe('Component: MdlTextField', () => {
     fixture.detectChanges();
     let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     expect(el.getAttribute('tabindex')).toBe('-1');
+  });
+
+  it('should not set a default tabindex', () => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: '<mdl-textfield></mdl-textfield>' }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    expect(el.getAttribute('tabindex')).toEqual(null);
+
   });
 
   it('shoud support the readonly attribute', () => {

@@ -214,6 +214,21 @@ describe('Component: MdlRadio', () => {
     expect(btnEl.tabIndex).toBe(2);
 
   });
+
+  it('should not set a default tabindex', () => {
+
+    TestBed.overrideComponent(MdlTestRadioComponent, { set: {
+      template: '<mdl-radio></mdl-radio>' }
+    });
+
+    let fixture = TestBed.createComponent(MdlTestRadioComponent);
+    fixture.detectChanges();
+
+    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    expect(el.getAttribute('tabindex')).toEqual(null);
+
+  });
 });
 
 

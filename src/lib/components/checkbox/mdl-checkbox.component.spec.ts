@@ -140,6 +140,20 @@ describe('Component: MdlCheckbox', () => {
     expect(btnEl.tabIndex).toBe(2);
 
   });
+
+  it('should not set a default tabindex', () => {
+
+    TestBed.overrideComponent(MdlTestCheckboxComponent, { set: {
+      template: '<mdl-checkbox></mdl-checkbox>' }
+    });
+
+    let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
+    fixture.detectChanges();
+
+    let btnEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    expect(btnEl.getAttribute('tabindex')).toEqual(null);
+
+  });
 });
 
 

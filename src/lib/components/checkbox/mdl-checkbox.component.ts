@@ -42,7 +42,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     (focus)="onFocus()" 
     (blur)="onBlur()"
     [disabled]="disabled"
-    [tabindex]="tabindex"
+    [attr.tabindex]="tabindex"
     [ngModel]="value">
   <span class="mdl-checkbox__label"><ng-content></ng-content></span>
   <span class="mdl-checkbox__focus-helper"></span>
@@ -62,10 +62,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   get disabled(): boolean { return this._disabled; }
   set disabled(value) { this._disabled = toBoolean(value); }
 
-  private _tabindex = 1;
-  @Input()
-  get tabindex(): number { return this._tabindex; }
-  set tabindex(value) { this._tabindex = toNumber(value); }
+  @Input() public tabindex: number = null;
 
   public change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
