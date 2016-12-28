@@ -40,7 +40,7 @@
     "@angular/platform-server": "2.4.1",
     "@angular/router": "3.4.1",
     "@types/chai": "3.4.34",
-    "@types/jasmine": "2.5.38",
+    "@types/jasmine": "2.5.39",
     "@types/node": "6.0.54",
     "angular2-template-loader": "0.6.0",
     "autoprefixer": "6.6.0",
