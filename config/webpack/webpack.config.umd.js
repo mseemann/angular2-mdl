@@ -53,7 +53,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.ts$/,
-				loader: 'awesome-typescript-loader?tsconfig=./src/tsconfig.json'
+				loader: 'awesome-typescript-loader?configFileName=./src/tsconfig.json'
 			}
 		]
 	},

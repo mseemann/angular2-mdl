@@ -4,7 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var util = require('./util');
 var autoprefixer = require('autoprefixer');
-const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+
 
 module.exports = {
 
@@ -29,7 +29,7 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.ts$/,
-				loaders: ['awesome-typescript-loader?tsconfig=./src/tsconfig.json', 'angular2-template-loader'],
+				loaders: ['awesome-typescript-loader?configFileName=./src/tsconfig.json', 'angular2-template-loader'],
 				exclude: [
 					/\.(spec)\.ts$/
 				]
@@ -74,7 +74,6 @@ module.exports = {
 			/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
 			util.root('src')
 		),
-    new ForkCheckerPlugin(),
     new CopyWebpackPlugin([{ from: util.root('src', 'demo-app', 'assets') , to: 'assets'}], {copyUnmodified: true}),
 		new webpack.optimize.CommonsChunkPlugin({
       name: ['polyfills']

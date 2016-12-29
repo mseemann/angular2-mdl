@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const util = require('./util');
-
 const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
 module.exports = {
@@ -16,7 +15,7 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        loaders: ['awesome-typescript-loader?tsconfig=./src/tsconfig-test.json']
+        loaders: ['awesome-typescript-loader?configFileName=./src/tsconfig-test.json']
       },
 			{
 				enforce: 'post',
