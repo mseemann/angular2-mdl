@@ -105,3 +105,17 @@ sassLoader: {
 # Contributing
 
 Every contribution is welcome. Please checkout the [CONRIBUTION.md](https://github.com/mseemann/angular2-mdl/blob/master/CONTRIBUTION.md) file.
+
+# Remarks
+This package should work with every version of angular 2. But you should 
+know that this package is compiled with ngc and ngc generates metadata for aot. These metdata are versioned. 
+The following table lists these versions and the correspondig angular version:
+
+| angular2-mdl version | metadata version | angular version
+| --- | --- | --- | 
+| 2.7.0 | 1 | &lt;2.3.0
+| 2.8.0 | 2 | 2.3.0
+| &gt;=2.9.0 | 3 | &gt;=2.3.1
+
+If you need a working example for the current angular-cli with the current angular2-mdl and angular versions please have a look at:
+[https://github.com/mseemann/a2-mdl-webpack](https://github.com/mseemann/a2-mdl-webpack).
