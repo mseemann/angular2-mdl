@@ -69,7 +69,7 @@ describe('Component: MdlTooltip', () => {
 
   }));
 
-  it('should add the css class is-active if the mous enters the directive element', () => {
+  it('should add the css class is-active if the mouse enters the directive element', () => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
       template: `
@@ -91,6 +91,38 @@ describe('Component: MdlTooltip', () => {
     expect(tooltipEl.classList.contains('is-active')).toBe(true);
 
     expect(tooltipDebugEl.componentInstance.isActive()).toBe(true);
+
+  });
+
+  it('should add the css class is-active after 1 sec if the mouse enters the directive element', (cb) => {
+
+    TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
+      template: `
+           <div [mdl-tooltip]="t" mdl-tooltip-position="left"></div>
+          <mdl-tooltip #t="mdlTooltip" [delay]="1000">x</mdl-tooltip>
+        `}
+    });
+    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    fixture.detectChanges();
+
+    let tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
+
+    var evt = document.createEvent('HTMLEvents');
+    evt.initEvent('mouseenter', true, true);
+    tooltipTriggerElement.dispatchEvent(evt);
+
+    let tooltipDebugEl = fixture.debugElement.query(By.directive(MdlTooltipComponent));
+    let tooltipEl: HTMLElement = tooltipDebugEl.nativeElement;
+
+
+    expect(tooltipEl.classList.contains('is-active')).toBe(false);
+    expect(tooltipDebugEl.componentInstance.isActive()).toBe(false);
+
+    setTimeout(() => {
+        expect(tooltipEl.classList.contains('is-active')).toBe(true);
+        expect(tooltipDebugEl.componentInstance.isActive()).toBe(true);
+        cb();
+    }, 1010);
 
   });
 
