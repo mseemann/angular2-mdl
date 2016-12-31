@@ -2,7 +2,8 @@ import {
   Component,
   ElementRef,
   Renderer,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Input
 } from '@angular/core';
 import { MdlTooltipPositionService } from './mdl-tooltip-position.service';
 
@@ -31,6 +32,9 @@ export class MdlSimpleTooltipComponent {
   public position: 'left' | 'right' | 'top' | 'bottom';
   private active = false;
 
+  @Input() delay: Number;
+  private delayTimeout: any;
+
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer,
@@ -40,11 +44,20 @@ export class MdlSimpleTooltipComponent {
   }
 
   public mouseLeave() {
+    if (this.delayTimeout) {
+      clearTimeout(this.delayTimeout);
+    }
     this.setActive(false);
   }
 
   public mouseEnter(event: any) {
-    this.show(event.target);
+    if (this.delay) {
+      this.delayTimeout = setTimeout(() => {
+          this.show(event.target);
+      }, this.delay);
+    } else {
+      this.show(event.target);
+    }
   }
 
   public show(element: HTMLElement){
