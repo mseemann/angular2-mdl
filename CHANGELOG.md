@@ -4,7 +4,7 @@
 ### Bug Fixes
 
 ### Features
-* [369](https://github.com/mseemann/angular2-mdl/issues/369) (Tooltip delay by @guzmo)
+* [369](https://github.com/mseemann/angular2-mdl/issues/369) (Tooltip delay by [@guzmo](https://github.com/guzmo))
 
 
 
