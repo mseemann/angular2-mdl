@@ -1,3 +1,13 @@
+<a name="2.12.0"></a>
+# 2.12.0 (next)
+
+### Bug Fixes
+
+### Features
+* [369](https://github.com/mseemann/angular2-mdl/issues/369) (Tooltip delay by @guzmo)
+
+
+
 <a name="2.11.0"></a>
 # 2.11.0 (2016-12-26)
 
