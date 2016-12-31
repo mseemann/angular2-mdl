@@ -126,6 +126,32 @@ describe('Component: MdlTooltip', () => {
 
   });
 
+  it('should cancel the delay timeout on mouseleave', () => {
+    TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
+      template: `
+           <div [mdl-tooltip]="t" mdl-tooltip-position="left"></div>
+          <mdl-tooltip #t="mdlTooltip" [delay]="1000">x</mdl-tooltip>
+        `}
+    });
+    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    fixture.detectChanges();
+
+    let tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
+
+    spyOn(window, 'clearTimeout').and.callThrough();
+
+    var evt = document.createEvent('HTMLEvents');
+    evt.initEvent('mouseenter', true, true);
+    tooltipTriggerElement.dispatchEvent(evt);
+
+    var evt = document.createEvent('HTMLEvents');
+    evt.initEvent('mouseleave', true, true);
+    tooltipTriggerElement.dispatchEvent(evt);
+
+    expect(window.clearTimeout).toHaveBeenCalled();
+
+  });
+
   it('should remove the css class is-active if the mouse leaves the directive element', () => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
