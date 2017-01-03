@@ -43,7 +43,7 @@
     "@types/jasmine": "2.5.40",
     "@types/node": "6.0.55",
     "angular2-template-loader": "0.6.0",
-    "autoprefixer": "6.6.0",
+    "autoprefixer": "6.6.1",
     "awesome-typescript-loader": "3.0.0-beta.17",
     "codeclimate-test-reporter": "0.4.0",
     "codelyzer": "2.0.0-beta.4",
