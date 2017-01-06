@@ -38,7 +38,7 @@ export class InternalMdlDialogReference {
     this.onVisibleSubject.complete();
   }
 
-  public onHide(): Observable<void> {
+  public onHide(): Observable<any> {
     return this.onHideSubject.asObservable();
   }
 

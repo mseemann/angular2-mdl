@@ -50,7 +50,7 @@ export class MdlDialogReference {
    * Observable that emits, if the dialog was closed.
    * @returns {Observable<void>}
    */
-  public onHide(): Observable<void> {
+  public onHide(): Observable<any> {
     return this.internaleRef.onHide();
   }
 

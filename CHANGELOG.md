@@ -2,6 +2,7 @@
 # 2.12.0 (next)
 
 ### Bug Fixes
+* [403](https://github.com/mseemann/angular2-mdl/issues/403) (dialog service: onHide should declare Observable<any> instead of Observable<void>)
 
 ### Features
 * [369](https://github.com/mseemann/angular2-mdl/issues/369) (Tooltip delay by [@guzmo](https://github.com/guzmo))
