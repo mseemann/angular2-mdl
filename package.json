@@ -85,7 +85,7 @@
     "web-animations-js": "2.2.2",
     "webpack": "2.1.0-beta.25",
     "webpack-dev-server": "2.1.0-beta.4",
-    "webpack-merge": "2.0.0",
+    "webpack-merge": "2.3.0",
     "zone.js": "0.7.4"
   },
   "optionalDependencies": {
