@@ -49,6 +49,16 @@
   ]]>
 </pre>
 
+<h5>Set max length</h5>
+
+<mdl-textfield type="text" label="maxlength is 10" maxlength="10"></mdl-textfield>
+
+<pre prism>
+  <![CDATA[
+<mdl-textfield type="text" label="maxlength is 10" maxlength="10"></mdl-textfield>
+  ]]>
+</pre>
+
 <h5>Text/Numeric with floating label</h5>
 
 <mdl-textfield name="text1" type="text" label="Text..." [(ngModel)]="text3" floating-label></mdl-textfield>
@@ -246,6 +256,11 @@ Just specify an icon to turn the text input field into an expandable field.
       <td>
          The type of the input field - propaget to the underlying <i>input</i> element.
       </td>
+   </tr>
+
+   <tr>
+      <td>maxlength</td>
+      <td>The max. length for the input field.</td>
    </tr>
 
    <tr>

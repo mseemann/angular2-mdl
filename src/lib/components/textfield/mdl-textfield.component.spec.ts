@@ -586,6 +586,22 @@ describe('Component: MdlTextField', () => {
     expect(tfEl).toBeDefined();
 
   });
+
+  it('shoud support the maxlength attribute', () => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield  type="text" [maxlength]="10"></mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+    expect(inputEl.getAttribute('maxlength')).toBe('10', 'the maxlength attribute should be set');
+
+  });
+  
 });
 
 
