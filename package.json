@@ -32,7 +32,7 @@
     "@angular/forms": "2.4.2"
   },
   "devDependencies": {
-    "@angular/compiler": "2.4.2",
+    "@angular/compiler": "2.4.3",
     "@angular/compiler-cli": "2.4.2",
     "@angular/http": "2.4.2",
     "@angular/platform-browser": "2.4.2",
