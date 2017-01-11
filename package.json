@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@angular/common": "2.4.2",
-    "@angular/core": "2.4.2",
+    "@angular/core": "2.4.3",
     "@angular/forms": "2.4.2"
   },
   "devDependencies": {
