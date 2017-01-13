@@ -6,8 +6,8 @@
 
 ### Features
 * [369](https://github.com/mseemann/angular2-mdl/issues/369) (Tooltip delay by [@guzmo](https://github.com/guzmo))
-
-
+* [397](https://github.com/mseemann/angular2-mdl/issues/397) (maxlength in mdl-textfield by[@tomicasoft](https://github.com/tomicasoft))
+* [436](https://github.com/mseemann/angular2-mdl/pull/436) (add keyup emitter to textfield)[crystalraebryant](https://github.com/crystalraebryant)
 
 <a name="2.11.0"></a>
 # 2.11.0 (2016-12-26)
