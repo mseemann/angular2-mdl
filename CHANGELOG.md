@@ -1,5 +1,5 @@
 <a name="2.12.0"></a>
-# 2.12.0 (next)
+# 2.12.0 (2017-01-13)
 
 ### Bug Fixes
 * [403](https://github.com/mseemann/angular2-mdl/issues/403) (dialog service: onHide should declare Observable<any> instead of Observable<void>)
