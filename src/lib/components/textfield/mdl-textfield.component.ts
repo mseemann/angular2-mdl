@@ -62,6 +62,7 @@ const IS_DIRTY = 'is-dirty';
         (focus)="onFocus($event)"
         (blur)="onBlur($event)"
         (keydown)="keydownTextarea($event)"
+        (keyup)="onKeyup($event)"
         [(ngModel)]="value"
         [disabled]="disabled"
         [required]="required"
@@ -83,6 +84,7 @@ const IS_DIRTY = 'is-dirty';
         [autocomplete]="autocomplete ? autocomplete : ''"
         (focus)="onFocus($event)"
         (blur)="onBlur($event)"
+        (keyup)="onKeyup($event)"
         [(ngModel)]="value"
         [disabled]="disabled"
         [required]="required"
@@ -113,6 +115,7 @@ const IS_DIRTY = 'is-dirty';
           [autocomplete]="autocomplete ? autocomplete : ''"
           (focus)="onFocus($event)"
           (blur)="onBlur($event)"
+          (keyup)="onKeyup($event)"
           [(ngModel)]="value"
           [disabled]="disabled"
           [required]="required"
@@ -142,6 +145,9 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
 
   @Output('focus')
   public focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+
+  @Output('keyup')
+  public keyupEmitter: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
 
   @ViewChild('input') private inputEl: ElementRef;
 
@@ -263,6 +269,10 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.renderer.setElementClass(this.el, IS_FOCUSED, false);
     this.onTouchedCallback();
     this.blurEmitter.emit(event);
+  }
+
+  protected onKeyup(event: KeyboardEvent) {
+    this.keyupEmitter.emit(event);
   }
 
   private checkDisabled() {

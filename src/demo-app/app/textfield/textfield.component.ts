@@ -40,6 +40,10 @@ export class TextFieldDemo extends AbstractDemoComponent implements AfterViewIni
     console.log('focus', event);
   }
 
+  public onKeyup(event: KeyboardEvent) {
+    console.log('keyup', event);
+  }
+
   public ngAfterViewInit(){
     this.tf.setFocus();
   }

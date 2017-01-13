@@ -601,7 +601,27 @@ describe('Component: MdlTextField', () => {
     expect(inputEl.getAttribute('maxlength')).toBe('10', 'the maxlength attribute should be set');
 
   });
-  
+
+  it('should emit the keyup event', () => {
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-textfield type="text" (keyup)="onKeyup()"></mdl-textfield>'
+      `
+    }});
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    const testComponent = fixture.componentInstance;
+    spyOn(testComponent, 'onKeyup');
+
+    let debugElement = fixture.debugElement.query(By.css('input'));
+    let el: HTMLElement = debugElement.nativeElement;
+    debugElement.triggerEventHandler('keyup', {});
+
+    expect(testComponent.onKeyup).toHaveBeenCalled();
+
+  });
+
 });
 
 
@@ -617,4 +637,6 @@ class MdlTestComponent {
   public onBlur(event: FocusEvent) {}
 
   public onFocus(event: FocusEvent) {}
+
+  public onKeyup(event: KeyboardEvent) {}
 }
