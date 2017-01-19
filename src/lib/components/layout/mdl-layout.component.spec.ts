@@ -452,6 +452,17 @@ describe('Component: MdlLayout', () => {
       // access a private property
       expect(service['layoutScreenSizeThreshold']).toBe(768);
     });
+
+    it('should fire screen size events on subscribe', ( done ) => {
+      let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+      fixture.detectChanges();
+
+      let service =TestBed.get(MdlScreenSizeService) as MdlScreenSizeService;
+
+      service.sizes().subscribe( (anySize) => {
+        done();
+      });
+    })
   });
 
 });

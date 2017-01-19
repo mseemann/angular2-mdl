@@ -1,3 +1,10 @@
+<a name="2.12.1"></a>
+# 2.12.1 (2017-01-19)
+
+### Bug Fixes
+* [452](https://github.com/mseemann/angular2-mdl/issues/452) (fire screen size events after subscribing to the events)
+
+
 <a name="2.12.0"></a>
 # 2.12.0 (2017-01-13)
 

@@ -20,8 +20,8 @@ import { toNumber } from '../common/number.property';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
 import { MdlLayoutContentComponent } from './mdl-layout-content.component';
-import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 const ESCAPE = 27;
 
@@ -53,7 +53,7 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
 @Injectable()
 export class MdlScreenSizeService {
 
-  private sizesSubject: Subject<boolean> = new Subject();
+  private sizesSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private windowMediaQueryListener: Function;
 
   constructor(
@@ -81,9 +81,7 @@ export class MdlScreenSizeService {
         query.removeListener(queryListener);
       };
       // set the initial state
-      setTimeout(() => {
-        this.sizesSubject.next(query.matches);
-      });
+      this.sizesSubject.next(query.matches);
 
     }
   }
