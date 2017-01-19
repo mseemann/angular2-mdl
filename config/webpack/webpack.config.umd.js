@@ -47,7 +47,13 @@ module.exports = {
 			commonjs: 'rxjs/Observable',
 			commonjs2: 'rxjs/Observable',
 			amd: 'rxjs/Observable'
-		}
+		},
+    'rxjs/BehaviorSubject': {
+      root: ['rx', 'BehaviorSubject'],
+      commonjs: 'rxjs/BehaviorSubject',
+      commonjs2: 'rxjs/BehaviorSubject',
+      amd: 'rxjs/BehaviorSubject'
+    }
 	},
 	module: {
 		rules: [
