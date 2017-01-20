@@ -27,6 +27,7 @@ import { CommonModule } from '@angular/common';
     '[class.mdl-switch]': 'true',
     '[class.is-upgraded]': 'true',
     '[class.is-checked]': 'value',
+    '[class.is-readonly]': 'readonly',
     '[class.is-disabled]': 'disabled'
   },
   outputs: ['change'],

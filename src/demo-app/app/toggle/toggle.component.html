@@ -7,6 +7,10 @@
 </mdl-checkbox>
 {{checkbox1}}
 
+<mdl-checkbox  [mdl-ripple]="true" [readonly]="true" [(ngModel)]="checkbox1" (change)="onChange($event)">
+  Checkbox Readonly
+</mdl-checkbox>
+
 <mdl-checkbox  [mdl-ripple]="true" [disabled]="true" [(ngModel)]="checkbox1" (change)="onChange($event)">
   Checkbox Disabled
 </mdl-checkbox>
@@ -37,9 +41,10 @@
 
 
 <h5>Radios</h5>
-<mdl-radio name="group1" value="1"  [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 1</mdl-radio>
+<mdl-radio name="group1" value="1" [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 1</mdl-radio>
 <mdl-radio name="group1" value="2" [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 2</mdl-radio>
-<mdl-radio name="group1" value="3" [disabled]="true"  [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 3 (disabled)</mdl-radio>
+<mdl-radio name="group1" value="3" [readonly]="true" [(ngModel)]="radioOption" mdl-ripple>Value 3 (readonly)</mdl-radio>
+<mdl-radio name="group1" value="4" [disabled]="true" [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 4 (disabled)</mdl-radio>
 
 {{radioOption}}
 
@@ -47,7 +52,8 @@
   <![CDATA[
   <mdl-radio name="group1" value="1" [(ngModel)]="radioOption" mdl-ripple>Value 1</mdl-radio>
   <mdl-radio name="group1" value="2" [(ngModel)]="radioOption" mdl-ripple>Value 2</mdl-radio>
-  <mdl-radio name="group1" value="3" [disabled]="true"  [(ngModel)]="radioOption" mdl-ripple>Value 3 (disabled)</mdl-radio>
+  <mdl-radio name="group1" value="3" [readonly]="true"  [(ngModel)]="radioOption" mdl-ripple>Value 3 (readonly)</mdl-radio>
+  <mdl-radio name="group1" value="4" [disabled]="true"  [(ngModel)]="radioOption" mdl-ripple>Value 4 (disabled)</mdl-radio>
 
   {{radioOption}}
   ]]>
@@ -67,6 +73,8 @@ The <i>value</i> is used to set the <i>ngModel</i> value if the option is select
 {{checkbox1}}
 <mdl-icon-toggle  [(ngModel)]="checkbox2">format_italic</mdl-icon-toggle>
 {{checkbox2}}
+<mdl-icon-toggle  [(ngModel)]="checkbox2" [readonly]="true">format_italic</mdl-icon-toggle>
+(readonly) {{checkbox2}}
 <mdl-icon-toggle  [(ngModel)]="checkbox2" [disabled]="true">format_italic</mdl-icon-toggle>
 (disabled) {{checkbox2}}
 
@@ -76,6 +84,8 @@ The <i>value</i> is used to set the <i>ngModel</i> value if the option is select
   {{checkbox1}}
   <mdl-icon-toggle  [(ngModel)]="checkbox2">format_italic</mdl-icon-toggle>
   {{checkbox2}}
+  <mdl-icon-toggle  [(ngModel)]="checkbox2" [readonly]="true">format_italic</mdl-icon-toggle>
+  (readonly) {{checkbox2}}
   <mdl-icon-toggle  [(ngModel)]="checkbox2" [disabled]="true">format_italic</mdl-icon-toggle>
   (disabled) {{checkbox2}}
   ]]>
@@ -90,7 +100,9 @@ The <i>value</i> is used to set the <i>ngModel</i> value if the option is select
 {{checkbox1}}
 <mdl-switch  [(ngModel)]="checkbox2">Option 2</mdl-switch>
 {{checkbox2}}
-<mdl-switch  [(ngModel)]="checkbox2" [disabled]="true">Option 3 (disabled)</mdl-switch>
+<mdl-switch  [(ngModel)]="checkbox2" [readonly]="true">Option 2 (readonly)</mdl-switch>
+{{checkbox2}}
+<mdl-switch  [(ngModel)]="checkbox2" [disabled]="true">Option 2 (disabled)</mdl-switch>
 {{checkbox2}}
 
 <pre prism ngNonBindable>
@@ -99,7 +111,9 @@ The <i>value</i> is used to set the <i>ngModel</i> value if the option is select
   {{checkbox1}}
   <mdl-switch  [(ngModel)]="checkbox2">Option 2</mdl-switch>
   {{checkbox2}}
-  <mdl-switch  [(ngModel)]="checkbox2" [disabled]="true">Option 3 (disabled)</mdl-switch>
+  <mdl-switch  [(ngModel)]="checkbox2" [readonly]="true">Option 2 (readonly)</mdl-switch>
+  {{checkbox2}}
+  <mdl-switch  [(ngModel)]="checkbox2" [disabled]="true">Option 2 (disabled)</mdl-switch>
   {{checkbox2}}
   ]]>
 </pre>

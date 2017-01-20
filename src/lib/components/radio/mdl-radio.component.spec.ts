@@ -141,6 +141,23 @@ describe('Component: MdlRadio', () => {
     expect(instance.onChange).toHaveBeenCalledWith('2');
   }));
 
+  it('should be possible to set readonly the radio input', async(() => {
+    let fixture = TestBed.createComponent(MdlTestRadioComponent);
+    fixture.detectChanges();
+
+    let instance = fixture.componentInstance;
+    let cbDebugElem = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[0];
+
+    cbDebugElem.componentInstance.readonly = true;
+    fixture.detectChanges();
+
+    let value = instance.radioValue;
+    // should not change on click
+    cbDebugElem.nativeElement.click();
+    expect(instance.radioValue).toEqual(value);
+
+  }));
+
   it('should be possible to disable the radio input', async(() => {
     let fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();

@@ -17,7 +17,6 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { toBoolean } from '../common/boolean-property';
-import { toNumber } from '../common/number.property';
 
 const noop = (_?: any) => {};
 const IS_FOCUSED = 'is-focused';
@@ -35,12 +34,14 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     '[class.mdl-checkbox]': 'true',
     '[class.is-upgraded]': 'true',
     '[class.is-checked]': 'value',
+    '[class.is-readonly]': 'readonly',
     '[class.is-disabled]': 'disabled'
   },
   template: `
   <input type="checkbox" class="mdl-checkbox__input" 
     (focus)="onFocus()" 
     (blur)="onBlur()"
+    [readonly]="readonly"
     [disabled]="disabled"
     [attr.tabindex]="tabindex"
     [ngModel]="value">
@@ -56,6 +57,8 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
+
+  @Input() public readonly: any;
 
   private _disabled: boolean = false;
   @Input()
@@ -110,7 +113,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   }
 
   protected onClick() {
-    if (this.disabled) {
+    if (this.readonly || this.disabled) {
       return;
     }
     this.value = !this.value;
