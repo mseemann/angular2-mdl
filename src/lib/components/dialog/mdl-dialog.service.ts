@@ -10,6 +10,7 @@ import {
   ApplicationRef,
   ViewContainerRef,
   TemplateRef,
+  EventEmitter
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Subject } from 'rxjs/Subject';
@@ -72,6 +73,12 @@ export class MdlDialogReference {
 export class MdlDialogService {
 
   private openDialogs = new Array<InternalMdlDialogReference>();
+
+  /**
+   * Emits an event when the number of open dialogs changes.
+   * @returns A subscribable event emitter that provides the number of open dialogs.
+   */
+  public onOpenDialogCountChange: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -254,11 +261,17 @@ export class MdlDialogService {
   private pushDialog(dialogRef: InternalMdlDialogReference) {
     this.openDialogs.push(dialogRef);
     this.orderDialogStack();
+    this.updateOpenDialogCount();
   }
 
   private popDialog(dialogRef: InternalMdlDialogReference) {
     this.openDialogs.splice(this.openDialogs.indexOf(dialogRef), 1);
     this.orderDialogStack();
+    this.updateOpenDialogCount();
+  }
+
+  private updateOpenDialogCount() {
+    this.onOpenDialogCountChange.emit(this.openDialogs.length);
   }
 
   private orderDialogStack() {
