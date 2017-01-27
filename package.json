@@ -78,14 +78,14 @@
     "string-replace-loader": "1.0.5",
     "style-loader": "0.13.1",
     "ts-node": "2.0.0",
-    "tslint": "4.4.1",
+    "tslint": "4.4.2",
     "tslint-loader": "3.3.0",
     "typescript": "2.0.10",
     "typings": "2.1.0",
     "web-animations-js": "2.2.2",
     "webpack": "2.1.0-beta.25",
     "webpack-dev-server": "2.1.0-beta.4",
-    "webpack-merge": "2.4.0",
+    "webpack-merge": "2.5.0",
     "zone.js": "0.7.6"
   },
   "optionalDependencies": {
