@@ -413,7 +413,59 @@ describe('Service: MdlDialog', () => {
 
   }));
 
+  it('should emit an event when the first dialog instance is opened', async(() => {
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
 
+    spyOn(mdlDialogService.onDialogsOpenChanged, 'emit');
+
+    mdlDialogService.onDialogsOpenChanged.subscribe( ( dialogsOpen ) => {
+      expect(dialogsOpen).toBe(true);
+    });
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      providers: [{ provide: TEST, useValue: 'test'}]
+    });
+
+    let p2 = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      providers: [{ provide: TEST, useValue: 'test 2'}]
+    });
+
+    expect(mdlDialogService.onDialogsOpenChanged.emit.calls.count()).toEqual(1);
+  }));
+
+  it('should emit an event when the last dialog instance is closed', async(() => {
+    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    fixture.detectChanges();
+
+    spyOn(mdlDialogService.onDialogsOpenChanged, 'emit');
+
+    let p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      providers: [{ provide: TEST, useValue: 'test 1'}]
+    });
+
+    let p2 = mdlDialogService.showCustomDialog({
+      component: TestCustomDialog,
+      providers: [{ provide: TEST, useValue: 'test 2'}]
+    });
+
+    mdlDialogService.onDialogsOpenChanged.subscribe( ( dialogsOpen ) => {
+      expect(dialogsOpen).toBe(false);
+    });
+
+    p.subscribe( ( dialogRef ) => {
+      dialogRef.hide();
+
+      p2.subscribe( ( dialogRef2 ) => {
+        dialogRef2.hide();
+
+        expect(mdlDialogService.onDialogsOpenChanged.emit.calls.count()).toEqual(2); // 1 open, 1 close.
+      });
+    });
+  }));
 });
 
 

@@ -75,10 +75,10 @@ export class MdlDialogService {
   private openDialogs = new Array<InternalMdlDialogReference>();
 
   /**
-   * Emits an event when the number of open dialogs changes.
-   * @returns A subscribable event emitter that provides the number of open dialogs.
+   * Emits an event when either all modals are closed, or one gets opened.
+   * @returns A subscribable event emitter that provides a boolean indicating whether a modal is open or not.
    */
-  public onOpenDialogCountChange: EventEmitter<number> = new EventEmitter<number>();
+  public onDialogsOpenChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -259,19 +259,21 @@ export class MdlDialogService {
   }
 
   private pushDialog(dialogRef: InternalMdlDialogReference) {
+    if (this.openDialogs.length == 0) { // first dialog being opened
+        this.onDialogsOpenChanged.emit(true);
+    }
+
     this.openDialogs.push(dialogRef);
     this.orderDialogStack();
-    this.updateOpenDialogCount();
   }
 
   private popDialog(dialogRef: InternalMdlDialogReference) {
     this.openDialogs.splice(this.openDialogs.indexOf(dialogRef), 1);
     this.orderDialogStack();
-    this.updateOpenDialogCount();
-  }
-
-  private updateOpenDialogCount() {
-    this.onOpenDialogCountChange.emit(this.openDialogs.length);
+    
+    if (this.openDialogs.length == 0) { // last dialog being closed
+      this.onDialogsOpenChanged.emit(false);
+    }
   }
 
   private orderDialogStack() {
