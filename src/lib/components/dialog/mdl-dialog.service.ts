@@ -10,6 +10,7 @@ import {
   ApplicationRef,
   ViewContainerRef,
   TemplateRef,
+  EventEmitter
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Subject } from 'rxjs/Subject';
@@ -72,6 +73,12 @@ export class MdlDialogReference {
 export class MdlDialogService {
 
   private openDialogs = new Array<InternalMdlDialogReference>();
+
+  /**
+   * Emits an event when either all modals are closed, or one gets opened.
+   * @returns A subscribable event emitter that provides a boolean indicating whether a modal is open or not.
+   */
+  public onDialogsOpenChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -252,6 +259,10 @@ export class MdlDialogService {
   }
 
   private pushDialog(dialogRef: InternalMdlDialogReference) {
+    if (this.openDialogs.length == 0) { // first dialog being opened
+        this.onDialogsOpenChanged.emit(true);
+    }
+
     this.openDialogs.push(dialogRef);
     this.orderDialogStack();
   }
@@ -259,6 +270,10 @@ export class MdlDialogService {
   private popDialog(dialogRef: InternalMdlDialogReference) {
     this.openDialogs.splice(this.openDialogs.indexOf(dialogRef), 1);
     this.orderDialogStack();
+    
+    if (this.openDialogs.length == 0) { // last dialog being closed
+      this.onDialogsOpenChanged.emit(false);
+    }
   }
 
   private orderDialogStack() {
