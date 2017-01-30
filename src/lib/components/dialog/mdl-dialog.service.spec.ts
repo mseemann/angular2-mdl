@@ -417,7 +417,7 @@ describe('Service: MdlDialog', () => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-    spyOn(mdlDialogService.onDialogsOpenChanged, 'emit');
+    let spy = spyOn(mdlDialogService.onDialogsOpenChanged, 'emit');
 
     mdlDialogService.onDialogsOpenChanged.subscribe( ( dialogsOpen ) => {
       expect(dialogsOpen).toBe(true);
@@ -433,14 +433,14 @@ describe('Service: MdlDialog', () => {
       providers: [{ provide: TEST, useValue: 'test 2'}]
     });
 
-    expect(mdlDialogService.onDialogsOpenChanged.emit.calls.count()).toEqual(1);
+    expect(spy.calls.count()).toEqual(1);
   }));
 
   it('should emit an event when the last dialog instance is closed', async(() => {
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-    spyOn(mdlDialogService.onDialogsOpenChanged, 'emit');
+    let spy = spyOn(mdlDialogService.onDialogsOpenChanged, 'emit');
 
     let p = mdlDialogService.showCustomDialog({
       component: TestCustomDialog,
@@ -462,7 +462,7 @@ describe('Service: MdlDialog', () => {
       p2.subscribe( ( dialogRef2 ) => {
         dialogRef2.hide();
 
-        expect(mdlDialogService.onDialogsOpenChanged.emit.calls.count()).toEqual(2); // 1 open, 1 close.
+        expect(spy.calls.count()).toEqual(2); // 1 open, 1 close.
       });
     });
   }));

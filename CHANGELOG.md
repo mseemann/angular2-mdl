@@ -1,3 +1,9 @@
+<a name="2.13.0"></a>
+# 2.13.0 (2017-01-30)
+
+### Features
+* [483](https://github.com/mseemann/angular2-mdl/pull/483) (Event emitter to detect state of modals being opened or closed by [@mgiuliani](https://github.com/mgiuliani))
+
 <a name="2.12.1"></a>
 # 2.12.1 (2017-01-19)
 
