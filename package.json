@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@angular/compiler": "2.4.5",
-    "@angular/compiler-cli": "2.4.5",
+    "@angular/compiler-cli": "2.4.6",
     "@angular/http": "2.4.5",
     "@angular/platform-browser": "2.4.5",
     "@angular/platform-browser-dynamic": "2.4.5",
