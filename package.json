@@ -84,7 +84,7 @@
     "typings": "2.1.0",
     "web-animations-js": "2.2.2",
     "webpack": "2.1.0-beta.25",
-    "webpack-dev-server": "2.1.0-beta.4",
+    "webpack-dev-server": "2.3.0",
     "webpack-merge": "2.6.1",
     "zone.js": "0.7.6"
   },
