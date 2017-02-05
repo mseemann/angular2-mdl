@@ -41,7 +41,7 @@
     "@angular/router": "3.4.6",
     "@types/chai": "3.4.34",
     "@types/jasmine": "2.5.41",
-    "@types/node": "7.0.4",
+    "@types/node": "7.0.5",
     "angular2-template-loader": "0.6.0",
     "autoprefixer": "6.7.2",
     "awesome-typescript-loader": "3.0.0-beta.18",
