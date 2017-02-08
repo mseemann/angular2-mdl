@@ -108,6 +108,22 @@ describe('Component: MdlCheckbox', () => {
     expect(instance.onChange).toHaveBeenCalledWith(true);
   }));
 
+  it('should be possible to set readonly the checkbox', async(() => {
+    let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
+    fixture.detectChanges();
+
+    let instance = fixture.componentInstance;
+    let cbDebugElem = fixture.debugElement.query(By.directive(MdlCheckboxComponent));
+
+    cbDebugElem.componentInstance.readonly = true;
+    fixture.detectChanges();
+
+    // should not change on click
+    cbDebugElem.nativeElement.click();
+    expect(instance.checkboxValue1).toEqual(false);
+
+  }));
+
   it('should be possible to disable the checkbox', async(() => {
     let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();

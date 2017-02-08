@@ -36,6 +36,22 @@ describe('Component: MdlSwitch', () => {
     expect(instance.onChange).toHaveBeenCalledWith(true);
   }));
 
+  it('should be possible to set readonly the switch', async(() => {
+    let fixture = TestBed.createComponent(MdlTestSwitchComponent);
+    fixture.detectChanges();
+
+    let instance = fixture.componentInstance;
+    let cbDebugElem = fixture.debugElement.query(By.directive(MdlSwitchComponent));
+
+    cbDebugElem.componentInstance.readonly = true;
+    fixture.detectChanges();
+
+    // should not change on click
+    cbDebugElem.nativeElement.click();
+    expect(instance.checkboxValue1).toEqual(false);
+
+  }));
+
 });
 
 
@@ -44,6 +60,7 @@ describe('Component: MdlSwitch', () => {
   template: '<mdl-switch [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">switch</mdl-switch>'
 })
 class MdlTestSwitchComponent {
+  public checkboxValue1 = false;
 
   public onChange(v: boolean) {}
 

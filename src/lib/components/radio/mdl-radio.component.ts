@@ -81,6 +81,7 @@ export class MdlRadioGroupRegisty {
     '[class.mdl-radio]': 'true',
     '[class.is-upgraded]': 'true',
     '[class.is-checked]': 'checked',
+    '[class.is-readonly]': 'readonly',
     '[class.is-disabled]': 'disabled'
   },
   template: `
@@ -103,6 +104,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   @Input() public name: string;
   @Input() public formControlName: string;
   @Input() public value: any;
+  @Input() public readonly: any;
 
   private _disabled: boolean = false;
   @Input()
@@ -180,7 +182,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   }
 
   protected onClick() {
-    if (this.disabled) {
+    if (this.readonly || this.disabled) {
       return;
     }
     this.optionValue = this.value;
