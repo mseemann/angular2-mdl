@@ -7,7 +7,7 @@ import { MdlBackdropOverlayComponent } from './mdl-backdrop-overlay.component';
 export class MdlDialogOutletService {
 
   private viewContainerRef_: ViewContainerRef;
-  private backdropComponet: MdlBackdropOverlayComponent;
+  private backdropComponent: MdlBackdropOverlayComponent;
 
   public backdropClickEmitter: EventEmitter<any> = new EventEmitter();
 
@@ -38,18 +38,18 @@ export class MdlDialogOutletService {
 
     if (this.viewContainerRef_) {
       let cFactory = this.componentFactoryResolver.resolveComponentFactory(MdlBackdropOverlayComponent);
-      this.backdropComponet = this.viewContainerRef_.createComponent(cFactory).instance;
-      this.backdropComponet.clickEmitter.subscribe( () => {
+      this.backdropComponent = this.viewContainerRef_.createComponent(cFactory).instance;
+      this.backdropComponent.clickEmitter.subscribe( () => {
         this.backdropClickEmitter.emit();
       })
     }
   }
 
   public hideBackdrop() {
-    this.backdropComponet.hide();
+    this.backdropComponent.hide();
   }
 
   public showBackdropWithZIndex(zIndex: number) {
-    this.backdropComponet.showWithZIndex(zIndex);
+    this.backdropComponent.showWithZIndex(zIndex);
   }
 }

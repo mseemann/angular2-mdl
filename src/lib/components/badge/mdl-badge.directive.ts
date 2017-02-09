@@ -5,7 +5,7 @@ import {
   ElementRef,
   Renderer,
   NgModule,
-  ModuleWithProviders
+  ModuleWithProviders, SimpleChanges
 } from '@angular/core';
 
 @Directive({
@@ -24,7 +24,7 @@ export class MdlBadgeDirective implements OnChanges {
     this.el = elementRef.nativeElement;
   }
 
-  public ngOnChanges() {
+  public ngOnChanges(changes: SimpleChanges) {
     this.renderer.setElementAttribute(this.el, 'data-badge', this.mdlBadgeContent);
   }
 

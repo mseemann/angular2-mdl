@@ -38,12 +38,12 @@ import {
 })
 export class MdlSimpleDialogComponent {
 
-  @ViewChildren('button') private buttons: QueryList<ElementRef>;
+  @ViewChildren('button') public buttons: QueryList<ElementRef>;
 
   // why do i need forwardRef at this point, the demo LoginDialog dosn't need this!?!?
   constructor(
-    @Inject(forwardRef( () => MDL_CONFIGUARTION)) private dialogConfiguration: IMdlSimpleDialogConfiguration,
-    @Inject(forwardRef( () => MdlDialogReference)) private dialog: MdlDialogReference) {
+    @Inject(forwardRef( () => MDL_CONFIGUARTION)) public dialogConfiguration: IMdlSimpleDialogConfiguration,
+    @Inject(forwardRef( () => MdlDialogReference)) public dialog: MdlDialogReference) {
 
     dialog.onVisible().subscribe( () => {
       if(this.buttons){
