@@ -7,7 +7,7 @@ import {
   Optional,
   ViewEncapsulation,
   NgModule,
-  ModuleWithProviders
+  ModuleWithProviders, SimpleChanges
 } from '@angular/core';
 import {
   MdlError,
@@ -57,7 +57,7 @@ export class MdlListItemComponent implements OnInit, OnChanges {
     }
   }
 
-  public ngOnChanges() {
+  public ngOnChanges(changes: SimpleChanges) {
 
     if (this.lines && this.lines > 3) {
       throw new MdlUnsupportedCountOfListItemLinesError(this.lines);

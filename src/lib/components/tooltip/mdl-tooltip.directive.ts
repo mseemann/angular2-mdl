@@ -51,12 +51,12 @@ export class AbstractMdlTooltipDirective implements OnInit {
     this.tooltipComponent.position = this.position;
   }
 
-  protected onMouseEnter(event) {
+  public onMouseEnter(event) {
     this.tooltipComponent.mouseEnter(event);
   }
 
   @HostListener('window:touchstart')
-  protected onMouseLeave() {
+  public onMouseLeave() {
     this.tooltipComponent.mouseLeave();
   }
 }

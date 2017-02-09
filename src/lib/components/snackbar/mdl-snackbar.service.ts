@@ -29,7 +29,7 @@ const ANIMATION_TIME = 250;
 export class MdlSnackbarComponent {
   public message: string;
   public actionText: string;
-  private showIt = false;
+  public showIt = false;
   public onAction: () => void;
 
   constructor(){}

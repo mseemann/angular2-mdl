@@ -100,16 +100,16 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
-  protected onFocus() {
+  public onFocus() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, true);
   }
 
-  protected onBlur() {
+  public onBlur() {
     this.renderer.setElementClass(this.el, IS_FOCUSED, false);
     this.onTouchedCallback();
   }
 
-  protected onClick() {
+  public onClick() {
     if (this.disabled) {
       return;
     }
