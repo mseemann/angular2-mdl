@@ -115,3 +115,18 @@
  </mdl-tabs>
   ]]>
 </pre>
+
+
+<h4>Dynamic Test</h4>
+
+<mdl-tabs mdl-ripple mdl-tab-active-index="0">
+  <mdl-tab-panel *ngFor="let leg of myArray; let index = index;">
+    <mdl-tab-panel-title>
+      Panel Title {{index}}
+    </mdl-tab-panel-title>
+    <mdl-tab-panel-content>
+      Panel Content {{index}}
+    </mdl-tab-panel-content>
+  </mdl-tab-panel>
+</mdl-tabs>
+

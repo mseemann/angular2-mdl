@@ -8,7 +8,7 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { toBoolean } from '../common/boolean-property';
 import { toNumber } from '../common/number.property';
@@ -59,7 +59,13 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
   @ContentChildren(MdlTabPanelComponent) protected tabs: QueryList<MdlTabPanelComponent>;
 
   public ngAfterContentInit() {
+    // the initial tabs
     this.updateSelectedTabIndex();
+    // listen to tab changes - this would not be necessary if this would be fixed:
+    // https://github.com/angular/angular/issues/12818
+    this.tabs.changes.subscribe( () => {
+      this.updateSelectedTabIndex();
+    });
   }
 
   public ngOnChanges(changes: SimpleChanges): any {
@@ -70,10 +76,13 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
 
   private updateSelectedTabIndex() {
     if ( this.tabs ) {
-      this.tabs.forEach( tab => tab.isActive = false );
-      if (this.tabs.toArray().length > 0 && this.selectedIndex < this.tabs.toArray().length) {
-        this.tabs.toArray()[this.selectedIndex].isActive = true;
-      }
+      // https://github.com/angular/angular/issues/6005
+      // this would not be necessare if this would be fixed: https://github.com/angular/angular/issues/12818
+      setTimeout( () => {
+        this.tabs.forEach( (tab, idx) => {
+          tab.isActive = this.selectedIndex === idx;
+        });
+      }, 1);
     }
   }
 

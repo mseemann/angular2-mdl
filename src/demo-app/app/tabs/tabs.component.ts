@@ -1,6 +1,7 @@
 import {
   Component,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnInit
 } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
@@ -36,10 +37,11 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class TabsDemo extends AbstractDemoComponent {
+export class TabsDemo extends AbstractDemoComponent implements OnInit {
 
   public activeIndex = 0;
   public disableTargaryens = true;
+  public myArray: string[] = null;
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
@@ -47,5 +49,12 @@ export class TabsDemo extends AbstractDemoComponent {
 
   public tabChanged({index}) {
     this.activeIndex = index;
+  }
+
+  ngOnInit() {
+    // Simulates a later change of tabs
+    setTimeout(() => {
+      this.myArray = ['a', 'b', 'c'];
+    }, 1000);
   }
 }
