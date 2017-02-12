@@ -78,27 +78,25 @@ describe('Service: MdlSnackbar', () => {
 
   }));
 
-  it('should show a toastmessage and hide the message automatically', async(() => {
+  it('should show a toastmessage and hide the message automatically', ( done ) => {
 
     let fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-      let p = mdlSnackbarServcie.showToast('toast message', 1000);
+    let p = mdlSnackbarServcie.showToast('toast message', 100);
 
-      fixture.detectChanges();
+    fixture.detectChanges();
 
-      p.subscribe( (mdlSnackbarComponent) => {
+    p.subscribe( (mdlSnackbarComponent) => {
 
-        expect(mdlSnackbarComponent.isActive()).toBe(true);
+      expect(mdlSnackbarComponent.isActive()).toBe(true);
 
-        setTimeout(() => {
-          expect(mdlSnackbarComponent.isActive()).toBe(false);
-          // now the test completes because of async
-        }, 1500); // > 1000 + 250
+      mdlSnackbarComponent.hide().subscribe( ( ) => {
+        done();
       });
+    });
 
-
-  }));
+  });
 
   it('should throw if no viewContainerRef is provided', async(() => {
 
