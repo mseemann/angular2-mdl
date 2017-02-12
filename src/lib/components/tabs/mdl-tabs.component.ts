@@ -56,7 +56,7 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
 
   @Output('mdl-tab-active-changed') public selectedTabEmitter = new EventEmitter();
 
-  @ContentChildren(MdlTabPanelComponent) protected tabs: QueryList<MdlTabPanelComponent>;
+  @ContentChildren(MdlTabPanelComponent) public tabs: QueryList<MdlTabPanelComponent>;
 
   public ngAfterContentInit() {
     // the initial tabs

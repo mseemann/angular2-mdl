@@ -6,7 +6,7 @@ import {
   Renderer,
   NgModule,
   ModuleWithProviders,
-  ViewEncapsulation
+  ViewEncapsulation, SimpleChanges
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 import { toBoolean } from '../common/boolean-property';
@@ -73,7 +73,7 @@ export class MdlButtonComponent implements OnChanges {
     this.element = elementRef.nativeElement;
   }
 
-  public ngOnChanges() {
+  public ngOnChanges(changes: SimpleChanges) {
 
     if (this.mdlButtonType && MDL_BUTTON_TYPES.indexOf(this.mdlButtonType) === -1) {
       throw new MdlUnsupportedButtonTypeError(this.mdlButtonType);

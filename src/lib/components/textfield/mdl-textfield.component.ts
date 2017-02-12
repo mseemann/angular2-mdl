@@ -14,7 +14,7 @@ import {
   EventEmitter,
   Output,
   ViewEncapsulation,
-  ModuleWithProviders
+  ModuleWithProviders, SimpleChanges
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -149,7 +149,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Output('keyup')
   public keyupEmitter: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
 
-  @ViewChild('input') private inputEl: ElementRef;
+  @ViewChild('input') public inputEl: ElementRef;
 
   get value(): any { return this.value_; };
   @Input() set value(v: any) {
@@ -244,7 +244,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.disabled = isDisabled;
   }
 
-  public ngOnChanges() {
+  public ngOnChanges(changes: SimpleChanges) {
     this.checkDisabled();
   }
 

@@ -7,7 +7,7 @@ import {
   Renderer,
   OnInit,
   NgModule,
-  ModuleWithProviders
+  ModuleWithProviders, SimpleChanges
 } from '@angular/core';
 import { MaterialRipple } from './ripple.vendor';
 
@@ -30,7 +30,7 @@ export class MdlRippleDirective implements OnChanges {
   }
 
 
-  public ngOnChanges() {
+  public ngOnChanges(changes: SimpleChanges) {
 
       // remove any existing ripple container
       if (this.rippleContainer) {
@@ -71,7 +71,7 @@ export class MdlButtonRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges() {super.ngOnChanges();}
+  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
 }
 
 @Directive({
@@ -86,7 +86,7 @@ export class MdlCheckboxRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges() {super.ngOnChanges();}
+  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
 }
 
 @Directive({
@@ -101,7 +101,7 @@ export class MdlRadioRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges() {super.ngOnChanges();}
+  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
 }
 
 @Directive({
@@ -116,7 +116,7 @@ export class MdlIconToggleRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges() {super.ngOnChanges();}
+  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
 
 }
 
@@ -132,7 +132,7 @@ export class MdlSwitchRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges() {super.ngOnChanges();}
+  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
 }
 
 @Directive({
@@ -147,7 +147,7 @@ export class MdlMenuItemRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges() {super.ngOnChanges();}
+  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
 }
 
 @Directive({
@@ -162,7 +162,7 @@ export class MdlAnchorRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges() {super.ngOnChanges();}
+  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
 }
 
 @Directive({
@@ -183,7 +183,7 @@ export class MdlListItemRippleDirective extends MdlRippleDirective implements On
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges() {super.ngOnChanges();}
+  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
 }
 
 const MDL_COMMON_DIRECTIVES = [

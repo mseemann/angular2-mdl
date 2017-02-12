@@ -83,16 +83,16 @@ export class MdlMenuRegisty {
 export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('mdl-menu-position') public position: string;
 
-  @ViewChild('container') private containerChild: ElementRef;
+  @ViewChild('container') public containerChild: ElementRef;
   private container: HTMLElement;
 
-  @ViewChild('menuElement') private menuElementChild: ElementRef;
+  @ViewChild('menuElement') public menuElementChild: ElementRef;
   private menuElement: HTMLElement;
 
-  @ViewChild('outline') private outlineChild: ElementRef;
+  @ViewChild('outline') public outlineChild: ElementRef;
   private outline: HTMLElement;
 
-  @ContentChildren(MdlMenuItemComponent) private menuItemComponents: QueryList<MdlMenuItemComponent>;
+  @ContentChildren(MdlMenuItemComponent) public menuItemComponents: QueryList<MdlMenuItemComponent>;
 
   public cssPosition = 'mdl-menu--bottom-left';
 

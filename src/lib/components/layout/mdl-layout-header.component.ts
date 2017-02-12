@@ -70,11 +70,11 @@ export class MdlLayoutHeaderComponent {
     this.el = elementRef.nativeElement;
   }
 
-  protected onTransitionEnd() {
+  public onTransitionEnd() {
     this.isAnimating = false;
   }
 
-  protected onClick() {
+  public onClick() {
     if (this.isCompact) {
       this.isCompact = false;
       this.isAnimating = true;

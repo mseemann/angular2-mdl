@@ -94,7 +94,7 @@ export class MdlDialogService {
   /**
    * Shows a dialog that is just an alert - e.g. with one button.
    * @param alertMessage The message that should be displayed.
-   * @param okTex The text that the button should have
+   * @param okText The text that the button should have
    * @param title The optional title of the dialog
    * @returns An Observable that is called if the user hits the Ok button.
    */
@@ -270,7 +270,7 @@ export class MdlDialogService {
   private popDialog(dialogRef: InternalMdlDialogReference) {
     this.openDialogs.splice(this.openDialogs.indexOf(dialogRef), 1);
     this.orderDialogStack();
-    
+
     if (this.openDialogs.length == 0) { // last dialog being closed
       this.onDialogsOpenChanged.emit(false);
     }
