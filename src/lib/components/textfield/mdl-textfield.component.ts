@@ -14,7 +14,8 @@ import {
   EventEmitter,
   Output,
   ViewEncapsulation,
-  ModuleWithProviders, SimpleChanges
+  ModuleWithProviders,
+  SimpleChanges
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,

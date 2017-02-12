@@ -5,7 +5,8 @@ import {
   ElementRef,
   Renderer,
   NgModule,
-  ModuleWithProviders, SimpleChanges
+  ModuleWithProviders,
+  SimpleChanges
 } from '@angular/core';
 
 @Directive({

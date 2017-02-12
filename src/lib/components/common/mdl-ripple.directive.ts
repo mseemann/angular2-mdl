@@ -7,7 +7,8 @@ import {
   Renderer,
   OnInit,
   NgModule,
-  ModuleWithProviders, SimpleChanges
+  ModuleWithProviders,
+  SimpleChanges
 } from '@angular/core';
 import { MaterialRipple } from './ripple.vendor';
 

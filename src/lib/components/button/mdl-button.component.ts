@@ -6,7 +6,8 @@ import {
   Renderer,
   NgModule,
   ModuleWithProviders,
-  ViewEncapsulation, SimpleChanges
+  ViewEncapsulation,
+  SimpleChanges
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 import { toBoolean } from '../common/boolean-property';

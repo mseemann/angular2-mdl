@@ -7,7 +7,8 @@ import {
   Optional,
   ViewEncapsulation,
   NgModule,
-  ModuleWithProviders, SimpleChanges
+  ModuleWithProviders,
+  SimpleChanges
 } from '@angular/core';
 import {
   MdlError,
