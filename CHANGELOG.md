@@ -1,9 +1,9 @@
 <a name="2.13.1"></a>
-# 2.13.1 ()
+# 2.13.1 (2017-02-12)
 
 ### Bug Fixes
 * [512](https://github.com/mseemann/angular2-mdl/issues/512) (Tabs cannot be rendered dynamically with an *ngFor loop)
-
+* [516](https://github.com/mseemann/angular2-mdl/issues/516) (Building with AoT throws errors) by [@jlee1201](https://github.com/jlee1201
 
 
 <a name="2.13.0"></a>
