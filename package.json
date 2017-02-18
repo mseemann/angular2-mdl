@@ -27,7 +27,7 @@
     "test:watch": "karma start config/karma.conf.js --watch"
   },
   "dependencies": {
-    "@angular/common": "2.4.7",
+    "@angular/common": "2.4.8",
     "@angular/core": "2.4.7",
     "@angular/forms": "2.4.7"
   },
