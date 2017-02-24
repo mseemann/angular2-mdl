@@ -19,20 +19,20 @@ export interface IMdlTableModelItem {
 
 export interface IMdlTableModel {
 
-  columns: [IMdlTableColumn];
-  data: Array<IMdlTableModelItem>;
+  columns: IMdlTableColumn[];
+  data: IMdlTableModelItem[];
 }
 
 export class MdlDefaultTableModel implements IMdlTableModel {
 
-  public columns: [IMdlTableColumn];
-  public data: Array<IMdlTableModelItem> = new Array<IMdlTableModelItem>();
+  public columns: IMdlTableColumn[];
+  public data: IMdlTableModelItem[] = [];
 
-  constructor(columns: [IMdlTableColumn]) {
+  constructor(columns: IMdlTableColumn[]) {
     this.columns = columns;
   }
 
-  public addAll(data: [IMdlTableModelItem]) {
+  public addAll(data: IMdlTableModelItem[]) {
     this.data.push(...data);
   }
 
@@ -98,7 +98,7 @@ export class MdlTableComponent {
 export class MdlSelectableTableComponent extends MdlTableComponent {
 
   @Input('table-model') public model: IMdlTableModel;
-  @Input('table-model-selected') public selected: Array<IMdlTableModelItem>;
+  @Input('table-model-selected') public selected: IMdlTableModelItem[];
   @Output('table-model-selectionChanged') public selectionChange = new EventEmitter();
 
   public selectable = true;

@@ -1,3 +1,10 @@
+<a name="2.13.2"></a>
+# 2.13.2 (2017-02-24)
+
+### Bug Fixes
+* [595](https://github.com/mseemann/angular2-mdl/issues/595) (Incorrect typings of mdl table)
+
+
 <a name="2.13.1"></a>
 # 2.13.1 (2017-02-12)
 
