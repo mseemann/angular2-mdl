@@ -11,6 +11,7 @@ import {
   ComponentRef,
   NgZone
 } from '@angular/core';
+import { AnimationPlayer } from '@angular/animations';
 
 import {
   MIN_DIALOG_Z_INDEX,
@@ -19,31 +20,13 @@ import {
 import { IMdlDialogConfiguration, IOpenCloseRect } from './mdl-dialog-configuration';
 import { MdlButtonComponent } from '../button/mdl-button.component';
 import { InternalMdlDialogReference } from './internal-dialog-reference';
+import { AnimationDriver } from '@angular/platform-browser/animations';
 
 const enterTransitionDuration = 300;
 const leaveTransitionDuration = 250;
 
 const enterTransitionEasingCurve = 'cubic-bezier(0.0, 0.0, 0.2, 1)';
 const leaveTransitionEasingCurve = 'cubic-bezier(0.0, 0.0, 0.2, 1)';
-
-// helper defintions - these classes are private in angular
-// but render.animate is public and uses theese defintions
-
-declare abstract class AnimationPlayer {
-  abstract onDone(fn: () => void): void;
-  abstract onStart(fn: () => void): void;
-  abstract init(): void;
-  abstract hasStarted(): boolean;
-  abstract play(): void;
-  abstract pause(): void;
-  abstract restart(): void;
-  abstract finish(): void;
-  abstract destroy(): void;
-  abstract reset(): void;
-  abstract setPosition(p: any): void;
-  abstract getPosition(): number;
-  parentPlayer: AnimationPlayer;
-}
 
 // @experimental
 @Component({
@@ -113,6 +96,7 @@ export class MdlDialogHostComponent implements OnInit {
   constructor(
     private ngZone: NgZone,
     private renderer: Renderer,
+    private animDriver: AnimationDriver,
     private elementRef: ElementRef,
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private config: IMdlDialogConfiguration,
     private internalDialogRef: InternalMdlDialogReference){
@@ -173,11 +157,12 @@ export class MdlDialogHostComponent implements OnInit {
         }
       }
 
-      let animation: AnimationPlayer = this.renderer.animate(
-        this.elementRef.nativeElement, null,
+
+      let animation: AnimationPlayer = this.animDriver.animate(
+        this.elementRef.nativeElement,
         [
-          {offset:0, styles: { styles: [this.showAnimationStartStyle]}},
-          {offset:1, styles: { styles: [this.showStyle]}}
+          this.showAnimationStartStyle,
+          this.showStyle
         ],
         this.config.enterTransitionDuration || enterTransitionDuration,
         0,
@@ -199,11 +184,11 @@ export class MdlDialogHostComponent implements OnInit {
   public hide(selfComponentRef: ComponentRef<MdlDialogHostComponent>){
     if (this.isAnimateEnabled()){
 
-      let animation: AnimationPlayer = this.renderer.animate(
-        this.elementRef.nativeElement, null,
+      let animation: AnimationPlayer = this.animDriver.animate(
+        this.elementRef.nativeElement,
         [
-          {offset:0, styles: { styles: [this.showStyle]}},
-          {offset:1, styles: { styles: [this.hideAnimationEndStyle]}}
+          this.showStyle,
+          this.hideAnimationEndStyle
         ],
         this.config.leaveTransitionDuration || leaveTransitionDuration,
         0,
