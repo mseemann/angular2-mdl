@@ -52,7 +52,7 @@
     "coveralls": "2.11.16",
     "cross-env": "3.1.4",
     "css-loader": "0.26.2",
-    "extract-text-webpack-plugin": "2.0.0",
+    "extract-text-webpack-plugin": "2.0.0-beta.4",
     "file-loader": "0.10.0",
     "handlebars-loader": "1.4.0",
     "html-loader": "0.4.5",
