@@ -45,7 +45,7 @@
     "@types/node": "7.0.5",
     "angular2-template-loader": "0.6.2",
     "autoprefixer": "6.7.5",
-    "awesome-typescript-loader": "3.0.7",
+    "awesome-typescript-loader": "3.0.8",
     "codeclimate-test-reporter": "0.4.1",
     "codelyzer": "3.0.0-beta.0",
     "copy-webpack-plugin": "4.0.1",
