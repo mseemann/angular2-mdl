@@ -36,6 +36,12 @@ module.exports = {
 			commonjs2: '@angular/platform-browser',
 			amd: '@angular/platform-browser'
 		},
+		'@angular/animations': {
+			root: ['ng', 'animations'],
+			commonjs: '@angular/animations',
+			commonjs2: '@angular/animations',
+			amd: '@angular/animations'
+		},
 		'rxjs/Subject': {
 			root: ['rx', 'Subject'],
 			commonjs: 'rxjs/Subject',
