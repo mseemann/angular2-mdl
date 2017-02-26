@@ -431,6 +431,68 @@ describe('Component: MdlLayout', () => {
 
   });
 
+
+  it('should have a fixed header', () => {
+
+    TestBed.overrideComponent(MdlTestLayoutComponent, {
+      set: {
+        template: `
+          <mdl-layout mdl-layout-fixed-header>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        `
+      }
+    });
+    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
+    let layoutdebugElement = fixture.debugElement.query(By.css('.mdl-layout--fixed-header'));
+
+    expect(layoutdebugElement).toBeDefined();
+  });
+
+  it('should have no drawer button', () => {
+
+    TestBed.overrideComponent(MdlTestLayoutComponent, {
+      set: {
+        template: `
+          <mdl-layout mdl-layout-no-drawer-button>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        `
+      }
+    });
+    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
+    let layoutdebugElement = fixture.debugElement.query(By.css('.mdl-layout__drawer-button'));
+
+    expect(layoutdebugElement).toBeNull();
+  });
+
+
+  it('should have a seamed header', () => {
+
+    TestBed.overrideComponent(MdlTestLayoutComponent, {
+      set: {
+        template: `
+          <mdl-layout mdl-layout-header-seamed>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        `
+      }
+    });
+    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
+    let layoutdebugElement = fixture.debugElement.query(By.css('.mdl-layout__header--seamed'));
+
+    expect(layoutdebugElement).toBeDefined();
+  });
+
   describe('MdlScreenSizeService', () => {
 
     beforeEach(() => {

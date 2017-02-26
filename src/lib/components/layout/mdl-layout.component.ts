@@ -155,11 +155,6 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   get selectedIndex() { return this._selectedIndex; }
   set selectedIndex(value) { this._selectedIndex = toNumber(value); }
 
-  private _isRipple: boolean = false;
-  @Input('mdl-ripple')
-  get isRipple() { return this._isRipple; }
-  set isRipple(value) { this._isRipple = toBoolean(value); }
-
   private _isNoDrawer: boolean = false;
   @Input('mdl-layout-no-drawer-button')
   get isNoDrawer() { return this._isNoDrawer; }
