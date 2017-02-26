@@ -33,8 +33,9 @@
     "url": "git+https://github.com/mseemann/angular2-mdl.git"
   },
   "peerDependencies": {
-    "@angular/core": "^2.0.2",
-    "@angular/common": "^2.0.2",
-    "@angular/forms": "^2.0.2"
+    "@angular/core": ">=4.0.0-beta <5.0.0",
+    "@angular/common": ">=4.0.0-beta <5.0.0",
+    "@angular/forms": ">=4.0.0-beta <5.0.0",
+    "@angular/animation": ">=4.0.0-beta <5.0.0"
   }
 }
