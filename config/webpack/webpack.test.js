@@ -30,10 +30,11 @@ module.exports = {
   },
 
 	plugins: [
-		// should fix: https://github.com/angular/angular/issues/11580
+		// avoid: WARNING in ./~/@angular/core/@angular/core.es5.js
+		// 3702:272-293 Critical dependency: the request of a dependency is an expression
 		new webpack.ContextReplacementPlugin(
 			// The (\\|\/) piece accounts for path separators in *nix and Windows
-			/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+			/@angular(\\|\/)core(\\|\/)@angular/,
 			util.root('src') // location of your src
 		)
 	]
