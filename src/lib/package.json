@@ -36,6 +36,6 @@
     "@angular/core": ">=4.0.0-beta <5.0.0",
     "@angular/common": ">=4.0.0-beta <5.0.0",
     "@angular/forms": ">=4.0.0-beta <5.0.0",
-    "@angular/animation": ">=4.0.0-beta <5.0.0"
+    "@angular/animations": ">=4.0.0-beta <5.0.0"
   }
 }
