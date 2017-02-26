@@ -1,7 +1,11 @@
 
-Angular 2 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0).
+Angular 4 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0).
 
-This package assumes that you are building an Angular2 app with TypeScript. Angular CLI makes it even easier but isn't required.
+**If you are looking for an Angular 2 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular2 . 
+The master is under active development to be compatible with Angular 4.**
+
+
+This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
 
 [Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
 
@@ -20,7 +24,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 **Here is a plnkr if you'd like to play around http://plnkr.co/edit/I3dLfLUDIH2xlEJqj0da?p=preview.**
 
 
-### Status of the npm package version 2 (mdl version 1.3.0; angular 2 final)
+### Status of the npm package version 4 (mdl version 1.3.0; angular 4)
 
 - Badges
 - Buttons
@@ -45,7 +49,7 @@ This package assumes that you are building an Angular2 app with TypeScript. Angu
 ### Installation
 
 ```bash
-npm install angular2-mdl --save
+npm install @angular-mdl/core --save
 ```
 
 
@@ -59,12 +63,12 @@ You need to configure your `system-config.js` file:
 
 ```JavaScript
 const map: any = {
-  'angular2-mdl': 'vendor/angular2-mdl'
+  '@angular-mdl/core': 'vendor/@angular-mdl/core'
 };
 
 /** User packages configuration. */
 const packages: any = {
-  'angular2-mdl': { main: 'bundle/angular2-mdl.js'}
+  '@angular-mdl/core': { main: 'bundle/angular-mdl.js'}
 };
 ```
 
@@ -82,7 +86,7 @@ This package includes the scss files from material-design-lite.
 With these files you are able to change the colors and other variables in your own scss files:
 
 ```scss
-@import "~angular2-mdl/scss/color-definitions";
+@import "~@angular-mdl/core/scss/color-definitions";
 
 $color-primary: $palette-blue-500;
 $color-primary-dark: $palette-blue-700;
@@ -90,15 +94,15 @@ $color-accent: $palette-amber-A200;
 $color-primary-contrast: $color-dark-contrast;
 $color-accent-contrast: $color-dark-contrast;
 
-@import '~angular2-mdl/scss/material-design-lite';
+@import '~@angular-mdl/core/scss/material-design-lite';
 ```
 
 To make this working you need to find out the way how you could tell your build system where the scss is located.
-For example with webpack you can use the special `~angular2-mdl` syntax or you can configure the includePaths:
+For example with webpack you can use the special `~@angular-mdl/core` syntax or you can configure the includePaths:
 
 ```JavaScript
 sassLoader: {
-	includePaths: [util.root('node_modules', 'angular2-mdl', 'scss')]
+	includePaths: [util.root('node_modules', '@angular-mdl/core', 'scss')]
 }
 ```
 
@@ -107,15 +111,6 @@ sassLoader: {
 Every contribution is welcome. Please checkout the [CONRIBUTION.md](https://github.com/mseemann/angular2-mdl/blob/master/CONTRIBUTION.md) file.
 
 # Remarks
-This package should work with every version of angular 2. But you should 
-know that this package is compiled with ngc and ngc generates metadata for aot. These metdata are versioned. 
-The following table lists these versions and the correspondig angular version:
-
-| angular2-mdl version | metadata version | angular version
-| --- | --- | --- | 
-| 2.7.0 | 1 | &lt;2.3.0
-| 2.8.0 | 2 | 2.3.0
-| &gt;=2.9.0 | 3 | &gt;=2.3.1
 
 If you need a working example for the current angular-cli with the current angular2-mdl and angular versions please have a look at:
 [https://github.com/mseemann/a2-mdl-webpack](https://github.com/mseemann/a2-mdl-webpack).
