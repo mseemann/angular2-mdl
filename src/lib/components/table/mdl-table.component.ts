@@ -60,8 +60,8 @@ const template = `
                       (ngModelChange)="selectionChanged(data)"></mdl-checkbox>
               </td>
               <td *ngFor="let column of model.columns"
-                  [ngClass]="{'mdl-data-table__cell--non-numeric': !column.numeric}">
-                 {{data[column.key]}}
+                  [ngClass]="{'mdl-data-table__cell--non-numeric': !column.numeric}"
+                  [innerHTML]="data[column.key]">
               </td>
            </tr>
            </tbody>
