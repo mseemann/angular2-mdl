@@ -36,11 +36,23 @@ module.exports = {
 			commonjs2: '@angular/platform-browser',
 			amd: '@angular/platform-browser'
 		},
+		'@angular/platform-browser-dynamic': {
+			root: ['ng', 'platformBrowserDynamic'],
+			commonjs: '@angular/platform-browser-dynamic',
+			commonjs2: '@angular/platform-browser-dynamic',
+			amd: '@angular/platform-browser-dynamic'
+		},
 		'@angular/animations': {
 			root: ['ng', 'animations'],
 			commonjs: '@angular/animations',
 			commonjs2: '@angular/animations',
 			amd: '@angular/animations'
+		},
+		'@angular/platform-browser/animations': {
+			root: ['ng', 'platformBrowserAnimations'],
+			commonjs: '@angular/platform-browser/animations',
+			commonjs2: '@angular/platform-browser/animations',
+			amd: '@angular/platform-browser/animations'
 		},
 		'rxjs/Subject': {
 			root: ['rx', 'Subject'],
