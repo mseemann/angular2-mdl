@@ -1,5 +1,9 @@
+<a name="3.0.0-beta.4"></a>
+# 3.0.0-beta.4 (2017-03-02)
+* build with angular 4.0.0-rc.2
+
 <a name="3.0.0-beta.3"></a>
-# 3.0.0-beta.3 (2017-02-64)
+# 3.0.0-beta.3 (2017-02-24)
 
 ###Breaking Changes
 * The npm package and the name have changed. It is now: @angular-mdl/core
