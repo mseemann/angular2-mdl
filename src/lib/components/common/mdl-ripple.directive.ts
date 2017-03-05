@@ -166,27 +166,6 @@ export class MdlAnchorRippleDirective extends MdlRippleDirective {
   public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
 }
 
-@Directive({
-  selector: 'mdl-list-item[mdl-ripple]',
-})
-export class MdlListItemRippleDirective extends MdlRippleDirective implements OnInit {
-
-  @Input('mdl-ripple') public rippleActive: boolean | string = true;
-
-  constructor(elementRef: ElementRef, renderer: Renderer) {
-    super(elementRef, renderer, ['mdl-button__ripple-container']);
-  }
-
-  public ngOnInit() {
-    // mdl-list-items has no position style - but position relative
-    // is needed to restrict the ripplecontainer to the bounds of the item
-    this.renderer.setElementStyle(this.el, 'position', 'relative');
-  }
-
-  // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
-}
-
 const MDL_COMMON_DIRECTIVES = [
   MdlCheckboxRippleDirective,
   MdlButtonRippleDirective,
@@ -194,8 +173,7 @@ const MDL_COMMON_DIRECTIVES = [
   MdlIconToggleRippleDirective,
   MdlSwitchRippleDirective,
   MdlMenuItemRippleDirective,
-  MdlAnchorRippleDirective,
-  MdlListItemRippleDirective
+  MdlAnchorRippleDirective
 ];
 
 @NgModule({

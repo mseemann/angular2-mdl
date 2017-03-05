@@ -3,7 +3,9 @@
 
 ### Features
 * [631](https://github.com/mseemann/angular2-mdl/pull/631) (changed table columns to allow for HTML content by [@joevanwanzeele](https://github.com/joevanwanzeele))
-
+###Breaking Changes
+* the public methods show and hide on tooltips have be removed
+* the mld-ripple directive no longer works on mdl-list-items
 
 <a name="3.0.0-beta.4"></a>
 # 3.0.0-beta.4 (2017-03-02)

@@ -60,7 +60,7 @@ export class MdlSimpleTooltipComponent {
     }
   }
 
-  public show(element: HTMLElement){
+  private show(element: HTMLElement){
     let props = element.getBoundingClientRect();
     let offsetWidth = this.element.offsetWidth;
     let offsetHeight = this.element.offsetHeight;
@@ -74,7 +74,7 @@ export class MdlSimpleTooltipComponent {
     this.setActive(true);
   }
 
-  public hide() {
+  private hide() {
     this.mouseLeave();
   }
 

@@ -137,35 +137,6 @@ describe('Directive: MdlRipple', () => {
 
   });
 
-  it('should add the ripple to mdl-list-item tag for tabs', () => {
-
-    let fixture = getFiytureForTemplate(`
-         <mdl-list>
-            <mdl-list-item mdl-ripple></mdl-list-item>
-          </mdl-list>
-        `);
-
-    let span1 = getSpan1IfAny(fixture, 'mdl-list-item');
-
-    expect(span1.classList.contains('mdl-ripple')).toBe(true);
-
-  });
-
-  it('should make the mdl-list-items css style position to relative', () => {
-
-    let fixture = getFiytureForTemplate(`
-         <mdl-list>
-            <mdl-list-item [mdl-ripple]="true"></mdl-list-item>
-          </mdl-list>
-        `);
-
-    let mdlListItemElement: HTMLElement = fixture.debugElement
-      .query(By.directive(MdlListItemComponent)).nativeElement;
-
-    expect(mdlListItemElement.style.position).toBe('relative');
-
-  });
-
   it('should add the ripple tag for a', () => {
 
     let fixture = getFiytureForTemplate(`

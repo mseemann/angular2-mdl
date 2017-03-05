@@ -175,31 +175,6 @@ describe('Component: MdlTooltip', () => {
 
   });
 
-  it('should be possible to show and hide the tooltip programmatically', () => {
-
-    TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
-      template: `
-           <div [mdl-tooltip]="t"></div>
-          <mdl-tooltip #t="mdlTooltip">x</mdl-tooltip>
-        `}
-    });
-    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
-    fixture.detectChanges();
-
-    let tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
-
-    let tooltipDebugEl = fixture.debugElement.query(By.directive(MdlTooltipComponent));
-    let tooltipEl: HTMLElement = tooltipDebugEl.nativeElement;
-
-    tooltipDebugEl.componentInstance.show(tooltipTriggerElement);
-
-    expect(tooltipEl.classList.contains('is-active')).toBe(true);
-
-    tooltipDebugEl.componentInstance.hide();
-
-    expect(tooltipEl.classList.contains('is-active')).toBe(false);
-  });
-
   it('should add the css class mdl-tooltip--{position} if the position is set to {position}', () => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
