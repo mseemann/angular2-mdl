@@ -1,3 +1,10 @@
+<a name="3.0.0-rc.0"></a>
+# 3.0.0-rc.0 (n.n.)
+
+### Features
+* [631](https://github.com/mseemann/angular2-mdl/pull/631) (changed table columns to allow for HTML content by [@joevanwanzeele](https://github.com/joevanwanzeele))
+
+
 <a name="3.0.0-beta.4"></a>
 # 3.0.0-beta.4 (2017-03-02)
 * build with angular 4.0.0-rc.2
