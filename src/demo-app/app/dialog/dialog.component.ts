@@ -47,7 +47,7 @@ export class DialogDemo extends AbstractDemoComponent {
 
   public showConfirmMessage() {
     let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
-    // if you need booth answers
+    // if you need both answers
     result.subscribe( () => {
         console.log('confirmed');
       },
@@ -58,12 +58,12 @@ export class DialogDemo extends AbstractDemoComponent {
     // if you only need the confirm answer
     result.onErrorResumeNext().subscribe( () => {
       console.log('confirmed 2');
-    })
+    });
   }
 
   public showConfirmMessageWithTitle() {
     let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes', 'Excuse me');
-    // if you need booth answers
+    // if you need both answers
     result.subscribe( () => {
         console.log('confirmed');
       },
@@ -74,7 +74,7 @@ export class DialogDemo extends AbstractDemoComponent {
     // if you only need the confirm answer
     result.onErrorResumeNext().subscribe( () => {
       console.log('confirmed 2');
-    })
+    });
   }
 
   public showDialogFullWidthAction($event: MouseEvent) {
