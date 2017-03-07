@@ -9,9 +9,8 @@ import {
   ElementRef,
   OnInit,
   ComponentRef,
-  NgZone
+  NgZone, RendererV2
 } from '@angular/core';
-import { AnimationPlayer } from '@angular/animations';
 
 import {
   MIN_DIALOG_Z_INDEX,
@@ -20,7 +19,7 @@ import {
 import { IMdlDialogConfiguration, IOpenCloseRect } from './mdl-dialog-configuration';
 import { MdlButtonComponent } from '../button/mdl-button.component';
 import { InternalMdlDialogReference } from './internal-dialog-reference';
-import { AnimationDriver } from '@angular/platform-browser/animations';
+import { Animations } from '../common/animations';
 
 const enterTransitionDuration = 300;
 const leaveTransitionDuration = 250;
@@ -79,7 +78,7 @@ export class MdlDialogHostComponent implements OnInit {
     top: '38%',
     opacity: '0',
     visibility: 'visible'
-  }
+  };
 
   private showStyle: {[key: string]: string} = {
     top: '50%',
@@ -91,12 +90,12 @@ export class MdlDialogHostComponent implements OnInit {
     top: '63%',
     opacity: '0',
     visibility: 'visible'
-  }
+  };
 
   constructor(
     private ngZone: NgZone,
-    private renderer: Renderer,
-    private animDriver: AnimationDriver,
+    private renderer: RendererV2,
+    private animations: Animations,
     private elementRef: ElementRef,
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private config: IMdlDialogConfiguration,
     private internalDialogRef: InternalMdlDialogReference){
@@ -133,21 +132,21 @@ export class MdlDialogHostComponent implements OnInit {
           y: Math.round(centerFrom.cy - centerTarget.cy),
           scaleX: Math.round(100 * Math.min(0.25, openFromRect.width / targetClientRect.width)) / 100,
           scaleY: Math.round(100 * Math.min(0.25, openFromRect.height / targetClientRect.height)) / 100
-        }
+        };
 
         this.showAnimationStartStyle = {
           top: `${targetClientRect.top}px`,
           opacity: '0',
           visibility: 'visible',
           transform: `translate(${translationFrom.x}px, ${translationFrom.y}px) scale(${translationFrom.scaleX}, ${translationFrom.scaleY})`
-        }
+        };
 
         const translationTo = {
           x: Math.round(centerTo.cx - centerTarget.cx),
           y: Math.round(centerTo.cy - centerTarget.cy),
           scaleX: Math.round(100 * Math.min(0.25, closeToRect.width / targetClientRect.width)) / 100,
           scaleY: Math.round(100 * Math.min(0.25, closeToRect.height / targetClientRect.height)) / 100
-        }
+        };
 
         this.hideAnimationEndStyle  = {
           top: `${targetClientRect.top}px`,
@@ -158,14 +157,13 @@ export class MdlDialogHostComponent implements OnInit {
       }
 
 
-      let animation: AnimationPlayer = this.animDriver.animate(
+      let animation: any = this.animations.animate(
         this.elementRef.nativeElement,
         [
           this.showAnimationStartStyle,
           this.showStyle
         ],
         this.config.enterTransitionDuration || enterTransitionDuration,
-        0,
         this.config.enterTransitionEasingCurve || enterTransitionEasingCurve);
 
       animation.onDone( () => {
@@ -184,14 +182,13 @@ export class MdlDialogHostComponent implements OnInit {
   public hide(selfComponentRef: ComponentRef<MdlDialogHostComponent>){
     if (this.isAnimateEnabled()){
 
-      let animation: AnimationPlayer = this.animDriver.animate(
+      let animation: any = this.animations.animate(
         this.elementRef.nativeElement,
         [
           this.showStyle,
           this.hideAnimationEndStyle
         ],
         this.config.leaveTransitionDuration || leaveTransitionDuration,
-        0,
         this.config.leaveTransitionEasingCurve || leaveTransitionEasingCurve);
 
       animation.onDone( () => {
@@ -215,14 +212,14 @@ export class MdlDialogHostComponent implements OnInit {
   private applyStyle(styles: {[key: string]: string}) {
     if (styles) {
       for (let style in styles){
-        this.renderer.setElementStyle(this.elementRef.nativeElement, style, styles[style]);
+        this.renderer.setStyle(this.elementRef.nativeElement, style, styles[style], false, false);
       }
     }
   }
 
   private applyClasses(classes: string){
     classes.split(' ').filter( (cssClass) => { return !!cssClass }).forEach( ( cssClass )=> {
-      this.renderer.setElementClass(this.elementRef.nativeElement, cssClass, true);
+      this.renderer.addClass(this.elementRef.nativeElement, cssClass);
     });
   }
 

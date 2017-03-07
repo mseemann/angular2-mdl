@@ -8,12 +8,13 @@ import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import { MdlAlertComponent } from './mdl-alert.component';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
 import { MdlButtonModule } from '../button/mdl-button.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export * from './mdl-dialog.component';
 export * from './mdl-dialog.service';
 export * from './mdl-dialog-configuration';
 export * from './mdl-alert.component';
+
+
 
 const PUBLIC_COMPONENTS = [
   MdlDialogComponent,
@@ -30,8 +31,7 @@ const PRIVATE_COMPONENTS = [
     CommonModule,
     MdlCommonsModule,
     MdlButtonModule,
-    MdlDialogOutletModule.forRoot(),
-    BrowserAnimationsModule
+    MdlDialogOutletModule.forRoot()
   ],
   exports: [
     ...PUBLIC_COMPONENTS
