@@ -1,6 +1,9 @@
 <a name="3.0.0-rc.0"></a>
 # 3.0.0-rc.0 (n.n.)
 
+* Renderer replaced by RendererV2
+
+
 <a name="3.0.0-beta.5"></a>
 # 3.0.0-beta.5 (2017.03.07)
 

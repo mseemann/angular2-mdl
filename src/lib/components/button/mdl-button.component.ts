@@ -3,7 +3,7 @@ import {
   Input,
   ElementRef,
   OnChanges,
-  Renderer,
+  RendererV2,
   NgModule,
   ModuleWithProviders,
   ViewEncapsulation,
@@ -70,7 +70,7 @@ export class MdlButtonComponent implements OnChanges {
   get disabled(): boolean { return this._disabled; }
   set disabled(value) { this._disabled = toBoolean(value); }
 
-  constructor(public elementRef: ElementRef, private renderer: Renderer) {
+  constructor(public elementRef: ElementRef, private renderer: RendererV2) {
     this.element = elementRef.nativeElement;
   }
 
@@ -94,7 +94,9 @@ export class MdlButtonComponent implements OnChanges {
   }
 
   public blurIt() {
-    this.renderer.invokeElementMethod(this.element, 'blur', []);
+    if (this.element['blur']){
+      this.element['blur']();
+    }
   }
 }
 

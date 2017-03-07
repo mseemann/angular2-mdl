@@ -2,7 +2,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  Renderer,
+  RendererV2,
   forwardRef,
   NgModule,
   ViewEncapsulation,
@@ -17,7 +17,6 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { toBoolean } from '../common/boolean-property';
-import { toNumber } from '../common/number.property';
 
 const noop = (_?: any) => {};
 const IS_FOCUSED = 'is-focused';
@@ -70,7 +69,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
 
   private el: HTMLElement;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+  constructor(private elementRef: ElementRef, private renderer: RendererV2) {
     this.el = elementRef.nativeElement;
   }
 
@@ -101,11 +100,11 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   }
 
   public onFocus() {
-    this.renderer.setElementClass(this.el, IS_FOCUSED, true);
+    this.renderer.addClass(this.el, IS_FOCUSED);
   }
 
   public onBlur() {
-    this.renderer.setElementClass(this.el, IS_FOCUSED, false);
+    this.renderer.removeClass(this.el, IS_FOCUSED);
     this.onTouchedCallback();
   }
 

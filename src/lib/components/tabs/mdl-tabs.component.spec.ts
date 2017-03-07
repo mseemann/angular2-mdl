@@ -6,6 +6,7 @@ import {
   MdlTabsComponent
 } from './index';
 import { MdlAnchorRippleDirective } from '../common/mdl-ripple.directive';
+import { MdlTabPanelComponent } from './mdl-tab-panel.component';
 
 describe('Component: MdlTabs', () => {
 
@@ -177,6 +178,33 @@ describe('Component: MdlTabs', () => {
 
     expect(rippleDirective).toBeDefined();
   });
+
+  it('should be possible to change the tab count', () => {
+
+    TestBed.overrideComponent(MdlTestComponent, { set: {
+      template: `
+          <mdl-tabs>
+            <mdl-tab-panel *ngFor="let tab of tabs">{{tab}}</mdl-tab-panel>
+          </mdl-tabs>
+        ` }
+    });
+    let fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    let testComponent = fixture.componentInstance;
+
+    let debugElements = fixture.debugElement.queryAll(By.directive(MdlTabPanelComponent));
+    expect(debugElements.length).toBe(2);
+
+    testComponent.tabs.push('3');
+
+    fixture.detectChanges();
+
+    debugElements = fixture.debugElement.queryAll(By.directive(MdlTabPanelComponent));
+    expect(debugElements.length).toBe(3);
+
+
+  })
 });
 
 
@@ -187,6 +215,8 @@ describe('Component: MdlTabs', () => {
 class MdlTestComponent {
 
   public selectedIndexOutput: number;
+
+  public tabs = ['1', '2'];
 
   public tabChanged($event) {
     this.selectedIndexOutput = $event.index;

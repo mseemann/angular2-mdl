@@ -3,7 +3,7 @@ import {
   Input,
   OnInit,
   ViewContainerRef,
-  Renderer,
+  RendererV2,
   ComponentRef,
   ComponentFactoryResolver,
   HostListener
@@ -21,7 +21,7 @@ export class AbstractMdlTooltipDirective implements OnInit {
     private vcRef: ViewContainerRef,
     private large: boolean,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private renderer: Renderer) {
+    private renderer: RendererV2) {
   }
 
 
@@ -81,7 +81,7 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
   constructor(
     vcRef: ViewContainerRef,
     componentFactoryResolver: ComponentFactoryResolver,
-    renderer: Renderer) {
+    renderer: RendererV2) {
     super(vcRef, false, componentFactoryResolver, renderer);
   }
 
@@ -100,7 +100,7 @@ export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
   constructor(
     vcRef: ViewContainerRef,
     componentFactoryResolver: ComponentFactoryResolver,
-    renderer: Renderer) {
+    renderer: RendererV2) {
     super(vcRef, true, componentFactoryResolver, renderer);
   }
 

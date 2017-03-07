@@ -7,7 +7,7 @@ import {
   ElementRef,
   ContentChildren,
   QueryList,
-  Renderer,
+  RendererV2,
   ViewEncapsulation, Injectable, OnDestroy
 } from '@angular/core';
 import { MdlButtonComponent } from '../button/mdl-button.component';
@@ -98,7 +98,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private isVisible   = false;
 
-  constructor(private renderer: Renderer, private menuRegistry: MdlMenuRegisty) {
+  constructor(private renderer: RendererV2, private menuRegistry: MdlMenuRegisty) {
     this.menuRegistry.add(this);
   }
 
@@ -116,9 +116,10 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
       if (this.isVisible) {
         this.hide();
       }
+      return true;
     };
-    this.renderer.listenGlobal('window', 'click', callback);
-    this.renderer.listenGlobal('window', 'touchstart', callback);
+    this.renderer.listen('window', 'click', callback);
+    this.renderer.listen('window', 'touchstart', callback);
   }
 
 
@@ -153,9 +154,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // Turn on animation, and apply the final clip. Also make invisible.
     // This triggers the transitions.
-    this.renderer.setElementClass(this.menuElement, 'is-animating', true);
+    this.renderer.addClass(this.menuElement, 'is-animating');
     this.applyClip(height, width);
-    this.renderer.setElementClass(this.container, 'is-visible', false);
+    this.renderer.removeClass(this.container, 'is-visible');
 
     // Clean up after the animation is complete.
     this.addAnimationEndListener();
@@ -217,9 +218,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     // Apply the initial clip to the text before we start animating.
     this.applyClip(height, width);
 
-    this.renderer.setElementClass(this.container, 'is-visible', true);
+    this.renderer.addClass(this.container, 'is-visible');
     this.menuElement.style.clip = 'rect(0 ' + width + 'px ' + height + 'px 0)';
-    this.renderer.setElementClass(this.menuElement, 'is-animating', true);
+    this.renderer.addClass(this.menuElement, 'is-animating');
 
     this.addAnimationEndListener();
 
@@ -229,7 +230,8 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private addAnimationEndListener() {
     this.renderer.listen(this.menuElement, 'transitionend', () => {
-      this.renderer.setElementClass(this.menuElement, 'is-animating', false);
+      this.renderer.removeClass(this.menuElement, 'is-animating');
+      return true;
     });
   }
 

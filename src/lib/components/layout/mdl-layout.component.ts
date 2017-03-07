@@ -4,7 +4,7 @@ import {
   AfterContentInit,
   OnDestroy,
   Input,
-  Renderer,
+  RendererV2,
   ViewEncapsulation,
   ElementRef,
   Output,
@@ -173,7 +173,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   private scrollListener: Function;
 
   constructor(
-    private renderer: Renderer,
+    private renderer: RendererV2,
     private evm: EventManager,
     private el: ElementRef,
     private ngZone: NgZone,
@@ -228,6 +228,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     if (this.content) {
       this.scrollListener = this.renderer.listen(this.content.el, 'scroll', (e) => {
          this.onScroll(this.content.el.scrollTop);
+         return true;
       });
 
       this.screenSizeService.sizes().subscribe( (isSmall: boolean) => {

@@ -4,7 +4,7 @@ import {
   OnChanges,
   SimpleChange,
   ElementRef,
-  Renderer,
+  RendererV2,
   NgModule,
   ModuleWithProviders
 } from '@angular/core';
@@ -31,11 +31,12 @@ export class MdlShadowDirective implements OnChanges {
   get mdlShadow() { return this._mdlShadow; }
   set mdlShadow(value) { this._mdlShadow = toNumber(value); }
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+  constructor(private elementRef: ElementRef, private renderer: RendererV2) {
     this.el = elementRef.nativeElement;
   }
 
   public ngOnChanges(changes: {[key: string]: SimpleChange}) {
+
 
     if (MDL_SHADOW_VALUES.indexOf(Number(this.mdlShadow)) === -1) {
       throw new MdlUnsupportedShadowValueError(this.mdlShadow);
@@ -44,10 +45,10 @@ export class MdlShadowDirective implements OnChanges {
     let change = changes['mdlShadow'];
 
     if (!change.isFirstChange()) {
-      this.renderer.setElementClass(this.el, `mdl-shadow--${change.previousValue}dp`, false);
+      this.renderer.removeClass(this.el, `mdl-shadow--${change.previousValue}dp`);
     }
 
-    this.renderer.setElementClass(this.el, `mdl-shadow--${change.currentValue}dp`, true);
+    this.renderer.addClass(this.el, `mdl-shadow--${change.currentValue}dp`);
 
   }
 

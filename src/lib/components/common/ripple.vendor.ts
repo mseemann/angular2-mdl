@@ -81,7 +81,7 @@
       this.rippleElement_.style.height = this.rippleSize_ + 'px';
     }
 
-    this.renderer_.setElementClass(this.rippleElement_, this.CssClasses_.IS_VISIBLE, true);
+    this.renderer_.addClass(this.rippleElement_, this.CssClasses_.IS_VISIBLE);
 
     if (event.type === 'mousedown' && this.ignoringMouseDown_) {
       this.ignoringMouseDown_ = false;
@@ -126,7 +126,7 @@
       // shows for tap events, which seem to trigger a mouseup too soon after
       // mousedown.
       setTimeout(function() {
-        this.renderer_.setElementClass(this.rippleElement_, this.CssClasses_.IS_VISIBLE, false);
+        this.renderer_.removeClass(this.rippleElement_, this.CssClasses_.IS_VISIBLE);
       }.bind(this), 0);
     }
   };
@@ -225,7 +225,12 @@
             this.rippleElement_.style.msTransform = transformString;
             this.rippleElement_.style.transform = transformString;
 
-            this.renderer_.setElementClass(this.rippleElement_, this.CssClasses_.IS_ANIMATING, !start);
+            if(start) {
+              this.renderer_.removeClass(this.rippleElement_, this.CssClasses_.IS_ANIMATING);
+            } else {
+              this.renderer_.addClass(this.rippleElement_, this.CssClasses_.IS_ANIMATING);
+            }
+
           }
         };
 

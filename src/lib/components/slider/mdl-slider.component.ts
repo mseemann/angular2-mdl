@@ -3,7 +3,7 @@ import {
   Input,
   forwardRef,
   ViewChild,
-  Renderer,
+  RendererV2,
   ElementRef,
   NgModule,
   ViewEncapsulation,
@@ -73,7 +73,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
   get disabled(): boolean { return this._disabled; }
   set disabled(value) { this._disabled = toBoolean(value); }
 
-  constructor(private renderer: Renderer, private elRef: ElementRef) {
+  constructor(private renderer: RendererV2, private elRef: ElementRef) {
   }
 
   get value(): any { return this.value_; };
@@ -106,10 +106,14 @@ export class MdlSliderComponent implements ControlValueAccessor {
   private updateSliderUI() {
     var fraction = (this.value_ - this.min) / (this.max - this.min);
 
-    this.renderer.setElementClass(this.inputEl.nativeElement, 'is-lowest-value', fraction === 0);
+    if (fraction === 0){
+      this.renderer.addClass(this.inputEl.nativeElement, 'is-lowest-value');
+    } else {
+      this.renderer.removeClass(this.inputEl.nativeElement, 'is-lowest-value');
+    }
 
-    this.renderer.setElementStyle(this.lowerEl.nativeElement, 'flex', '' + fraction);
-    this.renderer.setElementStyle(this.upperEl.nativeElement, 'flex', '' + (1 - fraction));
+    this.renderer.setStyle(this.lowerEl.nativeElement, 'flex', '' + fraction, false, false);
+    this.renderer.setStyle(this.upperEl.nativeElement, 'flex', '' + (1 - fraction), false, false);
   }
 
   public onMouseUp(event) {
@@ -132,7 +136,9 @@ export class MdlSliderComponent implements ControlValueAccessor {
       screenX: event.screenX,
       screenY: event.screenY
     });
-    this.renderer.invokeElementMethod(this.inputEl.nativeElement, 'dispatchEvent', [newEvent]);
+    if(this.inputEl.nativeElement['dispatchEvent']) {
+      this.inputEl.nativeElement.dispatchEvent(newEvent);
+    }
   }
 }
 

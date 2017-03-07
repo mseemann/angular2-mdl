@@ -1,7 +1,7 @@
 import {
   Component,
   ElementRef,
-  Renderer,
+  RendererV2,
   ViewEncapsulation,
   Input
 } from '@angular/core';
@@ -37,7 +37,7 @@ export class MdlSimpleTooltipComponent {
 
   constructor(
     private elRef: ElementRef,
-    private renderer: Renderer,
+    private renderer: RendererV2,
     private mdlTooltipPositionService: MdlTooltipPositionService) {
 
     this.element = elRef.nativeElement;
@@ -68,7 +68,7 @@ export class MdlSimpleTooltipComponent {
     let style = this.mdlTooltipPositionService.calcStyle(offsetWidth, offsetHeight, props, this.position);
 
     for (var key in style) {
-      this.renderer.setElementStyle(this.elRef.nativeElement, key, style[key]);
+      this.renderer.setStyle(this.elRef.nativeElement, key, style[key], false, false);
     }
 
     this.setActive(true);
@@ -80,8 +80,11 @@ export class MdlSimpleTooltipComponent {
 
   private setActive(active: boolean){
     this.active = active;
-    this.renderer.setElementClass(this.elRef.nativeElement, IS_ACTIVE, active);
-
+    if (active) {
+      this.renderer.addClass(this.elRef.nativeElement, IS_ACTIVE);
+    } else {
+      this.renderer.removeClass(this.elRef.nativeElement, IS_ACTIVE);
+    }
   }
 
   public isActive() {
@@ -98,7 +101,7 @@ export class MdlSimpleTooltipComponent {
   encapsulation: ViewEncapsulation.None
 })
 export class MdlTooltipComponent extends MdlSimpleTooltipComponent {
-  constructor(elRef: ElementRef, renderer: Renderer, mdlTooltipPositionService: MdlTooltipPositionService) {
+  constructor(elRef: ElementRef, renderer: RendererV2, mdlTooltipPositionService: MdlTooltipPositionService) {
     super(elRef, renderer, mdlTooltipPositionService);
   }
 }

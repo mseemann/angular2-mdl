@@ -73,14 +73,14 @@ describe('Component: MdlMenu', () => {
     let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
     buttonElement.click();
-    expect(menu.isVisible).toBe(true);
-    expect(menu.menuElement.classList.contains('is-animating')).toBe(true);
-    expect(menu.container.classList.contains('is-visible')).toBe(true);
+    expect(menu.isVisible).toBe(true, 'menu should be visible');
+    expect(menu.menuElement.classList.contains('is-animating')).toBe(true, 'is-animating');
+    expect(menu.container.classList.contains('is-visible')).toBe(true, 'is-visible');
 
     buttonElement.click();
-    expect(menu.isVisible).toBe(false);
-    expect(menu.menuElement.classList.contains('is-animating')).toBe(true);
-    expect(menu.container.classList.contains('is-visible')).toBe(false);
+    expect(menu.isVisible).toBe(false, 'should not be visible');
+    expect(menu.menuElement.classList.contains('is-animating')).toBe(true, 'is animation but not visible');
+    expect(menu.container.classList.contains('is-visible')).toBe(false, 'is no longer visible');
 
     expect(menu.container.style.left).not.toBe('');
     expect(menu.container.style.top).not.toBe('');

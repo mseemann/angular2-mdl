@@ -3,7 +3,7 @@ import {
   Input,
   ElementRef,
   forwardRef,
-  Renderer,
+  RendererV2,
   Inject,
   ViewEncapsulation
 } from '@angular/core';
@@ -33,7 +33,7 @@ export class MdlMenuItemComponent {
   // forwardRef is needed because of he circular dependency menu queries menuitems; menuitem needs the parent
   constructor(
     private elementRef: ElementRef,
-    private renderer: Renderer,
+    private renderer: RendererV2,
     @Inject(forwardRef(() => MdlMenuComponent)) private mdlMenu: MdlMenuComponent) {
     this.element = elementRef.nativeElement;
   }
@@ -57,7 +57,9 @@ export class MdlMenuItemComponent {
     $event.preventDefault();
 
     let event = new MouseEvent('click', {bubbles: true});
-    this.renderer.invokeElementMethod(this.element, 'dispatchEvent', [event]);
+    if (this.element['dispatchEvent']){
+      this.element.dispatchEvent(event);
+    }
   }
 
 }

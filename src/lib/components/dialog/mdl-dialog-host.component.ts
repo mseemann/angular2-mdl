@@ -5,7 +5,6 @@ import {
   Inject,
   forwardRef,
   ViewChild,
-  Renderer,
   ElementRef,
   OnInit,
   ComponentRef,

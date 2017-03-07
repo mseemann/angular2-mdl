@@ -3,7 +3,7 @@ import {
     ElementRef,
     Output,
     EventEmitter,
-    Renderer,
+    RendererV2,
     forwardRef,
     Input,
     NgModule,
@@ -124,7 +124,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
 
   constructor(
       private elementRef: ElementRef,
-      private renderer: Renderer,
+      private renderer: RendererV2,
       private radioGroupRegistry: MdlRadioGroupRegisty,
       @Optional() private formGroupName: FormGroupName) {
     this.el = elementRef.nativeElement;
@@ -172,11 +172,11 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   }
 
   public onFocus() {
-    this.renderer.setElementClass(this.el, IS_FOCUSED, true);
+    this.renderer.addClass(this.el, IS_FOCUSED);
   }
 
   public onBlur() {
-    this.renderer.setElementClass(this.el, IS_FOCUSED, false);
+    this.renderer.removeClass(this.el, IS_FOCUSED);
   }
 
   public onClick() {

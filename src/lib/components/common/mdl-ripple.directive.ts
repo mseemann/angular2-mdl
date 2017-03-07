@@ -3,9 +3,7 @@ import {
   Input,
   ElementRef,
   OnChanges,
-  SimpleChange,
-  Renderer,
-  OnInit,
+  RendererV2,
   NgModule,
   ModuleWithProviders,
   SimpleChanges
@@ -25,7 +23,7 @@ export class MdlRippleDirective implements OnChanges {
 
   constructor(
     private elementRef: ElementRef,
-    public renderer: Renderer,
+    public renderer: RendererV2,
     private cssContainerClasses: [string]) {
     this.el = elementRef.nativeElement;
   }
@@ -44,12 +42,12 @@ export class MdlRippleDirective implements OnChanges {
       // otherwise (e.g. [mdl-ripple] it is a boolean - may be with the default value true.
       if (this.rippleActive === '' || this.rippleActive) {
 
-        this.rippleContainer = this.renderer.createElement(null, 'span');
+        this.rippleContainer = this.renderer.createElement('span');
         this.cssContainerClasses.forEach( ( cssClass ) => {
-          this.renderer.setElementClass(this.rippleContainer, cssClass, true);
+          this.renderer.addClass(this.rippleContainer, cssClass);
         });
-        var rippleElement = this.renderer.createElement(null, 'span');
-        this.renderer.setElementClass(rippleElement, this.RIPPLE, true);
+        const rippleElement = this.renderer.createElement('span');
+        this.renderer.addClass(rippleElement, this.RIPPLE);
         this.rippleContainer.appendChild(rippleElement);
         this.el.appendChild(this.rippleContainer);
 
@@ -67,7 +65,7 @@ export class MdlButtonRippleDirective extends MdlRippleDirective {
 
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
-  constructor(elementRef: ElementRef, renderer: Renderer) {
+  constructor(elementRef: ElementRef, renderer: RendererV2) {
     super(elementRef, renderer, ['mdl-button__ripple-container']);
   }
 
@@ -82,7 +80,7 @@ export class MdlCheckboxRippleDirective extends MdlRippleDirective {
 
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
-  constructor(elementRef: ElementRef, renderer: Renderer) {
+  constructor(elementRef: ElementRef, renderer: RendererV2) {
     super(elementRef, renderer, ['mdl-checkbox__ripple-container', 'mdl-ripple--center']);
   }
 
@@ -97,7 +95,7 @@ export class MdlRadioRippleDirective extends MdlRippleDirective {
 
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
-  constructor(elementRef: ElementRef, renderer: Renderer) {
+  constructor(elementRef: ElementRef, renderer: RendererV2) {
     super(elementRef, renderer, ['mdl-radio__ripple-container', 'mdl-ripple--center']);
   }
 
@@ -112,7 +110,7 @@ export class MdlIconToggleRippleDirective extends MdlRippleDirective {
 
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
-  constructor(elementRef: ElementRef, renderer: Renderer) {
+  constructor(elementRef: ElementRef, renderer: RendererV2) {
     super(elementRef, renderer, ['mdl-icon-toggle__ripple-container', 'mdl-ripple--center']);
   }
 
@@ -128,7 +126,7 @@ export class MdlSwitchRippleDirective extends MdlRippleDirective {
 
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
-  constructor(elementRef: ElementRef, renderer: Renderer) {
+  constructor(elementRef: ElementRef, renderer: RendererV2) {
     super(elementRef, renderer, ['mdl-switch__ripple-container', 'mdl-ripple--center']);
   }
 
@@ -143,7 +141,7 @@ export class MdlMenuItemRippleDirective extends MdlRippleDirective {
 
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
-  constructor(elementRef: ElementRef, renderer: Renderer) {
+  constructor(elementRef: ElementRef, renderer: RendererV2) {
     super(elementRef, renderer, ['mdl-menu__item--ripple-container']);
   }
 
@@ -158,7 +156,7 @@ export class MdlAnchorRippleDirective extends MdlRippleDirective {
 
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
-  constructor(elementRef: ElementRef, renderer: Renderer) {
+  constructor(elementRef: ElementRef, renderer: RendererV2) {
     super(elementRef, renderer, ['mdl-tabs__ripple-container', 'mdl-layout__tab-ripple-container']);
   }
 
