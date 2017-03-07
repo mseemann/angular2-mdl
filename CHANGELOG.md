@@ -1,8 +1,16 @@
 <a name="3.0.0-rc.0"></a>
 # 3.0.0-rc.0 (n.n.)
 
+<a name="3.0.0-beta.5"></a>
+# 3.0.0-beta.5 (2017.03.07)
+
+### Bug Fixes
+* [639](https://github.com/mseemann/angular2-mdl/issues/639) (BrowserModule imported twice with angular 4.rc2)
+
+
 ### Features
 * [631](https://github.com/mseemann/angular2-mdl/pull/631) (changed table columns to allow for HTML content by [@joevanwanzeele](https://github.com/joevanwanzeele))
+
 ###Breaking Changes
 * the public methods show and hide on tooltips have be removed
 * the mld-ripple directive no longer works on mdl-list-items
