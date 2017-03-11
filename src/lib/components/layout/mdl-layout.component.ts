@@ -4,7 +4,7 @@ import {
   AfterContentInit,
   OnDestroy,
   Input,
-  RendererV2,
+  Renderer2,
   ViewEncapsulation,
   ElementRef,
   Output,
@@ -173,7 +173,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   private scrollListener: Function;
 
   constructor(
-    private renderer: RendererV2,
+    private renderer: Renderer2,
     private evm: EventManager,
     private el: ElementRef,
     private ngZone: NgZone,

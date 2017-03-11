@@ -3,7 +3,7 @@ import {
     ElementRef,
     Output,
     EventEmitter,
-    RendererV2,
+    Renderer2,
     forwardRef,
     Input,
     NgModule,
@@ -124,7 +124,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
 
   constructor(
       private elementRef: ElementRef,
-      private renderer: RendererV2,
+      private renderer: Renderer2,
       private radioGroupRegistry: MdlRadioGroupRegisty,
       @Optional() private formGroupName: FormGroupName) {
     this.el = elementRef.nativeElement;

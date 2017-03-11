@@ -1,7 +1,7 @@
 import {
   Component,
   ElementRef,
-  RendererV2,
+  Renderer2,
   ViewEncapsulation,
   QueryList,
   Inject,
@@ -65,7 +65,7 @@ export class MdlLayoutHeaderComponent {
 
   constructor(
     private elementRef: ElementRef,
-    private renderer: RendererV2,
+    private renderer: Renderer2,
     @Inject(forwardRef(() => MdlLayoutComponent)) private mdlLayout: MdlLayoutComponent) {
     this.el = elementRef.nativeElement;
   }

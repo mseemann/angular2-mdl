@@ -5,7 +5,7 @@ import {
   NgModule,
   ViewEncapsulation,
   ModuleWithProviders,
-  RendererV2
+  Renderer2
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -41,7 +41,7 @@ import { MdlCheckboxComponent } from '../checkbox/mdl-checkbox.component';
 })
 export class MdlIconToggleComponent extends MdlCheckboxComponent {
 
-  constructor(elementRef: ElementRef, renderer: RendererV2) {
+  constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer);
   }
 

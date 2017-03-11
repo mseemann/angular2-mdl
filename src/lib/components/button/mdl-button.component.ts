@@ -3,7 +3,7 @@ import {
   Input,
   ElementRef,
   OnChanges,
-  RendererV2,
+  Renderer2,
   NgModule,
   ModuleWithProviders,
   ViewEncapsulation,
@@ -70,7 +70,7 @@ export class MdlButtonComponent implements OnChanges {
   get disabled(): boolean { return this._disabled; }
   set disabled(value) { this._disabled = toBoolean(value); }
 
-  constructor(public elementRef: ElementRef, private renderer: RendererV2) {
+  constructor(public elementRef: ElementRef, private renderer: Renderer2) {
     this.element = elementRef.nativeElement;
   }
 

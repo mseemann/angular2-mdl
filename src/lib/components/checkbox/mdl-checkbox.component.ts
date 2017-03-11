@@ -2,7 +2,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  RendererV2,
+  Renderer2,
   forwardRef,
   NgModule,
   ViewEncapsulation,
@@ -69,7 +69,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
 
   private el: HTMLElement;
 
-  constructor(private elementRef: ElementRef, private renderer: RendererV2) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.el = elementRef.nativeElement;
   }
 

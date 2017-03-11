@@ -1,7 +1,7 @@
 import {
   Component,
   ElementRef,
-  RendererV2,
+  Renderer2,
   ViewEncapsulation,
   Input
 } from '@angular/core';
@@ -37,7 +37,7 @@ export class MdlSimpleTooltipComponent {
 
   constructor(
     private elRef: ElementRef,
-    private renderer: RendererV2,
+    private renderer: Renderer2,
     private mdlTooltipPositionService: MdlTooltipPositionService) {
 
     this.element = elRef.nativeElement;
@@ -101,7 +101,7 @@ export class MdlSimpleTooltipComponent {
   encapsulation: ViewEncapsulation.None
 })
 export class MdlTooltipComponent extends MdlSimpleTooltipComponent {
-  constructor(elRef: ElementRef, renderer: RendererV2, mdlTooltipPositionService: MdlTooltipPositionService) {
+  constructor(elRef: ElementRef, renderer: Renderer2, mdlTooltipPositionService: MdlTooltipPositionService) {
     super(elRef, renderer, mdlTooltipPositionService);
   }
 }

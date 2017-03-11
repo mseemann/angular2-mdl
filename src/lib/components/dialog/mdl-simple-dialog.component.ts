@@ -47,6 +47,7 @@ export class MdlSimpleDialogComponent {
 
     dialog.onVisible().subscribe( () => {
       if(this.buttons){
+        console.log('set focus');
         this.buttons.first.nativeElement.focus();
       }
     })

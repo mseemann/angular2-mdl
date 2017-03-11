@@ -2,7 +2,7 @@ import {
   Component,
   forwardRef,
   Input,
-  RendererV2,
+  Renderer2,
   ElementRef,
   OnChanges,
   DoCheck,
@@ -219,7 +219,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   set disableNativeValidityChecking(value) { this._disableNativeValidityChecking = toBoolean(value);}
 
   constructor(
-    private renderer: RendererV2,
+    private renderer: Renderer2,
     private elmRef: ElementRef,
     @Optional() @Inject(DISABLE_NATIVE_VALIDITY_CHECKING) private nativeCheckGlobalDisabled: Boolean) {
     this.el = elmRef.nativeElement;

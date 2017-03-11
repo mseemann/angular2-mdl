@@ -3,7 +3,7 @@ import {
   Input,
   OnChanges,
   ElementRef,
-  RendererV2,
+  Renderer2,
   NgModule,
   ModuleWithProviders,
   SimpleChanges
@@ -21,7 +21,7 @@ export class MdlBadgeDirective implements OnChanges {
 
   @Input('mdl-badge') public mdlBadgeContent: string;
 
-  constructor(private elementRef: ElementRef, private renderer: RendererV2) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.el = elementRef.nativeElement;
   }
 

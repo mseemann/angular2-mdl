@@ -7,7 +7,7 @@ import {
   ElementRef,
   ContentChildren,
   QueryList,
-  RendererV2,
+  Renderer2,
   ViewEncapsulation, Injectable, OnDestroy
 } from '@angular/core';
 import { MdlButtonComponent } from '../button/mdl-button.component';
@@ -98,7 +98,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private isVisible   = false;
 
-  constructor(private renderer: RendererV2, private menuRegistry: MdlMenuRegisty) {
+  constructor(private renderer: Renderer2, private menuRegistry: MdlMenuRegisty) {
     this.menuRegistry.add(this);
   }
 

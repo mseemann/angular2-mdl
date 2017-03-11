@@ -3,7 +3,7 @@ import {
   Input,
   forwardRef,
   ViewChild,
-  RendererV2,
+  Renderer2,
   ElementRef,
   NgModule,
   ViewEncapsulation,
@@ -73,7 +73,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
   get disabled(): boolean { return this._disabled; }
   set disabled(value) { this._disabled = toBoolean(value); }
 
-  constructor(private renderer: RendererV2, private elRef: ElementRef) {
+  constructor(private renderer: Renderer2, private elRef: ElementRef) {
   }
 
   get value(): any { return this.value_; };

@@ -1,7 +1,7 @@
 import {
   Component,
   ElementRef,
-  RendererV2,
+  Renderer2,
   forwardRef,
   NgModule,
   ViewEncapsulation,
@@ -44,7 +44,7 @@ import { CommonModule } from '@angular/common';
 })
 export class MdlSwitchComponent extends MdlCheckboxComponent {
 
-  constructor(elementRef: ElementRef, renderer: RendererV2) {
+  constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer);
   }
 

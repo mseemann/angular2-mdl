@@ -8,7 +8,7 @@ import {
   ElementRef,
   OnInit,
   ComponentRef,
-  NgZone, RendererV2
+  NgZone, Renderer2
 } from '@angular/core';
 
 import {
@@ -93,7 +93,7 @@ export class MdlDialogHostComponent implements OnInit {
 
   constructor(
     private ngZone: NgZone,
-    private renderer: RendererV2,
+    private renderer: Renderer2,
     private animations: Animations,
     private elementRef: ElementRef,
     @Inject(forwardRef( () => MDL_CONFIGUARTION)) private config: IMdlDialogConfiguration,

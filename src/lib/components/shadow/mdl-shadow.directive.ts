@@ -4,7 +4,7 @@ import {
   OnChanges,
   SimpleChange,
   ElementRef,
-  RendererV2,
+  Renderer2,
   NgModule,
   ModuleWithProviders
 } from '@angular/core';
@@ -31,7 +31,7 @@ export class MdlShadowDirective implements OnChanges {
   get mdlShadow() { return this._mdlShadow; }
   set mdlShadow(value) { this._mdlShadow = toNumber(value); }
 
-  constructor(private elementRef: ElementRef, private renderer: RendererV2) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.el = elementRef.nativeElement;
   }
 

@@ -37,6 +37,7 @@ import { ThemeDemo } from './theme/theme.component';
 import { DialogDemo } from './dialog/dialog.component';
 import { DialogDeclarativeDemo } from './dialog-declarative/dialog-declarative.component';
 import { LoginModule } from './dialog/login.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { LoginModule } from './dialog/login.module';
     ReactiveFormsModule,
     MdlModule,
     RouterModule.forRoot(appRoutes, {enableTracing: false}),
-    LoginModule
+    LoginModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     Angular2MdlAppComponent,
