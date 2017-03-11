@@ -3,8 +3,7 @@
  */
 export class MdlError extends Error {
   constructor(value: string) {
-    super();
-    super.message = value;
+    super(value);
   }
 }
 
