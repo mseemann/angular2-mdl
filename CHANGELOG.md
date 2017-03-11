@@ -1,7 +1,7 @@
 <a name="3.0.0-rc.0"></a>
 # 3.0.0-rc.0 (n.n.)
 
-* Renderer replaced by RendererV2
+* Renderer replaced by Renderer2
 
 
 <a name="3.0.0-beta.5"></a>
