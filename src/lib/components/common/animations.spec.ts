@@ -1,7 +1,4 @@
 
-
-import { TestBed } from '@angular/core/typings/testing';
-import { MdlCommonsModule } from './index';
 import { NoopWebAnimations } from './animations';
 describe('Animations', () => {
 
