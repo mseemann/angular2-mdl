@@ -75,20 +75,17 @@ export class MdlDialogHostComponent implements OnInit {
 
   private showAnimationStartStyle: {[key: string]: string} = {
     top: '38%',
-    opacity: '0',
-    visibility: 'visible'
+    opacity: '0'
   };
 
   private showStyle: {[key: string]: string} = {
     top: '50%',
-    opacity: '1',
-    visibility: 'visible'
+    opacity: '1'
   };
 
   private hideAnimationEndStyle: {[key: string]: string} = {
     top: '63%',
-    opacity: '0',
-    visibility: 'visible'
+    opacity: '0'
   };
 
   constructor(
@@ -104,14 +101,13 @@ export class MdlDialogHostComponent implements OnInit {
 
   public show() {
 
-    if (!this.isAnimateEnabled()) {
-      this.visible = true;
-      // give the dialogs time to draw so that a focus can be set
-      setTimeout( () => {
-        this.internalDialogRef.visible();
-      })
+    this.visible = true;
+    // give the dialogs time to draw so that a focus can be set
+    setTimeout( () => {
+      this.internalDialogRef.visible();
+    });
 
-    } else {
+    if (this.isAnimateEnabled()) {
       if (this.config.openFrom || this.config.closeTo) {
 
         // transform is modified during anmiation and must be part of each animation keyframe.
@@ -136,7 +132,6 @@ export class MdlDialogHostComponent implements OnInit {
         this.showAnimationStartStyle = {
           top: `${targetClientRect.top}px`,
           opacity: '0',
-          visibility: 'visible',
           transform: `translate(${translationFrom.x}px, ${translationFrom.y}px) scale(${translationFrom.scaleX}, ${translationFrom.scaleY})`
         };
 
@@ -150,7 +145,6 @@ export class MdlDialogHostComponent implements OnInit {
         this.hideAnimationEndStyle  = {
           top: `${targetClientRect.top}px`,
           opacity: '0',
-          visibility: 'visible',
           transform: `translate(${translationTo.x}px, ${translationTo.y}px) scale(${translationTo.scaleX}, ${translationTo.scaleY})`
         }
       }
@@ -165,15 +159,7 @@ export class MdlDialogHostComponent implements OnInit {
         this.config.enterTransitionDuration || enterTransitionDuration,
         this.config.enterTransitionEasingCurve || enterTransitionEasingCurve);
 
-      animation.onDone( () => {
-        this.ngZone.run( () => {
-          this.visible = true;
-        });
-      });
-
       animation.play();
-
-      this.internalDialogRef.visible();
 
     }
   }

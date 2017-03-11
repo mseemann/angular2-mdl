@@ -5,8 +5,7 @@ import {
   forwardRef,
   Inject,
   ViewChildren,
-  QueryList,
-  ElementRef
+  QueryList
 } from '@angular/core';
 import {
   MdlDialogReference,
@@ -16,6 +15,8 @@ import {
   IMdlDialogAction,
   IMdlSimpleDialogConfiguration
 } from './mdl-dialog-configuration';
+import { MdlButtonComponent } from '../button/mdl-button.component';
+
 
 @Component({
   selector: 'mdl-dialog-component',
@@ -26,19 +27,19 @@ import {
         class="mdl-dialog__actions" 
         [ngClass]="{'mdl-dialog__actions--full-width': dialogConfiguration?.fullWidthAction}">
         <button
-          #button
+          mdl-button mdl-colored="primary"
           type="button" 
-          class="mdl-button mdl-color-text--primary" 
           *ngFor="let action of dialogConfiguration?.actions" 
           (click)="actionClicked(action)"
           [ngClass]="{'close': action.isClosingAction}">{{action.text}}</button>
       </div>
   `,
   encapsulation: ViewEncapsulation.None
+
 })
 export class MdlSimpleDialogComponent {
 
-  @ViewChildren('button') public buttons: QueryList<ElementRef>;
+  @ViewChildren(MdlButtonComponent) public buttons: QueryList<MdlButtonComponent>;
 
   // why do i need forwardRef at this point, the demo LoginDialog dosn't need this!?!?
   constructor(
@@ -47,8 +48,7 @@ export class MdlSimpleDialogComponent {
 
     dialog.onVisible().subscribe( () => {
       if(this.buttons){
-        console.log('set focus');
-        this.buttons.first.nativeElement.focus();
+        this.buttons.first.elementRef.nativeElement.focus();
       }
     })
   }

@@ -7,7 +7,7 @@ export interface AnimationPlayer {
 
 export class NativeWebAnimationPlayer implements AnimationPlayer {
 
-  private onDoneCallback: () => void;
+  private onDoneCallback: (() => void )[] = [];
 
   constructor(private element: any,
               private keyframes: {[key: string]: string | number}[],
@@ -15,7 +15,7 @@ export class NativeWebAnimationPlayer implements AnimationPlayer {
               private easing: string){}
 
   public onDone(fn: () => void) {
-    this.onDoneCallback = fn;
+    this.onDoneCallback.push(fn);
   }
 
   public play() {
@@ -25,7 +25,7 @@ export class NativeWebAnimationPlayer implements AnimationPlayer {
       {duration: this.duration,
         easing: this.easing});
 
-    animation.addEventListener('finish', () => this.onDoneCallback());
+    animation.addEventListener('finish', () => this.onDoneCallback.forEach( fn => fn()));
   }
 }
 
