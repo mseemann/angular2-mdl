@@ -1,7 +1,12 @@
 <a name="3.0.0-rc.0"></a>
 # 3.0.0-rc.0 (n.n.)
 
+
+<a name="3.0.0-beta.6"></a>
+# 3.0.0-beta.6 (2017.03.11)
+
 * Renderer replaced by Renderer2
+* fix dialog animations - keep focus
 
 
 <a name="3.0.0-beta.5"></a>
