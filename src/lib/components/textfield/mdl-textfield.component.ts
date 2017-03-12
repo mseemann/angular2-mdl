@@ -29,6 +29,7 @@ import { MdlIconModule } from '../icon/mdl-icon.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { noop } from '../common/noop';
+import { callNative } from '../common/native-support';
 
 export const DISABLE_NATIVE_VALIDITY_CHECKING = new OpaqueToken('disableNativeValidityChecking');
 
@@ -258,9 +259,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     if ( !this.inputEl ) {
       return;
     }
-    if (this.inputEl.nativeElement['focus']) {
-      this.inputEl.nativeElement.focus();
-    }
+    callNative(this.inputEl.nativeElement, 'focus');
   }
 
   protected onFocus(event: FocusEvent) {

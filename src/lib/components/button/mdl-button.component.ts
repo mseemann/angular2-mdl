@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 import { toBoolean } from '../common/boolean-property';
+import { callNative } from '../common/native-support';
 
 export class MdlUnsupportedButtonTypeError extends MdlError {
   constructor(type: string) {
@@ -96,9 +97,7 @@ export class MdlButtonComponent implements OnChanges {
   }
 
   public blurIt() {
-    if (this.element['blur']){
-      this.element['blur']();
-    }
+    callNative(this.element, 'blur');
   }
 }
 

@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { MdlMenuComponent } from './mdl-menu.component';
 import { toBoolean } from '../common/boolean-property';
+import { callNative } from '../common/native-support';
 
 
 @Component({
@@ -57,9 +58,7 @@ export class MdlMenuItemComponent {
     $event.preventDefault();
 
     let event = new MouseEvent('click', {bubbles: true});
-    if (this.element['dispatchEvent']){
-      this.element.dispatchEvent(event);
-    }
+    callNative(this.element, 'dispatchEvent', event);
   }
 
 }

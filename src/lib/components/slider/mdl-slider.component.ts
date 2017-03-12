@@ -17,6 +17,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { toBoolean } from '../common/boolean-property';
 import { noop } from '../common/noop';
+import { callNative } from '../common/native-support';
 
 
 @Component({
@@ -136,9 +137,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
       screenX: event.screenX,
       screenY: event.screenY
     });
-    if(this.inputEl.nativeElement['dispatchEvent']) {
-      this.inputEl.nativeElement.dispatchEvent(newEvent);
-    }
+    callNative(this.inputEl.nativeElement, 'dispatchEvent', newEvent);
   }
 }
 
