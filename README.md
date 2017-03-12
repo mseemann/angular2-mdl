@@ -18,7 +18,7 @@ This package assumes that you are building an Angular app with TypeScript. Angul
 [![DevDependencies](https://david-dm.org/mseemann/angular2-mdl/dev-status.svg)](https://david-dm.org/mseemann/angular2-mdl#info=devDependencies&view=table)
 [![Code Climate](https://codeclimate.com/github/mseemann/angular2-mdl/badges/gpa.svg)](https://codeclimate.com/github/mseemann/angular2-mdl)
 
-**Please don't use github to ask questions. Use stackoverflow instead: http://stackoverflow.com/questions/tagged/angular2-mdl.**
+**Please don't use github to ask questions. Use stackoverflow instead: http://stackoverflow.com/questions/tagged/angular-mdl.**
 
 **Here is a plnkr if you'd like to play around http://plnkr.co/edit/I3dLfLUDIH2xlEJqj0da?p=preview.**
 
@@ -67,7 +67,7 @@ const map: any = {
 
 /** User packages configuration. */
 const packages: any = {
-  '@angular-mdl/core': { main: 'bundle/angular-mdl.js'}
+  '@angular-mdl/core': { main: 'bundle/core.js'}
 };
 ```
 
