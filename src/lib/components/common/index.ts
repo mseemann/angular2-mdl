@@ -7,9 +7,11 @@ function isWebAnimationsSupported() {
 }
 
 export function instantiateSupportedAnimationDriver() {
+  /* istanbul ignore next */
   if (isWebAnimationsSupported()) {
     return new NativeWebAnimations();
   }
+  /* istanbul ignore next */
   return new NoopWebAnimations();
 }
 
