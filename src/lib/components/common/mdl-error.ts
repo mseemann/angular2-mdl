@@ -1,5 +1,6 @@
 /**
  * Wrapper for mdl error messages.
+ * istanbul ignore next  LCOV_EXCL_LINE
  */
 export class MdlError extends Error {
   constructor(value: string) {
