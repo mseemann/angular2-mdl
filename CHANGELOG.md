@@ -1,6 +1,11 @@
 <a name="3.0.0-rc.0"></a>
 # 3.0.0-rc.0 (n.n.)
 
+<a name="3.0.0-beta.7"></a>
+# 3.0.0-beta.7 (2017.03.12)
+
+* the umd bundle file name has changed to bundle/core.js
+
 
 <a name="3.0.0-beta.6"></a>
 # 3.0.0-beta.6 (2017.03.11)

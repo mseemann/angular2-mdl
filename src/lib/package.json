@@ -1,12 +1,13 @@
 {
   "name": "@angular-mdl/core",
-  "version": "3.0.0-beta.6",
+  "version": "3.0.0-beta.7",
   "license": "MIT",
-  "description": "Angular 2 components, directives and styles based on material design lite https://getmdl.io.",
+  "description": "Angular components, directives and styles based on material design lite https://getmdl.io.",
   "homepage": "http://mseemann.io/angular2-mdl/",
   "keywords": [
-    "angular 2",
+    "angular 2 4",
     "angular2",
+    "angular4",
     "angular",
     "material",
     "material design",
@@ -25,7 +26,7 @@
     "test fields",
     "toggle"
   ],
-  "main": "./bundle/angular2-mdl.js",
+  "main": "./bundle/core.js",
   "module": "./components/index.js",
   "typings": "./components/index.d.ts",
   "private": false,

@@ -4,9 +4,9 @@ module.exports = {
 	entry: './src/lib/components/index.ts',
 	output: {
 		path: './dist/bundle',
-		filename: 'angular2-mdl.js',
+		filename: 'core.js',
 		libraryTarget: 'umd',
-		library: 'angular2Mdl'
+		library: 'angularMdlCore'
 	},
 	resolve: {
 		extensions: ['.ts', '.js']
@@ -83,7 +83,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.SourceMapDevToolPlugin({
-			filename: 'angular2-mdl.js.map',
+			filename: 'core.js.map',
 			test: /\.js($|\?)/i
 		})
 	]
