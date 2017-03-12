@@ -74,10 +74,6 @@ export class MdlSimpleTooltipComponent {
     this.setActive(true);
   }
 
-  private hide() {
-    this.mouseLeave();
-  }
-
   private setActive(active: boolean){
     this.active = active;
     if (active) {

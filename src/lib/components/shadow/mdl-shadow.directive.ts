@@ -13,6 +13,7 @@ import { toNumber } from '../common/number.property';
 
 export class MdlUnsupportedShadowValueError extends MdlError {
   constructor(value: number | string ) {
+    /* istanbul ignore next */
     super(`Shadow value "${value}" isn't supported (allowed: 2,3,4,6,8,16,24).`);
   }
 }

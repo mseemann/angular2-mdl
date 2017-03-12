@@ -46,6 +46,7 @@ export const LAYOUT_SCREEN_SIZE_THRESHOLD = new OpaqueToken('layoutScreenSizeThr
 
 export class MdLUnsupportedLayoutTypeError extends MdlError {
   constructor(type: string) {
+      /* istanbul ignore next */
     super(`Layout type "${type}" isn't supported by mdl-layout (allowed: standard, waterfall, scroll).`);
   }
 }

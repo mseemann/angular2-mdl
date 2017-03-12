@@ -23,9 +23,9 @@ import {
 import { CommonModule } from '@angular/common';
 import { toBoolean } from '../common/boolean-property';
 import { toNumber } from '../common/number.property';
+import { noop } from '../common/noop';
 
 
-const noop = () => {};
 const IS_FOCUSED = 'is-focused';
 
 // Registry for mdl-readio compnents. Is responsible to keep the

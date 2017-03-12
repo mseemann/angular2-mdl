@@ -17,8 +17,9 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { toBoolean } from '../common/boolean-property';
+import { noop } from '../common/noop';
 
-const noop = (_?: any) => {};
+
 const IS_FOCUSED = 'is-focused';
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,

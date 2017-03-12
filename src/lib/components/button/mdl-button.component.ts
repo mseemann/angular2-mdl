@@ -14,12 +14,14 @@ import { toBoolean } from '../common/boolean-property';
 
 export class MdlUnsupportedButtonTypeError extends MdlError {
   constructor(type: string) {
+    /* istanbul ignore next */
     super(`Button type "${type}" isn't supported (allowed: raised, fab, mini-fab, icon, '').`);
   }
 }
 
 export class MdlUnsupportedColoredTypeError extends MdlError {
   constructor(type: string) {
+    /* istanbul ignore next */
     super(`Colored type "${type}" isn't supported (allowed: primary, accent, '').`);
   }
 }

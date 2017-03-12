@@ -16,8 +16,8 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { toBoolean } from '../common/boolean-property';
+import { noop } from '../common/noop';
 
-const noop = (_?: any) => {};
 
 @Component({
   selector: 'mdl-slider',

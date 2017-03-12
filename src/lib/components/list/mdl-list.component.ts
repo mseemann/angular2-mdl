@@ -18,6 +18,7 @@ import { toNumber } from '../common/number.property';
 
 export class MdlUnsupportedCountOfListItemLinesError extends MdlError {
   constructor(lines: number|string) {
+      /* istanbul ignore next */
     super(`"${lines}" is not supported - max 3 lines please.`);
   }
 }

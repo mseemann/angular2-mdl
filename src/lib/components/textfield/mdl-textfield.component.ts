@@ -28,11 +28,11 @@ import { MdlButtonModule } from '../button/mdl-button.component';
 import { MdlIconModule } from '../icon/mdl-icon.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { noop } from '../common/noop';
 
 export const DISABLE_NATIVE_VALIDITY_CHECKING = new OpaqueToken('disableNativeValidityChecking');
 
 
-const noop = (_?: any) => {};
 let nextId = 0;
 
 const IS_FOCUSED = 'is-focused';
