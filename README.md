@@ -23,7 +23,7 @@ This package assumes that you are building an Angular app with TypeScript. Angul
 **Here is a plnkr if you'd like to play around http://plnkr.co/edit/I3dLfLUDIH2xlEJqj0da?p=preview.**
 
 
-### Status of the npm package version 4 (mdl version 1.3.0; angular 4)
+### Status of the npm package version 3 (mdl version 1.3.0; angular 4)
 
 - Badges
 - Buttons
