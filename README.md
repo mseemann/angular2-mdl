@@ -1,7 +1,7 @@
 
 Angular 4 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0).
 
-**If you are looking for an Angular 2 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular2 . 
+**If you are looking for a stable Angular 2 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular2 . 
 The master is under active development to be compatible with Angular 4.**
 
 
