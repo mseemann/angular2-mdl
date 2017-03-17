@@ -197,7 +197,7 @@ export class MdlDialogHostComponent implements OnInit {
   private applyStyle(styles: {[key: string]: string}) {
     if (styles) {
       for (let style in styles){
-        this.renderer.setStyle(this.elementRef.nativeElement, style, styles[style], false, false);
+        this.renderer.setStyle(this.elementRef.nativeElement, style, styles[style]);
       }
     }
   }

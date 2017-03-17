@@ -28,19 +28,19 @@
     "test:watch": "karma start config/karma.conf.js --watch"
   },
   "dependencies": {
-    "@angular/common": "4.0.0-rc.3",
-    "@angular/core": "4.0.0-rc.3",
-    "@angular/forms": "4.0.0-rc.3",
-    "@angular/animations": "4.0.0-rc.3"
+    "@angular/common": "4.0.0-rc.4",
+    "@angular/core": "4.0.0-rc.4",
+    "@angular/forms": "4.0.0-rc.4",
+    "@angular/animations": "4.0.0-rc.4"
   },
   "devDependencies": {
-    "@angular/compiler": "4.0.0-rc.3",
-    "@angular/compiler-cli": "4.0.0-rc.3",
-    "@angular/http": "4.0.0-rc.3",
-    "@angular/platform-browser": "4.0.0-rc.3",
-    "@angular/platform-browser-dynamic": "4.0.0-rc.3",
-    "@angular/platform-server": "4.0.0-rc.3",
-    "@angular/router": "4.0.0-rc.3",
+    "@angular/compiler": "4.0.0-rc.4",
+    "@angular/compiler-cli": "4.0.0-rc.4",
+    "@angular/http": "4.0.0-rc.4",
+    "@angular/platform-browser": "4.0.0-rc.4",
+    "@angular/platform-browser-dynamic": "4.0.0-rc.4",
+    "@angular/platform-server": "4.0.0-rc.4",
+    "@angular/router": "4.0.0-rc.4",
     "@types/chai": "3.4.35",
     "@types/jasmine": "2.5.46",
     "@types/node": "7.0.8",

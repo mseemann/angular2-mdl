@@ -113,8 +113,8 @@ export class MdlSliderComponent implements ControlValueAccessor {
       this.renderer.removeClass(this.inputEl.nativeElement, 'is-lowest-value');
     }
 
-    this.renderer.setStyle(this.lowerEl.nativeElement, 'flex', '' + fraction, false, false);
-    this.renderer.setStyle(this.upperEl.nativeElement, 'flex', '' + (1 - fraction), false, false);
+    this.renderer.setStyle(this.lowerEl.nativeElement, 'flex', '' + fraction);
+    this.renderer.setStyle(this.upperEl.nativeElement, 'flex', '' + (1 - fraction));
   }
 
   public onMouseUp(event) {

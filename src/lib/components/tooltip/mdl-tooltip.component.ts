@@ -68,7 +68,7 @@ export class MdlSimpleTooltipComponent {
     let style = this.mdlTooltipPositionService.calcStyle(offsetWidth, offsetHeight, props, this.position);
 
     for (var key in style) {
-      this.renderer.setStyle(this.elRef.nativeElement, key, style[key], false, false);
+      this.renderer.setStyle(this.elRef.nativeElement, key, style[key]);
     }
 
     this.setActive(true);

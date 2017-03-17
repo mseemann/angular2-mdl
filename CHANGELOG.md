@@ -1,21 +1,24 @@
-<a name="3.0.0-rc.0"></a>
-# 3.0.0-rc.0 (n.n.)
+<a name="3.0.0-rc.4"></a>
+# 3.0.0-rc.4 (2017-03-17)
+
+* Upgade to angular 4 rc.4 and fixing breaking changes
+* package renamed to -rc.4 to make clear that this version corresponds to the current rc of angular4 
 
 <a name="3.0.0-beta.7"></a>
-# 3.0.0-beta.7 (2017.03.12)
+# 3.0.0-beta.7 (2017-03-12)
 
 * the umd bundle file name has changed to bundle/core.js
 
 
 <a name="3.0.0-beta.6"></a>
-# 3.0.0-beta.6 (2017.03.11)
+# 3.0.0-beta.6 (201-03-11)
 
 * Renderer replaced by Renderer2
 * fix dialog animations - keep focus
 
 
 <a name="3.0.0-beta.5"></a>
-# 3.0.0-beta.5 (2017.03.07)
+# 3.0.0-beta.5 (2017-03-07)
 
 ### Bug Fixes
 * [639](https://github.com/mseemann/angular2-mdl/issues/639) (BrowserModule imported twice with angular 4.rc2)
