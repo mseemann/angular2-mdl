@@ -1,3 +1,7 @@
+<a name="3.0.0-rc.5"></a>
+# 3.0.0-rc.5 (2017-03-17)
+* keep the rc number in sync
+
 <a name="3.0.0-rc.4"></a>
 # 3.0.0-rc.4 (2017-03-17)
 
