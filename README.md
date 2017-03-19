@@ -20,7 +20,7 @@ This package assumes that you are building an Angular app with TypeScript. Angul
 
 **Please don't use github to ask questions. Use stackoverflow instead: http://stackoverflow.com/questions/tagged/angular-mdl.**
 
-**Here is a plnkr if you'd like to play around http://plnkr.co/edit/I3dLfLUDIH2xlEJqj0da?p=preview.**
+**Here is a plnkr if you'd like to play around http://plnkr.co/edit/f73PKEmzpAcchza8Q9rb?p=preview.**
 
 
 ### Status of the npm package version 3 (mdl version 1.3.0; angular 4)
@@ -111,5 +111,5 @@ Every contribution is welcome. Please checkout the [CONRIBUTION.md](https://gith
 
 # Remarks
 
-If you need a working example for the current angular-cli with the current angular2-mdl and angular versions please have a look at:
-[https://github.com/mseemann/a2-mdl-webpack](https://github.com/mseemann/a2-mdl-webpack).
+If you need a working example for the current angular-cli with the current angular-mdl and angular versions please have a look at:
+[https://github.com/mseemann/angular-mdl-a4-angular-cli](https://github.com/mseemann/angular-mdl-a4-angular-cli).
