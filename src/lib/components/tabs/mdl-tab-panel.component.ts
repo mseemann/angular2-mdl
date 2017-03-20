@@ -33,6 +33,7 @@ export class MdlTabPanelComponent {
   @ContentChild(MdlTabPanelTitleComponent) public titleComponent;
   @Input('mdl-tab-panel-title') public title;
   @Input('disabled') public disabled;
+  @Input('mdl-tab-panel-data') public data;
   public isActive = false;
 
 }
