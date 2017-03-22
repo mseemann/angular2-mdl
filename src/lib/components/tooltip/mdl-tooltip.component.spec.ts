@@ -200,6 +200,26 @@ describe('Component: MdlTooltip', () => {
     });
 
   });
+
+  it('should change the tooltip text if the text is changed', () => {
+    TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
+      template: `
+           <div [mdl-tooltip]="tooltipText"></div>
+        `}
+    });
+    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    fixture.detectChanges();
+
+    let tooltipEl: HTMLElement = fixture.debugElement
+        .query(By.directive(MdlSimpleTooltipComponent)).nativeElement;
+
+    expect(tooltipEl.textContent).toBe('test');
+
+    fixture.componentInstance.tooltipText = 'chnaged';
+    fixture.detectChanges();
+
+    expect(tooltipEl.textContent).toBe('chnaged');
+  })
 });
 
 
@@ -208,5 +228,7 @@ describe('Component: MdlTooltip', () => {
   template: 'replaced by the test'
 })
 class MdlTestTooltipComponent {
+
+  tooltipText = 'test';
 
 }

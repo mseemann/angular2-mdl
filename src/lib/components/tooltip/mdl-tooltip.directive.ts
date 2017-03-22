@@ -6,11 +6,11 @@ import {
   Renderer2,
   ComponentRef,
   ComponentFactoryResolver,
-  HostListener
+  HostListener, OnChanges, SimpleChanges
 } from '@angular/core';
 import { MdlSimpleTooltipComponent, MdlTooltipComponent } from './mdl-tooltip.component';
 
-export class AbstractMdlTooltipDirective implements OnInit {
+export class AbstractMdlTooltipDirective implements OnInit, OnChanges {
 
   protected tooltip: string|MdlTooltipComponent;
   protected position: 'left' | 'right' | 'top' | 'bottom';
@@ -44,6 +44,13 @@ export class AbstractMdlTooltipDirective implements OnInit {
 
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['tooltip'] && !changes['tooltip'].isFirstChange()){
+      if (!(this.tooltip instanceof MdlTooltipComponent)) {
+        this.tooltipComponent.tooltipText = <string>this.tooltip;
+      }
+    }
+  }
 
 
   private configureTooltipComponent() {
@@ -86,6 +93,7 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
   }
 
   public ngOnInit() { super.ngOnInit(); }
+  public ngOnChanges(changes: SimpleChanges) { super.ngOnChanges(changes)};
 }
 
 @Directive({
@@ -105,4 +113,5 @@ export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
   }
 
   public ngOnInit() { super.ngOnInit(); }
+  public ngOnChanges(changes: SimpleChanges) { super.ngOnChanges(changes)};
 }
