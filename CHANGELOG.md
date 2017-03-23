@@ -1,3 +1,11 @@
+<a name="3.0.0-rc.6"></a>
+# 3.0.0-rc.6 (2017-03-23)
+* keep the rc number in sync with angular
+
+### Bug Fixes
+* [688](https://github.com/mseemann/angular2-mdl/issues/688) (mdl-tooltip is not updated when its value changes)
+
+
 <a name="3.0.0-rc.5"></a>
 # 3.0.0-rc.5 (2017-03-17)
 * keep the rc number in sync
