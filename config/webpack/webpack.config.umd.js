@@ -1,9 +1,10 @@
 const webpack = require('webpack');
+var util = require('./util');
 
 module.exports = {
 	entry: './src/lib/components/index.ts',
 	output: {
-		path: './dist/bundle',
+		path: util.root('dist/bundle'),
 		filename: 'core.js',
 		libraryTarget: 'umd',
 		library: 'angularMdlCore'
