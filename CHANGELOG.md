@@ -1,3 +1,7 @@
+<a name="4.0.0"></a>
+# 4.0.0 (2017-03-24)
+* match angular 4.x
+
 <a name="3.0.0-rc.6"></a>
 # 3.0.0-rc.6 (2017-03-23)
 * keep the rc number in sync with angular
