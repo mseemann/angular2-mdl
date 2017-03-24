@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@angular/compiler": "4.0.0-rc.6",
-    "@angular/compiler-cli": "4.0.0-rc.6",
+    "@angular/compiler-cli": "4.0.0",
     "@angular/http": "4.0.0-rc.6",
     "@angular/platform-browser": "4.0.0-rc.6",
     "@angular/platform-browser-dynamic": "4.0.0-rc.6",
