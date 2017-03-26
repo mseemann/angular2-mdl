@@ -78,7 +78,7 @@
     "rxjs": "5.2.0",
     "sass-loader": "6.0.3",
     "sourcemap-istanbul-instrumenter-loader": "0.2.0",
-    "string-replace-loader": "1.0.5",
+    "string-replace-loader": "1.1.0",
     "style-loader": "0.16.0",
     "ts-node": "3.0.2",
     "tslint": "4.5.1",
