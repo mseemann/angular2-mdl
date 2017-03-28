@@ -1,3 +1,11 @@
+<a name="4.0.1"></a>
+# 4.0.1 (2017-03-28)
+
+### Bug Fixes
+* [724](https://github.com/mseemann/angular2-mdl/issues/724) (call animation done - even if no polyfill is available)
+
+
+
 <a name="4.0.0"></a>
 # 4.0.0 (2017-03-24)
 * match angular 4.x
