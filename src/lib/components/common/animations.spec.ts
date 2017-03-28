@@ -15,4 +15,18 @@ describe('Animations', () => {
 
   });
 
+  it('should call the animation done callback even if there is no web animation polyfill', (done) => {
+
+    let noopAnim = new NoopWebAnimations();
+
+    let animation = noopAnim.animate(null, null, null, null);
+
+    animation.onDone( () => {
+      // test would timeout if the done callback isn#t called
+      done();
+    });
+
+    animation.play();
+  });
+
 });

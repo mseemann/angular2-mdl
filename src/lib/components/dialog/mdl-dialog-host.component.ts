@@ -177,9 +177,7 @@ export class MdlDialogHostComponent implements OnInit {
         this.config.leaveTransitionEasingCurve || leaveTransitionEasingCurve);
 
       animation.onDone( () => {
-        this.ngZone.run( () => {
-          selfComponentRef.destroy();
-        });
+        selfComponentRef.destroy();
       });
 
       animation.play();
