@@ -2,7 +2,7 @@
 Angular 4 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0).
 
 **If you are looking for a stable Angular 2 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular2 . 
-The master is under active development to be compatible with Angular 4.**
+The master is compatible with Angular 4.**
 
 
 This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
@@ -23,7 +23,7 @@ This package assumes that you are building an Angular app with TypeScript. Angul
 **Here is a plnkr if you'd like to play around http://plnkr.co/edit/f73PKEmzpAcchza8Q9rb?p=preview.**
 
 
-### Status of the npm package version 3 (mdl version 1.3.0; angular 4)
+### Status of the npm package version 4 (mdl version 1.3.0; angular 4)
 
 - Badges
 - Buttons
