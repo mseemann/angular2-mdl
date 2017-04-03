@@ -75,7 +75,7 @@
     "protractor": "5.1.1",
     "raw-loader": "0.5.1",
     "rimraf": "2.6.1",
-    "rxjs": "5.2.0",
+    "rxjs": "5.3.0",
     "sass-loader": "6.0.3",
     "sourcemap-istanbul-instrumenter-loader": "0.2.0",
     "string-replace-loader": "1.2.0",
