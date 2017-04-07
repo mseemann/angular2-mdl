@@ -95,7 +95,7 @@ export const appRoutes: Routes = [
 })
 export class Angular2MdlAppComponent {
 
-  public title = 'Angular 2 - Material Design Lite';
+  public title = 'Angular - Material Design Lite';
 
   public componentSelected(mainLayout: MdlLayoutComponent) {
     mainLayout.closeDrawerOnSmallScreens();
