@@ -82,7 +82,7 @@
     "style-loader": "0.16.1",
     "ts-node": "3.0.2",
     "tslint": "5.0.0",
-    "tslint-loader": "3.5.1",
+    "tslint-loader": "3.5.2",
     "typescript": "2.2.2",
     "typings": "2.1.0",
     "web-animations-js": "2.2.2",
