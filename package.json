@@ -41,7 +41,7 @@
     "@angular/platform-browser-dynamic": "4.0.1",
     "@angular/platform-server": "4.0.1",
     "@angular/router": "4.0.1",
-    "@types/chai": "3.4.35",
+    "@types/chai": "3.5.0",
     "@types/jasmine": "2.5.47",
     "@types/node": "7.0.12",
     "angular2-template-loader": "0.6.2",
