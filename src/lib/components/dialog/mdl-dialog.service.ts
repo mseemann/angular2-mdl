@@ -5,12 +5,12 @@ import {
   ComponentRef,
   Type,
   ReflectiveInjector,
-  OpaqueToken,
   Provider,
   ApplicationRef,
   ViewContainerRef,
   TemplateRef,
-  EventEmitter
+  EventEmitter,
+  InjectionToken
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Subject } from 'rxjs/Subject';
@@ -28,7 +28,7 @@ import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.servi
 
 
 
-export const MDL_CONFIGUARTION = new OpaqueToken('MDL_CONFIGUARTION');
+export const MDL_CONFIGUARTION = new InjectionToken<IMdlDialogConfiguration>('MDL_CONFIGUARTION');
 export const MIN_DIALOG_Z_INDEX = 100000;
 
 /**

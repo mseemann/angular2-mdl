@@ -8,14 +8,14 @@ import {
   DoCheck,
   ViewChild,
   NgModule,
-  OpaqueToken,
   Optional,
   Inject,
   EventEmitter,
   Output,
   ViewEncapsulation,
   ModuleWithProviders,
-  SimpleChanges
+  SimpleChanges,
+  InjectionToken
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -31,7 +31,7 @@ import { CommonModule } from '@angular/common';
 import { noop } from '../common/noop';
 import { callNative } from '../common/native-support';
 
-export const DISABLE_NATIVE_VALIDITY_CHECKING = new OpaqueToken('disableNativeValidityChecking');
+export const DISABLE_NATIVE_VALIDITY_CHECKING = new InjectionToken<boolean>('disableNativeValidityChecking');
 
 
 let nextId = 0;

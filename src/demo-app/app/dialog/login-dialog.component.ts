@@ -4,14 +4,14 @@ import {
   HostListener,
   OnInit,
   Inject,
-  OpaqueToken
+  InjectionToken
 } from '@angular/core';
 import { LoginService } from './login.service';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { MdlTextFieldComponent } from '../../../lib/components';
 import { MdlDialogReference } from '../../../lib/components';
 
-export const TEST_VALUE = new OpaqueToken('test value');
+export const TEST_VALUE = new InjectionToken<string>('test value');
 
 
 @Component({

@@ -3,7 +3,10 @@ import {
   TestBed,
   async
 } from '@angular/core/testing';
-import { Component, ViewContainerRef, NgModule, Optional, Inject, OpaqueToken, ViewChild } from '@angular/core';
+import {
+  Component, ViewContainerRef, NgModule, Optional, Inject, ViewChild,
+  InjectionToken
+} from '@angular/core';
 import { DOCUMENT, By } from '@angular/platform-browser';
 import { MdlDialogModule } from './index';
 import {
@@ -18,7 +21,7 @@ import { MdlBackdropOverlayComponent } from '../dialog-outlet/mdl-backdrop-overl
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
 import { MdlButtonComponent, MdlButtonModule } from '../button/mdl-button.component';
 
-const TEST = new OpaqueToken('test');
+const TEST = new InjectionToken<any>('test');
 
 describe('Service: MdlDialog', () => {
 

@@ -11,10 +11,10 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  OpaqueToken,
   Optional,
   Inject,
-  Injectable
+  Injectable,
+  InjectionToken
 } from '@angular/core';
 import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from '../common/mdl-error';
@@ -33,7 +33,7 @@ const WATERFALL = 'waterfall';
 const SCROLL = 'scroll';
 
 /**
- * The LAYOUT_SCREEN_SIZE_THRESHOLD can be changed at the root module. Just provide a value for this OpaqueToken:
+ * The LAYOUT_SCREEN_SIZE_THRESHOLD can be changed at the root module. Just provide a value for this InjectionToken:
  *
  * providers: [
  *  {provide:LAYOUT_SCREEN_SIZE_THRESHOLD, useValue: 768 }
@@ -43,9 +43,9 @@ const SCROLL = 'scroll';
  *
  * It should be clear that this can only be used if you are using the scss and not the pre compiled css from getmdl.io.
  *
- * @type {OpaqueToken}
+ * @type {InjectionToken}
  */
-export const LAYOUT_SCREEN_SIZE_THRESHOLD = new OpaqueToken('layoutScreenSizeThreshold');
+export const LAYOUT_SCREEN_SIZE_THRESHOLD = new InjectionToken<number>('layoutScreenSizeThreshold');
 
 export class MdLUnsupportedLayoutTypeError extends MdlError {
   constructor(type: string) {
