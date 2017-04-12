@@ -30,7 +30,7 @@
   "dependencies": {
     "@angular/animations": "4.0.1",
     "@angular/common": "4.0.1",
-    "@angular/core": "4.0.1",
+    "@angular/core": "4.0.2",
     "@angular/forms": "4.0.1"
   },
   "devDependencies": {
