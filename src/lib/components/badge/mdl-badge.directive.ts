@@ -9,6 +9,9 @@ import {
   SimpleChanges
 } from '@angular/core';
 
+
+const DATA_BADE_ATTR = 'data-badge';
+
 @Directive({
   selector: '[mdl-badge]',
   host: {
@@ -26,7 +29,11 @@ export class MdlBadgeDirective implements OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    this.renderer.setAttribute(this.el, 'data-badge', this.mdlBadgeContent);
+    if (this.mdlBadgeContent === null || typeof this.mdlBadgeContent === 'undefined'){
+      this.renderer.removeAttribute(this.el, DATA_BADE_ATTR);
+      return;
+    }
+    this.renderer.setAttribute(this.el, DATA_BADE_ATTR, this.mdlBadgeContent);
   }
 
 }

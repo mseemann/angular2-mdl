@@ -1,3 +1,10 @@
+<a name="4.0.2"></a>
+# 4.0.1 (2017-04-12)
+
+### Bug Fixes
+* [775](https://github.com/mseemann/angular2-mdl/issues/775) (Restore the behavior for mdl-badge as of version 2)
+
+
 <a name="4.0.1"></a>
 # 4.0.1 (2017-03-28)
 

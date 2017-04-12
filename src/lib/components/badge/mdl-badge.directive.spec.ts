@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { MdlBadgeModule } from './mdl-badge.directive';
+import { isNullOrUndefined } from 'util';
 
 
 describe('Directive: MdlBadge', () => {
@@ -43,6 +44,33 @@ describe('Directive: MdlBadge', () => {
 
   });
 
+
+    it('should rmeove the data-badge attribute if the badge value is null or undefined', () => {
+
+        TestBed.overrideComponent(MdlTestBadgeComponent, { set: {
+            template: '<span [mdl-badge]="badgeCount"></span>' }
+        });
+
+        let fixture = TestBed.createComponent(MdlTestBadgeComponent);
+        fixture.detectChanges();
+
+        let spanEl: HTMLElement = fixture.nativeElement.children.item(0);
+        expect(spanEl.hasAttribute('data-badge')).toBe(true, 'value 1');
+
+        fixture.componentInstance.badgeCount = 0;
+        fixture.detectChanges();
+        expect(spanEl.hasAttribute('data-badge')).toBe(true, 'value 0');
+
+
+        fixture.componentInstance.badgeCount = null;
+        fixture.detectChanges();
+        expect(spanEl.hasAttribute('data-badge')).toBe(false, 'value null');
+
+        fixture.componentInstance.badgeCount = undefined;
+        fixture.detectChanges();
+        expect(spanEl.hasAttribute('data-badge')).toBe(false, 'value undefined');
+    });
+
 });
 
 
@@ -50,4 +78,6 @@ describe('Directive: MdlBadge', () => {
   selector: 'test-badge',
   template: 'replaced by the test'
 })
-class MdlTestBadgeComponent {}
+class MdlTestBadgeComponent {
+    badgeCount = 1;
+}
