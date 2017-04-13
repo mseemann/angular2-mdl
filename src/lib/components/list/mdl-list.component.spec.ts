@@ -59,17 +59,6 @@ describe('Components: MdlList*', () => {
 
   });
 
-  it('should throw if mdl-list-item has no mdl-list parent', () => {
-
-    TestBed.overrideComponent(TestApp, { set: {
-      template: '<mdl-list-item></mdl-list-item>' }
-    });
-    let fixture = TestBed.createComponent(TestApp);
-
-    expect( () => fixture.detectChanges() ).toThrow();
-
-  });
-
   it('should throw if mdl-list-item-primary-content has no mdl-list-item parent', () => {
     TestBed.overrideComponent(TestApp, { set: {
       template: '<mdl-list-item-primary-content></mdl-list-item-primary-content>' }

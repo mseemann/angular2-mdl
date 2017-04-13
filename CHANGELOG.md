@@ -1,3 +1,10 @@
+<a name="4.0.3"></a>
+# 4.0.3 (2017-04-13)
+
+### Features
+* remove check that mdl-list-item need mdl-list as a parent
+
+
 <a name="4.0.2"></a>
 # 4.0.2 (2017-04-12)
 

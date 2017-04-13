@@ -44,20 +44,14 @@ export class MdlListComponent {}
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
-export class MdlListItemComponent implements OnInit, OnChanges {
+export class MdlListItemComponent implements OnChanges {
 
   private _lines: number = 1;
   @Input()
   get lines() { return this._lines; }
   set lines(value) { this._lines = toNumber(value); }
 
-  constructor(@Optional() private mdlListComponent: MdlListComponent) {}
 
-  public ngOnInit() {
-    if (this.mdlListComponent === null) {
-      throw new MdlStructureError('mdl-list-item', 'mdl-list');
-    }
-  }
 
   public ngOnChanges(changes: SimpleChanges) {
 
@@ -65,19 +59,6 @@ export class MdlListItemComponent implements OnInit, OnChanges {
       throw new MdlUnsupportedCountOfListItemLinesError(this.lines);
     }
   }
-
-
-  /**
-   * TODO check these conditions
-   * .mdl-list__item-secondary-content	Defines the secondary content sub-division
-   * requires .mdl-list__item-two-line or .mdl-list__item-three-line
-   .mdl-list__item-secondary-info	Defines the information sub-division
-   requires .mdl-list__item-two-line or .mdl-list__item-three-line
-   .mdl-list__item-secondary-action	Defines the Action sub-division
-   requires .mdl-list__item-two-line or .mdl-list__item-three-line
-   .mdl-list__item-text-body	Defines the Text Body sub-division
-   requires .mdl-list__item-three-line
-   */
 }
 
 @Component({
