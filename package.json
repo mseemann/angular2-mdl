@@ -28,20 +28,20 @@
     "test:watch": "karma start config/karma.conf.js --watch"
   },
   "dependencies": {
-    "@angular/animations": "4.0.2",
-    "@angular/common": "4.0.2",
-    "@angular/core": "4.0.2",
-    "@angular/forms": "4.0.2"
+    "@angular/animations": "4.0.3",
+    "@angular/common": "4.0.3",
+    "@angular/core": "4.0.3",
+    "@angular/forms": "4.0.3"
   },
   "devDependencies": {
-    "@angular/compiler": "4.0.2",
-    "@angular/compiler-cli": "4.0.2",
-    "@angular/http": "4.0.2",
-    "@angular/platform-browser": "4.0.2",
-    "@angular/platform-browser-dynamic": "4.0.2",
-    "@angular/platform-server": "4.0.2",
-    "@angular/router": "4.0.2",
-    "@types/chai": "3.5.0",
+    "@angular/compiler": "4.0.3",
+    "@angular/compiler-cli": "4.0.3",
+    "@angular/http": "4.0.3",
+    "@angular/platform-browser": "4.0.3",
+    "@angular/platform-browser-dynamic": "4.0.3",
+    "@angular/platform-server": "4.0.3",
+    "@angular/router": "4.0.3",
+    "@types/chai": "3.5.1",
     "@types/jasmine": "2.5.47",
     "@types/node": "7.0.13",
     "angular2-template-loader": "0.6.2",
@@ -89,7 +89,7 @@
     "webpack": "2.4.1",
     "webpack-dev-server": "2.4.2",
     "webpack-merge": "4.1.0",
-    "zone.js": "0.8.5"
+    "zone.js": "0.8.8"
   },
   "optionalDependencies": {
     "fsevents": "1.1.1"
