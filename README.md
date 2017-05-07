@@ -107,7 +107,7 @@ sassLoader: {
 
 # Contributing
 
-Every contribution is welcome. Please checkout the [CONRIBUTION.md](https://github.com/mseemann/angular2-mdl/blob/master/CONTRIBUTION.md) file.
+Every contribution is welcome. Please checkout the [CONTRIBUTION.md](https://github.com/mseemann/angular2-mdl/blob/master/CONTRIBUTION.md) file.
 
 # Remarks
 
