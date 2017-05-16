@@ -12,6 +12,7 @@ This package assumes that you are building an Angular app with TypeScript. Angul
 [![Build Status](https://travis-ci.org/mseemann/angular2-mdl.svg?branch=master)](https://travis-ci.org/mseemann/angular2-mdl)
 [![CircleCI](https://circleci.com/gh/mseemann/angular2-mdl/tree/master.svg?style=shield)](https://circleci.com/gh/mseemann/angular2-mdl/tree/master)
 [![npm version](https://badge.fury.io/js/@angular-mdl%2Fcore.svg)](https://www.npmjs.com/package/@angular-mdl/core)
+[![Downloads](http://img.shields.io/npm/dm/@angular-mdl%2Fcore.svg)](https://npmjs.org/package/@angular-mdl/core)
 [![Coverage Status](https://coveralls.io/repos/github/mseemann/angular2-mdl/badge.svg?branch=master)](https://coveralls.io/github/mseemann/angular2-mdl?branch=master)
 [![Dependencies](https://david-dm.org/mseemann/angular2-mdl.svg)](https://david-dm.org/mseemann/angular2-mdl)
 [![peerDependencies Status](https://david-dm.org/mseemann/angular2-mdl/peer-status.svg)](https://david-dm.org/mseemann/angular2-mdl?type=peer)
