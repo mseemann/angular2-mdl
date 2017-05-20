@@ -114,3 +114,5 @@ Every contribution is welcome. Please checkout the [CONTRIBUTION.md](https://git
 
 If you need a working example for the current angular-cli with the current angular-mdl and angular versions please have a look at:
 [https://github.com/mseemann/angular-mdl-a4-angular-cli](https://github.com/mseemann/angular-mdl-a4-angular-cli).
+
+And if you would like to see a real world app that uses this package have a look at https://www.yovelino.de/apps/tour-planner/.
