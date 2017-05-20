@@ -14,7 +14,7 @@ import {
   Optional,
   Inject,
   Injectable,
-  InjectionToken
+  InjectionToken, NgZone
 } from '@angular/core';
 import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from '../common/mdl-error';
@@ -61,6 +61,7 @@ export class MdlScreenSizeService {
   private windowMediaQueryListener: Function;
 
   constructor(
+    ngZone: NgZone,
     @Optional() @Inject(LAYOUT_SCREEN_SIZE_THRESHOLD) private layoutScreenSizeThreshold: number) {
 
     // if no value is injected the default size wil be used. same as $layout-screen-size-threshold in scss
@@ -74,7 +75,9 @@ export class MdlScreenSizeService {
       let query: MediaQueryList = window.matchMedia(`(max-width: ${this.layoutScreenSizeThreshold}px)`);
 
       let queryListener = () => {
+        ngZone.run( () => {
           this.sizesSubject.next(query.matches);
+        });
       };
       query.addListener(queryListener);
       this.windowMediaQueryListener = function() {
@@ -267,6 +270,8 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
         this.isSmallScreen = false;
         this.closeDrawer();
       }
+
+      console.log('issmallscreen', this.isSmallScreen);
   }
 
   public toggleDrawer() {

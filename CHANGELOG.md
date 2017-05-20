@@ -1,3 +1,10 @@
+<a name="4.0.4"></a>
+# 4.0.4 (2017-05-20)
+
+### Bug Fixes
+* [536](https://github.com/mseemann/angular2-mdl/issues/536) (MediaQuery no longer runs in ngZone)
+
+
 <a name="4.0.3"></a>
 # 4.0.3 (2017-04-13)
 
