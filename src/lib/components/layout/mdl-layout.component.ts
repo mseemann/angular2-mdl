@@ -270,8 +270,6 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
         this.isSmallScreen = false;
         this.closeDrawer();
       }
-
-      console.log('issmallscreen', this.isSmallScreen);
   }
 
   public toggleDrawer() {
