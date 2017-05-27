@@ -302,7 +302,6 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
       this.scrollListener();
       this.scrollListener = null;
     }
-    this.screenSizeService.destroy();
   }
 
   // triggered from mdl-layout-header.component

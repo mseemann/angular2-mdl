@@ -1,3 +1,9 @@
+<a name="4.0.6"></a>
+# 4.0.6 (2017-05-27)
+
+### Bug Fixes
+* [973](https://github.com/mseemann/angular2-mdl/issues/973) (MdlScreenSizeService is destroyed on MdlLayoutComponent destroy)
+
 <a name="4.0.5"></a>
 # 4.0.5 (2017-05-20)
 
