@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { BrowserModule,
   Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdlModule } from './../../lib/components/index';
 import { RouterModule } from '@angular/router';
@@ -42,6 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     MdlModule,
