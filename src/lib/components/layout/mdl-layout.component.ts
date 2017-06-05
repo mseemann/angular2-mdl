@@ -286,6 +286,13 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     }
   }
 
+  public openDrawer() {
+    this.isDrawerVisible = true;
+    if (this.drawer) {
+      this.setDrawerVisible(true);
+    }
+  }
+
   private setDrawerVisible(visible: boolean){
     this.drawer.isDrawerVisible = visible;
     this.drawer.isDrawerVisible ? this.onOpen.emit() : this.onClose.emit();
@@ -329,6 +336,12 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   public closeDrawerOnSmallScreens() {
     if (this.isSmallScreen && this.isDrawerVisible) {
       this.closeDrawer();
+    }
+  }
+
+  public openDrawerOnSmallScreens() {
+    if (this.isSmallScreen && !this.isDrawerVisible) {
+      this.openDrawer();
     }
   }
 
