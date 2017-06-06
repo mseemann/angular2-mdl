@@ -1,3 +1,10 @@
+<a name="4.0.7"></a>
+# 4.0.7 (2017-06-06)
+
+### Features
+* [990](https://github.com/mseemann/angular2-mdl/pull/990) (add openDrawer and openDrawerOnSmallScreens method on mdl-layout)
+
+
 <a name="4.0.6"></a>
 # 4.0.6 (2017-05-27)
 
