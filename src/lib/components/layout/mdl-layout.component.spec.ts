@@ -340,6 +340,93 @@ describe('Component: MdlLayout', () => {
     expect(titleDebugElement.nativeElement.nodeName).toEqual('SPAN');
   }));
 
+  it('should open the drawer if openDrawer is called', ( done ) => {
+
+    TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
+      template: `
+          <mdl-layout>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        ` }
+    });
+    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
+    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+    layoutComponent.closeDrawer();
+    fixture.detectChanges();
+
+    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    expect(drawer.isDrawerVisible).toBe(false);
+
+    layoutComponent.openDrawer();
+    expect(drawer.isDrawerVisible).toBe(true);
+
+    done();
+  });
+
+  it('should close the drawer if closeDrawer is called', ( done ) => {
+
+    TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
+      template: `
+          <mdl-layout>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        ` }
+    });
+    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
+    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+    layoutComponent.openDrawer();
+    fixture.detectChanges();
+
+    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    expect(drawer.isDrawerVisible).toBe(true);
+
+    layoutComponent.closeDrawer();
+    expect(drawer.isDrawerVisible).toBe(false);
+
+    done();
+  });
+
+  it('should open the drawer on small screens if openDrawerOnSmallScreens is called', ( done ) => {
+
+    TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
+      template: `
+          <mdl-layout mdl-layout-fixed-drawer>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        ` }
+    });
+    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
+    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+    layoutComponent.closeDrawer();
+    fixture.detectChanges();
+
+    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    expect(drawer.isDrawerVisible).toBe(false);
+
+    // small screen
+    layoutComponent.onQueryChange(true);
+    fixture.detectChanges();
+
+    expect(layoutComponent.isSmallScreen).toBe(true);
+
+    layoutComponent.openDrawerOnSmallScreens();
+    expect(drawer.isDrawerVisible).toBe(true);
+
+    done();
+  });
+
   it('should close the drawer on small screens if closeDrawerOnSmallScreens is called', ( done ) => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
@@ -368,6 +455,60 @@ describe('Component: MdlLayout', () => {
     expect(layoutComponent.isSmallScreen).toBe(true);
 
     layoutComponent.closeDrawerOnSmallScreens();
+    expect(drawer.isDrawerVisible).toBe(false);
+
+    done();
+  });
+
+  it('should open the drawer from close state if toggleDrawer is called', ( done ) => {
+
+    TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
+      template: `
+          <mdl-layout>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        ` }
+    });
+    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
+    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+    layoutComponent.closeDrawer();
+    fixture.detectChanges();
+
+    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    expect(drawer.isDrawerVisible).toBe(false);
+
+    layoutComponent.toggleDrawer();
+    expect(drawer.isDrawerVisible).toBe(true);
+
+    done();
+  });
+
+  it('should close the drawer from open state if toggleDrawer is called', ( done ) => {
+
+    TestBed.overrideComponent(MdlTestLayoutComponent, { set: {
+      template: `
+          <mdl-layout>
+            <mdl-layout-header></mdl-layout-header>
+            <mdl-layout-drawer></mdl-layout-drawer>
+            <mdl-layout-content></mdl-layout-content>
+          </mdl-layout>
+        ` }
+    });
+    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
+    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+
+    layoutComponent.openDrawer();
+    fixture.detectChanges();
+
+    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    expect(drawer.isDrawerVisible).toBe(true);
+
+    layoutComponent.toggleDrawer();
     expect(drawer.isDrawerVisible).toBe(false);
 
     done();
