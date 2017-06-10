@@ -1,3 +1,10 @@
+<a name="4.0.8"></a>
+# 4.0.8 (2017-06-10)
+
+### Features
+* MdlScreenSizeService.isSmallScreen method added.
+
+
 <a name="4.0.7"></a>
 # 4.0.7 (2017-06-06)
 

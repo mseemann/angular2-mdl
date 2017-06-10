@@ -89,6 +89,10 @@ export class MdlScreenSizeService {
     }
   }
 
+  public isSmallScreen(): boolean {
+    return this.sizesSubject.value;
+  }
+
   public sizes(): Observable<boolean> {
     return this.sizesSubject.asObservable();
   }

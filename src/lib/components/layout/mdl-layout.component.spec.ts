@@ -666,6 +666,11 @@ describe('Component: MdlLayout', () => {
         done();
       });
     })
+
+    it('should be possible to access the current screen size', () => {
+      let service =TestBed.get(MdlScreenSizeService) as MdlScreenSizeService;
+      expect(service.isSmallScreen()).toBeFalsy();
+    })
   });
 
 });
