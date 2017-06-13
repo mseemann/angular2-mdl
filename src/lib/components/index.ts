@@ -16,7 +16,7 @@ import { MdlListModule } from './list/mdl-list.component';
 import { MdlSpinnerModule } from './spinner/mdl-spinner.component';
 import { MdlSliderModule }  from './slider/mdl-slider.component';
 import { MdlSwitchModule } from './switch/mdl-switch.component';
-import { MdlSnackbaModule } from './snackbar/mdl-snackbar.service';
+import { MdlSnackbarModule } from './snackbar/mdl-snackbar.service';
 import { MdlTooltipModule } from './tooltip/index';
 import { MdlTableModule } from './table/index';
 import { MdlMenuModule } from './menu/index';
@@ -75,7 +75,7 @@ const MDL_MODULES = [
   MdlListModule,
   MdlSliderModule,
   MdlSwitchModule,
-  MdlSnackbaModule,
+  MdlSnackbarModule,
   MdlTooltipModule,
   MdlTableModule,
   MdlMenuModule,
@@ -104,7 +104,7 @@ const MDL_MODULES = [
     MdlListModule.forRoot(),
     MdlSliderModule.forRoot(),
     MdlSwitchModule.forRoot(),
-    MdlSnackbaModule.forRoot(),
+    MdlSnackbarModule.forRoot(),
     MdlTooltipModule.forRoot(),
     MdlTableModule.forRoot(),
     MdlMenuModule.forRoot(),
