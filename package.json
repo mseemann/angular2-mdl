@@ -92,7 +92,7 @@
     "zone.js": "0.8.12"
   },
   "optionalDependencies": {
-    "fsevents": "1.1.1"
+    "fsevents": "1.1.2"
   },
   "private": true
 }
