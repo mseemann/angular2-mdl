@@ -98,7 +98,7 @@ $color-accent-contrast: $color-dark-contrast;
 ```
 
 To make this working you need to find out the way how you could tell your build system where the scss is located.
-For example with webpack you can use the special `~@angular-mdl/core` syntax or you can configure the includePaths:
+For example with webpack you can use the special `~@angular-mdl/core` syntax used above. Or you can configure the includePaths:
 
 ```JavaScript
 sassLoader: {
