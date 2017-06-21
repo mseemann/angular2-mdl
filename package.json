@@ -61,7 +61,7 @@
     "html-webpack-plugin": "2.28.0",
     "http-server": "^0.10.0",
     "jasmine-core": "2.6.4",
-    "jasmine-spec-reporter": "4.1.0",
+    "jasmine-spec-reporter": "4.1.1",
     "karma": "1.7.0",
     "karma-chrome-launcher": "2.1.1",
     "karma-jasmine": "1.1.0",
