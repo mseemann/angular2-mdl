@@ -1,13 +1,7 @@
 
-Angular 4 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0).
+Angular 4 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
 
-**If you are looking for a stable Angular 2 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular2 . 
-The master is compatible with Angular 4.**
-
-
-This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
-
-[Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
+> **If you are looking for a stable Angular 2 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular2.  `master` is compatible with Angular 4.**
 
 [![Build Status](https://travis-ci.org/mseemann/angular2-mdl.svg?branch=master)](https://travis-ci.org/mseemann/angular2-mdl)
 [![CircleCI](https://circleci.com/gh/mseemann/angular2-mdl/tree/master.svg?style=shield)](https://circleci.com/gh/mseemann/angular2-mdl/tree/master)
@@ -19,10 +13,9 @@ This package assumes that you are building an Angular app with TypeScript. Angul
 [![DevDependencies](https://david-dm.org/mseemann/angular2-mdl/dev-status.svg)](https://david-dm.org/mseemann/angular2-mdl#info=devDependencies&view=table)
 [![Code Climate](https://codeclimate.com/github/mseemann/angular2-mdl/badges/gpa.svg)](https://codeclimate.com/github/mseemann/angular2-mdl)
 
-**Please don't use github to ask questions. Use stackoverflow instead: http://stackoverflow.com/questions/tagged/angular-mdl.**
-
-**Here is a plnkr if you'd like to play around http://plnkr.co/edit/f73PKEmzpAcchza8Q9rb?p=preview.**
-
+* **Please don't use github to ask questions.** Use stackoverflow instead: http://stackoverflow.com/questions/tagged/angular-mdl.
+* plnkr if you'd like to play around http://plnkr.co/edit/f73PKEmzpAcchza8Q9rb?p=preview
+* [Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
 
 ### Status of the npm package version 4 (mdl version 1.3.0; angular 4)
 
@@ -52,7 +45,6 @@ This package assumes that you are building an Angular app with TypeScript. Angul
 npm install @angular-mdl/core --save
 ```
 
-
 ### How to use the mdl components with webpack
 
 Just use it. Add the MdlModule to your NgModule imports and you are done!
@@ -72,9 +64,8 @@ const packages: any = {
 };
 ```
 
-
 ### css from material-design-lite
-You may include the material-deisgn-lite css in your html and you're done!
+You may include the material-design-lite css in your html and you're done!
 ```HTML
 <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
