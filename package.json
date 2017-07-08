@@ -31,7 +31,7 @@
     "@angular/animations": "4.2.5",
     "@angular/common": "4.2.5",
     "@angular/core": "4.2.5",
-    "@angular/forms": "4.2.5"
+    "@angular/forms": "4.2.6"
   },
   "devDependencies": {
     "@angular/compiler": "4.2.5",
