@@ -38,7 +38,7 @@
     "@angular/compiler-cli": "4.2.5",
     "@angular/http": "4.2.5",
     "@angular/platform-browser": "4.2.5",
-    "@angular/platform-browser-dynamic": "4.2.5",
+    "@angular/platform-browser-dynamic": "4.2.6",
     "@angular/platform-server": "4.2.5",
     "@angular/router": "4.2.5",
     "@types/chai": "3.5.1",
