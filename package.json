@@ -40,7 +40,7 @@
     "@angular/platform-browser": "4.2.6",
     "@angular/platform-browser-dynamic": "4.2.6",
     "@angular/platform-server": "4.2.6",
-    "@angular/router": "4.2.6",
+    "@angular/router": "4.3.0",
     "@types/chai": "3.5.1",
     "@types/jasmine": "2.5.53",
     "@types/node": "8.0.13",
