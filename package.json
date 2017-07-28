@@ -28,19 +28,19 @@
     "test:watch": "karma start config/karma.conf.js --watch"
   },
   "dependencies": {
-    "@angular/animations": "4.3.1",
-    "@angular/common": "4.3.1",
-    "@angular/core": "4.3.1",
-    "@angular/forms": "4.3.1"
+    "@angular/animations": "4.3.2",
+    "@angular/common": "4.3.2",
+    "@angular/core": "4.3.2",
+    "@angular/forms": "4.3.2"
   },
   "devDependencies": {
-    "@angular/compiler": "4.3.1",
-    "@angular/compiler-cli": "4.3.1",
-    "@angular/http": "4.3.1",
-    "@angular/platform-browser": "4.3.1",
-    "@angular/platform-browser-dynamic": "4.3.1",
-    "@angular/platform-server": "4.3.1",
-    "@angular/router": "4.3.1",
+    "@angular/compiler": "4.3.2",
+    "@angular/compiler-cli": "4.3.2",
+    "@angular/http": "4.3.2",
+    "@angular/platform-browser": "4.3.2",
+    "@angular/platform-browser-dynamic": "4.3.2",
+    "@angular/platform-server": "4.3.2",
+    "@angular/router": "4.3.2",
     "@types/chai": "3.5.1",
     "@types/jasmine": "2.5.53",
     "@types/node": "8.0.17",
@@ -89,7 +89,7 @@
     "webpack": "2.6.1",
     "webpack-dev-server": "2.4.5",
     "webpack-merge": "4.1.0",
-    "zone.js": "0.8.14"
+    "zone.js": "0.8.16"
   },
   "optionalDependencies": {
     "fsevents": "1.1.2"
