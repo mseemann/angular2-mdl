@@ -34,7 +34,7 @@
     "@angular/forms": "4.3.2"
   },
   "devDependencies": {
-    "@angular/compiler": "4.3.2",
+    "@angular/compiler": "4.3.3",
     "@angular/compiler-cli": "4.3.2",
     "@angular/http": "4.3.2",
     "@angular/platform-browser": "4.3.2",
