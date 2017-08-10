@@ -39,7 +39,7 @@
     "@angular/http": "4.3.3",
     "@angular/platform-browser": "4.3.3",
     "@angular/platform-browser-dynamic": "4.3.3",
-    "@angular/platform-server": "4.3.3",
+    "@angular/platform-server": "4.3.4",
     "@angular/router": "4.3.3",
     "@types/chai": "4.0.2",
     "@types/jasmine": "2.5.53",
