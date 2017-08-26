@@ -50,7 +50,7 @@
   min-width: $input-text-button-size;
   width: auto;
   min-height: $input-text-button-size;
-  
+
   // Align icon button
   .mdl-button--icon {
     top: $input-text-expandable-icon-top;
@@ -139,7 +139,8 @@
 
   .mdl-textfield--floating-label.is-focused &,
   .mdl-textfield--floating-label.is-dirty &,
-  .mdl-textfield--floating-label.has-placeholder & {
+  .mdl-textfield--floating-label.has-placeholder &,
+  .mdl-textfield--floating-label input:-webkit-autofill ~ & {
     color: $input-text-highlight-color;
     font-size : $input-text-floating-label-fontsize;
     top: $input-text-vertical-spacing - ($input-text-floating-label-fontsize + $input-text-padding);
