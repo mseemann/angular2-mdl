@@ -33,7 +33,7 @@ export interface ITableItem extends IMdlTableModelItem {
 export class TableDemo extends AbstractDemoComponent implements OnInit {
 
   private tableData: ITableItem[] = [
-    {material: 'Acrylic (Transparent)', quantity: 25, unitPrice: 2.90, selected: true},
+    {material: 'Acrylic <b>(Transparent)</b>', quantity: 25, unitPrice: 2.90, selected: true},
     {material: 'Plywood (Birch)', quantity: 50, unitPrice: 1.25, selected: false},
     {material: 'Laminate (Gold on Blue)', quantity: 10, unitPrice: 2.35, selected: false}
   ];
