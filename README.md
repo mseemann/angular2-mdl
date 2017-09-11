@@ -16,6 +16,7 @@ Angular 4 components, directives and styles based on material design lite https:
 * **Please don't use github to ask questions.** Use stackoverflow instead: http://stackoverflow.com/questions/tagged/angular-mdl.
 * plnkr if you'd like to play around http://plnkr.co/edit/f73PKEmzpAcchza8Q9rb?p=preview
 * [Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
+* Porting of the [MDL-Dashboard](https://getmdl.io/templates/dashboard/index.html) provided by [AndreaM16](https://github.com/AndreaM16):  [Demo-App](https://angular-mdl-dashboard.herokuapp.com/#/home), [Sources](https://github.com/AndreaM16/angular-mdl-dashboard).
 
 ### Status of the npm package version 4 (mdl version 1.3.0; angular 4)
 
