@@ -41,8 +41,8 @@ export class TableDemo extends AbstractDemoComponent implements OnInit {
   protected selected: ITableItem[] = [];
 
   public tableModel = new MdlDefaultTableModel([
-    {key: 'material', name: 'Material', sortable: true},
-    {key: 'quantity', name: 'Quantity', sortable: true, numeric: true},
+    {key: 'material', name: 'Material'},
+    {key: 'quantity', name: 'Quantity', numeric: true},
     {key: 'unitPrice', name: 'Unit price', numeric: true}
   ]);
 

@@ -92,8 +92,8 @@ class MdlTestTableComponent {
   public selected: Array<ITableItem> = new Array<ITableItem>();
 
   public tableModel = new MdlDefaultTableModel([
-    {key: 'material', name: 'Material', sortable: true},
-    {key: 'quantity', name: 'Quantity', sortable: true, numeric: true},
+    {key: 'material', name: 'Material'},
+    {key: 'quantity', name: 'Quantity', numeric: true},
     {key: 'unitPrice', name: 'Unit price', numeric: true}
   ]);
 

@@ -9,6 +9,7 @@ import {
 export interface IMdlTableColumn {
   key: string;
   name: string;
+  // @deprecated - was never supported
   sortable?: boolean;
   numeric?: boolean;
 }

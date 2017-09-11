@@ -8,7 +8,7 @@ describe('Component: MdlTableModel', () => {
 
   beforeEach(() => {
     tableModel = new MdlDefaultTableModel([
-      {key: 'key', name: 'name', sortable: true, numeric: false}
+      {key: 'key', name: 'name', numeric: false}
     ]);
   });
 

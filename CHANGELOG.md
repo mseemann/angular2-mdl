@@ -1,3 +1,7 @@
+<a name="next"></a>
+# 4.x (next)
+* [1182](https://github.com/mseemann/angular2-mdl/issues/1182) (the sortable property of mdl-table was marked as deprecated, becasue it was never supported)
+
 <a name="4.0.8"></a>
 # 4.0.8 (2017-06-10)
 
