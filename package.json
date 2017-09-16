@@ -28,7 +28,7 @@
     "test:watch": "karma start config/karma.conf.js --watch"
   },
   "dependencies": {
-    "@angular/animations": "4.3.6",
+    "@angular/animations": "4.4.1",
     "@angular/common": "4.3.6",
     "@angular/core": "4.3.6",
     "@angular/forms": "4.3.6"
