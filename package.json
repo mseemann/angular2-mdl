@@ -86,7 +86,7 @@
     "typescript": "2.5.3",
     "typings": "2.1.1",
     "web-animations-js": "2.3.1",
-    "webpack": "3.6.0",
+    "webpack": "3.7.0",
     "webpack-dev-server": "2.9.1",
     "webpack-merge": "4.1.0",
     "zone.js": "0.8.18"
