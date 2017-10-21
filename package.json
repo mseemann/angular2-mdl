@@ -46,7 +46,7 @@
     "@types/jasmine": "2.6.0",
     "@types/node": "8.0.45",
     "angular2-template-loader": "0.6.2",
-    "autoprefixer": "7.1.5",
+    "autoprefixer": "7.1.6",
     "awesome-typescript-loader": "3.2.3",
     "codeclimate-test-reporter": "0.5.0",
     "codelyzer": "3.2.1",
