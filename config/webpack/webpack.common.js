@@ -64,7 +64,7 @@ module.exports = {
 		// 3702:272-293 Critical dependency: the request of a dependency is an expression
 		new webpack.ContextReplacementPlugin(
 			// The (\\|\/) piece accounts for path separators in *nix and Windows
-			/@angular(\\|\/)core(\\|\/)@angular/,
+			/@angular(\\|\/)core(\\|\/)esm5/,
 			util.root('src') // location of your src
 		),
     new CopyWebpackPlugin([{ from: util.root('src', 'demo-app', 'assets') , to: 'assets'}], {copyUnmodified: true}),

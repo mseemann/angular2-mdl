@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/core",
-  "version": "4.0.8",
+  "version": "5.0.0-beta.1",
   "license": "MIT",
   "description": "Angular components, directives and styles based on material design lite https://getmdl.io.",
   "homepage": "http://mseemann.io/angular2-mdl/",
@@ -35,8 +35,8 @@
     "url": "git+https://github.com/mseemann/angular2-mdl.git"
   },
   "peerDependencies": {
-    "@angular/core": ">=4.0.0 <5.0.0",
-    "@angular/common": ">=4.0.0 <5.0.0",
-    "@angular/forms": ">=4.0.0 <5.0.0"
+    "@angular/core": ">=5.0.2 <6.0.0",
+    "@angular/common": ">=5.0.2 <6.0.0",
+    "@angular/forms": ">=5.0.2 <6.0.0"
   }
 }
