@@ -35,7 +35,7 @@
     "@angular/forms": "5.0.2"
   },
   "devDependencies": {
-    "@angular/compiler": "5.0.2",
+    "@angular/compiler": "5.0.3",
     "@angular/compiler-cli": "5.0.2",
     "@angular/http": "5.0.2",
     "@angular/platform-browser": "5.0.2",
