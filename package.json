@@ -32,7 +32,7 @@
     "@angular/animations": "5.0.2",
     "@angular/common": "5.0.2",
     "@angular/core": "5.0.2",
-    "@angular/forms": "5.0.2"
+    "@angular/forms": "5.0.3"
   },
   "devDependencies": {
     "@angular/compiler": "5.0.2",
