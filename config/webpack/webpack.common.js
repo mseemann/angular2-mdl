@@ -3,7 +3,15 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var util = require('./util');
-var autoprefixer = require('autoprefixer');
+
+let postCssLaoder = {
+	loader: 'postcss-loader',
+	options: {
+		config: {
+			path: util.root('config','webpack','postcss.config.js')
+		}
+	}
+};
 
 module.exports = {
 
@@ -41,7 +49,11 @@ module.exports = {
 					test: /\.scss$|\.sass$/,
 			   	include: [util.root('src', 'demo-app', 'css')],
 					use: ExtractTextPlugin.extract({
-						use: ["css-loader", "postcss-loader", "sass-loader"],
+						use: [
+							"css-loader",
+                            postCssLaoder,
+							"sass-loader"
+						],
 						// use style-loader in development
 						fallback: "style-loader"
 					})
@@ -49,7 +61,10 @@ module.exports = {
 				{
 					test: /\.scss$/,
 					include: [util.root('src', 'demo-app', 'app'), util.root('src', 'lib', 'components')],
-					loaders: ['raw-loader', 'postcss-loader', 'sass-loader']
+					loaders: [
+						'raw-loader',
+                        postCssLaoder,
+						'sass-loader']
 				},
 				{
 					test: /\.hbs$/,
@@ -67,17 +82,11 @@ module.exports = {
 			/@angular(\\|\/)core(\\|\/)esm5/,
 			util.root('src') // location of your src
 		),
-    new CopyWebpackPlugin([{ from: util.root('src', 'demo-app', 'assets') , to: 'assets'}], {copyUnmodified: true}),
-		new webpack.optimize.CommonsChunkPlugin({
-      name: ['polyfills']
+    	new CopyWebpackPlugin([{ from: util.root('src', 'demo-app', 'assets') , to: 'assets'}], {copyUnmodified: true}),
+			new webpack.optimize.CommonsChunkPlugin({
+      			name: ['polyfills']
 		}),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: function () {
-          return [autoprefixer];
-        }
-      }
-    }),
+    	new webpack.LoaderOptionsPlugin({}),
 		new HtmlWebpackPlugin({
 			template: '!!handlebars-loader!src/demo-app/index.hbs',
 			baseUrl: process.env.NODE_ENV == 'production' ? '/angular2-mdl/' : '/',
