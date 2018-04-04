@@ -49,7 +49,8 @@ export class MdlMenuRegisty {
   }
 
   public remove(menuComponent: MdlMenuComponent) {
-    this.menuComponents.slice(this.menuComponents.indexOf(menuComponent), 1);
+    const fromIndex = this.menuComponents.indexOf(menuComponent);
+    this.menuComponents.splice(fromIndex, 1);
   }
 
   public hideAllExcept(menuComponent: MdlMenuComponent) {
