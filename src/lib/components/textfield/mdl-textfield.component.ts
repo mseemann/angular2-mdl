@@ -70,6 +70,7 @@ const IS_DIRTY = 'is-dirty';
         [required]="required"
         [autofocus]="autofocus"
         [readonly]="readonly"
+        [maxlength]="maxlength"
         ></textarea>
      <input
         *ngIf="!rows"
