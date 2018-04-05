@@ -175,10 +175,10 @@ export class MdlSnackbarService {
   declarations: [MdlSnackbarComponent],
   entryComponents: [MdlSnackbarComponent]
 })
-export class MdlSnackbaModule {
+export class MdlSnackbarModule {
   public static forRoot(): ModuleWithProviders {
     return {
-      ngModule: MdlSnackbaModule,
+      ngModule: MdlSnackbarModule,
       providers: [MdlSnackbarService]
     };
   }
