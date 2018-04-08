@@ -8,6 +8,8 @@ import { MdlDialogHostComponent } from './mdl-dialog-host.component';
 import { MdlAlertComponent } from './mdl-alert.component';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
 import { MdlButtonModule } from '../button/mdl-button.component';
+import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
+
 
 export * from './mdl-dialog.component';
 export * from './mdl-dialog.service';
@@ -31,7 +33,7 @@ const PRIVATE_COMPONENTS = [
     CommonModule,
     MdlCommonsModule,
     MdlButtonModule,
-    MdlDialogOutletModule.forRoot()
+    MdlDialogOutletModule
   ],
   exports: [
     ...PUBLIC_COMPONENTS
@@ -49,7 +51,10 @@ export class MdlDialogModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlDialogModule,
-      providers: [MdlDialogService]
+      providers: [
+        MdlDialogService,
+        MdlDialogOutletService
+      ]
     };
   }
 }

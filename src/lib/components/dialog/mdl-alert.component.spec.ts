@@ -12,7 +12,7 @@ describe('MdlAlert', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
-      declarations: [MdlTestComponent],
+      declarations: [MdlTestComponent]
     });
   }));
 

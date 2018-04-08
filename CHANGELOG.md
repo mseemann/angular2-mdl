@@ -5,6 +5,7 @@
 * [1007](https://github.com/mseemann/angular2-mdl/pull/1007) (fix: Snackbar Module Name)
 * [1051](https://github.com/mseemann/angular2-mdl/pull/1051) (add maxlength if mdl-textfield is a textarea)
 * [997](https://github.com/mseemann/angular2-mdl/issues/997) (fix Issue with dialog in lazy loaded components)
+* [1038] (https://github.com/mseemann/angular2-mdl/issues/1038) (fix Including an mdl-dialog causes things to happen twice)
 ### Breaking Changes
 * the Snackbar Module Name has changed from MdlSnackbaModule to MdlSnackbarModule
 
