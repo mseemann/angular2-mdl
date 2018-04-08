@@ -4,7 +4,7 @@
 * [1449](https://github.com/mseemann/angular2-mdl/pull/1449) (fix: menus from menuregistry not removed on compnent destroy)
 * [1007](https://github.com/mseemann/angular2-mdl/pull/1007) (fix: Snackbar Module Name)
 * [1051](https://github.com/mseemann/angular2-mdl/pull/1051) (add maxlength if mdl-textfield is a textarea)
-
+* [997](https://github.com/mseemann/angular2-mdl/issues/997) (fix Issue with dialog in lazy loaded components)
 ### Breaking Changes
 * the Snackbar Module Name has changed from MdlSnackbaModule to MdlSnackbarModule
 
