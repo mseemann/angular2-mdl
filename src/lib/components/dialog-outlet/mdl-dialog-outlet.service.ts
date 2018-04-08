@@ -1,6 +1,14 @@
-import { ViewContainerRef, Injectable, ApplicationRef, ComponentFactoryResolver, EventEmitter } from '@angular/core';
+import {
+    ViewContainerRef,
+    Injectable,
+    ApplicationRef,
+    ComponentFactoryResolver,
+    EventEmitter,
+    NgZone
+} from '@angular/core';
 import { MdlDialogOutletComponent } from './mdl-dialog-outlet.component';
 import { MdlBackdropOverlayComponent } from './mdl-backdrop-overlay.component';
+import { take } from 'rxjs/operators';
 
 
 @Injectable()
@@ -13,16 +21,21 @@ export class MdlDialogOutletService {
 
   constructor(
     private appRef: ApplicationRef,
-    private componentFactoryResolver: ComponentFactoryResolver) {
+    private componentFactoryResolver: ComponentFactoryResolver,
+    ngZone: NgZone) {
+
     let dialogOutletCompRef = null;
-    try {
-      dialogOutletCompRef = this.appRef.bootstrap(MdlDialogOutletComponent);
-    } catch (e) {
-      // the user did not use the dialog.outlet element outside of his root app.
-    }
-    if (dialogOutletCompRef) {
-      this.setViewContainerRef(dialogOutletCompRef.instance.viewContainerRef);
-    }
+    ngZone.onStable.pipe(take(1)).subscribe( () => {
+      try {
+          dialogOutletCompRef = this.appRef.bootstrap(MdlDialogOutletComponent);
+      } catch (e) {
+          // the user did not use the dialog.outlet element outside of his root app.
+          // console.log(e);
+      }
+      if (dialogOutletCompRef) {
+          this.setViewContainerRef(dialogOutletCompRef.instance.viewContainerRef);
+      }
+    });
   }
 
   public setDefaultViewContainerRef(vCRef: ViewContainerRef) {

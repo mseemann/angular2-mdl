@@ -11,6 +11,8 @@ import { MdlDialogOutletModule } from './index';
 
 describe('MdlDialogOutletComponent', () => {
 
+  let el;
+
   // create the tesbed
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,10 +23,13 @@ describe('MdlDialogOutletComponent', () => {
 
   // now modify the dom and add a dialog-outlet element direct under the body
   beforeEach(async(inject([DOCUMENT], function (doc) {
-    const el = doc.createElement('dialog-outlet');
+    el = doc.createElement('dialog-outlet');
     doc.body.appendChild( el);
   })));
 
+  afterEach(async(inject([DOCUMENT], function (doc) {
+      doc.body.removeChild(el);
+  })));
 
   // now we can boostrap our MdlDialogOutletComponent component
   it('should create the dialog-outlet outside the app-root',

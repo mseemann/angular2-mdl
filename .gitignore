@@ -31,3 +31,5 @@ Thumbs.db
 
 #ignore files added by travis ci script
 google-chrome-stable_current*
+
+yarn-error.log
