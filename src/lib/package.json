@@ -1,13 +1,14 @@
 {
   "name": "@angular-mdl/core",
-  "version": "5.0.0-beta.1",
+  "version": "5.0.0-rc.1",
   "license": "MIT",
   "description": "Angular components, directives and styles based on material design lite https://getmdl.io.",
   "homepage": "http://mseemann.io/angular2-mdl/",
   "keywords": [
-    "angular 2 4",
+    "angular 2 4 5",
     "angular2",
     "angular4",
+    "angular5",
     "angular",
     "material",
     "material design",

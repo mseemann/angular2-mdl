@@ -1,7 +1,9 @@
 
-Angular 4, 5 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
+Angular 5 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
 
-> **If you are looking for a stable Angular 2 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular2.  `master` is compatible with Angular 4.**
+> **If you are looking for a stable Angular 4 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular4.  `master` is compatible with Angular 5.**
+
+> **If you are looking for a stable Angular 2 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular2.  `master` is compatible with Angular 5.**
 
 [![Build Status](https://travis-ci.org/mseemann/angular2-mdl.svg?branch=master)](https://travis-ci.org/mseemann/angular2-mdl)
 [![CircleCI](https://circleci.com/gh/mseemann/angular2-mdl/tree/master.svg?style=shield)](https://circleci.com/gh/mseemann/angular2-mdl/tree/master)
@@ -18,7 +20,7 @@ Angular 4, 5 components, directives and styles based on material design lite htt
 * [Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
 * Porting of the [MDL-Dashboard](https://getmdl.io/templates/dashboard/index.html) provided by [AndreaM16](https://github.com/AndreaM16):  [Demo-App](https://angular-mdl-dashboard.herokuapp.com/#/home), [Sources](https://github.com/AndreaM16/angular-mdl-dashboard).
 
-### Status of the npm package version 4 (mdl version 1.3.0; angular 4)
+### Status of the npm package version 4 (mdl version 1.3.0; angular 5)
 
 - Badges
 - Buttons
