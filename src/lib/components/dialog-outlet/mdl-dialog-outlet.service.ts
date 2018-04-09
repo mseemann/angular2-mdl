@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { MdlDialogOutletComponent } from './mdl-dialog-outlet.component';
 import { MdlBackdropOverlayComponent } from './mdl-backdrop-overlay.component';
-import { take } from 'rxjs/operators';
+import { take } from 'rxjs/operators/take';
 
 
 @Injectable()

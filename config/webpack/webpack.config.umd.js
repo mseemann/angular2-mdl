@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 var util = require('./util');
+const rxPaths = require('rxjs/_esm5/path-mapping');
 
 module.exports = {
 	entry: './src/lib/components/index.ts',
@@ -10,7 +11,9 @@ module.exports = {
 		library: 'angularMdlCore'
 	},
 	resolve: {
-		extensions: ['.ts', '.js']
+		extensions: ['.ts', '.js'],
+		// Use the "alias" key to resolve to an ESM distribution
+		alias: rxPaths()
 	},
 	externals: {
 		'@angular/core': {
@@ -86,6 +89,7 @@ module.exports = {
 		new webpack.SourceMapDevToolPlugin({
 			filename: 'core.js.map',
 			test: /\.js($|\?)/i
-		})
+		}),
+		new webpack.optimize.ModuleConcatenationPlugin()
 	]
 };
