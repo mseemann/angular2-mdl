@@ -1,5 +1,5 @@
 <a name="next"></a>
-# 5.x (next)
+# 5.0.0 (2018-04-09)
 * [1182](https://github.com/mseemann/angular2-mdl/issues/1182) (the sortable property of mdl-table was marked as deprecated, becasue it was never supported)
 * [1449](https://github.com/mseemann/angular2-mdl/pull/1449) (fix: menus from menuregistry not removed on compnent destroy)
 * [1007](https://github.com/mseemann/angular2-mdl/pull/1007) (fix: Snackbar Module Name)
