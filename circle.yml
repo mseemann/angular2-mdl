@@ -1,7 +1,7 @@
 machine:
   node:
-    version: 7.1.0
+    version: 8.9.1
 
 dependencies:
   pre:
-    - npm install -g npm@3.6.0
+    - npm install -g npm@5.5.1
