@@ -82,7 +82,7 @@
     "sourcemap-istanbul-instrumenter-loader": "0.2.0",
     "string-replace-loader": "2.1.1",
     "style-loader": "0.21.0",
-    "ts-node": "6.0.2",
+    "ts-node": "6.0.3",
     "tslint": "5.9.1",
     "tslint-loader": "3.6.0",
     "typescript": "2.5.2",
