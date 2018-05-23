@@ -1,33 +1,30 @@
-import {
-  inject,
-  TestBed
-} from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 
-import {
-  MdlTooltipPositionService
-} from './mdl-tooltip-position.service';
+import { MdlTooltipPositionService } from './mdl-tooltip-position.service';
 
 describe('Component: MdlTooltipPositionService', () => {
-
   var service: MdlTooltipPositionService;
   let boundingClientRect;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers:  [MdlTooltipPositionService]
+      providers: [MdlTooltipPositionService],
     });
   });
 
-  beforeEach(inject([MdlTooltipPositionService], function (mdlService: MdlTooltipPositionService) {
-    service = mdlService;
-    boundingClientRect = {
-      bottom: 100,
-      height: 20,
-      left: 200,
-      right: 200,
-      top: 100,
-      width: 20};
-  }));
+  beforeEach(
+    inject([MdlTooltipPositionService], function(mdlService: MdlTooltipPositionService) {
+      service = mdlService;
+      boundingClientRect = {
+        bottom: 100,
+        height: 20,
+        left: 200,
+        right: 200,
+        top: 100,
+        width: 20,
+      };
+    }),
+  );
 
   // left Object{top: '110px', marginTop: '0px', left: '190px'}
   // top Object{left: '210px', marginLeft: '0px', top: '90px'}
@@ -73,6 +70,4 @@ describe('Component: MdlTooltipPositionService', () => {
     expect(style.top).toBe('90px');
     expect(style.left).toBe('0');
   });
-
 });
-

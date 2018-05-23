@@ -1,20 +1,15 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import {
-  MdlMenuComponent, MdlMenuRegisty
-} from './mdl-menu.component';
-import {
-  MdlMenuItemComponent
-} from './mdl-menu-item.component';
+import { MdlMenuComponent, MdlMenuRegisty } from './mdl-menu.component';
+import { MdlMenuItemComponent } from './mdl-menu-item.component';
 import { MdlMenuItemFullBleedDeviderComponent } from './mdl-menu-item.directive';
 import { CommonModule } from '@angular/common';
 import { MdlToggleMenuDirective } from './mdl-toggle-menu.directive';
-
 
 const MDL_MENU_DIRECTIVES = [
   MdlMenuComponent,
   MdlMenuItemComponent,
   MdlMenuItemFullBleedDeviderComponent,
-  MdlToggleMenuDirective
+  MdlToggleMenuDirective,
 ];
 
 export * from './mdl-menu.component';
@@ -30,7 +25,7 @@ export class MdlMenuModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlMenuModule,
-      providers: [MdlMenuRegisty]
+      providers: [MdlMenuRegisty],
     };
   }
 }

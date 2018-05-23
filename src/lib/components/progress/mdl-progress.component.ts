@@ -6,7 +6,7 @@ import {
   NgModule,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ModuleWithProviders
+  ModuleWithProviders,
 } from '@angular/core';
 import { toBoolean } from '../common/boolean-property';
 import { CommonModule } from '@angular/common';
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
   selector: 'mdl-progress',
   host: {
     '[class.mdl-progress]': 'true',
-    '[class.mdl-progress__indeterminate]': 'indeterminate===true'
+    '[class.mdl-progress__indeterminate]': 'indeterminate===true',
   },
   template: `
     <div class="progressbar bar bar1" [style.width]="progress + '%'"></div>
@@ -32,10 +32,14 @@ export class MdlProgressComponent implements OnChanges {
 
   private _indeterminate: boolean = false;
   @Input()
-  get indeterminate() { return this._indeterminate; }
-  set indeterminate(value) { this._indeterminate = toBoolean(value); }
+  get indeterminate() {
+    return this._indeterminate;
+  }
+  set indeterminate(value) {
+    this._indeterminate = toBoolean(value);
+  }
 
-  public ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+  public ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
     if (changes['buffer']) {
       this.setBuffer(changes['buffer'].currentValue);
     }
@@ -44,7 +48,6 @@ export class MdlProgressComponent implements OnChanges {
   private setBuffer(b: number) {
     this.aux = 100 - b;
   }
-
 }
 
 const MDL_PROGRESS_DIRECTIVES = [MdlProgressComponent];
@@ -58,7 +61,7 @@ export class MdlProgressModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlProgressModule,
-      providers: []
+      providers: [],
     };
   }
 }

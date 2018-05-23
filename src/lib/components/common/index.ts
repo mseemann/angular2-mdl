@@ -3,7 +3,9 @@ import { AppendViewContainerRefDirective } from './append-view-container-ref-dir
 import { Animations, NativeWebAnimations, NoopWebAnimations } from './animations';
 
 function isWebAnimationsSupported() {
-  return typeof Element !== 'undefined' && typeof(<any>Element).prototype['animate'] === 'function';
+  return (
+    typeof Element !== 'undefined' && typeof (<any>Element).prototype['animate'] === 'function'
+  );
 }
 
 export function instantiateSupportedAnimationDriver() {
@@ -15,13 +17,10 @@ export function instantiateSupportedAnimationDriver() {
   return new NoopWebAnimations();
 }
 
-
 @NgModule({
   imports: [],
   exports: [AppendViewContainerRefDirective],
   declarations: [AppendViewContainerRefDirective],
-  providers: [
-    {provide: Animations, useFactory: instantiateSupportedAnimationDriver}
-  ]
+  providers: [{ provide: Animations, useFactory: instantiateSupportedAnimationDriver }],
 })
 export class MdlCommonsModule {}

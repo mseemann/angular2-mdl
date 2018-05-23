@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  NgModule,
-  ModuleWithProviders,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, Input, NgModule, ModuleWithProviders, ViewEncapsulation } from '@angular/core';
 import { toBoolean } from '../common/boolean-property';
 import { CommonModule } from '@angular/common';
 
@@ -25,23 +19,29 @@ import { CommonModule } from '@angular/common';
          <div class="mdl-spinner__circle"></div>
       </div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div>
     </div>
-  `
-  /* tslint:enable */,
-  encapsulation: ViewEncapsulation.None
+  `,
+  /* tslint:enable */ encapsulation: ViewEncapsulation.None,
 })
 export class MdlSpinnerComponent {
   public layers = [1, 2, 3, 4];
 
   private _active: boolean = false;
   @Input()
-  get active() { return this._active; }
-  set active(value) { this._active = toBoolean(value); }
+  get active() {
+    return this._active;
+  }
+  set active(value) {
+    this._active = toBoolean(value);
+  }
 
   private _singleColor: boolean = false;
   @Input('single-color')
-  get singleColor() { return this._singleColor; }
-  set singleColor(value) { this._singleColor = toBoolean(value); }
-
+  get singleColor() {
+    return this._singleColor;
+  }
+  set singleColor(value) {
+    this._singleColor = toBoolean(value);
+  }
 }
 
 const MDL_SPINNER_DIRECTIVES = [MdlSpinnerComponent];
@@ -55,7 +55,7 @@ export class MdlSpinnerModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlSpinnerModule,
-      providers: []
+      providers: [],
     };
   }
 }

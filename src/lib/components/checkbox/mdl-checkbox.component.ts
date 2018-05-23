@@ -8,23 +8,18 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Input,
-  ModuleWithProviders
+  ModuleWithProviders,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-  ControlValueAccessor,
-  FormsModule
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { toBoolean } from '../common/boolean-property';
 import { noop } from '../common/noop';
-
 
 const IS_FOCUSED = 'is-focused';
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => MdlCheckboxComponent),
-  multi: true
+  multi: true,
 };
 
 @Component({
@@ -35,11 +30,11 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     '[class.mdl-checkbox]': 'true',
     '[class.is-upgraded]': 'true',
     '[class.is-checked]': 'value',
-    '[class.is-disabled]': 'disabled'
+    '[class.is-disabled]': 'disabled',
   },
   template: `
-  <input type="checkbox" class="mdl-checkbox__input" 
-    (focus)="onFocus()" 
+  <input type="checkbox" class="mdl-checkbox__input"
+    (focus)="onFocus()"
     (blur)="onBlur()"
     [disabled]="disabled"
     [attr.tabindex]="tabindex"
@@ -53,36 +48,41 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   inputs: ['value'],
   outputs: ['change'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
-
   private _disabled: boolean = false;
   @Input()
-  get disabled(): boolean { return this._disabled; }
-  set disabled(value) { this._disabled = toBoolean(value); }
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value) {
+    this._disabled = toBoolean(value);
+  }
 
   @Input() public tabindex: number = null;
 
   public change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  private value_: boolean = false;
+  private _value: boolean = false;
 
   private el: HTMLElement;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(elementRef: ElementRef, private renderer: Renderer2) {
     this.el = elementRef.nativeElement;
   }
 
-  get value(): boolean { return this.value_; };
+  get value(): boolean {
+    return this._value;
+  }
   set value(v: boolean) {
-    this.value_ = v;
+    this._value = v;
     this.onChangeCallback(v);
     this.change.emit(v);
   }
 
   public writeValue(value: any): void {
-    this.value_ = value;
+    this._value = value;
   }
 
   private onTouchedCallback: () => void = noop;
@@ -117,7 +117,6 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   }
 }
 
-
 const MDL_CHECKBOX_DIRECTIVES = [MdlCheckboxComponent];
 
 @NgModule({
@@ -129,7 +128,7 @@ export class MdlCheckboxModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlCheckboxModule,
-      providers: []
+      providers: [],
     };
   }
 }

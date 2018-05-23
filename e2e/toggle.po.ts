@@ -1,7 +1,6 @@
-import {browser, element, by} from 'protractor';
+import { browser, element, by } from 'protractor';
 
 export class TogglePage {
-
   public navigateTo() {
     return browser.get('/angular2-mdl');
   }
@@ -9,5 +8,4 @@ export class TogglePage {
   public getFirstCheckboxElement() {
     return element(by.css('.mdl-checkbox__tick-outline'));
   }
-
 }

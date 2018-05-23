@@ -5,19 +5,15 @@ import { By } from '@angular/platform-browser';
 import { MdlAlertComponent } from './mdl-alert.component';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
 
-
-
 describe('MdlAlert', () => {
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
-      declarations: [MdlTestComponent]
+      declarations: [MdlTestComponent],
     });
   }));
 
   it('should create, show and close the dialog', async(() => {
-
     let fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
@@ -33,16 +29,11 @@ describe('MdlAlert', () => {
     buttonEl.click();
 
     fixture.detectChanges();
-    fixture.whenStable().then( () => {
+    fixture.whenStable().then(() => {
       expect(fixture.componentInstance.alertConfirmd).toHaveBeenCalled();
     });
-
   }));
-
-
-
 });
-
 
 @Component({
   selector: 'test-component',
@@ -54,9 +45,8 @@ describe('MdlAlert', () => {
         okText="Got it!"
         (confirmed)="alertConfirmd()"></mdl-alert>
     <dialog-outlet></dialog-outlet>
-  `
+  `,
 })
 class MdlTestComponent {
-
   public alertConfirmd() {}
 }

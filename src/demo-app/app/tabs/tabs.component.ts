@@ -1,23 +1,14 @@
-import {
-  Component,
-  ViewEncapsulation,
-  OnInit
-} from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
 
 @Component({
   selector: 'tabs-demo',
   host: hostConfig,
-  animations: [
-    flyInOutTrigger
-  ],
+  animations: [flyInOutTrigger],
   templateUrl: 'tabs.component.html',
   styles: [
     `
@@ -33,12 +24,11 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
     .demo-toggle-disabled-container mdl-switch {
         margin: 5px 0;
     }
-    `
+    `,
   ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TabsDemo extends AbstractDemoComponent implements OnInit {
-
   public activeIndex = 0;
   public disableTargaryens = true;
   public myArray: string[] = null;
@@ -47,7 +37,7 @@ export class TabsDemo extends AbstractDemoComponent implements OnInit {
     super(router, route, titleService);
   }
 
-  public tabChanged({index}) {
+  public tabChanged({ index }) {
     this.activeIndex = index;
   }
 

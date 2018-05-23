@@ -1,20 +1,12 @@
-import {
-  Component,
-  ViewContainerRef,
-  ViewEncapsulation
-} from '@angular/core';
-
+import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'mdl-tab-panel-title',
-  template:
-    `
+  template: `
    <ng-content></ng-content>
    `,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlTabPanelTitleComponent {
-
   constructor(public vcRef: ViewContainerRef) {}
-
 }

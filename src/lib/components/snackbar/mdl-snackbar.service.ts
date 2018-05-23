@@ -5,14 +5,13 @@ import {
   ComponentFactoryResolver,
   NgModule,
   ViewEncapsulation,
-  ModuleWithProviders, ComponentFactory
+  ModuleWithProviders,
+  ComponentFactory,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-
+import { Observable, Subject } from 'rxjs';
 
 const ANIMATION_TIME = 250;
 
@@ -24,7 +23,7 @@ const ANIMATION_TIME = 250;
       <button *ngIf="onAction" class="mdl-snackbar__action" type="button" (click)="onClick()" >{{actionText}}</button>
     </div>
   `,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlSnackbarComponent {
   public message: string;
@@ -32,7 +31,7 @@ export class MdlSnackbarComponent {
   public showIt = false;
   public onAction: () => void;
 
-  constructor(){}
+  constructor() {}
 
   public onClick() {
     this.onAction();
@@ -54,7 +53,6 @@ export class MdlSnackbarComponent {
       }, ANIMATION_TIME);
     }, ANIMATION_TIME);
 
-
     return result.asObservable();
   }
 
@@ -68,7 +66,6 @@ export class MdlSnackbarComponent {
       result.next(null);
       result.complete();
     }, ANIMATION_TIME);
-
 
     return result.asObservable();
   }
@@ -86,57 +83,59 @@ export interface IMdlSnackbarMessage {
 
 @Injectable()
 export class MdlSnackbarService {
-
   private cFactory: ComponentFactory<any>;
-  private previousSnack: {component: MdlSnackbarComponent, cRef: ComponentRef<any>};
+  private previousSnack: {
+    component: MdlSnackbarComponent;
+    cRef: ComponentRef<any>;
+  };
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private dialogOutletService: MdlDialogOutletService) {
-    this.cFactory  = this.componentFactoryResolver.resolveComponentFactory(MdlSnackbarComponent);
+    private dialogOutletService: MdlDialogOutletService,
+  ) {
+    this.cFactory = this.componentFactoryResolver.resolveComponentFactory(MdlSnackbarComponent);
   }
-
 
   public showToast(message: string, timeout?: number): Observable<MdlSnackbarComponent> {
     return this.showSnackbar({
       message: message,
-      timeout: timeout
+      timeout: timeout,
     });
   }
 
   public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Observable<MdlSnackbarComponent> {
-
-    let optTimeout        = snackbarMessage.timeout || 2750;
+    let optTimeout = snackbarMessage.timeout || 2750;
     let closeAfterTimeout = !!snackbarMessage.closeAfterTimeout;
-    let viewContainerRef  = this.dialogOutletService.viewContainerRef;
+    let viewContainerRef = this.dialogOutletService.viewContainerRef;
 
     if (!viewContainerRef) {
-      throw new Error('You did not provide a ViewContainerRef. ' +
-        'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
+      throw new Error(
+        'You did not provide a ViewContainerRef. ' +
+          'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService',
+      );
     }
 
     let cRef = viewContainerRef.createComponent(this.cFactory, viewContainerRef.length);
 
-    let mdlSnackbarComponent = <MdlSnackbarComponent> cRef.instance;
+    let mdlSnackbarComponent = <MdlSnackbarComponent>cRef.instance;
     mdlSnackbarComponent.message = snackbarMessage.message;
 
-    if(this.previousSnack) {
+    if (this.previousSnack) {
       let previousSnack = this.previousSnack;
-      let subscription = previousSnack.component.hide()
-        .subscribe(() => {
-          previousSnack.cRef.destroy();
-          subscription.unsubscribe();
-        });
+      let subscription = previousSnack.component.hide().subscribe(() => {
+        previousSnack.cRef.destroy();
+        subscription.unsubscribe();
+      });
     }
 
     this.previousSnack = {
       component: mdlSnackbarComponent,
-      cRef: cRef
+      cRef: cRef,
     };
 
     if (snackbarMessage.action) {
-      if(closeAfterTimeout) {
-        this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout)
+      if (closeAfterTimeout) {
+        this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout);
       }
       mdlSnackbarComponent.actionText = snackbarMessage.action.text;
       mdlSnackbarComponent.onAction = () => {
@@ -146,12 +145,12 @@ export class MdlSnackbarService {
         });
       };
     } else {
-      this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout)
+      this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout);
     }
 
     let result: Subject<MdlSnackbarComponent> = new Subject<MdlSnackbarComponent>();
 
-    mdlSnackbarComponent.show().subscribe( () => {
+    mdlSnackbarComponent.show().subscribe(() => {
       result.next(mdlSnackbarComponent);
       result.complete();
     });
@@ -160,11 +159,10 @@ export class MdlSnackbarService {
   }
 
   private hideAndDestroySnack(component, componentRef, timeOut) {
-    setTimeout( () => {
-      component.hide()
-        .subscribe(() => {
-          componentRef.destroy();
-        });
+    setTimeout(() => {
+      component.hide().subscribe(() => {
+        componentRef.destroy();
+      });
     }, timeOut);
   }
 }
@@ -173,13 +171,13 @@ export class MdlSnackbarService {
   imports: [CommonModule, MdlDialogOutletModule.forRoot()],
   exports: [MdlSnackbarComponent],
   declarations: [MdlSnackbarComponent],
-  entryComponents: [MdlSnackbarComponent]
+  entryComponents: [MdlSnackbarComponent],
 })
 export class MdlSnackbarModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlSnackbarModule,
-      providers: [MdlSnackbarService]
+      providers: [MdlSnackbarService],
     };
   }
 }

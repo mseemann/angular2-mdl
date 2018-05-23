@@ -1,9 +1,6 @@
-
 import { NoopWebAnimations } from './animations';
 describe('Animations', () => {
-
   it('should  be safe to call the mock animations api', () => {
-
     let noopAnim = new NoopWebAnimations();
 
     let animation = noopAnim.animate(null, null, null, null);
@@ -11,22 +8,19 @@ describe('Animations', () => {
     expect(animation).toBeDefined();
 
     // should not throw
-    animation.onDone( () => {});
-
+    animation.onDone(() => {});
   });
 
-  it('should call the animation done callback even if there is no web animation polyfill', (done) => {
-
+  it('should call the animation done callback even if there is no web animation polyfill', done => {
     let noopAnim = new NoopWebAnimations();
 
     let animation = noopAnim.animate(null, null, null, null);
 
-    animation.onDone( () => {
+    animation.onDone(() => {
       // test would timeout if the done callback isn#t called
       done();
     });
 
     animation.play();
   });
-
 });

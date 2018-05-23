@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
 
@@ -11,12 +8,10 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
   selector: 'button-demo',
   host: {
     '[@flyInOut]': 'true',
-    '[style.display]': "'block'"
+    '[style.display]': "'block'",
   },
-  animations: [
-    flyInOutTrigger
-  ],
-  templateUrl: 'button.component.html'
+  animations: [flyInOutTrigger],
+  templateUrl: 'button.component.html',
 })
 export class ButtonDemo extends AbstractDemoComponent {
   public buttonType = 'raised';

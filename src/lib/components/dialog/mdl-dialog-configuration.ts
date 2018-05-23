@@ -1,9 +1,4 @@
-import {
-  ViewContainerRef,
-  Type,
-  Provider,
-  ElementRef
-} from '@angular/core';
+import { ViewContainerRef, Type, Provider } from '@angular/core';
 import { MdlButtonComponent } from '../button/mdl-button.component';
 
 /**
@@ -45,7 +40,6 @@ export interface IOpenCloseRect {
  * Dialog configuration for all dialogs (simple or custom)
  */
 export interface IMdlDialogConfiguration {
-
   /**
    * true if the dialog should be opened as modal.
    */
@@ -54,7 +48,7 @@ export interface IMdlDialogConfiguration {
   /**
    * true if the dialogs should animate. defaults to true.
    */
-  animate?: boolean
+  animate?: boolean;
 
   /**
    * css classes as space delimted list of classes applied to
@@ -66,12 +60,12 @@ export interface IMdlDialogConfiguration {
    * Key Value object with additional styles that will be applied to
    * the dialog-host component. for example: {'width': '350px'}
    */
-  styles?: {[key: string]: string};
+  styles?: { [key: string]: string };
 
   /**
    * Close the dialog if the user clicks on the backdrop.
    */
-  clickOutsideToClose?:boolean;
+  clickOutsideToClose?: boolean;
 
   /**
    * MdlButtonComponent or mouse event the dialog open animation should start from.
@@ -82,7 +76,6 @@ export interface IMdlDialogConfiguration {
    *  MdlButtonComponent or mouse event  the dialog close animation shoul end.
    */
   closeTo?: MdlButtonComponent | MouseEvent | IOpenCloseRect;
-
 
   /**
    * The curation for the enter animation in ms. defaults to 300ms
@@ -120,7 +113,7 @@ export interface IMdlSimpleDialogConfiguration extends IMdlDialogConfiguration {
   /**
    * the actions that are used for this dialog (the order will be reversed by mdl.
    */
-  actions: [IMdlDialogAction];
+  actions: IMdlDialogAction[];
   /**
    * should the actions be displayed as full width actions. every aciton is one row.
    */

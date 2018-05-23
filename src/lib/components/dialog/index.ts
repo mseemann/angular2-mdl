@@ -10,51 +10,26 @@ import { MdlDialogOutletModule } from '../dialog-outlet/index';
 import { MdlButtonModule } from '../button/mdl-button.component';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
 
-
 export * from './mdl-dialog.component';
 export * from './mdl-dialog.service';
 export * from './mdl-dialog-configuration';
 export * from './mdl-alert.component';
 
+const PUBLIC_COMPONENTS = [MdlDialogComponent, MdlAlertComponent];
 
-
-const PUBLIC_COMPONENTS = [
-  MdlDialogComponent,
-  MdlAlertComponent
-];
-
-const PRIVATE_COMPONENTS = [
-  MdlDialogHostComponent,
-  MdlSimpleDialogComponent
-];
+const PRIVATE_COMPONENTS = [MdlDialogHostComponent, MdlSimpleDialogComponent];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MdlCommonsModule,
-    MdlButtonModule,
-    MdlDialogOutletModule
-  ],
-  exports: [
-    ...PUBLIC_COMPONENTS
-  ],
-  declarations: [
-    ...PUBLIC_COMPONENTS,
-    ...PRIVATE_COMPONENTS
-  ],
-  entryComponents: [
-    ...PUBLIC_COMPONENTS,
-    ...PRIVATE_COMPONENTS
-  ]
+  imports: [CommonModule, MdlCommonsModule, MdlButtonModule, MdlDialogOutletModule],
+  exports: [...PUBLIC_COMPONENTS],
+  declarations: [...PUBLIC_COMPONENTS, ...PRIVATE_COMPONENTS],
+  entryComponents: [...PUBLIC_COMPONENTS, ...PRIVATE_COMPONENTS],
 })
 export class MdlDialogModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlDialogModule,
-      providers: [
-        MdlDialogService,
-        MdlDialogOutletService
-      ]
+      providers: [MdlDialogService, MdlDialogOutletService],
     };
   }
 }

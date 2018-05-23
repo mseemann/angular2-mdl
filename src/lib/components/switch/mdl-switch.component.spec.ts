@@ -5,22 +5,19 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 describe('Component: MdlSwitch', () => {
-
-  beforeEach( async(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MdlSwitchModule, FormsModule ],
-      declarations: [ MdlTestSwitchComponent ],
+      imports: [MdlSwitchModule, FormsModule],
+      declarations: [MdlTestSwitchComponent],
     });
   }));
 
   it('should add the css class mdl-switch to the host element', () => {
-
     let fixture = TestBed.createComponent(MdlTestSwitchComponent);
     fixture.detectChanges();
 
     let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(checkboxEl.classList.contains('mdl-switch')).toBe(true);
-
   });
 
   it('should fire a change event if the state changed', async(() => {
@@ -35,16 +32,13 @@ describe('Component: MdlSwitch', () => {
 
     expect(instance.onChange).toHaveBeenCalledWith(true);
   }));
-
 });
-
 
 @Component({
   selector: 'test-icon',
-  template: '<mdl-switch [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">switch</mdl-switch>'
+  template:
+    '<mdl-switch [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">switch</mdl-switch>',
 })
 class MdlTestSwitchComponent {
-
-  public onChange(v: boolean) {}
-
+  public onChange(_: boolean) {}
 }

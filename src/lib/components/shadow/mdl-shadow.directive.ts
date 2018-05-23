@@ -6,13 +6,13 @@ import {
   ElementRef,
   Renderer2,
   NgModule,
-  ModuleWithProviders
+  ModuleWithProviders,
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 import { toNumber } from '../common/number.property';
 
 export class MdlUnsupportedShadowValueError extends MdlError {
-  constructor(value: number | string ) {
+  constructor(value: number | string) {
     /* istanbul ignore next */
     super(`Shadow value "${value}" isn't supported (allowed: 2,3,4,6,8,16,24).`);
   }
@@ -21,24 +21,25 @@ export class MdlUnsupportedShadowValueError extends MdlError {
 const MDL_SHADOW_VALUES = [0, 2, 3, 4, 6, 8, 16, 24];
 
 @Directive({
-  selector: '[mdl-shadow]'
+  selector: '[mdl-shadow]',
 })
 export class MdlShadowDirective implements OnChanges {
-
   private el: HTMLElement;
 
   private _mdlShadow: number = 2;
   @Input('mdl-shadow')
-  get mdlShadow() { return this._mdlShadow; }
-  set mdlShadow(value) { this._mdlShadow = toNumber(value); }
+  get mdlShadow() {
+    return this._mdlShadow;
+  }
+  set mdlShadow(value) {
+    this._mdlShadow = toNumber(value);
+  }
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(elementRef: ElementRef, private renderer: Renderer2) {
     this.el = elementRef.nativeElement;
   }
 
-  public ngOnChanges(changes: {[key: string]: SimpleChange}) {
-
-
+  public ngOnChanges(changes: { [key: string]: SimpleChange }) {
     if (MDL_SHADOW_VALUES.indexOf(Number(this.mdlShadow)) === -1) {
       throw new MdlUnsupportedShadowValueError(this.mdlShadow);
     }
@@ -50,11 +51,8 @@ export class MdlShadowDirective implements OnChanges {
     }
 
     this.renderer.addClass(this.el, `mdl-shadow--${change.currentValue}dp`);
-
   }
-
 }
-
 
 const MDL_SHADOW_DIRECTIVES = [MdlShadowDirective];
 
@@ -67,7 +65,7 @@ export class MdlShadowModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlShadowModule,
-      providers: []
+      providers: [],
     };
   }
 }

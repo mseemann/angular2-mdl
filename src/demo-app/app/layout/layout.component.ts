@@ -1,10 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
 import { hostConfig } from '../animations/flyInOutTrigger-animation';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
 import { MdlScreenSizeService } from '../../../lib/components/layout/mdl-layout.component';
@@ -12,9 +9,7 @@ import { MdlScreenSizeService } from '../../../lib/components/layout/mdl-layout.
 @Component({
   selector: 'layout-demo',
   host: hostConfig,
-  animations: [
-    flyInOutTrigger
-  ],
+  animations: [flyInOutTrigger],
   templateUrl: 'layout.component.html',
   styles: [
     `
@@ -38,32 +33,35 @@ import { MdlScreenSizeService } from '../../../lib/components/layout/mdl-layout.
         cursor: pointer;
     }
     
-    `
+    `,
   ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class LayoutDemo extends AbstractDemoComponent {
-
   public activeIndex = 0;
 
-  constructor(router: Router, route: ActivatedRoute, titleService: Title, mdlScreenSizeService: MdlScreenSizeService) {
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    titleService: Title,
+    mdlScreenSizeService: MdlScreenSizeService,
+  ) {
     super(router, route, titleService);
 
-    mdlScreenSizeService.sizes().subscribe( (isSmall) => {
-      console.log(`is ${isSmall? 'small' : 'large'} screen`);
+    mdlScreenSizeService.sizes().subscribe(isSmall => {
+      console.log(`is ${isSmall ? 'small' : 'large'} screen`);
     });
-
   }
 
-  public tabChanged({index}) {
+  public tabChanged({ index }) {
     this.activeIndex = index;
   }
 
-  public tabMouseover({index}) {
+  public tabMouseover({ index }) {
     console.log(`mouseover: ${index}`);
   }
 
-  public tabMouseout({index}) {
+  public tabMouseout({ index }) {
     console.log(`mouseout: ${index}`);
   }
 }

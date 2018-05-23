@@ -3,11 +3,9 @@ import {
   Input,
   ElementRef,
   OnChanges,
-  Renderer2,
   NgModule,
   ModuleWithProviders,
   ViewEncapsulation,
-  SimpleChanges
 } from '@angular/core';
 import { MdlError } from '../common/mdl-error';
 import { toBoolean } from '../common/boolean-property';
@@ -27,20 +25,9 @@ export class MdlUnsupportedColoredTypeError extends MdlError {
   }
 }
 
-const MDL_BUTTON_TYPES = [
-  'raised',
-  'fab',
-  'mini-fab',
-  'icon',
-  ''
-];
+const MDL_BUTTON_TYPES = ['raised', 'fab', 'mini-fab', 'icon', ''];
 
-const MDL_COLORED_TYPES = [
-  'primary',
-  'accent',
-  ''
-];
-
+const MDL_COLORED_TYPES = ['primary', 'accent', ''];
 
 @Component({
   selector: 'mdl-button, button[mdl-button], a[mdl-button]',
@@ -49,41 +36,42 @@ const MDL_COLORED_TYPES = [
     '(mouseup)': 'onMouseUp()',
     '(mouseleave)': 'onMouseLeave()',
     '[class.mdl-button]': 'true',
-    '[class.mdl-button--raised]':   'mdlButtonType == "raised"',
-    '[class.mdl-button--fab]':      'mdlButtonType == "fab" || mdlButtonType == "mini-fab"',
+    '[class.mdl-button--raised]': 'mdlButtonType == "raised"',
+    '[class.mdl-button--fab]': 'mdlButtonType == "fab" || mdlButtonType == "mini-fab"',
     '[class.mdl-button--mini-fab]': 'mdlButtonType == "mini-fab"',
-    '[class.mdl-button--icon]':     'mdlButtonType == "icon"',
-    '[class.mdl-button--primary]' : 'mdlColoredType == "primary"',
-    '[class.mdl-button--accent]' :  'mdlColoredType == "accent"'
+    '[class.mdl-button--icon]': 'mdlButtonType == "icon"',
+    '[class.mdl-button--primary]': 'mdlColoredType == "primary"',
+    '[class.mdl-button--accent]': 'mdlColoredType == "accent"',
   },
   exportAs: 'mdlButton',
   template: '<ng-content></ng-content>',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlButtonComponent implements OnChanges {
-
   private element: HTMLElement;
 
-
-  @Input('mdl-button-type') public mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '' ;
+  @Input('mdl-button-type') public mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '';
   @Input('mdl-colored') public mdlColoredType: 'primary' | 'accent' | '';
 
   private _disabled: boolean = false;
   @Input()
-  get disabled(): boolean { return this._disabled; }
-  set disabled(value) { this._disabled = toBoolean(value); }
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value) {
+    this._disabled = toBoolean(value);
+  }
 
-  constructor(public elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(public elementRef: ElementRef) {
     this.element = elementRef.nativeElement;
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-
+  public ngOnChanges() {
     if (this.mdlButtonType && MDL_BUTTON_TYPES.indexOf(this.mdlButtonType) === -1) {
       throw new MdlUnsupportedButtonTypeError(this.mdlButtonType);
     }
 
-    if ( this.mdlColoredType && MDL_COLORED_TYPES.indexOf(this.mdlColoredType) === -1) {
+    if (this.mdlColoredType && MDL_COLORED_TYPES.indexOf(this.mdlColoredType) === -1) {
       throw new MdlUnsupportedColoredTypeError(this.mdlColoredType);
     }
   }
@@ -101,7 +89,6 @@ export class MdlButtonComponent implements OnChanges {
   }
 }
 
-
 const MDL_BUTTON_DIRECTIVES = [MdlButtonComponent];
 
 @NgModule({
@@ -113,7 +100,7 @@ export class MdlButtonModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlButtonModule,
-      providers: []
+      providers: [],
     };
   }
 }

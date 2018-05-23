@@ -1,9 +1,5 @@
-import {
-  NgModule,
-  ApplicationRef, ApplicationInitStatus
-} from '@angular/core';
-import { BrowserModule,
-  Title } from '@angular/platform-browser';
+import { NgModule, ApplicationRef, ApplicationInitStatus } from '@angular/core';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdlModule } from './../../lib/components/index';
 import { RouterModule } from '@angular/router';
@@ -21,7 +17,7 @@ import {
   Layout0Demo,
   Layout1Demo,
   Layout2Demo,
-  Layout3Demo
+  Layout3Demo,
 } from './layout/layout.component';
 import { MenuDemo } from './menus/menu.component';
 import { ToggleDemo } from './toggle/toggle.component';
@@ -45,9 +41,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     MdlModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: false}),
+    RouterModule.forRoot(appRoutes, { enableTracing: false }),
     LoginModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   declarations: [
     Angular2MdlAppComponent,
@@ -77,20 +73,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TextFieldDemo,
     ThemeDemo,
     PrismDirective,
-    ReactiveFormsDemo
+    ReactiveFormsDemo,
   ],
-  providers: [
-    Title
-  ],
+  providers: [Title],
   entryComponents: [Angular2MdlAppComponent],
   bootstrap: [],
 })
 export class Angular2MdlAppModule {
-
-  constructor(private appRef: ApplicationRef, private appStatus: ApplicationInitStatus) { }
+  constructor(private appRef: ApplicationRef, private appStatus: ApplicationInitStatus) {}
 
   public ngDoBootstrap() {
-    this.appStatus.donePromise.then( () => {
+    this.appStatus.donePromise.then(() => {
       let script = document.createElement('script');
       script.innerHTML = '';
       script.src = 'https://buttons.github.io/buttons.js';

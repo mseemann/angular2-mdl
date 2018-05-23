@@ -18,10 +18,9 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
   selector: 'mdl-tabs',
   host: {
     '[class.mdl-tabs]': 'true',
-    '[class.is-upgraded]': 'true'
+    '[class.is-upgraded]': 'true',
   },
-  template:
-  `
+  template: `
    <div class="mdl-tabs__tab-bar">
       <div *ngFor="let tab of tabs.toArray()">
         <div
@@ -40,19 +39,26 @@ import { MdlTabPanelComponent } from './mdl-tab-panel.component';
   </div>
   <ng-content></ng-content>
   `,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlTabsComponent implements AfterContentInit, OnChanges {
-
   private _selectedIndex: number = 0;
   @Input('mdl-tab-active-index')
-  get selectedIndex() { return this._selectedIndex; }
-  set selectedIndex(value) { this._selectedIndex = toNumber(value); }
+  get selectedIndex() {
+    return this._selectedIndex;
+  }
+  set selectedIndex(value) {
+    this._selectedIndex = toNumber(value);
+  }
 
   private _isRipple = false;
   @Input('mdl-ripple')
-  get isRipple() { return this._isRipple; }
-  set isRipple(value) { this._isRipple = toBoolean(value); }
+  get isRipple() {
+    return this._isRipple;
+  }
+  set isRipple(value) {
+    this._isRipple = toBoolean(value);
+  }
 
   @Output('mdl-tab-active-changed') public selectedTabEmitter = new EventEmitter();
 
@@ -63,23 +69,23 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
     this.updateSelectedTabIndex();
     // listen to tab changes - this would not be necessary if this would be fixed:
     // https://github.com/angular/angular/issues/12818
-    this.tabs.changes.subscribe( () => {
+    this.tabs.changes.subscribe(() => {
       this.updateSelectedTabIndex();
     });
   }
 
   public ngOnChanges(changes: SimpleChanges): any {
-    if ( changes['selectedIndex'] ) {
+    if (changes['selectedIndex']) {
       this.updateSelectedTabIndex();
     }
   }
 
   private updateSelectedTabIndex() {
-    if ( this.tabs ) {
+    if (this.tabs) {
       // https://github.com/angular/angular/issues/6005
       // this would not be necessare if this would be fixed: https://github.com/angular/angular/issues/12818
-      setTimeout( () => {
-        this.tabs.forEach( (tab, idx) => {
+      setTimeout(() => {
+        this.tabs.forEach((tab, idx) => {
           tab.isActive = this.selectedIndex === idx;
         });
       }, 1);
@@ -95,7 +101,7 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
     if (index != this.selectedIndex) {
       this.selectedIndex = index;
       this.updateSelectedTabIndex();
-      this.selectedTabEmitter.emit({index: this.selectedIndex});
+      this.selectedTabEmitter.emit({ index: this.selectedIndex });
     }
   }
 }

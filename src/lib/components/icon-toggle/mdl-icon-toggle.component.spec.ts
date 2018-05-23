@@ -1,34 +1,23 @@
-import { TestBed, inject, async } from '@angular/core/testing';
-import { DOCUMENT, By } from '@angular/platform-browser';
+import { TestBed, async } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { MdlIconToggleModule, MdlIconToggleComponent } from './mdl-icon-toggle.component';
-import { FormsModule} from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
 
 describe('Component: MdlIconToggle', () => {
-
-  var doc: HTMLDocument;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, MdlIconToggleModule],
-      declarations: [ MdlTestIconToggleComponent ],
+      declarations: [MdlTestIconToggleComponent],
     });
-
   }));
 
-  beforeEach(async(inject([DOCUMENT], function (document) {
-    doc = document;
-  })));
-
   it('should add the css class mdl-icon-toggle to the host element', () => {
-
     let fixture = TestBed.createComponent(MdlTestIconToggleComponent);
     fixture.detectChanges();
 
     let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(checkboxEl.classList.contains('mdl-icon-toggle')).toBe(true);
-
   });
 
   it('should fire a change event if the state changed', async(() => {
@@ -62,10 +51,8 @@ describe('Component: MdlIconToggle', () => {
     // should not change on click
     cbDebugElem.nativeElement.click();
     expect(instance.checkboxValue1).toEqual(false);
-
   }));
 });
-
 
 @Component({
   selector: 'test-icon',
@@ -73,10 +60,9 @@ describe('Component: MdlIconToggle', () => {
     <mdl-icon-toggle [disabled]="false" [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">
     format_bold
     </mdl-icon-toggle>
-  `
+  `,
 })
 class MdlTestIconToggleComponent {
-
   public checkboxValue1 = false;
-  public onChange(v: boolean) {}
+  public onChange(_: boolean) {}
 }

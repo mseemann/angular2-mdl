@@ -6,13 +6,12 @@ import {
   Renderer2,
   NgModule,
   ModuleWithProviders,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { MaterialRipple } from './ripple.vendor';
 
 // known bugs: https://github.com/google/material-design-lite/issues/4215
 export class MdlRippleDirective implements OnChanges {
-
   private RIPPLE = 'mdl-ripple';
 
   private rippleContainer: HTMLElement;
@@ -22,47 +21,42 @@ export class MdlRippleDirective implements OnChanges {
   public rippleActive: boolean | string = true;
 
   constructor(
-    private elementRef: ElementRef,
+    elementRef: ElementRef,
     public renderer: Renderer2,
-    private cssContainerClasses: [string]) {
+    private cssContainerClasses: string[],
+  ) {
     this.el = elementRef.nativeElement;
   }
 
+  public ngOnChanges(_: SimpleChanges) {
+    // remove any existing ripple container
+    if (this.rippleContainer) {
+      this.el.removeChild(this.rippleContainer);
+      delete this.rippleContainer;
+      delete this.ripple;
+    }
 
-  public ngOnChanges(changes: SimpleChanges) {
+    // if used as mdl-ripple without property binding it is an empty string
+    // otherwise (e.g. [mdl-ripple] it is a boolean - may be with the default value true.
+    if (this.rippleActive === '' || this.rippleActive) {
+      this.rippleContainer = this.renderer.createElement('span');
+      this.cssContainerClasses.forEach(cssClass => {
+        this.renderer.addClass(this.rippleContainer, cssClass);
+      });
+      const rippleElement = this.renderer.createElement('span');
+      this.renderer.addClass(rippleElement, this.RIPPLE);
+      this.rippleContainer.appendChild(rippleElement);
+      this.el.appendChild(this.rippleContainer);
 
-      // remove any existing ripple container
-      if (this.rippleContainer) {
-        this.el.removeChild(this.rippleContainer);
-        delete this.rippleContainer;
-        delete this.ripple;
-      }
-
-      // if used as mdl-ripple without property binding it is an empty string
-      // otherwise (e.g. [mdl-ripple] it is a boolean - may be with the default value true.
-      if (this.rippleActive === '' || this.rippleActive) {
-
-        this.rippleContainer = this.renderer.createElement('span');
-        this.cssContainerClasses.forEach( ( cssClass ) => {
-          this.renderer.addClass(this.rippleContainer, cssClass);
-        });
-        const rippleElement = this.renderer.createElement('span');
-        this.renderer.addClass(rippleElement, this.RIPPLE);
-        this.rippleContainer.appendChild(rippleElement);
-        this.el.appendChild(this.rippleContainer);
-
-        this.ripple = new MaterialRipple(this.renderer, this.el);
-
-      }
+      this.ripple = new MaterialRipple(this.renderer, this.el);
+    }
   }
-
 }
 
 @Directive({
-  selector: 'mdl-button[mdl-ripple], button[mdl-ripple]'
+  selector: 'mdl-button[mdl-ripple], button[mdl-ripple]',
 })
 export class MdlButtonRippleDirective extends MdlRippleDirective {
-
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
@@ -70,14 +64,15 @@ export class MdlButtonRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
+  public ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+  }
 }
 
 @Directive({
-  selector: 'mdl-checkbox[mdl-ripple]'
+  selector: 'mdl-checkbox[mdl-ripple]',
 })
 export class MdlCheckboxRippleDirective extends MdlRippleDirective {
-
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
@@ -85,14 +80,15 @@ export class MdlCheckboxRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
+  public ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+  }
 }
 
 @Directive({
-  selector: 'mdl-radio[mdl-ripple]'
+  selector: 'mdl-radio[mdl-ripple]',
 })
 export class MdlRadioRippleDirective extends MdlRippleDirective {
-
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
@@ -100,14 +96,15 @@ export class MdlRadioRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
+  public ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+  }
 }
 
 @Directive({
-  selector: 'mdl-icon-toggle[mdl-ripple]'
+  selector: 'mdl-icon-toggle[mdl-ripple]',
 })
 export class MdlIconToggleRippleDirective extends MdlRippleDirective {
-
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
@@ -115,15 +112,15 @@ export class MdlIconToggleRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
-
+  public ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+  }
 }
 
 @Directive({
-  selector: 'mdl-switch[mdl-ripple]'
+  selector: 'mdl-switch[mdl-ripple]',
 })
 export class MdlSwitchRippleDirective extends MdlRippleDirective {
-
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
@@ -131,14 +128,15 @@ export class MdlSwitchRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
+  public ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+  }
 }
 
 @Directive({
-  selector: 'mdl-menu-item[mdl-ripple]'
+  selector: 'mdl-menu-item[mdl-ripple]',
 })
 export class MdlMenuItemRippleDirective extends MdlRippleDirective {
-
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
@@ -146,14 +144,15 @@ export class MdlMenuItemRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
+  public ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+  }
 }
 
 @Directive({
-  selector: 'a[mdl-ripple],div[mdl-ripple]'
+  selector: 'a[mdl-ripple],div[mdl-ripple]',
 })
 export class MdlAnchorRippleDirective extends MdlRippleDirective {
-
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
@@ -161,7 +160,9 @@ export class MdlAnchorRippleDirective extends MdlRippleDirective {
   }
 
   // AOT is not able to call lifecycle hooks if a base class :(
-  public ngOnChanges(changes: SimpleChanges) {super.ngOnChanges(changes);}
+  public ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+  }
 }
 
 const MDL_COMMON_DIRECTIVES = [
@@ -171,7 +172,7 @@ const MDL_COMMON_DIRECTIVES = [
   MdlIconToggleRippleDirective,
   MdlSwitchRippleDirective,
   MdlMenuItemRippleDirective,
-  MdlAnchorRippleDirective
+  MdlAnchorRippleDirective,
 ];
 
 @NgModule({
@@ -183,7 +184,7 @@ export class MdlRippleModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlRippleModule,
-      providers: []
+      providers: [],
     };
   }
 }

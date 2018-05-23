@@ -11,5 +11,4 @@ describe('angular2-mdl App', function() {
     page.navigateTo();
     expect(page.getParagraphText()).toContain('Angular 2 - Material Design Lite');
   });
-
 });

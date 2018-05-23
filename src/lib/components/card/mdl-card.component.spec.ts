@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { MdlCardModule } from './mdl-card.component';
 
 describe('Components: MdlCard*', () => {
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MdlCardModule],
@@ -12,9 +11,7 @@ describe('Components: MdlCard*', () => {
     });
   });
 
-
   it('should add the css class mdl-card to the element', () => {
-
     let fixture = TestBed.createComponent(TestApp);
     fixture.detectChanges();
 
@@ -27,8 +24,12 @@ describe('Components: MdlCard*', () => {
     let mdlCardMediaElement = fixture.debugElement.query(By.css('mdl-card-media'));
     expect(mdlCardMediaElement.nativeElement.classList.contains('mdl-card__media')).toBe(true);
 
-    let mdlCardSupportingTextElement = fixture.debugElement.query(By.css('mdl-card-supporting-text'));
-    expect(mdlCardSupportingTextElement.nativeElement.classList.contains('mdl-card__supporting-text')).toBe(true);
+    let mdlCardSupportingTextElement = fixture.debugElement.query(
+      By.css('mdl-card-supporting-text'),
+    );
+    expect(
+      mdlCardSupportingTextElement.nativeElement.classList.contains('mdl-card__supporting-text'),
+    ).toBe(true);
 
     let mdlCardActionsElement = fixture.debugElement.query(By.css('mdl-card-actions'));
     expect(mdlCardActionsElement.nativeElement.classList.contains('mdl-card__actions')).toBe(true);
@@ -37,76 +38,71 @@ describe('Components: MdlCard*', () => {
     expect(mdlCardMenuElement.nativeElement.classList.contains('mdl-card__menu')).toBe(true);
 
     let mdlCardTitleTextElement = fixture.debugElement.query(By.css('[mdl-card-title-text]'));
-    expect(mdlCardTitleTextElement.nativeElement.classList.contains('mdl-card__title-text')).toBe(true);
+    expect(mdlCardTitleTextElement.nativeElement.classList.contains('mdl-card__title-text')).toBe(
+      true,
+    );
 
     let mdlCardBorderElement = fixture.debugElement.query(By.css('[mdl-card-border]'));
     expect(mdlCardBorderElement.nativeElement.classList.contains('mdl-card--border')).toBe(true);
 
     let mdlCardExpandElement = fixture.debugElement.query(By.css('[mdl-card-expand]'));
     expect(mdlCardExpandElement.nativeElement.classList.contains('mdl-card--expand')).toBe(true);
-
   });
 
   it('should throw if mdl-card-title has no mdl-card parent', () => {
-
-    TestBed.overrideComponent(TestApp, { set: {
-      template: '<mdl-card-title></mdl-card-title>' }
+    TestBed.overrideComponent(TestApp, {
+      set: {
+        template: '<mdl-card-title></mdl-card-title>',
+      },
     });
     let fixture = TestBed.createComponent(TestApp);
 
-    expect( () => fixture.detectChanges() )
-      .toThrow();
-
+    expect(() => fixture.detectChanges()).toThrow();
   });
 
   it('should throw if mdl-card-supporting-text has no mdl-card parent', () => {
-
-    TestBed.overrideComponent(TestApp, { set: {
-      template: '<mdl-card-supporting-text></mdl-card-supporting-text>' }
+    TestBed.overrideComponent(TestApp, {
+      set: {
+        template: '<mdl-card-supporting-text></mdl-card-supporting-text>',
+      },
     });
     let fixture = TestBed.createComponent(TestApp);
 
-    expect( () => fixture.detectChanges() )
-      .toThrow();
-
+    expect(() => fixture.detectChanges()).toThrow();
   });
 
   it('should throw if mdl-card-actions has no mdl-card parent', () => {
-
-    TestBed.overrideComponent(TestApp, { set: {
-      template: '<mdl-card-actions></mdl-card-actions>' }
+    TestBed.overrideComponent(TestApp, {
+      set: {
+        template: '<mdl-card-actions></mdl-card-actions>',
+      },
     });
     let fixture = TestBed.createComponent(TestApp);
 
-    expect( () => fixture.detectChanges() )
-      .toThrow();
-
+    expect(() => fixture.detectChanges()).toThrow();
   });
 
   it('should throw if mdl-card-menu has no mdl-card parent', () => {
-
-    TestBed.overrideComponent(TestApp, { set: {
-      template: '<mdl-card-menu></mdl-card-menu>' }
+    TestBed.overrideComponent(TestApp, {
+      set: {
+        template: '<mdl-card-menu></mdl-card-menu>',
+      },
     });
     let fixture = TestBed.createComponent(TestApp);
 
-    expect( () => fixture.detectChanges() )
-      .toThrow();
-
+    expect(() => fixture.detectChanges()).toThrow();
   });
 
   it('should throw if mdl-card-media has no mdl-card parent', () => {
-
-    TestBed.overrideComponent(TestApp, { set: {
-      template: '<mdl-card-media></mdl-card-media>' }
+    TestBed.overrideComponent(TestApp, {
+      set: {
+        template: '<mdl-card-media></mdl-card-media>',
+      },
     });
     let fixture = TestBed.createComponent(TestApp);
 
-    expect( () => fixture.detectChanges() )
-      .toThrow();
-
+    expect(() => fixture.detectChanges()).toThrow();
   });
-
 });
 
 @Component({
@@ -121,6 +117,4 @@ describe('Components: MdlCard*', () => {
     </mdl-card>
   `,
 })
-class TestApp {
-}
-
+class TestApp {}

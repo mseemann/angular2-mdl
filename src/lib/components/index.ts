@@ -14,7 +14,7 @@ import { MdlIconModule } from './icon/mdl-icon.component';
 import { MdlIconToggleModule } from './icon-toggle/mdl-icon-toggle.component';
 import { MdlListModule } from './list/mdl-list.component';
 import { MdlSpinnerModule } from './spinner/mdl-spinner.component';
-import { MdlSliderModule }  from './slider/mdl-slider.component';
+import { MdlSliderModule } from './slider/mdl-slider.component';
 import { MdlSwitchModule } from './switch/mdl-switch.component';
 import { MdlSnackbarModule } from './snackbar/mdl-snackbar.service';
 import { MdlTooltipModule } from './tooltip/index';
@@ -23,7 +23,6 @@ import { MdlMenuModule } from './menu/index';
 import { MdlLayoutModule } from './layout/index';
 import { MdlTabsModule } from './tabs/index';
 import { MdlTextFieldModule } from './textfield/mdl-textfield.component';
-
 
 export * from './common/mdl-ripple.directive';
 export * from './badge/mdl-badge.directive';
@@ -43,7 +42,7 @@ export * from './spinner/mdl-spinner.component';
 export * from './slider/mdl-slider.component';
 export * from './snackbar/mdl-snackbar.service';
 export * from './switch/mdl-switch.component';
-export * from './table/index'
+export * from './table/index';
 export * from './tooltip/index';
 export * from './menu/index';
 export * from './layout/index';
@@ -51,10 +50,14 @@ export * from './tabs/index';
 export * from './textfield/mdl-textfield.component';
 
 // AOT :( https://github.com/angular/angular/issues/11606
-export { MdlBackdropOverlayComponent as Private1 } from './dialog-outlet/mdl-backdrop-overlay.component';
+export {
+  MdlBackdropOverlayComponent as Private1,
+} from './dialog-outlet/mdl-backdrop-overlay.component';
 export { MdlDialogHostComponent as Private2 } from './dialog/mdl-dialog-host.component';
 export { MdlSimpleDialogComponent as Private3 } from './dialog/mdl-simple-dialog.component';
-export { AppendViewContainerRefDirective as Private4 } from './common/append-view-container-ref-directive';
+export {
+  AppendViewContainerRefDirective as Private4,
+} from './common/append-view-container-ref-directive';
 
 const MDL_MODULES = [
   MdlButtonModule,
@@ -80,9 +83,8 @@ const MDL_MODULES = [
   MdlTableModule,
   MdlMenuModule,
   MdlTabsModule,
-  MdlTextFieldModule
+  MdlTextFieldModule,
 ];
-
 
 @NgModule({
   imports: [
@@ -109,19 +111,19 @@ const MDL_MODULES = [
     MdlTableModule.forRoot(),
     MdlMenuModule.forRoot(),
     MdlTabsModule.forRoot(),
-    MdlTextFieldModule.forRoot()
+    MdlTextFieldModule.forRoot(),
   ],
   exports: MDL_MODULES,
-  providers: []
+  providers: [],
 })
 export class MdlModule {}
 
 @NgModule({
   imports: MDL_MODULES,
-  exports: MDL_MODULES
+  exports: MDL_MODULES,
 })
 export class MdlNonRootModule {
   public static forRoot(): ModuleWithProviders {
-    return {ngModule: MdlModule};
+    return { ngModule: MdlModule };
   }
 }

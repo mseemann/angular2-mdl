@@ -1,17 +1,11 @@
 {
-  "rulesDirectory": ["node_modules/codelyzer"],
+  "rulesDirectory": ["node_modules/codelyzer", "node_modules/rxjs-tslint"],
   "rules": {
     "max-line-length": [true, 120],
-    "no-inferrable-types": true,
+    "no-inferrable-types": false,
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
-    "indent": [
-      true,
-      "spaces"
-    ],
+    "comment-format": [true, "check-space"],
+    "indent": [true, "spaces"],
     "eofline": true,
     "no-duplicate-variable": true,
     "no-eval": true,
@@ -21,7 +15,6 @@
     "no-bitwise": true,
     "no-shadowed-variable": true,
     "no-unused-expression": true,
-    "no-unused-variable": true,
     "one-line": [
       true,
       "check-catch",
@@ -29,12 +22,8 @@
       "check-open-brace",
       "check-whitespace"
     ],
-    "quotemark": [
-      true,
-      "single",
-      "avoid-escape"
-    ],
-    "semicolon": [true, "always"],
+    "quotemark": false,
+    "semicolon": false,
     "typedef-whitespace": [
       true,
       {
@@ -50,7 +39,7 @@
       true,
       "ban-keywords",
       "check-format",
-      "allow-trailing-underscore"
+      "allow-leading-underscore"
     ],
     "whitespace": [
       true,
@@ -60,8 +49,12 @@
       "check-separator",
       "check-type"
     ],
-    "interface-name": true,
-    "no-unreachable": true,
-    "member-access": true
+    "interface-name": false,
+    "member-access": false,
+
+    "rxjs-collapse-imports": true,
+    "rxjs-pipeable-operators-only": true,
+    "rxjs-no-static-observable-methods": true,
+    "rxjs-proper-imports": true
   }
 }

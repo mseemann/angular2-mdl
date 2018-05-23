@@ -4,16 +4,15 @@ import {
   EventEmitter,
   Output,
   ContentChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { MdlChipContactDirective } from './mdl-chip-contact.directive';
-
 
 @Component({
   selector: 'mdl-chip',
   host: {
     '[class.mdl-chip]': 'true',
-    '[class.mdl-chip--contact]': 'chipContact'
+    '[class.mdl-chip--contact]': 'chipContact',
   },
   template: `
     <ng-content></ng-content>
@@ -22,10 +21,9 @@ import { MdlChipContactDirective } from './mdl-chip-contact.directive';
       <mdl-icon>{{mdlActionIcon}}</mdl-icon>
     </button>
   `,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlChipComponent {
-
   @Input('mdl-label') public mdlLabel;
   @Input('mdl-action-icon') public mdlActionIcon;
   @Output('action-click') public actionClick = new EventEmitter();
@@ -35,5 +33,3 @@ export class MdlChipComponent {
     this.actionClick.emit();
   }
 }
-
-

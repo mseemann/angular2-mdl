@@ -1,7 +1,6 @@
 import { toNumber } from './number.property';
 
 describe('NumberPropertyTest', () => {
-
   it('should work for null values', () => {
     expect(toNumber(null)).toBe(null);
 

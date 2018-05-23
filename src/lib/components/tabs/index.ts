@@ -6,18 +6,15 @@ import { MdlRippleModule } from '../common/mdl-ripple.directive';
 import { MdlCommonsModule } from '../common/index';
 import { CommonModule } from '@angular/common';
 
-
-
 export * from './mdl-tabs.component';
 export * from './mdl-tab-panel.component';
 export * from './mdl-tab-panel-title.component';
-
 
 const MDL_TABS_DIRECTIVES = [
   MdlTabsComponent,
   MdlTabPanelComponent,
   MdlTabPanelTitleComponent,
-  MdlTabPanelContent
+  MdlTabPanelContent,
 ];
 
 @NgModule({
@@ -29,7 +26,7 @@ export class MdlTabsModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlTabsModule,
-      providers: []
+      providers: [],
     };
   }
 }

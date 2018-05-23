@@ -5,11 +5,10 @@ import { LoginService } from './login.service';
 import { CommonModule } from '@angular/common';
 import { MdlModule } from '../../../lib/components/index';
 
-
 @NgModule({
   imports: [MdlModule, CommonModule, ReactiveFormsModule],
   declarations: [LoginDialogComponent],
   entryComponents: [LoginDialogComponent],
-  providers: [LoginService]
+  providers: [LoginService],
 })
 export class LoginModule {}

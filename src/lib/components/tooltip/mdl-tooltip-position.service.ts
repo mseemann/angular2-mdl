@@ -1,20 +1,21 @@
-import {
-  Injectable
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MdlTooltipPositionService {
-
-  public calcStyle(offsetWidth: number, offsetHeight: number, props: ClientRect, position: string): any {
-
+  public calcStyle(
+    offsetWidth: number,
+    offsetHeight: number,
+    props: ClientRect,
+    position: string,
+  ): any {
     var result: any = {};
-    var left = props.left + (props.width / 2);
-    var top = props.top + (props.height / 2);
+    var left = props.left + props.width / 2;
+    var top = props.top + props.height / 2;
     var marginLeft = -1 * (offsetWidth / 2);
     var marginTop = -1 * (offsetHeight / 2);
 
     if (position == 'left' || position == 'right') {
-      left = (props.width / 2);
+      left = props.width / 2;
       if (top + marginTop < 0) {
         result.top = '0';
         result.marginTop = '0';

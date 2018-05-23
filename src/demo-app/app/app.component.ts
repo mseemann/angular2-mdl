@@ -1,11 +1,5 @@
-import {
-  Component,
-  ViewEncapsulation
-} from '@angular/core';
-import {
-  ActivatedRoute,
-  Router, Routes
-} from '@angular/router';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { flyInOutTrigger } from './animations/flyInOutTrigger-animation';
 import { hostConfig } from './animations/flyInOutTrigger-animation';
@@ -23,7 +17,7 @@ import {
   Layout0Demo,
   Layout1Demo,
   Layout2Demo,
-  Layout3Demo
+  Layout3Demo,
 } from './layout/layout.component';
 import { MenuDemo } from './menus/menu.component';
 import { ToggleDemo } from './toggle/toggle.component';
@@ -43,10 +37,8 @@ import { DialogDeclarativeDemo } from './dialog-declarative/dialog-declarative.c
 @Component({
   selector: 'home',
   host: hostConfig,
-  animations: [
-    flyInOutTrigger
-  ],
-  templateUrl: 'home.html'
+  animations: [flyInOutTrigger],
+  templateUrl: 'home.html',
 })
 export class Home extends AbstractDemoComponent {
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
@@ -56,34 +48,53 @@ export class Home extends AbstractDemoComponent {
 
 export const appRoutes: Routes = [
   { path: '', component: Home },
-  { path: 'theme', component: ThemeDemo, data: {title: 'Themes'} },
-  { path: 'badge', component: BadgeDemo, data: {title: 'Badges'} },
-  { path: 'button', component: ButtonDemo, data: {title: 'Buttons'} },
-  { path: 'card', component: CardDemo, data: {title: 'Cards'} },
-  { path: 'chips', component: ChipsDemo, data: {title: 'Chips'} },
-  { path: 'dialogs', component: DialogDemo, data: {title: 'Dialog (imperative)'} },
-  { path: 'dialogs-declarative', component: DialogDeclarativeDemo, data: {title: 'Dialog (declarative)'} },
-  { path: 'icon', component: IconDemo, data: {title: 'Icons'} },
-  { path: 'layout', component: LayoutDemo, data: {title: 'Layouts'},
+  { path: 'theme', component: ThemeDemo, data: { title: 'Themes' } },
+  { path: 'badge', component: BadgeDemo, data: { title: 'Badges' } },
+  { path: 'button', component: ButtonDemo, data: { title: 'Buttons' } },
+  { path: 'card', component: CardDemo, data: { title: 'Cards' } },
+  { path: 'chips', component: ChipsDemo, data: { title: 'Chips' } },
+  {
+    path: 'dialogs',
+    component: DialogDemo,
+    data: { title: 'Dialog (imperative)' },
+  },
+  {
+    path: 'dialogs-declarative',
+    component: DialogDeclarativeDemo,
+    data: { title: 'Dialog (declarative)' },
+  },
+  { path: 'icon', component: IconDemo, data: { title: 'Icons' } },
+  {
+    path: 'layout',
+    component: LayoutDemo,
+    data: { title: 'Layouts' },
     children: [
       { path: '', component: Layout0Demo },
       { path: 'l1', component: Layout1Demo },
       { path: 'l2', component: Layout2Demo },
-      { path: 'l3', component: Layout3Demo }
-    ]
+      { path: 'l3', component: Layout3Demo },
+    ],
   },
-  { path: 'loading', component: LoadingDemo, data: {title: 'Loading'} },
-  { path: 'list', component: ListDemo, data: {title: 'Lists'} },
-  { path: 'menu', component: MenuDemo, data: {title: 'Menus'} },
-  { path: 'reactiveForms', component: ReactiveFormsDemo, data: {title: 'Ractive Forms'} },
-  { path: 'shadow', component: ShadowDemo, data: {title: 'Shadows'} },
-  { path: 'slider', component: SliderDemo, data: {title: 'Sliders'} },
-  { path: 'snackbar', component: SnackbarDemo, data: {title: 'Snachbar'} },
-  { path: 'table', component: TableDemo, data: {title: 'Tables'} },
-  { path: 'tabs', component: TabsDemo, data: {title: 'Tabs'} },
-  { path: 'textfield', component: TextFieldDemo, data: {title: 'Textfields'} },
-  { path: 'toggle', component: ToggleDemo, data: {title: 'Toggles'} },
-  { path: 'tooltip', component: TooltipDemo, data: {title: 'Tooltips'} },
+  { path: 'loading', component: LoadingDemo, data: { title: 'Loading' } },
+  { path: 'list', component: ListDemo, data: { title: 'Lists' } },
+  { path: 'menu', component: MenuDemo, data: { title: 'Menus' } },
+  {
+    path: 'reactiveForms',
+    component: ReactiveFormsDemo,
+    data: { title: 'Ractive Forms' },
+  },
+  { path: 'shadow', component: ShadowDemo, data: { title: 'Shadows' } },
+  { path: 'slider', component: SliderDemo, data: { title: 'Sliders' } },
+  { path: 'snackbar', component: SnackbarDemo, data: { title: 'Snachbar' } },
+  { path: 'table', component: TableDemo, data: { title: 'Tables' } },
+  { path: 'tabs', component: TabsDemo, data: { title: 'Tabs' } },
+  {
+    path: 'textfield',
+    component: TextFieldDemo,
+    data: { title: 'Textfields' },
+  },
+  { path: 'toggle', component: ToggleDemo, data: { title: 'Toggles' } },
+  { path: 'tooltip', component: TooltipDemo, data: { title: 'Tooltips' } },
   { path: '**', redirectTo: '' },
 ];
 
@@ -91,14 +102,12 @@ export const appRoutes: Routes = [
   selector: 'root-app',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class Angular2MdlAppComponent {
-
   public title = 'Angular - Material Design Lite';
 
   public componentSelected(mainLayout: MdlLayoutComponent) {
     mainLayout.closeDrawerOnSmallScreens();
   }
 }
-

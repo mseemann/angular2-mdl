@@ -9,13 +9,11 @@ import 'zone.js/dist/proxy';
 import 'zone.js/dist/jasmine-patch';
 import 'rxjs';
 
-
 import { TestBed } from '@angular/core/testing';
 import {
   BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting
+  platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
-
 
 TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 

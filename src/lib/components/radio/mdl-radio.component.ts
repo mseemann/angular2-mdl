@@ -1,30 +1,28 @@
 import {
-    Component,
-    ElementRef,
-    Output,
-    EventEmitter,
-    Renderer2,
-    forwardRef,
-    Input,
-    NgModule,
-    OnInit,
-    Injectable,
-    OnDestroy,
-    ViewEncapsulation,
-    ModuleWithProviders,
-    Optional
+  Component,
+  ElementRef,
+  Output,
+  EventEmitter,
+  Renderer2,
+  forwardRef,
+  Input,
+  NgModule,
+  OnInit,
+  Injectable,
+  OnDestroy,
+  ViewEncapsulation,
+  ModuleWithProviders,
+  Optional,
 } from '@angular/core';
 import {
-    NG_VALUE_ACCESSOR,
-    ControlValueAccessor,
-    FormsModule,
-    FormGroupName
+  NG_VALUE_ACCESSOR,
+  ControlValueAccessor,
+  FormsModule,
+  FormGroupName,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { toBoolean } from '../common/boolean-property';
-import { toNumber } from '../common/number.property';
 import { noop } from '../common/noop';
-
 
 const IS_FOCUSED = 'is-focused';
 
@@ -34,20 +32,22 @@ const IS_FOCUSED = 'is-focused';
 // a big braking change.
 @Injectable()
 export class MdlRadioGroupRegisty {
-
-  private defaultFormGroup  = 'defaultFromGroup';
-  private radioComponents: {radio: MdlRadioComponent, group: FormGroupName | string}[] = [];
+  private defaultFormGroup = 'defaultFromGroup';
+  private radioComponents: {
+    radio: MdlRadioComponent;
+    group: FormGroupName | string;
+  }[] = [];
 
   public add(radioComponent: MdlRadioComponent, formGroupName: FormGroupName) {
     this.radioComponents.push({
       radio: radioComponent,
-      group: formGroupName || this.defaultFormGroup
+      group: formGroupName || this.defaultFormGroup,
     });
   }
 
   public remove(radioComponent: MdlRadioComponent) {
-    this.radioComponents = this.radioComponents.filter( (radioComponentInArray) => {
-      return (radioComponentInArray.radio !== radioComponent);
+    this.radioComponents = this.radioComponents.filter(radioComponentInArray => {
+      return radioComponentInArray.radio !== radioComponent;
     });
   }
 
@@ -55,7 +55,7 @@ export class MdlRadioGroupRegisty {
     // unselect every radioComponent that is not the provided radiocomponent
     // and has the same name and is in teh same group.
     let groupToTest = formGroupName || this.defaultFormGroup;
-    this.radioComponents.forEach( (component) => {
+    this.radioComponents.forEach(component => {
       if (component.radio.name === radioComponent.name && component.group === groupToTest) {
         if (component.radio !== radioComponent) {
           component.radio.deselect(radioComponent.value);
@@ -71,22 +71,24 @@ export class MdlRadioGroupRegisty {
 
 @Component({
   selector: 'mdl-radio',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => MdlRadioComponent),
-    multi: true
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MdlRadioComponent),
+      multi: true,
+    },
+  ],
   host: {
     '(click)': 'onClick()',
     '[class.mdl-radio]': 'true',
     '[class.is-upgraded]': 'true',
     '[class.is-checked]': 'checked',
-    '[class.is-disabled]': 'disabled'
+    '[class.is-disabled]': 'disabled',
   },
   template: `
-  <input type="checkbox" class="mdl-radio__button" 
+  <input type="checkbox" class="mdl-radio__button"
     [attr.name]="name"
-    (focus)="onFocus()" 
+    (focus)="onFocus()"
     (blur)="onBlur()"
     (keyup.space)="spaceKeyPress($event)"
     [disabled]="disabled"
@@ -96,18 +98,21 @@ export class MdlRadioGroupRegisty {
   <span class="mdl-radio__outer-circle"></span>
   <span class="mdl-radio__inner-circle"></span>
   `,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestroy {
-
   @Input() public name: string;
   @Input() public formControlName: string;
   @Input() public value: any;
 
   private _disabled: boolean = false;
   @Input()
-  get disabled(): boolean { return this._disabled; }
-  set disabled(value) { this._disabled = toBoolean(value); }
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value) {
+    this._disabled = toBoolean(value);
+  }
 
   @Input() public tabindex = null;
 
@@ -118,15 +123,14 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   public checked = false;
 
   private el: HTMLElement;
-  private onTouchedCallback: () => void = noop;
   private onChangeCallback: () => void = noop;
 
-
   constructor(
-      private elementRef: ElementRef,
-      private renderer: Renderer2,
-      private radioGroupRegistry: MdlRadioGroupRegisty,
-      @Optional() private formGroupName: FormGroupName) {
+    elementRef: ElementRef,
+    private renderer: Renderer2,
+    private radioGroupRegistry: MdlRadioGroupRegisty,
+    @Optional() private formGroupName: FormGroupName,
+  ) {
     this.el = elementRef.nativeElement;
   }
 
@@ -162,6 +166,8 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
       this.radioGroupRegistry.select(this, this.formGroupName);
     };
   }
+
+  onTouchedCallback: any;
 
   public registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
@@ -209,22 +215,21 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     `);
   }
 
-  spaceKeyPress(event) {
-    this.checked = false;//in case of space key is pressed radio button value must remain same
+  spaceKeyPress() {
+    this.checked = false; // in case of space key is pressed radio button value must remain same
   }
 }
-
 
 @NgModule({
   imports: [CommonModule, FormsModule],
   exports: [MdlRadioComponent],
-  declarations: [MdlRadioComponent]
+  declarations: [MdlRadioComponent],
 })
 export class MdlRadioModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlRadioModule,
-      providers: [MdlRadioGroupRegisty]
+      providers: [MdlRadioGroupRegisty],
     };
   }
 }

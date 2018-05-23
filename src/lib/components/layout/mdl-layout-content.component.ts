@@ -3,7 +3,7 @@ import {
   ViewEncapsulation,
   ElementRef,
   ContentChildren,
-  QueryList
+  QueryList,
 } from '@angular/core';
 import { MdlLayoutTabPanelComponent } from './mdl-layout-tab-panel.component';
 
@@ -12,19 +12,15 @@ import { MdlLayoutTabPanelComponent } from './mdl-layout-tab-panel.component';
   host: {
     '[class.mdl-layout__content]': 'true',
   },
-  template:
-    `<ng-content></ng-content>`,
+  template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
 })
 export class MdlLayoutContentComponent {
-
   @ContentChildren(MdlLayoutTabPanelComponent) public tabs: QueryList<MdlLayoutTabPanelComponent>;
 
   public el: HTMLElement;
 
-  constructor(private elRef: ElementRef) {
+  constructor(elRef: ElementRef) {
     this.el = elRef.nativeElement;
   }
-
-
 }

@@ -23,7 +23,7 @@ const MDL_LAYOUT_DIRECTIVES = [
   MdlLayoutHeaderRowComponent,
   MdlLayoutTitleComponent,
   MdlLayoutSpacerComponent,
-  MdlLayoutTabPanelComponent
+  MdlLayoutTabPanelComponent,
 ];
 
 export * from './mdl-layout.component';
@@ -37,7 +37,7 @@ export * from './mdl-layout-spacer.component';
 export * from './mdl-layout-tab-panel.component';
 
 @NgModule({
-  imports: [ MdlIconModule, MdlRippleModule, MdlCommonsModule, MdlTabsModule, CommonModule ],
+  imports: [MdlIconModule, MdlRippleModule, MdlCommonsModule, MdlTabsModule, CommonModule],
   exports: MDL_LAYOUT_DIRECTIVES,
   declarations: MDL_LAYOUT_DIRECTIVES,
 })
@@ -45,9 +45,7 @@ export class MdlLayoutModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlLayoutModule,
-      providers: [
-        MdlScreenSizeService
-      ]
+      providers: [MdlScreenSizeService],
     };
   }
 }

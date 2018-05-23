@@ -1,12 +1,7 @@
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-
 export class AbstractDemoComponent {
-
   private sub: any;
 
   private windowTitle = 'angular2-mdl';
@@ -15,7 +10,7 @@ export class AbstractDemoComponent {
 
   public ngOnInit() {
     this.titleService.setTitle(this.windowTitle);
-    this.sub = this.router.events.subscribe( (event) => {
+    this.sub = this.router.events.subscribe(_ => {
       if (this.route.snapshot.data && this.route.snapshot.data['title']) {
         const title = this.windowTitle + ' - ' + this.route.snapshot.data['title'];
         this.titleService.setTitle(title);
@@ -26,7 +21,7 @@ export class AbstractDemoComponent {
   }
 
   public ngOnDestroy() {
-    if(this.sub) {
+    if (this.sub) {
       this.sub.unsubscribe();
     }
   }

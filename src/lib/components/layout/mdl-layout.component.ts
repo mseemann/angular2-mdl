@@ -6,7 +6,6 @@ import {
   Input,
   Renderer2,
   ViewEncapsulation,
-  ElementRef,
   Output,
   EventEmitter,
   OnChanges,
@@ -14,17 +13,16 @@ import {
   Optional,
   Inject,
   Injectable,
-  InjectionToken, NgZone
+  InjectionToken,
+  NgZone,
 } from '@angular/core';
-import{ EventManager } from '@angular/platform-browser';
 import { MdlError } from '../common/mdl-error';
 import { toBoolean } from '../common/boolean-property';
 import { toNumber } from '../common/number.property';
 import { MdlLayoutHeaderComponent } from './mdl-layout-header.component';
 import { MdlLayoutDrawerComponent } from './mdl-layout-drawer.component';
 import { MdlLayoutContentComponent } from './mdl-layout-content.component';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 const ESCAPE = 27;
 
@@ -49,21 +47,24 @@ export const LAYOUT_SCREEN_SIZE_THRESHOLD = new InjectionToken<number>('layoutSc
 
 export class MdLUnsupportedLayoutTypeError extends MdlError {
   constructor(type: string) {
-      /* istanbul ignore next */
-    super(`Layout type "${type}" isn't supported by mdl-layout (allowed: standard, waterfall, scroll).`);
+    /* istanbul ignore next */
+    super(
+      `Layout type "${type}" isn't supported by mdl-layout (allowed: standard, waterfall, scroll).`,
+    );
   }
 }
 
 @Injectable()
 export class MdlScreenSizeService {
-
   private sizesSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private windowMediaQueryListener: Function;
 
   constructor(
     ngZone: NgZone,
-    @Optional() @Inject(LAYOUT_SCREEN_SIZE_THRESHOLD) private layoutScreenSizeThreshold: number) {
-
+    @Optional()
+    @Inject(LAYOUT_SCREEN_SIZE_THRESHOLD)
+    private layoutScreenSizeThreshold: number,
+  ) {
     // if no value is injected the default size wil be used. same as $layout-screen-size-threshold in scss
     if (!this.layoutScreenSizeThreshold) {
       this.layoutScreenSizeThreshold = 1024;
@@ -71,11 +72,12 @@ export class MdlScreenSizeService {
 
     // do not try to access the window object if rendered on the server
     if (typeof window === 'object' && 'matchMedia' in window) {
-
-      let query: MediaQueryList = window.matchMedia(`(max-width: ${this.layoutScreenSizeThreshold}px)`);
+      let query: MediaQueryList = window.matchMedia(
+        `(max-width: ${this.layoutScreenSizeThreshold}px)`,
+      );
 
       let queryListener = () => {
-        ngZone.run( () => {
+        ngZone.run(() => {
           this.sizesSubject.next(query.matches);
         });
       };
@@ -85,7 +87,6 @@ export class MdlScreenSizeService {
       };
       // set the initial state
       this.sizesSubject.next(query.matches);
-
     }
   }
 
@@ -97,7 +98,7 @@ export class MdlScreenSizeService {
     return this.sizesSubject.asObservable();
   }
 
-  destroy(){
+  destroy() {
     if (this.windowMediaQueryListener) {
       this.windowMediaQueryListener();
       this.windowMediaQueryListener = null;
@@ -130,10 +131,9 @@ export class MdlScreenSizeService {
     </div>
   `,
   exportAs: 'mdlLayout',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChanges {
-
   @ContentChild(MdlLayoutHeaderComponent) public header;
   // will be set to undefined, if not a direct child or not present in 2.0.0 i
   // n 2.0.1 it is now the grand child drawer again :(
@@ -144,28 +144,48 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
 
   private _isFixedDrawer: boolean = false;
   @Input('mdl-layout-fixed-drawer')
-  get isFixedDrawer() { return this._isFixedDrawer; }
-  set isFixedDrawer(value) { this._isFixedDrawer = toBoolean(value); }
+  get isFixedDrawer() {
+    return this._isFixedDrawer;
+  }
+  set isFixedDrawer(value) {
+    this._isFixedDrawer = toBoolean(value);
+  }
 
   private _isFixedHeader: boolean = false;
   @Input('mdl-layout-fixed-header')
-  get isFixedHeader() { return this._isFixedHeader; }
-  set isFixedHeader(value) { this._isFixedHeader = toBoolean(value); }
+  get isFixedHeader() {
+    return this._isFixedHeader;
+  }
+  set isFixedHeader(value) {
+    this._isFixedHeader = toBoolean(value);
+  }
 
   private _isSeamed: boolean = false;
   @Input('mdl-layout-header-seamed')
-  get isSeamed() { return this._isSeamed; }
-  set isSeamed(value) { this._isSeamed = toBoolean(value); }
+  get isSeamed() {
+    return this._isSeamed;
+  }
+  set isSeamed(value) {
+    this._isSeamed = toBoolean(value);
+  }
 
   private _selectedIndex: number = 0;
   @Input('mdl-layout-tab-active-index')
-  get selectedIndex() { return this._selectedIndex; }
-  set selectedIndex(value) { this._selectedIndex = toNumber(value); }
+  get selectedIndex() {
+    return this._selectedIndex;
+  }
+  set selectedIndex(value) {
+    this._selectedIndex = toNumber(value);
+  }
 
   private _isNoDrawer: boolean = false;
   @Input('mdl-layout-no-drawer-button')
-  get isNoDrawer() { return this._isNoDrawer; }
-  set isNoDrawer(value) { this._isNoDrawer = toBoolean(value); }
+  get isNoDrawer() {
+    return this._isNoDrawer;
+  }
+  set isNoDrawer(value) {
+    this._isNoDrawer = toBoolean(value);
+  }
 
   @Output('mdl-layout-tab-active-changed') public selectedTabEmitter = new EventEmitter();
   @Output('mdl-layout-tab-mouseover') public mouseoverTabEmitter = new EventEmitter();
@@ -179,12 +199,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
 
   private scrollListener: Function;
 
-  constructor(
-    private renderer: Renderer2,
-    private evm: EventManager,
-    private el: ElementRef,
-    private screenSizeService: MdlScreenSizeService) {
-  }
+  constructor(private renderer: Renderer2, private screenSizeService: MdlScreenSizeService) {}
 
   public ngAfterContentInit() {
     this.validateMode();
@@ -198,19 +213,21 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     if (this.drawer && !this.drawer.isDrawerDirectChildOf(this)) {
       this.drawer = null;
     }
-
   }
 
   public ngOnChanges(changes: SimpleChanges): any {
-    if ( changes['selectedIndex'] ) {
+    if (changes['selectedIndex']) {
       this.updateSelectedTabIndex();
     }
   }
 
   private updateSelectedTabIndex() {
     if (this.header && this.header.tabs) {
-      this.header.tabs.forEach( tab => tab.isActive = false);
-      if (this.header.tabs.toArray().length > 0 && this.selectedIndex < this.header.tabs.toArray().length) {
+      this.header.tabs.forEach(tab => (tab.isActive = false));
+      if (
+        this.header.tabs.toArray().length > 0 &&
+        this.selectedIndex < this.header.tabs.toArray().length
+      ) {
         this.header.tabs.toArray()[this.selectedIndex].isActive = true;
       }
     }
@@ -220,7 +237,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     if (this.mode === '') {
       this.mode = STANDARD;
     }
-    if ([STANDARD , WATERFALL, SCROLL].indexOf(this.mode) === -1) {
+    if ([STANDARD, WATERFALL, SCROLL].indexOf(this.mode) === -1) {
       throw new MdLUnsupportedLayoutTypeError(this.mode);
     }
 
@@ -230,18 +247,16 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
       this.header.isSeamed = this.isSeamed;
     }
 
-
     if (this.content) {
-      this.scrollListener = this.renderer.listen(this.content.el, 'scroll', (e) => {
-         this.onScroll(this.content.el.scrollTop);
-         return true;
+      this.scrollListener = this.renderer.listen(this.content.el, 'scroll', _ => {
+        this.onScroll(this.content.el.scrollTop);
+        return true;
       });
 
-      this.screenSizeService.sizes().subscribe( (isSmall: boolean) => {
+      this.screenSizeService.sizes().subscribe((isSmall: boolean) => {
         this.onQueryChange(isSmall);
       });
     }
-
   }
 
   private onScroll(scrollTop) {
@@ -268,12 +283,12 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   }
 
   private onQueryChange(isSmall: boolean) {
-      if (isSmall) {
-        this.isSmallScreen = true;
-      } else {
-        this.isSmallScreen = false;
-        this.closeDrawer();
-      }
+    if (isSmall) {
+      this.isSmallScreen = true;
+    } else {
+      this.isSmallScreen = false;
+      this.closeDrawer();
+    }
   }
 
   public toggleDrawer() {
@@ -297,7 +312,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     }
   }
 
-  private setDrawerVisible(visible: boolean){
+  private setDrawerVisible(visible: boolean) {
     this.drawer.isDrawerVisible = visible;
     this.drawer.isDrawerVisible ? this.onOpen.emit() : this.onClose.emit();
   }
@@ -321,20 +336,20 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     if (index != this.selectedIndex) {
       this.selectedIndex = index;
       this.updateSelectedTabIndex();
-      this.selectedTabEmitter.emit({index: this.selectedIndex});
+      this.selectedTabEmitter.emit({ index: this.selectedIndex });
     }
   }
 
   // triggered from mdl-layout-header.component
   public onTabMouseover(tab) {
     let index = this.header.tabs.toArray().indexOf(tab);
-    this.mouseoverTabEmitter.emit({index: index});
+    this.mouseoverTabEmitter.emit({ index: index });
   }
 
   // triggered from mdl-layout-header.component
   public onTabMouseout(tab) {
     let index = this.header.tabs.toArray().indexOf(tab);
-    this.mouseoutTabEmitter.emit({index: index});
+    this.mouseoutTabEmitter.emit({ index: index });
   }
 
   public closeDrawerOnSmallScreens() {

@@ -18,7 +18,7 @@ export class MdlChipModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlChipModule,
-      providers: []
+      providers: [],
     };
   }
 }

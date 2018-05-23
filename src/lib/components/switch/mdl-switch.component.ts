@@ -5,29 +5,28 @@ import {
   forwardRef,
   NgModule,
   ViewEncapsulation,
-  ModuleWithProviders
+  ModuleWithProviders,
 } from '@angular/core';
 
-import {
-  NG_VALUE_ACCESSOR,
-  FormsModule
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { MdlCheckboxComponent } from '../checkbox/mdl-checkbox.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'mdl-switch',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => MdlSwitchComponent),
-    multi: true
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MdlSwitchComponent),
+      multi: true,
+    },
+  ],
   host: {
     '(click)': 'onClick()',
     '[class.mdl-switch]': 'true',
     '[class.is-upgraded]': 'true',
     '[class.is-checked]': 'value',
-    '[class.is-disabled]': 'disabled'
+    '[class.is-disabled]': 'disabled',
   },
   outputs: ['change'],
   template: `
@@ -40,14 +39,12 @@ import { CommonModule } from '@angular/common';
     <div class="mdl-switch__track"></div>
     <div class="mdl-switch__thumb"><span class="mdl-switch__focus-helper"></span></div>
   `,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlSwitchComponent extends MdlCheckboxComponent {
-
   constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer);
   }
-
 }
 
 const MDL_SWITCH_DIRECTIVES = [MdlSwitchComponent];
@@ -61,7 +58,7 @@ export class MdlSwitchModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlSwitchModule,
-      providers: []
+      providers: [],
     };
   }
 }

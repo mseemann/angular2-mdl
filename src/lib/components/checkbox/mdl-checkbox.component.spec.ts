@@ -1,62 +1,46 @@
-import {
-  inject,
-  TestBed,
-  async
-} from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { DOCUMENT, By } from '@angular/platform-browser';
-import { Component} from '@angular/core';
-import {
-  MdlCheckboxComponent,
-  MdlCheckboxModule} from './mdl-checkbox.component';
+import { Component } from '@angular/core';
+import { MdlCheckboxComponent, MdlCheckboxModule } from './mdl-checkbox.component';
 import { FormsModule } from '@angular/forms';
 
 describe('Component: MdlCheckbox', () => {
-
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MdlCheckboxModule, FormsModule ],
-      declarations: [ MdlTestCheckboxComponent ],
+      imports: [MdlCheckboxModule, FormsModule],
+      declarations: [MdlTestCheckboxComponent],
     });
   }));
 
   it('should add the css class mdl-checkbox to the host element', () => {
-
     let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
 
     let checkboxEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(checkboxEl.classList.contains('mdl-checkbox')).toBe(true);
-
-
   });
 
   it('should support ngModel', async(() => {
-
     let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       let testInstance = fixture.componentInstance;
 
       // let el = <HTMLInputElement> fixture.debugElement.query(By.css('input')).nativeElement;
-      let checkboxComponent = fixture.debugElement.query(By.directive(MdlCheckboxComponent)).componentInstance;
+      let checkboxComponent = fixture.debugElement.query(By.directive(MdlCheckboxComponent))
+        .componentInstance;
 
       testInstance.checkboxValue1 = true;
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-
         // but el.checked is not true ?
         expect(checkboxComponent.value).toEqual(true);
-
       });
-
     });
-
   }));
 
   it('should change the value on click', () => {
-
     let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
 
@@ -67,7 +51,6 @@ describe('Component: MdlCheckbox', () => {
     fixture.debugElement.query(By.directive(MdlCheckboxComponent)).nativeElement.click();
 
     expect(instance.checkboxValue1).toEqual(true);
-
   });
 
   it('should mark the component as focused and blured', () => {
@@ -83,7 +66,8 @@ describe('Component: MdlCheckbox', () => {
 
     fixture.detectChanges();
 
-    let checkboxEl: HTMLElement = fixture.debugElement.query(By.directive(MdlCheckboxComponent)).nativeElement;
+    let checkboxEl: HTMLElement = fixture.debugElement.query(By.directive(MdlCheckboxComponent))
+      .nativeElement;
     expect(checkboxEl.classList.contains('is-focused')).toBe(true);
 
     var evtBlur = doc.createEvent('HTMLEvents');
@@ -92,7 +76,6 @@ describe('Component: MdlCheckbox', () => {
 
     fixture.detectChanges();
     expect(checkboxEl.classList.contains('is-focused')).toBe(false);
-
   });
 
   it('should fire a change event if the state changed', async(() => {
@@ -124,13 +107,13 @@ describe('Component: MdlCheckbox', () => {
     // should not change on click
     cbDebugElem.nativeElement.click();
     expect(instance.checkboxValue1).toEqual(false);
-
   }));
 
   it('should be possible to set a tabindex', () => {
-
-    TestBed.overrideComponent(MdlTestCheckboxComponent, { set: {
-      template: '<mdl-checkbox tabindex="2"></mdl-checkbox>' }
+    TestBed.overrideComponent(MdlTestCheckboxComponent, {
+      set: {
+        template: '<mdl-checkbox tabindex="2"></mdl-checkbox>',
+      },
     });
 
     let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
@@ -138,13 +121,13 @@ describe('Component: MdlCheckbox', () => {
 
     let btnEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     expect(btnEl.tabIndex).toBe(2);
-
   });
 
   it('should not set a default tabindex', () => {
-
-    TestBed.overrideComponent(MdlTestCheckboxComponent, { set: {
-      template: '<mdl-checkbox></mdl-checkbox>' }
+    TestBed.overrideComponent(MdlTestCheckboxComponent, {
+      set: {
+        template: '<mdl-checkbox></mdl-checkbox>',
+      },
     });
 
     let fixture = TestBed.createComponent(MdlTestCheckboxComponent);
@@ -152,10 +135,8 @@ describe('Component: MdlCheckbox', () => {
 
     let btnEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     expect(btnEl.getAttribute('tabindex')).toEqual(null);
-
   });
 });
-
 
 @Component({
   selector: 'test-icon',
@@ -167,6 +148,5 @@ describe('Component: MdlCheckbox', () => {
 class MdlTestCheckboxComponent {
   public checkboxValue1 = false;
 
-
-  public onChange(v: boolean) {}
+  public onChange(_: boolean) {}
 }

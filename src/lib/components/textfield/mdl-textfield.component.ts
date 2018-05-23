@@ -14,13 +14,9 @@ import {
   Output,
   ViewEncapsulation,
   ModuleWithProviders,
-  SimpleChanges,
-  InjectionToken
+  InjectionToken,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-  ControlValueAccessor
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 import { toBoolean } from '../common/boolean-property';
 import { toNumber } from '../common/number.property';
@@ -31,8 +27,9 @@ import { CommonModule } from '@angular/common';
 import { noop } from '../common/noop';
 import { callNative } from '../common/native-support';
 
-export const DISABLE_NATIVE_VALIDITY_CHECKING = new InjectionToken<boolean>('disableNativeValidityChecking');
-
+export const DISABLE_NATIVE_VALIDITY_CHECKING = new InjectionToken<boolean>(
+  'disableNativeValidityChecking',
+);
 
 let nextId = 0;
 
@@ -48,7 +45,7 @@ const IS_DIRTY = 'is-dirty';
     '[class.is-upgraded]': 'true',
     '[class.mdl-textfield--expandable]': 'icon',
     '[class.mdl-textfield--floating-label]': 'isFloatingLabel',
-    '[class.has-placeholder]': 'placeholder'
+    '[class.has-placeholder]': 'placeholder',
   },
   template: `
    <div *ngIf="!icon">
@@ -132,31 +129,34 @@ const IS_DIRTY = 'is-dirty';
       </div>
    </div>
    `,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => MdlTextFieldComponent),
-    multi: true
-  }],
-  encapsulation: ViewEncapsulation.None
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MdlTextFieldComponent),
+      multi: true,
+    },
+  ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, DoCheck {
-  private value_: any;
+  private _value: any;
   private el: HTMLElement;
 
-  @Output('blur')
-  public blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+  @Output('blur') public blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
-  @Output('focus')
-  public focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+  @Output('focus') public focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
   @Output('keyup')
   public keyupEmitter: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
 
   @ViewChild('input') public inputEl: ElementRef;
 
-  get value(): any { return this.value_; };
-  @Input() set value(v: any) {
-    this.value_ = this.type === 'number' ? ( v === '' ? null : parseFloat(v)) : v;
+  get value(): any {
+    return this._value;
+  }
+  @Input()
+  set value(v: any) {
+    this._value = this.type === 'number' ? (v === '' ? null : parseFloat(v)) : v;
     this.onChangeCallback(this.value);
   }
 
@@ -172,63 +172,97 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
 
   private _disabled: boolean = false;
   @Input()
-  get disabled(): boolean { return this._disabled; }
-  set disabled(value) { this._disabled = toBoolean(value); }
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value) {
+    this._disabled = toBoolean(value);
+  }
 
   private _readonly: boolean = false;
   @Input()
-  get readonly() { return this._readonly; }
-  set readonly(value) { this._readonly = toBoolean(value); }
+  get readonly() {
+    return this._readonly;
+  }
+  set readonly(value) {
+    this._readonly = toBoolean(value);
+  }
 
   private _required: boolean = false;
   @Input()
-  get required() { return this._required; }
-  set required(value) { this._required = toBoolean(value); }
+  get required() {
+    return this._required;
+  }
+  set required(value) {
+    this._required = toBoolean(value);
+  }
 
   private _autofocus: boolean = false;
   @Input()
-  get autofocus() { return this._autofocus; }
-  set autofocus(value) { this._autofocus = toBoolean(value); }
+  get autofocus() {
+    return this._autofocus;
+  }
+  set autofocus(value) {
+    this._autofocus = toBoolean(value);
+  }
 
   private _isFloatingLabel: boolean = false;
   @Input('floating-label')
-  get isFloatingLabel() { return this._isFloatingLabel; }
-  set isFloatingLabel(value) { this._isFloatingLabel = toBoolean(value); }
+  get isFloatingLabel() {
+    return this._isFloatingLabel;
+  }
+  set isFloatingLabel(value) {
+    this._isFloatingLabel = toBoolean(value);
+  }
 
   @Input() public placeholder: string;
   @Input() public autocomplete: string;
 
   private _rows: number = null;
   @Input()
-  get rows() { return this._rows; }
-  set rows(value) { this._rows = toNumber(value); }
+  get rows() {
+    return this._rows;
+  }
+  set rows(value) {
+    this._rows = toNumber(value);
+  }
 
   private _maxrows: number = -1;
   @Input()
-  get maxrows() { return this._maxrows; }
-  set maxrows(value) { this._maxrows = toNumber(value); }
+  get maxrows() {
+    return this._maxrows;
+  }
+  set maxrows(value) {
+    this._maxrows = toNumber(value);
+  }
   @Input() public icon: string;
 
   @Input() public tabindex: number = null;
 
   @Input() public maxlength: number = null;
 
-
   // @experimental
   private _disableNativeValidityChecking: boolean = false;
   @Input()
-  get disableNativeValidityChecking() { return this._disableNativeValidityChecking; }
-  set disableNativeValidityChecking(value) { this._disableNativeValidityChecking = toBoolean(value);}
+  get disableNativeValidityChecking() {
+    return this._disableNativeValidityChecking;
+  }
+  set disableNativeValidityChecking(value) {
+    this._disableNativeValidityChecking = toBoolean(value);
+  }
 
   constructor(
     private renderer: Renderer2,
-    private elmRef: ElementRef,
-    @Optional() @Inject(DISABLE_NATIVE_VALIDITY_CHECKING) private nativeCheckGlobalDisabled: Boolean) {
+    elmRef: ElementRef,
+    @Optional()
+    @Inject(DISABLE_NATIVE_VALIDITY_CHECKING)
+    private nativeCheckGlobalDisabled: Boolean,
+  ) {
     this.el = elmRef.nativeElement;
   }
 
   public writeValue(value: any): void {
-    this.value_ = value;
+    this._value = value;
     this.checkDirty();
   }
 
@@ -247,7 +281,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.disabled = isDisabled;
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges() {
     this.checkDisabled();
   }
 
@@ -257,9 +291,10 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 
   public setFocus() {
-    if ( !this.inputEl ) {
+    if (!this.inputEl) {
       return;
     }
+
     callNative(this.inputEl.nativeElement, 'focus');
   }
 
@@ -279,7 +314,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 
   private checkDisabled() {
-    if (this.disabled){
+    if (this.disabled) {
       this.renderer.addClass(this.el, IS_DISABLED);
     } else {
       this.renderer.removeClass(this.el, IS_DISABLED);
@@ -288,15 +323,15 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
 
   private checkValidity() {
     // check the global setting - if globally disabled do no check
-    if ( this.nativeCheckGlobalDisabled === true ) {
+    if (this.nativeCheckGlobalDisabled === true) {
       return;
     }
     // check local setting - if locally disabled do no check
-    if ( this.disableNativeValidityChecking ) {
+    if (this.disableNativeValidityChecking) {
       return;
     }
     if (this.inputEl && this.inputEl.nativeElement.validity) {
-      if (!this.inputEl.nativeElement.validity.valid){
+      if (!this.inputEl.nativeElement.validity.valid) {
         this.renderer.addClass(this.el, IS_INVALID);
       } else {
         this.renderer.removeClass(this.el, IS_INVALID);
@@ -305,13 +340,15 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 
   private checkDirty() {
-    let dirty = this.inputEl && this.inputEl.nativeElement.value && this.inputEl.nativeElement.value.length > 0;
-    if (dirty){
+    let dirty =
+      this.inputEl &&
+      this.inputEl.nativeElement.value &&
+      this.inputEl.nativeElement.value.length > 0;
+    if (dirty) {
       this.renderer.addClass(this.el, IS_DIRTY);
     } else {
       this.renderer.removeClass(this.el, IS_DIRTY);
     }
-
   }
 
   public keydownTextarea($event: KeyboardEvent) {
@@ -331,7 +368,6 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 }
 
-
 @NgModule({
   imports: [MdlIconModule, MdlButtonModule, FormsModule, CommonModule],
   exports: [MdlTextFieldComponent],
@@ -341,7 +377,7 @@ export class MdlTextFieldModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlTextFieldModule,
-      providers: []
+      providers: [],
     };
   }
 }

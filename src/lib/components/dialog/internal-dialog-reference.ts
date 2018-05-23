@@ -1,6 +1,5 @@
 import { ComponentRef } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Subject, Observable } from 'rxjs';
 
 import { MdlDialogReference } from './mdl-dialog.service';
 import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
@@ -11,7 +10,6 @@ import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
  * and internal implementations.
  */
 export class InternalMdlDialogReference {
-
   public hostDialogComponentRef: ComponentRef<any>;
   private onHideSubject: Subject<any> = new Subject();
   private onVisibleSubject: Subject<any> = new Subject();
@@ -19,11 +17,11 @@ export class InternalMdlDialogReference {
   public isModal = false;
   public dialogRef: MdlDialogReference;
 
-  constructor(public config: IMdlDialogConfiguration){
+  constructor(public config: IMdlDialogConfiguration) {
     this.dialogRef = new MdlDialogReference(this);
   }
 
-  get  hostDialog() {
+  get hostDialog() {
     return this.hostDialogComponentRef.instance;
   }
 

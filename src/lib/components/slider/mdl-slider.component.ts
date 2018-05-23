@@ -7,38 +7,35 @@ import {
   ElementRef,
   NgModule,
   ViewEncapsulation,
-  ModuleWithProviders
+  ModuleWithProviders,
 } from '@angular/core';
-import {
-  NG_VALUE_ACCESSOR,
-  ControlValueAccessor,
-  FormsModule
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { toBoolean } from '../common/boolean-property';
 import { noop } from '../common/noop';
 import { callNative } from '../common/native-support';
 
-
 @Component({
   selector: 'mdl-slider',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => MdlSliderComponent),
-    multi: true
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MdlSliderComponent),
+      multi: true,
+    },
+  ],
   host: {
     '[class.mdl-slider__container]': 'true',
     '(mouseup)': 'onMouseUp($event)',
-    '(mousedown)': 'onMouseDown($event)'
+    '(mousedown)': 'onMouseDown($event)',
   },
   template: `
-    <input class="mdl-slider is-upgraded" 
-            type="range" 
-            [min]="min" 
-            [max]="max" 
-            [step]="step" 
-            [(ngModel)]="value" 
+    <input class="mdl-slider is-upgraded"
+            type="range"
+            [min]="min"
+            [max]="max"
+            [step]="step"
+            [(ngModel)]="value"
             [disabled]="disabled"
             tabindex="0"
             #input>
@@ -55,12 +52,12 @@ import { callNative } from '../common/native-support';
         -webkit-user-select: none;
         -moz-user-select: none;
     }
-    `
+    `,
   ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlSliderComponent implements ControlValueAccessor {
-  private value_: any;
+  private _value: any;
 
   @Input() public min: number;
   @Input() public max: number;
@@ -71,26 +68,32 @@ export class MdlSliderComponent implements ControlValueAccessor {
 
   private _disabled: boolean = false;
   @Input()
-  get disabled(): boolean { return this._disabled; }
-  set disabled(value) { this._disabled = toBoolean(value); }
-
-  constructor(private renderer: Renderer2, private elRef: ElementRef) {
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value) {
+    this._disabled = toBoolean(value);
   }
 
-  get value(): any { return this.value_; };
-  @Input() set value(v: any) {
-    this.value_ = v;
+  constructor(private renderer: Renderer2, private elRef: ElementRef) {}
+
+  get value(): any {
+    return this._value;
+  }
+  @Input()
+  set value(v: any) {
+    this._value = v;
     this.updateSliderUI();
     this.onChangeCallback(v);
   }
 
   public writeValue(value: number): void {
-    this.value_ = value;
+    this._value = value;
     this.updateSliderUI();
   }
 
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
+  onTouchedCallback: () => void = noop;
+  onChangeCallback: (_: any) => void = noop;
 
   public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
@@ -105,9 +108,9 @@ export class MdlSliderComponent implements ControlValueAccessor {
   }
 
   private updateSliderUI() {
-    var fraction = (this.value_ - this.min) / (this.max - this.min);
+    var fraction = (this._value - this.min) / (this.max - this.min);
 
-    if (fraction === 0){
+    if (fraction === 0) {
       this.renderer.addClass(this.inputEl.nativeElement, 'is-lowest-value');
     } else {
       this.renderer.removeClass(this.inputEl.nativeElement, 'is-lowest-value');
@@ -135,7 +138,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
       clientX: event.clientX,
       clientY: this.inputEl.nativeElement.getBoundingClientRect().y,
       screenX: event.screenX,
-      screenY: event.screenY
+      screenY: event.screenY,
     });
     callNative(this.inputEl.nativeElement, 'dispatchEvent', newEvent);
   }
@@ -152,7 +155,7 @@ export class MdlSliderModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: MdlSliderModule,
-      providers: []
+      providers: [],
     };
   }
 }
