@@ -33,7 +33,9 @@
     "@angular/animations": "6.0.9",
     "@angular/common": "6.0.9",
     "@angular/core": "6.0.9",
-    "@angular/forms": "6.0.9"
+    "@angular/forms": "6.0.9",
+    "webpack-angular-externals": "^1.0.2",
+    "webpack-rxjs-externals": "^2.0.0"
   },
   "devDependencies": {
     "@angular/compiler": "6.0.9",
@@ -44,8 +46,8 @@
     "@angular/platform-server": "6.0.9",
     "@angular/router": "6.0.9",
     "@types/chai": "4.1.4",
-    "@types/node": "10.5.2",
     "@types/jasmine": "2.8.8",
+    "@types/node": "10.5.2",
     "angular2-template-loader": "0.6.2",
     "autoprefixer": "9.0.0",
     "awesome-typescript-loader": "^4.0.0-0",
