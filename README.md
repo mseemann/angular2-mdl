@@ -1,9 +1,8 @@
 
-Angular 5 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
+Angular 6 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
 
-> **If you are looking for a stable Angular 4 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular4.  `master` is compatible with Angular 5.**
+> **If you are looking for a stable Angular 5 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular5.  `master` is compatible with Angular 6.**
 
-> **If you are looking for a stable Angular 2 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular2.  `master` is compatible with Angular 5.**
 
 [![Build Status](https://travis-ci.org/mseemann/angular2-mdl.svg?branch=master)](https://travis-ci.org/mseemann/angular2-mdl)
 [![CircleCI](https://circleci.com/gh/mseemann/angular2-mdl/tree/master.svg?style=shield)](https://circleci.com/gh/mseemann/angular2-mdl/tree/master)
@@ -20,7 +19,7 @@ Angular 5 components, directives and styles based on material design lite https:
 * [Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
 * Porting of the [MDL-Dashboard](https://getmdl.io/templates/dashboard/index.html) provided by [AndreaM16](https://github.com/AndreaM16):  [Demo-App](https://angular-mdl-dashboard.herokuapp.com/#/home), [Sources](https://github.com/AndreaM16/angular-mdl-dashboard).
 
-### Status of the npm package version 4 (mdl version 1.3.0; angular 5)
+### Status of the npm package version 6 (mdl version 1.3.0; angular 6)
 
 - Badges
 - Buttons
@@ -105,8 +104,5 @@ sassLoader: {
 Every contribution is welcome. Please checkout the [CONTRIBUTION.md](https://github.com/mseemann/angular2-mdl/blob/master/CONTRIBUTION.md) file.
 
 # Remarks
-
-If you need a working example for the current angular-cli with the current angular-mdl and angular versions please have a look at:
-[https://github.com/mseemann/angular-mdl-a4-angular-cli](https://github.com/mseemann/angular-mdl-a4-angular-cli).
 
 And if you would like to see a real world app that uses this package have a look at https://www.yovelino.de/apps/tour-planner/.
