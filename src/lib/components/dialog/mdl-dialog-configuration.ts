@@ -120,7 +120,7 @@ export interface IMdlSimpleDialogConfiguration extends IMdlDialogConfiguration {
   /**
    * the actions that are used for this dialog (the order will be reversed by mdl.
    */
-  actions: [IMdlDialogAction];
+  actions: IMdlDialogAction[];
   /**
    * should the actions be displayed as full width actions. every aciton is one row.
    */
