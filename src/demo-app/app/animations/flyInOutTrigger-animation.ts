@@ -1,11 +1,5 @@
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-  AnimationEntryMetadata // needs to be here to avoid compilation errors:(
-} from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
 
 export const flyInOutTrigger = trigger('flyInOut', [
   state('*', style({})),

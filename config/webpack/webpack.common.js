@@ -89,8 +89,8 @@ module.exports = {
     	new webpack.LoaderOptionsPlugin({}),
 		new HtmlWebpackPlugin({
 			template: '!!handlebars-loader!src/demo-app/index.hbs',
-			baseUrl: process.env.NODE_ENV == 'production' ? '/angular2-mdl/' : '/',
-			production: process.env.NODE_ENV == 'production' ? true : false
+			baseUrl: process.env.NODE_ENV === 'production' ? '/angular2-mdl/' : '/',
+			production: process.env.NODE_ENV === 'production' ? true : false
 		})
 	]
 };

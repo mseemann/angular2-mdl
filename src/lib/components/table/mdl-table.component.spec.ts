@@ -83,7 +83,7 @@ interface ITableItem extends IMdlTableModelItem {
     `,
 })
 class MdlTestTableComponent {
-  public tableData: [ITableItem] = [
+  public tableData: ITableItem[] = [
     {material: 'Acrylic (Transparent)', quantity: 25, unitPrice: 2.90, selected: true},
     {material: 'Plywood (Birch)', quantity: 50, unitPrice: 1.25, selected: false},
     {material: 'Laminate (Gold on Blue)', quantity: 10, unitPrice: 2.35, selected: false}
