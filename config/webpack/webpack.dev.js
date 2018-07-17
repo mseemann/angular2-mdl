@@ -5,7 +5,7 @@ var util = require('./util');
 
 module.exports = webpackMerge(commonConfig, {
 	devtool: 'cheap-module-eval-source-map',
-
+    mode: 'development',
 	output: {
 		path: util.root('dist'),
 		publicPath: 'http://localhost:4200/',

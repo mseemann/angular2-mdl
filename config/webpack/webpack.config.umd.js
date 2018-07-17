@@ -5,6 +5,7 @@ const rxjsExternals = require('webpack-rxjs-externals');
 
 module.exports = {
 	entry: './src/lib/components/index.ts',
+    mode: 'development',
 	output: {
 		path: util.root('dist/bundle'),
 		filename: 'core.js',
