@@ -10,8 +10,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { MdlDialogOutletService } from '../dialog-outlet/mdl-dialog-outlet.service';
 import { MdlDialogOutletModule } from '../dialog-outlet/index';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 
 const ANIMATION_TIME = 250;

@@ -19,12 +19,10 @@ module.exports = {
 		'polyfills': './src/demo-app/polyfills.ts',
 		'app': './src/demo-app/main.ts'
 	},
-
 	resolve: {
 		extensions: ['.js', '.ts'],
-    modules: [util.root('src'), util.root('node_modules')],
+    	modules: [util.root('src'), util.root('node_modules')],
 	},
-
 	module: {
 		rules: [
 				{
@@ -43,7 +41,7 @@ module.exports = {
 				},
 				{
 					test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-			   	loader: 'file-loader?name=assets/[name].[ext]'
+			   		loader: 'file-loader?name=assets/[name].[ext]'
 				},
 				{
 					test: /\.scss$|\.sass$/,
@@ -73,24 +71,25 @@ module.exports = {
 		]
 	},
 
-
-	plugins: [
+    optimization: {
+        splitChunks: {
+            name: 'polyfills'
+		}
+    },
+    plugins: [
 		// avoid: WARNING in ./~/@angular/core/@angular/core.es5.js
 		// 3702:272-293 Critical dependency: the request of a dependency is an expression
 		new webpack.ContextReplacementPlugin(
 			// The (\\|\/) piece accounts for path separators in *nix and Windows
-			/@angular(\\|\/)core(\\|\/)esm5/,
+			/@angular(\\|\/)core(\\|\/)fesm5/,
 			util.root('src') // location of your src
 		),
     	new CopyWebpackPlugin([{ from: util.root('src', 'demo-app', 'assets') , to: 'assets'}], {copyUnmodified: true}),
-			new webpack.optimize.CommonsChunkPlugin({
-      			name: ['polyfills']
-		}),
     	new webpack.LoaderOptionsPlugin({}),
 		new HtmlWebpackPlugin({
 			template: '!!handlebars-loader!src/demo-app/index.hbs',
-			baseUrl: process.env.NODE_ENV == 'production' ? '/angular2-mdl/' : '/',
-			production: process.env.NODE_ENV == 'production' ? true : false
+			baseUrl: process.env.NODE_ENV === 'production' ? '/angular2-mdl/' : '/',
+			production: process.env.NODE_ENV === 'production' ? true : false
 		})
 	]
 };

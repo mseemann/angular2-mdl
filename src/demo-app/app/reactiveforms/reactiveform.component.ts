@@ -10,14 +10,13 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
 import {
   Router,
   ActivatedRoute
 } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractDemoComponent } from '../abstract-demo.component';
+import { map } from 'rxjs/operators';
 
 const emailValidator = Validators.pattern('^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$');
 
@@ -57,10 +56,12 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
       'toDrink':    this.toDrink
     });
     this.form.valueChanges
-      .map((formValues) => {
-        formValues.firstName = formValues.firstName.toUpperCase();
-        return formValues;
-      })
+        .pipe(
+            map((formValues) => {
+              formValues.firstName = formValues.firstName.toUpperCase();
+              return formValues;
+            })
+        )
       // .filter((formValues) => this.form.valid)
       .subscribe((formValues) => {
         console.log(`Model Driven Form valid: ${this.form.valid} value:`, JSON.stringify(formValues));

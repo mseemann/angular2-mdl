@@ -24,7 +24,7 @@ export class MdlRippleDirective implements OnChanges {
   constructor(
     private elementRef: ElementRef,
     public renderer: Renderer2,
-    private cssContainerClasses: [string]) {
+    private cssContainerClasses: string[]) {
     this.el = elementRef.nativeElement;
   }
 

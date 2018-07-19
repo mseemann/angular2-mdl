@@ -17,6 +17,7 @@ import {
   TEST_VALUE
 } from './login-dialog.component';
 import { IOpenCloseRect } from '../../../lib/components/dialog/mdl-dialog-configuration';
+import { onErrorResumeNext } from 'rxjs';
 
 
 @Component({
@@ -56,7 +57,7 @@ export class DialogDemo extends AbstractDemoComponent {
       }
     );
     // if you only need the confirm answer
-    result.onErrorResumeNext().subscribe( () => {
+    onErrorResumeNext(result).subscribe( () => {
       console.log('confirmed 2');
     });
   }
@@ -72,7 +73,7 @@ export class DialogDemo extends AbstractDemoComponent {
       }
     );
     // if you only need the confirm answer
-    result.onErrorResumeNext().subscribe( () => {
+    onErrorResumeNext(result).subscribe( () => {
       console.log('confirmed 2');
     });
   }
