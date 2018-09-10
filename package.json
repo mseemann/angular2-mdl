@@ -76,7 +76,7 @@
     "ncp": "2.0.0",
     "node-sass": "4.9.3",
     "postcss-loader": "3.0.0",
-    "protractor": "5.4.0",
+    "protractor": "5.4.1",
     "raw-loader": "0.5.1",
     "rimraf": "2.6.2",
     "rxjs": "6.2.2",
