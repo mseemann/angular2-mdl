@@ -27,7 +27,7 @@
     "start:dist:dev": "rimraf dist && webpack --config config/webpack/webpack.dev.js --progress && http-server dist -a localhost -p 4200",
     "test": "karma start config/karma.conf.js",
     "test:watch": "karma start config/karma.conf.js --watch",
-    "pre-commit": "npm run test && npm run build:dist"
+    "pre-push": "npm run test && npm run build:dist"
   },
   "dependencies": {
     "@angular/animations": "6.0.9",

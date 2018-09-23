@@ -1,4 +1,4 @@
-import { Component, HostListener, HostBinding, ViewEncapsulation, EventEmitter } from '@angular/core';
+import { Component, HostListener, HostBinding, ViewEncapsulation, EventEmitter, NgZone } from '@angular/core';
 
 
 @Component({
@@ -22,6 +22,8 @@ export class MdlBackdropOverlayComponent {
 
   public clickEmitter: EventEmitter<any> = new EventEmitter();
 
+  constructor(private ngZone: NgZone) {}
+
   @HostBinding('style.display')
   public get display() {
     return this.visible ? null : 'none';
@@ -33,7 +35,11 @@ export class MdlBackdropOverlayComponent {
 
   @HostListener('click', ['$event'])
   public onBackdropClick(e) {
-    this.clickEmitter.emit();
+    // this event runs not in angular zone of the main app. make sure it runs in the main angular zone
+    // and change detection works
+    this.ngZone.run( () => {
+        this.clickEmitter.emit();
+    });
     e.stopPropagation();
   }
 

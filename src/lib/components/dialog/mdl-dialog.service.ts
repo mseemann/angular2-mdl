@@ -12,7 +12,7 @@ import {
   EventEmitter,
   InjectionToken
 } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 
