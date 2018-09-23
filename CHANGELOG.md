@@ -1,4 +1,9 @@
-<a name="next"></a>
+<a name="6.0.1"></a>
+# 6.0.1 (2018-09-23)
+* [1578](https://github.com/mseemann/angular2-mdl/issues/1578) (MdlDialog problem after close dialog by clicking outside)
+
+
+<a name="5.0.0"></a>
 # 5.0.0 (2018-04-09)
 * [1182](https://github.com/mseemann/angular2-mdl/issues/1182) (the sortable property of mdl-table was marked as deprecated, becasue it was never supported)
 * [1449](https://github.com/mseemann/angular2-mdl/pull/1449) (fix: menus from menuregistry not removed on compnent destroy)
