@@ -57,7 +57,7 @@
     "core-js": "2.6.0",
     "coveralls": "3.0.2",
     "cross-env": "5.2.0",
-    "css-loader": "2.0.1",
+    "css-loader": "2.0.2",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "3.0.0",
     "handlebars-loader": "1.7.0",
