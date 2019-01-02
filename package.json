@@ -78,7 +78,7 @@
     "postcss-loader": "3.0.0",
     "protractor": "5.4.2",
     "raw-loader": "1.0.0",
-    "rimraf": "2.6.2",
+    "rimraf": "2.6.3",
     "rxjs": "6.2.2",
     "sass-loader": "7.1.0",
     "sourcemap-istanbul-instrumenter-loader": "0.2.0",
