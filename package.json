@@ -89,7 +89,7 @@
     "tslint-loader": "3.6.0",
     "typescript": "2.9.1",
     "web-animations-js": "2.3.1",
-    "webpack": "4.29.4",
+    "webpack": "4.29.5",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "3.1.14",
     "webpack-merge": "4.2.1",
