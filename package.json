@@ -96,7 +96,7 @@
     "zone.js": "0.8.26"
   },
   "optionalDependencies": {
-    "fsevents": "2.0.0"
+    "fsevents": "2.0.4"
   },
   "private": true
 }
