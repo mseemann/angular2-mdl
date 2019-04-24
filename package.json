@@ -53,7 +53,7 @@
     "awesome-typescript-loader": "5.2.1",
     "codeclimate-test-reporter": "0.5.1",
     "codelyzer": "4.4.2",
-    "copy-webpack-plugin": "5.0.2",
+    "copy-webpack-plugin": "5.0.3",
     "core-js": "2.6.5",
     "coveralls": "3.0.3",
     "cross-env": "5.2.0",
