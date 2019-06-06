@@ -55,7 +55,7 @@
     "codelyzer": "4.4.2",
     "copy-webpack-plugin": "5.0.3",
     "core-js": "2.6.5",
-    "coveralls": "3.0.3",
+    "coveralls": "3.0.4",
     "cross-env": "5.2.0",
     "css-loader": "2.1.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
