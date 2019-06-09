@@ -1,0 +1,26 @@
+{
+  "name": "@mseemann/prism",
+  "version": "0.0.1",
+  "description": "Angular 2 Prism Component",
+  "main": "./index.js",
+  "typings": "./index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mseemann/angular2-mdl.git"
+  },
+  "keywords": [
+    "angular2",
+    "prism"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mseemann/angular2-mdl/issues"
+  },
+  "homepage": "https://github.com/mseemann/angular2-mdl#readme",
+  "peerDependencies": {
+    "@angular/core": "^2.0.0"
+  },
+  "devDependencies": {
+    "@angular/core": "^2.0.0"
+  }
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Demo</title>
+  <base href="/">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="favicon.ico" rel="icon" type="image/x-icon">
+  <style>
+    demo-root > .loading {
+      margin: 0 auto;
+      text-align: center;
+      display: block;
+      position: relative;
+      top: 25vh;
+    }
+
+    demo-root .text-container {
+      text-align: left;
+      display: inline-block;
+      padding: 0 1em;
+      max-width: 50%;
+    }
+
+    @media screen and (max-width: 1024px) {
+      .mdl-layout__drawer-button {
+        line-height: 47px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+<demo-root></demo-root>
+<dialog-outlet></dialog-outlet>
+</body>
+</html>
+

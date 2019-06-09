@@ -1,0 +1,76 @@
+<h4>Sliders</h4>
+
+<div style="width: 300px;">
+  <mdl-slider min="1" max="50" value="30" ></mdl-slider>
+</div>
+
+<div style="width: 300px;">
+  <mdl-slider [min]="minValue" [max]="maxValue" [step]="5" [(ngModel)]="currentValue"></mdl-slider>
+</div>
+
+currentValue is: {{currentValue}}
+
+<pre prism ngNonBindable>
+  <![CDATA[
+<div style="width: 300px;">
+  <mdl-slider min="1" max="50" value="30" ></mdl-slider>
+</div>
+
+<div style="width: 300px;">
+  <mdl-slider [min]="minValue" [max]="maxValue" [step]="5" [(ngModel)]="currentValue"></mdl-slider>
+</div>
+
+currentValue is: {{currentValue}}
+]]>
+</pre>
+
+
+
+<h6>Attributes</h6>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+     <td>disabled</td>
+     <td>Disable the slider if present or true.</td>
+   </tr>
+
+   <tr>
+     <td>max</td>
+     <td>
+       Defines the maximum possible value.
+     </td>
+   </tr>
+
+   <tr>
+      <td>min</td>
+      <td>
+         Defines the minimum possible value.
+      </td>
+   </tr>
+
+   <tr>
+     <td>step</td>
+     <td>
+       Defines the step the value can change.
+     </td>
+   </tr>
+
+   <tr>
+      <td>ngModel</td>
+      <td>
+         This component is ngModel complient.
+      </td>
+   </tr>
+
+   </tbody>
+</table>
+
+
+

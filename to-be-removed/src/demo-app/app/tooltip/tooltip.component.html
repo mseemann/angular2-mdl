@@ -1,0 +1,98 @@
+<h4>Tooltips</h4>
+
+<div>
+
+<!-- Simple Tooltip -->
+<div class="tooltip-demo-container">
+  <mdl-icon  class="icon material-icons" [mdl-tooltip]="tt1" mdl-tooltip-position="top">add</mdl-icon>
+</div>
+
+<pre prism>
+  <![CDATA[
+  <!-- Simple Tooltip -->
+  <mdl-icon  class="icon material-icons" [mdl-tooltip]="tt1" mdl-tooltip-position="top">add</mdl-icon>
+  <script>
+    export class TooltipDemo {
+      tt1 = 'Follow';
+    }
+  </script>
+  ]]>
+</pre>
+
+<!-- Large Tooltip -->
+<div class="tooltip-demo-container">
+  <mdl-icon  class="icon material-icons" mdl-tooltip-large="Print">print</mdl-icon>
+</div>
+
+<pre prism>
+<![CDATA[
+  <!-- Large Tooltip -->
+  <mdl-icon  class="icon material-icons" mdl-tooltip-large="Print">print</mdl-icon>
+]]>
+</pre>
+
+<!-- Rich Tooltip -->
+<div class="tooltip-demo-container">
+  <mdl-icon [mdl-tooltip]="tt3" >cloud_upload</mdl-icon>
+  <mdl-tooltip #tt3="mdlTooltip">
+    Upload <strong>file.zip</strong>
+  </mdl-tooltip>
+</div>
+
+<pre prism>
+  <![CDATA[
+  <!-- Rich Tooltip -->
+  <mdl-icon [mdl-tooltip]="tt3" >cloud_upload</mdl-icon>
+  <mdl-tooltip #tt3="mdlTooltip">
+    Upload <strong>file.zip</strong>
+  </mdl-tooltip>
+  ]]>
+</pre>
+
+<!-- Multiline Tooltip -->
+<div class="tooltip-demo-container">
+  <mdl-icon [mdl-tooltip-large]="tt4">share</mdl-icon>
+  <mdl-tooltip #tt4="mdlTooltip">
+    Share your content<br>via social media
+  </mdl-tooltip>
+  </div>
+
+<pre prism>
+  <![CDATA[
+  <!-- Multiline Tooltip -->
+  <mdl-icon [mdl-tooltip-large]="tt4">share</mdl-icon>
+  <mdl-tooltip #tt4="mdlTooltip">
+    Share your content<br>via social media
+  </mdl-tooltip>
+  ]]>
+</pre>
+
+<div class="tooltip-demo-container">
+  <p>HTML is related to but different from <span [mdl-tooltip-large]="xml" mdl-tooltip-position="right"><i>XML</i></span>.</p>
+  <mdl-tooltip #xml="mdlTooltip">
+  <img src="../../assets/wood.jpg" width="30" height="30"> eXtensible Markup Language
+  </mdl-tooltip>
+</div>
+
+<pre prism>
+  <![CDATA[
+  <p>HTML is related to but different from <span [mdl-tooltip-large]="xml" mdl-tooltip-position="right"><i>XML</i></span>.</p>
+  <mdl-tooltip #xml="mdlTooltip">
+  <img src="../../assets/wood.jpg" width="30" height="30"> eXtensible Markup Language
+  </mdl-tooltip>
+  ]]>
+</pre>
+
+
+<p>A tooltip can be created from a directive or a combination of directive and compontent. Under the hood every
+tooltip uses the tooltip component.</p>
+
+<p>The <i>mdl-tooltip</i> is used to create complex tooltips that are not simple strings. You can put any content
+in the <i>mdl-tooltip</i> component. To access the tooltip <i>mdlTooltip</i> is exposed to the template.</p>
+
+<p>The <i>mdl-tooltip</i> directive is used to specify from where a tooltip should show up. The value of
+the attribute can be a string or a reference to a <i>mdl-tooltip</i> component instance.</p>
+
+<p>If you want the tooltip to be large use the <i>mdl-tooltip-large</i> to show the tooltip.</p>
+
+<p>The tooltip attribute <i>mdl-tooltip-position</i> can be used to specify the position of the tooltip (left, right, top, bottom).</p>

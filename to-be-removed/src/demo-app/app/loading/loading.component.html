@@ -1,0 +1,132 @@
+<h4>Loading </h4>
+
+<h5>Progress Bar</h5>
+
+<h6>Simple Progress Bar</h6>
+<mdl-progress [progress]="progress"></mdl-progress>
+Progress:
+<input type="number" min="0" max="100" [(ngModel)]="progress">
+
+<pre prism>
+  <![CDATA[
+  <mdl-progress [progress]="progress"></mdl-progress>
+  Progress:
+  <input type="number" min="0" max="100" [(ngModel)]="progress">
+  ]]>
+</pre>
+
+
+<h6>MDL Progress Bar with Indeterminate Progress</h6>
+<mdl-progress [indeterminate]="indeterminate"></mdl-progress>
+Indeterminate<input type="checkbox" [(ngModel)]="indeterminate">
+
+<pre prism>
+  <![CDATA[
+  <mdl-progress [indeterminate]="indeterminate"></mdl-progress>
+  Indeterminate:
+  <input type="checkbox" [(ngModel)]="indeterminate">
+  ]]>
+</pre>
+
+<h6>MDL Progress Bar with Buffering</h6>
+<mdl-progress [progress]="progress" [buffer]="buffer"></mdl-progress>
+Progress:
+<input type="number" min="0" max="100" [(ngModel)]="progress">
+Buffer:
+<input type="number" min="0" max="100" [(ngModel)]="buffer">
+
+<pre prism>
+  <![CDATA[
+  <mdl-progress [progress]="progress" [buffer]="buffer"></mdl-progress>
+  Progress:
+  <input type="number" min="0" max="100" [(ngModel)]="progress">
+  Buffer:
+  <input type="number" min="0" max="100" [(ngModel)]="buffer">
+  ]]>
+</pre>
+
+<h5>Attributes of the mdl-progress component</h5>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+     <td>buffer</td>
+     <td>
+       Buffer between 0 and 100.
+     </td>
+   </tr>
+
+   <tr>
+     <td>indeterminate</td>
+     <td>
+       The progress is unknown.
+     </td>
+   </tr>
+
+   <tr>
+      <td>progress</td>
+      <td>
+         Progress between 0 and 100.
+      </td>
+   </tr>
+
+   </tbody>
+</table>
+
+
+<h5>Spinner</h5>
+
+<h6>MDL Spinner Component </h6>
+<!-- MDL Spinner Component -->
+<mdl-spinner [active]="active"></mdl-spinner>
+Active<input type="checkbox" [(ngModel)]="active">
+<pre prism>
+  <![CDATA[
+  <!-- MDL Spinner Component -->
+  <mdl-spinner [active]="true"></mdl-spinner>
+  ]]>
+</pre>
+
+<h6>MDL Spinner Component with Single Color</h6>
+<!-- MDL Spinner Component with Single Color -->
+<mdl-spinner single-color active></mdl-spinner>
+
+<pre prism>
+  <![CDATA[
+  <!-- MDL Spinner Component with Single Color -->
+  <mdl-spinner single-color active></mdl-spinner>
+  ]]>
+</pre>
+
+<h5>Attributes of the mdl-spinner component</h5>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+      <td>active</td>
+      <td>
+         Show or not show the spinner.
+      </td>
+   </tr>
+
+   <tr>
+      <td>singleColor</td>
+      <td>
+         Draw the spinner only in one color.
+      </td>
+   </tr>
+
+   </tbody>
+</table>

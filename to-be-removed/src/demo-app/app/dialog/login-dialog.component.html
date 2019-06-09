@@ -1,0 +1,24 @@
+<form [formGroup]="form">
+
+  <h3 class="mdl-dialog__title">App Login</h3>
+
+  <div class="mdl-dialog__content">
+    <mdl-textfield #firstElement type="text" label="Username" formControlName="username" floating-label></mdl-textfield>
+    <br/>
+    <mdl-textfield type="password" label="Password" formControlName="password" floating-label></mdl-textfield>
+  </div>
+
+  <div class="status-bar">
+    <p class="mdl-color-text--primary">{{statusMessage}}</p>
+    <mdl-spinner [active]="processingLogin"></mdl-spinner>
+  </div>
+
+  <div class="mdl-dialog__actions">
+    <button
+      type="button"
+      mdl-button (click)="login()"
+      [disabled]="!form.valid || processingLogin"
+      mdl-button-type="raised"
+      mdl-colored="primary" mdl-ripple>Login</button>
+  </div>
+</form>

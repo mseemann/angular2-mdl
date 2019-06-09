@@ -1,0 +1,112 @@
+<h4>The Themes</h4>
+
+These are the pre generated themes provided by getmdl.io. If you are not satisfied with these colors you
+can use your own. Please checkout the
+<a href="https://github.com/mseemann/angular2-mdl/blob/master/README.md">README</a>
+for more information.
+<pre class="language-html" [innerHTML]="cdnLink">
+</pre>
+
+<div class="mdl-grid">
+
+  <div class="mdl-cell mdl-cell--2-col">
+    <h5>Primary</h5>
+    <div *ngFor="let color of primaryColors"
+         [style.backgroundColor]="color.name === selectedPrimaryColor?.name ? color.htmlColor : 'white'"
+         [style.borderColor]="color.htmlColor"
+         class="palette-entry"
+         (click)="selectPrimaryColor(color)" >
+      {{color.name}}
+    </div>
+  </div>
+  <div class="mdl-cell mdl-cell--2-col">
+    <h5>Accent</h5>
+    <div *ngFor="let color of secondaryColors"
+         [style.backgroundColor]="color.name === selectedAccentColor?.name ? color.accentColor : 'white'"
+         [style.borderColor]="color.accentColor"
+         [ngClass]="{'not-selectable': !color.isSelectable}"
+         class="palette-entry"
+         (click)="selectAccentColor(color)">
+      {{color.name}}
+    </div>
+  </div>
+
+  <div class="mdl-cell mdl-cell--8-col">
+    <h5>Example</h5>
+    <div class="demo-theme-container" mdl-shadow="2">
+      <mdl-layout mdl-layout-fixed-header mdl-layout-header-seamed>
+        <mdl-layout-header>
+          <mdl-layout-header-row>
+            <mdl-layout-title>Title</mdl-layout-title>
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation">
+              <a class="mdl-navigation__link">Link</a>
+            </nav>
+          </mdl-layout-header-row>
+        </mdl-layout-header>
+        <mdl-layout-drawer>
+          <mdl-layout-title>Title</mdl-layout-title>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link">Link</a>
+          </nav>
+        </mdl-layout-drawer>
+        <mdl-layout-content class="demo-content">
+
+
+        <p>
+          <button mdl-button  mdl-button-type="fab" mdl-colored="primary" mdl-ripple>
+            <mdl-icon>add</mdl-icon>
+          </button>
+        </p>
+
+        <p>
+          <button mdl-button mdl-button-type="raised" mdl-colored="accent" mdl-ripple>
+            Button
+          </button>
+        </p>
+
+          <p>
+            <mdl-icon mdl-badge="1" mdl-badge-overlap>account_box</mdl-icon>
+          </p>
+
+          <p>
+          <mdl-spinner single-color active></mdl-spinner>
+          </p>
+
+          <p>
+          <mdl-textfield type="text" label="Text..." [(ngModel)]="text3" floating-label></mdl-textfield>
+          </p>
+
+          <p>
+            <mdl-checkbox [mdl-ripple]="true" [(ngModel)]="checkbox1"> Checkbox </mdl-checkbox>
+          </p>
+
+          <p>
+            <mdl-radio name="group1" value="1" [(ngModel)]="radioOption" mdl-ripple>Value 1</mdl-radio>
+            <mdl-radio name="group1" value="2" [(ngModel)]="radioOption" mdl-ripple>Value 2</mdl-radio>
+          </p>
+
+          <p>
+            <mdl-switch [(ngModel)]="checkbox1" mdl-ripple>Option 1</mdl-switch>
+          </p>
+
+        </mdl-layout-content>
+      </mdl-layout>
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

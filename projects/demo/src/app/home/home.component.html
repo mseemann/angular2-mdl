@@ -1,0 +1,78 @@
+<h4>Welcome to the e2e demos for Angular <a href="https://getmdl.io/" target="_blank">Material Design Lite!</a></h4>
+
+<h6>Checkout the <a href="https://github.com/mseemann/angular2-mdl">GitHub</a> project on
+  how to install and use the angular-mdl package.</h6>
+
+<h5>News:</h5>
+<p>
+  This package contains only components that are provided by material design lite.<br/> But there are lot of
+  possible components that will be needed too!<br/>To keep this package clean and small the package
+  <a href="/angular2-mdl-ext">angular2-mdl-ext</a>
+  is under development to match these needs.
+</p>
+
+<h5>Features:</h5>
+<ul>
+  <li>Angular components for Material Design Lite</li>
+  <li>Suports Angular 2 (angular2-mdl) and Angular 4 and up (@angular-mdl/core)</li>
+  <ul>
+    <li>change the properties and the components changes their behavior</li>
+    <li>add and remove components on the fly (for example menu items)</li>
+  </ul>
+  <li>Components instead of css classes.</li>
+  <ul>
+    <li>This will provide less errors and a better tool support.</li>
+    <li>The html code is shorter.</li>
+  </ul>
+  <li>Include only the code that you really use in your production files.</li>
+  <li>For sure this demo and docu has been created with angular2-mdl!</li>
+  <li>Ready for Angular Reactive Forms.</li>
+</ul>
+
+<h5>NPM Packages</h5>
+<p>Use the npm packages <i>@angular-mdl/core</i> for Angular 4 and up and <i>angular2-mdl</i> for Angular 2.</p>
+
+<div>
+  A side effect is that you don’t need to write a lot of css classes and html structures to create material design lite
+  components.
+
+  Instead of
+  <pre prism>
+  <![CDATA[
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+	<label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+		<i class="material-icons">search</i>
+	</label>
+	<div class="mdl-textfield__expandable-holder">
+		<input class="mdl-textfield__input" id="sample6" type="text">
+	</div>
+</div>
+  ]]>
+</pre>
+
+  you just write:
+  <pre prism>
+	<![CDATA[
+<mdl-textfield [(ngModel)]="theText" icon="search" type="text"></mdl-textfield>
+	]]>
+</pre>
+  <p>
+    to create an expandle text field and get two-way-databindig for free!
+  </p>
+
+  <p>
+    Still not convinced? With this package you can mix original material design lite features
+    and angular web apps within one website. <a href="https://www.yovelino.de">yovelino.de</a>
+    uses material deisgn lite for the content related pages and angular-mdl for the tour planner.
+    But the user will not notice this because both parts look and behave the same.
+  </p>
+
+  <!--p>
+    <mdl-textfield [(ngModel)]="theText" icon="search" type="text"></mdl-textfield>
+  </p-->
+
+</div>
+
+
+<!-- just a checkbox to check the mask background in e2e - avoid the redirect for saucelab :(  -->
+<!--mdl-checkbox [ngModel]="true"></mdl-checkbox-->

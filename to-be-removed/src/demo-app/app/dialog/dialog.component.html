@@ -1,0 +1,245 @@
+<h4>The Dialog (imperative)</h4>
+
+These dialogs are created by the <i>MdlDialogService</i>.
+
+<h5>Prerequisites</h5>
+<p>
+  Every Dialog needs a place to be attached to the dom. The easiest way to achieve this is a dialog-outlet html
+  element within your body element:
+</p>
+<pre prism ngNonBindable>
+  <![CDATA[
+<html>
+  <head>...</head>
+  <body>
+    <app-root>...</app-root>
+    <dialog-outlet></dialog-outlet>
+  </body>
+</html>
+]]>
+</pre>
+<p>It is no problem, that this component is outside of your root app-component!</p>
+<p>
+  Technically: This place is determined by a <i>ViewContainerRef</i>. You may also set this <i>ViewContainerRef</i> in your
+  code. Just inject the <i>MdlDialogOutletService</i> and call the <i>setDefaultViewContainerRef</i> method.
+</p>
+<p>
+  If you want to create a custom dialog - e.g. you have full control regarding the content of the dialog - you need to
+  implement a component. You need to add this component to the entryComponents of your app module!
+  Also you should implement an event lister that closes the dialog if the users hits the esc key. The the login dialog
+  example at the end of this page.
+</p>
+
+
+<h5>Alert</h5>
+
+<button
+        mdl-button
+        mdl-button-type="raised"
+        mdl-colored="accent"
+        mdl-ripple
+        (click)="showAlert()">Show Alert</button>
+
+<pre prism>
+  <![CDATA[
+<scripts>
+  let result = this.dialogService.alert('This is a simple Alert');
+  result.subscribe( () => console.log('alert closed') );
+</scripts>
+]]>
+</pre>
+
+<h5>Confirm</h5>
+<button
+  mdl-button
+  mdl-button-type="raised"
+  mdl-colored="primary"
+  mdl-ripple
+  (click)="showConfirmMessage()">Show Confirm Message
+</button>
+
+<pre prism>
+  <![CDATA[
+<scripts>
+  let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
+  // if you need both answers
+  result.subscribe( () => {
+      console.log('confirmed');
+    },
+    (err: any) => {
+      console.log('declined');
+    }
+  );
+  // if you only need the confirm answer
+  result.onErrorResumeNext().subscribe( () => {
+    console.log('confirmed 2');
+  });
+</scripts>
+]]>
+</pre>
+
+<h5>Confirm With Title</h5>
+<button
+  mdl-button
+  mdl-button-type="raised"
+  mdl-colored="primary"
+  mdl-ripple
+  (click)="showConfirmMessageWithTitle()">Show Confirm Message With Title</button>
+
+<pre prism>
+  <![CDATA[
+<scripts>
+  let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes', 'Excuse me');
+  // if you need both answers
+  result.subscribe( () => {
+      console.log('confirmed');
+    },
+    (err: any) => {
+      console.log('declined');
+    }
+  );
+  // if you only need the confirm answer
+  result.onErrorResumeNext().subscribe( () => {
+    console.log('confirmed 2');
+  });
+</scripts>
+]]>
+</pre>
+
+
+<h5>Dialog with choices</h5>
+<button
+        mdl-button
+        mdl-button-type="raised"
+        mdl-colored="primary"
+        mdl-ripple
+        (click)="showDialogFullWidthAction($event)">Show Dialog with full width actions</button>
+
+
+<pre prism>
+  <![CDATA[
+
+<scripts>
+  let pDialog = this.dialogService.showDialog({
+    title: 'Your choice?',
+    message: 'What drink do you prefer to your meal?',
+    actions: [
+      {
+        handler: () => {
+            this.snackbarService.showToast('Coke');
+        },
+        text: 'One Coke' ,
+        isClosingAction: true
+      },
+      {
+        handler: () => {
+          this.snackbarService.showToast('Vine');
+        },
+        text: 'A bottle of vine'
+      },
+      {
+        handler: () => {
+          this.snackbarService.showToast('Beer');
+        },
+        text: 'A pint of beer'
+      }
+    ],
+    fullWidthAction: true,
+    isModal: false,
+    openFrom: $event,
+    closeTo: {
+      left: document.body.offsetWidth/2,
+      height: 0,
+      top: document.body.offsetHeight/2,
+      width: 0} as IOpenCloseRect
+  });
+  pDialog.subscribe( (dialogReference) => console.log('dialog visible', dialogReference) );
+
+</scripts>
+]]>
+</pre>
+
+<h5>A custom login dialog</h5>
+<button
+        mdl-button
+        mdl-button-type="raised"
+        mdl-colored="primary"
+        mdl-ripple
+        (click)="showDialog($event)">Show Login Dialog</button>
+
+<h4>The login dialog component</h4>
+<pre prism>
+  <![CDATA[
+<scriptx>
+  @Component({
+    selector: 'login-dialog',
+    templateUrl: 'login-dialog.html'
+  })
+  export class LoginDialogComponent {
+    constructor(private dialog: MdlDialogReference) {
+
+      // register a listener if you want to be informed if the dialog is closed.
+      this.dialog.onHide().subscribe( (user) => {
+        console.log('login dialog hidden');
+        if (user) {
+          console.log('authenticated user', user);
+        }
+      });
+    }
+
+    public login() {
+      console.log('login', this.dialog);
+      this.dialog.hide();
+    }
+
+    @HostListener('keydown.esc')
+    public onEsc(): void {
+        this.dialog.hide();
+    }
+  }
+</scriptx>
+]]>
+</pre>
+
+<h4>The login dialog template</h4>
+<pre prism>
+  <![CDATA[
+<div>
+  <h3 class="mdl-dialog__title">App Login</h3>
+  <div class="mdl-dialog__content">
+    <mdl-textfield #firstElement type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
+    <br/>
+    <mdl-textfield type="password" label="Password" [(ngModel)]="password" floating-label></mdl-textfield>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button mdl-button (click)="login()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Login</button>
+  </div>
+</div>
+]]>
+</pre>
+
+
+<h4>Open the dialog</h4>
+<pre prism>
+  <![CDATA[
+<scripts>
+  public showDialog($event: MouseEvent) {
+    let pDialog = this.dialogService.showCustomDialog({
+      component: LoginDialogComponent,
+      providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
+      isModal: true,
+      styles: {'width': '350px'},
+      clickOutsideToClose: true,
+      enterTransitionDuration: 400,
+      leaveTransitionDuration: 400
+    });
+    pDialog.subscribe( (dialogReference: MdlDialogReference) => {
+      console.log('dialog visible', dialogReference);
+    });
+  }
+</scripts>
+]]>
+</pre>
+
+Checkout the demo code at <a href="https://github.com/mseemann/angular2-mdl/tree/master/src/app/dialog">githiub</a>
+for a complete source code example.

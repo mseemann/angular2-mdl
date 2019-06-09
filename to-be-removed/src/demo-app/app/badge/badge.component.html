@@ -1,0 +1,93 @@
+<h4>The Badges </h4>
+
+<h5>Number badge on icon</h5>
+<!-- Number badge on icon -->
+<mdl-icon mdl-badge="1" mdl-badge-overlap>account_box</mdl-icon>
+<mdl-icon mdl-badge="♥" mdl-badge-overlap>account_box</mdl-icon>
+
+<pre prism>
+  <![CDATA[
+  <!-- Number badge on icon -->
+  <mdl-icon mdl-badge="1" mdl-badge-overlap>account_box</mdl-icon>
+  <mdl-icon mdl-badge="♥" mdl-badge-overlap>account_box</mdl-icon>
+  ]]>
+</pre>
+
+
+<h5>Number badge</h5>
+<!-- Number badge -->
+<span mdl-badge="4">Inbox</span>
+
+<pre prism>
+  <![CDATA[
+  <!-- Number badge -->
+  <span mdl-badge="4">Inbox</span>
+  ]]>
+</pre>
+
+<h5>Icon badge</h5>
+
+<!-- Icon badge -->
+<span mdl-badge="♥">Mood</span>
+<pre prism>
+  <![CDATA[
+  <!-- Icon badge -->
+  <span mdl-badge="♥">Mood</span>
+  ]]>
+</pre>
+
+<h5>Badge without background</h5>
+<a href="#" mdl-badge-no-background mdl-badge="123">This badge has no background color.</a>
+
+<pre prism>
+  <![CDATA[
+<a href="#" mdl-badge-no-background mdl-badge="123">This badge has no background color.</a>
+  ]]>
+</pre>
+
+<h5>Dynamic experiments</h5>
+
+set the badge counter
+<input type="number" [(ngModel)]="badgeCount">
+<span [mdl-badge]="badgeCount">Inbox</span>
+
+<pre prism>
+  <![CDATA[
+  <input type="number" [(ngModel)]="badgeCount">
+  <span [mdl-badge]="badgeCount">Inbox</span>
+  ]]>
+</pre>
+
+<h4>Attributes for directive mdl-badge</h4>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+      <td>mdl-badge</td>
+      <td>
+         The value is converted to string and displayed as badge value.
+      </td>
+   </tr>
+
+   <tr>
+     <td>mdl-badge-no-background</td>
+     <td>
+       If present on the same element as <i>mdl-badge</i> the badge has no background color.
+     </td>
+   </tr>
+
+   <tr>
+      <td>mdl-badge-overlap</td>
+      <td>
+         If present on the same element as <i>mdl-badge</i> the badge overlaps with the content.
+      </td>
+   </tr>
+
+   </tbody>
+</table>

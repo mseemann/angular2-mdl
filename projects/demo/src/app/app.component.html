@@ -1,0 +1,90 @@
+<mdl-layout mdl-layout-fixed-header>
+  <mdl-layout-header class="mdl-layout--no-desktop-drawer-button">
+    <mdl-layout-header-row class="main-header">
+      <div (click)="mainLayout.toggleDrawer()" *ngIf="mainLayout.isSmallScreen" class="mdl-layout__drawer-button">
+        <mdl-icon>&#xE5D2;</mdl-icon>
+      </div>
+      <mdl-layout-title class="docs-layout-title">
+        {{title}}
+      </mdl-layout-title>
+      <mdl-layout-spacer></mdl-layout-spacer>
+      <div class="mdl-cell--hide-phone">
+        <a aria-label="Star mseemann/angular2-mdl on GitHub" class="github-button mdl-color-text--primary"
+           data-count-aria-label="# stargazers on GitHub" data-count-href="/mseemann/angular2-mdl/stargazers" data-show-count="true"
+           data-size="large" href="https://github.com/mseemann/angular2-mdl">Star</a>
+      </div>
+    </mdl-layout-header-row>
+  </mdl-layout-header>
+  <mdl-layout-content>
+    <mdl-layout #mainLayout="mdlLayout" mdl-layout-fixed-drawer mdl-layout-no-drawer-button>
+      <mdl-layout-drawer>
+        <nav class="mdl-navigation">
+          <a (click)="componentSelected(mainLayout)" [routerLinkActiveOptions]="{exact:true}" class="mdl-navigation__link"
+             routerLink="/" routerLinkActive="router-link-active">Home</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/theme"
+             routerLinkActive="router-link-active">Themes</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/badge"
+             routerLinkActive="router-link-active">Badges</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/button"
+             routerLinkActive="router-link-active">Buttons</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/card"
+             routerLinkActive="router-link-active">Cards</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/chips"
+             routerLinkActive="router-link-active">Chips</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/dialogs"
+             routerLinkActive="router-link-active">Dialog (imperative)</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/dialogs-declarative"
+             routerLinkActive="router-link-active">Dialog (declarative)</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/icon"
+             routerLinkActive="router-link-active">Icons</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/layout"
+             routerLinkActive="router-link-active">Layouts</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/list"
+             routerLinkActive="router-link-active">List</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/loading"
+             routerLinkActive="router-link-active">Loading</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/menu"
+             routerLinkActive="router-link-active">Menus</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/reactiveForms"
+             routerLinkActive="router-link-active">Reactive Forms</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/shadow"
+             routerLinkActive="router-link-active">Shadows</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/slider"
+             routerLinkActive="router-link-active">Sliders</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/snackbar"
+             routerLinkActive="router-link-active">Snackbar</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/table"
+             routerLinkActive="router-link-active">Tables</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/tabs"
+             routerLinkActive="router-link-active">Tabs</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/textfield"
+             routerLinkActive="router-link-active">Text Fields</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/toggle"
+             routerLinkActive="router-link-active">Toggle</a>
+          <a (click)="componentSelected(mainLayout)" class="mdl-navigation__link" routerLink="/tooltip"
+             routerLinkActive="router-link-active">Tooltips</a>
+          <a class="mdl-navigation__link routerLink" href="/angular2-mdl-ext">angular2-mdl-ext
+            <mdl-icon class="mdl-color-text--primary">explore</mdl-icon>
+          </a>
+        </nav>
+      </mdl-layout-drawer>
+      <mdl-layout-content class="app-main-content">
+        <div class="main-content">
+          <div class="router-outlet">
+            <router-outlet></router-outlet>
+          </div>
+          <footer class="mdl-mini-footer">
+            <div class="mdl-mini-footer__right-section">
+              <ul class="mdl-mini-footer__link-list">
+                <li><a href="https://github.com/mseemann/angular2-mdl" target="_blank"><span class="icon"><svg
+                  viewBox="0 0 16 16"><path d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"
+                                            fill="#828282"/></svg></span>
+                  GitHub</a></li>
+              </ul>
+            </div>
+          </footer>
+        </div>
+      </mdl-layout-content>
+    </mdl-layout>
+  </mdl-layout-content>
+</mdl-layout>

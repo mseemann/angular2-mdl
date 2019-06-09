@@ -1,0 +1,246 @@
+<h4>The Cards</h4>
+
+<mdl-card class="demo-card-wide" mdl-shadow="2">
+  <mdl-card-title>
+    <h2 mdl-card-title-text>Welcome</h2>
+  </mdl-card-title>
+  <mdl-card-supporting-text>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Mauris sagittis pellentesque lacus eleifend lacinia...
+  </mdl-card-supporting-text>
+  <mdl-card-actions mdl-card-border>
+    <button mdl-button mdl-colored mdl-ripple>Get Started</button>
+  </mdl-card-actions>
+  <mdl-card-menu>
+    <button mdl-button mdl-button-type="icon" mdl-ripple><mdl-icon>share</mdl-icon></button>
+  </mdl-card-menu>
+</mdl-card>
+
+<pre prism>
+  <![CDATA[
+  <mdl-card mdl-shadow="2">
+    <mdl-card-title>
+      <h2 mdl-card-title-text>Welcome</h2>
+    </mdl-card-title>
+    <mdl-card-supporting-text>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Mauris sagittis pellentesque lacus eleifend lacinia...
+    </mdl-card-supporting-text>
+    <mdl-card-actions mdl-card-border>
+      <button mdl-button mdl-colored mdl-ripple>Get Started</button>
+    </mdl-card-actions>
+    <mdl-card-menu>
+      <button mdl-button mdl-button-type="icon" mdl-ripple>
+        <mdl-icon>share</mdl-icon>
+      </button>
+    </mdl-card-menu>
+  </mdl-card>
+  ]]>
+</pre>
+
+<div class="example-separator"></div>
+
+<mdl-card class="demo-card-square" mdl-shadow="2">
+  <mdl-card-title mdl-card-expand>
+    <h2 mdl-card-title-text="">Update</h2>
+  </mdl-card-title>
+  <mdl-card-supporting-text>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Aenan convallis.
+  </mdl-card-supporting-text>
+  <mdl-card-actions mdl-card-border>
+    <button mdl-button  mdl-colored mdl-ripple>
+      View Updates
+    </button>
+  </mdl-card-actions>
+</mdl-card>
+
+<pre prism>
+  <![CDATA[
+  <mdl-card class="demo-card-square" mdl-shadow="2">
+    <mdl-card-title mdl-card-expand>
+      <h2 mdl-card-title-text="">Update</h2>
+    </mdl-card-title>
+    <mdl-card-supporting-text>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Aenan convallis.
+    </mdl-card-supporting-text>
+    <mdl-card-actions mdl-card-border>
+      <button mdl-button mdl-colored mdl-ripple>
+        View Updates
+      </button>
+    </mdl-card-actions>
+  </mdl-card>
+  ]]>
+</pre>
+
+<div class="example-separator"></div>
+
+<mdl-card class="demo-card-image" mdl-shadow="2">
+  <mdl-card-title mdl-card-expand></mdl-card-title>
+  <mdl-card-actions>
+    <span class="demo-card-image__filename">Image.jpg</span>
+  </mdl-card-actions>
+</mdl-card>
+
+<pre prism>
+  <![CDATA[
+  <mdl-card class="demo-card-image" mdl-shadow="2">
+    <mdl-card-title mdl-card-expand></mdl-card-title>
+    <mdl-card-actions>
+      <span class="demo-card-image__filename">Image.jpg</span>
+    </mdl-card-actions>
+  </mdl-card>
+  ]]>
+</pre>
+
+
+<div class="example-separator"></div>
+
+<mdl-card class="demo-card-event" mdl-shadow="2">
+  <mdl-card-title mdl-card-expand>
+    <h4>
+       Unwind! Relax! Breathe!<br>
+       You deserve a holiday
+    </h4>
+  </mdl-card-title>
+  <mdl-card-actions mdl-card-border>
+    <button mdl-button mdl-colored mdl-ripple (click)="booknow()">
+      Book now
+    </button>
+    <mdl-layout-spacer></mdl-layout-spacer>
+    <mdl-icon>event</mdl-icon>
+  </mdl-card-actions>
+</mdl-card>
+
+<pre prism>
+  <![CDATA[
+  <mdl-card class="demo-card-event" mdl-shadow="2">
+    <mdl-card-title mdl-card-expand>
+ <h4>
+       Unwind! Relax! Breathe!<br>
+       You deserve a holiday
+    </h4>
+    </mdl-card-title>
+    <mdl-card-actions mdl-card-border>
+      <button mdl-button mdl-colored mdl-ripple (click)="booknow()">
+      Book now
+      </button>
+      <mdl-layout-spacer></mdl-layout-spacer>
+      <mdl-icon>event</mdl-icon>
+    </mdl-card-actions>
+  </mdl-card>
+  ]]>
+</pre>
+
+<!-- playground for booking.com to check the correct image  -->
+<ins style="display:none;" class="bookingaff" data-aid="818142" data-target_aid="818140" data-prod="banner" data-width="200" data-height="200" data-banner_id="30746">
+   <!-- Anything inside will go away once widget is loaded. -->
+   <a href="//www.booking.com?aid=818140">Booking.com</a>
+</ins>
+
+
+<h4>Card-Components</h4>
+<table class="docu" mdl-shadow="2">
+   <thead>
+      <tr>
+         <th>Component</th>
+         <th>Description</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>
+            mdl-card
+         </td>
+         <td>
+            Basic components that creates a card
+         </td>
+      </tr>
+
+      <tr>
+        <td>
+          mdl-card-actions
+        </td>
+        <td>
+          Container for actions at the bottom of the card.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          mdl-card-media
+        </td>
+        <td>
+          A media container within an mdl-card.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          mdl-card-menu
+        </td>
+        <td>
+          A menu for the card. Usually an mdl-button with mdl-button-type icon.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          mdl-card-supporting-text
+        </td>
+        <td>
+          Section within an mdl-card. Can be providedmultiple times.
+        </td>
+      </tr>
+      <tr>
+         <td>
+            mdl-card-title
+         </td>
+         <td>
+            Section within an mdl-card.
+         </td>
+      </tr>
+
+   </tbody>
+</table>
+
+<h4>Card-Component Attributes</h4>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+     <tr>
+       <td>
+         mdl-card-border
+       </td>
+       <td>
+         Creates a border around a card section.
+       </td>
+     </tr>
+
+     <tr>
+       <td>
+         mdl-card-expand
+       </td>
+       <td>
+         Adds <i>flex-grow:1</i> to a card section so that the section expands as horizontally as much as possible.
+       </td>
+     </tr>
+
+     <tr>
+        <td>
+           mdl-card-title-text
+        </td>
+        <td>
+           Specifies a Title of a card. Every h* tag should have the attribute <i>mdl-card-title-text</i>.
+        </td>
+     </tr>
+
+   </tbody>
+</table>
+

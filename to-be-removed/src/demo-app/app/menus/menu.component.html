@@ -1,0 +1,208 @@
+<h4>Menus</h4>
+
+<div class="mdl-grid">
+   <div class="mdl-cell mdl-cell--3-col">
+      <div class="container" mdl-shadow="2">
+         <div class="bar mdl-color--primary">
+            <button mdl-button #btn1="mdlButton" (click)="m1.toggle($event, btn1)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+            <mdl-menu #m1="mdlMenu" mdl-menu-position="bottom-left">
+               <mdl-menu-item mdl-ripple (click)="action()">Some Action</mdl-menu-item>
+               <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
+               <mdl-menu-item mdl-ripple disabled>Disabled Action</mdl-menu-item>
+               <mdl-menu-item>Yet Another Action</mdl-menu-item>
+            </mdl-menu>
+         </div>
+         <div class="background"></div>
+      </div>
+   </div>
+   <div class="mdl-cell mdl-cell--3-col">
+      <div class="container" mdl-shadow="2">
+         <div class="bar mdl-color--primary">
+            <div class="top-right">
+               <button mdl-button #btn2="mdlButton" (click)="m2.toggle($event, btn2)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+               <mdl-menu #m2="mdlMenu" mdl-menu-position="bottom-right">
+                  <mdl-menu-item mdl-ripple>Some Action</mdl-menu-item>
+                  <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
+                  <mdl-menu-item mdl-ripple disabled>Disabled Action</mdl-menu-item>
+                  <mdl-menu-item>Yet Another Action</mdl-menu-item>
+               </mdl-menu>
+            </div>
+         </div>
+         <div class="background"></div>
+      </div>
+   </div>
+   <div class="mdl-cell mdl-cell--3-col">
+      <div class="container" mdl-shadow="2">
+         <div class="background"></div>
+         <div class="bar mdl-color--primary">
+            <button mdl-button #btn3="mdlButton" [mdl-toggle-menu]="m3" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+            <mdl-menu #m3="mdlMenu" mdl-menu-position="top-left">
+               <mdl-menu-item mdl-ripple>Some Action</mdl-menu-item>
+               <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
+               <mdl-menu-item mdl-ripple disabled>Disabled Action</mdl-menu-item>
+               <mdl-menu-item>Yet Another Action</mdl-menu-item>
+            </mdl-menu>
+         </div>
+      </div>
+   </div>
+   <div class="mdl-cell mdl-cell--3-col">
+      <div class="container" mdl-shadow="2">
+         <div class="background"></div>
+         <div class="bar mdl-color--primary">
+            <div class="top-right">
+               <button mdl-button #btn4="mdlButton" [mdl-toggle-menu]="m4" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+               <mdl-menu #m4="mdlMenu" mdl-menu-position="top-right">
+                  <mdl-menu-item mdl-ripple>Some Action</mdl-menu-item>
+                  <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
+                  <mdl-menu-item mdl-ripple disabled>Disabled Action</mdl-menu-item>
+                  <mdl-menu-item>Yet Another Action</mdl-menu-item>
+               </mdl-menu>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+<pre prism>
+  <![CDATA[
+<button mdl-button #btn1="mdlButton" (click)="m1.toggle($event, btn1)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+<mdl-menu #m1="mdlMenu" mdl-menu-position="bottom-left">
+   <mdl-menu-item mdl-ripple (click)="action()">Some Action</mdl-menu-item>
+   <mdl-menu-item mdl-ripple mdl-menu-item-full-bleed-divider>Another Action</mdl-menu-item>
+   <mdl-menu-item mdl-ripple disabled>Disabled Action</mdl-menu-item>
+   <mdl-menu-item>Yet Another Action</mdl-menu-item>
+</mdl-menu>
+  ]]>
+</pre>
+
+<pre prism>
+  <![CDATA[
+<button mdl-button #btn2="mdlButton" (click)="m2.toggle($event, btn2)" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+<mdl-menu #m2="mdlMenu" mdl-menu-position="bottom-right">
+   ...
+</mdl-menu>
+  ]]>
+</pre>
+
+<pre prism>
+  <![CDATA[
+<button mdl-button #btn3="mdlButton" [mdl-toggle-menu]="m3" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+<mdl-menu #m3="mdlMenu" mdl-menu-position="top-left">
+   ...
+</mdl-menu>
+  ]]>
+</pre>
+
+<pre prism>
+  <![CDATA[
+<button mdl-button #btn4="mdlButton" [mdl-toggle-menu]="m4" mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+<mdl-menu #m4="mdlMenu" mdl-menu-position="top-right">
+   ...
+</mdl-menu>
+  ]]>
+</pre>
+
+<h5>mdl-menu component</h5>
+<p>The <i>mdl-menu</i> component is exposed as <i>mdlMenu</i> to the template.</p>
+
+<h6>Attributes</h6>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+      <td>mdl-menu-position</td>
+      <td>
+         Defines the position of the menu.
+         <ul>
+            <li>
+               bottom-left
+            </li>
+            <li>bottom-right</li>
+            <li>top-left</li>
+            <li>top-right</li>
+            <li>unaligned - no styling is defined. You need to do it by yourself</li>
+         </ul>
+      </td>
+   </tr>
+   </tbody>
+</table>
+
+<h6>Methods</h6>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Method</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+
+   <tr>
+     <td>hide</td>
+     <td>
+       The menu will be hided.
+     </td>
+   </tr>
+
+   <tr>
+     <td>show(<br/>
+       event: Event,<br/>
+       mdlButton: MdlButtonComponent)</td>
+     <td>
+       Shows the menu. event and button are needed to calculate the position of the menu.
+     </td>
+   </tr>
+
+   <tr>
+      <td>toggle( <br/>
+        event: Event,<br/>
+        mdlButton: MdlButtonComponent)</td>
+      <td>
+         Toggles the menu. event and button are needed to calculate the position of the menu.
+      </td>
+   </tr>
+
+   </tbody>
+</table>
+
+<h5>mdl-menu-item component</h5>
+<p>The <i>mdl-menu-item</i> component draws the menu-items.</p>
+
+<h6>Attributes</h6>
+<table class="docu" mdl-shadow="2">
+   <thead>
+   <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+   </tr>
+   </thead>
+   <tbody>
+
+   <tr>
+      <td>mdl-menu-item-full-bleed-divider</td>
+      <td>
+         Draws a line at the bottom of the menu item.
+      </td>
+   </tr>
+
+   <tr>
+      <td>mdl-ripple</td>
+      <td>
+         Enables the tipple effect on menu items.
+      </td>
+   </tr>
+
+   </tbody>
+</table>
+
