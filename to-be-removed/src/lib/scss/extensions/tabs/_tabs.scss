@@ -1,8 +1,0 @@
-@import "../../variables";
-
-.mdl-tabs__tab {
-  &.disabled {
-    cursor: not-allowed;
-    color: $tab-disabled-color;
-  }
-}

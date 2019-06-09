@@ -1,13 +1,15 @@
 import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
-import {CoreModule} from '@angular-mdl/core';
+import {MdlModule} from '@angular-mdl/core';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        CoreModule
+        MdlModule
       ],
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         AppComponent
       ],
