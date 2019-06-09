@@ -17,7 +17,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-core": "ng-packagr -p projects/core/ng-package.json && cp -r ./projects/core/src/scss ./dist/@angular-mdl/core/scss",
-    "codeclimate": "CODECLIMATE_REPO_TOKEN=160aba8aa0baa5d0cab1d2162f50027cef9cda032fbc4eebefd54167ddce4c89 codeclimate-test-reporter < coverage/lcov.info",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=160aba8aa0baa5d0cab1d2162f50027cef9cda032fbc4eebefd54167ddce4c89 codeclimate-test-reporter < coverage/core/lcov.info",
     "generate-scss-from-mdl-scss": "rimraf projects/core/src/scss/mdl && node ./scripts/generate-scss-from-mdl-scss.js",
     "deploy-gh-pages": "npm run build demo && scripts/deploy.sh --message \\\\\\\"Deploy gh-pages from commit $(git rev-parse HEAD)  [ci skip]\\\\\\\" -n"
   },
