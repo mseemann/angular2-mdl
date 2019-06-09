@@ -1,12 +1,14 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import { Component, SimpleChange } from '@angular/core';
 import {
   MdlTooltipModule,
   MdlTooltipComponent,
   MdlSimpleTooltipComponent,
   MdlTooltipDirective
 } from './index';
+
+import { MdlTooltipPositionService } from './mdl-tooltip-position.service';
 
 describe('Component: MdlTooltip', () => {
 
@@ -73,7 +75,7 @@ describe('Component: MdlTooltip', () => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
       template: `
-           <div [mdl-tooltip]="t" mdl-tooltip-position="left"></div>
+          <div [mdl-tooltip]="t" mdl-tooltip-position="left"></div>
           <mdl-tooltip #t="mdlTooltip">x</mdl-tooltip>
         `}
     });
@@ -144,9 +146,9 @@ describe('Component: MdlTooltip', () => {
     evt.initEvent('mouseenter', true, true);
     tooltipTriggerElement.dispatchEvent(evt);
 
-    var evt = document.createEvent('HTMLEvents');
-    evt.initEvent('mouseleave', true, true);
-    tooltipTriggerElement.dispatchEvent(evt);
+    var evt2 = document.createEvent('HTMLEvents');
+    evt2.initEvent('mouseleave', true, true);
+    tooltipTriggerElement.dispatchEvent(evt2);
 
     expect(window.clearTimeout).toHaveBeenCalled();
 
@@ -179,7 +181,7 @@ describe('Component: MdlTooltip', () => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
       template: `
-           <div [mdl-tooltip]="t" mdl-tooltip-position="left"></div>
+          <div [mdl-tooltip]="t" mdl-tooltip-position="left"></div>
           <mdl-tooltip #t="mdlTooltip">x</mdl-tooltip>
         `}
     });
@@ -201,6 +203,64 @@ describe('Component: MdlTooltip', () => {
 
   });
 
+  it('should update position on change', () => {
+    TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
+      template: `
+          <div [mdl-tooltip]="t" [mdl-tooltip-position]="position"></div>
+          <mdl-tooltip #t="mdlTooltip">x</mdl-tooltip>
+        `}
+    });
+    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    fixture.detectChanges();
+    inject([MdlTooltipPositionService], (posSvc) => {
+      let tooltipTriggerElement: HTMLElement = fixture.debugElement
+        .query(By.directive(MdlTooltipDirective))
+        .nativeElement;
+      let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
+
+      spyOn(posSvc, 'calcStyle');
+
+      var evt1 = document.createEvent('HTMLEvents');
+      evt1.initEvent('mouseenter', true, true);
+      tooltipTriggerElement.dispatchEvent(evt1);
+
+      var evt2 = document.createEvent('HTMLEvents');
+      evt2.initEvent('mouseleave', true, true);
+      tooltipTriggerElement.dispatchEvent(evt2);
+
+      expect(posSvc.calcStyle).toHaveBeenCalledWith(
+        jasmine.any(Number),
+        jasmine.any(Number),
+        jasmine.any(ClientRect),
+        'bottom'
+      );
+
+      fixture.componentInstance.position = 'left';
+      fixture.detectChanges();
+
+      var evt3 = document.createEvent('HTMLEvents');
+      evt3.initEvent('mouseenter', true, true);
+      tooltipTriggerElement.dispatchEvent(evt3);
+
+      var evt4 = document.createEvent('HTMLEvents');
+      evt4.initEvent('mouseleave', true, true);
+      tooltipTriggerElement.dispatchEvent(evt4);
+
+      expect(posSvc.calcStyle).toHaveBeenCalledWith(
+        jasmine.any(Number),
+        jasmine.any(Number),
+        jasmine.any(ClientRect),
+        'left'
+      );
+    });
+    let ttDirective = fixture.debugElement.query(By.directive(MdlTooltipDirective)).injector.get(MdlTooltipDirective);
+    fixture.componentInstance.position = 'right';
+    fixture.detectChanges();
+    expect(ttDirective['tooltipComponent'].position).toBe('right');
+    ttDirective.ngOnChanges({ position: new SimpleChange(null, 'top', true) });
+    expect(fixture.componentInstance.position).toBe('right');
+  });
+
   it('should change the tooltip text if the text is changed', () => {
     TestBed.overrideComponent(MdlTestTooltipComponent, { set: {
       template: `
@@ -219,7 +279,7 @@ describe('Component: MdlTooltip', () => {
     fixture.detectChanges();
 
     expect(tooltipEl.textContent).toBe('chnaged');
-  })
+  });
 });
 
 
@@ -228,7 +288,6 @@ describe('Component: MdlTooltip', () => {
   template: 'replaced by the test'
 })
 class MdlTestTooltipComponent {
-
-  tooltipText = 'test';
-
+  public position = 'bottom';
+  public tooltipText = 'test';
 }

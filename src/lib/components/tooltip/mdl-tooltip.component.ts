@@ -32,7 +32,8 @@ export class MdlSimpleTooltipComponent {
   public position: 'left' | 'right' | 'top' | 'bottom';
   private active = false;
 
-  @Input() delay: Number;
+  @Input()
+  public delay: Number;
   private delayTimeout: any;
 
   constructor(
@@ -60,7 +61,7 @@ export class MdlSimpleTooltipComponent {
     }
   }
 
-  private show(element: HTMLElement){
+  private show(element: HTMLElement) {
     let props = element.getBoundingClientRect();
     let offsetWidth = this.element.offsetWidth;
     let offsetHeight = this.element.offsetHeight;
@@ -74,7 +75,7 @@ export class MdlSimpleTooltipComponent {
     this.setActive(true);
   }
 
-  private setActive(active: boolean){
+  private setActive(active: boolean) {
     this.active = active;
     if (active) {
       this.renderer.addClass(this.elRef.nativeElement, IS_ACTIVE);

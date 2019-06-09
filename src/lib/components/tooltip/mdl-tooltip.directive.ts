@@ -44,14 +44,16 @@ export class AbstractMdlTooltipDirective implements OnInit, OnChanges {
 
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['tooltip'] && !changes['tooltip'].isFirstChange()){
+  public ngOnChanges(changes: SimpleChanges) {
+    if (changes['tooltip'] && !changes['tooltip'].isFirstChange()) {
       if (!(this.tooltip instanceof MdlTooltipComponent)) {
         this.tooltipComponent.tooltipText = <string>this.tooltip;
       }
     }
+    if (changes['position'] && !changes['position'].isFirstChange()) {
+      this.tooltipComponent.position = this.position;
+    }
   }
-
 
   private configureTooltipComponent() {
     this.tooltipComponent.large = this.large;
@@ -93,7 +95,7 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
   }
 
   public ngOnInit() { super.ngOnInit(); }
-  public ngOnChanges(changes: SimpleChanges) { super.ngOnChanges(changes)};
+  public ngOnChanges(changes: SimpleChanges) { super.ngOnChanges(changes); }
 }
 
 @Directive({
@@ -113,5 +115,5 @@ export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
   }
 
   public ngOnInit() { super.ngOnInit(); }
-  public ngOnChanges(changes: SimpleChanges) { super.ngOnChanges(changes)};
+  public ngOnChanges(changes: SimpleChanges) { super.ngOnChanges(changes); }
 }

@@ -7,7 +7,7 @@ export class MdlTooltipPositionService {
 
   public calcStyle(offsetWidth: number, offsetHeight: number, props: ClientRect, position: string): any {
 
-    var result: any = {};
+    var result: any = { marginTop: 0, marginLeft: 0 };
     var left = props.left + (props.width / 2);
     var top = props.top + (props.height / 2);
     var marginLeft = -1 * (offsetWidth / 2);
