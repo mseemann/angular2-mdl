@@ -21,7 +21,7 @@ import {AbstractDemoComponent} from '../abstract-demo.component';
   ]
 })
 export class TooltipDemo extends AbstractDemoComponent {
-  protected tt1 = 'Follow';
+  tt1 = 'Follow';
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);

@@ -16,6 +16,12 @@ import {MdlTextFieldComponent} from '@angular-mdl/core';
 })
 export class TextFieldDemo extends AbstractDemoComponent implements AfterViewInit {
 
+  text1: string;
+  text2: string;
+  text3: string;
+  text4: string;
+  text5: string;
+  text6: string;
   @ViewChild('theFirstTextfield', {static: true}) tf: MdlTextFieldComponent;
 
   public number1: number = null;

@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
-import { hostConfig } from '../animations/flyInOutTrigger-animation';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { AbstractDemoComponent } from '../abstract-demo.component';
+import {Component, OnInit} from '@angular/core';
+import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {AbstractDemoComponent} from '../abstract-demo.component';
 import {Prism} from '../prism/prism.vendor';
 
 const LIGHT_BLUE = 'Light Blue';
@@ -17,7 +13,7 @@ const MD_COLORS = ['Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo',
   'Blue', LIGHT_BLUE, 'Cyan', 'Teal', 'Green',
   'Light Green', 'Lime', 'Yellow', AMBER, 'Orange',
   'Deep Orange', 'Brown', 'Grey', 'Blue Grey'];
-const MD_PALETTE =  [
+const MD_PALETTE = [
   ['255,235,238', '255,205,210', '239,154,154', '229,115,115', '239,83,80',
     '244,67,54', '229,57,53', '211,47,47', '198,40,40', '183,28,28',
     '255,138,128', '255,82,82', '255,23,68', '213,0,0'],
@@ -83,42 +79,45 @@ const MD_PALETTE =  [
   ],
   templateUrl: 'theme.component.html',
   styles: [
-    `
+      `
 
-    .palette-entry {
+      .palette-entry {
         padding: 2px;
         margin: 3px 0 3px 3px;
         box-sizing: border-box;
         border: 2px solid white;
         cursor: pointer;
-    }
-    
-    h5 {
+      }
+
+      h5 {
         text-align: center;
-    }
-    
-    .not-selectable {
+      }
+
+      .not-selectable {
         opacity: 0.3;
         cursor: default;
-    }
-   
-   .demo-theme-container {
+      }
+
+      .demo-theme-container {
         width: 100%;
         position: relative;
         height: 550px;
-   }
-   
-   .demo-content {
-    padding: 12px;
-   }
-    
+      }
+
+      .demo-content {
+        padding: 12px;
+      }
+
     `
   ]
 })
 export class ThemeDemo extends AbstractDemoComponent implements OnInit {
 
+  text3: string;
   public checkbox1 = true;
   public radioOption = '1';
+  public selectedPrimaryColor = this.mapToColorObject(LIGHT_BLUE, MD_COLORS.indexOf(LIGHT_BLUE));
+  public selectedAccentColor = this.mapToColorObject(AMBER, MD_COLORS.indexOf(AMBER));
   private styleElement: HTMLLinkElement;
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
@@ -133,11 +132,8 @@ export class ThemeDemo extends AbstractDemoComponent implements OnInit {
     return this.normaliseColorName(this.selectedAccentColor);
   }
 
-  public selectedPrimaryColor = this.mapToColorObject(LIGHT_BLUE, MD_COLORS.indexOf(LIGHT_BLUE));
-  public selectedAccentColor = this.mapToColorObject(AMBER, MD_COLORS.indexOf(AMBER));
-
   get stylescheetUrl() {
-    if (! (this.selectedPrimaryColor && this.selectedAccentColor) ) {
+    if (!(this.selectedPrimaryColor && this.selectedAccentColor)) {
       return '';
     }
 
@@ -146,7 +142,7 @@ export class ThemeDemo extends AbstractDemoComponent implements OnInit {
   }
 
   get cdnLink() {
-    if (! (this.selectedPrimaryColor && this.selectedAccentColor) ) {
+    if (!(this.selectedPrimaryColor && this.selectedAccentColor)) {
       return '';
     }
     /* tslint:disable */
@@ -160,19 +156,19 @@ export class ThemeDemo extends AbstractDemoComponent implements OnInit {
   }
 
   get secondaryColors() {
-    let colors =  MD_COLORS
-      .filter( (color) => {
+    let colors = MD_COLORS
+      .filter((color) => {
         let isNotForbidden = FORBIDDEN_ACCENTS.indexOf(color) === -1;
         return isNotForbidden;
       })
       .map(this.mapToColorObject);
 
-    colors.forEach( (color) => {
-        color.isSelectable = true;
-        if (this.selectedPrimaryColor && this.selectedPrimaryColor.name === color.name) {
-          color.isSelectable = false;
-        }
-      });
+    colors.forEach((color) => {
+      color.isSelectable = true;
+      if (this.selectedPrimaryColor && this.selectedPrimaryColor.name === color.name) {
+        color.isSelectable = false;
+      }
+    });
     return colors;
   }
 
@@ -181,22 +177,6 @@ export class ThemeDemo extends AbstractDemoComponent implements OnInit {
     this.styleElement = document.createElement('link');
     this.styleElement.setAttribute('rel', 'stylesheet');
     document.head.appendChild(this.styleElement);
-  }
-
-  private mapToColorObject(color, i) {
-    return {
-      name: color,
-      htmlColor: `rgb(${MD_PALETTE[i][5]})`, // 5 = 500
-      accentColor: `rgb(${MD_PALETTE[i][11]})`, // 11 = A200
-      isSelectable: true
-    };
-  }
-
-  private normaliseColorName(color) {
-    if (!color) {
-      return '';
-    }
-    return color.name.split(' ').join('_').toLocaleLowerCase();
   }
 
   public selectPrimaryColor(color) {
@@ -214,6 +194,22 @@ export class ThemeDemo extends AbstractDemoComponent implements OnInit {
     }
     this.selectedAccentColor = color;
     this.updateStylesheet();
+  }
+
+  private mapToColorObject(color, i) {
+    return {
+      name: color,
+      htmlColor: `rgb(${MD_PALETTE[i][5]})`, // 5 = 500
+      accentColor: `rgb(${MD_PALETTE[i][11]})`, // 11 = A200
+      isSelectable: true
+    };
+  }
+
+  private normaliseColorName(color) {
+    if (!color) {
+      return '';
+    }
+    return color.name.split(' ').join('_').toLocaleLowerCase();
   }
 
   private updateStylesheet() {

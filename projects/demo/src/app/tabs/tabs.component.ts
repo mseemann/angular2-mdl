@@ -1,16 +1,8 @@
-import {
-  Component,
-  ViewEncapsulation,
-  OnInit
-} from '@angular/core';
-import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
-import { hostConfig } from '../animations/flyInOutTrigger-animation';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { AbstractDemoComponent } from '../abstract-demo.component';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {AbstractDemoComponent} from '../abstract-demo.component';
 
 @Component({
   selector: 'tabs-demo',
@@ -20,27 +12,32 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
   ],
   templateUrl: 'tabs.component.html',
   styles: [
-    `
-    .demo-tab-container{
-       display: inline-block;
-    }
-    mdl-icon {
-       vertical-align: middle;
-    }
-    .mdl-tabs__tab {
+      `
+      .demo-tab-container {
+        display: inline-block;
+      }
+
+      mdl-icon {
+        vertical-align: middle;
+      }
+
+      .mdl-tabs__tab {
         cursor: pointer;
-    }
-    .demo-toggle-disabled-container mdl-switch {
+      }
+
+      .demo-toggle-disabled-container mdl-switch {
         margin: 5px 0;
-    }
+      }
     `
   ],
   encapsulation: ViewEncapsulation.None
 })
 export class TabsDemo extends AbstractDemoComponent implements OnInit {
 
+  disableTargaryens = false;
+  disableBaratheon = false;
+
   public activeIndex = 0;
-  public disableTargaryens = true;
   public myArray: string[] = null;
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {

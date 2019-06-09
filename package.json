@@ -16,6 +16,7 @@
     "test": "ng test core --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "build-demo": "ng build demo --prod",
     "build-core": "ng-packagr -p projects/core/ng-package.json && cp -r ./projects/core/src/scss ./dist/@angular-mdl/core/scss",
     "codeclimate": "CODECLIMATE_REPO_TOKEN=160aba8aa0baa5d0cab1d2162f50027cef9cda032fbc4eebefd54167ddce4c89 codeclimate-test-reporter < coverage/core/lcov.info",
     "generate-scss-from-mdl-scss": "rimraf projects/core/src/scss/mdl && node ./scripts/generate-scss-from-mdl-scss.js",

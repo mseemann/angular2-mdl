@@ -28,7 +28,8 @@ export class TableDemo extends AbstractDemoComponent implements OnInit {
     {key: 'quantity', name: 'Quantity', numeric: true},
     {key: 'unitPrice', name: 'Unit price', numeric: true}
   ]);
-  protected selected: ITableItem[] = [];
+
+  selected: ITableItem[] = [];
   private tableData: ITableItem[] = [
     {material: 'Acrylic <b>(Transparent)</b>', quantity: 25, unitPrice: 2.90, selected: true},
     {material: 'Plywood (Birch)', quantity: 50, unitPrice: 1.25, selected: false},
@@ -45,7 +46,7 @@ export class TableDemo extends AbstractDemoComponent implements OnInit {
     this.selected = this.tableData.filter(data => data.selected);
   }
 
-  protected selectionChanged($event) {
+  selectionChanged($event) {
     this.selected = $event.value;
   }
 
