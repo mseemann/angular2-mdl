@@ -24,8 +24,8 @@ after_success:
   # run e2e test
   # - npm run e2e
   # create a build - should test the tooling to create dist build
-  - npm run build:dist
+  - npm run build core
   # create a build (demo site)
-  - npm run build
+  - npm run build demo
 
 after_script:
