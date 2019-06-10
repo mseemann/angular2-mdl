@@ -3,7 +3,7 @@ import {AppendViewContainerRefDirective} from './append-view-container-ref-direc
 import {Animations, NativeWebAnimations, NoopWebAnimations} from './animations';
 
 function isWebAnimationsSupported() {
-  return typeof Element !== 'undefined' && typeof (<any>Element).prototype['animate'] === 'function';
+  return typeof Element !== 'undefined' && typeof Element.prototype.animate === 'function';
 }
 
 export function instantiateSupportedAnimationDriver() {

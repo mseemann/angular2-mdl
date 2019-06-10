@@ -55,20 +55,19 @@ export class MdlButtonComponent implements OnChanges {
   @Input('mdl-button-type') public mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '';
   @Input('mdl-colored') public mdlColoredType: 'primary' | 'accent' | '';
   private element: HTMLElement;
+  private disabledIntern = false;
 
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {
     this.element = elementRef.nativeElement;
   }
 
-  private _disabled: boolean = false;
-
   @Input()
   get disabled(): boolean {
-    return this._disabled;
+    return this.disabledIntern;
   }
 
   set disabled(value) {
-    this._disabled = toBoolean(value);
+    this.disabledIntern = toBoolean(value);
   }
 
   public ngOnChanges(changes: SimpleChanges) {

@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
@@ -7,8 +7,7 @@ import {MdlScreenSizeService} from '@angular-mdl/core';
 
 
 @Component({
-  selector: 'layout-demo',
-  host: hostConfig,
+  selector: 'demo-layout',
   animations: [
     flyInOutTrigger
   ],
@@ -42,7 +41,7 @@ import {MdlScreenSizeService} from '@angular-mdl/core';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class LayoutDemo extends AbstractDemoComponent {
+export class LayoutDemoComponent extends AbstractDemoComponent {
 
   public activeIndex = 0;
 
@@ -69,29 +68,29 @@ export class LayoutDemo extends AbstractDemoComponent {
 }
 
 @Component({
-  selector: 'layout-demo-0',
+  selector: 'demo-layout-0',
   template: '',
 })
-export class Layout0Demo {
+export class Layout0DemoComponent {
 }
 
 @Component({
-  selector: 'layout-demo-1',
+  selector: 'demo-layout-1',
   template: '<div>Link 1 content</div>',
 })
-export class Layout1Demo {
+export class Layout1DemoComponent {
 }
 
 @Component({
-  selector: 'layout-demo-2',
+  selector: 'demo-layout-2',
   template: '<div>Link 2 content</div>',
 })
-export class Layout2Demo {
+export class Layout2DemoComponent {
 }
 
 @Component({
-  selector: 'layout-demo-3',
+  selector: 'demo-layout-3',
   template: '<div>Link 3 content</div>',
 })
-export class Layout3Demo {
+export class Layout3DemoComponent {
 }

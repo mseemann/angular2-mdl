@@ -3,6 +3,15 @@ import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {MdlLayoutModule, MdlLayoutTabPanelComponent} from './mdl-layout.module';
 
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test',
+  template: 'replaced by the test'
+})
+class MdlTestComponent {
+}
+
 describe('Component: MdlLayoutTabPanel', () => {
 
   beforeEach(() => {
@@ -19,10 +28,10 @@ describe('Component: MdlLayoutTabPanel', () => {
         template: '<mdl-layout-tab-panel>x</mdl-layout-tab-panel>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(tabPanelEl.classList.contains('mdl-layout__tab-panel')).toBe(true);
 
   });
@@ -34,26 +43,18 @@ describe('Component: MdlLayoutTabPanel', () => {
         template: '<mdl-layout-tab-panel>x</mdl-layout-tab-panel>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let tabPanelComponent = fixture.debugElement.query(By.directive(MdlLayoutTabPanelComponent)).componentInstance;
+    const tabPanelComponent = fixture.debugElement.query(By.directive(MdlLayoutTabPanelComponent)).componentInstance;
 
     tabPanelComponent.isActive = true;
     fixture.detectChanges();
 
-    let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
 
     expect(tabPanelEl.classList.contains('is-active')).toBe(true);
 
   });
 
 });
-
-
-@Component({
-  selector: 'test',
-  template: 'replaced by the test'
-})
-class MdlTestComponent {
-}

@@ -6,12 +6,12 @@
 </button>
 
 <!-- Colored FAB button with ripple -->
-<button mdl-button  mdl-button-type="fab" mdl-colored="accent" mdl-ripple>
+<button mdl-button mdl-button-type="fab" mdl-colored="accent" mdl-ripple>
   <mdl-icon>add</mdl-icon>
 </button>
 
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <!-- Colored FAB button -->
   <button mdl-button mdl-button-type="fab" mdl-colored="accent">
@@ -19,7 +19,7 @@
   </button>
 
   <!-- Colored FAB button with ripple -->
-  <button mdl-button  mdl-button-type="fab" mdl-colored="accent" mdl-ripple>
+  <button mdl-button mdl-button-type="fab" mdl-colored="accent" mdl-ripple>
     <mdl-icon>add</mdl-icon>
   </button>
   ]]>
@@ -35,11 +35,11 @@
   <mdl-icon>add</mdl-icon>
 </button>
 <!-- Disabled FAB button -->
-<button mdl-button mdl-button-type="fab" disabled>
+<button disabled mdl-button mdl-button-type="fab">
   <mdl-icon>add</mdl-icon>
 </button>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <!-- FAB button -->
   <button mdl-button mdl-button-type="fab">
@@ -50,7 +50,7 @@
     <mdl-icon>add</mdl-icon>
   </button>
   <!-- Disabled FAB button -->
-  <button mdl-button mdl-button-type="fab" disabled>
+  <button disabled mdl-button mdl-button-type="fab">
     <mdl-icon>add</mdl-icon>
   </button>
   ]]>
@@ -65,17 +65,17 @@
   Button
 </button>
 <!-- Raised disabled button-->
-<button mdl-button mdl-button-type="raised" disabled>
+<button disabled mdl-button mdl-button-type="raised">
   Button
 </button>
 
-<button mdl-button mdl-button-type="raised" [disabled]="btnDisabled">
-	Button
+<button [disabled]="btnDisabled" mdl-button mdl-button-type="raised">
+  Button
 </button>
 
-<mdl-checkbox mdl-ripple [(ngModel)]="btnDisabled">Disable Button</mdl-checkbox>
+<mdl-checkbox [(ngModel)]="btnDisabled" mdl-ripple>Disable Button</mdl-checkbox>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <!-- Raised button -->
   <button mdl-button mdl-button-type="raised">
@@ -86,11 +86,11 @@
     Button
   </button>
   <!-- Raised disabled button -->
-  <button mdl-button mdl-button-type="raised" disabled>
+  <button disabled mdl-button mdl-button-type="raised">
     Button
   </button>
 
-	<button mdl-button mdl-button-type="raised" [disabled]="btnDisabled">
+	<button [disabled]="btnDisabled" mdl-button mdl-button-type="raised">
 		Button
 	</button>
   ]]>
@@ -109,7 +109,7 @@
   Button
 </button>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <!-- Colored raised button -->
   <button mdl-button mdl-button-type="raised" mdl-colored>
@@ -135,11 +135,11 @@
   Button
 </button>
 <!-- Disabled flat button -->
-<button mdl-button mdl-ripple disabled>
+<button disabled mdl-button mdl-ripple>
   Button
 </button>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <!-- Flat button -->
   <button mdl-button>
@@ -150,7 +150,7 @@
     Button
   </button>
   Disabled flat button
-  <button mdl-button mdl-ripple disabled>
+  <button disabled mdl-button mdl-ripple>
     Button
   </button>
   ]]>
@@ -165,7 +165,7 @@
   Button
 </button>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <!-- Primary-colored flat button -->
   <button mdl-button mdl-colored="primary">
@@ -187,7 +187,7 @@
   <mdl-icon>mood</mdl-icon>
 </button>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <!-- Icon button -->
   <button mdl-button mdl-button-type="icon">
@@ -209,7 +209,7 @@
   <mdl-icon>add</mdl-icon>
 </button>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <!-- Mini FAB button -->
   <button mdl-button mdl-button-type="mini-fab">
@@ -226,38 +226,38 @@
 
 <div>
   <div>
-     <mdl-radio name="buttonType" [(ngModel)]="buttonType" value="raised">Raised</mdl-radio>
-     <mdl-radio name="buttonType" [(ngModel)]="buttonType" value="fab">Fab</mdl-radio>
-     <mdl-radio name="buttonType" [(ngModel)]="buttonType" value="mini-fab">Mini</mdl-radio>
-     <mdl-radio name="buttonType" [(ngModel)]="buttonType" value="icon">Icon</mdl-radio>
-     <mdl-radio name="buttonType" [(ngModel)]="buttonType" value="">Default</mdl-radio>
+    <mdl-radio [(ngModel)]="buttonType" name="buttonType" value="raised">Raised</mdl-radio>
+    <mdl-radio [(ngModel)]="buttonType" name="buttonType" value="fab">Fab</mdl-radio>
+    <mdl-radio [(ngModel)]="buttonType" name="buttonType" value="mini-fab">Mini</mdl-radio>
+    <mdl-radio [(ngModel)]="buttonType" name="buttonType" value="icon">Icon</mdl-radio>
+    <mdl-radio [(ngModel)]="buttonType" name="buttonType" value="">Default</mdl-radio>
   </div>
   <div>
     <mdl-checkbox [(ngModel)]="doRipple" mdl-ripple>Ripple effect active?</mdl-checkbox>
   </div>
-   <div>
-      <mdl-radio name="coloredType" [(ngModel)]="colored" value="">None</mdl-radio>
-      <mdl-radio name="coloredType" [(ngModel)]="colored" value="accent">Accent</mdl-radio>
-      <mdl-radio name="coloredType" [(ngModel)]="colored" value="primary">Primary</mdl-radio>
-   </div>
+  <div>
+    <mdl-radio [(ngModel)]="colored" name="coloredType" value="">None</mdl-radio>
+    <mdl-radio [(ngModel)]="colored" name="coloredType" value="accent">Accent</mdl-radio>
+    <mdl-radio [(ngModel)]="colored" name="coloredType" value="primary">Primary</mdl-radio>
+  </div>
 
-   <button mdl-button [mdl-button-type]="buttonType" [mdl-ripple]="doRipple" [mdl-colored]="colored">
-      <mdl-icon>add</mdl-icon>
-   </button>
+  <button [mdl-button-type]="buttonType" [mdl-colored]="colored" [mdl-ripple]="doRipple" mdl-button>
+    <mdl-icon>add</mdl-icon>
+  </button>
 
 </div>
 
 <div>
   <h5>Usage as component</h5>
   <p>
-  The <i>mdl-buttob</i> directive can also be used as a component. But in this case you are loosing the
-  default html button behavior.
+    The <i>mdl-buttob</i> directive can also be used as a component. But in this case you are loosing the
+    default html button behavior.
   </p>
   <mdl-button mdl-button-type="fab" mdl-ripple>
     <mdl-icon>add</mdl-icon>
   </mdl-button>
 
-  <pre prism>
+  <pre demoPrism>
   <![CDATA[
   <mdl-button mdl-button-type="fab" mdl-ripple>
     <mdl-icon>add</mdl-icon>
@@ -268,56 +268,56 @@
 
 <h4>Attributes for component mdl-button and buttons with mdl-button directive on it.</h4>
 <table class="docu" mdl-shadow="2">
-   <thead>
-      <tr>
-         <th>Attribute</th>
-         <th>Description</th>
-      </tr>
-   </thead>
-   <tbody>
+  <thead>
+  <tr>
+    <th>Attribute</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
 
-     <tr>
-       <td>disabled</td>
-       <td>
-         <i>disabled</i> is a BooleanProperty - e.g. if present or value is true the button is disabled.
-         If not present or the value is false the button is not disabled.
-       </td>
-     </tr>
+  <tr>
+    <td>disabled</td>
+    <td>
+      <i>disabled</i> is a BooleanProperty - e.g. if present or value is true the button is disabled.
+      If not present or the value is false the button is not disabled.
+    </td>
+  </tr>
 
-      <tr>
-         <td>mdl-button-type</td>
-         <td>
-            Specifies how the button is rendered. Supported values:
-            <ul>
-               <li>raised</li>
-               <li>fab</li>
-               <li>mini-fab</li>
-               <li>icon</li>
-            </ul>
-         </td>
-      </tr>
+  <tr>
+    <td>mdl-button-type</td>
+    <td>
+      Specifies how the button is rendered. Supported values:
+      <ul>
+        <li>raised</li>
+        <li>fab</li>
+        <li>mini-fab</li>
+        <li>icon</li>
+      </ul>
+    </td>
+  </tr>
 
-      <tr>
-         <td>mdl-colored</td>
-         <td>
-            Specifies wether the botton is colored and how the button is colored.
-            <ul>
-               <li>if no value is provided the button has no color.</li>
-               <li>if <i>accent</i> is provided as value. The accent color is used to color the button</li>
-               <li>if <i>primary</i> is provided as value. The primary color is used to color the button</li>
-            </ul>
-         </td>
-      </tr>
+  <tr>
+    <td>mdl-colored</td>
+    <td>
+      Specifies wether the botton is colored and how the button is colored.
+      <ul>
+        <li>if no value is provided the button has no color.</li>
+        <li>if <i>accent</i> is provided as value. The accent color is used to color the button</li>
+        <li>if <i>primary</i> is provided as value. The primary color is used to color the button</li>
+      </ul>
+    </td>
+  </tr>
 
-      <tr>
-         <td>mdl-ripple</td>
-         <td>
-            <i>mdl-ripple</i> is a BooleanProperty - e.g. if present or value is true the ripple effect is active.
-            If not present or the value is false the ripple effect isn't active.
-         </td>
-      </tr>
+  <tr>
+    <td>mdl-ripple</td>
+    <td>
+      <i>mdl-ripple</i> is a BooleanProperty - e.g. if present or value is true the ripple effect is active.
+      If not present or the value is false the ripple effect isn't active.
+    </td>
+  </tr>
 
-   </tbody>
+  </tbody>
 
 </table>
 

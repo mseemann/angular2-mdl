@@ -6,43 +6,8 @@ import {MdlAlertComponent} from './mdl-alert.component';
 import {MdlDialogOutletModule} from '../dialog-outlet/mdl-dialog-outlet.module';
 
 
-describe('MdlAlert', () => {
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
-      declarations: [MdlTestComponent]
-    });
-  }));
-
-  it('should create, show and close the dialog', async(() => {
-
-    let fixture = TestBed.createComponent(MdlTestComponent);
-    fixture.detectChanges();
-
-    let mdlAlert = fixture.debugElement.query(By.directive(MdlAlertComponent)).componentInstance;
-
-    mdlAlert.show();
-    fixture.detectChanges();
-
-    spyOn(fixture.componentInstance, 'alertConfirmd');
-
-    // close the dialog by clicking the ok button
-    let buttonEl = fixture.debugElement.query(By.css('button')).nativeElement;
-    buttonEl.click();
-
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(fixture.componentInstance.alertConfirmd).toHaveBeenCalled();
-    });
-
-  }));
-
-
-});
-
-
 @Component({
+  // tslint:disable-next-line
   selector: 'test-component',
   template: `
     <mdl-alert
@@ -59,3 +24,39 @@ class MdlTestComponent {
   public alertConfirmd() {
   }
 }
+
+
+describe('MdlAlert', () => {
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
+      declarations: [MdlTestComponent]
+    });
+  }));
+
+  it('should create, show and close the dialog', async(() => {
+
+    const fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+
+    const mdlAlert = fixture.debugElement.query(By.directive(MdlAlertComponent)).componentInstance;
+
+    mdlAlert.show();
+    fixture.detectChanges();
+
+    spyOn(fixture.componentInstance, 'alertConfirmd');
+
+    // close the dialog by clicking the ok button
+    const buttonEl = fixture.debugElement.query(By.css('button')).nativeElement;
+    buttonEl.click();
+
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(fixture.componentInstance.alertConfirmd).toHaveBeenCalled();
+    });
+
+  }));
+
+
+});

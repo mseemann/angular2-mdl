@@ -1,20 +1,19 @@
 import {Component} from '@angular/core';
 
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
 import {MdlSnackbarService} from '@angular-mdl/core';
 
 @Component({
-  selector: 'snackbar-demo',
-  host: hostConfig,
+  selector: 'demo-snackbar',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'snackbar.component.html'
 })
-export class SnackbarDemo extends AbstractDemoComponent {
+export class SnackbarDemoComponent extends AbstractDemoComponent {
 
   constructor(
     router: Router,

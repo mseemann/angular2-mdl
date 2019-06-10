@@ -2,6 +2,15 @@ import {TestBed} from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {MdlShadowModule} from './mdl-shadow.module';
 
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-shadow',
+  template: 'replaced by the test'
+})
+class MdlTestShadowComponent {
+  public shadow = 2;
+}
+
 describe('Directive: MdlShadow', () => {
 
   beforeEach(() => {
@@ -19,10 +28,10 @@ describe('Directive: MdlShadow', () => {
         template: '<span mdl-shadow="2"></span>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestShadowComponent);
+    const fixture = TestBed.createComponent(MdlTestShadowComponent);
     fixture.detectChanges();
 
-    let spanEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const spanEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spanEl.classList.contains('mdl-shadow--2dp')).toBe(true);
 
   });
@@ -34,10 +43,10 @@ describe('Directive: MdlShadow', () => {
         template: '<span [mdl-shadow]="shadow"></span>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestShadowComponent);
+    const fixture = TestBed.createComponent(MdlTestShadowComponent);
     fixture.detectChanges();
 
-    let spanEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const spanEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spanEl.classList.contains('mdl-shadow--2dp')).toBe(true);
 
 
@@ -54,19 +63,10 @@ describe('Directive: MdlShadow', () => {
         template: '<span mdl-shadow="200"></span>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestShadowComponent);
+    const fixture = TestBed.createComponent(MdlTestShadowComponent);
 
     expect(() => fixture.detectChanges()).toThrow();
 
   });
 
 });
-
-
-@Component({
-  selector: 'test-shadow',
-  template: 'replaced by the test'
-})
-class MdlTestShadowComponent {
-  public shadow = 2;
-}

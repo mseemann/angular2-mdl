@@ -1,9 +1,8 @@
-import { ComponentRef } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Observable } from 'rxjs';
+import {ComponentRef} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
 
-import { MdlDialogReference } from './mdl-dialog.service';
-import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
+import {MdlDialogReference} from './mdl-dialog.service';
+import {IMdlDialogConfiguration} from './mdl-dialog-configuration';
 
 /**
  * Internal representation of the dialog ref. the service
@@ -13,17 +12,17 @@ import { IMdlDialogConfiguration } from './mdl-dialog-configuration';
 export class InternalMdlDialogReference {
 
   public hostDialogComponentRef: ComponentRef<any>;
-  private onHideSubject: Subject<any> = new Subject();
-  private onVisibleSubject: Subject<any> = new Subject();
   public closeCallback: () => void;
   public isModal = false;
   public dialogRef: MdlDialogReference;
+  private onHideSubject: Subject<any> = new Subject();
+  private onVisibleSubject: Subject<any> = new Subject();
 
-  constructor(public config: IMdlDialogConfiguration){
+  constructor(public config: IMdlDialogConfiguration) {
     this.dialogRef = new MdlDialogReference(this);
   }
 
-  get  hostDialog() {
+  get hostDialog() {
     return this.hostDialogComponentRef.instance;
   }
 

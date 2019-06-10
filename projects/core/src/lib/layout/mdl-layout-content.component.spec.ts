@@ -4,6 +4,14 @@ import {Component} from '@angular/core';
 import {MdlLayoutContentComponent} from './mdl-layout-content.component';
 import {MdlLayoutModule} from './mdl-layout.module';
 
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-layout',
+  template: '<mdl-layout-content>x</mdl-layout-content>',
+})
+class MdlTestLayoutComponent {
+}
+
 describe('Component: MdlLayoutContent', () => {
 
   beforeEach(() => {
@@ -15,21 +23,14 @@ describe('Component: MdlLayoutContent', () => {
 
   it('should add the css class mdl-layout__content to the host element', () => {
 
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
 
     fixture.detectChanges();
 
-    let layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutContentComponent)).nativeElement;
+    const layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutContentComponent)).nativeElement;
     expect(layoutEl.classList.contains('mdl-layout__content')).toBe(true);
   });
 
 
 });
 
-
-@Component({
-  selector: 'test-layout',
-  template: '<mdl-layout-content>x</mdl-layout-content>',
-})
-class MdlTestLayoutComponent {
-}

@@ -5,78 +5,78 @@
 <h6>Simple Progress Bar</h6>
 <mdl-progress [progress]="progress"></mdl-progress>
 Progress:
-<input type="number" min="0" max="100" [(ngModel)]="progress">
+<input [(ngModel)]="progress" max="100" min="0" type="number">
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <mdl-progress [progress]="progress"></mdl-progress>
   Progress:
-  <input type="number" min="0" max="100" [(ngModel)]="progress">
+  <input [(ngModel)]="progress" max="100" min="0" type="number">
   ]]>
 </pre>
 
 
 <h6>MDL Progress Bar with Indeterminate Progress</h6>
 <mdl-progress [indeterminate]="indeterminate"></mdl-progress>
-Indeterminate<input type="checkbox" [(ngModel)]="indeterminate">
+Indeterminate<input [(ngModel)]="indeterminate" type="checkbox">
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <mdl-progress [indeterminate]="indeterminate"></mdl-progress>
   Indeterminate:
-  <input type="checkbox" [(ngModel)]="indeterminate">
+  <input [(ngModel)]="indeterminate" type="checkbox">
   ]]>
 </pre>
 
 <h6>MDL Progress Bar with Buffering</h6>
-<mdl-progress [progress]="progress" [buffer]="buffer"></mdl-progress>
+<mdl-progress [buffer]="buffer" [progress]="progress"></mdl-progress>
 Progress:
-<input type="number" min="0" max="100" [(ngModel)]="progress">
+<input [(ngModel)]="progress" max="100" min="0" type="number">
 Buffer:
-<input type="number" min="0" max="100" [(ngModel)]="buffer">
+<input [(ngModel)]="buffer" max="100" min="0" type="number">
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
-  <mdl-progress [progress]="progress" [buffer]="buffer"></mdl-progress>
+  <mdl-progress [buffer]="buffer" [progress]="progress"></mdl-progress>
   Progress:
-  <input type="number" min="0" max="100" [(ngModel)]="progress">
+  <input [(ngModel)]="progress" max="100" min="0" type="number">
   Buffer:
-  <input type="number" min="0" max="100" [(ngModel)]="buffer">
+  <input [(ngModel)]="buffer" max="100" min="0" type="number">
   ]]>
 </pre>
 
 <h5>Attributes of the mdl-progress component</h5>
 <table class="docu" mdl-shadow="2">
-   <thead>
-   <tr>
-      <th>Attribute</th>
-      <th>Description</th>
-   </tr>
-   </thead>
-   <tbody>
+  <thead>
+  <tr>
+    <th>Attribute</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
 
-   <tr>
-     <td>buffer</td>
-     <td>
-       Buffer between 0 and 100.
-     </td>
-   </tr>
+  <tr>
+    <td>buffer</td>
+    <td>
+      Buffer between 0 and 100.
+    </td>
+  </tr>
 
-   <tr>
-     <td>indeterminate</td>
-     <td>
-       The progress is unknown.
-     </td>
-   </tr>
+  <tr>
+    <td>indeterminate</td>
+    <td>
+      The progress is unknown.
+    </td>
+  </tr>
 
-   <tr>
-      <td>progress</td>
-      <td>
-         Progress between 0 and 100.
-      </td>
-   </tr>
+  <tr>
+    <td>progress</td>
+    <td>
+      Progress between 0 and 100.
+    </td>
+  </tr>
 
-   </tbody>
+  </tbody>
 </table>
 
 
@@ -85,8 +85,8 @@ Buffer:
 <h6>MDL Spinner Component </h6>
 <!-- MDL Spinner Component -->
 <mdl-spinner [active]="active"></mdl-spinner>
-Active<input type="checkbox" [(ngModel)]="active">
-<pre prism>
+Active<input [(ngModel)]="active" type="checkbox">
+<pre demoPrism>
   <![CDATA[
   <!-- MDL Spinner Component -->
   <mdl-spinner [active]="true"></mdl-spinner>
@@ -95,38 +95,38 @@ Active<input type="checkbox" [(ngModel)]="active">
 
 <h6>MDL Spinner Component with Single Color</h6>
 <!-- MDL Spinner Component with Single Color -->
-<mdl-spinner single-color active></mdl-spinner>
+<mdl-spinner active single-color></mdl-spinner>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
   <!-- MDL Spinner Component with Single Color -->
-  <mdl-spinner single-color active></mdl-spinner>
+  <mdl-spinner active single-color></mdl-spinner>
   ]]>
 </pre>
 
 <h5>Attributes of the mdl-spinner component</h5>
 <table class="docu" mdl-shadow="2">
-   <thead>
-   <tr>
-      <th>Attribute</th>
-      <th>Description</th>
-   </tr>
-   </thead>
-   <tbody>
+  <thead>
+  <tr>
+    <th>Attribute</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
 
-   <tr>
-      <td>active</td>
-      <td>
-         Show or not show the spinner.
-      </td>
-   </tr>
+  <tr>
+    <td>active</td>
+    <td>
+      Show or not show the spinner.
+    </td>
+  </tr>
 
-   <tr>
-      <td>singleColor</td>
-      <td>
-         Draw the spinner only in one color.
-      </td>
-   </tr>
+  <tr>
+    <td>singleColor</td>
+    <td>
+      Draw the spinner only in one color.
+    </td>
+  </tr>
 
-   </tbody>
+  </tbody>
 </table>

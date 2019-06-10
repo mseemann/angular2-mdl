@@ -4,6 +4,16 @@ import {Component} from '@angular/core';
 import {MdlProgressComponent} from './mdl-progress.component';
 import {MdlProgressModule} from './mdl-progress.module';
 
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-progress',
+  template: 'replaced by the test'
+})
+class MdlTestProgressComponent {
+  public buffer = 20;
+}
+
 describe('Component: MdlProgress', () => {
 
   beforeEach(() => {
@@ -20,10 +30,10 @@ describe('Component: MdlProgress', () => {
         template: '<mdl-progress progress="44"></mdl-progress>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestProgressComponent);
+    const fixture = TestBed.createComponent(MdlTestProgressComponent);
     fixture.detectChanges();
 
-    let progressEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const progressEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(progressEl.classList.contains('mdl-progress')).toBe(true);
 
   });
@@ -35,12 +45,12 @@ describe('Component: MdlProgress', () => {
         template: '<mdl-progress progress="44" [buffer]="buffer"></mdl-progress>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestProgressComponent);
+    const fixture = TestBed.createComponent(MdlTestProgressComponent);
     fixture.detectChanges();
 
-    let component = fixture.componentInstance;
+    const component = fixture.componentInstance;
 
-    let progressComponent = fixture.debugElement.query(By.directive(MdlProgressComponent)).componentInstance;
+    const progressComponent = fixture.debugElement.query(By.directive(MdlProgressComponent)).componentInstance;
 
     spyOn(progressComponent, 'setBuffer');
 
@@ -58,21 +68,12 @@ describe('Component: MdlProgress', () => {
         template: '<mdl-progress [indeterminate]="true"></mdl-progress>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestProgressComponent);
+    const fixture = TestBed.createComponent(MdlTestProgressComponent);
     fixture.detectChanges();
 
-    let progressEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const progressEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(progressEl.classList.contains('mdl-progress__indeterminate')).toBe(true);
 
   });
 
 });
-
-
-@Component({
-  selector: 'test-progress',
-  template: 'replaced by the test'
-})
-class MdlTestProgressComponent {
-  public buffer = 20;
-}

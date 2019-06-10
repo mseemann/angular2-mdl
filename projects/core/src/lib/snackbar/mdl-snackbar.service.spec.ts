@@ -5,6 +5,17 @@ import {MdlDialogOutletModule} from '../dialog-outlet/mdl-dialog-outlet.module';
 import {MdlDialogOutletService} from '../dialog-outlet/mdl-dialog-outlet.service';
 import {MdlSnackbarModule} from './mdl-snackbar.module';
 
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-view',
+  template: '<div></div><dialog-outlet></dialog-outlet>',
+  providers: [MdlSnackbarService]
+})
+class MdlTestViewComponent {
+
+}
+
 describe('Service: MdlSnackbar', () => {
 
   let mdlSnackbarServcie: MdlSnackbarService;
@@ -19,17 +30,17 @@ describe('Service: MdlSnackbar', () => {
   }));
 
   beforeEach(async(inject([MdlSnackbarService, MdlDialogOutletService],
-    function (service: MdlSnackbarService, mdlDialogOutletService_: MdlDialogOutletService) {
+    (service: MdlSnackbarService, dialogOutletService: MdlDialogOutletService) => {
       mdlSnackbarServcie = service;
-      mdlDialogOutletService = mdlDialogOutletService_;
+      mdlDialogOutletService = dialogOutletService;
     })));
 
   it('should show a snackbar and close the snackbar if the aciton button is clicked', async(() => {
 
-    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-    let p = mdlSnackbarServcie.showSnackbar({
+    const p = mdlSnackbarServcie.showSnackbar({
       message: 'm1',
       action: {
         handler: () => {
@@ -52,9 +63,9 @@ describe('Service: MdlSnackbar', () => {
 
   it('should show a snackbar and close the snackbar if the action button is clicked or after timeout', async(() => {
 
-    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
-    let p = mdlSnackbarServcie.showSnackbar({
+    const p = mdlSnackbarServcie.showSnackbar({
       message: 'm1',
       timeout: 1000,
       closeAfterTimeout: true,
@@ -70,17 +81,17 @@ describe('Service: MdlSnackbar', () => {
       expect(mdlSnackbarComponent.isActive()).toBe(true);
       setTimeout(() => {
         expect(mdlSnackbarComponent.isActive()).toBe(false);
-      }, 1500)
+      }, 1500);
     });
 
   }));
 
   it('should show a toastmessage and hide the message automatically', (done) => {
 
-    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-    let p = mdlSnackbarServcie.showToast('toast message', 100);
+    const p = mdlSnackbarServcie.showToast('toast message', 100);
 
     fixture.detectChanges();
 
@@ -107,9 +118,9 @@ describe('Service: MdlSnackbar', () => {
 
   it('should show one snackbar at a time', async(() => {
 
-    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
-    let p = mdlSnackbarServcie.showSnackbar({
+    const p = mdlSnackbarServcie.showSnackbar({
       message: 'm1',
       action: {
         handler: () => {
@@ -118,7 +129,7 @@ describe('Service: MdlSnackbar', () => {
         text: 'OK'
       }
     });
-    let q = mdlSnackbarServcie.showSnackbar({
+    const q = mdlSnackbarServcie.showSnackbar({
       message: 'm2',
       action: {
         handler: () => {
@@ -134,20 +145,10 @@ describe('Service: MdlSnackbar', () => {
       setTimeout(() => {
         p.subscribe((mdlSnackbarComponentP) => {
           expect(mdlSnackbarComponentP.isActive()).toBe(false);
-        })
+        });
       }, 500);
     });
 
   }));
 
 });
-
-
-@Component({
-  selector: 'test-view',
-  template: '<div></div><dialog-outlet></dialog-outlet>',
-  providers: [MdlSnackbarService]
-})
-class MdlTestViewComponent {
-
-}

@@ -1,16 +1,16 @@
-import {Component, Directive, OnInit, Optional, ViewEncapsulation} from '@angular/core';
+import {Component, Directive, HostBinding, OnInit, Optional, ViewEncapsulation} from '@angular/core';
 import {MdlStructureError} from '../common/mdl-error';
 
 
 @Component({
   selector: 'mdl-card',
-  host: {
-    '[class.mdl-card]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlCardComponent {
+
+  @HostBinding('class.mdl-card') isCard = true;
+
 }
 
 
@@ -28,123 +28,105 @@ export class MdlCardChildStructure implements OnInit {
 
 @Component({
   selector: 'mdl-card-title',
-  host: {
-    '[class.mdl-card__title]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlCardTitleComponent extends MdlCardChildStructure {
 
+  @HostBinding('class.mdl-card__title') isCardTitle = true;
+
   constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-title');
-  }
-
-  public ngOnInit() {
-    super.ngOnInit();
   }
 
 }
 
 @Component({
   selector: 'mdl-card-supporting-text',
-  host: {
-    '[class.mdl-card__supporting-text]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlCardSupportingTextComponent extends MdlCardChildStructure {
 
+  @HostBinding('class.mdl-card__supporting-text') isSupportingText = true;
+
   constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-supporting-text');
   }
 
-  public ngOnInit() {
-    super.ngOnInit();
-  }
 }
 
 @Component({
   selector: 'mdl-card-media',
-  host: {
-    '[class.mdl-card__media]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlCardMediaComponent extends MdlCardChildStructure {
 
+  @HostBinding('class.mdl-card__media') isCardMedia = true;
+
   constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-media');
   }
 
-  public ngOnInit() {
-    super.ngOnInit();
-  }
 }
 
 @Component({
   selector: 'mdl-card-actions',
-  host: {
-    '[class.mdl-card__actions]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlCardActionsComponent extends MdlCardChildStructure {
 
+  @HostBinding('class.mdl-card__actions') isCardAction = true;
+
   constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-actions');
   }
 
-  public ngOnInit() {
-    super.ngOnInit();
-  }
 }
 
 @Component({
   selector: 'mdl-card-menu',
-  host: {
-    '[class.mdl-card__menu]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlCardMenuComponent extends MdlCardChildStructure {
 
+  @HostBinding('class.mdl-card__menu') isCardMenu = true;
+
   constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-menu');
   }
 
-  public ngOnInit() {
-    super.ngOnInit();
-  }
 }
 
 @Directive({
-  selector: '[mdl-card-title-text]',
-  host: {
-    '[class.mdl-card__title-text]': 'true'
-  }
+  // tslint:disable-next-line
+  selector: '[mdl-card-title-text]'
 })
 export class MdlCardTitleTextDirective {
+
+  @HostBinding('class.mdl-card__title-text') isCardTitleText = true;
+
 }
 
 @Directive({
-  selector: '[mdl-card-border]',
-  host: {
-    '[class.mdl-card--border]': 'true'
-  }
+  // tslint:disable-next-line
+  selector: '[mdl-card-border]'
 })
 export class MdlCardBorderDirective {
+
+  @HostBinding('class.mdl-card--border') isCardBorder = true;
+
 }
 
 @Directive({
-  selector: '[mdl-card-expand]',
-  host: {
-    '[class.mdl-card--expand]': 'true'
-  }
+  // tslint:disable-next-line
+  selector: '[mdl-card-expand]'
 })
 export class MdlCardExpandDirective {
+
+  @HostBinding('class.mdl-card--expand') isCardExpand = true;
+
 }

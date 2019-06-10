@@ -4,6 +4,15 @@ import {Component} from '@angular/core';
 import {MdlMenuComponent, MdlMenuItemComponent, MdlMenuModule} from './mdl-menu.module';
 import {MdlMenuRegisty} from './mdl-menu.component';
 
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-menu',
+  template: 'replaced by the test'
+})
+class MdlTestMenuItemComponent {
+}
+
 describe('Component: MdlMenuItem', () => {
 
   beforeEach(() => {
@@ -21,10 +30,10 @@ describe('Component: MdlMenuItem', () => {
         template: '<mdl-menu><mdl-menu-item>x</mdl-menu-item></mdl-menu>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestMenuItemComponent);
+    const fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
 
-    let menuItemEl: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
+    const menuItemEl: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
     expect(menuItemEl.classList.contains('mdl-menu__item')).toBe(true);
 
   });
@@ -36,12 +45,12 @@ describe('Component: MdlMenuItem', () => {
         template: '<mdl-menu><mdl-menu-item>x</mdl-menu-item></mdl-menu>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestMenuItemComponent);
+    const fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
 
-    let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
-    let menuItemEl: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
+    const menuItemEl: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
 
     spyOn(menu, 'hideOnItemClicked').and.callThrough();
     expect(menu.hideOnItemClicked).not.toHaveBeenCalled();
@@ -58,17 +67,17 @@ describe('Component: MdlMenuItem', () => {
         template: '<mdl-menu><mdl-menu-item>x</mdl-menu-item></mdl-menu>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestMenuItemComponent);
+    const fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
 
-    let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
-    let menuItemEl: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
+    const menuItemEl: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
 
     spyOn(menu, 'hideOnItemClicked').and.callThrough();
     expect(menu.hideOnItemClicked).not.toHaveBeenCalled();
 
-    let event = new Event('touchstart', {});
+    const event = new Event('touchstart', {});
     menuItemEl.dispatchEvent(event);
 
     expect(menu.hideOnItemClicked).toHaveBeenCalled();
@@ -81,12 +90,12 @@ describe('Component: MdlMenuItem', () => {
         template: '<mdl-menu><mdl-menu-item disabled>x</mdl-menu-item></mdl-menu>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestMenuItemComponent);
+    const fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
 
-    let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
-    let menuItemEl: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
+    const menuItemEl: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
 
     spyOn(menu, 'hideOnItemClicked').and.callThrough();
     expect(menu.hideOnItemClicked).not.toHaveBeenCalled();
@@ -98,11 +107,3 @@ describe('Component: MdlMenuItem', () => {
   });
 
 });
-
-
-@Component({
-  selector: 'test-menu',
-  template: 'replaced by the test'
-})
-class MdlTestMenuItemComponent {
-}

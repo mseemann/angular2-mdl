@@ -5,7 +5,7 @@ import {MdlIconModule} from './icon/mdl-icon.module';
 import {MdlBadgeModule} from './badge/mdl-badge.module';
 import {MdlButtonModule} from './button/mdl-button.module';
 import {MdlCardModule} from './card/mdl-card.module';
-import {MdlCheckboxModule} from './checkbox/mdl.checkbox.module';
+import {MdlCheckboxModule} from './checkbox/mdl-checkbox.module';
 import {MdlChipModule} from './chips/mdl-chip.module';
 import {MdlDialogModule} from './dialog/mdl-dialog.module';
 import {MdlDialogOutletModule} from './dialog-outlet/mdl-dialog-outlet.module';

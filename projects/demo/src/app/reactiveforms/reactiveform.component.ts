@@ -1,34 +1,21 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
-import { hostConfig } from '../animations/flyInOutTrigger-animation';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder
-} from '@angular/forms';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { AbstractDemoComponent } from '../abstract-demo.component';
-import { map } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {AbstractDemoComponent} from '../abstract-demo.component';
+import {map} from 'rxjs/operators';
 
 const emailValidator = Validators.pattern('^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$');
 
 @Component({
-  selector: 'reactive-form-demo',
-  host: hostConfig,
+  selector: 'demo-reactive-form',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'reactiveform.component.html'
 })
-export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
+export class ReactiveFormsDemoComponent extends AbstractDemoComponent implements OnInit {
 
   public disableForm = false;
   public form: FormGroup;
@@ -48,20 +35,20 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
   public ngOnInit() {
     super.ngOnInit();
     this.form = this.fb.group({
-      'firstName':  this.firstName,
-      'lastName':   this.lastName,
-      'email':      this.email,
-      'email2':     this.email2,
-      'breakfast':  this.breakfast,
-      'toDrink':    this.toDrink
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      email2: this.email2,
+      breakfast: this.breakfast,
+      toDrink: this.toDrink
     });
     this.form.valueChanges
-        .pipe(
-            map((formValues) => {
-              formValues.firstName = formValues.firstName.toUpperCase();
-              return formValues;
-            })
-        )
+      .pipe(
+        map((formValues) => {
+          formValues.firstName = formValues.firstName.toUpperCase();
+          return formValues;
+        })
+      )
       // .filter((formValues) => this.form.valid)
       .subscribe((formValues) => {
         console.log(`Model Driven Form valid: ${this.form.valid} value:`, JSON.stringify(formValues));
@@ -83,7 +70,7 @@ export class ReactiveFormsDemo extends AbstractDemoComponent implements OnInit {
   }
 
   public onDisableForm(formDisabled: boolean) {
-    if ( formDisabled ) {
+    if (formDisabled) {
       this.form.disable();
     } else {
       this.form.enable();

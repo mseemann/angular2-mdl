@@ -7,6 +7,26 @@ import {FormsModule} from '@angular/forms';
 import {MdlTextFieldModule} from './mdl-textfield.module';
 import {MdlButtonModule} from '../button/mdl-button.module';
 
+@Component({
+  // tslint:disable-next-line
+  selector: 'test',
+  template: 'replaced by the test'
+})
+class MdlTestComponent {
+  public text1 = '';
+
+  public numberValue = 0;
+
+  public onBlur(event: FocusEvent) {
+  }
+
+  public onFocus(event: FocusEvent) {
+  }
+
+  public onKeyup(event: KeyboardEvent) {
+  }
+}
+
 describe('Component: MdlTextField', () => {
 
   beforeEach(() => {
@@ -24,10 +44,10 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" label="Text..." ></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let tfEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const tfEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(tfEl.classList.contains('mdl-textfield')).toBe(true);
 
   });
@@ -39,11 +59,11 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" label="Text..." [(ngModel)]="text1"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      let instance = fixture.componentInstance;
-      let component = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).componentInstance;
+      const instance = fixture.componentInstance;
+      const component = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).componentInstance;
 
       instance.text1 = 'text1';
       fixture.detectChanges();
@@ -66,13 +86,13 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" label="Text..." [(ngModel)]="text1"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
-    var evt = document.createEvent('HTMLEvents');
+    const evt = document.createEvent('HTMLEvents');
     evt.initEvent('focus', true, true);
     inputEl.dispatchEvent(evt);
 
@@ -80,7 +100,7 @@ describe('Component: MdlTextField', () => {
 
     expect(hostEl.classList.contains('is-focused')).toBe(true);
 
-    var evtBlur = document.createEvent('HTMLEvents');
+    const evtBlur = document.createEvent('HTMLEvents');
     evtBlur.initEvent('blur', true, true);
     inputEl.dispatchEvent(evtBlur);
 
@@ -96,11 +116,11 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" label="Text..." [(ngModel)]="text1" pattern="a"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
-    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    const el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     el.value = 'b';
     fixture.detectChanges();
@@ -117,11 +137,11 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="number" label="Text..." [(ngModel)]="text1" min="2"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
-    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    const el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     el.value = '1';
     fixture.detectChanges();
@@ -138,11 +158,11 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="number" label="Text..." [(ngModel)]="text1" max="1"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
-    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    const el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     el.value = '2';
     fixture.detectChanges();
@@ -160,11 +180,11 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="number" label="Text..." [(ngModel)]="text1" min="0" step="1"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
-    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const hostEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    const el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     el.value = '0.1';
     fixture.detectChanges();
@@ -182,10 +202,10 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" label="Text..." rows="3"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let el = fixture.debugElement.query(By.css('textarea'));
+    const el = fixture.debugElement.query(By.css('textarea'));
 
     expect(el).toBeDefined();
 
@@ -198,14 +218,14 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" label="Text..." rows="3" [maxrows]="1"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let el = fixture.debugElement.query(By.css('textarea')).nativeElement;
+    const el = fixture.debugElement.query(By.css('textarea')).nativeElement;
 
     el.value = 'a';
 
-    var e = <any>new Event('keydown');
+    const e = new Event('keydown') as any;
     e.keyCode = 13;
 
     spyOn(e, 'preventDefault');
@@ -224,14 +244,14 @@ describe('Component: MdlTextField', () => {
         template: ' <mdl-textfield type="text" label="Text..." rows="3" [maxrows]="-1"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let el = fixture.debugElement.query(By.css('textarea')).nativeElement;
+    const el = fixture.debugElement.query(By.css('textarea')).nativeElement;
 
     el.value = 'a';
 
-    var e = <any>new Event('keydown');
+    const e = new Event('keydown') as any;
     e.keyCode = 13;
     el.dispatchEvent(e);
 
@@ -248,10 +268,10 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" icon="search"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    const el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
 
     expect(el.classList.contains('mdl-textfield--expandable')).toBe(true);
 
@@ -264,14 +284,14 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" icon="search"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let btnEl = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
+    const btnEl = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
     btnEl.click();
     fixture.detectChanges();
 
-    let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    const el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
     expect(el.classList.contains('is-focused')).toBe(true);
 
   });
@@ -283,10 +303,10 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" label="Text..." id="id-1" name="name-1"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     expect(inputEl.name).toEqual('name-1', 'name is not set');
     expect(inputEl.id).toEqual('id-1', 'id is not set');
@@ -300,16 +320,16 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" label="Text..." name="name-1"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
-    let id = inputEl.id;
+    const id = inputEl.id;
 
     expect(id).toBeDefined();
 
-    let labelEl: HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
+    const labelEl: HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
 
     expect(labelEl.htmlFor).toBeDefined(id);
 
@@ -322,10 +342,10 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield type="text" label="Name" autocomplete="name"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     expect(inputEl.getAttribute('autocomplete')).toBe('name', 'The autocomplete attribute should pass to the input.');
   });
@@ -342,15 +362,15 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     inputEl.value = 'this is not a valid email';
 
     fixture.detectChanges();
 
-    let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    const el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
     expect(el.classList.contains('is-invalid')).toBe(true, 'textfield should have css is-invalid');
 
   });
@@ -368,15 +388,15 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     inputEl.value = 'this is not a valid email';
 
     fixture.detectChanges();
 
-    let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+    const el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
     expect(el.classList.contains('is-invalid')).toBe(false, 'textfield should not have css is-invalid');
   });
 
@@ -404,15 +424,15 @@ describe('Component: MdlTextField', () => {
       `
         }
       });
-      let fixture = TestBed.createComponent(MdlTestComponent);
+      const fixture = TestBed.createComponent(MdlTestComponent);
       fixture.detectChanges();
 
-      let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+      const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
       inputEl.value = 'this is not a valid email';
 
       fixture.detectChanges();
 
-      let el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
+      const el = fixture.debugElement.query(By.directive(MdlTextFieldComponent)).nativeElement;
       expect(el.classList.contains('is-invalid')).toBe(false, 'textfield should not have css is-invalid');
     });
 
@@ -426,10 +446,10 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     expect(inputEl.getAttribute('autofocus')).toBe('', 'the autofocus attribute should be set');
 
@@ -444,15 +464,15 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let component = fixture.componentInstance;
+    const component = fixture.componentInstance;
 
     spyOn(component, 'onFocus');
     spyOn(component, 'onBlur');
 
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     inputEl.dispatchEvent(new Event('focus'));
 
     expect(component.onFocus).toHaveBeenCalled();
@@ -470,12 +490,12 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let textFieldDebugElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
-    let textFieldComonent = textFieldDebugElement.componentInstance;
-    let el = textFieldDebugElement.nativeElement;
+    const textFieldDebugElement = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
+    const textFieldComonent = textFieldDebugElement.componentInstance;
+    const el = textFieldDebugElement.nativeElement;
 
     textFieldComonent.setFocus();
 
@@ -493,18 +513,18 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
 
-    let cbDebugElem = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
+    const cbDebugElem = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
 
     cbDebugElem.componentInstance.setDisabledState(true);
     fixture.detectChanges();
 
-    let textInputElement: HTMLElement = cbDebugElem.nativeElement;
+    const textInputElement: HTMLElement = cbDebugElem.nativeElement;
     expect(textInputElement.classList.contains('is-disabled')).toBe(true, 'should have css is-disabled');
 
     fixture.whenStable().then(() => {
-      let inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+      const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
       expect(inputElement.getAttribute('disabled')).toBe('', 'the underlaying input element should be disbaled');
 
     });
@@ -520,23 +540,23 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
     expect(typeof fixture.componentInstance.numberValue).toBe('number');
 
-    let tfFieldComp = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
-    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const tfFieldComp = fixture.debugElement.query(By.directive(MdlTextFieldComponent));
+    const el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     el.value = '1';
-    tfFieldComp.componentInstance.triggerChange(<any>{target: el});
+    tfFieldComp.componentInstance.triggerChange({target: el} as any);
     fixture.detectChanges();
 
     expect(tfFieldComp.componentInstance.value).toBe(1);
     expect(typeof tfFieldComp.componentInstance.value).toBe('number');
 
     el.value = '';
-    tfFieldComp.componentInstance.triggerChange(<any>{target: el});
+    tfFieldComp.componentInstance.triggerChange({target: el} as any);
     fixture.detectChanges();
 
     expect(tfFieldComp.componentInstance.value).toBe(null);
@@ -552,10 +572,10 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield ></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     expect(el.type).toBe('text');
 
   });
@@ -567,9 +587,9 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield tabindex="-1"></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
-    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     expect(el.getAttribute('tabindex')).toBe('-1');
   });
 
@@ -580,9 +600,9 @@ describe('Component: MdlTextField', () => {
         template: '<mdl-textfield></mdl-textfield>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
-    let el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     expect(el.getAttribute('tabindex')).toEqual(null);
 
@@ -596,10 +616,10 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     expect(inputEl.readOnly).toBe(true, 'the readonly attribute should be set');
 
@@ -613,10 +633,10 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     expect(inputEl.required).toBe(true, 'the required attribute should be set');
 
@@ -630,10 +650,10 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let tfEl = fixture.debugElement.query(By.css('.mdl-textfield--floating-label'));
+    const tfEl = fixture.debugElement.query(By.css('.mdl-textfield--floating-label'));
 
     expect(tfEl).toBeDefined();
 
@@ -647,10 +667,10 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     expect(inputEl.getAttribute('maxlength')).toBe('10', 'the maxlength attribute should be set');
 
@@ -664,14 +684,14 @@ describe('Component: MdlTextField', () => {
       `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
     const testComponent = fixture.componentInstance;
     spyOn(testComponent, 'onKeyup');
 
-    let debugElement = fixture.debugElement.query(By.css('input'));
-    let el: HTMLElement = debugElement.nativeElement;
+    const debugElement = fixture.debugElement.query(By.css('input'));
+    const el: HTMLElement = debugElement.nativeElement;
     debugElement.triggerEventHandler('keyup', {});
 
     expect(testComponent.onKeyup).toHaveBeenCalled();
@@ -680,22 +700,3 @@ describe('Component: MdlTextField', () => {
 
 });
 
-
-@Component({
-  selector: 'test',
-  template: 'replaced by the test'
-})
-class MdlTestComponent {
-  public text1 = '';
-
-  public numberValue = 0;
-
-  public onBlur(event: FocusEvent) {
-  }
-
-  public onFocus(event: FocusEvent) {
-  }
-
-  public onKeyup(event: KeyboardEvent) {
-  }
-}

@@ -6,6 +6,15 @@ import {MdlButtonComponent} from '../button/mdl-button.component';
 import {MdlMenuRegisty} from './mdl-menu.component';
 import {MdlButtonModule} from '../button/mdl-button.module';
 
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-menu',
+  template: 'replaced by the test'
+})
+class MdlTestComponent {
+}
+
 describe('Component: MdlMenu', () => {
 
   beforeEach(() => {
@@ -23,10 +32,10 @@ describe('Component: MdlMenu', () => {
         template: '<mdl-menu>x</mdl-menu>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let menuEl: HTMLElement = fixture.debugElement.query(By.css('.mdl-menu__container')).nativeElement;
+    const menuEl: HTMLElement = fixture.debugElement.query(By.css('.mdl-menu__container')).nativeElement;
     expect(menuEl).toBeDefined();
 
   });
@@ -38,10 +47,10 @@ describe('Component: MdlMenu', () => {
         template: '<mdl-menu #menu="mdlMenu">x</mdl-menu>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let references = fixture.debugElement.query(By.directive(MdlMenuComponent)).references;
+    const references = fixture.debugElement.query(By.directive(MdlMenuComponent)).references;
 
     expect(references['menu']).toBeDefined();
 
@@ -54,10 +63,10 @@ describe('Component: MdlMenu', () => {
         template: '<mdl-menu>x</mdl-menu>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
     expect(() => {
       menu.toggle(null, null);
@@ -75,11 +84,11 @@ describe('Component: MdlMenu', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let buttonElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
-    let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+    const buttonElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
     buttonElement.click();
     expect(menu.isVisible).toBe(true, 'menu should be visible');
@@ -111,17 +120,17 @@ describe('Component: MdlMenu', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let buttonElements = fixture.debugElement.queryAll(By.directive(MdlButtonComponent));
-    let menus = fixture.debugElement.queryAll(By.directive(MdlMenuComponent));
+    const buttonElements = fixture.debugElement.queryAll(By.directive(MdlButtonComponent));
+    const menus = fixture.debugElement.queryAll(By.directive(MdlMenuComponent));
 
-    let btn1 = buttonElements[0].nativeElement;
-    let menu1 = menus[0].componentInstance;
+    const btn1 = buttonElements[0].nativeElement;
+    const menu1 = menus[0].componentInstance;
 
-    let btn2 = buttonElements[1].nativeElement;
-    let menu2 = menus[1].componentInstance;
+    const btn2 = buttonElements[1].nativeElement;
+    const menu2 = menus[1].componentInstance;
 
     btn1.click();
     expect(menu1.isVisible).toBe(true, 'menu1 should be visible');
@@ -143,11 +152,11 @@ describe('Component: MdlMenu', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let buttonElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
-    let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+    const buttonElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
     buttonElement.click();
     expect(menu.isVisible).toBe(true);
@@ -170,11 +179,11 @@ describe('Component: MdlMenu', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let buttonElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
-    let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+    const buttonElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
     buttonElement.click();
     expect(menu.isVisible).toBe(true);
@@ -197,11 +206,11 @@ describe('Component: MdlMenu', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let buttonElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
-    let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+    const buttonElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
     buttonElement.click();
     expect(menu.isVisible).toBe(true);
@@ -224,11 +233,11 @@ describe('Component: MdlMenu', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let buttonElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
-    let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+    const buttonElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
 
     buttonElement.click();
     expect(menu.isVisible).toBe(true);
@@ -255,11 +264,3 @@ describe('Component: MdlMenu', () => {
   });
 
 });
-
-
-@Component({
-  selector: 'test-menu',
-  template: 'replaced by the test'
-})
-class MdlTestComponent {
-}

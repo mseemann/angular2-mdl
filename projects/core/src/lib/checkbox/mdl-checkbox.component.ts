@@ -4,7 +4,10 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  HostBinding,
+  HostListener,
   Input,
+  Output,
   Renderer2,
   ViewEncapsulation
 } from '@angular/core';
@@ -23,13 +26,6 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'mdl-checkbox',
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
-  host: {
-    '(click)': 'onClick()',
-    '[class.mdl-checkbox]': 'true',
-    '[class.is-upgraded]': 'true',
-    '[class.is-checked]': 'value',
-    '[class.is-disabled]': 'disabled'
-  },
   template: `
     <input type="checkbox" class="mdl-checkbox__input"
            (focus)="onFocus()"
@@ -43,16 +39,20 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     <span class="mdl-checkbox__tick-outline"></span>
   </span>
   `,
-  inputs: ['value'],
-  outputs: ['change'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
 
-  @Input() public tabindex: number = null;
-  public change: EventEmitter<boolean> = new EventEmitter<boolean>();
-  private value_: boolean = false;
+  @Input() tabindex: number = null;
+
+  // tslint:disable-next-line
+  @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @HostBinding('class.mdl-checkbox') isCheckbox = true;
+  @HostBinding('class.is-upgraded') isUpgraded = true;
+
+
   private el: HTMLElement;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
@@ -61,29 +61,37 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
     this.el = elementRef.nativeElement;
   }
 
-  private _disabled: boolean = false;
+  // tslint:disable-next-line
+  private _value = false;
 
-  @Input()
-  get disabled(): boolean {
-    return this._disabled;
-  }
-
-  set disabled(value) {
-    this._disabled = toBoolean(value);
-  }
 
   get value(): boolean {
-    return this.value_;
-  };
+    return this._value;
+  }
 
+  @Input()
+  @HostBinding('class.is-checked')
   set value(v: boolean) {
-    this.value_ = v;
+    this._value = v;
     this.onChangeCallback(v);
     this.change.emit(v);
   }
 
+  // tslint:disable-next-line
+  private _disabled = false;
+
+  get disabled(): boolean {
+    return this._disabled;
+  }
+
+  @Input()
+  @HostBinding('class.is-disabled')
+  set disabled(value) {
+    this._disabled = toBoolean(value);
+  }
+
   public writeValue(value: any): void {
-    this.value_ = value;
+    this._value = value;
   }
 
   public registerOnChange(fn: any): void {
@@ -107,6 +115,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
     this.onTouchedCallback();
   }
 
+  @HostListener('click')
   public onClick() {
     if (this.disabled) {
       return;

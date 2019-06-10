@@ -1,18 +1,17 @@
 import {Component} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
 
 @Component({
-  selector: 'badge-demo',
-  host: hostConfig,
+  selector: 'demo-badge',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'badge.component.html'
 })
-export class BadgeDemo extends AbstractDemoComponent {
+export class BadgeDemoComponent extends AbstractDemoComponent {
 
   badgeCount = 1;
 

@@ -130,10 +130,13 @@ const IS_DIRTY = 'is-dirty';
   encapsulation: ViewEncapsulation.None
 })
 export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, DoCheck {
+  // tslint:disable-next-line
   @Output('blur')
   public blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+  // tslint:disable-next-line
   @Output('focus')
   public focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+  // tslint:disable-next-line
   @Output('keyup')
   public keyupEmitter: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
   @ViewChild('input', {static: false}) public inputEl: ElementRef;
@@ -145,124 +148,117 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() public step;
   @Input() public name;
   @Input() public id = `mdl-textfield-${nextId++}`;
+  // tslint:disable-next-line
   @Input('error-msg') public errorMessage;
   @Input() public placeholder: string;
   @Input() public autocomplete: string;
   @Input() public icon: string;
   @Input() public tabindex: number = null;
   @Input() public maxlength: number = null;
-  private value_: any;
+  private valueIntern: any;
   private el: HTMLElement;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
+  private disabledIntern = false;
+  private readonlyIntern = false;
+  private requiredIntern = false;
+  private autofocusIntern = false;
+  private isFloatingLabelIntern = false;
+  private rowsIntern: number = null;
+  private maxrowsIntern = -1;
+  // @experimental
+  private disableNativeValidityCheckingIntern = false;
 
   constructor(
     private renderer: Renderer2,
     private elmRef: ElementRef,
-    @Optional() @Inject(DISABLE_NATIVE_VALIDITY_CHECKING) private nativeCheckGlobalDisabled: Boolean) {
+    @Optional() @Inject(DISABLE_NATIVE_VALIDITY_CHECKING) private nativeCheckGlobalDisabled: boolean) {
     this.el = elmRef.nativeElement;
   }
 
   get value(): any {
-    return this.value_;
-  };
+    return this.valueIntern;
+  }
 
   @Input() set value(v: any) {
-    this.value_ = this.type === 'number' ? (v === '' ? null : parseFloat(v)) : v;
+    this.valueIntern = this.type === 'number' ? (v === '' ? null : parseFloat(v)) : v;
     this.onChangeCallback(this.value);
   }
 
-  private _disabled: boolean = false;
-
   @Input()
   get disabled(): boolean {
-    return this._disabled;
+    return this.disabledIntern;
   }
 
   set disabled(value) {
-    this._disabled = toBoolean(value);
+    this.disabledIntern = toBoolean(value);
   }
-
-  private _readonly: boolean = false;
 
   @Input()
   get readonly() {
-    return this._readonly;
+    return this.readonlyIntern;
   }
 
   set readonly(value) {
-    this._readonly = toBoolean(value);
+    this.readonlyIntern = toBoolean(value);
   }
-
-  private _required: boolean = false;
 
   @Input()
   get required() {
-    return this._required;
+    return this.requiredIntern;
   }
 
   set required(value) {
-    this._required = toBoolean(value);
+    this.requiredIntern = toBoolean(value);
   }
-
-  private _autofocus: boolean = false;
 
   @Input()
   get autofocus() {
-    return this._autofocus;
+    return this.autofocusIntern;
   }
 
   set autofocus(value) {
-    this._autofocus = toBoolean(value);
+    this.autofocusIntern = toBoolean(value);
   }
-
-  private _isFloatingLabel: boolean = false;
 
   @Input('floating-label')
   get isFloatingLabel() {
-    return this._isFloatingLabel;
+    return this.isFloatingLabelIntern;
   }
 
   set isFloatingLabel(value) {
-    this._isFloatingLabel = toBoolean(value);
+    this.isFloatingLabelIntern = toBoolean(value);
   }
-
-  private _rows: number = null;
 
   @Input()
   get rows() {
-    return this._rows;
+    return this.rowsIntern;
   }
 
   set rows(value) {
-    this._rows = toNumber(value);
+    this.rowsIntern = toNumber(value);
   }
-
-  private _maxrows: number = -1;
 
   @Input()
   get maxrows() {
-    return this._maxrows;
+    return this.maxrowsIntern;
   }
 
   set maxrows(value) {
-    this._maxrows = toNumber(value);
+    this.maxrowsIntern = toNumber(value);
   }
-
-  // @experimental
-  private _disableNativeValidityChecking: boolean = false;
 
   @Input()
   get disableNativeValidityChecking() {
-    return this._disableNativeValidityChecking;
+    return this.disableNativeValidityCheckingIntern;
   }
 
   set disableNativeValidityChecking(value) {
-    this._disableNativeValidityChecking = toBoolean(value);
+    this.disableNativeValidityCheckingIntern = toBoolean(value);
   }
 
   public writeValue(value: any): void {
-    this.value_ = value;
+    this.valueIntern = value;
     this.checkDirty();
   }
 
@@ -295,7 +291,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 
   public keydownTextarea($event: KeyboardEvent) {
-    var currentRowCount = this.inputEl.nativeElement.value.split('\n').length;
+    const currentRowCount = this.inputEl.nativeElement.value.split('\n').length;
     if ($event.keyCode === 13) {
       if (currentRowCount >= this.maxrows && this.maxrows !== -1) {
         $event.preventDefault();
@@ -350,10 +346,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     }
   }
 
-  // hm only for test purposes to simulate a change to the input field that will change the
-
   private checkDirty() {
-    let dirty = this.inputEl && this.inputEl.nativeElement.value && this.inputEl.nativeElement.value.length > 0;
+    const dirty = this.inputEl && this.inputEl.nativeElement.value && this.inputEl.nativeElement.value.length > 0;
     if (dirty) {
       this.renderer.addClass(this.el, IS_DIRTY);
     } else {

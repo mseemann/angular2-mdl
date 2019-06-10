@@ -1,12 +1,24 @@
 import {async, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {Component} from '@angular/core';
 import {
   MdlSimpleTooltipComponent,
   MdlTooltipComponent,
   MdlTooltipDirective,
   MdlTooltipModule
 } from './mdl-tooltip.module';
+import {Component} from '@angular/core';
+
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-icon',
+  template: 'replaced by the test'
+})
+class MdlTestTooltipComponent {
+
+  tooltipText = 'test';
+
+}
 
 describe('Component: MdlTooltip', () => {
 
@@ -24,10 +36,10 @@ describe('Component: MdlTooltip', () => {
         template: '<mdl-tooltip>x</mdl-tooltip>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    const fixture = TestBed.createComponent(MdlTestTooltipComponent);
     fixture.detectChanges();
 
-    let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
+    const tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
     expect(tooltipEl.classList.contains('mdl-tooltip')).toBe(true);
 
   });
@@ -42,10 +54,10 @@ describe('Component: MdlTooltip', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    const fixture = TestBed.createComponent(MdlTestTooltipComponent);
     fixture.detectChanges();
 
-    let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
+    const tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
     expect(tooltipEl.classList.contains('mdl-tooltip--large')).toBe(true);
 
   });
@@ -59,7 +71,7 @@ describe('Component: MdlTooltip', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    const fixture = TestBed.createComponent(MdlTestTooltipComponent);
     fixture.detectChanges();
 
     // wait for async component creation
@@ -67,7 +79,7 @@ describe('Component: MdlTooltip', () => {
       // let angular prepare the tooltip with class and text
       fixture.detectChanges();
       // check the result
-      let tooltipEl: HTMLElement = fixture.debugElement
+      const tooltipEl: HTMLElement = fixture.debugElement
         .query(By.directive(MdlSimpleTooltipComponent)).nativeElement;
       expect(tooltipEl.classList.contains('mdl-tooltip')).toBe(true);
 
@@ -85,17 +97,17 @@ describe('Component: MdlTooltip', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    const fixture = TestBed.createComponent(MdlTestTooltipComponent);
     fixture.detectChanges();
 
-    let tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
+    const tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
 
-    var evt = document.createEvent('HTMLEvents');
+    const evt = document.createEvent('HTMLEvents');
     evt.initEvent('mouseenter', true, true);
     tooltipTriggerElement.dispatchEvent(evt);
 
-    let tooltipDebugEl = fixture.debugElement.query(By.directive(MdlTooltipComponent));
-    let tooltipEl: HTMLElement = tooltipDebugEl.nativeElement;
+    const tooltipDebugEl = fixture.debugElement.query(By.directive(MdlTooltipComponent));
+    const tooltipEl: HTMLElement = tooltipDebugEl.nativeElement;
     expect(tooltipEl.classList.contains('is-active')).toBe(true);
 
     expect(tooltipDebugEl.componentInstance.isActive()).toBe(true);
@@ -112,17 +124,17 @@ describe('Component: MdlTooltip', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    const fixture = TestBed.createComponent(MdlTestTooltipComponent);
     fixture.detectChanges();
 
-    let tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
+    const tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
 
-    var evt = document.createEvent('HTMLEvents');
+    const evt = document.createEvent('HTMLEvents');
     evt.initEvent('mouseenter', true, true);
     tooltipTriggerElement.dispatchEvent(evt);
 
-    let tooltipDebugEl = fixture.debugElement.query(By.directive(MdlTooltipComponent));
-    let tooltipEl: HTMLElement = tooltipDebugEl.nativeElement;
+    const tooltipDebugEl = fixture.debugElement.query(By.directive(MdlTooltipComponent));
+    const tooltipEl: HTMLElement = tooltipDebugEl.nativeElement;
 
 
     expect(tooltipEl.classList.contains('is-active')).toBe(false);
@@ -145,18 +157,18 @@ describe('Component: MdlTooltip', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    const fixture = TestBed.createComponent(MdlTestTooltipComponent);
     fixture.detectChanges();
 
-    let tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
+    const tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
 
     spyOn(window, 'clearTimeout').and.callThrough();
 
-    var evt = document.createEvent('HTMLEvents');
+    let evt = document.createEvent('HTMLEvents');
     evt.initEvent('mouseenter', true, true);
     tooltipTriggerElement.dispatchEvent(evt);
 
-    var evt = document.createEvent('HTMLEvents');
+    evt = document.createEvent('HTMLEvents');
     evt.initEvent('mouseleave', true, true);
     tooltipTriggerElement.dispatchEvent(evt);
 
@@ -174,16 +186,16 @@ describe('Component: MdlTooltip', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    const fixture = TestBed.createComponent(MdlTestTooltipComponent);
     fixture.detectChanges();
 
-    let tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
+    const tooltipTriggerElement = fixture.debugElement.query(By.directive(MdlTooltipDirective)).nativeElement;
 
-    let evt = document.createEvent('HTMLEvents');
+    const evt = document.createEvent('HTMLEvents');
     evt.initEvent('mouseleave', true, true);
     tooltipTriggerElement.dispatchEvent(evt);
 
-    let tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
+    const tooltipEl: HTMLElement = fixture.debugElement.query(By.directive(MdlTooltipComponent)).nativeElement;
 
     expect(tooltipEl.classList.contains('is-active')).toBe(false);
 
@@ -199,18 +211,18 @@ describe('Component: MdlTooltip', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    const fixture = TestBed.createComponent(MdlTestTooltipComponent);
     fixture.detectChanges();
 
     ['bottom', 'top', 'left', 'right'].forEach((position) => {
 
-      let debugElement = fixture.debugElement.query(By.directive(MdlTooltipComponent));
+      const debugElement = fixture.debugElement.query(By.directive(MdlTooltipComponent));
 
       debugElement.componentInstance.position = position;
 
       fixture.detectChanges();
 
-      let tooltipEl: HTMLElement = debugElement.nativeElement;
+      const tooltipEl: HTMLElement = debugElement.nativeElement;
       expect(tooltipEl.classList.contains(`mdl-tooltip--${position}`)).toBe(true);
 
     });
@@ -225,10 +237,10 @@ describe('Component: MdlTooltip', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    const fixture = TestBed.createComponent(MdlTestTooltipComponent);
     fixture.detectChanges();
 
-    let tooltipEl: HTMLElement = fixture.debugElement
+    const tooltipEl: HTMLElement = fixture.debugElement
       .query(By.directive(MdlSimpleTooltipComponent)).nativeElement;
 
     expect(tooltipEl.textContent).toBe('test');
@@ -237,16 +249,6 @@ describe('Component: MdlTooltip', () => {
     fixture.detectChanges();
 
     expect(tooltipEl.textContent).toBe('chnaged');
-  })
+  });
+
 });
-
-
-@Component({
-  selector: 'test-icon',
-  template: 'replaced by the test'
-})
-class MdlTestTooltipComponent {
-
-  tooltipText = 'test';
-
-}

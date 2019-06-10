@@ -4,7 +4,7 @@ import {MdlSelectableTableComponent, MdlTableComponent} from './mdl-table.compon
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MdlCommonsModule} from '../common/mdl-common.module';
-import {MdlCheckboxModule} from '../checkbox/mdl.checkbox.module';
+import {MdlCheckboxModule} from '../checkbox/mdl-checkbox.module';
 
 export * from './mdl-table.component';
 

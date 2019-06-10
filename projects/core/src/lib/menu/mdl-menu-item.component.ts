@@ -18,6 +18,7 @@ import {callNative} from '../common/native-support';
 export class MdlMenuItemComponent {
 
   public element: HTMLElement;
+  private disabledIntern = false;
 
   // forwardRef is needed because of he circular dependency menu queries menuitems; menuitem needs the parent
   constructor(
@@ -28,15 +29,13 @@ export class MdlMenuItemComponent {
     this.element = elementRef.nativeElement;
   }
 
-  private _disabled: boolean = false;
-
   @Input()
   get disabled(): boolean {
-    return this._disabled;
+    return this.disabledIntern;
   }
 
   set disabled(value) {
-    this._disabled = toBoolean(value);
+    this.disabledIntern = toBoolean(value);
   }
 
   public onClick($event) {
@@ -57,7 +56,7 @@ export class MdlMenuItemComponent {
     $event.stopPropagation();
     $event.preventDefault();
 
-    let event = new MouseEvent('click', {bubbles: true});
+    const event = new MouseEvent('click', {bubbles: true});
     callNative(this.element, 'dispatchEvent', event);
   }
 

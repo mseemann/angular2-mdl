@@ -9,7 +9,7 @@ export const TEST_VALUE = new InjectionToken<string>('test value');
 
 
 @Component({
-  selector: 'login-dialog',
+  selector: 'demo-login-dialog',
   templateUrl: 'login-dialog.component.html',
   styles: [
       `
@@ -54,8 +54,8 @@ export class LoginDialogComponent implements OnInit {
 
   public ngOnInit() {
     this.form = this.fb.group({
-      'username': this.username,
-      'password': this.password
+      username: this.username,
+      password: this.password
     });
   }
 
@@ -64,7 +64,7 @@ export class LoginDialogComponent implements OnInit {
     this.processingLogin = true;
     this.statusMessage = 'checking your credentials ...';
 
-    let obs = this.loginService.login(this.username.value, this.password.value);
+    const obs = this.loginService.login(this.username.value, this.password.value);
     obs.subscribe(user => {
 
       this.processingLogin = false;

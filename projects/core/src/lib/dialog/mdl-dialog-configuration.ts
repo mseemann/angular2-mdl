@@ -44,7 +44,7 @@ export interface IMdlDialogConfiguration {
   /**
    * true if the dialogs should animate. defaults to true.
    */
-  animate?: boolean
+  animate?: boolean;
 
   /**
    * css classes as space delimted list of classes applied to

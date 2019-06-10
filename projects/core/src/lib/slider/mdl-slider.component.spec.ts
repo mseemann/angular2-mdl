@@ -6,6 +6,19 @@ import {FormsModule} from '@angular/forms';
 import {MdlSliderModule} from './mdl-slider.module';
 import {DOCUMENT} from '@angular/common';
 
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-icon',
+  template: `
+    <mdl-slider [min]='min' [max]='max' [(ngModel)]='currentValue'></mdl-slider>`
+})
+class MdlTestSliderComponent {
+  public min = 0;
+  public max = 100;
+  public currentValue = 50;
+}
+
 describe('Component: MdlSlider', () => {
 
   beforeEach(async(() => {
@@ -17,21 +30,21 @@ describe('Component: MdlSlider', () => {
 
   it('should add the css class mdl-slider__container to the host element', async(() => {
 
-    let fixture = TestBed.createComponent(MdlTestSliderComponent);
+    const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
 
-    let iconEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const iconEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(iconEl.classList.contains('mdl-slider__container')).toBe(true);
 
   }));
 
   it('should support ngModel', async(() => {
 
-    let fixture = TestBed.createComponent(MdlTestSliderComponent);
+    const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
 
-    let instance = fixture.componentInstance;
-    let component = fixture.debugElement.query(By.directive(MdlSliderComponent)).componentInstance;
+    const instance = fixture.componentInstance;
+    const component = fixture.debugElement.query(By.directive(MdlSliderComponent)).componentInstance;
 
     instance.currentValue = 67;
     fixture.detectChanges();
@@ -49,14 +62,14 @@ describe('Component: MdlSlider', () => {
 
   it('should call blur on mouseup events on the host element', async(() => {
 
-    let fixture = TestBed.createComponent(MdlTestSliderComponent);
+    const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
 
-    let hostElement = fixture.debugElement.query(By.css('mdl-slider')).nativeElement;
+    const hostElement = fixture.debugElement.query(By.css('mdl-slider')).nativeElement;
 
     spyOn(hostElement, 'blur');
 
-    var evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
+    const evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
     evt.initEvent('mouseup', true, true);
     hostElement.dispatchEvent(evt);
 
@@ -68,16 +81,16 @@ describe('Component: MdlSlider', () => {
 
   it('should propagate mousedown events on the host to the input element', async(() => {
 
-    let fixture = TestBed.createComponent(MdlTestSliderComponent);
+    const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
 
-    let hostElement = fixture.debugElement.query(By.css('mdl-slider')).nativeElement;
+    const hostElement = fixture.debugElement.query(By.css('mdl-slider')).nativeElement;
 
-    let inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     spyOn(inputElement, 'dispatchEvent').and.callThrough();
 
-    var evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
+    const evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
     evt.initEvent('mousedown', true, true);
     hostElement.dispatchEvent(evt);
 
@@ -90,14 +103,14 @@ describe('Component: MdlSlider', () => {
 
   it('should not propagate mousedown events to the input element on other elements than the host', async(() => {
 
-    let fixture = TestBed.createComponent(MdlTestSliderComponent);
+    const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
 
-    let inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     spyOn(inputElement, 'dispatchEvent').and.callThrough();
 
-    var evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
+    const evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
     evt.initEvent('mousedown', true, true);
     inputElement.dispatchEvent(evt);
 
@@ -110,10 +123,10 @@ describe('Component: MdlSlider', () => {
 
 
   it('should be possible to disable the slider', async(() => {
-    let fixture = TestBed.createComponent(MdlTestSliderComponent);
+    const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
 
-    let cbDebugElem = fixture.debugElement.query(By.directive(MdlSliderComponent));
+    const cbDebugElem = fixture.debugElement.query(By.directive(MdlSliderComponent));
 
     cbDebugElem.componentInstance.setDisabledState(true);
     fixture.detectChanges();
@@ -121,7 +134,7 @@ describe('Component: MdlSlider', () => {
     expect(cbDebugElem.componentInstance.disabled).toBe(true, 'the internal disbaled prop should be true');
 
     fixture.whenStable().then(() => {
-      let inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+      const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
       expect(inputElement.getAttribute('disabled')).toBe('', 'the underlaying input element should be disbaled');
 
     });
@@ -135,10 +148,10 @@ describe('Component: MdlSlider', () => {
         template: '<mdl-slider [min]="1" [max]="2" [step]="5"></mdl-slider>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestSliderComponent);
+    const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
 
-    let inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const inputElement: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     expect(inputElement.min).toBe('1');
     expect(inputElement.max).toBe('2');
     expect(inputElement.step).toBe('5');
@@ -146,14 +159,3 @@ describe('Component: MdlSlider', () => {
   }));
 
 });
-
-
-@Component({
-  selector: 'test-icon',
-  template: "<mdl-slider [min]='min' [max]='max' [(ngModel)]='currentValue'></mdl-slider>"
-})
-class MdlTestSliderComponent {
-  public min = 0;
-  public max = 100;
-  public currentValue = 50;
-}

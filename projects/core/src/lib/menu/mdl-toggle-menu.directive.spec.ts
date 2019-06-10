@@ -6,6 +6,20 @@ import {MdlButtonComponent} from '../button/mdl-button.component';
 import {MdlMenuComponent, MdlMenuRegisty} from './mdl-menu.component';
 import {MdlButtonModule} from '../button/mdl-button.module';
 
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-menu',
+  template: `
+    <button mdl-button [mdl-toggle-menu]="m"></button>
+    <mdl-menu #m="mdlMenu">
+      <mdl-menu-item>x</mdl-menu-item>
+    </mdl-menu>
+  `
+})
+class MdlTestMenuItemComponent {
+}
+
 describe('Component: MdlToggleMenu-Directive', () => {
 
   beforeEach(() => {
@@ -18,12 +32,12 @@ describe('Component: MdlToggleMenu-Directive', () => {
 
   it('should show the menu if the button is clicked', () => {
 
-    let fixture = TestBed.createComponent(MdlTestMenuItemComponent);
+    const fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
 
-    let item: HTMLElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
+    const item: HTMLElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
 
-    let menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
     spyOn(menu, 'show').and.callThrough();
     spyOn(menu, 'hide');
 
@@ -42,16 +56,3 @@ describe('Component: MdlToggleMenu-Directive', () => {
 
 
 });
-
-
-@Component({
-  selector: 'test-menu',
-  template: `
-    <button mdl-button [mdl-toggle-menu]="m"></button>
-    <mdl-menu #m="mdlMenu">
-      <mdl-menu-item>x</mdl-menu-item>
-    </mdl-menu>
-  `
-})
-class MdlTestMenuItemComponent {
-}

@@ -2,6 +2,17 @@ import {TestBed} from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {MdlSpinnerModule} from './mdl-spinner.module';
 
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-progress',
+  template: 'replaced by the test'
+})
+class MdlTestSpinnerComponent {
+  public active = true;
+  public colored = true;
+}
+
 describe('Component: MdlProgress', () => {
 
   beforeEach(() => {
@@ -18,10 +29,10 @@ describe('Component: MdlProgress', () => {
         template: '<mdl-spinner active></mdl-spinner>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestSpinnerComponent);
+    const fixture = TestBed.createComponent(MdlTestSpinnerComponent);
     fixture.detectChanges();
 
-    let spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spinnerEl.classList.contains('mdl-spinner')).toBe(true);
 
   });
@@ -33,10 +44,10 @@ describe('Component: MdlProgress', () => {
         template: '<mdl-spinner [active]="active"></mdl-spinner>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestSpinnerComponent);
+    const fixture = TestBed.createComponent(MdlTestSpinnerComponent);
     fixture.detectChanges();
 
-    let spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spinnerEl.classList.contains('is-active')).toBe(true);
 
     fixture.componentInstance.active = false;
@@ -54,10 +65,10 @@ describe('Component: MdlProgress', () => {
         template: '<mdl-spinner [single-color]="colored"></mdl-spinner>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestSpinnerComponent);
+    const fixture = TestBed.createComponent(MdlTestSpinnerComponent);
     fixture.detectChanges();
 
-    let spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const spinnerEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spinnerEl.classList.contains('mdl-spinner--single-color')).toBe(true);
 
     fixture.componentInstance.colored = false;
@@ -67,13 +78,3 @@ describe('Component: MdlProgress', () => {
     expect(spinnerEl.classList.contains('mdl-spinner--single-color')).toBe(false);
   });
 });
-
-
-@Component({
-  selector: 'test-progress',
-  template: 'replaced by the test'
-})
-class MdlTestSpinnerComponent {
-  public active = true;
-  public colored = true;
-}

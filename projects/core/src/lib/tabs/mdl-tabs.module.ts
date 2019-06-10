@@ -1,5 +1,5 @@
 import {MdlTabsComponent} from './mdl-tabs.component';
-import {MdlTabPanelComponent, MdlTabPanelContent} from './mdl-tab-panel.component';
+import {MdlTabPanelComponent, MdlTabPanelContentComponent} from './mdl-tab-panel.component';
 import {MdlTabPanelTitleComponent} from './mdl-tab-panel-title.component';
 import {ModuleWithProviders, NgModule} from '@angular/core';
 
@@ -16,7 +16,7 @@ const MDL_TABS_DIRECTIVES = [
   MdlTabsComponent,
   MdlTabPanelComponent,
   MdlTabPanelTitleComponent,
-  MdlTabPanelContent
+  MdlTabPanelContentComponent
 ];
 
 @NgModule({

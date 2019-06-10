@@ -12,6 +12,34 @@ import {MdlTabsModule} from '../tabs/mdl-tabs.module';
 import {LAYOUT_SCREEN_SIZE_THRESHOLD, MdlScreenSizeService} from './mdl-layout.component';
 import {MdlRippleModule} from '../ripple/mdl-ripple.module';
 
+
+@Component({
+  selector: 'test-layout',
+  template: 'replaced by the test'
+})
+class MdlTestLayoutComponent {
+
+  public activeIndex = 0;
+
+  public selectedIndexOutput: number = -1;
+
+  public tabChanged($event) {
+    this.selectedIndexOutput = $event.index;
+  }
+
+  public tabMouseover($event) {
+  }
+
+  public tabMouseout($event) {
+  }
+
+  public onDrawerClose() {
+  }
+
+  public onDrawerOpen() {
+  }
+}
+
 describe('Component: MdlLayout', () => {
 
   beforeEach(() => {
@@ -29,14 +57,14 @@ describe('Component: MdlLayout', () => {
         template: '<mdl-layout>x</mdl-layout>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutComponent)).nativeElement;
-    let layoutContainer: HTMLElement = <HTMLElement>layoutEl.children.item(0);
+    const layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutComponent)).nativeElement;
+    const layoutContainer: HTMLElement = <HTMLElement>layoutEl.children.item(0);
     expect(layoutContainer.classList.contains('mdl-layout__container')).toBe(true);
 
-    let layoutMainElement = <HTMLElement>layoutContainer.children.item(0);
+    const layoutMainElement = <HTMLElement>layoutContainer.children.item(0);
     expect(layoutMainElement.classList.contains('mdl-layout')).toBe(true);
 
   });
@@ -48,7 +76,7 @@ describe('Component: MdlLayout', () => {
         template: '<mdl-layout mdl-layout-mode="">x</mdl-layout>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance.mode).toBe('standard');
@@ -62,7 +90,7 @@ describe('Component: MdlLayout', () => {
         template: '<mdl-layout mdl-layout-mode="test">x</mdl-layout>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
 
     expect(() => {
       fixture.detectChanges();
@@ -82,24 +110,24 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let testComponent = fixture.componentInstance;
+    const testComponent = fixture.componentInstance;
 
     spyOn(testComponent, 'onDrawerOpen').and.callThrough();
     spyOn(testComponent, 'onDrawerClose').and.callThrough();
 
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
     layoutComponent.toggleDrawer();
 
     expect(testComponent.onDrawerOpen).toHaveBeenCalled();
 
 
-    let obfuscatorElement = fixture.debugElement.query(By.css('.mdl-layout__obfuscator')).nativeElement;
+    const obfuscatorElement = fixture.debugElement.query(By.css('.mdl-layout__obfuscator')).nativeElement;
 
     // dirty hack to provide an event with keyCode
-    var e = <any>new Event('keydown');
+    const e = new Event('keydown') as any;
     e.keyCode = 27;
     obfuscatorElement.dispatchEvent(e);
 
@@ -122,11 +150,11 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
 
     fixture.detectChanges();
 
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     expect(layoutComponent.scrollListener).toBeDefined();
 
@@ -148,10 +176,10 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     expect(layoutComponent.scrollListener).toBeUndefined();
 
@@ -176,15 +204,15 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     // small screen
     layoutComponent.onQueryChange(true);
     fixture.detectChanges();
-    let mdlLayoutElement = fixture.debugElement.query(By.css('.mdl-layout')).nativeElement;
+    const mdlLayoutElement = fixture.debugElement.query(By.css('.mdl-layout')).nativeElement;
     expect(mdlLayoutElement.classList.contains('is-small-screen')).toBe(true);
 
     // large screen
@@ -207,17 +235,17 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let layoutDebugElement = fixture.debugElement.query(By.directive(MdlLayoutComponent));
-    let layoutComponent = layoutDebugElement.componentInstance;
+    const layoutDebugElement = fixture.debugElement.query(By.directive(MdlLayoutComponent));
+    const layoutComponent = layoutDebugElement.componentInstance;
 
-    let contentEl = fixture.debugElement.query(By.directive(MdlLayoutContentComponent)).nativeElement;
+    const contentEl = fixture.debugElement.query(By.directive(MdlLayoutContentComponent)).nativeElement;
 
     spyOn(layoutComponent, 'onScroll');
 
-    var scrollEvent = new CustomEvent('scroll');
+    const scrollEvent = new CustomEvent('scroll');
     contentEl.dispatchEvent(scrollEvent);
 
     expect(layoutComponent.onScroll).toHaveBeenCalled();
@@ -241,10 +269,10 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let mdlLayoutComponent: MdlLayoutComponent =
+    const mdlLayoutComponent: MdlLayoutComponent =
       fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     expect(mdlLayoutComponent.selectedIndex).toBe(0);
@@ -268,7 +296,7 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
     expect(fixture.componentInstance.activeIndex).toBe(0);
@@ -277,7 +305,7 @@ describe('Component: MdlLayout', () => {
 
     fixture.detectChanges();
 
-    let mdlLayoutComponent: MdlLayoutComponent =
+    const mdlLayoutComponent: MdlLayoutComponent =
       fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     expect(mdlLayoutComponent.selectedIndex).toBe(1);
@@ -301,16 +329,16 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let testComponent = fixture.componentInstance;
+    const testComponent = fixture.componentInstance;
 
-    let mdlTabsComponent: MdlLayoutComponent =
+    const mdlTabsComponent: MdlLayoutComponent =
       fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     expect(mdlTabsComponent.selectedIndex).toBe(1);
-    let aDebugElements = fixture.debugElement.queryAll(By.css('a'));
+    const aDebugElements = fixture.debugElement.queryAll(By.css('a'));
 
     // select the first tab
     aDebugElements[0].nativeElement.click();
@@ -351,12 +379,12 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
     // must have a MdlLayoutHeaderComponent
-    let layoutHeader = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
-    let titleDebugElement = layoutHeader.query(By.css('.test'));
+    const layoutHeader = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+    const titleDebugElement = layoutHeader.query(By.css('.test'));
 
     expect(titleDebugElement.nativeElement.nodeName).toEqual('SPAN');
   }));
@@ -374,14 +402,14 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     layoutComponent.closeDrawer();
     fixture.detectChanges();
 
-    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    const drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
     expect(drawer.isDrawerVisible).toBe(false);
 
     layoutComponent.openDrawer();
@@ -403,14 +431,14 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     layoutComponent.openDrawer();
     fixture.detectChanges();
 
-    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    const drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
     expect(drawer.isDrawerVisible).toBe(true);
 
     layoutComponent.closeDrawer();
@@ -432,14 +460,14 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     layoutComponent.closeDrawer();
     fixture.detectChanges();
 
-    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    const drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
     expect(drawer.isDrawerVisible).toBe(false);
 
     // small screen
@@ -467,14 +495,14 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     layoutComponent.toggleDrawer();
     fixture.detectChanges();
 
-    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    const drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
     expect(drawer.isDrawerVisible).toBe(true);
 
     // small screen
@@ -502,14 +530,14 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     layoutComponent.closeDrawer();
     fixture.detectChanges();
 
-    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    const drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
     expect(drawer.isDrawerVisible).toBe(false);
 
     layoutComponent.toggleDrawer();
@@ -531,14 +559,14 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
     layoutComponent.openDrawer();
     fixture.detectChanges();
 
-    let drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
+    const drawer = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).componentInstance;
     expect(drawer.isDrawerVisible).toBe(true);
 
     layoutComponent.toggleDrawer();
@@ -563,9 +591,9 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
-    let layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const layoutComponent = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
     fixture.detectChanges();
     expect(layoutComponent.hasDrawer()).toBe(false);
 
@@ -576,7 +604,7 @@ describe('Component: MdlLayout', () => {
     TestBed.overrideComponent(MdlTestLayoutComponent, {
       set: {
         template: `
-          <mdl-layout 
+          <mdl-layout
               (mdl-layout-tab-mouseover)="tabMouseover($event)"
               (mdl-layout-tab-mouseout)="tabMouseout($event)">
            <mdl-layout-header></mdl-layout-header>
@@ -588,20 +616,20 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let testComponent = fixture.componentInstance;
+    const testComponent = fixture.componentInstance;
 
     spyOn(testComponent, 'tabMouseover');
     spyOn(testComponent, 'tabMouseout');
 
-    let tab1Elem = fixture.debugElement.query(By.css('.mdl-layout__tab')).nativeElement;
+    const tab1Elem = fixture.debugElement.query(By.css('.mdl-layout__tab')).nativeElement;
 
-    let eventMouseover = new Event('mouseover', {});
+    const eventMouseover = new Event('mouseover', {});
     tab1Elem.dispatchEvent(eventMouseover);
 
-    let eventMouseout = new Event('mouseout', {});
+    const eventMouseout = new Event('mouseout', {});
     tab1Elem.dispatchEvent(eventMouseout);
 
     expect(testComponent.tabMouseover).toHaveBeenCalledWith({index: 0});
@@ -623,9 +651,9 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
-    let layoutdebugElement = fixture.debugElement.query(By.css('.mdl-layout--fixed-header'));
+    const layoutdebugElement = fixture.debugElement.query(By.css('.mdl-layout--fixed-header'));
 
     expect(layoutdebugElement).toBeDefined();
   });
@@ -643,9 +671,9 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
-    let layoutdebugElement = fixture.debugElement.query(By.css('.mdl-layout__drawer-button'));
+    const layoutdebugElement = fixture.debugElement.query(By.css('.mdl-layout__drawer-button'));
 
     expect(layoutdebugElement).toBeNull();
   });
@@ -664,9 +692,9 @@ describe('Component: MdlLayout', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
-    let layoutdebugElement = fixture.debugElement.query(By.css('.mdl-layout__header--seamed'));
+    const layoutdebugElement = fixture.debugElement.query(By.css('.mdl-layout__header--seamed'));
 
     expect(layoutdebugElement).toBeDefined();
   });
@@ -685,19 +713,19 @@ describe('Component: MdlLayout', () => {
     });
 
     it('should be possible to override the LAYOUT_SCREEN_SIZE_THRESHOLD', () => {
-      let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+      const fixture = TestBed.createComponent(MdlTestLayoutComponent);
       fixture.detectChanges();
 
-      let service = TestBed.get(MdlScreenSizeService);
+      const service = TestBed.get(MdlScreenSizeService);
       // access a private property
       expect(service['layoutScreenSizeThreshold']).toBe(230);
     });
 
     it('should fire screen size events on subscribe', (done) => {
-      let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+      const fixture = TestBed.createComponent(MdlTestLayoutComponent);
       fixture.detectChanges();
 
-      let service = TestBed.get(MdlScreenSizeService) as MdlScreenSizeService;
+      const service = TestBed.get(MdlScreenSizeService) as MdlScreenSizeService;
 
       service.sizes().subscribe((anySize) => {
         done();
@@ -705,37 +733,9 @@ describe('Component: MdlLayout', () => {
     });
 
     it('should be possible to access the current screen size', () => {
-      let service = TestBed.get(MdlScreenSizeService) as MdlScreenSizeService;
+      const service = TestBed.get(MdlScreenSizeService) as MdlScreenSizeService;
       expect(service.isSmallScreen()).toBeFalsy();
-    })
+    });
   });
 
 });
-
-
-@Component({
-  selector: 'test-layout',
-  template: 'replaced by the test'
-})
-class MdlTestLayoutComponent {
-
-  public activeIndex = 0;
-
-  public selectedIndexOutput: number = -1;
-
-  public tabChanged($event) {
-    this.selectedIndexOutput = $event.index;
-  }
-
-  public tabMouseover($event) {
-  }
-
-  public tabMouseout($event) {
-  }
-
-  public onDrawerClose() {
-  }
-
-  public onDrawerOpen() {
-  }
-}

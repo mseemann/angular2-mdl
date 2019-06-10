@@ -3,6 +3,15 @@ import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {MdlLayoutComponent, MdlLayoutHeaderComponent, MdlLayoutModule} from './mdl-layout.module';
 
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-layout',
+  template: 'replaced by the test'
+})
+class MdlTestLayoutComponent {
+}
+
+
 describe('Component: MdlLayoutHeader', () => {
 
   beforeEach(() => {
@@ -24,10 +33,10 @@ describe('Component: MdlLayoutHeader', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent)).nativeElement;
+    const layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent)).nativeElement;
     expect(layoutEl.classList.contains('mdl-layout__header')).toBe(true);
 
   });
@@ -44,11 +53,11 @@ describe('Component: MdlLayoutHeader', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
-    let header = headerDebugElement.componentInstance;
+    const headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+    const header = headerDebugElement.componentInstance;
     header.isCompact = false;
 
     header.el.click();
@@ -73,11 +82,11 @@ describe('Component: MdlLayoutHeader', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
-    let header = headerDebugElement.componentInstance;
+    const headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+    const header = headerDebugElement.componentInstance;
     header.isAnimating = true;
 
     header.el.dispatchEvent(new CustomEvent('transitionend'));
@@ -98,12 +107,12 @@ describe('Component: MdlLayoutHeader', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let mdlLayout = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const mdlLayout = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
-    let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+    const headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
 
     mdlLayout.onScroll(600);
     expect(headerDebugElement.componentInstance.isCompact).toBe(true);
@@ -129,12 +138,12 @@ describe('Component: MdlLayoutHeader', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let mdlLayout = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const mdlLayout = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
 
-    let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+    const headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
     mdlLayout.isSmallScreen = true;
     mdlLayout.onScroll(600);
 
@@ -158,13 +167,13 @@ describe('Component: MdlLayoutHeader', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let mdlLayout = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
+    const mdlLayout = fixture.debugElement.query(By.directive(MdlLayoutComponent)).componentInstance;
     mdlLayout.mode = 'standard';
 
-    let headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
+    const headerDebugElement = fixture.debugElement.query(By.directive(MdlLayoutHeaderComponent));
 
     mdlLayout.onScroll(600);
     expect(headerDebugElement.componentInstance.isCompact).toBe(false);
@@ -178,11 +187,3 @@ describe('Component: MdlLayoutHeader', () => {
 
   });
 });
-
-
-@Component({
-  selector: 'test-layout',
-  template: 'replaced by the test'
-})
-class MdlTestLayoutComponent {
-}

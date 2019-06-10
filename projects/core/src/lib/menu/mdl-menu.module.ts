@@ -1,19 +1,15 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import {
-  MdlMenuComponent, MdlMenuRegisty
-} from './mdl-menu.component';
-import {
-  MdlMenuItemComponent
-} from './mdl-menu-item.component';
-import { MdlMenuItemFullBleedDeviderComponent } from './mdl-menu-item.directive';
-import { CommonModule } from '@angular/common';
-import { MdlToggleMenuDirective } from './mdl-toggle-menu.directive';
+import {ModuleWithProviders, NgModule} from '@angular/core';
+import {MdlMenuComponent, MdlMenuRegisty} from './mdl-menu.component';
+import {MdlMenuItemComponent} from './mdl-menu-item.component';
+import {MdlMenuItemFullBleedDeviderDirective} from './mdl-menu-item.directive';
+import {CommonModule} from '@angular/common';
+import {MdlToggleMenuDirective} from './mdl-toggle-menu.directive';
 
 
 const MDL_MENU_DIRECTIVES = [
   MdlMenuComponent,
   MdlMenuItemComponent,
-  MdlMenuItemFullBleedDeviderComponent,
+  MdlMenuItemFullBleedDeviderDirective,
   MdlToggleMenuDirective
 ];
 

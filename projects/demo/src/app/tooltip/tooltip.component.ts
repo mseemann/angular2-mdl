@@ -1,13 +1,12 @@
 import {Component} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
 
 
 @Component({
-  selector: 'tooltip-demo',
-  host: hostConfig,
+  selector: 'demo-tooltip',
   animations: [
     flyInOutTrigger
   ],
@@ -20,11 +19,13 @@ import {AbstractDemoComponent} from '../abstract-demo.component';
     `
   ]
 })
-export class TooltipDemo extends AbstractDemoComponent {
+export class TooltipDemoComponent extends AbstractDemoComponent {
+
   tt1 = 'Follow';
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
   }
+
 
 }

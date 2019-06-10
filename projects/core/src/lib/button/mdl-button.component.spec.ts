@@ -5,6 +5,14 @@ import {MdlButtonComponent} from './mdl-button.component';
 import {MdlRippleModule} from '../ripple/mdl-ripple.module';
 import {MdlButtonModule} from './mdl-button.module';
 
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-button',
+  template: 'replaced by the test'
+})
+class MdlTestButtonComponent {
+}
+
 describe('Component: MdlButton', () => {
 
   beforeEach(() => {
@@ -23,10 +31,10 @@ describe('Component: MdlButton', () => {
       }
     });
 
-    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    const fixture = TestBed.createComponent(MdlTestButtonComponent);
     fixture.detectChanges();
 
-    let btnEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const btnEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(btnEl.classList.contains('mdl-button')).toBe(true);
 
   });
@@ -39,10 +47,10 @@ describe('Component: MdlButton', () => {
       }
     });
 
-    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    const fixture = TestBed.createComponent(MdlTestButtonComponent);
     fixture.detectChanges();
 
-    let btnEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const btnEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(btnEl.classList.contains('mdl-button')).toBe(true);
 
   });
@@ -54,7 +62,7 @@ describe('Component: MdlButton', () => {
         template: '<mdl-button mdl-button-type="didNotExist"></mdl-button>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    const fixture = TestBed.createComponent(MdlTestButtonComponent);
 
     expect(() => fixture.detectChanges()).toThrow();
 
@@ -67,7 +75,7 @@ describe('Component: MdlButton', () => {
         template: '<mdl-button mdl-colored="didNotExist"></mdl-button>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    const fixture = TestBed.createComponent(MdlTestButtonComponent);
 
     expect(() => fixture.detectChanges()).toThrow();
 
@@ -81,11 +89,11 @@ describe('Component: MdlButton', () => {
         template: '<mdl-button></mdl-button>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    const fixture = TestBed.createComponent(MdlTestButtonComponent);
 
     fixture.detectChanges();
 
-    var mdlButtonDirective = fixture.debugElement.query(By.directive(MdlButtonComponent)).componentInstance;
+    const mdlButtonDirective = fixture.debugElement.query(By.directive(MdlButtonComponent)).componentInstance;
 
     spyOn(mdlButtonDirective, 'blurIt').and.callThrough();
     expect(mdlButtonDirective.blurIt).not.toHaveBeenCalled();
@@ -106,13 +114,13 @@ describe('Component: MdlButton', () => {
         template: '<mdl-button #button="mdlButton">x</mdl-button>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    const fixture = TestBed.createComponent(MdlTestButtonComponent);
 
     fixture.detectChanges();
 
-    let references = fixture.debugElement.query(By.directive(MdlButtonComponent)).references;
+    const references = fixture.debugElement.query(By.directive(MdlButtonComponent)).references;
 
-    expect(references['button']).toBeDefined();
+    expect(references.button).toBeDefined();
 
   });
 
@@ -123,13 +131,13 @@ describe('Component: MdlButton', () => {
         template: '<mdl-button>x</mdl-button>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    const fixture = TestBed.createComponent(MdlTestButtonComponent);
 
     fixture.detectChanges();
 
-    let button = fixture.debugElement.query(By.directive(MdlButtonComponent)).componentInstance;
+    const button = fixture.debugElement.query(By.directive(MdlButtonComponent)).componentInstance;
 
-    expect(button.elementRef).toBeDefined('elementRef must be present!')
+    expect(button.elementRef).toBeDefined('elementRef must be present!');
   });
 
   it('should be possible to disable a button', () => {
@@ -140,19 +148,12 @@ describe('Component: MdlButton', () => {
       }
     });
 
-    let fixture = TestBed.createComponent(MdlTestButtonComponent);
+    const fixture = TestBed.createComponent(MdlTestButtonComponent);
     fixture.detectChanges();
 
-    let btnEl: HTMLButtonElement = fixture.nativeElement.children.item(0);
+    const btnEl: HTMLButtonElement = fixture.nativeElement.children.item(0);
     expect(btnEl.disabled).toBe(true);
 
   });
 });
 
-
-@Component({
-  selector: 'test-button',
-  template: 'replaced by the test'
-})
-class MdlTestButtonComponent {
-}

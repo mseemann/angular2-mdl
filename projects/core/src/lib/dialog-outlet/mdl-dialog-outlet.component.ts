@@ -7,6 +7,7 @@ import {MdlDialogOutletService} from './mdl-dialog-outlet.service';
 // this component is not exported - needs to be instanciated by
 //    let x = this.appRef.bootstrap(MdlDialogOutletComponent);
 @Component({
+  // tslint:disable-next-line
   selector: 'dialog-outlet',
   template: ''
 })
@@ -23,6 +24,7 @@ export class MdlDialogOutletComponent {
 // the component is used inside the app-root. this is possible because this component
 // is exported from the module
 @Component({
+  // tslint:disable-next-line
   selector: 'dialog-outlet',
   template: ''
 })

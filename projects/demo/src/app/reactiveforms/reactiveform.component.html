@@ -3,102 +3,108 @@
 
 <form [formGroup]="form">
   <p>
-    <mdl-textfield label="First Name" name="firstname" type="text" formControlName="firstName" floating-label></mdl-textfield>
+    <mdl-textfield floating-label formControlName="firstName" label="First Name" name="firstname"
+                   type="text"></mdl-textfield>
   </p>
   <p>
-    <mdl-textfield label="Last Name" name="lastname" type="text" formControlName="lastName" floating-label></mdl-textfield>
+    <mdl-textfield floating-label formControlName="lastName" label="Last Name" name="lastname"
+                   type="text"></mdl-textfield>
   </p>
   <p>
     Which breakfast do you prefer?<br/>
-    <mdl-radio name="breakfast" value="Continental" formControlName="breakfast" mdl-ripple>Continental</mdl-radio>
-    <mdl-radio name="breakfast" value="British" formControlName="breakfast" mdl-ripple>British</mdl-radio>
+    <mdl-radio formControlName="breakfast" mdl-ripple name="breakfast" value="Continental">Continental</mdl-radio>
+    <mdl-radio formControlName="breakfast" mdl-ripple name="breakfast" value="British">British</mdl-radio>
   </p>
   <p>
     What would you like to drink?<br/>
-    <mdl-radio name="toDrink" value="Coffee" formControlName="toDrink" mdl-ripple>Coffee</mdl-radio>
-    <mdl-radio name="toDrink" value="Tea" formControlName="toDrink" mdl-ripple>Tea</mdl-radio>
+    <mdl-radio formControlName="toDrink" mdl-ripple name="toDrink" value="Coffee">Coffee</mdl-radio>
+    <mdl-radio formControlName="toDrink" mdl-ripple name="toDrink" value="Tea">Tea</mdl-radio>
   </p>
   <p>
     <mdl-textfield
-            label="Email"
-            name="email"
-            type="text"
-            formControlName="email"
-            floating-label
-            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
-            error-msg="Please provide a correct email!"></mdl-textfield>
+      error-msg="Please provide a correct email!"
+      floating-label
+      formControlName="email"
+      label="Email"
+      name="email"
+      pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
+      type="text"></mdl-textfield>
   </p>
   <p>
     <mdl-textfield
-            [class.is-invalid]="email2.invalid"
-            label="Email (2)"
-            name="email2"
-            type="text"
-            formControlName="email2"
-            disableNativeValidityChecking
-            [error-msg]="'Please provide a correct email!'"
-            floating-label></mdl-textfield>
-  <br/>(disbled native checking)
+      [class.is-invalid]="email2.invalid"
+      [error-msg]="'Please provide a correct email!'"
+      disableNativeValidityChecking
+      floating-label
+      formControlName="email2"
+      label="Email (2)"
+      name="email2"
+      type="text"></mdl-textfield>
+    <br/>(disbled native checking)
   <p>
-    <button mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</button>
+    <button (click)="onSubmit()" [disabled]="!form.valid" mdl-button mdl-button-type="raised" mdl-colored="primary"
+            mdl-ripple>Submit
+    </button>
   </p>
 </form>
-<mdl-checkbox  [mdl-ripple]="true" [(ngModel)]="disableForm" (change)="onDisableForm($event)">
+<mdl-checkbox (change)="onDisableForm($event)" [(ngModel)]="disableForm" [mdl-ripple]="true">
   Disable the form.
 </mdl-checkbox>
 <p>The submit is logged to the browser console.</p>
 <p>You need to add the FormsModule and the ReactiveFormsModule to your app module.</p>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
 <form [formGroup]="form">
   <p>
-    <mdl-textfield label="First Name" type="text" formControlName="firstName" floating-label></mdl-textfield>
+    <mdl-textfield floating-label formControlName="firstName" label="First Name" type="text"></mdl-textfield>
   </p>
   <p>
-    <mdl-textfield label="Last Name" type="text" formControlName="lastName" floating-label></mdl-textfield>
+    <mdl-textfield floating-label formControlName="lastName" label="Last Name" type="text"></mdl-textfield>
   </p>
   <p>
     Which breakfast do you prefer?<br/>
-    <mdl-radio value="Continental" formControlName="breakfast" mdl-ripple>Continental</mdl-radio>
-    <mdl-radio value="British" formControlName="breakfast" mdl-ripple>British</mdl-radio>
+    <mdl-radio formControlName="breakfast" mdl-ripple value="Continental">Continental</mdl-radio>
+    <mdl-radio formControlName="breakfast" mdl-ripple value="British">British</mdl-radio>
   </p>
   <p>
     <mdl-textfield
-            label="Email"
-            name="email"
-            type="text"
-            formControlName="email"
-            floating-label
-            pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
-            error-msg="Please provide a correct email!"></mdl-textfield>
+      error-msg="Please provide a correct email!"
+      floating-label
+      formControlName="email"
+      label="Email"
+      name="email"
+      pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
+      type="text"></mdl-textfield>
   </p>
   <p>
     <mdl-textfield
-            [class.is-invalid]="email2.invalid"
-            label="Email (2)"
-            name="email2"
-            type="text"
-            formControlName="email2"
-            disableNativeValidityChecking
-            [error-msg]="'Please provide a correct email!'"
-            floating-label></mdl-textfield>
+      [class.is-invalid]="email2.invalid"
+      [error-msg]="'Please provide a correct email!'"
+      disableNativeValidityChecking
+      floating-label
+      formControlName="email2"
+      label="Email (2)"
+      name="email2"
+      type="text"></mdl-textfield>
   <br/>(disbled native checking)
   <p>
-    <button mdl-button (click)="onSubmit()"  [disabled]="!form.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</button>
+    <button (click)="onSubmit()" [disabled]="!form.valid" mdl-button mdl-button-type="raised" mdl-colored="primary"
+            mdl-ripple>Submit</button>
   </p>
 </form>
-  <mdl-checkbox  [mdl-ripple]="true" [(ngModel)]="disableForm" (change)="onDisableForm($event)">
+  <mdl-checkbox (change)="onDisableForm($event)" [(ngModel)]="disableForm" [mdl-ripple]="true">
   Disable the form.
 </mdl-checkbox>
 ]]>
 </pre>
 
-<a href="https://gist.github.com/mseemann/2f4f09d5d7e0b2cacd4f10dad5ed980a" target="gist_angular2-mdl">Complete SourceCode</a>
+<a href="https://gist.github.com/mseemann/2f4f09d5d7e0b2cacd4f10dad5ed980a" target="gist_angular2-mdl">Complete
+  SourceCode</a>
 
 <script src="https://gist.github.com/mseemann/2f4f09d5d7e0b2cacd4f10dad5ed980a.js"></script>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
 export class ReactiveFormsDemo {
 
@@ -112,11 +118,11 @@ export class ReactiveFormsDemo {
 
   constructor(private fb: FormBuilder) {
     this.form = fb.group({
-      'firstName': this.firstName,
-      'lastName': this.lastName,
-      'email': this.email,
-      'email2': this.email2,
-      'breakfast': this.breakfast
+  'firstName': this.firstName,
+  'lastName': this.lastName,
+  'email': this.email,
+  'email2': this.email2,
+  'breakfast': this.breakfast
     });
   }
 
@@ -126,29 +132,30 @@ export class ReactiveFormsDemo {
 
   public onDisableForm(formDisabled: boolean) {
     if ( formDisabled ) {
-      this.form.disable();
+  this.form.disable();
     } else {
-      this.form.enable();
+  this.form.enable();
     }
   }
 
 }
 ]]>
 </pre>
-<a href="https://gist.github.com/mseemann/39d50d07a191be1df2c2d8f5ea244f7d" target="gist_angular2-mdl">Complete SourceCode</a>
+<a href="https://gist.github.com/mseemann/39d50d07a191be1df2c2d8f5ea244f7d" target="gist_angular2-mdl">Complete
+  SourceCode</a>
 <br/>
 
 <div>
-GroupTest:
-<form [formGroup]="testForm">
-  <div formGroupName="group1" mdl-radio-group>
-    <mdl-radio formControlName="type" value="type1"></mdl-radio>
-    <mdl-radio formControlName="type" value="type2"></mdl-radio>
-  </div>
-  <div formGroupName="group2">
-    <mdl-radio formControlName="type" value="type1"></mdl-radio>
-    <mdl-radio formControlName="type" value="type2"></mdl-radio>
-  </div>
-</form>
- <br/>
+  GroupTest:
+  <form [formGroup]="testForm">
+    <div formGroupName="group1" mdl-radio-group>
+      <mdl-radio formControlName="type" value="type1"></mdl-radio>
+      <mdl-radio formControlName="type" value="type2"></mdl-radio>
+    </div>
+    <div formGroupName="group2">
+      <mdl-radio formControlName="type" value="type1"></mdl-radio>
+      <mdl-radio formControlName="type" value="type2"></mdl-radio>
+    </div>
+  </form>
+  <br/>
 </div>

@@ -1,62 +1,9 @@
 import {TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IMdlTableModelItem, MdlDefaultTableModel, MdlTableModule} from './mdl-table.module';
 import {MdlCheckboxComponent} from '../checkbox/mdl-checkbox.component';
 import {FormsModule} from '@angular/forms';
-
-describe('Component: MdlTableComponent', () => {
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [MdlTableModule.forRoot(), FormsModule],
-      declarations: [MdlTestTableComponent],
-    });
-  });
-
-  it('should create a table with class "mdl-data-table', () => {
-
-    let fixture = TestBed.createComponent(MdlTestTableComponent);
-    fixture.detectChanges();
-
-    let tableEl: HTMLInputElement = fixture.debugElement.query(By.css('table')).nativeElement;
-    expect(tableEl.classList.contains('mdl-data-table')).toBe(true);
-
-  });
-
-
-  it('should select all items if the toggleAll checkbox is clicked', () => {
-
-    let fixture = TestBed.createComponent(MdlTestTableComponent);
-    fixture.detectChanges();
-
-    let firstCheckboxEl: HTMLInputElement = fixture.debugElement
-      .query(By.directive(MdlCheckboxComponent)).nativeElement;
-    firstCheckboxEl.click();
-
-    fixture.detectChanges();
-
-    expect(fixture.componentInstance.selected.length).toBe(fixture.componentInstance.tableData.length);
-
-  });
-
-  it('should change the selection to the last table row if the last checkbox is clickt', () => {
-
-    let fixture = TestBed.createComponent(MdlTestTableComponent);
-    fixture.detectChanges();
-
-    let checkboxes = fixture.debugElement.queryAll(By.directive(MdlCheckboxComponent));
-    let firstCheckboxEl: HTMLInputElement = checkboxes[checkboxes.length - 1].nativeElement;
-    firstCheckboxEl.click();
-
-    fixture.detectChanges();
-
-    // one is already selected so we have to selected items
-    expect(fixture.componentInstance.selected.length).toBe(2);
-
-  });
-
-});
 
 
 interface ITableItem extends IMdlTableModelItem {
@@ -65,8 +12,8 @@ interface ITableItem extends IMdlTableModelItem {
   unitPrice: number;
 }
 
-
 @Component({
+  // tslint:disable-next-line
   selector: 'test-icon',
   template: `
     <mdl-table-selectable mdl-shadow="2"
@@ -76,7 +23,7 @@ interface ITableItem extends IMdlTableModelItem {
     </mdl-table-selectable>
   `,
 })
-class MdlTestTableComponent {
+class MdlTestTableComponent implements OnInit {
   public tableData: ITableItem[] = [
     {material: 'Acrylic (Transparent)', quantity: 25, unitPrice: 2.90, selected: true},
     {material: 'Plywood (Birch)', quantity: 50, unitPrice: 1.25, selected: false},
@@ -100,3 +47,57 @@ class MdlTestTableComponent {
     this.selected = $event.value;
   }
 }
+
+
+describe('Component: MdlTableComponent', () => {
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [MdlTableModule.forRoot(), FormsModule],
+      declarations: [MdlTestTableComponent],
+    });
+  });
+
+  it('should create a table with class "mdl-data-table', () => {
+
+    const fixture = TestBed.createComponent(MdlTestTableComponent);
+    fixture.detectChanges();
+
+    const tableEl: HTMLInputElement = fixture.debugElement.query(By.css('table')).nativeElement;
+    expect(tableEl.classList.contains('mdl-data-table')).toBe(true);
+
+  });
+
+
+  it('should select all items if the toggleAll checkbox is clicked', () => {
+
+    const fixture = TestBed.createComponent(MdlTestTableComponent);
+    fixture.detectChanges();
+
+    const firstCheckboxEl: HTMLInputElement = fixture.debugElement
+      .query(By.directive(MdlCheckboxComponent)).nativeElement;
+    firstCheckboxEl.click();
+
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.selected.length).toBe(fixture.componentInstance.tableData.length);
+
+  });
+
+  it('should change the selection to the last table row if the last checkbox is clickt', () => {
+
+    const fixture = TestBed.createComponent(MdlTestTableComponent);
+    fixture.detectChanges();
+
+    const checkboxes = fixture.debugElement.queryAll(By.directive(MdlCheckboxComponent));
+    const firstCheckboxEl: HTMLInputElement = checkboxes[checkboxes.length - 1].nativeElement;
+    firstCheckboxEl.click();
+
+    fixture.detectChanges();
+
+    // one is already selected so we have to selected items
+    expect(fixture.componentInstance.selected.length).toBe(2);
+
+  });
+
+});

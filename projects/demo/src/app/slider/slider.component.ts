@@ -1,18 +1,17 @@
 import {Component} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
 
 @Component({
-  selector: 'slider-demo',
-  host: hostConfig,
+  selector: 'demo-slider',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'slider.component.html'
 })
-export class SliderDemo extends AbstractDemoComponent {
+export class SliderDemoComponent extends AbstractDemoComponent {
 
   minValue = 0;
   maxValue = 100;

@@ -1,38 +1,29 @@
-import {
-  Component,
-  ViewEncapsulation,
-  AfterContentInit
-} from '@angular/core';
-import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
-import { hostConfig } from '../animations/flyInOutTrigger-animation';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { AbstractDemoComponent } from '../abstract-demo.component';
+import {AfterContentInit, Component, ViewEncapsulation} from '@angular/core';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {AbstractDemoComponent} from '../abstract-demo.component';
 
-/* tslint:disable */
+
 @Component({
-  selector: 'card-demo',
+  selector: 'demo-card',
   templateUrl: 'card.component.html',
   styleUrls: ['card.component.scss'],
-  host: hostConfig,
   animations: [
     flyInOutTrigger
   ],
   encapsulation: ViewEncapsulation.None
 })
-/* tslint:enable */
-export class CardDemo extends AbstractDemoComponent implements AfterContentInit {
+export class CardDemoComponent extends AbstractDemoComponent implements AfterContentInit {
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
   }
 
   public ngAfterContentInit() {
-    (function(d, sc, u) {
-      var s: any = d.createElement(sc), p: any = d.getElementsByTagName(sc)[0];
+    ((d, sc, u) => {
+      const s: any = d.createElement(sc);
+      const p: any = d.getElementsByTagName(sc)[0];
       s.type = 'text/javascript';
       s.async = true;
       s.src = u + '?v=' + (+new Date());
@@ -41,7 +32,7 @@ export class CardDemo extends AbstractDemoComponent implements AfterContentInit 
   }
 
   public booknow() {
-    let url = 'http://www.booking.com/index.html?aid=818140';
+    const url = 'http://www.booking.com/index.html?aid=818140';
     window.open(url);
   }
 }

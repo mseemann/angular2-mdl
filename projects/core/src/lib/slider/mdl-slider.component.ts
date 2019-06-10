@@ -51,36 +51,35 @@ export class MdlSliderComponent implements ControlValueAccessor {
   @ViewChild('lower', {static: true}) public lowerEl: ElementRef;
   @ViewChild('uppper', {static: true}) public upperEl: ElementRef;
   @ViewChild('input', {static: true}) public inputEl: ElementRef;
-  private value_: any;
+  private valueIntern: any;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
+  private disabledIntern = false;
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) {
   }
 
-  private _disabled: boolean = false;
-
   @Input()
   get disabled(): boolean {
-    return this._disabled;
+    return this.disabledIntern;
   }
 
   set disabled(value) {
-    this._disabled = toBoolean(value);
+    this.disabledIntern = toBoolean(value);
   }
 
   get value(): any {
-    return this.value_;
-  };
+    return this.valueIntern;
+  }
 
   @Input() set value(v: any) {
-    this.value_ = v;
+    this.valueIntern = v;
     this.updateSliderUI();
     this.onChangeCallback(v);
   }
 
   public writeValue(value: number): void {
-    this.value_ = value;
+    this.valueIntern = value;
     this.updateSliderUI();
   }
 
@@ -107,7 +106,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
     // Discard the original event and create a new event that
     // is on the slider element.
     event.preventDefault();
-    var newEvent = new MouseEvent('mousedown', {
+    const newEvent = new MouseEvent('mousedown', {
       relatedTarget: event.relatedTarget,
       button: event.button,
       buttons: event.buttons,
@@ -120,7 +119,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
   }
 
   private updateSliderUI() {
-    var fraction = (this.value_ - this.min) / (this.max - this.min);
+    const fraction = (this.valueIntern - this.min) / (this.max - this.min);
 
     if (fraction === 0) {
       this.renderer.addClass(this.inputEl.nativeElement, 'is-lowest-value');

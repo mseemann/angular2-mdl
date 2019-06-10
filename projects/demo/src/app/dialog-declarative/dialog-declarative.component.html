@@ -5,7 +5,7 @@
   Every Dialog needs a place to be attached to the dom. The easiest way to achieve this is a dialog-outlet html
   element within your body element:
 </p>
-<pre prism ngNonBindable>
+<pre demoPrism ngNonBindable>
   <![CDATA[
 <html>
   <head>...</head>
@@ -21,26 +21,27 @@
 <h5>Alert</h5>
 
 <button
-  mdl-button mdl-button-type="raised" mdl-colored="accent"
-  mdl-ripple (click)="alert.show()">Show Alert</button>
+  (click)="alert.show()" mdl-button mdl-button-type="raised"
+  mdl-colored="accent" mdl-ripple>Show Alert
+</button>
 
 <mdl-alert
   #alert="mdlAlert"
+  (confirmed)="alertConfirmd()"
   message="This is a <em class='mdl-color-text--primary'>simple</em> Alert"
-  okText="Got it!"
-  (confirmed)="alertConfirmd()"></mdl-alert>
+  okText="Got it!"></mdl-alert>
 
-<pre prism>
+<pre demoPrism>
   <![CDATA[
 <button
-  mdl-button mdl-button-type="raised" mdl-colored="accent"
-  mdl-ripple (click)="alert.show()">Show Alert</button>
+  (click)="alert.show()" mdl-button mdl-button-type="raised"
+  mdl-colored="accent" mdl-ripple>Show Alert</button>
 
 <mdl-alert
   #alert="mdlAlert"
+  (confirmed)="alertConfirmd()"
   message="This is a <em class='mdl-color-text--primary'>simple</em> Alert"
-  okText="Got it!"
-  (confirmed)="alertConfirmd()"></mdl-alert>
+  okText="Got it!"></mdl-alert>
 ]]>
 </pre>
 
@@ -93,52 +94,53 @@ You can only show one intance of an embedded dialog.
 <p>Username: {{ username }}</p>
 
 <button
-    #editUserButton
-    mdl-button mdl-button-type="raised" mdl-colored="primary"
-    mdl-ripple (click)="editUserDialog.show()">Edit User Dialog</button>
+  #editUserButton
+  (click)="editUserDialog.show()" mdl-button mdl-button-type="raised"
+  mdl-colored="primary" mdl-ripple>Edit User Dialog
+</button>
 
 <mdl-dialog #editUserDialog
+            (hide)="onDialogHide()"
+            (show)="onDialogShow($event)"
             [mdl-dialog-config]="{
               clickOutsideToClose: true,
               styles:{'width': '350px'},
               isModal: true,
               openFrom: editUserButton,
               enterTransitionDuration: 400,
-              leaveTransitionDuration: 400}"
-            (show)="onDialogShow($event)"
-            (hide)="onDialogHide()">
+              leaveTransitionDuration: 400}">
   <h3 class="mdl-dialog__title">Edit User</h3>
   <div class="mdl-dialog__content">
-    <mdl-textfield type="text" label="Username" [(ngModel)]="editedUsername" floating-label autofocus></mdl-textfield>
+    <mdl-textfield [(ngModel)]="editedUsername" autofocus floating-label label="Username" type="text"></mdl-textfield>
   </div>
   <div class="mdl-dialog__actions">
-    <button mdl-button (click)="saveUser()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
-    <button mdl-button (click)="editUserDialog.close()" mdl-ripple>Cancel</button>
+    <button (click)="saveUser()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+    <button (click)="editUserDialog.close()" mdl-button mdl-ripple>Cancel</button>
   </div>
 </mdl-dialog>
 
-<pre prism>
+<pre demoPrism>
 <![CDATA[
-<button #editUserButton mdl-button mdl-button-type="raised" mdl-colored="primary"
-        mdl-ripple (click)="editUserDialog.show()">Edit User Dialog</button>
+<button #editUserButton (click)="editUserDialog.show()" mdl-button mdl-button-type="raised"
+        mdl-colored="primary" mdl-ripple>Edit User Dialog</button>
 
 <mdl-dialog #editUserDialog
+            (hide)="onDialogHide()"
+            (show)="onDialogShow(dialogRef)"
             [mdl-dialog-config]="{
               clickOutsideToClose: true,
               styles:{'width': '300px'},
               isModal:true,
               openFrom: editUserButton,
               enterTransitionDuration: 400,
-              leaveTransitionDuration: 400}"
-            (show)="onDialogShow(dialogRef)"
-            (hide)="onDialogHide()">
+              leaveTransitionDuration: 400}">
   <h3 class="mdl-dialog__title">Edit User</h3>
   <div class="mdl-dialog__content">
-    <mdl-textfield type="text" label="Username" [(ngModel)]="username" floating-label autofocus></mdl-textfield>
+    <mdl-textfield [(ngModel)]="username" autofocus floating-label label="Username" type="text"></mdl-textfield>
   </div>
   <div class="mdl-dialog__actions">
-    <button mdl-button (click)="saveUser()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
-    <button mdl-button (click)="editUserDialog.close()" mdl-ripple>Cancel</button>
+    <button (click)="saveUser()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+    <button (click)="editUserDialog.close()" mdl-button mdl-ripple>Cancel</button>
   </div>
 </mdl-dialog>
 ]]>
@@ -211,11 +213,12 @@ You can only show one intance of an embedded dialog.
     <td>classes?: string</td>
     <td>
       css classes as space delimted list of classes applied to
-       the dialog-host component. (e.g. a b -> <mdl-dialog-host-component class="a b"...
+      the dialog-host component. (e.g. a b ->
+      <mdl-dialog-host-component ... class="a b"
     </td>
   </tr>
 
-  <tr >
+  <tr>
     <td>styles?: &#123;[key: string]: string&#125;</td>
     <td>
       Key Value object with additional styles that will be applied to

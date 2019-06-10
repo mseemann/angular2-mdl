@@ -1,12 +1,11 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
 
 @Component({
-  selector: 'tabs-demo',
-  host: hostConfig,
+  selector: 'demo-tabs',
   animations: [
     flyInOutTrigger
   ],
@@ -32,7 +31,7 @@ import {AbstractDemoComponent} from '../abstract-demo.component';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class TabsDemo extends AbstractDemoComponent implements OnInit {
+export class TabsDemoComponent extends AbstractDemoComponent implements OnInit {
 
   disableTargaryens = false;
   disableBaratheon = false;

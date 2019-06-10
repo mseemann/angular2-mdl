@@ -1,4 +1,4 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 
 export const flyInOutTrigger = trigger('flyInOut', [
@@ -9,8 +9,3 @@ export const flyInOutTrigger = trigger('flyInOut', [
   ]),
   transition(':leave', animate(300, style({transform: 'translateX(100%)'})))
 ]);
-
-export const hostConfig: {[key: string]: string} = {
-  '[@flyInOut]': 'true',
-  '[style.display]': "'block'"
-};

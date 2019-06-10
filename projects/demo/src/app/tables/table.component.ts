@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
@@ -14,14 +14,13 @@ export interface ITableItem extends IMdlTableModelItem {
 
 
 @Component({
-  selector: 'table-demo',
-  host: hostConfig,
+  selector: 'demo-table',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'table.component.html'
 })
-export class TableDemo extends AbstractDemoComponent implements OnInit {
+export class TableDemoComponent extends AbstractDemoComponent implements OnInit {
 
   public tableModel = new MdlDefaultTableModel([
     {key: 'material', name: 'Material'},

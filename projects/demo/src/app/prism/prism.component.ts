@@ -1,12 +1,8 @@
-import {
-  Directive,
-  OnInit,
-  ElementRef
-} from '@angular/core';
-import { Prism } from './prism.vendor';
+import {Directive, ElementRef, OnInit} from '@angular/core';
+import {Prism} from './prism.vendor';
 
 @Directive({
-  selector: '[prism]'
+  selector: '[demoPrism]'
 })
 export class PrismDirective implements OnInit {
 
@@ -15,8 +11,8 @@ export class PrismDirective implements OnInit {
   }
 
   public ngOnInit() {
-    var rawHtml = this.el.nativeElement.textContent.replace(new RegExp('=""', 'g'), '');
-    var html = Prism.highlight(rawHtml, Prism.languages.html);
+    const rawHtml = this.el.nativeElement.textContent.replace(new RegExp('=""', 'g'), '');
+    const html = Prism.highlight(rawHtml, Prism.languages.html);
     this.el.nativeElement.innerHTML = html;
   }
 

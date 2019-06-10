@@ -1,22 +1,17 @@
-import { Component } from '@angular/core';
-import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
-import { hostConfig } from '../animations/flyInOutTrigger-animation';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { AbstractDemoComponent } from '../abstract-demo.component';
+import {Component} from '@angular/core';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {AbstractDemoComponent} from '../abstract-demo.component';
 
 @Component({
-  selector: 'loading-demo',
-  host: hostConfig,
+  selector: 'demo-loading',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'loading.component.html'
 })
-export class LoadingDemo extends AbstractDemoComponent {
+export class LoadingDemoComponent extends AbstractDemoComponent {
   public progress = 44;
   public indeterminate = true;
   public buffer = 78;

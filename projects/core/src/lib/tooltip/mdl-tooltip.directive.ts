@@ -1,18 +1,20 @@
 import {
-  Directive,
-  Input,
-  OnInit,
-  ViewContainerRef,
-  Renderer2,
-  ComponentRef,
   ComponentFactoryResolver,
-  HostListener, OnChanges, SimpleChanges
+  ComponentRef,
+  Directive,
+  HostListener,
+  Input,
+  OnChanges,
+  OnInit,
+  Renderer2,
+  SimpleChanges,
+  ViewContainerRef
 } from '@angular/core';
-import { MdlSimpleTooltipComponent, MdlTooltipComponent } from './mdl-tooltip.component';
+import {MdlSimpleTooltipComponent, MdlTooltipComponent} from './mdl-tooltip.component';
 
-export class AbstractMdlTooltipDirective implements OnInit, OnChanges {
+export abstract class AbstractMdlTooltipDirective implements OnInit, OnChanges {
 
-  protected tooltip: string|MdlTooltipComponent;
+  protected tooltip: string | MdlTooltipComponent;
   protected position: 'left' | 'right' | 'top' | 'bottom';
 
   protected tooltipComponent: MdlSimpleTooltipComponent;
@@ -30,60 +32,56 @@ export class AbstractMdlTooltipDirective implements OnInit, OnChanges {
     // we create a simpleTooltipComponent on the fly.
     if (!(this.tooltip instanceof MdlTooltipComponent)) {
 
-      let cFactory = this.componentFactoryResolver.resolveComponentFactory(MdlSimpleTooltipComponent);
-      let cRef: ComponentRef<MdlSimpleTooltipComponent> = this.vcRef.createComponent(cFactory);
+      const cFactory = this.componentFactoryResolver.resolveComponentFactory(MdlSimpleTooltipComponent);
+      const cRef: ComponentRef<MdlSimpleTooltipComponent> = this.vcRef.createComponent(cFactory);
 
-      this.tooltipComponent = <MdlSimpleTooltipComponent> cRef.instance;
-      this.tooltipComponent.tooltipText = <string>this.tooltip;
+      this.tooltipComponent = cRef.instance as MdlSimpleTooltipComponent;
+      this.tooltipComponent.tooltipText = this.tooltip;
       this.configureTooltipComponent();
 
     } else {
-      this.tooltipComponent = <MdlTooltipComponent>this.tooltip;
+      this.tooltipComponent = this.tooltip;
       this.configureTooltipComponent();
     }
 
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['tooltip'] && !changes['tooltip'].isFirstChange()){
+    if (changes.tooltip && !changes.tooltip.isFirstChange()) {
       if (!(this.tooltip instanceof MdlTooltipComponent)) {
-        this.tooltipComponent.tooltipText = <string>this.tooltip;
+        this.tooltipComponent.tooltipText = this.tooltip;
       }
     }
   }
 
+  @HostListener('touchend', ['$event'])
+  @HostListener('mouseenter', ['$event'])
+  onMouseEnter(event) {
+    this.tooltipComponent.mouseEnter(event);
+  }
+
+  @HostListener('window:touchstart')
+  @HostListener('mouseleave')
+  onMouseLeave() {
+    this.tooltipComponent.mouseLeave();
+  }
 
   private configureTooltipComponent() {
     this.tooltipComponent.large = this.large;
     this.tooltipComponent.position = this.position;
   }
-
-  public onMouseEnter(event) {
-    this.tooltipComponent.mouseEnter(event);
-  }
-
-  @HostListener('window:touchstart')
-  public onMouseLeave() {
-    this.tooltipComponent.mouseLeave();
-  }
 }
 
 
-const host: { [key: string]: string; } = {
-  '(mouseenter)': 'onMouseEnter($event)',
-  '(touchend)': 'onMouseEnter($event)',
-  '(mouseleave)': 'onMouseLeave()'
-};
-
-
 @Directive({
-  selector: '[mdl-tooltip]',
-  host: host
+  // tslint:disable-next-line
+  selector: '[mdl-tooltip]'
 })
 export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
 
-  @Input('mdl-tooltip')           public tooltip: string|MdlTooltipComponent;
-  @Input('mdl-tooltip-position')  public position: 'left' | 'right' | 'top' | 'bottom';
+  @Input('mdl-tooltip') public tooltip: string | MdlTooltipComponent;
+  // tslint:disable-next-line:no-input-rename
+  @Input('mdl-tooltip-position') public position: 'left' | 'right' | 'top' | 'bottom';
 
   constructor(
     vcRef: ViewContainerRef,
@@ -92,18 +90,17 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
     super(vcRef, false, componentFactoryResolver, renderer);
   }
 
-  public ngOnInit() { super.ngOnInit(); }
-  public ngOnChanges(changes: SimpleChanges) { super.ngOnChanges(changes)};
 }
 
 @Directive({
-  selector: '[mdl-tooltip-large]',
-  host: host
+  // tslint:disable-next-line
+  selector: '[mdl-tooltip-large]'
 })
 export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
 
-  @Input('mdl-tooltip-large')     public tooltip: string|MdlTooltipComponent;
-  @Input('mdl-tooltip-position')  public position: 'left' | 'right' | 'top' | 'bottom';
+  @Input('mdl-tooltip-large') public tooltip: string | MdlTooltipComponent;
+  // tslint:disable-next-line:no-input-rename
+  @Input('mdl-tooltip-position') public position: 'left' | 'right' | 'top' | 'bottom';
 
   constructor(
     vcRef: ViewContainerRef,
@@ -112,6 +109,4 @@ export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
     super(vcRef, true, componentFactoryResolver, renderer);
   }
 
-  public ngOnInit() { super.ngOnInit(); }
-  public ngOnChanges(changes: SimpleChanges) { super.ngOnChanges(changes)};
 }

@@ -1,17 +1,18 @@
-import {Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
+import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
 
 
 const DATA_BADE_ATTR = 'data-badge';
 
 @Directive({
-  selector: '[mdl-badge]',
-  host: {
-    '[class.mdl-badge]': 'true'
-  }
+  // tslint:disable-next-line
+  selector: '[mdl-badge]'
 })
 export class MdlBadgeDirective implements OnChanges {
 
   @Input('mdl-badge') public mdlBadgeContent: string;
+
+  @HostBinding('class.mdl-badge') isBadge = true;
+
   private el: HTMLElement;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
@@ -29,21 +30,21 @@ export class MdlBadgeDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[mdl-badge-overlap]',
-  host: {
-    '[class.mdl-badge--overlap]': 'true'
-  }
+  // tslint:disable-next-line
+  selector: '[mdl-badge-overlap]'
 })
 export class MdlBadgeOverlapDirective {
+
+  @HostBinding('class.mdl-badge--overlap') isOverlapping = true;
 }
 
 @Directive({
-  selector: '[mdl-badge-no-background]',
-  host: {
-    '[class.mdl-badge--no-background]': 'true'
-  }
+  // tslint:disable-next-line
+  selector: '[mdl-badge-no-background]'
 })
 export class MdlBadgeNoBackgroundDirective {
+
+  @HostBinding('class.mdl-badge--no-background') isNoBackground = true;
 }
 
 

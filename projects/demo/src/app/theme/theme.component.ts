@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
@@ -72,8 +72,7 @@ const MD_PALETTE = [
 
 
 @Component({
-  selector: 'theme-demo',
-  host: hostConfig,
+  selector: 'demo-theme',
   animations: [
     flyInOutTrigger
   ],
@@ -111,7 +110,7 @@ const MD_PALETTE = [
     `
   ]
 })
-export class ThemeDemo extends AbstractDemoComponent implements OnInit {
+export class ThemeDemoComponent extends AbstractDemoComponent implements OnInit {
 
   text3: string;
   public checkbox1 = true;
@@ -137,8 +136,7 @@ export class ThemeDemo extends AbstractDemoComponent implements OnInit {
       return '';
     }
 
-    let styleUrl = `https://code.getmdl.io/1.3.0/material.${this.primaryColorName}-${this.accentColorName}.min.css`;
-    return styleUrl;
+    return `https://code.getmdl.io/1.3.0/material.${this.primaryColorName}-${this.accentColorName}.min.css`;
   }
 
   get cdnLink() {
@@ -156,10 +154,9 @@ export class ThemeDemo extends AbstractDemoComponent implements OnInit {
   }
 
   get secondaryColors() {
-    let colors = MD_COLORS
+    const colors = MD_COLORS
       .filter((color) => {
-        let isNotForbidden = FORBIDDEN_ACCENTS.indexOf(color) === -1;
-        return isNotForbidden;
+        return FORBIDDEN_ACCENTS.indexOf(color) === -1;
       })
       .map(this.mapToColorObject);
 

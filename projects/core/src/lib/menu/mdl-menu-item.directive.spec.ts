@@ -4,6 +4,15 @@ import {Component} from '@angular/core';
 import {MdlMenuItemComponent, MdlMenuModule} from './mdl-menu.module';
 import {MdlMenuRegisty} from './mdl-menu.component';
 
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-menu',
+  template: '<mdl-menu><mdl-menu-item mdl-menu-item-full-bleed-divider>x</mdl-menu-item></mdl-menu>'
+})
+class MdlTestMenuItemComponent {
+}
+
 describe('Component: MdlMenuItem-Directive', () => {
 
   beforeEach(() => {
@@ -16,21 +25,12 @@ describe('Component: MdlMenuItem-Directive', () => {
 
   it('should add the css class mdl-menu__item--full-bleed-divider to the host element', () => {
 
-    let fixture = TestBed.createComponent(MdlTestMenuItemComponent);
+    const fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
 
-    let item: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
+    const item: HTMLElement = fixture.debugElement.query(By.directive(MdlMenuItemComponent)).nativeElement;
     expect(item.classList.contains('mdl-menu__item--full-bleed-divider')).toBe(true);
 
   });
 
-
 });
-
-
-@Component({
-  selector: 'test-menu',
-  template: '<mdl-menu><mdl-menu-item mdl-menu-item-full-bleed-divider>x</mdl-menu-item></mdl-menu>'
-})
-class MdlTestMenuItemComponent {
-}

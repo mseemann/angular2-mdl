@@ -40,7 +40,7 @@ export class MdlSnackbarComponent {
   }
 
   public show(): Observable<void> {
-    let result: Subject<any> = new Subject();
+    const result: Subject<any> = new Subject();
     // wait unit the dom is in place - then showIt will change the css class
     setTimeout(() => {
       this.showIt = true;
@@ -58,7 +58,7 @@ export class MdlSnackbarComponent {
   public hide(): Observable<void> {
     this.showIt = false;
 
-    let result: Subject<any> = new Subject();
+    const result: Subject<any> = new Subject();
 
     // fire after the view animation is done
     setTimeout(() => {
@@ -98,30 +98,30 @@ export class MdlSnackbarService {
 
   public showToast(message: string, timeout?: number): Observable<MdlSnackbarComponent> {
     return this.showSnackbar({
-      message: message,
-      timeout: timeout
+      message,
+      timeout
     });
   }
 
   public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Observable<MdlSnackbarComponent> {
 
-    let optTimeout = snackbarMessage.timeout || 2750;
-    let closeAfterTimeout = !!snackbarMessage.closeAfterTimeout;
-    let viewContainerRef = this.dialogOutletService.viewContainerRef;
+    const optTimeout = snackbarMessage.timeout || 2750;
+    const closeAfterTimeout = !!snackbarMessage.closeAfterTimeout;
+    const viewContainerRef = this.dialogOutletService.viewContainerRef;
 
     if (!viewContainerRef) {
       throw new Error('You did not provide a ViewContainerRef. ' +
         'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
     }
 
-    let cRef = viewContainerRef.createComponent(this.cFactory, viewContainerRef.length);
+    const cRef = viewContainerRef.createComponent(this.cFactory, viewContainerRef.length);
 
-    let mdlSnackbarComponent = <MdlSnackbarComponent>cRef.instance;
+    const mdlSnackbarComponent = cRef.instance as MdlSnackbarComponent;
     mdlSnackbarComponent.message = snackbarMessage.message;
 
     if (this.previousSnack) {
-      let previousSnack = this.previousSnack;
-      let subscription = previousSnack.component.hide()
+      const previousSnack = this.previousSnack;
+      const subscription = previousSnack.component.hide()
         .subscribe(() => {
           previousSnack.cRef.destroy();
           subscription.unsubscribe();
@@ -130,12 +130,12 @@ export class MdlSnackbarService {
 
     this.previousSnack = {
       component: mdlSnackbarComponent,
-      cRef: cRef
+      cRef
     };
 
     if (snackbarMessage.action) {
       if (closeAfterTimeout) {
-        this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout)
+        this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout);
       }
       mdlSnackbarComponent.actionText = snackbarMessage.action.text;
       mdlSnackbarComponent.onAction = () => {
@@ -145,10 +145,10 @@ export class MdlSnackbarService {
         });
       };
     } else {
-      this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout)
+      this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout);
     }
 
-    let result: Subject<MdlSnackbarComponent> = new Subject<MdlSnackbarComponent>();
+    const result: Subject<MdlSnackbarComponent> = new Subject<MdlSnackbarComponent>();
 
     mdlSnackbarComponent.show().subscribe(() => {
       result.next(mdlSnackbarComponent);

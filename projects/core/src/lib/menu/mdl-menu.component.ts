@@ -68,7 +68,6 @@ export class MdlMenuRegisty {
 
 @Component({
   selector: 'mdl-menu',
-  host: {},
   exportAs: 'mdlMenu',
   template: `
     <div #container class="mdl-menu__container is-upgraded">
@@ -83,6 +82,7 @@ export class MdlMenuRegisty {
   encapsulation: ViewEncapsulation.None
 })
 export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
+  // tslint:disable-next-line
   @Input('mdl-menu-position') public position: string;
 
   @ViewChild('container', {static: true}) public containerChild: ElementRef;
@@ -109,7 +109,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     this.outline = this.outlineChild.nativeElement;
 
     // Add a click listener to the document, to close the menu.
-    var callback = () => {
+    const callback = () => {
       if (this.isVisible) {
         this.hide();
       }
@@ -145,9 +145,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     // Measure the inner element.
-    var rect = this.menuElement.getBoundingClientRect();
-    var height = rect.height;
-    var width = rect.width;
+    const rect = this.menuElement.getBoundingClientRect();
+    const height = rect.height;
+    const width = rect.width;
 
     // Turn on animation, and apply the final clip. Also make invisible.
     // This triggers the transitions.
@@ -167,22 +167,22 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
     event.stopPropagation();
 
-    var forElement = mdlButton.element;
-    var rect = forElement.getBoundingClientRect();
-    var forRect = forElement.parentElement.getBoundingClientRect();
+    const forElement = mdlButton.element;
+    const rect = forElement.getBoundingClientRect();
+    const forRect = forElement.parentElement.getBoundingClientRect();
 
-    if (this.position == UNALIGNED) {
+    if (this.position === UNALIGNED) {
       // Do not position the menu automatically. Requires the developer to
       // manually specify position.
-    } else if (this.position == BOTTOM_RIGHT) {
+    } else if (this.position === BOTTOM_RIGHT) {
       // Position below the "for" element, aligned to its right.
       this.container.style.right = (forRect.right - rect.right) + 'px';
       this.container.style.top = forElement.offsetTop + forElement.offsetHeight + 'px';
-    } else if (this.position == TOP_LEFT) {
+    } else if (this.position === TOP_LEFT) {
       // Position above the "for" element, aligned to its left.
       this.container.style.left = forElement.offsetLeft + 'px';
       this.container.style.bottom = (forRect.bottom - rect.top) + 'px';
-    } else if (this.position == TOP_RIGHT) {
+    } else if (this.position === TOP_RIGHT) {
       // Position above the "for" element, aligned to its right.
       this.container.style.right = (forRect.right - rect.right) + 'px';
       this.container.style.bottom = (forRect.bottom - rect.top) + 'px';
@@ -193,18 +193,18 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     // Measure the inner element.
-    var height = this.menuElement.getBoundingClientRect().height;
-    var width = this.menuElement.getBoundingClientRect().width;
+    const height = this.menuElement.getBoundingClientRect().height;
+    const width = this.menuElement.getBoundingClientRect().width;
 
     this.container.style.width = width + 'px';
     this.container.style.height = height + 'px';
     this.outline.style.width = width + 'px';
     this.outline.style.height = height + 'px';
 
-    var transitionDuration = TRANSITION_DURATION_SECONDS * TRANSITION_DURATION_FRACTION;
+    const transitionDuration = TRANSITION_DURATION_SECONDS * TRANSITION_DURATION_FRACTION;
     this.menuItemComponents.toArray().forEach(mi => {
-      var itemDelay = null;
-      if ((this.position == TOP_LEFT) || this.position == TOP_RIGHT) {
+      let itemDelay = null;
+      if ((this.position === TOP_LEFT) || this.position === TOP_RIGHT) {
         itemDelay = ((height - mi.element.offsetTop - mi.element.offsetHeight) / height * transitionDuration) + 's';
       } else {
         itemDelay = (mi.element.offsetTop / height * transitionDuration) + 's';
@@ -236,16 +236,16 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private applyClip(height, width) {
-    if (this.position == UNALIGNED) {
+    if (this.position === UNALIGNED) {
       // Do not clip.
       this.menuElement.style.clip = '';
-    } else if (this.position == BOTTOM_RIGHT) {
+    } else if (this.position === BOTTOM_RIGHT) {
       // Clip to the top right corner of the menu.
       this.menuElement.style.clip = 'rect(0 ' + width + 'px ' + '0 ' + width + 'px)';
-    } else if (this.position == TOP_LEFT) {
+    } else if (this.position === TOP_LEFT) {
       // Clip to the bottom left corner of the menu.
       this.menuElement.style.clip = 'rect(' + height + 'px 0 ' + height + 'px 0)';
-    } else if (this.position == TOP_RIGHT) {
+    } else if (this.position === TOP_RIGHT) {
       // Clip to the bottom right corner of the menu.
       this.menuElement.style.clip = 'rect(' + height + 'px ' + width + 'px ' + height + 'px ' + width + 'px)';
     } else {

@@ -3,6 +3,19 @@ import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {MdlChipComponent, MdlChipContactDirective, MdlChipModule} from './mdl-chip.module';
 
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-chip',
+  template: `
+    <mdl-chip mdl-label="test">
+      <span mdl-chip-contact>A</span>
+    </mdl-chip>
+  `
+})
+class MdlTestComponent {
+}
+
+
 describe('Component: MdlChip', () => {
 
   beforeEach(() => {
@@ -14,13 +27,13 @@ describe('Component: MdlChip', () => {
 
   it('should add the css class mdl-chip__contact to the host element and mdl-chip--contact to the mdl-chip', () => {
 
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let el: HTMLElement = fixture.debugElement.query(By.directive(MdlChipContactDirective)).nativeElement;
+    const el: HTMLElement = fixture.debugElement.query(By.directive(MdlChipContactDirective)).nativeElement;
     expect(el.classList.contains('mdl-chip__contact')).toBe(true);
 
-    let elChip: HTMLElement = fixture.debugElement.query(By.directive(MdlChipComponent)).nativeElement;
+    const elChip: HTMLElement = fixture.debugElement.query(By.directive(MdlChipComponent)).nativeElement;
     expect(elChip.classList.contains('mdl-chip--contact')).toBe(true);
   });
 
@@ -31,22 +44,10 @@ describe('Component: MdlChip', () => {
         template: '<span mdl-chip-contact>A</span>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
 
     expect(() => fixture.detectChanges())
       .toThrow();
   });
 
 });
-
-
-@Component({
-  selector: 'test-chip',
-  template: `
-    <mdl-chip mdl-label="test">
-      <span mdl-chip-contact>A</span>
-    </mdl-chip>
-  `
-})
-class MdlTestComponent {
-}

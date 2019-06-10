@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
@@ -11,14 +11,13 @@ import {IOpenCloseRect, MdlDialogReference, MdlDialogService, MdlSnackbarService
 
 
 @Component({
-  selector: 'dialog-demo',
-  host: hostConfig,
+  selector: 'demo-dialog',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'dialog.component.html'
 })
-export class DialogDemo extends AbstractDemoComponent {
+export class DialogDemoComponent extends AbstractDemoComponent {
 
   constructor(
     router: Router,
@@ -32,12 +31,12 @@ export class DialogDemo extends AbstractDemoComponent {
   }
 
   public showAlert() {
-    let result = this.dialogService.alert('This is a simple Alert');
+    const result = this.dialogService.alert('This is a simple Alert');
     result.subscribe(() => console.log('alert closed'));
   }
 
   public showConfirmMessage() {
-    let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
+    const result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
     // if you need both answers
     result.subscribe(() => {
         console.log('confirmed');
@@ -53,7 +52,7 @@ export class DialogDemo extends AbstractDemoComponent {
   }
 
   public showConfirmMessageWithTitle() {
-    let result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes', 'Excuse me');
+    const result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes', 'Excuse me');
     // if you need both answers
     result.subscribe(() => {
         console.log('confirmed');
@@ -69,7 +68,7 @@ export class DialogDemo extends AbstractDemoComponent {
   }
 
   public showDialogFullWidthAction($event: MouseEvent) {
-    let pDialog = this.dialogService.showDialog({
+    const pDialog = this.dialogService.showDialog({
       title: 'Your choice?',
       message: 'What drink do you prefer to your meal?',
       actions: [
@@ -108,11 +107,11 @@ export class DialogDemo extends AbstractDemoComponent {
 
   public showDialog($event: MouseEvent) {
 
-    let pDialog = this.dialogService.showCustomDialog({
+    const pDialog = this.dialogService.showCustomDialog({
       component: LoginDialogComponent,
       providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
       isModal: true,
-      styles: {'width': '300px'},
+      styles: {width: '300px'},
       clickOutsideToClose: true,
       openFrom: $event,
       enterTransitionDuration: 400,

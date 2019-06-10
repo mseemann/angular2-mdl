@@ -38,7 +38,7 @@ export class MdlSimpleDialogComponent {
       if (this.buttons) {
         this.buttons.first.elementRef.nativeElement.focus();
       }
-    })
+    });
   }
 
   public actionClicked(action: IMdlDialogAction) {
@@ -49,7 +49,7 @@ export class MdlSimpleDialogComponent {
   @HostListener('keydown.esc')
   public onEsc(): void {
     // run the first action that is marked as closing action
-    let closeAction = this.dialogConfiguration.actions.find(action => action.isClosingAction);
+    const closeAction = this.dialogConfiguration.actions.find(action => action.isClosingAction);
     if (closeAction) {
       closeAction.handler();
       this.dialog.hide();

@@ -1,18 +1,17 @@
 import {Component} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
 
 @Component({
-  selector: 'toggle-demo',
-  host: hostConfig,
+  selector: 'demo-toggle',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'toggle.component.html'
 })
-export class ToggleDemo extends AbstractDemoComponent {
+export class ToggleDemoComponent extends AbstractDemoComponent {
   checkbox1 = true;
   checkbox2 = false;
 

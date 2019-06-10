@@ -6,6 +6,25 @@ import {MdlDialogOutletModule} from './mdl-dialog-outlet.module';
 import {DOCUMENT} from '@angular/common';
 
 
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-view',
+  template: '<div><dialog-outlet></dialog-outlet></div>'
+})
+class MdlTestViewComponent {
+
+}
+
+
+@NgModule({
+  imports: [MdlDialogOutletModule.forRoot()],
+  exports: [MdlTestViewComponent],
+  declarations: [MdlTestViewComponent]
+})
+class TestDialogModul {
+}
+
+
 describe('MdlDialogOutletComponent', () => {
 
   let el;
@@ -19,12 +38,12 @@ describe('MdlDialogOutletComponent', () => {
   }));
 
   // now modify the dom and add a dialog-outlet element direct under the body
-  beforeEach(async(inject([DOCUMENT], function (doc) {
+  beforeEach(async(inject([DOCUMENT], (doc) => {
     el = doc.createElement('dialog-outlet');
     doc.body.appendChild(el);
   })));
 
-  afterEach(async(inject([DOCUMENT], function (doc) {
+  afterEach(async(inject([DOCUMENT], (doc) => {
     doc.body.removeChild(el);
   })));
 
@@ -55,35 +74,17 @@ describe('MdlDialogInnerOutletComponent', () => {
     });
   }));
 
-  beforeEach(async(inject([DOCUMENT], function (doc_) {
-    doc = doc_;
+  beforeEach(async(inject([DOCUMENT], (document) => {
+    doc = document;
   })));
 
   it('should create the dialog-outlet if within the app-root', () => {
-    let fixture = TestBed.createComponent(MdlTestViewComponent);
+    const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
-    let innerComponent = fixture.debugElement.query(By.directive(MdlDialogInnerOutletComponent));
+    const innerComponent = fixture.debugElement.query(By.directive(MdlDialogInnerOutletComponent));
 
     expect(innerComponent).toBeDefined();
   });
 
 });
-
-
-@Component({
-  selector: 'test-view',
-  template: '<div><dialog-outlet></dialog-outlet></div>'
-})
-class MdlTestViewComponent {
-
-}
-
-
-@NgModule({
-  imports: [MdlDialogOutletModule.forRoot()],
-  exports: [MdlTestViewComponent],
-  declarations: [MdlTestViewComponent]
-})
-class TestDialogModul {
-}

@@ -45,7 +45,7 @@ export class MdlRadioGroupRegisty {
   public select(radioComponent: MdlRadioComponent, formGroupName: FormGroupName) {
     // unselect every radioComponent that is not the provided radiocomponent
     // and has the same name and is in teh same group.
-    let groupToTest = formGroupName || this.defaultFormGroup;
+    const groupToTest = formGroupName || this.defaultFormGroup;
     this.radioComponents.forEach((component) => {
       if (component.radio.name === radioComponent.name && component.group === groupToTest) {
         if (component.radio !== radioComponent) {
@@ -102,6 +102,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   private el: HTMLElement;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: () => void = noop;
+  private disabledIntern = false;
 
   constructor(
     private elementRef: ElementRef,
@@ -111,15 +112,13 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     this.el = elementRef.nativeElement;
   }
 
-  private _disabled: boolean = false;
-
   @Input()
   get disabled(): boolean {
-    return this._disabled;
+    return this.disabledIntern;
   }
 
   set disabled(value) {
-    this._disabled = toBoolean(value);
+    this.disabledIntern = toBoolean(value);
   }
 
   public ngOnInit() {
@@ -182,7 +181,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   }
 
   spaceKeyPress(event) {
-    this.checked = false;//in case of space key is pressed radio button value must remain same
+    this.checked = false; // in case of space key is pressed radio button value must remain same
   }
 
   private updateCheckState() {

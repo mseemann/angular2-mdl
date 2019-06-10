@@ -3,9 +3,6 @@ import {Component, EventEmitter, HostBinding, HostListener, NgZone, ViewEncapsul
 
 @Component({
   selector: 'mdl-backdrop-overlay',
-  host: {
-    '[class.dialog-backdrop]': 'true',
-  },
   template: ``,
   styles: [
       `
@@ -26,6 +23,9 @@ export class MdlBackdropOverlayComponent {
   public clickEmitter: EventEmitter<any> = new EventEmitter();
   @HostBinding('style.zIndex')
   public zIndex = 0;
+
+  @HostBinding('class.dialog-backdrop') isBackdrop = true;
+
   private visible = false;
 
   constructor(private ngZone: NgZone) {

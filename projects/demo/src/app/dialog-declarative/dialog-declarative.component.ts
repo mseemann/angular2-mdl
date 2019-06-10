@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
@@ -7,16 +7,15 @@ import {MdlDialogComponent, MdlDialogReference, MdlTextFieldComponent} from '@an
 
 
 @Component({
-  selector: 'dialog-declarative-demo',
-  host: hostConfig,
+  selector: 'demo-dialog-declarative',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'dialog-declarative.component.html'
 })
-export class DialogDeclarativeDemo extends AbstractDemoComponent {
+export class DialogDeclarativeDemoComponent extends AbstractDemoComponent {
 
-  public username: string = 'Marvin';
+  public username = 'Marvin';
   public editedUsername: string;
 
   @ViewChild('editUserDialog', {static: true}) private editUserDialog: MdlDialogComponent;

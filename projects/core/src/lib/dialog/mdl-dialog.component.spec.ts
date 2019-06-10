@@ -1,5 +1,5 @@
 import {async, TestBed} from '@angular/core/testing';
-import {Component, Type, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {MdlDialogModule} from './mdl-dialog.module';
 import {By} from '@angular/platform-browser';
 import {MdlDialogOutletModule} from '../dialog-outlet/mdl-dialog-outlet.module';
@@ -8,106 +8,11 @@ import {MdlDialogReference} from './mdl-dialog.service';
 import {MdlBackdropOverlayComponent} from '../dialog-outlet/mdl-backdrop-overlay.component';
 
 
-describe('MdlDialog (embedded/declarative)', () => {
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
-      declarations: [
-        MdlTestComponent,
-        ModalTrueConfigFalseComponent,
-        ModalFalseConfigTrueComponent,
-        ModalComponent],
-    });
-  }));
-
-  it('should create, show and close the embedded dialog', async(() => {
-
-    let fixture = TestBed.createComponent(MdlTestComponent);
-    fixture.detectChanges();
-    let dialog = fixture.componentInstance.dialog;
-    expect(dialog).toBeDefined('mdldialog should be created');
-
-    spyOn(fixture.componentInstance, 'onDialogShow').and.callThrough();
-    spyOn(fixture.componentInstance, 'onDialogHide');
-
-    dialog.show().subscribe(() => {
-
-      dialog.close();
-
-      expect(fixture.componentInstance.onDialogShow).toHaveBeenCalled();
-      expect(fixture.componentInstance.onDialogHide).toHaveBeenCalled();
-
-    })
-
-  }));
-
-  it('should not be possible to create a second embedded dialog', () => {
-
-    let fixture = TestBed.createComponent(MdlTestComponent);
-    fixture.detectChanges();
-    let dialog = fixture.componentInstance.dialog;
-
-    dialog.show();
-
-    expect(() => {
-      dialog.show();
-    }).toThrow();
-
-  });
-
-  it('should be possible to override mdl-dialog-config with mdl-modal', () => {
-
-    checkModalConfig(
-      ModalTrueConfigFalseComponent,
-      'config is false; mdl-modal is true - so the backdrop should not have display none');
-    checkModalConfig(
-      ModalFalseConfigTrueComponent,
-      'modal is false, config true -> should be false'
-    );
-  })
-
-  it('should open a modal dialog if no config for modal is set', () => {
-    let fixture = TestBed.createComponent(ModalComponent);
-    fixture.detectChanges();
-
-    let dialog = fixture.componentInstance.dialog;
-    dialog.show().subscribe(() => {
-      let backdrop = fixture.debugElement.query(By.directive(MdlBackdropOverlayComponent)).componentInstance;
-
-      expect(backdrop.display).toBeDefined('should open as modal - because there is no config provided')
-    });
-  })
-
-  it('should be possible to call close on a dialog that wasn\'t shown yet', () => {
-
-    let fixture = TestBed.createComponent(MdlTestComponent);
-    fixture.detectChanges();
-    let dialog = fixture.componentInstance.dialog;
-
-    // throws if the guard for dialogRef is not present.
-    dialog.close();
-  })
-
-});
-
-
-function checkModalConfig(component: Type<any>, failMessage: string) {
-  let fixture = TestBed.createComponent(component);
-  fixture.detectChanges();
-
-  let dialog = fixture.componentInstance.dialog;
-  dialog.show().subscribe(() => {
-    let backdrop = fixture.debugElement.query(By.directive(MdlBackdropOverlayComponent)).componentInstance;
-
-    expect(backdrop.display).toBe(null, failMessage);
-  });
-}
-
 @Component({
+  // tslint:disable-next-line
   selector: 'test-component',
   template: `
-    <mdl-dialog #dialog [mdl-modal]="true" (show)="onDialogShow($event)" (hide)="onDialogHide()">
+    <mdl-dialog #dialog (show)="onDialogShow($event)" [mdl-dialog-config]="{isModal: true}" (hide)="onDialogHide()">
 
     </mdl-dialog>
     <dialog-outlet></dialog-outlet>
@@ -128,10 +33,10 @@ class MdlTestComponent {
 }
 
 @Component({
+  // tslint:disable-next-line
   selector: 'test-component-2',
   template: `
-    <mdl-dialog #dialog [mdl-modal]="true"
-                [mdl-dialog-config]="{isModal: false}">
+    <mdl-dialog #dialog [mdl-dialog-config]="{isModal: true}">
     </mdl-dialog>
     <dialog-outlet></dialog-outlet>
   `
@@ -143,10 +48,11 @@ class ModalTrueConfigFalseComponent {
 }
 
 @Component({
+  // tslint:disable-next-line
   selector: 'test-component-4',
   template: `
-    <mdl-dialog #dialog [mdl-modal]="false"
-                [mdl-dialog-config]="{isModal: true}">
+    <mdl-dialog #dialog
+                [mdl-dialog-config]="{isModal: false}">
     </mdl-dialog>
     <dialog-outlet></dialog-outlet>
   `
@@ -158,6 +64,7 @@ class ModalFalseConfigTrueComponent {
 }
 
 @Component({
+  // tslint:disable-next-line
   selector: 'test-component-4',
   template: `
     <mdl-dialog #dialog
@@ -171,3 +78,76 @@ class ModalComponent {
   @ViewChild('dialog', {static: true}) public dialog: MdlDialogComponent;
 
 }
+
+describe('MdlDialog (embedded/declarative)', () => {
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
+      declarations: [
+        MdlTestComponent,
+        ModalTrueConfigFalseComponent,
+        ModalFalseConfigTrueComponent,
+        ModalComponent],
+    });
+  }));
+
+  it('should create, show and close the embedded dialog', async(() => {
+
+    const fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+    const dialog = fixture.componentInstance.dialog;
+    expect(dialog).toBeDefined('mdldialog should be created');
+
+    spyOn(fixture.componentInstance, 'onDialogShow').and.callThrough();
+    spyOn(fixture.componentInstance, 'onDialogHide');
+
+    dialog.show().subscribe(() => {
+
+      dialog.close();
+
+      expect(fixture.componentInstance.onDialogShow).toHaveBeenCalled();
+      expect(fixture.componentInstance.onDialogHide).toHaveBeenCalled();
+
+    });
+
+  }));
+
+  it('should not be possible to create a second embedded dialog', () => {
+
+    const fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+    const dialog = fixture.componentInstance.dialog;
+
+    dialog.show();
+
+    expect(() => {
+      dialog.show();
+    }).toThrow();
+
+  });
+
+
+  it('should open a modal dialog if no config for modal is set', () => {
+    const fixture = TestBed.createComponent(ModalComponent);
+    fixture.detectChanges();
+
+    const dialog = fixture.componentInstance.dialog;
+    dialog.show().subscribe(() => {
+      const backdrop = fixture.debugElement.query(By.directive(MdlBackdropOverlayComponent)).componentInstance;
+
+      expect(backdrop.display).toBeDefined('should open as modal - because there is no config provided');
+    });
+  });
+
+  it('should be possible to call close on a dialog that wasn\'t shown yet', () => {
+
+    const fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+    const dialog = fixture.componentInstance.dialog;
+
+    // throws if the guard for dialogRef is not present.
+    dialog.close();
+  });
+
+});

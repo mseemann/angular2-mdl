@@ -1,17 +1,12 @@
-import {
-  Directive,
-  ViewContainerRef,
-  Renderer2,
-  Input,
-  AfterViewInit
-} from '@angular/core';
+import {AfterViewInit, Directive, Input, Renderer2, ViewContainerRef} from '@angular/core';
 
 @Directive({
+  // tslint:disable-next-line
   selector: '[append-view-container-ref]'
 })
 export class AppendViewContainerRefDirective implements AfterViewInit {
 
-  @Input('append-view-container-ref') public viewContainerRefToAppend: ViewContainerRef;
+  @Input('append-view-container-ref') viewContainerRefToAppend: ViewContainerRef;
 
   constructor(private viewRef: ViewContainerRef, private renderer: Renderer2) {
   }

@@ -2,6 +2,15 @@ import {TestBed} from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {MdlBadgeModule} from './mdl-badge.module';
 
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-badge',
+  template: 'replaced by the test'
+})
+class MdlTestBadgeComponent {
+  badgeCount = 1;
+}
+
 
 describe('Directive: MdlBadge', () => {
 
@@ -19,10 +28,10 @@ describe('Directive: MdlBadge', () => {
         template: '<span mdl-badge="3"></span>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestBadgeComponent);
+    const fixture = TestBed.createComponent(MdlTestBadgeComponent);
     fixture.detectChanges();
 
-    let spanEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const spanEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spanEl.classList.contains('mdl-badge')).toBe(true);
 
     expect(spanEl.getAttribute('data-badge')).toBe('3');
@@ -37,10 +46,10 @@ describe('Directive: MdlBadge', () => {
       }
     });
 
-    let fixture = TestBed.createComponent(MdlTestBadgeComponent);
+    const fixture = TestBed.createComponent(MdlTestBadgeComponent);
     fixture.detectChanges();
 
-    let spanEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const spanEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spanEl.classList.contains('mdl-badge')).toBe(true);
     expect(spanEl.classList.contains('mdl-badge--overlap')).toBe(true);
     expect(spanEl.classList.contains('mdl-badge--no-background')).toBe(true);
@@ -56,10 +65,10 @@ describe('Directive: MdlBadge', () => {
       }
     });
 
-    let fixture = TestBed.createComponent(MdlTestBadgeComponent);
+    const fixture = TestBed.createComponent(MdlTestBadgeComponent);
     fixture.detectChanges();
 
-    let spanEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const spanEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(spanEl.hasAttribute('data-badge')).toBe(true, 'value 1');
 
     fixture.componentInstance.badgeCount = 0;
@@ -77,12 +86,3 @@ describe('Directive: MdlBadge', () => {
   });
 
 });
-
-
-@Component({
-  selector: 'test-badge',
-  template: 'replaced by the test'
-})
-class MdlTestBadgeComponent {
-  badgeCount = 1;
-}

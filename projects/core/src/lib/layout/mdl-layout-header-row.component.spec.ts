@@ -2,6 +2,15 @@ import {TestBed} from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {MdlLayoutModule} from './mdl-layout.module';
 
+@Component({
+  // tslint:disable-next-line
+  selector: 'test',
+  template: '<mdl-layout-header-row>x</mdl-layout-header-row>'
+})
+class MdlTestComponent {
+}
+
+
 describe('Component: MdlLayoutHeaderRow', () => {
 
   beforeEach(() => {
@@ -13,21 +22,13 @@ describe('Component: MdlLayoutHeaderRow', () => {
 
   it('should add the css class mdl-layout__header-row to the header element', () => {
 
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let headerEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const headerEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(headerEl.classList.contains('mdl-layout__header-row')).toBe(true);
 
   });
 
 
 });
-
-
-@Component({
-  selector: 'test',
-  template: '<mdl-layout-header-row>x</mdl-layout-header-row>'
-})
-class MdlTestComponent {
-}

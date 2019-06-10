@@ -58,7 +58,7 @@ const template = `
               </td>
            </tr>
            </tbody>
-        </table>  
+        </table>
     `;
 
 const styles =
@@ -70,12 +70,13 @@ const styles =
 
 @Component({
   selector: 'mdl-table',
-  template: template,
+  template,
   styles: [styles],
   encapsulation: ViewEncapsulation.None
 })
 export class MdlTableComponent {
 
+  // tslint:disable-next-line
   @Input('table-model') public model: IMdlTableModel;
 
   public selectable = false;
@@ -96,14 +97,17 @@ export class MdlTableComponent {
 
 @Component({
   selector: 'mdl-table-selectable',
-  template: template,
+  template,
   styles: [styles],
   encapsulation: ViewEncapsulation.None
 })
 export class MdlSelectableTableComponent extends MdlTableComponent {
 
+  // tslint:disable-next-line
   @Input('table-model') public model: IMdlTableModel;
+  // tslint:disable-next-line
   @Input('table-model-selected') public selected: IMdlTableModelItem[];
+  // tslint:disable-next-line
   @Output('table-model-selectionChanged') public selectionChange = new EventEmitter();
 
   public selectable = true;
@@ -114,7 +118,7 @@ export class MdlSelectableTableComponent extends MdlTableComponent {
   }
 
   toogleAll() {
-    let selected = !this.isAllSelected();
+    const selected = !this.isAllSelected();
     this.model.data.forEach(data => data.selected = selected);
     this.updateSelected();
   }

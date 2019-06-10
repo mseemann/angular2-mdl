@@ -1,16 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
-import { hostConfig } from '../animations/flyInOutTrigger-animation';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { AbstractDemoComponent } from '../abstract-demo.component';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {AbstractDemoComponent} from '../abstract-demo.component';
 
 @Component({
-  selector: 'shadow-demo',
-  host: hostConfig,
+  selector: 'demo-shadow',
   animations: [
     flyInOutTrigger
   ],
@@ -19,16 +14,17 @@ import { AbstractDemoComponent } from '../abstract-demo.component';
     .shadow-example {
       height: 70px;
       width: 100px;
-      margin:20px;
+      margin: 20px;
       float: left;
     }
+
     .clearfix {
-        clear: both;
+      clear: both;
     }
   `],
   encapsulation: ViewEncapsulation.None
 })
-export class ShadowDemo extends AbstractDemoComponent {
+export class ShadowDemoComponent extends AbstractDemoComponent {
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);

@@ -6,7 +6,7 @@ import {MdlTabPanelTitleComponent} from './mdl-tab-panel-title.component';
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
-export class MdlTabPanelContent {
+export class MdlTabPanelContentComponent {
 
 }
 
@@ -26,8 +26,11 @@ export class MdlTabPanelContent {
 export class MdlTabPanelComponent {
 
   @ContentChild(MdlTabPanelTitleComponent, {static: true}) public titleComponent;
+  // tslint: disable-next-line
   @Input('mdl-tab-panel-title') public title;
+  // tslint: disable-next-line
   @Input('disabled') public disabled;
+  // tslint: disable-next-line
   public isActive = false;
 
 }

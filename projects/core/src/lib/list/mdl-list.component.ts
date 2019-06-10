@@ -42,14 +42,15 @@ export class MdlListComponent {
 })
 export class MdlListItemComponent implements OnChanges {
 
-  private _lines: number = 1;
+  private linesIntern = 1;
+
   @Input()
   get lines() {
-    return this._lines;
+    return this.linesIntern;
   }
 
   set lines(value) {
-    this._lines = toNumber(value);
+    this.linesIntern = toNumber(value);
   }
 
 
@@ -184,6 +185,7 @@ export class MdlListItemTextBodyComponent implements OnInit {
 
 
 @Directive({
+  // tslint:disable-next-line
   selector: 'mdl-icon[mdl-list-item-icon]',
   host: {
     '[class.mdl-list__item-icon]': 'true'
@@ -193,6 +195,7 @@ export class MdlListItemIconDirective {
 }
 
 @Directive({
+  // tslint:disable-next-line
   selector: 'mdl-icon[mdl-list-item-avatar]',
   host: {
     '[class.mdl-list__item-avatar]': 'true'

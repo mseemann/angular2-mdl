@@ -3,6 +3,16 @@ import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {MdlLayoutDrawerComponent, MdlLayoutModule} from './mdl-layout.module';
 
+
+@Component({
+  // tslint:disable-next-line
+  selector: 'test-layout',
+  template: '<mdl-layout-drawer>x</mdl-layout-drawer>'
+})
+class MdlTestLayoutComponent {
+}
+
+
 describe('Component: MdlLayoutDrawer', () => {
 
   beforeEach(() => {
@@ -14,21 +24,13 @@ describe('Component: MdlLayoutDrawer', () => {
 
   it('should add the css class mdl-layout__header to the host element', () => {
 
-    let fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
     fixture.detectChanges();
 
-    let layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).nativeElement;
+    const layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutDrawerComponent)).nativeElement;
     expect(layoutEl.classList.contains('mdl-layout__drawer')).toBe(true);
 
   });
 
 
 });
-
-
-@Component({
-  selector: 'test-layout',
-  template: '<mdl-layout-drawer>x</mdl-layout-drawer>'
-})
-class MdlTestLayoutComponent {
-}

@@ -20,14 +20,15 @@ export class MdlProgressComponent implements OnChanges {
   @Input() public buffer = 100;
   @Input() public aux = 0;
 
-  private _indeterminate: boolean = false;
+  private indeterminateIntern = false;
+
   @Input()
   get indeterminate() {
-    return this._indeterminate;
+    return this.indeterminateIntern;
   }
 
   set indeterminate(value) {
-    this._indeterminate = toBoolean(value);
+    this.indeterminateIntern = toBoolean(value);
   }
 
   public ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {

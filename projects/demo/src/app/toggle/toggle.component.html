@@ -2,18 +2,18 @@
 
 <h5>Checkbox</h5>
 
-<mdl-checkbox  [mdl-ripple]="true" [(ngModel)]="checkbox1" (change)="onChange($event)">
+<mdl-checkbox (change)="onChange($event)" [(ngModel)]="checkbox1" [mdl-ripple]="true">
   Checkbox
 </mdl-checkbox>
 {{checkbox1}}
 
-<mdl-checkbox  [mdl-ripple]="true" [disabled]="true" [(ngModel)]="checkbox1" (change)="onChange($event)">
+<mdl-checkbox (change)="onChange($event)" [(ngModel)]="checkbox1" [disabled]="true" [mdl-ripple]="true">
   Checkbox Disabled
 </mdl-checkbox>
 
-<pre prism ngNonBindable>
+<pre demoPrism ngNonBindable>
   <![CDATA[
-  <mdl-checkbox [mdl-ripple]="true" [(ngModel)]="checkbox1">
+  <mdl-checkbox [(ngModel)]="checkbox1" [mdl-ripple]="true">
     Checkbox
   </mdl-checkbox>
   {{checkbox1}}
@@ -24,30 +24,34 @@
   Checkbox
 </mdl-checkbox>
 {{checkbox2}}
-<pre prism ngNonBindable>
+<pre demoPrism ngNonBindable>
   <![CDATA[
   <mdl-checkbox [(ngModel)]="checkbox2">
     Checkbox
   </mdl-checkbox>
   {{checkbox2}}
-    ]]>
+  ]]>
 </pre>
 
-<p>The <i>mdl-checkbox</i> is <i>ngModel</i> compliant. You can provide the <i>mdl-ripple</i> directive to create a ripple effect.</p>
+<p>The <i>mdl-checkbox</i> is <i>ngModel</i> compliant. You can provide the <i>mdl-ripple</i> directive to create a
+  ripple effect.</p>
 
 
 <h5>Radios</h5>
-<mdl-radio name="group1" value="1"  [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 1</mdl-radio>
-<mdl-radio name="group1" value="2" [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 2</mdl-radio>
-<mdl-radio name="group1" value="3" [disabled]="true"  [(ngModel)]="radioOption" mdl-ripple (change)="onChange($event)">Value 3 (disabled)</mdl-radio>
+<mdl-radio (change)="onChange($event)" [(ngModel)]="radioOption" mdl-ripple name="group1" value="1">Value 1</mdl-radio>
+<mdl-radio (change)="onChange($event)" [(ngModel)]="radioOption" mdl-ripple name="group1" value="2">Value 2</mdl-radio>
+<mdl-radio (change)="onChange($event)" [(ngModel)]="radioOption" [disabled]="true" mdl-ripple name="group1" value="3">
+  Value 3 (disabled)
+</mdl-radio>
 
 {{radioOption}}
 
-<pre prism ngNonBindable>
+<pre demoPrism ngNonBindable>
   <![CDATA[
-  <mdl-radio name="group1" value="1" [(ngModel)]="radioOption" mdl-ripple>Value 1</mdl-radio>
-  <mdl-radio name="group1" value="2" [(ngModel)]="radioOption" mdl-ripple>Value 2</mdl-radio>
-  <mdl-radio name="group1" value="3" [disabled]="true"  [(ngModel)]="radioOption" mdl-ripple>Value 3 (disabled)</mdl-radio>
+  <mdl-radio [(ngModel)]="radioOption" mdl-ripple name="group1" value="1">Value 1</mdl-radio>
+  <mdl-radio [(ngModel)]="radioOption" mdl-ripple name="group1" value="2">Value 2</mdl-radio>
+  <mdl-radio [(ngModel)]="radioOption" [disabled]="true" mdl-ripple name="group1"
+             value="3">Value 3 (disabled)</mdl-radio>
 
   {{radioOption}}
   ]]>
@@ -57,52 +61,52 @@
   The <i>name</i> attribute is used to group radios together. You need to provide a
   name or a formControlName. If you provide both they must be the same. All radiobutton
   groups must have a unique name.
-The <i>value</i> is used to set the <i>ngModel</i> value if the option is selected.
-   You can provide the <i>mdl-ripple</i> directive to create a ripple effect.
+  The <i>value</i> is used to set the <i>ngModel</i> value if the option is selected.
+  You can provide the <i>mdl-ripple</i> directive to create a ripple effect.
 </p>
 
 <h5>Icon Toggle</h5>
 
-<mdl-icon-toggle  [(ngModel)]="checkbox1" mdl-ripple (change)="onChange($event)">format_bold</mdl-icon-toggle>
+<mdl-icon-toggle (change)="onChange($event)" [(ngModel)]="checkbox1" mdl-ripple>format_bold</mdl-icon-toggle>
 {{checkbox1}}
-<mdl-icon-toggle  [(ngModel)]="checkbox2">format_italic</mdl-icon-toggle>
+<mdl-icon-toggle [(ngModel)]="checkbox2">format_italic</mdl-icon-toggle>
 {{checkbox2}}
-<mdl-icon-toggle  [(ngModel)]="checkbox2" [disabled]="true">format_italic</mdl-icon-toggle>
+<mdl-icon-toggle [(ngModel)]="checkbox2" [disabled]="true">format_italic</mdl-icon-toggle>
 (disabled) {{checkbox2}}
 
-<pre prism ngNonBindable>
+<pre demoPrism ngNonBindable>
   <![CDATA[
-  <mdl-icon-toggle  [(ngModel)]="checkbox1">format_bold</mdl-icon-toggle>
+  <mdl-icon-toggle [(ngModel)]="checkbox1">format_bold</mdl-icon-toggle>
   {{checkbox1}}
-  <mdl-icon-toggle  [(ngModel)]="checkbox2">format_italic</mdl-icon-toggle>
+  <mdl-icon-toggle [(ngModel)]="checkbox2">format_italic</mdl-icon-toggle>
   {{checkbox2}}
-  <mdl-icon-toggle  [(ngModel)]="checkbox2" [disabled]="true">format_italic</mdl-icon-toggle>
+  <mdl-icon-toggle [(ngModel)]="checkbox2" [disabled]="true">format_italic</mdl-icon-toggle>
   (disabled) {{checkbox2}}
   ]]>
 </pre>
 
 <p>The <i>mdl-icon-toggle</i> is much like a <i>mdl-checkbox</i> componnet.
-   The only difference: an colored icon is used to cover the state of the checkbox.</p>
+  The only difference: an colored icon is used to cover the state of the checkbox.</p>
 
 <h5>Switch</h5>
 
-<mdl-switch [(ngModel)]="checkbox1" mdl-ripple (change)="onChange($event)">Option 1</mdl-switch>
+<mdl-switch (change)="onChange($event)" [(ngModel)]="checkbox1" mdl-ripple>Option 1</mdl-switch>
 {{checkbox1}}
-<mdl-switch  [(ngModel)]="checkbox2">Option 2</mdl-switch>
+<mdl-switch [(ngModel)]="checkbox2">Option 2</mdl-switch>
 {{checkbox2}}
-<mdl-switch  [(ngModel)]="checkbox2" [disabled]="true">Option 3 (disabled)</mdl-switch>
+<mdl-switch [(ngModel)]="checkbox2" [disabled]="true">Option 3 (disabled)</mdl-switch>
 {{checkbox2}}
 
-<pre prism ngNonBindable>
+<pre demoPrism ngNonBindable>
   <![CDATA[
   <mdl-switch [(ngModel)]="checkbox1" mdl-ripple>Option 1</mdl-switch>
   {{checkbox1}}
-  <mdl-switch  [(ngModel)]="checkbox2">Option 2</mdl-switch>
+  <mdl-switch [(ngModel)]="checkbox2">Option 2</mdl-switch>
   {{checkbox2}}
-  <mdl-switch  [(ngModel)]="checkbox2" [disabled]="true">Option 3 (disabled)</mdl-switch>
+  <mdl-switch [(ngModel)]="checkbox2" [disabled]="true">Option 3 (disabled)</mdl-switch>
   {{checkbox2}}
   ]]>
 </pre>
 
 <p>The <i>mdl-switch</i> is much like an <i>mdl-checkbox</i> componnet.
-   The only difference: an toggle ui is used to cover the state of the checkbox.</p>
+  The only difference: an toggle ui is used to cover the state of the checkbox.</p>

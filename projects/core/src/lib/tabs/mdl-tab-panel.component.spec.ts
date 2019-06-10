@@ -3,6 +3,15 @@ import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {MdlTabPanelComponent, MdlTabsComponent, MdlTabsModule} from './mdl-tabs.module';
 
+@Component({
+  // tslint:disable-next-line
+  selector: 'test',
+  template: 'replaced by the test'
+})
+class MdlTestComponent {
+  public activeIndex = 0;
+}
+
 describe('Component: MdlTabsPanel', () => {
 
   beforeEach(() => {
@@ -19,10 +28,10 @@ describe('Component: MdlTabsPanel', () => {
         template: '<mdl-tab-panel>x</mdl-tab-panel>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
     expect(tabPanelEl.classList.contains('mdl-tabs__panel')).toBe(true);
 
   });
@@ -34,15 +43,15 @@ describe('Component: MdlTabsPanel', () => {
         template: '<mdl-tab-panel>x</mdl-tab-panel>'
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    let tabPanelComponent = fixture.debugElement.query(By.directive(MdlTabPanelComponent)).componentInstance;
+    const tabPanelComponent = fixture.debugElement.query(By.directive(MdlTabPanelComponent)).componentInstance;
 
     tabPanelComponent.isActive = true;
     fixture.detectChanges();
 
-    let tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
+    const tabPanelEl: HTMLElement = fixture.nativeElement.children.item(0);
 
     expect(tabPanelEl.classList.contains('is-active')).toBe(true);
 
@@ -60,7 +69,7 @@ describe('Component: MdlTabsPanel', () => {
         `
       }
     });
-    let fixture = TestBed.createComponent(MdlTestComponent);
+    const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
     expect(fixture.componentInstance.activeIndex).toBe(0);
@@ -69,7 +78,7 @@ describe('Component: MdlTabsPanel', () => {
 
     fixture.detectChanges();
 
-    let mdlLayoutComponent: MdlTabsComponent =
+    const mdlLayoutComponent: MdlTabsComponent =
       fixture.debugElement.query(By.directive(MdlTabsComponent)).componentInstance;
 
     expect(mdlLayoutComponent.selectedIndex).toBe(1);
@@ -77,12 +86,3 @@ describe('Component: MdlTabsPanel', () => {
   });
 
 });
-
-
-@Component({
-  selector: 'test',
-  template: 'replaced by the test'
-})
-class MdlTestComponent {
-  public activeIndex = 0;
-}

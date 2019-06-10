@@ -37,7 +37,7 @@
   components.
 
   Instead of
-  <pre prism>
+  <pre demoPrism>
   <![CDATA[
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
 	<label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
@@ -51,7 +51,7 @@
 </pre>
 
   you just write:
-  <pre prism>
+  <pre demoPrism>
 	<![CDATA[
 <mdl-textfield [(ngModel)]="theText" icon="search" type="text"></mdl-textfield>
 	]]>
@@ -67,12 +67,12 @@
     But the user will not notice this because both parts look and behave the same.
   </p>
 
-  <!--p>
+  <p>
     <mdl-textfield [(ngModel)]="theText" icon="search" type="text"></mdl-textfield>
-  </p-->
+  </p>
 
 </div>
 
 
 <!-- just a checkbox to check the mask background in e2e - avoid the redirect for saucelab :(  -->
-<!--mdl-checkbox [ngModel]="true"></mdl-checkbox-->
+<mdl-checkbox [ngModel]="true"></mdl-checkbox>

@@ -1,10 +1,8 @@
-import {
-  MdlDefaultTableModel
-} from './mdl-table.component';
+import {MdlDefaultTableModel} from './mdl-table.component';
 
 describe('Component: MdlTableModel', () => {
 
-  var tableModel;
+  let tableModel;
 
   beforeEach(() => {
     tableModel = new MdlDefaultTableModel([

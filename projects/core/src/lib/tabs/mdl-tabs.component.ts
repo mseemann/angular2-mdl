@@ -45,29 +45,29 @@ import {toBoolean} from '../common/boolean-property';
 })
 export class MdlTabsComponent implements AfterContentInit, OnChanges {
 
+  // tslint:disable-next-line
   @Output('mdl-tab-active-changed') public selectedTabEmitter = new EventEmitter();
   @ContentChildren(MdlTabPanelComponent) public tabs: QueryList<MdlTabPanelComponent>;
 
-  private _selectedIndex: number = 0;
+  private selectedIndexIntern = 0;
+  private isRippleIntern = false;
 
   @Input('mdl-tab-active-index')
   get selectedIndex() {
-    return this._selectedIndex;
+    return this.selectedIndexIntern;
   }
 
   set selectedIndex(value) {
-    this._selectedIndex = toNumber(value);
+    this.selectedIndexIntern = toNumber(value);
   }
-
-  private _isRipple = false;
 
   @Input('mdl-ripple')
   get isRipple() {
-    return this._isRipple;
+    return this.isRippleIntern;
   }
 
   set isRipple(value) {
-    this._isRipple = toBoolean(value);
+    this.isRippleIntern = toBoolean(value);
   }
 
   public ngAfterContentInit() {
@@ -81,7 +81,7 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges): any {
-    if (changes['selectedIndex']) {
+    if (changes.selectedIndex) {
       this.updateSelectedTabIndex();
     }
   }
@@ -91,8 +91,8 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
       return;
     }
 
-    let index = this.tabs.toArray().indexOf(tab);
-    if (index != this.selectedIndex) {
+    const index = this.tabs.toArray().indexOf(tab);
+    if (index !== this.selectedIndex) {
       this.selectedIndex = index;
       this.updateSelectedTabIndex();
       this.selectedTabEmitter.emit({index: this.selectedIndex});

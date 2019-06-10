@@ -31,24 +31,25 @@ import {toBoolean} from '../common/boolean-property';
 export class MdlSpinnerComponent {
   public layers = [1, 2, 3, 4];
 
-  private _active: boolean = false;
+  private activeIntern = false;
+  private singleColorIntern = false;
+
   @Input()
   get active() {
-    return this._active;
+    return this.activeIntern;
   }
 
   set active(value) {
-    this._active = toBoolean(value);
+    this.activeIntern = toBoolean(value);
   }
 
-  private _singleColor: boolean = false;
   @Input('single-color')
   get singleColor() {
-    return this._singleColor;
+    return this.singleColorIntern;
   }
 
   set singleColor(value) {
-    this._singleColor = toBoolean(value);
+    this.singleColorIntern = toBoolean(value);
   }
 
 }

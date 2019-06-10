@@ -1,24 +1,17 @@
-import { Component } from '@angular/core';
-import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { AbstractDemoComponent } from '../abstract-demo.component';
+import {Component} from '@angular/core';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {AbstractDemoComponent} from '../abstract-demo.component';
 
 @Component({
-  selector: 'button-demo',
-  host: {
-    '[@flyInOut]': 'true',
-    '[style.display]': "'block'"
-  },
+  selector: 'demo-button',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'button.component.html'
 })
-export class ButtonDemo extends AbstractDemoComponent {
+export class ButtonDemoComponent extends AbstractDemoComponent {
   public buttonType = 'raised';
   public doRipple = false;
   public colored = '';

@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
@@ -7,14 +7,13 @@ import {MdlTextFieldComponent} from '@angular-mdl/core';
 
 
 @Component({
-  selector: 'textfield-demo',
-  host: hostConfig,
+  selector: 'demo-textfield',
   animations: [
     flyInOutTrigger
   ],
   templateUrl: 'textfield.component.html'
 })
-export class TextFieldDemo extends AbstractDemoComponent implements AfterViewInit {
+export class TextFieldDemoComponent extends AbstractDemoComponent implements AfterViewInit {
 
   text1: string;
   text2: string;

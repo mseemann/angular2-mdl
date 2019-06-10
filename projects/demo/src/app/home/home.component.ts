@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {flyInOutTrigger, hostConfig} from '../animations/flyInOutTrigger-animation';
+import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
@@ -8,7 +8,6 @@ import {AbstractDemoComponent} from '../abstract-demo.component';
   selector: 'demo-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  host: hostConfig,
   animations: [
     flyInOutTrigger
   ],
@@ -16,9 +15,10 @@ import {AbstractDemoComponent} from '../abstract-demo.component';
 })
 export class HomeComponent extends AbstractDemoComponent {
 
+  theText: string;
+
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
   }
-
 
 }

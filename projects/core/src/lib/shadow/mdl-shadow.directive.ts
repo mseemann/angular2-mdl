@@ -12,25 +12,25 @@ export class MdlUnsupportedShadowValueError extends MdlError {
 const MDL_SHADOW_VALUES = [0, 2, 3, 4, 6, 8, 16, 24];
 
 @Directive({
+  // tslint:disable-next-line
   selector: '[mdl-shadow]'
 })
 export class MdlShadowDirective implements OnChanges {
 
   private el: HTMLElement;
+  private mdlShadowIntern = 2;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.el = elementRef.nativeElement;
   }
 
-  private _mdlShadow: number = 2;
-
   @Input('mdl-shadow')
   get mdlShadow() {
-    return this._mdlShadow;
+    return this.mdlShadowIntern;
   }
 
   set mdlShadow(value) {
-    this._mdlShadow = toNumber(value);
+    this.mdlShadowIntern = toNumber(value);
   }
 
   public ngOnChanges(changes: { [key: string]: SimpleChange }) {
@@ -40,7 +40,7 @@ export class MdlShadowDirective implements OnChanges {
       throw new MdlUnsupportedShadowValueError(this.mdlShadow);
     }
 
-    let change = changes['mdlShadow'];
+    const change = changes.mdlShadow;
 
     if (!change.isFirstChange()) {
       this.renderer.removeClass(this.el, `mdl-shadow--${change.previousValue}dp`);

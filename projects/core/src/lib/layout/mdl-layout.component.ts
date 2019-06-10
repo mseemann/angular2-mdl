@@ -60,7 +60,7 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
 export class MdlScreenSizeService {
 
   private sizesSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  private windowMediaQueryListener: Function;
+  private windowMediaQueryListener: () => void;
 
   constructor(
     ngZone: NgZone,
@@ -74,15 +74,15 @@ export class MdlScreenSizeService {
     // do not try to access the window object if rendered on the server
     if (typeof window === 'object' && 'matchMedia' in window) {
 
-      let query: MediaQueryList = window.matchMedia(`(max-width: ${this.layoutScreenSizeThreshold}px)`);
+      const query: MediaQueryList = window.matchMedia(`(max-width: ${this.layoutScreenSizeThreshold}px)`);
 
-      let queryListener = () => {
+      const queryListener = () => {
         ngZone.run(() => {
           this.sizesSubject.next(query.matches);
         });
       };
       query.addListener(queryListener);
-      this.windowMediaQueryListener = function () {
+      this.windowMediaQueryListener = () => {
         query.removeListener(queryListener);
       };
       // set the initial state
@@ -142,15 +142,29 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   @ContentChild(MdlLayoutDrawerComponent, {static: true}) public drawer;
   @ContentChild(MdlLayoutContentComponent, {static: true}) public content;
 
+  // tslint:disable-next-line
   @Input('mdl-layout-mode') public mode: string = STANDARD;
+  // tslint:disable-next-line
   @Output('mdl-layout-tab-active-changed') public selectedTabEmitter = new EventEmitter();
+  // tslint:disable-next-line
   @Output('mdl-layout-tab-mouseover') public mouseoverTabEmitter = new EventEmitter();
+  // tslint:disable-next-line
   @Output('mdl-layout-tab-mouseout') public mouseoutTabEmitter = new EventEmitter();
+  // tslint:disable-next-line
   @Output('open') public onOpen = new EventEmitter<void>();
+  // tslint:disable-next-line
   @Output('close') public onClose = new EventEmitter<void>();
   public isDrawerVisible = false;
   public isSmallScreen = false;
-  private scrollListener: Function;
+  private scrollListener: (
+    target?: 'window' | 'document' | 'body' | any,
+    eventName?: string,
+    callback?: (event: any) => boolean | void) => void;
+  private isFixedDrawerIntern = false;
+  private isFixedHeaderIntern = false;
+  private isSeamedIntern = false;
+  private selectedIndexIntern = 0;
+  private isNoDrawerIntern = false;
 
   constructor(
     private renderer: Renderer2,
@@ -159,59 +173,49 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     private screenSizeService: MdlScreenSizeService) {
   }
 
-  private _isFixedDrawer: boolean = false;
-
   @Input('mdl-layout-fixed-drawer')
   get isFixedDrawer() {
-    return this._isFixedDrawer;
+    return this.isFixedDrawerIntern;
   }
 
   set isFixedDrawer(value) {
-    this._isFixedDrawer = toBoolean(value);
+    this.isFixedDrawerIntern = toBoolean(value);
   }
-
-  private _isFixedHeader: boolean = false;
 
   @Input('mdl-layout-fixed-header')
   get isFixedHeader() {
-    return this._isFixedHeader;
+    return this.isFixedHeaderIntern;
   }
 
   set isFixedHeader(value) {
-    this._isFixedHeader = toBoolean(value);
+    this.isFixedHeaderIntern = toBoolean(value);
   }
-
-  private _isSeamed: boolean = false;
 
   @Input('mdl-layout-header-seamed')
   get isSeamed() {
-    return this._isSeamed;
+    return this.isSeamedIntern;
   }
 
   set isSeamed(value) {
-    this._isSeamed = toBoolean(value);
+    this.isSeamedIntern = toBoolean(value);
   }
-
-  private _selectedIndex: number = 0;
 
   @Input('mdl-layout-tab-active-index')
   get selectedIndex() {
-    return this._selectedIndex;
+    return this.selectedIndexIntern;
   }
 
   set selectedIndex(value) {
-    this._selectedIndex = toNumber(value);
+    this.selectedIndexIntern = toNumber(value);
   }
-
-  private _isNoDrawer: boolean = false;
 
   @Input('mdl-layout-no-drawer-button')
   get isNoDrawer() {
-    return this._isNoDrawer;
+    return this.isNoDrawerIntern;
   }
 
   set isNoDrawer(value) {
-    this._isNoDrawer = toBoolean(value);
+    this.isNoDrawerIntern = toBoolean(value);
   }
 
   public ngAfterContentInit() {
@@ -230,7 +234,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   }
 
   public ngOnChanges(changes: SimpleChanges): any {
-    if (changes['selectedIndex']) {
+    if (changes.selectedIndex) {
       this.updateSelectedTabIndex();
     }
   }
@@ -271,8 +275,8 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
 
   // triggered from mdl-layout-header.component
   public tabSelected(tab) {
-    let index = this.header.tabs.toArray().indexOf(tab);
-    if (index != this.selectedIndex) {
+    const index = this.header.tabs.toArray().indexOf(tab);
+    if (index !== this.selectedIndex) {
       this.selectedIndex = index;
       this.updateSelectedTabIndex();
       this.selectedTabEmitter.emit({index: this.selectedIndex});
@@ -281,14 +285,14 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
 
   // triggered from mdl-layout-header.component
   public onTabMouseover(tab) {
-    let index = this.header.tabs.toArray().indexOf(tab);
-    this.mouseoverTabEmitter.emit({index: index});
+    const index = this.header.tabs.toArray().indexOf(tab);
+    this.mouseoverTabEmitter.emit({index});
   }
 
   // triggered from mdl-layout-header.component
   public onTabMouseout(tab) {
-    let index = this.header.tabs.toArray().indexOf(tab);
-    this.mouseoutTabEmitter.emit({index: index});
+    const index = this.header.tabs.toArray().indexOf(tab);
+    this.mouseoutTabEmitter.emit({index});
   }
 
   public closeDrawerOnSmallScreens() {
@@ -353,7 +357,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
       return;
     }
 
-    let headerVisible = !this.isSmallScreen || this.isFixedHeader;
+    const headerVisible = !this.isSmallScreen || this.isFixedHeader;
     if (scrollTop > 0 && !this.header.isCompact) {
       this.header.isCompact = true;
       if (headerVisible) {
