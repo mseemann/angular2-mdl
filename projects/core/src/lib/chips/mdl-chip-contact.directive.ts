@@ -1,4 +1,4 @@
-import {Directive, forwardRef, HostBinding, Inject, OnInit, Optional} from '@angular/core';
+import {Directive, HostBinding, Inject, OnInit, Optional} from '@angular/core';
 import {MdlChipComponent} from './mdl-chip.component';
 import {MdlStructureError} from '../common/mdl-error';
 
@@ -10,14 +10,14 @@ export class MdlChipContactDirective implements OnInit {
 
   @HostBinding('class.mdl-chip__contact') isChipContact = true;
 
-  constructor(@Optional() @Inject(forwardRef(() => MdlChipComponent)) private mdlChipComponent) {
-    this.mdlChipComponent = mdlChipComponent as MdlChipComponent;
+  constructor(@Optional() @Inject(MdlChipComponent) private mdlChipComponent: MdlChipComponent) {
   }
 
   public ngOnInit() {
     if (!this.mdlChipComponent) {
       throw new MdlStructureError('mdl-chip-contact', 'mdl-chip');
     }
+    (this.mdlChipComponent as MdlChipComponent).isChipContact = true;
   }
 }
 

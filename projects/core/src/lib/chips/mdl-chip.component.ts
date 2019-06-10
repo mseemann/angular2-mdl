@@ -1,5 +1,4 @@
-import {Component, ContentChild, EventEmitter, HostBinding, Input, Output, ViewEncapsulation} from '@angular/core';
-import {MdlChipContactDirective} from './mdl-chip-contact.directive';
+import {Component, EventEmitter, HostBinding, Input, Output, ViewEncapsulation} from '@angular/core';
 
 
 @Component({
@@ -27,7 +26,7 @@ export class MdlChipComponent {
   @HostBinding('class.mdl-chip') isChip = true;
 
   @HostBinding('class.mdl-chip--contact')
-  @ContentChild(MdlChipContactDirective, {static: true}) chipContact: MdlChipContactDirective;
+  public isChipContact = false;
 
   public action() {
     this.actionClick.emit();
