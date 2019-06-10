@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewContainerRef, ViewEncapsulation} from '@angular/core';
 
 
 @Component({
@@ -11,7 +11,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
 })
 export class MdlTabPanelTitleComponent {
 
-  constructor() {
+  constructor(public vcRef: ViewContainerRef) {
   }
 
 }

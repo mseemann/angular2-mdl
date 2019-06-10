@@ -27,7 +27,7 @@ export class MdlChipComponent {
   @HostBinding('class.mdl-chip') isChip = true;
 
   @HostBinding('class.mdl-chip--contact')
-  @ContentChild(MdlChipContactDirective, {static: true}) private chipContact: MdlChipContactDirective;
+  @ContentChild(MdlChipContactDirective, {static: true}) chipContact: MdlChipContactDirective;
 
   public action() {
     this.actionClick.emit();

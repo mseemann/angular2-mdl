@@ -6,7 +6,7 @@ import {AfterViewInit, Directive, Input, Renderer2, ViewContainerRef} from '@ang
 })
 export class AppendViewContainerRefDirective implements AfterViewInit {
 
-  @Input('append-view-container-ref') viewContainerRefToAppend: ViewContainerRef;
+  @Input('append-view-container-ref') public viewContainerRefToAppend: ViewContainerRef;
 
   constructor(private viewRef: ViewContainerRef, private renderer: Renderer2) {
   }
