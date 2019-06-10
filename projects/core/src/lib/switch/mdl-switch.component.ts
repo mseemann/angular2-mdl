@@ -1,4 +1,4 @@
-import {Component, ElementRef, forwardRef, Renderer2, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, forwardRef, HostBinding, Renderer2, ViewEncapsulation} from '@angular/core';
 
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {MdlCheckboxComponent} from '../checkbox/mdl-checkbox.component';
@@ -10,14 +10,6 @@ import {MdlCheckboxComponent} from '../checkbox/mdl-checkbox.component';
     useExisting: forwardRef(() => MdlSwitchComponent),
     multi: true
   }],
-  host: {
-    '(click)': 'onClick()',
-    '[class.mdl-switch]': 'true',
-    '[class.is-upgraded]': 'true',
-    '[class.is-checked]': 'value',
-    '[class.is-disabled]': 'disabled'
-  },
-  outputs: ['change'],
   template: `
     <input type="checkbox" class="mdl-switch__input"
            (focus)="onFocus()"
@@ -32,8 +24,11 @@ import {MdlCheckboxComponent} from '../checkbox/mdl-checkbox.component';
 })
 export class MdlSwitchComponent extends MdlCheckboxComponent {
 
+  @HostBinding('class.mdl-switch') isSwitch = true;
+
   constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer);
+    this.isCheckbox = false;
   }
 
 }

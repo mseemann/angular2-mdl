@@ -1,20 +1,10 @@
-import {Component, ElementRef, Input, Renderer2, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, HostBinding, Input, Renderer2, ViewEncapsulation} from '@angular/core';
 import {MdlTooltipPositionService} from './mdl-tooltip-position.service';
 
 const IS_ACTIVE = 'is-active';
 
-const host: { [key: string]: string; } = {
-  '[class.mdl-tooltip]': 'true',
-  '[class.mdl-tooltip--large]': 'large',
-  '[class.mdl-tooltip--left]': 'position=="left"',
-  '[class.mdl-tooltip--right]': 'position=="right"',
-  '[class.mdl-tooltip--top]': 'position=="top"',
-  '[class.mdl-tooltip--bottom]': 'position=="bottom"'
-};
-
 @Component({
   selector: 'mdl-simple-tooltip',
-  host: host,
   template: '<div>{{tooltipText}}</div>',
   providers: [MdlTooltipPositionService],
   encapsulation: ViewEncapsulation.None
@@ -22,9 +12,17 @@ const host: { [key: string]: string; } = {
 export class MdlSimpleTooltipComponent {
   public tooltipText: string;
   public element: HTMLElement;
+
+  @HostBinding('class.mdl-tooltip--large')
   public large = false;
+
+  @Input()
   public position: 'left' | 'right' | 'top' | 'bottom';
+
   @Input() delay: number;
+
+  @HostBinding('class.mdl-tooltip') isTooltip = true;
+
   private active = false;
   private delayTimeout: any;
 
@@ -34,6 +32,22 @@ export class MdlSimpleTooltipComponent {
     private mdlTooltipPositionService: MdlTooltipPositionService) {
 
     this.element = elRef.nativeElement;
+  }
+
+  @HostBinding('class.mdl-tooltip--bottom') get isBottom() {
+    return this.position === 'bottom';
+  }
+
+  @HostBinding('class.mdl-tooltip--right') get isRight() {
+    return this.position === 'right';
+  }
+
+  @HostBinding('class.mdl-tooltip--left') get isLeft() {
+    return this.position === 'left';
+  }
+
+  @HostBinding('class.mdl-tooltip--top') isTop() {
+    return this.position === 'top';
   }
 
   public mouseLeave() {
@@ -85,7 +99,6 @@ export class MdlSimpleTooltipComponent {
   selector: 'mdl-tooltip',
   template: '<div><ng-content></ng-content></div>',
   exportAs: 'mdlTooltip',
-  host: host,
   providers: [MdlTooltipPositionService],
   encapsulation: ViewEncapsulation.None
 })

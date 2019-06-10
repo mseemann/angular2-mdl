@@ -4,6 +4,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  HostBinding,
   Inject,
   InjectionToken,
   Input,
@@ -33,13 +34,6 @@ const IS_DIRTY = 'is-dirty';
 
 @Component({
   selector: 'mdl-textfield',
-  host: {
-    '[class.mdl-textfield]': 'true',
-    '[class.is-upgraded]': 'true',
-    '[class.mdl-textfield--expandable]': 'icon',
-    '[class.mdl-textfield--floating-label]': 'isFloatingLabel',
-    '[class.has-placeholder]': 'placeholder'
-  },
   template: `
     <div *ngIf="!icon">
      <textarea
@@ -150,11 +144,15 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() public id = `mdl-textfield-${nextId++}`;
   // tslint:disable-next-line
   @Input('error-msg') public errorMessage;
+  @HostBinding('class.has-placeholder')
   @Input() public placeholder: string;
   @Input() public autocomplete: string;
+  @HostBinding('class.mdl-textfield--expandable')
   @Input() public icon: string;
   @Input() public tabindex: number = null;
   @Input() public maxlength: number = null;
+  @HostBinding('class.mdl-textfield') isTextfield = true;
+  @HostBinding('class.is-upgraded') isUpgraded = true;
   private valueIntern: any;
   private el: HTMLElement;
   private onTouchedCallback: () => void = noop;
@@ -221,6 +219,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.autofocusIntern = toBoolean(value);
   }
 
+  @HostBinding('class.mdl-textfield--floating-label')
   @Input('floating-label')
   get isFloatingLabel() {
     return this.isFloatingLabelIntern;
@@ -292,6 +291,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
 
   public keydownTextarea($event: KeyboardEvent) {
     const currentRowCount = this.inputEl.nativeElement.value.split('\n').length;
+    // tslint:disable-next-line
     if ($event.keyCode === 13) {
       if (currentRowCount >= this.maxrows && this.maxrows !== -1) {
         $event.preventDefault();

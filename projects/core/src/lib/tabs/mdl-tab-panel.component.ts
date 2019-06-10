@@ -1,4 +1,4 @@
-import {Component, ContentChild, Input, ViewEncapsulation} from '@angular/core';
+import {Component, ContentChild, HostBinding, Input, ViewEncapsulation} from '@angular/core';
 import {MdlTabPanelTitleComponent} from './mdl-tab-panel-title.component';
 
 @Component({
@@ -12,10 +12,6 @@ export class MdlTabPanelContentComponent {
 
 @Component({
   selector: 'mdl-tab-panel',
-  host: {
-    '[class.mdl-tabs__panel]': 'true',
-    '[class.is-active]': 'isActive'
-  },
   template:
       `
     <ng-content *ngIf="titleComponent" select="mdl-tab-panel-content"></ng-content>
@@ -26,11 +22,12 @@ export class MdlTabPanelContentComponent {
 export class MdlTabPanelComponent {
 
   @ContentChild(MdlTabPanelTitleComponent, {static: true}) public titleComponent;
-  // tslint: disable-next-line
-  @Input('mdl-tab-panel-title') public title;
-  // tslint: disable-next-line
-  @Input('disabled') public disabled;
-  // tslint: disable-next-line
-  public isActive = false;
+  // tslint:disable-next-line
+  @Input('mdl-tab-panel-title') title;
+  // tslint:disable-next-line
+  @Input('disabled') disabled;
+
+  @HostBinding('class.mdl-tabs__panel') isTabPanel = true;
+  @HostBinding('class.is-active') isActive = false;
 
 }

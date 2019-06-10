@@ -1,16 +1,8 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, HostBinding, Input, ViewEncapsulation} from '@angular/core';
 import {toBoolean} from '../common/boolean-property';
 
 @Component({
   selector: 'mdl-spinner',
-  host: {
-    '[class.mdl-spinner]': 'true',
-    '[class.is-upgraded]': 'true',
-    '[class.is-active]': 'active',
-    '[class.mdl-spinner--single-color]': 'singleColor',
-  },
-  // must be one line - otherwise the spinner is broken in the ui
-  /* tslint:disable */
   template: `
     <div *ngFor="let layer of layers;"
          class="mdl-spinner__layer mdl-spinner__layer-{{layer}}">
@@ -24,16 +16,18 @@ import {toBoolean} from '../common/boolean-property';
         <div class="mdl-spinner__circle"></div>
       </div>
     </div>
-  `
-  /* tslint:enable */,
+  `,
   encapsulation: ViewEncapsulation.None
 })
 export class MdlSpinnerComponent {
   public layers = [1, 2, 3, 4];
 
+  @HostBinding('class.mdl-spinner') isSpinner = true;
+  @HostBinding('class.is-upgraded') isUpgraded = true;
   private activeIntern = false;
   private singleColorIntern = false;
 
+  @HostBinding('class.is-active')
   @Input()
   get active() {
     return this.activeIntern;
@@ -43,6 +37,7 @@ export class MdlSpinnerComponent {
     this.activeIntern = toBoolean(value);
   }
 
+  @HostBinding('class.mdl-spinner--single-color')
   @Input('single-color')
   get singleColor() {
     return this.singleColorIntern;

@@ -3,6 +3,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
+  HostBinding,
   Input,
   OnChanges,
   Output,
@@ -17,10 +18,6 @@ import {toBoolean} from '../common/boolean-property';
 
 @Component({
   selector: 'mdl-tabs',
-  host: {
-    '[class.mdl-tabs]': 'true',
-    '[class.is-upgraded]': 'true'
-  },
   template:
       `
     <div class="mdl-tabs__tab-bar">
@@ -48,6 +45,9 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
   // tslint:disable-next-line
   @Output('mdl-tab-active-changed') public selectedTabEmitter = new EventEmitter();
   @ContentChildren(MdlTabPanelComponent) public tabs: QueryList<MdlTabPanelComponent>;
+
+  @HostBinding('class.mdl-tabs') isTabs = true;
+  @HostBinding('class.is-upgraded') isUpgraded = true;
 
   private selectedIndexIntern = 0;
   private isRippleIntern = false;

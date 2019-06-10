@@ -1,4 +1,14 @@
-import {Component, ElementRef, forwardRef, Input, Renderer2, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  Renderer2,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {toBoolean} from '../common/boolean-property';
 import {noop} from '../common/noop';
@@ -12,11 +22,6 @@ import {callNative} from '../common/native-support';
     useExisting: forwardRef(() => MdlSliderComponent),
     multi: true
   }],
-  host: {
-    '[class.mdl-slider__container]': 'true',
-    '(mouseup)': 'onMouseUp($event)',
-    '(mousedown)': 'onMouseDown($event)'
-  },
   template: `
     <input class="mdl-slider is-upgraded"
            type="range"
@@ -51,6 +56,7 @@ export class MdlSliderComponent implements ControlValueAccessor {
   @ViewChild('lower', {static: true}) public lowerEl: ElementRef;
   @ViewChild('uppper', {static: true}) public upperEl: ElementRef;
   @ViewChild('input', {static: true}) public inputEl: ElementRef;
+  @HostBinding('class.mdl-slider__container') isSliderContainer = true;
   private valueIntern: any;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
@@ -95,10 +101,12 @@ export class MdlSliderComponent implements ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
+  @HostListener('mouseup', ['$event'])
   public onMouseUp(event) {
     event.target.blur();
   }
 
+  @HostListener('mousedown', ['$event'])
   public onMouseDown(event: MouseEvent) {
     if (event.target !== this.elRef.nativeElement) {
       return;
