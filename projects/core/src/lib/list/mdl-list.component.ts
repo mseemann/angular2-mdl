@@ -1,6 +1,7 @@
 import {
   Component,
   Directive,
+  HostBinding,
   Input,
   OnChanges,
   OnInit,
@@ -20,27 +21,22 @@ export class MdlUnsupportedCountOfListItemLinesError extends MdlError {
 
 @Component({
   selector: 'mdl-list',
-  host: {
-    '[class.mdl-list]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlListComponent {
+  @HostBinding('class.mdl-list') isMdlList = true;
 }
 
 
 @Component({
   selector: 'mdl-list-item',
-  host: {
-    '[class.mdl-list__item]': 'true',
-    '[class.mdl-list__item--two-line]': 'lines==2',
-    '[class.mdl-list__item--three-line]': 'lines==3'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlListItemComponent implements OnChanges {
+
+  @HostBinding('class.mdl-list__item') isMdlListItem = true;
 
   private linesIntern = 1;
 
@@ -53,6 +49,13 @@ export class MdlListItemComponent implements OnChanges {
     this.linesIntern = toNumber(value);
   }
 
+  @HostBinding('class.mdl-list__item--two-line') get lines2() {
+    return this.lines === 2;
+  }
+
+  @HostBinding('class.mdl-list__item--three-line') get lines3() {
+    return this.lines === 3;
+  }
 
   public ngOnChanges(changes: SimpleChanges) {
 
@@ -64,13 +67,12 @@ export class MdlListItemComponent implements OnChanges {
 
 @Component({
   selector: 'mdl-list-item-primary-content',
-  host: {
-    '[class.mdl-list__item-primary-content]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlListItemPrimaryContentComponent implements OnInit {
+
+  @HostBinding('class.mdl-list__item-primary-content') isPrimaryContent = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemComponent) {
   }
@@ -85,13 +87,12 @@ export class MdlListItemPrimaryContentComponent implements OnInit {
 
 @Component({
   selector: 'mdl-list-item-secondary-content',
-  host: {
-    '[class.mdl-list__item-secondary-content]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlListItemSecondaryContentComponent implements OnInit {
+
+  @HostBinding('class.mdl-list__item-secondary-content') isSecondaryContent = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemComponent) {
   }
@@ -105,13 +106,12 @@ export class MdlListItemSecondaryContentComponent implements OnInit {
 
 @Component({
   selector: 'mdl-list-item-secondary-action',
-  host: {
-    '[class.mdl-list__item-secondary-action]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlListItemSecondaryActionComponent implements OnInit {
+
+  @HostBinding('class.mdl-list__item-secondary-action') isSecondaryAction = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemComponent) {
   }
@@ -125,13 +125,12 @@ export class MdlListItemSecondaryActionComponent implements OnInit {
 
 @Component({
   selector: 'mdl-list-item-sub-title',
-  host: {
-    '[class.mdl-list__item-sub-title]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlListItemSubTitleComponent implements OnInit {
+
+  @HostBinding('class.mdl-list__item-sub-title') isSubTitle = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemPrimaryContentComponent) {
   }
@@ -145,13 +144,12 @@ export class MdlListItemSubTitleComponent implements OnInit {
 
 @Component({
   selector: 'mdl-list-item-secondary-info',
-  host: {
-    '[class.mdl-list__item-secondary-info]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlListItemSecondaryInfoComponent implements OnInit {
+
+  @HostBinding('class.mdl-list__item-secondary-info') isSecondaryInfo = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemSecondaryContentComponent) {
   }
@@ -165,13 +163,12 @@ export class MdlListItemSecondaryInfoComponent implements OnInit {
 
 @Component({
   selector: 'mdl-list-item-text-body',
-  host: {
-    '[class.mdl-list__item-text-body]': 'true'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlListItemTextBodyComponent implements OnInit {
+
+  @HostBinding('class.mdl-list__item-text-body') isTextBody = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemComponent) {
   }
@@ -186,21 +183,17 @@ export class MdlListItemTextBodyComponent implements OnInit {
 
 @Directive({
   // tslint:disable-next-line
-  selector: 'mdl-icon[mdl-list-item-icon]',
-  host: {
-    '[class.mdl-list__item-icon]': 'true'
-  }
+  selector: 'mdl-icon[mdl-list-item-icon]'
 })
 export class MdlListItemIconDirective {
+  @HostBinding('class.mdl-list__item-icon') isItemIcon = true;
 }
 
 @Directive({
   // tslint:disable-next-line
-  selector: 'mdl-icon[mdl-list-item-avatar]',
-  host: {
-    '[class.mdl-list__item-avatar]': 'true'
-  }
+  selector: 'mdl-icon[mdl-list-item-avatar]'
 })
 export class MdlListItemAvatarDirective {
+  @HostBinding('class.mdl-list__item-avatar') isItemAvatar = true;
 }
 

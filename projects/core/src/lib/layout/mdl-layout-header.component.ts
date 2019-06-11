@@ -1,20 +1,20 @@
-import {Component, ElementRef, forwardRef, Inject, QueryList, Renderer2, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Inject,
+  QueryList,
+  Renderer2,
+  ViewEncapsulation
+} from '@angular/core';
 import {MdlLayoutTabPanelComponent} from './mdl-layout-tab-panel.component';
 import {MdlLayoutComponent} from './mdl-layout.component';
 
 
 @Component({
   selector: 'mdl-layout-header',
-  host: {
-    '[class.mdl-layout__header]': 'true',
-    '[class.is-casting-shadow]': 'mode==="standard" || isCompact',
-    '[class.mdl-layout__header--seamed]': 'isSeamed',
-    '[class.mdl-layout__header--waterfall]': 'mode==="waterfall"',
-    '[class.mdl-layout__header--scroll]': 'mode==="scroll"',
-    '[class.is-compact]': 'isCompact',
-    '(transitionend)': 'onTransitionEnd()',
-    '(click)': 'onClick()'
-  },
   template: `
     <ng-content></ng-content>
     <div *ngIf="tabs?.toArray()?.length > 0" class="mdl-layout__tab-bar-container">
@@ -44,14 +44,14 @@ import {MdlLayoutComponent} from './mdl-layout.component';
 })
 export class MdlLayoutHeaderComponent {
 
+  @HostBinding('class.mdl-layout__header') isLayoutHeader = true;
   // set from MdlLayoutComponent
   public mode: string;
   public el: HTMLElement;
-  public isCompact = false;
+  @HostBinding('class.is-compact') isCompact = false;
   public isAnimating = false;
-  public isSeamed = false;
+  @HostBinding('class.mdl-layout__header--seamed') isSeamed = false;
   public isRipple = true;
-
   // will be set from mdllayoutcomponent
   public tabs: QueryList<MdlLayoutTabPanelComponent>;
 
@@ -63,10 +63,24 @@ export class MdlLayoutHeaderComponent {
     this.el = elementRef.nativeElement;
   }
 
+  @HostBinding('class.mdl-layout__header--waterfall') get isWaterfall() {
+    return this.mode === 'waterfall';
+  }
+
+  @HostBinding('class.is-casting-shadow') get isCastingShadow() {
+    return this.mode === 'standard' || this.isCompact;
+  }
+
+  @HostBinding('class.mdl-layout__header--scroll') get isHeaderScroll() {
+    return this.mode === 'scroll';
+  }
+
+  @HostListener('transitionend')
   public onTransitionEnd() {
     this.isAnimating = false;
   }
 
+  @HostListener('click')
   public onClick() {
     if (this.isCompact) {
       this.isCompact = false;

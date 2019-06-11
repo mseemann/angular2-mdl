@@ -14,6 +14,7 @@ import {MdlRippleModule} from '../ripple/mdl-ripple.module';
 
 
 @Component({
+  // tslint:disable-next-line
   selector: 'test-layout',
   template: 'replaced by the test'
 })
@@ -21,7 +22,7 @@ class MdlTestLayoutComponent {
 
   public activeIndex = 0;
 
-  public selectedIndexOutput: number = -1;
+  public selectedIndexOutput = -1;
 
   public tabChanged($event) {
     this.selectedIndexOutput = $event.index;
@@ -61,10 +62,10 @@ describe('Component: MdlLayout', () => {
     fixture.detectChanges();
 
     const layoutEl: HTMLElement = fixture.debugElement.query(By.directive(MdlLayoutComponent)).nativeElement;
-    const layoutContainer: HTMLElement = <HTMLElement>layoutEl.children.item(0);
+    const layoutContainer: HTMLElement = layoutEl.children.item(0) as HTMLElement;
     expect(layoutContainer.classList.contains('mdl-layout__container')).toBe(true);
 
-    const layoutMainElement = <HTMLElement>layoutContainer.children.item(0);
+    const layoutMainElement = layoutContainer.children.item(0) as HTMLElement;
     expect(layoutMainElement.classList.contains('mdl-layout')).toBe(true);
 
   });
@@ -718,7 +719,7 @@ describe('Component: MdlLayout', () => {
 
       const service = TestBed.get(MdlScreenSizeService);
       // access a private property
-      expect(service['layoutScreenSizeThreshold']).toBe(230);
+      expect(service.layoutScreenSizeThreshold).toBe(230);
     });
 
     it('should fire screen size events on subscribe', (done) => {

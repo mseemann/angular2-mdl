@@ -6,8 +6,8 @@ import {
   Inject,
   Injectable,
   InjectionToken,
-  Provider,
-  ReflectiveInjector,
+  Injector,
+  StaticProvider,
   TemplateRef,
   Type,
   ViewContainerRef
@@ -81,7 +81,8 @@ export class MdlDialogService {
     private componentFactoryResolver: ComponentFactoryResolver,
     @Inject(DOCUMENT) private doc: any,
     private appRef: ApplicationRef,
-    private mdlDialogOutletService: MdlDialogOutletService) {
+    private mdlDialogOutletService: MdlDialogOutletService,
+    private injector: Injector) {
 
     this.mdlDialogOutletService.backdropClickEmitter.subscribe(() => {
       this.onBackdropClick();
@@ -174,7 +175,7 @@ export class MdlDialogService {
 
     const hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
-    const cRef = this.createComponentInstance(
+    this.createComponentInstance(
       hostComponentRef.instance.dialogTarget,
       providers,
       MdlSimpleDialogComponent);
@@ -191,7 +192,7 @@ export class MdlDialogService {
 
     const internalDialogRef = new InternalMdlDialogReference(config);
 
-    const providers: Provider[] = [
+    const providers: StaticProvider[] = [
       {provide: MdlDialogReference, useValue: new MdlDialogReference(internalDialogRef)}
     ];
 
@@ -238,7 +239,7 @@ export class MdlDialogService {
         'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
     }
 
-    const providers: Provider[] = [
+    const providers: StaticProvider[] = [
       {provide: MDL_CONFIGUARTION, useValue: dialogConfig},
       {provide: InternalMdlDialogReference, useValue: internalDialogRef}
     ];
@@ -318,17 +319,17 @@ export class MdlDialogService {
 
   private createComponentInstance<T>(
     viewContainerRef: ViewContainerRef,
-    providers: Provider[],
+    providers: StaticProvider[],
     component: Type<T>): ComponentRef<any> {
 
     const cFactory = this.componentFactoryResolver.resolveComponentFactory(component);
 
-    const resolvedProviders = ReflectiveInjector.resolve(providers);
-    const parentInjector = viewContainerRef.parentInjector;
-    const childInjector = ReflectiveInjector.fromResolvedProviders(resolvedProviders, parentInjector);
+    const injector = Injector.create({
+      providers: [...providers, {provide: ViewContainerRef, useValue: viewContainerRef}],
+      parent: this.injector
+    });
 
-    return viewContainerRef.createComponent(cFactory, viewContainerRef.length, childInjector);
+    return viewContainerRef.createComponent(cFactory, viewContainerRef.length, injector);
   }
-
 
 }

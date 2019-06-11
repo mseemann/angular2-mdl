@@ -3,6 +3,8 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  HostBinding,
+  HostListener,
   Injectable,
   Input,
   OnDestroy,
@@ -67,13 +69,6 @@ export class MdlRadioGroupRegisty {
     useExisting: forwardRef(() => MdlRadioComponent),
     multi: true
   }],
-  host: {
-    '(click)': 'onClick()',
-    '[class.mdl-radio]': 'true',
-    '[class.is-upgraded]': 'true',
-    '[class.is-checked]': 'checked',
-    '[class.is-disabled]': 'disabled'
-  },
   template: `
     <input type="checkbox" class="mdl-radio__button"
            [attr.name]="name"
@@ -95,10 +90,13 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   @Input() public formControlName: string;
   @Input() public value: any;
   @Input() public tabindex = null;
+  // tslint:disable-next-line
   @Output() public change: EventEmitter<any> = new EventEmitter<any>();
   public optionValue: any;
   // the internal state - used to set the underlaying radio button state.
-  public checked = false;
+  @HostBinding('class.is-checked') public checked = false;
+  @HostBinding('class.is-upgraded') isUpgraded = true;
+  @HostBinding('class.mdl-radio') isRadio = true;
   private el: HTMLElement;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: () => void = noop;
@@ -112,6 +110,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     this.el = elementRef.nativeElement;
   }
 
+  @HostBinding('class.is-disabled')
   @Input()
   get disabled(): boolean {
     return this.disabledIntern;
@@ -170,6 +169,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     this.renderer.removeClass(this.el, IS_FOCUSED);
   }
 
+  @HostListener('click')
   public onClick() {
     if (this.disabled) {
       return;

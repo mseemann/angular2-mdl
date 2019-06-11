@@ -52,7 +52,7 @@ describe('Component: MdlMenu', () => {
 
     const references = fixture.debugElement.query(By.directive(MdlMenuComponent)).references;
 
-    expect(references['menu']).toBeDefined();
+    expect(references.menu).toBeDefined();
 
   });
 
@@ -251,16 +251,16 @@ describe('Component: MdlMenu', () => {
   it('should add and remove teh menucompoennts from the registry', () => {
     const registry = TestBed.get(MdlMenuRegisty);
 
-    expect(<any>registry.menuComponents.length).toBe(0);
+    expect(registry.menuComponents.length).toBe(0);
 
     const menuComponentDummy = {};
     registry.add(menuComponentDummy);
 
-    expect(<any>registry.menuComponents.length).toBe(1);
+    expect(registry.menuComponents.length).toBe(1);
 
     registry.remove(menuComponentDummy);
 
-    expect(<any>registry.menuComponents.length).toBe(0);
+    expect(registry.menuComponents.length).toBe(0);
   });
 
 });

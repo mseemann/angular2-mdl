@@ -68,6 +68,7 @@ export class MdlButtonRippleDirective extends MdlRippleDirective {
 })
 export class MdlCheckboxRippleDirective extends MdlRippleDirective {
 
+  // tslint:disable-next-line
   @Input('mdl-ripple') public rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {

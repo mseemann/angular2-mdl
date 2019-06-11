@@ -21,6 +21,7 @@ jobs:
           paths:
             - node_modules/
 
+      - run: yarn lint
       - run: yarn test
         # create a build - should test the tooling to create dist build
       - run: yarn build core

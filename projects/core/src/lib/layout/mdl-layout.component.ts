@@ -81,9 +81,9 @@ export class MdlScreenSizeService {
           this.sizesSubject.next(query.matches);
         });
       };
-      query.addListener(queryListener);
+      query.addEventListener('change', queryListener);
       this.windowMediaQueryListener = () => {
-        query.removeListener(queryListener);
+        query.removeEventListener('change', queryListener);
       };
       // set the initial state
       this.sizesSubject.next(query.matches);

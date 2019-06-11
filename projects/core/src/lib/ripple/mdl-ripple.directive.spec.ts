@@ -8,7 +8,7 @@ import {MdlMenuModule} from '../menu/mdl-menu.module';
 
 
 @Component({
-  // tslint:disbale-next-line
+  // tslint:disable-next-line
   selector: 'test-ripple',
   template: 'replaced by the test'
 })
@@ -18,7 +18,7 @@ class MdlTestRippleComponent {
 
 
 function getFiytureForTemplate(template) {
-  TestBed.overrideComponent(MdlTestRippleComponent, {set: {template: template}});
+  TestBed.overrideComponent(MdlTestRippleComponent, {set: {template}});
   const fixture = TestBed.createComponent(MdlTestRippleComponent);
   fixture.detectChanges();
   return fixture;

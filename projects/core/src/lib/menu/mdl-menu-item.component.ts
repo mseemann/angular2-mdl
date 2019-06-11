@@ -1,4 +1,14 @@
-import {Component, ElementRef, forwardRef, Inject, Input, Renderer2, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Inject,
+  Input,
+  Renderer2,
+  ViewEncapsulation
+} from '@angular/core';
 import {MdlMenuComponent} from './mdl-menu.component';
 import {toBoolean} from '../common/boolean-property';
 import {callNative} from '../common/native-support';
@@ -6,17 +16,13 @@ import {callNative} from '../common/native-support';
 
 @Component({
   selector: 'mdl-menu-item',
-  host: {
-    '[class.mdl-menu__item]': 'true',
-    'tabindex': '-1',
-    '(click)': 'onClick($event)',
-    '(touchstart)': 'onTouch($event)'
-  },
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlMenuItemComponent {
 
+  @HostBinding('tabindex') tabindex = -1;
+  @HostBinding('class.mdl-menu__item') isMenuItem = true;
   public element: HTMLElement;
   private disabledIntern = false;
 
@@ -38,6 +44,7 @@ export class MdlMenuItemComponent {
     this.disabledIntern = toBoolean(value);
   }
 
+  @HostListener('click', ['$event'])
   public onClick($event) {
     $event.stopPropagation();
     if (this.disabled) {
@@ -51,6 +58,7 @@ export class MdlMenuItemComponent {
   // But if we register a touchstart event - safari will no longer convert touch events to click events.
   // So we need to convert touch to click and the user still needs to register a (click) listener to be
   // informed if the menu item has clicked.
+  @HostListener('touchstart', ['$event'])
   public onTouch($event) {
     // ensure that this event is totally consumed
     $event.stopPropagation();

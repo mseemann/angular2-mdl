@@ -1,4 +1,4 @@
-import {Provider, Type} from '@angular/core';
+import {StaticProvider, Type} from '@angular/core';
 import {MdlButtonComponent} from '../button/mdl-button.component';
 
 
@@ -133,5 +133,5 @@ export interface IMdlSimpleDialogConfiguration extends IMdlDialogConfiguration {
  */
 export interface IMdlCustomDialogConfiguration extends IMdlDialogConfiguration {
   component: Type<any>;
-  providers?: Provider[];
+  providers?: StaticProvider[];
 }

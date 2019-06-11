@@ -1,2 +1,3 @@
 /* istanbul ignore next */
-export const noop = (_?: any) => {};
+export const noop = (_?: any) => {
+};

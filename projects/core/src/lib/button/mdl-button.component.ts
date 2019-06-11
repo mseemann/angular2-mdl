@@ -1,4 +1,14 @@
-import {Component, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnChanges,
+  Renderer2,
+  SimpleChanges,
+  ViewEncapsulation
+} from '@angular/core';
 import {MdlError} from '../common/mdl-error';
 import {toBoolean} from '../common/boolean-property';
 import {callNative} from '../common/native-support';
@@ -34,31 +44,50 @@ const MDL_COLORED_TYPES = [
 
 @Component({
   selector: 'mdl-button, button[mdl-button], a[mdl-button]',
-  host: {
-    '[attr.disabled]': 'disabled ? "disabled" : null',
-    '(mouseup)': 'onMouseUp()',
-    '(mouseleave)': 'onMouseLeave()',
-    '[class.mdl-button]': 'true',
-    '[class.mdl-button--raised]': 'mdlButtonType == "raised"',
-    '[class.mdl-button--fab]': 'mdlButtonType == "fab" || mdlButtonType == "mini-fab"',
-    '[class.mdl-button--mini-fab]': 'mdlButtonType == "mini-fab"',
-    '[class.mdl-button--icon]': 'mdlButtonType == "icon"',
-    '[class.mdl-button--primary]': 'mdlColoredType == "primary"',
-    '[class.mdl-button--accent]': 'mdlColoredType == "accent"'
-  },
   exportAs: 'mdlButton',
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class MdlButtonComponent implements OnChanges {
 
+  @HostBinding('class.mdl-button') isButton = true;
+  // tslint:disable-next-line:no-input-rename
   @Input('mdl-button-type') public mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '';
+  // tslint:disable-next-line:no-input-rename
   @Input('mdl-colored') public mdlColoredType: 'primary' | 'accent' | '';
   private element: HTMLElement;
   private disabledIntern = false;
 
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {
     this.element = elementRef.nativeElement;
+  }
+
+  @HostBinding('attr.disabled') get isDisable() {
+    return this.disabled ? 'disabled' : null;
+  }
+
+  @HostBinding('class.mdl-button--raised') get raised() {
+    return this.mdlButtonType === 'raised';
+  }
+
+  @HostBinding('class.mdl-button--fab') get fab() {
+    return this.mdlButtonType === 'fab' || this.mdlButtonType === 'mini-fab';
+  }
+
+  @HostBinding('class.mdl-button--mini-fab') get miniFab() {
+    return this.mdlButtonType === 'mini-fab';
+  }
+
+  @HostBinding('class.mdl-button--icon') get icon() {
+    return this.mdlButtonType === 'icon';
+  }
+
+  @HostBinding('class.mdl-button--primary') get primary() {
+    return this.mdlColoredType === 'primary';
+  }
+
+  @HostBinding('class.mdl-button--accent') get accent() {
+    return this.mdlColoredType === 'accent';
   }
 
   @Input()
@@ -81,10 +110,12 @@ export class MdlButtonComponent implements OnChanges {
     }
   }
 
+  @HostListener('mouseup')
   public onMouseUp() {
     this.blurIt();
   }
 
+  @HostListener('mouseleave')
   public onMouseLeave() {
     this.blurIt();
   }

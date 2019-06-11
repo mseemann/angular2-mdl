@@ -8,6 +8,7 @@ import {MdlButtonComponent} from '../button/mdl-button.component';
 })
 export class MdlToggleMenuDirective {
 
+  // tslint:disable-next-line
   @Input('mdl-toggle-menu') public menu: MdlMenuComponent;
 
   constructor(private button: MdlButtonComponent) {

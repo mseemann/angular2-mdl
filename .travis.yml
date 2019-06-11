@@ -21,6 +21,7 @@ after_success:
   - cat ./coverage/core/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   # send code coverage to codeclimate
   - npm run codeclimate
+  - npm run lint
   # run e2e test
   # - npm run e2e
   # create a build - should test the tooling to create dist build

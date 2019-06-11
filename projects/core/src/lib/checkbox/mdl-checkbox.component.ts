@@ -19,6 +19,7 @@ import {noop} from '../common/noop';
 const IS_FOCUSED = 'is-focused';
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
+  // tslint:disable-next-line
   useExisting: forwardRef(() => MdlCheckboxComponent),
   multi: true
 };
