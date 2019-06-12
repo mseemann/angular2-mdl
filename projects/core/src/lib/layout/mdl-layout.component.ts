@@ -2,6 +2,7 @@ import {
   AfterContentInit,
   Component,
   ContentChild,
+  ContentChildren,
   ElementRef,
   EventEmitter,
   Inject,
@@ -13,6 +14,7 @@ import {
   OnDestroy,
   Optional,
   Output,
+  QueryList,
   Renderer2,
   SimpleChanges,
   ViewEncapsulation
@@ -21,10 +23,12 @@ import {EventManager} from '@angular/platform-browser';
 import {MdlLayoutHeaderComponent} from './mdl-layout-header.component';
 import {MdlLayoutDrawerComponent} from './mdl-layout-drawer.component';
 import {MdlLayoutContentComponent} from './mdl-layout-content.component';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {toBoolean} from '../common/boolean-property';
 import {toNumber} from '../common/number.property';
 import {MdlError} from '../common/mdl-error';
+import {MdlLayoutMediatorService} from './mdl-layout-mediator.service';
+import {MdlLayoutTabPanelComponent} from './mdl-layout-tab-panel.component';
 
 
 const ESCAPE = 27;
@@ -120,7 +124,7 @@ export class MdlScreenSizeService {
           }">
         <ng-content select="mdl-layout-header"></ng-content>
         <ng-content select="mdl-layout-drawer"></ng-content>
-        <div *ngIf="drawer && isNoDrawer==false" class="mdl-layout__drawer-button" (click)="toggleDrawer()">
+        <div *ngIf="drawers.length > 0 && isNoDrawer==false" class="mdl-layout__drawer-button" (click)="toggleDrawer()">
           <mdl-icon>&#xE5D2;</mdl-icon>
         </div>
         <ng-content select="mdl-layout-content"></ng-content>
@@ -136,10 +140,10 @@ export class MdlScreenSizeService {
 })
 export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChanges {
 
-  @ContentChild(MdlLayoutHeaderComponent, {static: true}) public header;
+  @ContentChild(MdlLayoutHeaderComponent, {static: false}) public header;
   // will be set to undefined, if not a direct child or not present in 2.0.0 i
   // n 2.0.1 it is now the grand child drawer again :(
-  @ContentChild(MdlLayoutDrawerComponent, {static: true}) public drawer;
+  @ContentChildren(MdlLayoutDrawerComponent, {descendants: false}) public drawers: QueryList<MdlLayoutDrawerComponent>;
   @ContentChild(MdlLayoutContentComponent, {static: true}) public content;
 
   // tslint:disable-next-line
@@ -166,11 +170,14 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   private selectedIndexIntern = 0;
   private isNoDrawerIntern = false;
 
+  private subscriptions: Subscription[] = [];
+
   constructor(
     private renderer: Renderer2,
     private evm: EventManager,
     private el: ElementRef,
-    private screenSizeService: MdlScreenSizeService) {
+    private screenSizeService: MdlScreenSizeService,
+    private layoutMediatorService: MdlLayoutMediatorService) {
   }
 
   @Input('mdl-layout-fixed-drawer')
@@ -219,6 +226,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   }
 
   public ngAfterContentInit() {
+
     this.validateMode();
 
     if (this.header && this.content && this.content.tabs) {
@@ -226,11 +234,20 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
       this.updateSelectedTabIndex();
     }
 
-    // set this.drawer to null, if the drawer is not a direct child if this layout. It may be a drywer of a sub layout.
-    if (this.drawer && !this.drawer.isDrawerDirectChildOf(this)) {
-      this.drawer = null;
-    }
+    if (this.header && this.header.tabs) {
 
+      this.subscriptions.push(this.layoutMediatorService.onTabMouseOut().subscribe((tab: MdlLayoutTabPanelComponent) => {
+        this.onTabMouseout(tab);
+      }));
+
+      this.subscriptions.push(this.layoutMediatorService.onTabMouseover().subscribe((tab: MdlLayoutTabPanelComponent) => {
+        this.onTabMouseover(tab);
+      }));
+
+      this.subscriptions.push(this.layoutMediatorService.onTabSelected().subscribe((tab: MdlLayoutTabPanelComponent) => {
+        this.tabSelected(tab);
+      }));
+    }
   }
 
   public ngOnChanges(changes: SimpleChanges): any {
@@ -241,21 +258,21 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
 
   public toggleDrawer() {
     this.isDrawerVisible = !this.isDrawerVisible;
-    if (this.drawer) {
+    if (this.drawers.length > 0) {
       this.setDrawerVisible(this.isDrawerVisible);
     }
   }
 
   public closeDrawer() {
     this.isDrawerVisible = false;
-    if (this.drawer) {
+    if (this.drawers.length > 0) {
       this.setDrawerVisible(false);
     }
   }
 
   public openDrawer() {
     this.isDrawerVisible = true;
-    if (this.drawer) {
+    if (this.drawers.length > 0) {
       this.setDrawerVisible(true);
     }
   }
@@ -271,28 +288,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
       this.scrollListener();
       this.scrollListener = null;
     }
-  }
-
-  // triggered from mdl-layout-header.component
-  public tabSelected(tab) {
-    const index = this.header.tabs.toArray().indexOf(tab);
-    if (index !== this.selectedIndex) {
-      this.selectedIndex = index;
-      this.updateSelectedTabIndex();
-      this.selectedTabEmitter.emit({index: this.selectedIndex});
-    }
-  }
-
-  // triggered from mdl-layout-header.component
-  public onTabMouseover(tab) {
-    const index = this.header.tabs.toArray().indexOf(tab);
-    this.mouseoverTabEmitter.emit({index});
-  }
-
-  // triggered from mdl-layout-header.component
-  public onTabMouseout(tab) {
-    const index = this.header.tabs.toArray().indexOf(tab);
-    this.mouseoutTabEmitter.emit({index});
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   public closeDrawerOnSmallScreens() {
@@ -308,7 +304,26 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   }
 
   public hasDrawer() {
-    return !!this.drawer;
+    return this.drawers.length > 0;
+  }
+
+  private tabSelected(tab: MdlLayoutTabPanelComponent) {
+    const index = this.header.tabs.toArray().indexOf(tab);
+    if (index !== this.selectedIndex) {
+      this.selectedIndex = index;
+      this.updateSelectedTabIndex();
+      this.selectedTabEmitter.emit({index: this.selectedIndex});
+    }
+  }
+
+  private onTabMouseover(tab: MdlLayoutTabPanelComponent) {
+    const index = this.header.tabs.toArray().indexOf(tab);
+    this.mouseoverTabEmitter.emit({index});
+  }
+
+  private onTabMouseout(tab: MdlLayoutTabPanelComponent) {
+    const index = this.header.tabs.toArray().indexOf(tab);
+    this.mouseoutTabEmitter.emit({index});
   }
 
   private updateSelectedTabIndex() {
@@ -381,7 +396,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   }
 
   private setDrawerVisible(visible: boolean) {
-    this.drawer.isDrawerVisible = visible;
-    this.drawer.isDrawerVisible ? this.onOpen.emit() : this.onClose.emit();
+    this.drawers.first.isDrawerVisible = visible;
+    this.drawers.first.isDrawerVisible ? this.onOpen.emit() : this.onClose.emit();
   }
 }

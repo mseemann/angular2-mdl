@@ -1,16 +1,6 @@
-import {
-  Component,
-  ElementRef,
-  forwardRef,
-  HostBinding,
-  HostListener,
-  Inject,
-  QueryList,
-  Renderer2,
-  ViewEncapsulation
-} from '@angular/core';
+import {Component, ElementRef, HostBinding, HostListener, QueryList, ViewEncapsulation} from '@angular/core';
 import {MdlLayoutTabPanelComponent} from './mdl-layout-tab-panel.component';
-import {MdlLayoutComponent} from './mdl-layout.component';
+import {MdlLayoutMediatorService} from './mdl-layout-mediator.service';
 
 
 @Component({
@@ -22,16 +12,16 @@ import {MdlLayoutComponent} from './mdl-layout.component';
         <div *ngFor="let tab of tabs.toArray()"
              class="mdl-layout__tab"
              [ngClass]="{'is-active': tab.isActive}"
-             (mouseover)="mdlLayout.onTabMouseover(tab)"
-             (mouseout)="mdlLayout.onTabMouseout(tab)">
+             (mouseover)="onTabMouseover(tab)"
+             (mouseout)="onTabMouseout(tab)">
           <div
             *ngIf="tab.titleComponent"
-            (click)="mdlLayout.tabSelected(tab)"
+            (click)="tabSelected(tab)"
             [mdl-ripple]="isRipple"
             [append-view-container-ref]="tab.titleComponent.vcRef"></div>
           <a *ngIf="!tab.titleComponent"
              href="javascript:void(0)"
-             (click)="mdlLayout.tabSelected(tab)"
+             (click)="tabSelected(tab)"
              class="mdl-layout__tab"
              [ngClass]="{'is-active': tab.isActive}"
              [mdl-ripple]="isRipple"
@@ -57,9 +47,7 @@ export class MdlLayoutHeaderComponent {
 
   constructor(
     private elementRef: ElementRef,
-    private renderer: Renderer2,
-    @Inject(forwardRef(() => MdlLayoutComponent)) public mdlLayout) {
-    this.mdlLayout = mdlLayout as MdlLayoutComponent;
+    private layoutMediatorService: MdlLayoutMediatorService) {
     this.el = elementRef.nativeElement;
   }
 
@@ -86,5 +74,17 @@ export class MdlLayoutHeaderComponent {
       this.isCompact = false;
       this.isAnimating = true;
     }
+  }
+
+  onTabMouseover(tab: MdlLayoutTabPanelComponent) {
+    this.layoutMediatorService.tabMouseover(tab);
+  }
+
+  onTabMouseout(tab: MdlLayoutTabPanelComponent) {
+    this.layoutMediatorService.tabMouseout(tab);
+  }
+
+  tabSelected(tab: MdlLayoutTabPanelComponent) {
+    this.layoutMediatorService.tabSelected(tab);
   }
 }

@@ -1,5 +1,4 @@
-import {Component, forwardRef, HostBinding, Inject, Optional, ViewEncapsulation} from '@angular/core';
-import {MdlLayoutComponent} from './mdl-layout.component';
+import {Component, HostBinding, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'mdl-layout-drawer',
@@ -14,12 +13,7 @@ export class MdlLayoutDrawerComponent {
 
   @HostBinding('class.is-visible') isDrawerVisible = false;
 
-  constructor(@Optional() @Inject(forwardRef(() => MdlLayoutComponent)) private parentLayout) {
-    this.parentLayout = parentLayout as MdlLayoutComponent;
-  }
-
-  public isDrawerDirectChildOf(layout: MdlLayoutComponent) {
-    return this.parentLayout === layout;
+  constructor() {
   }
 
 }
