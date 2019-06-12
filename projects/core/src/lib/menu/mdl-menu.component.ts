@@ -1,19 +1,16 @@
 import {
   AfterViewInit,
   Component,
-  ContentChildren,
   ElementRef,
   Injectable,
   Input,
   OnDestroy,
   OnInit,
-  QueryList,
   Renderer2,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import {MdlButtonComponent} from '../button/mdl-button.component';
-import {MdlMenuItemComponent} from './mdl-menu-item.component';
 import {MdlError} from '../common/mdl-error';
 
 const BOTTOM_LEFT = 'bottom-left';
@@ -71,8 +68,7 @@ export class MdlMenuRegisty {
   exportAs: 'mdlMenu',
   template: `
     <div #container class="mdl-menu__container is-upgraded">
-      <div #outline class="mdl-menu__outline"
-           [ngClass]="cssPosition"
+      <div #outline class="mdl-menu__outline" [ngClass]="cssPosition"
       ></div>
       <div class="mdl-menu" #menuElement>
         <ng-content></ng-content>
@@ -88,7 +84,8 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('container', {static: true}) public containerChild: ElementRef;
   @ViewChild('menuElement', {static: true}) public menuElementChild: ElementRef;
   @ViewChild('outline', {static: true}) public outlineChild: ElementRef;
-  @ContentChildren(MdlMenuItemComponent) public menuItemComponents: QueryList<MdlMenuItemComponent>;
+  // @ContentChildren(MdlMenuItemComponent) public menuItemComponents: QueryList<MdlMenuItemComponent>;
+
   public cssPosition = 'mdl-menu--bottom-left';
   private container: HTMLElement;
   private menuElement: HTMLElement;
@@ -140,9 +137,12 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public hide() {
     // Remove all transition delays; menu items fade out concurrently.
-    this.menuItemComponents.toArray().forEach(mi => {
-      mi.element.style.removeProperty('transition-delay');
+    document.querySelectorAll('mdl-menu-item').forEach(el => {
+      (el as HTMLElement).style.removeProperty('transition-delay');
     });
+    // this.menuItemComponents.toArray().forEach(mi => {
+    //   mi.element.style.removeProperty('transition-delay');
+    // });
 
     // Measure the inner element.
     const rect = this.menuElement.getBoundingClientRect();
@@ -202,14 +202,15 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     this.outline.style.height = height + 'px';
 
     const transitionDuration = TRANSITION_DURATION_SECONDS * TRANSITION_DURATION_FRACTION;
-    this.menuItemComponents.toArray().forEach(mi => {
+    document.querySelectorAll('mdl-menu-item').forEach(el => {
+      const mi = el as HTMLElement;
       let itemDelay = null;
       if ((this.position === TOP_LEFT) || this.position === TOP_RIGHT) {
-        itemDelay = ((height - mi.element.offsetTop - mi.element.offsetHeight) / height * transitionDuration) + 's';
+        itemDelay = ((height - mi.offsetTop - mi.offsetHeight) / height * transitionDuration) + 's';
       } else {
-        itemDelay = (mi.element.offsetTop / height * transitionDuration) + 's';
+        itemDelay = (mi.offsetTop / height * transitionDuration) + 's';
       }
-      mi.element.style.transitionDelay = itemDelay;
+      mi.style.transitionDelay = itemDelay;
     });
 
     // Apply the initial clip to the text before we start animating.

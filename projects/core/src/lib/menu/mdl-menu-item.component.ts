@@ -6,7 +6,6 @@ import {
   HostListener,
   Inject,
   Input,
-  Renderer2,
   ViewEncapsulation
 } from '@angular/core';
 import {MdlMenuComponent} from './mdl-menu.component';
@@ -29,7 +28,6 @@ export class MdlMenuItemComponent {
   // forwardRef is needed because of he circular dependency menu queries menuitems; menuitem needs the parent
   constructor(
     private elementRef: ElementRef,
-    private renderer: Renderer2,
     @Inject(forwardRef(() => MdlMenuComponent)) private mdlMenu) {
     this.mdlMenu = mdlMenu as MdlMenuComponent;
     this.element = elementRef.nativeElement;
