@@ -13,6 +13,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "test": "npm run test-core",
     "test-core": "ng test core --watch=false --code-coverage",
     "test-datepicker": "ng test datepicker --watch=false --code-coverage",
     "test-demo": "ng test demo --watch=false --code-coverage",
