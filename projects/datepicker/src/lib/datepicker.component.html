@@ -1,0 +1,54 @@
+<div class="mdl-datepicker-header">
+  <div class="mdl-datepicker-header-year">{{mDate.format('YYYY')}}</div>
+  <h3 class="mdl-datepicker-header-day-month">{{mDate.format('ddd, MMM DD')}}</h3>
+</div>
+
+<div class="mdl-dialog__content">
+  <div class="mdl-datepicker-month-navigation-buttons">
+    <button (click)="prevMonth()" [disabled]="!prevEnabled" class="mdl-datepicker-prev-month" mdl-button
+            mdl-button-type="icon">
+      <mdl-icon>keyboard_arrow_left</mdl-icon>
+    </button>
+    <button (click)="nextMonth()" [disabled]="!nextEnabled" class="mdl-datepicker-next-month" mdl-button
+            mdl-button-type="icon">
+      <mdl-icon>keyboard_arrow_right</mdl-icon>
+    </button>
+  </div>
+  <div class="mdl-datepicker-month">
+    <div class="mdl-datepicker-month-title">{{mCurrentMonth.format('MMMM YYYY')}}</div>
+    <div class="mdl-datepicker-weekdays">
+      <div *ngFor="let wd of monthGridWeekDays" class="mdl-datepicker-weekday">{{wd}}</div>
+    </div>
+    <div class="mdl-datepicker-monthgrid">
+
+      <div *ngFor="let week of monthGridDays" class="mdl-datepicker-weekdays">
+        <div *ngFor="let dayInfo of week.days"
+             class="mdl-datepicker-weekday">
+          <button
+            (click)="setCurrentDay(dayInfo.day)"
+            [disabled]="!dayInfo.isCurrentMonth"
+            [ngClass]="{'actual': isActualDate(dayInfo.day)}"
+            class="day"
+            mdl-button
+            mdl-button
+            mdl-ripple
+          >{{dayInfo.day.date()}}</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="mdl-dialog__actions">
+  <button #okButton
+          (click)="onOk()" class="close mdl-datepicker-ok-button"
+          mdl-button
+          mdl-colored="primary"
+          type="button">{{okLabel}}</button>
+  <button
+    (click)="onCancel()" class="mdl-datepicker-cancel-button"
+    mdl-button
+    mdl-colored="primary"
+    type="button">{{cancelLabel}}</button>
+</div>

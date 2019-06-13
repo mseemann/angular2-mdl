@@ -1,0 +1,76 @@
+
+.mdl-datepicker {
+  padding: 0;
+
+  .mdl-datepicker-header {
+    background-color: unquote("rgb(#{$color-primary})");
+    color: unquote("rgb(#{$color-dark-contrast})");
+    padding: 1em 1em 0.25em 1em;
+  }
+
+  .mdl-datepicker-header-day-month {
+    margin: 8px 0;
+  }
+
+  .mdl-dialog__content {
+    padding: 8px 8px 0 8px;
+  }
+
+  .mdl-datepicker-month-navigation-buttons {
+    position: relative;
+
+    .mdl-datepicker-prev-month {
+      position: absolute;
+    }
+
+    .mdl-datepicker-next-month {
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .mdl-datepicker-month {
+
+    // avoid flickering if the count of weeks per month changed
+    min-height: 21.5em;
+
+    .mdl-datepicker-month-title {
+      font-weight: bold;
+      line-height: $button-height;
+      text-align: center;
+    }
+
+    .mdl-datepicker-weekdays {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+
+      .mdl-datepicker-weekday {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    .day {
+      border-radius: 50%;
+      margin: auto;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      line-height: normal;
+      height: $button-fab-size-mini;
+      min-width: $button-fab-size-mini;
+      width: $button-fab-size-mini;
+
+      & .mdl-ripple {
+        background: $button-fab-ripple-color-alt;
+      }
+    }
+
+    .actual {
+      background-color: unquote("rgb(#{$color-primary})");
+      color: unquote("rgb(#{$color-dark-contrast})");
+      box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+    }
+  }
+}

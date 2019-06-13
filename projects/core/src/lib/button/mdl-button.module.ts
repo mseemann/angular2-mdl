@@ -16,3 +16,5 @@ export class MdlButtonModule {
     };
   }
 }
+
+export * from './mdl-button.component';

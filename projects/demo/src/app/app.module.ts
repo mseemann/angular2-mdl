@@ -37,6 +37,8 @@ import {ThemeDemoComponent} from './theme/theme.component';
 import {ReactiveFormsDemoComponent} from './reactiveforms/reactiveform.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginModule} from './dialog/login.module';
+import {DatePickerComponent} from './date-picker/date-picker.component';
+import {MdlDatePickerModule} from '@angular-mdl/datepicker';
 
 
 export const appRoutes: Routes = [
@@ -70,6 +72,7 @@ export const appRoutes: Routes = [
   {path: 'textfield', component: TextFieldDemoComponent, data: {title: 'Textfields'}},
   {path: 'toggle', component: ToggleDemoComponent, data: {title: 'Toggles'}},
   {path: 'tooltip', component: TooltipDemoComponent, data: {title: 'Tooltips'}},
+  {path: 'date-picker', component: DatePickerComponent, data: {title: 'DatePicker'}},
   {path: '**', redirectTo: ''},
 ];
 
@@ -103,7 +106,8 @@ export const appRoutes: Routes = [
     TextFieldDemoComponent,
     ThemeDemoComponent,
     PrismDirective,
-    ReactiveFormsDemoComponent
+    ReactiveFormsDemoComponent,
+    DatePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +116,8 @@ export const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, {enableTracing: false}),
     FormsModule,
     ReactiveFormsModule,
-    LoginModule
+    LoginModule,
+    MdlDatePickerModule
   ],
   providers: [
     Title

@@ -10,10 +10,5 @@
   "exclude": [
     "src/test.ts",
     "src/**/*.spec.ts"
-  ],
-  "paths": {
-    "@angular-mdl/core": [
-      "projects/core/src/index.ts"
-    ]
-  }
+  ]
 }

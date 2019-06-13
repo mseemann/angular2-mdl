@@ -21,7 +21,16 @@
     ],
     "paths": {
       "@angular-mdl/core": [
-        "projects/core/src/public-api"
+        "dist/@angular-mdl/core"
+      ],
+      "@angular-mdl/core/*": [
+        "dist/@angular-mdl/core/*"
+      ],
+      "@angular-mdl/datepicker": [
+        "dist/@angular-mdl/datepicker"
+      ],
+      "@angular-mdl/datepicker/*": [
+        "dist/@angular-mdl/datepicker/*"
       ]
     }
   }
