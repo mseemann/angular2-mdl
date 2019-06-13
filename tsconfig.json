@@ -22,12 +22,6 @@
     "paths": {
       "@angular-mdl/core": [
         "projects/core/src/public-api"
-      ],
-      "core-x": [
-        "dist/core-x"
-      ],
-      "core-x/*": [
-        "dist/core-x/*"
       ]
     }
   }
