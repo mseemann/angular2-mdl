@@ -11,8 +11,11 @@ import {
   MdlRippleModule
 } from '@angular-mdl/core';
 import {MdlDatePickerService} from './datepicker.service';
-import * as moment from 'moment';
+import * as momentNs from 'moment';
+// see https://github.com/ng-packagr/ng-packagr/issues/217
+const moment = momentNs;
 
+moment.locale('en');
 
 @Component({
   // tslint:disable-next-line

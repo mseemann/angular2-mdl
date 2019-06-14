@@ -73,6 +73,10 @@ export const appRoutes: Routes = [
   {path: 'toggle', component: ToggleDemoComponent, data: {title: 'Toggles'}},
   {path: 'tooltip', component: TooltipDemoComponent, data: {title: 'Tooltips'}},
   {path: 'date-picker', component: DatePickerComponent, data: {title: 'DatePicker'}},
+  {path: 'expansion-panel'},
+  {path: 'fab-menu'},
+  {path: 'popover'},
+  {path: 'select'},
   {path: '**', redirectTo: ''},
 ];
 

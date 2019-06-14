@@ -1,24 +1,21 @@
-# Datepicker
+# DatePicker
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
+### Installing
 
-## Code scaffolding
+Install the package and moment!
 
-Run `ng generate component component-name --project datepicker` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project datepicker`.
-> Note: Don't forget to add `--project datepicker` or else it will be added to the default project in your `angular.json` file. 
+    npm i --save @angular-mdl/datepicker
+    npm i --save moment
 
-## Build
+import the MdlDatePickerModule and add it to your app.module imports:
+    
+    import { MdlDatePickerModule } from '@angular-mdl/datepicker';
 
-Run `ng build datepicker` to build the project. The build artifacts will be stored in the `dist/` directory.
+import the scss file
 
-## Publishing
+    @import '~@angular-mdl/datepicker/datepicker';
+    
+### Usage & API
 
-After building your library with `ng build datepicker`, go to the dist folder `cd dist/datepicker` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test datepicker` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    Visit [demo] for usage examples and API summary.
+    [demo]: http://mseemann.io/angular2-mdl/date-picker

@@ -3,7 +3,13 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CommonModule} from '@angular/common';
 import {MdlButtonModule, MdlDialogModule, MdlDialogReference, MdlIconModule, MdlRippleModule} from '@angular-mdl/core';
 import {Subject} from 'rxjs';
-import * as moment from 'moment';
+
+import * as momentNs from 'moment';
+
+// see https://github.com/ng-packagr/ng-packagr/issues/217
+const moment = momentNs;
+
+moment.locale('en');
 
 class MdlDialogMockReference {
 
@@ -38,47 +44,55 @@ describe('DatePickerDialogComponent', () => {
     });
 
     TestBed.compileComponents().then(() => {
+      // LOOKS LIKE THE DEMO APP
+      moment.updateLocale('en', {
+        week: {
+          dow: 1,
+          doy: 4
+        }
+      });
+
       fixture = TestBed.createComponent(DatePickerDialogComponent);
       fixture.detectChanges();
     });
   }));
 
-  it('should instantiate the component', async(() => {
+  it('should instantiate the component', () => {
     expect(fixture).toBeDefined();
-  }));
+  });
 
-  it('should call hide with null on cancel', async(() => {
+  it('should call hide with null on cancel', () => {
     const dialogRef: MdlDialogReference = TestBed.get<MdlDialogReference>(MdlDialogReference);
     spyOn(dialogRef, 'hide');
     fixture.componentInstance.onCancel();
     expect(dialogRef.hide).toHaveBeenCalledWith(null);
-  }));
+  });
 
-  it('should call hide with null on esc', async(() => {
+  it('should call hide with null on esc', () => {
     const dialogRef: MdlDialogReference = TestBed.get<MdlDialogReference>(MdlDialogReference);
     spyOn(dialogRef, 'hide');
     fixture.componentInstance.onEsc();
     expect(dialogRef.hide).toHaveBeenCalledWith(null);
-  }));
+  });
 
-  it('should call hide with actual date on ok', async(() => {
+  it('should call hide with actual date on ok', () => {
     const dialogRef: MdlDialogReference = TestBed.get<MdlDialogReference>(MdlDialogReference);
     spyOn(dialogRef, 'hide');
     fixture.componentInstance.onOk();
     expect(dialogRef.hide).toHaveBeenCalledWith(fixture.componentInstance.mDate.toDate());
-  }));
+  });
 
-  it('should show the current date - because we did not provide a date', async(() => {
+  it('should show the current date - because we did not provide a date', () => {
     expect(fixture.componentInstance.mDate.isSame(moment(), 'day')).toBeTruthy();
     expect(fixture.componentInstance.mCurrentMonth.isSame(fixture.componentInstance.mDate, 'day')).toBeTruthy();
-  }));
+  });
 
   it('should be possible to set a specific date', async(() => {
     fixture.componentInstance.setCurrentDay(moment('2017-01-01'));
     expect(fixture.componentInstance.mDate.isSame(moment('2017-01-01'), 'day')).toBeTruthy();
   }));
 
-  it('should be possible to go to the next month', async(() => {
+  it('should be possible to go to the next month', () => {
     fixture.componentInstance.mCurrentMonth = moment('2017-01-01');
     fixture.componentInstance.nextMonth();
 
@@ -86,9 +100,9 @@ describe('DatePickerDialogComponent', () => {
 
     // but this should not change the actual date
     expect(fixture.componentInstance.mDate.isSame(moment(), 'day')).toBeTruthy();
-  }));
+  });
 
-  it('should be possible to go to the prev month', async(() => {
+  it('should be possible to go to the prev month', () => {
     fixture.componentInstance.mCurrentMonth = moment('2017-01-01');
     fixture.componentInstance.prevMonth();
 
@@ -96,22 +110,15 @@ describe('DatePickerDialogComponent', () => {
 
     // but this should not change the actual date
     expect(fixture.componentInstance.mDate.isSame(moment(), 'day')).toBeTruthy();
-  }));
+  });
 
-  it('should create an array with the week days for en locale', async(() => {
+  it('should create an array with the week days for dow=1 locale', () => {
     fixture.componentInstance.mCurrentMonth = moment('2017-01-01');
     expect(fixture.componentInstance.monthGridWeekDays).toEqual(['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']);
-  }));
+  });
 
-  it('should create an array with all days for the current month', async(() => {
+  it('should create an array with all days for the current month', () => {
 
-    // LOOKS LIKE THE DEMO APP
-    moment.updateLocale('en', {
-      week: {
-        dow: 1,
-        doy: 4
-      }
-    });
 
     fixture.componentInstance.mDate = moment('2017-04-10');
     fixture.componentInstance.mCurrentMonth = moment('2017-04-01');
@@ -134,19 +141,10 @@ describe('DatePickerDialogComponent', () => {
     expect(lastDayOfTheMonth.day.isSame(moment('2017-04-30'), 'day')).toBeTruthy('should be 2017-04-30');
     expect(fixture.componentInstance.isActualDate(lastDayOfTheMonth.day)).toBeFalsy('30. is not the actual day');
     expect(lastDayOfTheMonth.isCurrentMonth).toBeTruthy('the 30 is in the current month');
-  }));
+  });
 
 
-  it('should create an array with all days for the december 2018', async(() => {
-
-    // LOOKS LIKE THE DEMO APP
-    moment.updateLocale('en', {
-      week: {
-        dow: 1,
-        doy: 4
-      }
-    });
-
+  it('should create an array with all days for the december 2018', () => {
     fixture.componentInstance.mCurrentMonth = moment('2018-12-01');
 
     const gridWithDays = fixture.componentInstance.monthGridDays;
@@ -156,6 +154,6 @@ describe('DatePickerDialogComponent', () => {
 
     const lastDayOfTheMonth = gridWithDays[5].days[0];
     expect(lastDayOfTheMonth.day.isSame(moment('2018-12-31'), 'day')).toBeTruthy('should be 2018-12-31');
-  }));
+  });
 
 });

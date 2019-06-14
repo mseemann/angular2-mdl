@@ -1,7 +1,7 @@
 {
-  "name": "@angular-mdl/datepicker",
-  "version": "8.0.0-alpha.2",
-  "description": "Angular Material Design Lite - Date Picker Component",
+  "name": "@angular-mdl/select",
+  "version": "8.0.0.beta.0",
+  "description": "Angular Material Design Lite - Select Component",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mseemann/angular2-mdl.git"
@@ -11,17 +11,15 @@
     "angular8",
     "angular",
     "material design lite",
-    "datepicker"
+    "select"
   ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mseemann/angular2-mdl/issues"
   },
-  "homepage": "https://github.com/mseemann/angular2-mdl/tree/master/src/projects/datepicker",
+  "homepage": "https://github.com/mseemann/angular2-mdl/tree/master/src/projects/select",
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
     "@angular-mdl/core": ">=8.0.0",
-    "moment": "^2.18.1"
+    "@angular-mdl/popover": ">=8.0.0"
   }
 }

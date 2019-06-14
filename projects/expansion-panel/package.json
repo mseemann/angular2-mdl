@@ -1,0 +1,24 @@
+{
+  "name": "@angular-mdl/expansion-panel",
+  "version": "8.0.0.beta.0",
+  "description": "Angular Material Design Lite - Extension Panel Component",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mseemann/angular2-mdl.git"
+  },
+  "keywords": [
+    "angular2",
+    "angular8",
+    "angular",
+    "material design lite",
+    "expansion panel"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mseemann/angular2-mdl/issues"
+  },
+  "homepage": "https://github.com/mseemann/angular2-mdl/tree/master/src/projects/expansion-panel",
+  "peerDependencies": {
+    "@angular-mdl/core": ">=8.0.0"
+  }
+}

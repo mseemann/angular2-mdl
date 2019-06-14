@@ -31,6 +31,30 @@
       ],
       "@angular-mdl/datepicker/*": [
         "dist/@angular-mdl/datepicker/*"
+      ],
+      "@angular-mdl/expansion-panel": [
+        "dist/@angular-mdl/expansion-panel"
+      ],
+      "@angular-mdl/expansion-panel/*": [
+        "dist/@angular-mdl/expansion-panel/*"
+      ],
+      "@angular-mdl/fab-menu": [
+        "dist/@angular-mdl/fab-menu"
+      ],
+      "@angular-mdl/fab-menu/*": [
+        "dist/@angular-mdl/fab-menu/*"
+      ],
+      "@angular-mdl/popover": [
+        "dist/@angular-mdl/popover"
+      ],
+      "@angular-mdl/popover/*": [
+        "dist/@angular-mdl/popover/*"
+      ],
+      "@angular-mdl/select": [
+        "dist/@angular-mdl/select"
+      ],
+      "@angular-mdl/select/*": [
+        "dist/@angular-mdl/select/*"
       ]
     }
   }
