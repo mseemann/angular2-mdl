@@ -71,10 +71,6 @@
                 {
                   "replace": "projects/demo/src/environments/environment.ts",
                   "with": "projects/demo/src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "projects/demo/src/index.html",
-                  "with": "projects/demo/src/index.prod.html"
                 }
               ],
               "baseHref": "/angular2-mdl/",
