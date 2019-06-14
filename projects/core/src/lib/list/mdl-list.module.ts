@@ -39,3 +39,5 @@ export class MdlListModule {
     };
   }
 }
+
+export * from './mdl-list.component';

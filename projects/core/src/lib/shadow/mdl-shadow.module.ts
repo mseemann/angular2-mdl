@@ -16,3 +16,5 @@ export class MdlShadowModule {
     };
   }
 }
+
+export * from './mdl-shadow.directive';

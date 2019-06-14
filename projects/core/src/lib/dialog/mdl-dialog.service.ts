@@ -67,7 +67,9 @@ export class MdlDialogReference {
  * @experimental
  */
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MdlDialogService {
 
   /**

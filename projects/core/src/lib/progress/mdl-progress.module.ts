@@ -17,3 +17,5 @@ export class MdlProgressModule {
     };
   }
 }
+
+export * from './mdl-progress.component';

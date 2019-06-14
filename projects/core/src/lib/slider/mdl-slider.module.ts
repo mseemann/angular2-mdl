@@ -18,3 +18,5 @@ export class MdlSliderModule {
     };
   }
 }
+
+export * from './mdl-slider.component';

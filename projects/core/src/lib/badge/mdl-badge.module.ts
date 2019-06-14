@@ -16,3 +16,5 @@ export class MdlBadgeModule {
     };
   }
 }
+
+export * from './mdl-badge.directive';

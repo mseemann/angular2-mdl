@@ -18,3 +18,5 @@ export class MdlSwitchModule {
     };
   }
 }
+
+export * from './mdl-switch.component';

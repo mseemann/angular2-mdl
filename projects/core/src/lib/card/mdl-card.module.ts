@@ -37,3 +37,5 @@ export class MdlCardModule {
     };
   }
 }
+
+export * from './mdl-card.component';

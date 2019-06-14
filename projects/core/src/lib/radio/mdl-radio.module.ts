@@ -16,3 +16,5 @@ export class MdlRadioModule {
     };
   }
 }
+
+export * from './mdl-radio.component';

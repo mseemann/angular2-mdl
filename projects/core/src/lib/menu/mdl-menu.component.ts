@@ -38,7 +38,9 @@ CSS_ALIGN_MAP[UNALIGNED] = 'mdl-menu--unaligned';
 export class MdlMenuError extends MdlError {
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MdlMenuRegisty {
 
   private menuComponents: any[] = [];

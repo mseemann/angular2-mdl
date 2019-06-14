@@ -20,3 +20,5 @@ export class MdlIconToggleModule {
     };
   }
 }
+
+export * from './mdl-icon-toggle.component';

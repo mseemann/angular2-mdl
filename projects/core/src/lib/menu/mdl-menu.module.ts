@@ -16,6 +16,7 @@ const MDL_MENU_DIRECTIVES = [
 export * from './mdl-menu.component';
 export * from './mdl-menu-item.component';
 export * from './mdl-menu-item.directive';
+export * from './mdl-toggle-menu.directive';
 
 @NgModule({
   imports: [CommonModule],

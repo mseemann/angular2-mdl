@@ -11,7 +11,9 @@ import {MdlBackdropOverlayComponent} from './mdl-backdrop-overlay.component';
 import {take} from 'rxjs/operators';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MdlDialogOutletService {
 
   public backdropClickEmitter: EventEmitter<any> = new EventEmitter();

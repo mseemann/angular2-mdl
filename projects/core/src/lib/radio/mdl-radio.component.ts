@@ -25,7 +25,9 @@ const IS_FOCUSED = 'is-focused';
 // right state of the radio buttons of a radio group. It would be
 // easier if i had a mdl-radio-group component. but this would be
 // a big braking change.
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MdlRadioGroupRegisty {
 
   private defaultFormGroup = 'defaultFromGroup';

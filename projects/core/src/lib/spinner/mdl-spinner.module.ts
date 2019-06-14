@@ -17,3 +17,5 @@ export class MdlSpinnerModule {
     };
   }
 }
+
+export * from './mdl-spinner.component';
