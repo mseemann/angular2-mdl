@@ -1,0 +1,223 @@
+<h4>THE POPOVER</h4>
+
+<h5>Custom popover</h5>
+
+<button
+  (click)="myPopover.toggle($event)"
+  mdl-button
+  mdl-button-type="icon"
+  mdl-ripple>
+  <mdl-icon>more_vert</mdl-icon>
+</button>
+
+<mdl-popover #myPopover
+             (onHide)="onHide()"
+             (onShow)="onShow()"
+             [hide-on-click]="true"
+             [style.width.px]="300">
+  <div mdl-shadow="6" style="padding: 1rem;">
+    <b>This is example popover</b> you can put any HTML content here.
+  </div>
+</mdl-popover>
+
+
+<pre prism>
+  <![CDATA[
+  <button
+    (click)="myPopover.toggle($event)"
+    mdl-button
+    mdl-button-type="icon"
+    mdl-ripple>
+  <mdl-icon>more_vert</mdl-icon>
+  </button>
+
+  <mdl-popover #myPopover
+               (onHide)="onHide()"
+               (onShow)="onShow()"
+               [hide-on-click]="true"
+               [style.width.px]="300">
+    <div mdl-shadow="6" style="padding: 1rem;">
+      <b>This is example popover</b> you can put any HTML content here.
+    </div>
+  </mdl-popover>
+  ]]>
+</pre>
+
+<h5>Custom popover with user specified position</h5>
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--3-col">
+    <div class="container" mdl-shadow="2">
+      <div class="bar mdl-color--primary">
+        <button #bottomLeftButton (click)="bottomLeftPopover.toggle($event, bottomLeftButton)" mdl-button
+                mdl-button-type="icon" mdl-ripple>
+          <mdl-icon>more_vert</mdl-icon>
+        </button>
+
+        <mdl-popover #bottomLeftPopover [hide-on-click]="true" [style.width.px]="300"
+                     mdl-popover-position="bottom-left">
+          <div mdl-shadow="6" style="padding: 1rem;">
+            <b>This is example popover</b> you can put any HTML content here.
+          </div>
+        </mdl-popover>
+      </div>
+      <div class="background"></div>
+    </div>
+  </div>
+  <div class="mdl-cell mdl-cell--3-col">
+    <div class="container" mdl-shadow="2">
+      <div class="bar mdl-color--primary">
+        <div class="top-right">
+          <button #bottomRightButton (click)="bottomRightPopover.toggle($event, bottomRightButton)" mdl-button
+                  mdl-button-type="icon" mdl-ripple>
+            <mdl-icon>more_vert</mdl-icon>
+          </button>
+          <mdl-popover #bottomRightPopover [hide-on-click]="true" [style.width.px]="300"
+                       mdl-popover-position="bottom-right">
+            <div mdl-shadow="6" style="padding: 1rem;">
+              <b>This is example popover</b> you can put any HTML content here.
+            </div>
+          </mdl-popover>
+        </div>
+      </div>
+      <div class="background"></div>
+    </div>
+  </div>
+  <div class="mdl-cell mdl-cell--3-col">
+    <div class="container" mdl-shadow="2">
+      <div class="background"></div>
+      <div class="bar mdl-color--primary">
+        <button #topLeftButton (click)="topLeftPopover.toggle($event, topLeftButton)" mdl-button mdl-button-type="icon"
+                mdl-ripple>
+          <mdl-icon>more_vert</mdl-icon>
+        </button>
+        <mdl-popover #topLeftPopover [hide-on-click]="true" [style.width.px]="300" mdl-popover-position="top-left">
+          <div mdl-shadow="6" style="padding: 1rem;">
+            <b>This is example popover</b> you can put any HTML content here.
+          </div>
+        </mdl-popover>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-cell mdl-cell--3-col">
+    <div class="container" mdl-shadow="2">
+      <div class="background"></div>
+      <div class="bar mdl-color--primary">
+        <div class="top-right">
+          <button #topRightButton (click)="topRightPopover.toggle($event, topRightButton)" mdl-button
+                  mdl-button-type="icon" mdl-ripple>
+            <mdl-icon>more_vert</mdl-icon>
+          </button>
+          <mdl-popover #topRightPopover [hide-on-click]="true" [style.width.px]="300" mdl-popover-position="top-right">
+            <div mdl-shadow="6" style="padding: 1rem;">
+              <b>This is example popover</b> you can put any HTML content here.
+            </div>
+          </mdl-popover>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pre demoPrism>
+  <![CDATA[
+  <button #bottomLeftButton (click)="bottomLeftPopover.toggle($event, bottomLeftButton)" mdl-button
+          mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+  <mdl-popover #bottomLeftPopover [hide-on-click]="true" [style.width.px]="300" mdl-popover-position="bottom-left">
+    ...
+  </mdl-popover>
+  ]]>
+</pre>
+
+<pre demoPrism>
+  <![CDATA[
+  <button #bottomRightButton (click)="bottomRightPopover.toggle($event, bottomRightButton)" mdl-button
+          mdl-button-type="icon" mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+  <mdl-popover #bottomRightPopover [hide-on-click]="true" [style.width.px]="300" mdl-popover-position="bottom-right">
+    ...
+  </mdl-popover>
+  ]]>
+</pre>
+
+<pre demoPrism>
+  <![CDATA[
+  <button #topLeftButton (click)="topLeftPopover.toggle($event, topLeftButton)" mdl-button mdl-button-type="icon"
+          mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+  <mdl-popover #topLeftPopover [hide-on-click]="true" [style.width.px]="300" mdl-popover-position="top-left">
+    ...
+  </mdl-popover>
+  ]]>
+</pre>
+
+<pre demoPrism>
+  <![CDATA[
+  <button #topRightButton (click)="topRightPopover.toggle($event, topRightButton)" mdl-button mdl-button-type="icon"
+          mdl-ripple><mdl-icon>more_vert</mdl-icon></button>
+  <mdl-popover #topRightPopover [hide-on-click]="true" [style.width.px]="300" mdl-popover-position="top-right">
+    ...
+  </mdl-popover>
+  ]]>
+</pre>
+
+<h5>Card popover</h5>
+
+<button
+  (click)="card.toggle($event)"
+  mdl-button
+  mdl-button-type="icon"
+  mdl-ripple>
+  <mdl-icon>more_vert</mdl-icon>
+</button>
+
+<mdl-popover #card>
+  <mdl-card mdl-shadow="6">
+    <mdl-card-title>
+      <h2 mdl-card-title-text>Welcome</h2>
+    </mdl-card-title>
+    <mdl-card-supporting-text>
+      This is example card popover content.
+      Clicking buttons inside popover will not close it.
+    </mdl-card-supporting-text>
+    <mdl-card-actions mdl-card-border>
+      <button mdl-button mdl-colored mdl-ripple>Get Started</button>
+    </mdl-card-actions>
+    <mdl-card-menu>
+      <button mdl-button mdl-button-type="icon" mdl-ripple>
+        <mdl-icon>share</mdl-icon>
+      </button>
+    </mdl-card-menu>
+  </mdl-card>
+</mdl-popover>
+
+<pre demoPrism>
+  <![CDATA[
+
+<button
+  (click)="card.toggle($event)"
+  mdl-button
+  mdl-button-type="icon"
+  mdl-ripple>
+  <mdl-icon>more_vert</mdl-icon>
+</button>
+
+<mdl-popover #card>
+  <mdl-card mdl-shadow="6">
+    <mdl-card-title>
+      <h2 mdl-card-title-text>Welcome</h2>
+    </mdl-card-title>
+    <mdl-card-supporting-text>
+      This is example card popover content.
+      Clicking buttons inside popover will not close it.
+    </mdl-card-supporting-text>
+    <mdl-card-actions mdl-card-border>
+      <button mdl-button mdl-colored mdl-ripple>Get Started</button>
+    </mdl-card-actions>
+    <mdl-card-menu>
+      <button mdl-button mdl-button-type="icon" mdl-ripple>
+        <mdl-icon>share</mdl-icon>
+      </button>
+    </mdl-card-menu>
+  </mdl-card>
+</mdl-popover>
+  ]]>
+</pre>

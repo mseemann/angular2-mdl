@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../../core/src/scss/color-definitions";
+
+$color-primary: $palette-blue-500;
+$color-primary-dark: $palette-blue-700;
+$color-accent: $palette-orange-A200;
+$color-primary-contrast: $color-dark-contrast;
+$color-accent-contrast: $color-dark-contrast;
+
+@import '../../core/src/scss/material-design-lite';
+
+@import "prism.css";
+
+@import '../../datepicker/src/lib/datepicker.include';
+@import '../../popover/src/lib/popover.include';

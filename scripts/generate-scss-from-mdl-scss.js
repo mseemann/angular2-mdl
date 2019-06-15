@@ -8,7 +8,7 @@ const path = require('path');
 const glob = require('glob');
 const ncp = require('ncp').ncp;
 
-const destPath = 'src/lib/scss/mdl';
+const destPath = 'projects/core/src/scss/mdl';
 var basePath = process.cwd();
 var source = path.resolve(basePath, 'node_modules/material-design-lite/src');
 var dest = path.resolve(basePath, destPath);
@@ -16,15 +16,17 @@ var dest = path.resolve(basePath, destPath);
 
 fs.mkdirSync(destPath);
 
-ncp(source, dest, {filter: function(fileName){
-  if(fileName.endsWith('snippets')){
-    return false;
+ncp(source, dest, {
+  filter: function (fileName) {
+    if (fileName.endsWith('snippets')) {
+      return false;
+    }
+    if (fs.statSync(fileName).isDirectory()) {
+      return true;
+    }
+    return fileName.endsWith('.scss');
   }
-  if(fs.statSync(fileName).isDirectory()){
-    return true;
-  }
-  return fileName.endsWith('.scss');
-}}, function (err) {
+}, function (err) {
   if (err) {
     return console.error(err);
   }

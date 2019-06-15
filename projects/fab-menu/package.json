@@ -1,0 +1,25 @@
+{
+  "name": "@angular-mdl/fab-menu",
+  "version": "8.0.0.beta.0",
+  "description": "Angular Material Design Lite - Fab menu Component",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mseemann/angular2-mdl.git"
+  },
+  "keywords": [
+    "angular2",
+    "angular8",
+    "angular",
+    "material design lite",
+    "fab-menu"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mseemann/angular2-mdl/issues"
+  },
+  "homepage": "https://github.com/mseemann/angular2-mdl/tree/master/src/projects/fab-menu",
+  "peerDependencies": {
+    "@angular-mdl/core": ">=8.0.0",
+    "@angular-mdl/popover": ">=8.0.0"
+  }
+}

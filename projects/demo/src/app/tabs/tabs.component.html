@@ -1,0 +1,134 @@
+<h4>The Tabs </h4>
+
+
+<h5>Tabs</h5>
+<div>
+  active index:
+  <input [(ngModel)]="activeIndex" max="2" min="0" type="number">
+</div>
+<div class="demo-tab-container">
+  <div class="demo-toggle-disabled-container">
+    <mdl-switch [(ngModel)]="disableTargaryens" mdl-ripple>Disable Targaryens</mdl-switch>
+    <mdl-switch [(ngModel)]="disableBaratheon" mdl-ripple>Disable Baratheon</mdl-switch>
+  </div>
+
+  <mdl-tabs (mdl-tab-active-changed)="tabChanged($event)" [mdl-tab-active-index]="activeIndex" mdl-ripple>
+    <mdl-tab-panel>
+      <mdl-tab-panel-title>
+        <mdl-icon class="mdl-color-text--primary">person</mdl-icon>
+        <span>Starks</span>
+      </mdl-tab-panel-title>
+      <mdl-tab-panel-content>
+        <ul>
+          <li>Eddard</li>
+          <li>Catelyn</li>
+          <li>Robb</li>
+          <li>Sansa</li>
+          <li>Brandon</li>
+          <li>Arya</li>
+          <li>Rickon</li>
+        </ul>
+      </mdl-tab-panel-content>
+    </mdl-tab-panel>
+    <mdl-tab-panel mdl-tab-panel-title="Lannisters">
+      <ul>
+        <li>Tywin</li>
+        <li>Cersei</li>
+        <li>Jamie</li>
+        <li>Tyrion</li>
+      </ul>
+    </mdl-tab-panel>
+    <mdl-tab-panel [disabled]="disableTargaryens" mdl-tab-panel-title="Targaryens">
+      <ul>
+        <li>Viserys</li>
+        <li>Daenerys</li>
+      </ul>
+    </mdl-tab-panel>
+    <mdl-tab-panel [disabled]="disableBaratheon" mdl-tab-panel-title="Baratheon">
+      <mdl-tab-panel-title>
+        <mdl-icon class="mdl-color-text--primary">person</mdl-icon>
+        <span>Baratheon</span>
+      </mdl-tab-panel-title>
+      <mdl-tab-panel-content>
+        <ul>
+          <li>Robert</li>
+          <li>Renly</li>
+          <li>Stanis</li>
+          <li>Joffrey</li>
+          <li>Myrcella</li>
+          <li>Tommen</li>
+        </ul>
+      </mdl-tab-panel-content>
+    </mdl-tab-panel>
+  </mdl-tabs>
+</div>
+
+
+<pre demoPrism>
+  <![CDATA[
+<mdl-switch [(ngModel)]="disableTargaryens" mdl-ripple>Disable Targaryens</mdl-switch>
+<mdl-switch [(ngModel)]="disableBaratheon" mdl-ripple>Disable Baratheon</mdl-switch>
+<mdl-tabs (mdl-tab-active-changed)="tabChanged($event)" mdl-ripple mdl-tab-active-index="0">
+    <mdl-tab-panel>
+      <mdl-tab-panel-title>
+        <mdl-icon class="mdl-color-text--primary">person</mdl-icon><span>Starks</span>
+      </mdl-tab-panel-title>
+      <mdl-tab-panel-content>
+      <ul>
+        <li>Eddard</li>
+        <li>Catelyn</li>
+        <li>Robb</li>
+        <li>Sansa</li>
+        <li>Brandon</li>
+        <li>Arya</li>
+        <li>Rickon</li>
+      </ul>
+      </mdl-tab-panel-content>
+    </mdl-tab-panel>
+    <mdl-tab-panel mdl-tab-panel-title="Lannisters">
+       <ul>
+          <li>Tywin</li>
+          <li>Cersei</li>
+          <li>Jamie</li>
+          <li>Tyrion</li>
+       </ul>
+    </mdl-tab-panel>
+    <mdl-tab-panel [disabled]="disableTargaryens" mdl-tab-panel-title="Targaryens">
+       <ul>
+          <li>Viserys</li>
+          <li>Daenerys</li>
+       </ul>
+    </mdl-tab-panel>
+    <mdl-tab-panel [disabled]="disableBaratheon" mdl-tab-panel-title="Baratheon">
+      <mdl-tab-panel-title>
+        <mdl-icon class="mdl-color-text--primary">person</mdl-icon><span>Baratheon</span>
+      </mdl-tab-panel-title>
+      <mdl-tab-panel-content>
+        <ul>
+          <li>Robert</li>
+          <li>Renly</li>
+          <li>Stanis</li>
+          <li>Joffrey</li>
+          <li>Myrcella</li>
+          <li>Tommen</li>
+        </ul>
+        </mdl-tab-panel-content>
+    </mdl-tab-panel>
+ </mdl-tabs>
+  ]]>
+</pre>
+
+
+<h4>Dynamic Test</h4>
+
+<mdl-tabs mdl-ripple mdl-tab-active-index="0">
+  <mdl-tab-panel *ngFor="let leg of myArray; let index = index;">
+    <mdl-tab-panel-title>
+      Panel Title {{index}}
+    </mdl-tab-panel-title>
+    <mdl-tab-panel-content>
+      Panel Content {{index}}
+    </mdl-tab-panel-content>
+  </mdl-tab-panel>
+</mdl-tabs>
+

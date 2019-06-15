@@ -1,0 +1,104 @@
+<h4>Tables</h4>
+
+<h5>Simple Table</h5>
+<mdl-table [table-model]="tableModel" mdl-shadow="2"></mdl-table>
+
+<pre demoPrism>
+  <![CDATA[
+   <mdl-table [table-model]="tableModel" mdl-shadow="2"></mdl-table>
+     ]]>
+</pre>
+
+<h5>Selectable</h5>
+<mdl-table-selectable (table-model-selectionChanged)="selectionChanged($event)"
+                      [table-model-selected]="selected"
+                      [table-model]="tableModel"
+                      mdl-shadow="2">
+</mdl-table-selectable>
+
+<br>
+
+{{selected | json}}
+
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+   <mdl-table-selectable (table-model-selectionChanged)="selectionChanged($event)"
+                         [table-model-selected]="selected"
+                         [table-model]="tableModel"
+                         mdl-shadow="2">
+   </mdl-table-selectable>
+
+  {{selected | json}}
+  ]]>
+</pre>
+
+<pre demoPrism>
+<![CDATA[
+   <script>
+      class TableDemo implements OnInit {
+
+        tableData: [ITableItem] = [
+          {material: 'Acrylic (Transparent)', quantity: 25, unitPrice: 2.90, selected: true},
+          {material: 'Plywood (Birch)', quantity: 50, unitPrice: 1.25, selected: false},
+          {material: 'Laminate (Gold on Blue)', quantity: 10, unitPrice: 2.35, selected: false}
+        ];
+
+        selected: Array<ITableItem> = new Array < ITableItem > ();
+
+        public tableModel = new MdlDefaultTableModel([
+          {key: 'material', name: 'Material', sortable: true},
+          {key: 'quantity', name: 'Quantity', sortable: true, numeric: true},
+          {key: 'unitPrice', name: 'Unit price', numeric: true}
+        ]);
+
+        ngOnInit() {
+          this.tableModel.addAll(this.tableData);
+          this.selected = this.tableData.filter(data => data.selected);
+        }
+
+        selectionChanged($event) {
+          this.selected = $event.value;
+        }
+
+      }
+   </script>
+]]>
+</pre>
+
+<p>The <i>mdl-table</i> component is usually designed to show a small amount of structured data. One version with a
+  special row to select all or some items. You need to provide a <i>IMdlTableModel</i> or you can use
+  the <i>MdlDefaultTableModel</i></p>
+
+<table class="docu" mdl-shadow="2">
+  <thead>
+  <tr>
+    <th>Attribute</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+    <td>table-model</td>
+    <td>
+      An Instance that impelments the <i>IMdlTableModel</i>
+    </td>
+  </tr>
+
+  <tr>
+    <td>table-model-selected</td>
+    <td>
+      An Array of <i>ITableItem</i>s. Each item is marked as selected.
+    </td>
+  </tr>
+
+  <tr>
+    <td>table-model-selectionChanged</td>
+    <td>Event that is triggered if the selection is changed. The value property of the event contains the array with the
+      selected items.
+    </td>
+  </tr>
+
+  </tbody>
+</table>

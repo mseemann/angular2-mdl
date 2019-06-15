@@ -1,0 +1,110 @@
+<h4>Snackbar </h4>
+
+<h5>Prerequisites</h5>
+<p>
+  Every Snackbar needs a place to be attached to the dom. The easiest way to achieve this is a dialog-outlet html
+  element within your body element:
+</p>
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<html>
+  <head>...</head>
+  <body>
+    <app-root>...</app-root>
+    <dialog-outlet></dialog-outlet>
+  </body>
+</html>
+]]>
+</pre>
+<p>It is no problem, that this component is outside of your root app-component!</p>
+
+<button (click)="showSnackbar()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Show Snackbar
+</button>
+
+
+<pre demoPrism>
+  <![CDATA[
+
+  <button (click)="showSnackbar()" mdl-button mdl-button-type="raised" mdl-colored="primary"
+          mdl-ripple>Show Snackbar</button>
+
+  <scriptx>
+  export class SnackbarDemo {
+
+    constructor(private mdlSnackbarService: MdlSnackbarService) {}
+
+    showSnackbar() {
+      this.mdlSnackbarService.showSnackbar({
+    message:'The Message',
+    action:{
+          handler:()=>{
+    this.mdlSnackbarService.showToast('You hit the ok Button');
+          },
+          text: 'OK'
+        }
+      });
+    }
+  }
+  </scriptx>
+]]>
+</pre>
+
+
+<h6>Methods</h6>
+<table class="docu" mdl-shadow="2">
+  <thead>
+  <tr>
+    <th>Method</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+    <td>showToast(<br/>
+      message: string,<br/>
+      timeout?: number)<br/>
+      : Promise&lt;MdlSnackbarComponent&gt;
+    </td>
+    <td>
+      Shorthand version for
+      <pre>
+return this.showSnackbar(&#123;
+   message: message,
+   timeout?: timeout
+ &#125;);
+         </pre>
+      Shows an auto hiding text.
+    </td>
+  </tr>
+
+  <tr>
+    <td>showSnackbar(<br/>
+      snackbarMessage: IMdlSnackbarMessage)<br/>
+      : Promise&lt;MdlSnackbarComponent&gt;
+    </td>
+    <td>
+      Shows a snackbar. The <i>IMdlSnackbarMessage</i> is:
+      <pre>
+  &#123;message: string;
+  timeout?: number;
+  action?:&#123;
+    handler: () => void;
+    text: string;&#125;
+
+         </pre>
+      <pre>message</pre>
+      The message that should be shown.
+      <pre>timeout</pre>
+      for how long should the message be visible. Defaults to 2750 ms. Is ignored if an action is proivded.
+      <pre>action</pre>
+      Consists of a handler fuction and an aciton text. The text will be the buttons label. The action is called if the
+      button is clicked.
+      <p>
+        Returns a Promis with the created <i>MdlSnackbarComponent</i>. You can use this instance to
+        manipulate the <i>MdlSnackbarComponent</i> and be informed if the Snackbar is shown to the user.
+      </p>
+    </td>
+  </tr>
+  </tbody>
+</table>

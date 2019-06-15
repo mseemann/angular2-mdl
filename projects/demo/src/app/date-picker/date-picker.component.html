@@ -1,0 +1,42 @@
+<h4>The Date Picker</h4>
+
+<button
+  (click)="pickADate($event)"
+  mdl-button
+  mdl-button-type="icon"
+  mdl-ripple>
+  <mdl-icon>event</mdl-icon>
+</button>
+<span>{{ selectedDate?.format('LL') }}</span>
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<button
+  (click)="pickADate($event)"
+  mdl-button
+  mdl-button-type="icon"
+  mdl-ripple>
+  <mdl-icon>event</mdl-icon>
+</button>
+<span>{{ selectedDate?.format('LL') }}</span>
+  ]]>
+</pre>
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+export class DatepickerDemo {
+
+  public selectedDate: any;
+
+  constructor(private datePicker: MdlDatePickerService) {}
+
+  public pickADate($event: MouseEvent) {
+    this.datePicker.selectDate(this.selectedDate, {openFrom: $event}).subscribe( (selectedDate: Date) => {
+  this.selectedDate = selectedDate ? moment(selectedDate) : null;
+    });
+  }
+}
+
+  ]]>
+</pre>
+

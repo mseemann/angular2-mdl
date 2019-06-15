@@ -1,0 +1,284 @@
+<h4>The Dialog</h4>
+
+<h5>Prerequisites</h5>
+<p>
+  Every Dialog needs a place to be attached to the dom. The easiest way to achieve this is a dialog-outlet html
+  element within your body element:
+</p>
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<html>
+  <head>...</head>
+  <body>
+    <app-root>...</app-root>
+    <dialog-outlet></dialog-outlet>
+  </body>
+</html>
+]]>
+</pre>
+<p>It is no problem, that this component is outside of your root app-component!</p>
+
+<h5>Alert</h5>
+
+<button
+  (click)="alert.show()" mdl-button mdl-button-type="raised"
+  mdl-colored="accent" mdl-ripple>Show Alert
+</button>
+
+<mdl-alert
+  #alert="mdlAlert"
+  (confirmed)="alertConfirmd()"
+  message="This is a <em class='mdl-color-text--primary'>simple</em> Alert"
+  okText="Got it!"></mdl-alert>
+
+<pre demoPrism>
+  <![CDATA[
+<button
+  (click)="alert.show()" mdl-button mdl-button-type="raised"
+  mdl-colored="accent" mdl-ripple>Show Alert</button>
+
+<mdl-alert
+  #alert="mdlAlert"
+  (confirmed)="alertConfirmd()"
+  message="This is a <em class='mdl-color-text--primary'>simple</em> Alert"
+  okText="Got it!"></mdl-alert>
+]]>
+</pre>
+
+<h5>Attributes of the mdl-alert component</h5>
+
+<table class="docu" mdl-shadow="2">
+  <thead>
+  <tr>
+    <th>Attribute</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+    <td>message</td>
+    <td>
+      The message the alert should display
+    </td>
+  </tr>
+
+  <tr>
+    <td>okText</td>
+    <td>
+      The text of the ok button. Defaults to 'Ok'.
+    </td>
+  </tr>
+
+  <tr>
+    <td>title</td>
+    <td>
+      The title of the alert - can be omitted.
+    </td>
+  </tr>
+
+  <tr>
+    <td>confirmed</td>
+    <td>
+      Event will be triggered if the dialog is closed.
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
+<h5>A custom Dialog - template</h5>
+
+You can only show one intance of an embedded dialog.
+
+<p>Username: {{ username }}</p>
+
+<button
+  #editUserButton
+  (click)="editUserDialog.show()" mdl-button mdl-button-type="raised"
+  mdl-colored="primary" mdl-ripple>Edit User Dialog
+</button>
+
+<mdl-dialog #editUserDialog
+            (hide)="onDialogHide()"
+            (show)="onDialogShow($event)"
+            [mdl-dialog-config]="{
+              clickOutsideToClose: true,
+              styles:{'width': '350px'},
+              isModal: true,
+              openFrom: editUserButton,
+              enterTransitionDuration: 400,
+              leaveTransitionDuration: 400}">
+  <h3 class="mdl-dialog__title">Edit User</h3>
+  <div class="mdl-dialog__content">
+    <mdl-textfield [(ngModel)]="editedUsername" autofocus floating-label label="Username" type="text"></mdl-textfield>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button (click)="saveUser()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+    <button (click)="editUserDialog.close()" mdl-button mdl-ripple>Cancel</button>
+  </div>
+</mdl-dialog>
+
+<pre demoPrism>
+<![CDATA[
+<button #editUserButton (click)="editUserDialog.show()" mdl-button mdl-button-type="raised"
+        mdl-colored="primary" mdl-ripple>Edit User Dialog</button>
+
+<mdl-dialog #editUserDialog
+            (hide)="onDialogHide()"
+            (show)="onDialogShow(dialogRef)"
+            [mdl-dialog-config]="{
+              clickOutsideToClose: true,
+              styles:{'width': '300px'},
+              isModal:true,
+              openFrom: editUserButton,
+              enterTransitionDuration: 400,
+              leaveTransitionDuration: 400}">
+  <h3 class="mdl-dialog__title">Edit User</h3>
+  <div class="mdl-dialog__content">
+    <mdl-textfield [(ngModel)]="username" autofocus floating-label label="Username" type="text"></mdl-textfield>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button (click)="saveUser()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+    <button (click)="editUserDialog.close()" mdl-button mdl-ripple>Cancel</button>
+  </div>
+</mdl-dialog>
+]]>
+</pre>
+
+<h5>Attributes of the mdl-dialog component</h5>
+
+<table class="docu" mdl-shadow="2">
+  <thead>
+  <tr>
+    <th>Attribute</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+    <td>mdl-dialog-config</td>
+    <td>
+      Configuration for the dialog. See table below.
+    </td>
+  </tr>
+
+  <tr>
+    <td>hide</td>
+    <td>
+      Event will be triggered if the dialog is hidden.
+    </td>
+  </tr>
+
+  <tr>
+    <td>show</td>
+    <td>
+      Event will be triggered if the dialog is visible.
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
+<h5>Dialog configuration object</h5>
+<p>Not all of these parameters are available for <i>alert</i> and <i>confirm</i>. If you need these
+  parameters please use the <i>showDialog</i> method of the <i>MdlDialogService</i> to create these
+  dialogs.</p>
+<table class="docu" mdl-shadow="2">
+  <thead>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+    <td>isModal?: boolean</td>
+    <td>
+      true if the dialog should be opened as modal.
+    </td>
+  </tr>
+
+
+  <tr>
+    <td>animate?: boolean</td>
+    <td>
+      true if the dialogs should animate. defaults to true.
+    </td>
+  </tr>
+
+  <tr>
+    <td>classes?: string</td>
+    <td>
+      css classes as space delimted list of classes applied to
+      the dialog-host component. (e.g. a b ->
+      <mdl-dialog-host-component ... class="a b"
+    </td>
+  </tr>
+
+  <tr>
+    <td>styles?: &#123;[key: string]: string&#125;</td>
+    <td>
+      Key Value object with additional styles that will be applied to
+      the dialog-host component. for example: &#123;'width': '350px'&#125;
+    </td>
+  </tr>
+
+  <tr>
+    <td>clickOutsideToClose?:boolean</td>
+    <td>
+      Close the dialog if the user clicks on the backdrop.
+    </td>
+  </tr>
+
+  <tr>
+    <td>openFrom?: <br/>MdlButtonComponent | <br/>MouseEvent | <br/>IOpenCloseRect</td>
+    <td>
+      Use a show animation for the dialag that starts at a <i>MdlButtonComponent</i>,
+      a <i>MousEvent</i> or a <i>IOpenCloseRect</i>. From all of these types the top, left,
+      width and height will be used to create the starting point and startings size of
+      the dialog animation.
+    </td>
+  </tr>
+
+  <tr>
+    <td>closeTo?: <br/>MdlButtonComponent | <br/>MouseEvent | <br/>IOpenCloseRect</td>
+    <td>
+      Use a show animation for the dialag that ends at a <i>MdlButtonComponent</i>, a <i>MousEvent</i>
+      or a <i>IOpenCloseRect</i>. From all of these types the top, left, width and height will be used
+      to create the end point and end size of the dialog animation.
+    </td>
+  </tr>
+
+  <tr>
+    <td>enterTransitionDuration?: number</td>
+    <td>
+      Alter the the transition duration for the enter animation in ms. Defaults to 300ms.
+    </td>
+  </tr>
+
+  <tr>
+    <td>enterTransitionEasingCurve?: string</td>
+    <td>
+      The easing curve for the enter animation. defaults to cubic-bezier(0.0, 0.0, 0.2, 1)
+    </td>
+  </tr>
+
+  <tr>
+    <td>leaveTransitionDuration?: number</td>
+    <td>
+      Alter the the transition duration for the leave animation in ms. Defaults to 250ms.
+    </td>
+  </tr>
+
+  <tr>
+    <td>leaveTransitionEasingCurve?: string</td>
+    <td>
+      The easing curve for the leave animation. defaults to cubic-bezier(0.0, 0.0, 0.2, 1)
+    </td>
+  </tr>
+
+  </tbody>
+</table>

@@ -1,0 +1,85 @@
+<h4>The Chips</h4>
+
+<h5>Basic Chip</h5>
+<mdl-chip mdl-label="Basic Chip"></mdl-chip>
+
+<pre demoPrism>
+  <![CDATA[
+  <!-- Basic Chip -->
+<mdl-chip mdl-label="Basic Chip"></mdl-chip>
+]]>
+</pre>
+
+<h5>Deletable Chip</h5>
+<mdl-chip (action-click)="deleteChip()" mdl-action-icon="cancel" mdl-label="Deletable Chip"></mdl-chip>
+
+<pre demoPrism>
+  <![CDATA[
+  <!-- Deletable Chip -->
+<mdl-chip (action-click)="deleteChip()" mdl-action-icon="cancel" mdl-label="Deletable Chip"></mdl-chip>
+]]>
+</pre>
+
+<h5>Contact Chip</h5>
+<mdl-chip mdl-label="Contact Chip">
+  <span class="mdl-color--blue mdl-color-text--white" mdl-chip-contact>A</span>
+</mdl-chip>
+
+<pre demoPrism>
+  <![CDATA[
+  <!-- Contact Chip -->
+<mdl-chip mdl-label="Contact Chip">
+  <span class="mdl-color--blue mdl-color-text--white" mdl-chip-contact>A</span>
+</mdl-chip>
+]]>
+</pre>
+
+<h5>Deletable Contact Chip</h5>
+<mdl-chip (action-click)="deleteChip()" mdl-action-icon="cancel" mdl-label="Deletable Contact Chip">
+  <img mdl-chip-contact src="../../assets/richter.jpg">
+</mdl-chip>
+
+<pre demoPrism>
+  <![CDATA[
+  <!-- Deletable Contact Chip -->
+<mdl-chip (action-click)="deleteChip()" mdl-action-icon="cancel" mdl-label="Deletable Contact Chip">
+  <img mdl-chip-contact src="../../assets/richter.jpg">
+</mdl-chip>
+  ]]>
+</pre>
+
+<h4>Chip-Component Attributes</h4>
+<table class="docu" mdl-shadow="2">
+  <thead>
+  <tr>
+    <th>Attribute</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+      mdl-action-icon
+    </td>
+    <td>
+      Specifies an icon for the chip action.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      action-click
+    </td>
+    <td>
+      Register a click event method if the action button is clicked.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      mdl-label
+    </td>
+    <td>
+      Specifies a label for the chip.
+    </td>
+  </tr>
+  </tbody>
+</table>

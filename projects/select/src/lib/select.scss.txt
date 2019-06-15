@@ -1,0 +1,5 @@
+// these paths are resolved if the angular/core package is installed by the package manager
+@import "../../../node_modules/@angular-mdl/core/scss/color-definitions";
+@import "../../../node_modules/@angular-mdl/core/scss/variables";
+@import "../../../node_modules/@angular-mdl/core/scss/mixins";
+@import "select.include";

@@ -1,0 +1,17 @@
+<h4>The Shadows</h4>
+
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+  <div mdl-shadow="2"></div>
+
+  <div *ngFor="let shadow of [0,2,3,4,6,8,16,24]" [mdl-shadow]="shadow" class="shadow-example">{{shadow}}</div>
+  ]]>
+</pre>
+
+
+<div *ngFor="let shadow of [0,2,3,4,6,8,16,24]" [mdl-shadow]="shadow" class="shadow-example">{{shadow}}</div>
+
+<div class="clearfix"></div>
+<p>The <i>mdl-shadow</i> directive is a convenient directive that let's you create drop shadows on container.
+  It's a shorthand for css classes like <i>mdl-shadow--2dp</i></p>
