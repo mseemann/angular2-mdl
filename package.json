@@ -40,7 +40,7 @@
     "all": "rimraf dist &&  npm run lint && npm run all-core && npm run all-datepicker && npm run all-popover && npm run all-select &&npm run all-expansion-panel && npm run all-fab-menu && npm run all-demo",
     "codeclimate": "CODECLIMATE_REPO_TOKEN=160aba8aa0baa5d0cab1d2162f50027cef9cda032fbc4eebefd54167ddce4c89 codeclimate-test-reporter < coverage/core/lcov.info",
     "generate-scss-from-mdl-scss": "rimraf projects/core/src/scss/mdl && node ./scripts/generate-scss-from-mdl-scss.js",
-    "deploy-gh-pages": "npm run build demo && scripts/deploy.sh --message \\\\\\\"Deploy gh-pages from commit $(git rev-parse HEAD)  [ci skip]\\\\\\\" -n",
+    "deploy-gh-pages": "npm run build-demo && scripts/deploy.sh --message \\\\\\\"Deploy gh-pages from commit $(git rev-parse HEAD)  [ci skip]\\\\\\\" -n",
     "publish-core": "cd dist/@angular-mdl/core && npm publish --access public --tag beta",
     "publish-datepicker": "cd dist/@angular-mdl/datepicker && npm publish --access public --tag beta",
     "publish-popover": "cd dist/@angular-mdl/popover && npm publish --access public --tag beta",
