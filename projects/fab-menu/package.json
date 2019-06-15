@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/fab-menu",
-  "version": "8.0.0.beta.0",
+  "version": "8.0.0-beta.0",
   "description": "Angular Material Design Lite - Fab menu Component",
   "repository": {
     "type": "git",
