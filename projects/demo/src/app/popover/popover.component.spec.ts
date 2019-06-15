@@ -1,27 +1,27 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {DatePickerComponent} from './date-picker.component';
+import {PopoverComponent} from './popover.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {MdlDatePickerModule} from '@angular-mdl/datepicker';
+import {MdlPopoverModule} from '@angular-mdl/popover';
 import {MdlModule} from '@angular-mdl/core';
 import {RouterTestingModule} from '@angular/router/testing';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
-describe('DatePickerComponent', () => {
-  let component: DatePickerComponent;
-  let fixture: ComponentFixture<DatePickerComponent>;
+describe('PopoverComponent', () => {
+  let component: PopoverComponent;
+  let fixture: ComponentFixture<PopoverComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [MdlModule, MdlDatePickerModule, RouterTestingModule, NoopAnimationsModule],
-      declarations: [DatePickerComponent]
+      imports: [MdlModule, MdlPopoverModule, RouterTestingModule, NoopAnimationsModule],
+      declarations: [PopoverComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DatePickerComponent);
+    fixture = TestBed.createComponent(PopoverComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

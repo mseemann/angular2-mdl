@@ -39,6 +39,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginModule} from './dialog/login.module';
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {MdlDatePickerModule} from '@angular-mdl/datepicker';
+import {PopoverComponent} from './popover/popover.component';
+import {MdlPopoverModule} from '@angular-mdl/popover';
 
 
 export const appRoutes: Routes = [
@@ -73,10 +75,10 @@ export const appRoutes: Routes = [
   {path: 'toggle', component: ToggleDemoComponent, data: {title: 'Toggles'}},
   {path: 'tooltip', component: TooltipDemoComponent, data: {title: 'Tooltips'}},
   {path: 'date-picker', component: DatePickerComponent, data: {title: 'DatePicker'}},
-  {path: 'expansion-panel'},
-  {path: 'fab-menu'},
-  {path: 'popover'},
-  {path: 'select'},
+  // {path: 'expansion-panel'},
+  // {path: 'fab-menu'},
+  {path: 'popover', component: PopoverComponent, data: {title: 'Popover'}},
+  // {path: 'select'},
   {path: '**', redirectTo: ''},
 ];
 
@@ -111,7 +113,8 @@ export const appRoutes: Routes = [
     ThemeDemoComponent,
     PrismDirective,
     ReactiveFormsDemoComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    PopoverComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +124,8 @@ export const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     LoginModule,
-    MdlDatePickerModule
+    MdlDatePickerModule,
+    MdlPopoverModule
   ],
   providers: [
     Title

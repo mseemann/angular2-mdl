@@ -1,10 +1,18 @@
-import { NgModule } from '@angular/core';
-import { PopoverComponent } from './popover.component';
+import {ModuleWithProviders, NgModule} from '@angular/core';
+import {MdlPopoverComponent, MdlPopoverRegistry, PopupPositionService} from './popover.component';
+
 
 @NgModule({
-  declarations: [PopoverComponent],
-  imports: [
-  ],
-  exports: [PopoverComponent]
+  imports: [],
+  exports: [MdlPopoverComponent],
+  declarations: [MdlPopoverComponent],
+  providers: [MdlPopoverRegistry, PopupPositionService],
 })
-export class PopoverModule { }
+export class MdlPopoverModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MdlPopoverModule,
+      providers: []
+    };
+  }
+}
