@@ -1,12 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
-  <title>Demo</title>
-  <base href="/">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>angular-mdl/core</title>
+  <base href="/angular2-mdl/">  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <link href="favicon.ico" rel="icon" type="image/x-icon">
+  <meta content="Angular Material Design Lite (angular-mdl/core); Angular components
+    for Material Design Lite; Components instead of css classes; Buttons, Snackbar,
+    Layouts, Tabs, Badges, Icons, Menus" name="description">
   <style>
     demo-root > .loading {
       margin: 0 auto;
@@ -30,10 +32,102 @@
     }
 
   </style>
-</head>
+<link rel="stylesheet" href="styles.19f078d7aa8c2a7a2bf8.css"></head>
 <body>
-<demo-root></demo-root>
-<dialog-outlet></dialog-outlet>
-<script src="runtime-es2015.js" type="module"></script><script src="polyfills-es2015.js" type="module"></script><script src="runtime-es5.js" nomodule></script><script src="polyfills-es5.js" nomodule></script><script src="styles-es2015.js" type="module"></script><script src="styles-es5.js" nomodule></script><script src="vendor-es2015.js" type="module"></script><script src="main-es2015.js" type="module"></script><script src="vendor-es5.js" nomodule></script><script src="main-es5.js" nomodule></script></body>
-</html>
+<demo-root>
+  <div class="loading spinner">
+    <div class="mdl-spinner mdl-js-spinner is-active is-upgraded">
+      <div class="mdl-spinner__layer mdl-spinner__layer-1">
+        <div class="mdl-spinner__circle-clipper mdl-spinner__left">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+        <div class="mdl-spinner__gap-patch">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+        <div class="mdl-spinner__circle-clipper mdl-spinner__right">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+      </div>
+      <div class="mdl-spinner__layer mdl-spinner__layer-2">
+        <div class="mdl-spinner__circle-clipper mdl-spinner__left">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+        <div class="mdl-spinner__gap-patch">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+        <div class="mdl-spinner__circle-clipper mdl-spinner__right">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+      </div>
+      <div class="mdl-spinner__layer mdl-spinner__layer-3">
+        <div class="mdl-spinner__circle-clipper mdl-spinner__left">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+        <div class="mdl-spinner__gap-patch">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+        <div class="mdl-spinner__circle-clipper mdl-spinner__right">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+      </div>
+      <div class="mdl-spinner__layer mdl-spinner__layer-4">
+        <div class="mdl-spinner__circle-clipper mdl-spinner__left">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+        <div class="mdl-spinner__gap-patch">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+        <div class="mdl-spinner__circle-clipper mdl-spinner__right">
+          <div class="mdl-spinner__circle"></div>
+        </div>
+      </div>
+    </div>
+    <div>loading ...</div>
+    <div class="text-container">
 
+      <h4>Welcome to the e2e demos for Angular Material Design Lite! (@angular-mdl/core)</h4>
+
+      Features:
+      <ul>
+        <li>Angular components for Material Design Lite</li>
+        <li>Suports Angular 2 (angular2-mdl) and Angular 4 and up (@angular-mdl/core)</li>
+        <ul>
+          <li>change the properties and the components changes their behavior</li>
+          <li>add and remove components on the fly (for example menu items)</li>
+        </ul>
+        <li>Components instead of css classes.</li>
+        <ul>
+          <li>This will provide less errors and a better tool support.</li>
+          <li>The html code is shorter.</li>
+        </ul>
+        <li>Include only the code that you really use in your production files.</li>
+        <li>For sure this demo and docu has been created with angular2-mdl!</li>
+        <li>Ready for Angular Reactive Forms.</li>
+      </ul>
+
+      <p>
+        Still not convinced? With this package you can mix original material design lite features
+        and angular web apps within one website. <a href="https://www.yovelino.de">yovelino.de</a>
+        uses material deisgn lite for the content related pages and angular2-mdl for the tour planner.
+        But the user will not notice this because both parts look and behave the same.
+      </p>
+    </div>
+  </div>
+</demo-root>
+
+
+<script>
+  if (sessionStorage && history) {
+    // simulate html5 mode server behavior on github pages - see 404.html
+    var redirect = sessionStorage.redirect;
+    delete sessionStorage.redirect;
+    if (redirect && redirect != location.href) {
+      history.replaceState(null, null, redirect);
+    }
+  }
+</script>
+
+
+<dialog-outlet></dialog-outlet>
+<script src="runtime-es2015.858f8dd898b75fe86926.js" type="module"></script><script src="polyfills-es2015.fc22aee4fbf951b1085c.js" type="module"></script><script src="runtime-es5.741402d1d47331ce975c.js" nomodule></script><script src="polyfills-es5.57546dcb18c6500fafa3.js" nomodule></script><script src="main-es2015.e4b03254983fcf8b8c63.js" type="module"></script><script src="main-es5.657f2eed2e95645e2975.js" nomodule></script></body>
+</html>
