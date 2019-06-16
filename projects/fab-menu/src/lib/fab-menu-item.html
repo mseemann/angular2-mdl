@@ -1,0 +1,5 @@
+<button mdl-button mdl-button-type="mini-fab" (mouseover)="isHoovering = true" (mouseleave)="isHoovering = false" (click)="menuClick.emit()">
+  <mdl-icon>{{icon}}</mdl-icon>
+</button>
+<mdl-chip [mdl-label]="label" [hidden]="!(fabMenu.alwaysShowTooltips || isHoovering)"></mdl-chip>
+

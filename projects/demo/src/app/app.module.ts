@@ -46,6 +46,8 @@ import {MdlSelectModule} from '@angular-mdl/select';
 import {MatchSorterPipe} from './select/matchSorter.pipe';
 import {ExpansionPanelComponent} from './expansion-panel/expansion-panel.component';
 import {MdlExpansionPanelModule} from '@angular-mdl/expansion-panel';
+import {FabMenuComponent} from './fab-menu/fab-menu.component';
+import {MdlFabMenuModule} from '@angular-mdl/fab-menu';
 
 
 export const appRoutes: Routes = [
@@ -81,7 +83,7 @@ export const appRoutes: Routes = [
   {path: 'tooltip', component: TooltipDemoComponent, data: {title: 'Tooltips'}},
   {path: 'date-picker', component: DatePickerComponent, data: {title: 'DatePicker'}},
   {path: 'expansion-panel', component: ExpansionPanelComponent, data: {title: 'Expansion-Panel'}},
-  // {path: 'fab-menu'},
+  {path: 'fab-menu', component: FabMenuComponent, data: {title: 'FAB menu'}},
   {path: 'popover', component: PopoverComponent, data: {title: 'Popover'}},
   {path: 'select', component: SelectComponent, data: {title: 'Select'}},
   {path: '**', redirectTo: ''},
@@ -122,7 +124,8 @@ export const appRoutes: Routes = [
     PopoverComponent,
     SelectComponent,
     MatchSorterPipe,
-    ExpansionPanelComponent
+    ExpansionPanelComponent,
+    FabMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -135,7 +138,8 @@ export const appRoutes: Routes = [
     MdlDatePickerModule,
     MdlPopoverModule,
     MdlSelectModule,
-    MdlExpansionPanelModule
+    MdlExpansionPanelModule,
+    MdlFabMenuModule
   ],
   providers: [
     Title

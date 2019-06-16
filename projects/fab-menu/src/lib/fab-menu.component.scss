@@ -1,0 +1,16 @@
+:host {
+  position: fixed;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  z-index: 1000;
+
+  .mdl-popover {
+    background: none;
+
+    &.direction-up {
+      bottom: 56px;
+    }
+
+    right: calc((56px - 40px) / 2);
+  }
+}

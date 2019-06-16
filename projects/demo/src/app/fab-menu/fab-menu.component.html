@@ -1,0 +1,170 @@
+<h4>FAB Menu</h4>
+
+<section>
+  <h5>Basic usage</h5>
+  <mdl-fab-menu #mainFabMenu>
+    <mdl-fab-menu-item
+      (menu-clicked)="alert('we need to do something here')"
+      [fabMenu]="mainFabMenu"
+      icon="note_add"
+      label="make a note">
+    </mdl-fab-menu-item>
+    <mdl-fab-menu-item
+      (menu-clicked)="alert('user elected to refresh!')"
+      [fabMenu]="mainFabMenu"
+      icon="refresh"
+      label="refresh">
+    </mdl-fab-menu-item>
+    <mdl-fab-menu-item
+      (menu-clicked)="alert('user elected to download ... but what exactly? ')"
+      [fabMenu]="mainFabMenu"
+      icon="file_download"
+      label="download">
+    </mdl-fab-menu-item>
+  </mdl-fab-menu>
+  <pre demoPrism>
+    <![CDATA[
+  <mdl-fab-menu #mainFabMenu>
+    <mdl-fab-menu-item
+      (menu-clicked)="alert('we need to do something here')"
+      [fabMenu]="mainFabMenu"
+      icon="note_add"
+      label="make a note">
+    </mdl-fab-menu-item>
+    <mdl-fab-menu-item
+      (menu-clicked)="alert('user elected to refresh!')"
+      [fabMenu]="mainFabMenu"
+      icon="refresh"
+      label="refresh">
+    </mdl-fab-menu-item>
+    <mdl-fab-menu-item
+      (menu-clicked)="alert('user elected to download ... but what exactly? ')"
+      [fabMenu]="mainFabMenu"
+      icon="file_download"
+      label="download">
+    </mdl-fab-menu-item>
+  </mdl-fab-menu>
+    ]]>
+  </pre>
+</section>
+
+<section>
+  <h5>Forcing the tooltip display</h5>
+  <p>By default, the tooltip are always shown whenever the component is being used on a touch screen whereas they are
+    only diplayed for the item being "mouse-overed" on mouse-based display.
+    Nevertheless, you can for the tooltip display by setting the
+    <code>alwaysShowTooltips</code>
+    to
+    <code>true</code>
+  </p>
+
+  <mdl-fab-menu #mainFabMenu2 [alwaysShowTooltips]="true">
+    <mdl-fab-menu-item
+      (menu-clicked)="alert('we need to do something here')"
+      [fabMenu]="mainFabMenu2"
+      icon="note_add"
+      label="make a note">
+    </mdl-fab-menu-item>
+    <mdl-fab-menu-item
+      (menu-clicked)="alert('user elected to download ... but what exactly? ')"
+      [fabMenu]="mainFabMenu2"
+      icon="file_download"
+      label="download">
+    </mdl-fab-menu-item>
+  </mdl-fab-menu>
+  <pre demoPrism>
+    <![CDATA[
+  <mdl-fab-menu #mainFabMenu2 [alwaysShowTooltips]="true">
+    ...
+  </mdl-fab-menu>
+    ]]>
+  </pre>
+</section>
+
+<section>
+  <h5>Components</h5>
+  <table class="docu" mdl-shadow="2">
+    <thead>
+    <tr>
+      <th>Component</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>mdl-fab-menu</td>
+      <td>Container hosting the toggle button and the popover.</td>
+    </tr>
+    <tr>
+      <td>mdl-fab-menu-item</td>
+      <td>Defines a single item of the fab-menu. It takes a reference to the enclosing menu, the name of the icon to be
+        displayed on the mini-fab and a label for the tooltip.
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h5>Inputs for MdlFabMenuComponent</h5>
+  <table class="docu" mdl-shadow="2">
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Params</th>
+      <th>Explanation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>alwaysShowTooltips</td>
+      <td>boolean</td>
+      <td>Set if either or not the tooltip should always be displayed when the menu is up</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+<section>
+  <h5>Inputs for MdlFabMenuItemComponent</h5>
+  <table class="docu" mdl-shadow="2">
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Params</th>
+      <th>Explanation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>icon</td>
+      <td>string</td>
+      <td>name of the icon to be used in the menu item</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>text of the tooltip</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h5>Output for MdlFabMenuItemComponent</h5>
+  <table class="docu" mdl-shadow="2">
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Params</th>
+      <th>Explanation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>menu-clicked</td>
+      <td>event&lt;void&gt;</td>
+      <td>event triggered when this item has been selected</td>
+    </tr>
+    </tbody>
+  </table>
+</section>

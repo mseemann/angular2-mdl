@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 1rem;
+
+  .mdl-chip {
+    display: inline-block;
+  }
+  .mdl-button {
+    margin: 0 0 0 2rem;
+    background: white;
+  }
+}

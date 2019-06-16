@@ -29,7 +29,7 @@
     "build-popover": "ng build popover && cp ./projects/popover/src/lib/popover.include.scss ./dist/@angular-mdl/popover/popover.include.scss && cp ./projects/popover/src/lib/popover.scss.txt ./dist/@angular-mdl/popover/popover.scss",
     "build-select": "ng build select && cp ./projects/select/src/lib/select.include.scss ./dist/@angular-mdl/select/select.include.scss && cp ./projects/select/src/lib/select.scss.txt ./dist/@angular-mdl/select/select.scss",
     "build-expansion-panel": "ng build expansion-panel && cp ./projects/expansion-panel/src/lib/expansion-panel.include.scss ./dist/@angular-mdl/expansion-panel/expansion-panel.include.scss && cp ./projects/expansion-panel/src/lib/expansion-panel.scss.txt ./dist/@angular-mdl/expansion-panel/expansion-panel.scss",
-    "build-fab-menu": "ng build fab-menu && cp ./projects/fab-menu/src/lib/fab-menu.include.scss ./dist/@angular-mdl/fab-menu/fab-menu.include.scss && cp ./projects/fab-menu/src/lib/fab-menu.scss.txt ./dist/@angular-mdl/fab-menu/fab-menu.scss",
+    "build-fab-menu": "ng build fab-menu",
     "all-core": "npm run test-core && npm run build-core",
     "all-datepicker": "npm run test-datepicker  && npm run build-datepicker",
     "all-popover": "npm run test-popover && npm run build-popover",

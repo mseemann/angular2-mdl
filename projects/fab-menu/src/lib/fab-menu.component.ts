@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'mdl-fab-menu',
-  template: `
-    <p>
-      fab-menu works!
-    </p>
-  `,
-  styles: []
+  templateUrl: 'fab-menu.component.html',
+  styleUrls: ['fab-menu.component.scss']
 })
-export class FabMenuComponent implements OnInit {
+export class MdlFabMenuComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  alwaysShowTooltips: boolean;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

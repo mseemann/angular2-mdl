@@ -1,0 +1,11 @@
+<button (click)="fabPopover.toggle($event)"
+        (touchstart)="alwaysShowTooltips = true"
+        mdl-button
+        mdl-button-type="fab"
+        mdl-colored="primary"
+>
+  <mdl-icon>add</mdl-icon>
+</button>
+<mdl-popover #fabPopover [class.direction-up]="true" [hide-on-click]="true">
+  <ng-content></ng-content>
+</mdl-popover>
