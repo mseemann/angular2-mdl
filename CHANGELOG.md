@@ -1,3 +1,13 @@
+<a name="8.0.0"></a>
+# 8.0.0 (2019-06-16)
+* @angular-mdl/core is now compatible with angular 8
+* all @angular-mdl/* extension packages from angular2-mdl-ext have been moved to this project:
+  *  @angular-mdl/datepicker
+  *  @angular-mdl/expansion-panel
+  *  @angular-mdl/fab-menu
+  *  @angular-mdl/popover
+  *  @angular-mdl/select
+
 <a name="6.0.1"></a>
 # 6.0.1 (2018-09-23)
 * [1578](https://github.com/mseemann/angular2-mdl/issues/1578) (MdlDialog problem after close dialog by clicking outside)
