@@ -4,6 +4,12 @@ MIT
 @angular-mdl/datepicker
 MIT
 
+@angular-mdl/expansion-panel
+MIT
+
+@angular-mdl/fab-menu
+MIT
+
 @angular-mdl/popover
 MIT
 
