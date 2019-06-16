@@ -1,0 +1,113 @@
+$gutter-vertical: 16px;
+$gutter-horizontal: 24px;
+
+@mixin divider() {
+  border-bottom: 1px solid rgba(#000, 0.12);
+}
+
+.mdl-expansion-panel {
+  font-family: $preferred_font;
+  background-color: unquote("rgb(#{$color-white})");
+  display: block;
+  outline: none;
+  margin: $gutter-vertical 0px;
+  @include shadow-2dp();
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 0px $gutter-horizontal;
+    align-items: center;
+    line-height: 48px;
+    @include divider();
+
+    &--list-content {
+      flex-grow: 1;
+      color: rgba(#000, 0.87);
+    }
+
+    &--secondary-content {
+      padding-left: $gutter-vertical;
+      flex-grow: 3;
+      color: rgba(#000, 0.54);
+    }
+
+    &--expand-icon {
+      padding-left: $gutter-vertical;
+      color: rgba(#000, 0.38);
+      cursor: pointer;
+
+      .material-icons {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &__content {
+    display: block;
+    overflow: hidden;
+
+    &--body {
+      display: block;
+      padding: 0px $gutter-horizontal $gutter-vertical $gutter-horizontal;
+      @include divider();
+    }
+
+    &--footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: $gutter-vertical $gutter-vertical/2 $gutter-vertical $gutter-horizontal;
+
+      .mdl-button {
+        padding: 0px $gutter-vertical/2;
+      }
+    }
+  }
+
+  &.expanded {
+    .mdl-expansion-panel__header {
+      line-height: 64px;
+      border-bottom: none;
+    }
+  }
+
+  &.disabled {
+    .mdl-expansion-panel__header--expand-icon {
+      cursor: default;
+    }
+  }
+}
+
+.mdl-expansion-panel-group {
+  display: block;
+
+  .mdl-expansion-panel {
+    margin: 0px;
+
+    &:focus {
+      background-color: unquote("rgb(#{$palette-grey-200})");
+
+      .mdl-expansion-panel__header--expand-icon {
+        color: rgba(#000, 0.54);
+      }
+    }
+
+    &.expanded {
+      margin: $gutter-vertical 0px;
+      background-color: unquote("rgb(#{$color-white})");
+
+      .mdl-expansion.panel__header--expand-icon {
+        color: rgba(#000, 0.38);
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

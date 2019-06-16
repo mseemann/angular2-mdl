@@ -1,0 +1,330 @@
+<h4>EXPANSION PANEL</h4>
+
+<section>
+  <h5>Single expansion panel</h5>
+  <mdl-expansion-panel #panel>
+    <mdl-expansion-panel-header>
+      <mdl-expansion-panel-header-list-content>Primary Title</mdl-expansion-panel-header-list-content>
+      <mdl-expansion-panel-header-secondary-content>Secondary value</mdl-expansion-panel-header-secondary-content>
+    </mdl-expansion-panel-header>
+    <mdl-expansion-panel-content>
+      <mdl-expansion-panel-body>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+          electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+          Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          PageMaker including versions of Lorem Ipsum.</p>
+      </mdl-expansion-panel-body>
+      <mdl-expansion-panel-footer>
+        <mdl-button>Cancel</mdl-button>
+        <mdl-button>Save</mdl-button>
+      </mdl-expansion-panel-footer>
+    </mdl-expansion-panel-content>
+  </mdl-expansion-panel>
+  <button (click)="panel.toggle()" mdl-button
+          mdl-button-type="raised"
+          mdl-colored="primary"
+          mdl-ripple>Toggle
+  </button>
+  <button (click)="panel.disabled ? panel.enableToggle() : panel.disableToggle()" mdl-button
+          mdl-button-type="raised"
+          mdl-colored="primary"
+          mdl-ripple>
+    <span *ngIf="!panel.disabled">Disable</span>
+    <span *ngIf="panel.disabled">Enable</span>
+    Toggle
+  </button>
+  <pre demoPrism>
+    <![CDATA[
+<mdl-expansion-panel #panel>
+  <mdl-expansion-panel-header>
+    <mdl-expansion-panel-header-list-content>Primary Title</mdl-expansion-panel-header-list-content>
+    <mdl-expansion-panel-header-secondary-content>Secondary value</mdl-expansion-panel-header-secondary-content>
+  </mdl-expansion-panel-header>
+  <mdl-expansion-panel-content>
+    <mdl-expansion-panel-body>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </mdl-expansion-panel-body>
+    <mdl-expansion-panel-footer>
+      <mdl-button>Cancel</mdl-button>
+      <mdl-button>Save</mdl-button>
+    </mdl-expansion-panel-footer>
+  </mdl-expansion-panel-content>
+</mdl-expansion-panel>
+<mdl-button (click)="panel.toggle()">Toggle</mdl-button>
+<mdl-button (click)="panel.disabled ? panel.enableToggle() : panel.disableToggle()">
+  <span *ngIf="!panel.disabled">Disable</span>
+  <span *ngIf="panel.disabled">Enable</span>
+  Toggle
+</mdl-button>
+    ]]>
+  </pre>
+</section>
+
+<section>
+  <h5>Single expansion panel - expanded initially</h5>
+  <mdl-expansion-panel [expanded]="true">
+    <mdl-expansion-panel-header>
+      <mdl-expansion-panel-header-list-content>Primary Title</mdl-expansion-panel-header-list-content>
+      <mdl-expansion-panel-header-secondary-content>Secondary value</mdl-expansion-panel-header-secondary-content>
+    </mdl-expansion-panel-header>
+    <mdl-expansion-panel-content>
+      <mdl-expansion-panel-body>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+          electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+          Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          PageMaker including versions of Lorem Ipsum.</p>
+      </mdl-expansion-panel-body>
+    </mdl-expansion-panel-content>
+  </mdl-expansion-panel>
+  <pre demoPrism>
+    <![CDATA[
+<mdl-expansion-panel [expanded]="true">
+  <mdl-expansion-panel-header>
+    <mdl-expansion-panel-header-list-content>Primary Title</mdl-expansion-panel-header-list-content>
+    <mdl-expansion-panel-header-secondary-content>Secondary value</mdl-expansion-panel-header-secondary-content>
+  </mdl-expansion-panel-header>
+  <mdl-expansion-panel-content>
+    <mdl-expansion-panel-body>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </mdl-expansion-panel-body>
+  </mdl-expansion-panel-content>
+</mdl-expansion-panel>
+    ]]>
+  </pre>
+</section>
+
+<section>
+  <h5>Expansion panel group</h5>
+  <p>Individual panel in a group can be focused by TAB key. Panels can be toggled by pressing ENTER key when
+    focused.</p>
+  <mdl-expansion-panel-group #panelGroup>
+    <mdl-expansion-panel *ngFor="let i of [1,2,3]">
+      <mdl-expansion-panel-header>
+        <mdl-expansion-panel-header-list-content>Primary Title {{i}}</mdl-expansion-panel-header-list-content>
+      </mdl-expansion-panel-header>
+      <mdl-expansion-panel-content>
+        <mdl-expansion-panel-body>
+          <p>This is expansion panel {{i}}</p>
+        </mdl-expansion-panel-body>
+        <mdl-expansion-panel-footer>
+          <mdl-button>Cancel</mdl-button>
+          <mdl-button>Save</mdl-button>
+        </mdl-expansion-panel-footer>
+      </mdl-expansion-panel-content>
+    </mdl-expansion-panel>
+  </mdl-expansion-panel-group>
+  <section style="margin-top: 15px;">
+    <button (click)="panelGroup.getPanel(1).toggle()" mdl-button
+            mdl-button-type="raised"
+            mdl-colored="primary"
+            mdl-ripple>Toggle Second
+    </button>
+    <div style="display: inline-block; padding: 5px;">expanded: {{panelGroup.getExpanded()}}</div>
+  </section>
+  <pre demoPrism>
+    <![CDATA[
+<mdl-expansion-panel-group #panelGroup>
+  <mdl-expansion-panel>
+    <mdl-expansion-panel-header>
+      <mdl-expansion-panel-header-list-content>Primary Title {x{i}}</mdl-expansion-panel-header-list-content>
+    </mdl-expansion-panel-header>
+    <mdl-expansion-panel-content>
+      <mdl-expansion-panel-body>
+        <p>This is expansion panel {x{i}}</p>
+      </mdl-expansion-panel-body>
+      <mdl-expansion-panel-footer>
+        <mdl-button>Cancel</mdl-button>
+        <mdl-button>Save</mdl-button>
+      </mdl-expansion-panel-footer>
+    </mdl-expansion-panel-content>
+  </mdl-expansion-panel>
+</mdl-expansion-panel-group>
+<button (click)="panelGroup.getPanel(1).toggle()" mdl-button
+        mdl-button-type="raised"
+        mdl-colored="primary"
+        mdl-ripple>Toggle Second</button>
+<div>expanded: {x{panelGroup.getExpanded()}}</div>
+    ]]>
+  </pre>
+</section>
+
+<section>
+  <h5>Expansion panel group - having one panel expanded initially</h5>
+  <p>Note: A Panel Group only supports initialization of ONE panel in expanded state.</p>
+  <mdl-expansion-panel-group>
+    <mdl-expansion-panel *ngFor="let i of [1,2,3]; let isFirst = first" [expanded]="isFirst">
+      <mdl-expansion-panel-header>
+        <mdl-expansion-panel-header-list-content>Primary Title {{i}}</mdl-expansion-panel-header-list-content>
+      </mdl-expansion-panel-header>
+      <mdl-expansion-panel-content>
+        <mdl-expansion-panel-body>
+          <p>This is expansion panel {{i}}</p>
+        </mdl-expansion-panel-body>
+      </mdl-expansion-panel-content>
+    </mdl-expansion-panel>
+  </mdl-expansion-panel-group>
+  <pre demoPrism>
+    <![CDATA[
+<mdl-expansion-panel-group>
+  <mdl-expansion-panel *ngFor="let i of [1,2,3]; let isFirst = first" [expanded]="isFirst">
+    <mdl-expansion-panel-header>
+      <mdl-expansion-panel-header-list-content>Primary Title {x{i}}</mdl-expansion-panel-header-list-content>
+    </mdl-expansion-panel-header>
+    <mdl-expansion-panel-content>
+      <mdl-expansion-panel-body>
+        <p>This is expansion panel {x{i}}</p>
+      </mdl-expansion-panel-body>
+    </mdl-expansion-panel-content>
+  </mdl-expansion-panel>
+</mdl-expansion-panel-group>
+    ]]>
+  </pre>
+</section>
+
+<section>
+  <h5>Components</h5>
+  <table class="docu" mdl-shadow="2">
+    <thead>
+    <tr>
+      <th>Component</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>mdl-expansion-panel-group</td>
+      <td>Container for grouping multiple panels.</td>
+    </tr>
+    <tr>
+      <td>mdl-expansion-panel</td>
+      <td>Defines a panel. It can exist on it's own or can be inside a group.</td>
+    </tr>
+    <tr>
+      <td>mdl-expansion-panel-header</td>
+      <td>Defines the header that is shown at the top of each panel. It has a toggle button which expands the panel.
+      </td>
+    </tr>
+    <tr>
+      <td>mdl-expansion-panel-header-list-content</td>
+      <td>Defines title for the panel's header.</td>
+    </tr>
+    <tr>
+      <td>mdl-expansion-panel-header-secondary-content</td>
+      <td>Defines secondary title for the panel's header.</td>
+    </tr>
+    <tr>
+      <td>mdl-expansion-panel-content</td>
+      <td>Container for the expandable content inside the panel.</td>
+    </tr>
+    <tr>
+      <td>mdl-expansion-panel-body</td>
+      <td>Defines the collapsible content for the panel</td>
+    </tr>
+    <tr>
+      <td>mdl-expansion-panel-content-footer</td>
+      <td>Defines any action buttons for the panel.</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h5>API for MdlExpansionPanelComponent</h5>
+  <table class="docu" mdl-shadow="2">
+    <thead>
+    <tr>
+      <th>Function</th>
+      <th>Params</th>
+      <th>Returns</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>toggle</td>
+      <td>none</td>
+      <td>void</td>
+    </tr>
+    <tr>
+      <td>expand</td>
+      <td>none</td>
+      <td>void</td>
+    </tr>
+    <tr>
+      <td>collapse</td>
+      <td>none</td>
+      <td>void</td>
+    </tr>
+    <tr>
+      <td>disableToggle</td>
+      <td>none</td>
+      <td>void</td>
+    </tr>
+    <tr>
+      <td>enableToggle</td>
+      <td>none</td>
+      <td>void</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h5>Inputs for MdlExpansionPanelComponent</h5>
+  <table class="docu" mdl-shadow="2">
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Params</th>
+      <th>Explanation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>Panel initializes in disabled state</td>
+    </tr>
+    <tr>
+      <td>expanded</td>
+      <td>boolean</td>
+      <td>Panel initializes in expanded state</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h5>API for MdlExpansionPanelGroupComponent</h5>
+  <table class="docu" mdl-shadow="2">
+    <thead>
+    <tr>
+      <th>Function</th>
+      <th>Params</th>
+      <th>Returns</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>getExpanded</td>
+      <td>none</td>
+      <td>
+        <p>A number representing the index of expanded panel.</p>
+        <p>-1 if none of the panel is expanded.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>getPanel</td>
+      <td>
+        number - index of the panel in the group (0-based)
+      </td>
+      <td>
+        an instance of MdlExpansionPanel at the specified index
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
