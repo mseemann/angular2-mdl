@@ -1,0 +1,215 @@
+<h4>THE SELECT</h4>
+
+<h5>Reactive form</h5>
+
+<form [formGroup]="form">
+  <mdl-select formControlName="personId">
+    <mdl-option *ngFor="let p of people" [disabled]="p.disabled" [value]="p.id">{{p.name}}</mdl-option>
+  </mdl-select>
+</form>
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<form [formGroup]="form">
+  <mdl-select formControlName="personId">
+    <mdl-option *ngFor="let p of people" [disabled]="p.disabled" [value]="p.id">{{p.name}}</mdl-option>
+  </mdl-select>
+</form>
+   ]]>
+</pre>
+
+<h5>autocomplete example</h5>
+
+<mdl-select #autocompleteSelect (change)="onChange($event)" [(ngModel)]="autocompleteCountryCode"
+            [autocomplete]="true"
+            floating-label
+            label="{{countryLabel}}">
+  <mdl-option *ngFor="let c of countries | matchSorter:'name':autocompleteSelect.searchQuery"
+              [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<mdl-select #autocompleteSelect (change)="onChange($event)" [(ngModel)]="autocompleteCountryCode"
+            [autocomplete]="true"
+            floating-label
+            label="{{countryLabel}}">
+  <mdl-option *ngFor="let c of countries | matchSorter:'name':autocompleteSelect.searchQuery"
+              [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+   ]]>
+</pre>
+
+
+<h5>ngModel with floating label</h5>
+
+<h6>without initial value</h6>
+<mdl-select [(ngModel)]="otherCountryCode" floating-label label="{{countryLabel}}">
+  <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<mdl-select [(ngModel)]="otherCountryCode" floating-label label="{{countryLabel}}">
+  <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+   ]]>
+</pre>
+
+<h6>without initial value, with nullable option and placeholder</h6>
+<p>By setting an option with a blank value, the select field will revert back to the placeholder text (similar to a
+  textfield).</p>
+<mdl-select [(ngModel)]="otherCountryCode2" placeholder="Country">
+  <mdl-option [value]=""><em>-- Select a Country --</em></mdl-option>
+  <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<mdl-select [(ngModel)]="otherCountryCode2" placeholder="Country">
+  <mdl-option [value]=""><em>-- Select a Country --</em></mdl-option>
+  <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+   ]]>
+</pre>
+
+<h6>With initial value, without nullable option</h6>
+<mdl-select [(ngModel)]="color" floating-label placeholder="Filter by Color">
+  <mdl-option value="all"><em>All</em></mdl-option>
+  <mdl-option *ngFor="let c of colors" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<mdl-select [(ngModel)]="color" floating-label placeholder="Country">
+  <mdl-option value="all"><em>All</em></mdl-option>
+  <mdl-option *ngFor="let c of colors" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+   ]]>
+</pre>
+
+<h5>ngModel with initial value</h5>
+
+<mdl-select [(ngModel)]="countryCode" placeholder="Select country">
+  <mdl-option [value]=""><em>None</em></mdl-option>
+  <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+
+<mdl-select [(ngModel)]="countryCode" disabled="true" placeholder="Select country">
+  <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<mdl-select [(ngModel)]="countryCode" placeholder="Select country">
+  <mdl-option [value]=""><em>None</em></mdl-option>
+  <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+
+<mdl-select [(ngModel)]="countryCode" disabled="true" placeholder="Select country">
+  <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+   ]]>
+</pre>
+
+<h5>Multiple with initial value</h5>
+
+<mdl-select [(ngModel)]="countryCodes" [multiple]="true" placeholder="Select countries">
+  <mdl-option *ngFor="let c of countries" [value]="c.code" mdl-ripple>{{c.name}}</mdl-option>
+</mdl-select>
+
+<mdl-select [(ngModel)]="countryCodes" [multiple]="true" disabled="true" placeholder="Select countries">
+  <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<mdl-select [(ngModel)]="countryCodes" [multiple]="true" placeholder="Select countries">
+  <mdl-option *ngFor="let c of countries" [value]="c.code" mdl-ripple>{{c.name}}</mdl-option>
+</mdl-select>
+
+<mdl-select [(ngModel)]="countryCodes" [multiple]="true" disabled="true" placeholder="Select countries">
+  <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+</mdl-select>
+   ]]>
+</pre>
+
+
+<h5>Dynamically generated selects with *ngFor</h5>
+
+<div *ngFor="let countryCode of countryCodes; let i = index">
+  <mdl-select [(ngModel)]="countryCodes[i]" [placeholder]="'Select '+i">
+    <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+  </mdl-select>
+</div>
+
+<pre>countryCodes: {{ countryCodes | json }}</pre>
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<div *ngFor="let countryCode of countryCodes; let i = index">
+  <mdl-select [(ngModel)]="countryCodes[i]" [placeholder]="'Select '+i">
+    <mdl-option *ngFor="let c of countries" [value]="c.code">{{c.name}}</mdl-option>
+  </mdl-select>
+</div>
+   ]]>
+</pre>
+
+
+<h5>Dynamic multiselect</h5>
+
+<p>
+  The <code>foodCategory</code> select has <code>(change)="foodSelect.reset()"</code>
+  that reloads multiselect options and resets its value.
+</p>
+
+<mdl-select (change)="foodSelect.reset()" [(ngModel)]="foodCategory" placeholder="Select category">
+  <mdl-option *ngFor="let c of foodCategories" [value]="c.id">{{ c.name }}</mdl-option>
+</mdl-select>
+
+<mdl-select #foodSelect (change)="onChange(food)" [(ngModel)]="food" [multiple]="true" placeholder="Select food">
+  <mdl-option *ngFor="let foodName of foodByCategory[foodCategory]" [value]="foodName"
+              mdl-ripple>{{ foodName }}</mdl-option>
+</mdl-select>
+
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<mdl-select (change)="foodSelect.reset()" [(ngModel)]="foodCategory" placeholder="Select category">
+  <mdl-option *ngFor="let c of foodCategories" [value]="c.id">{{ c.name }}</mdl-option>
+</mdl-select>
+
+<mdl-select #foodSelect (change)="onChange(food)" [(ngModel)]="food" [multiple]="true" placeholder="Select food">
+  <mdl-option *ngFor="let foodName of foodByCategory[foodCategory]" [value]="foodName"
+              mdl-ripple>{{ foodName }}</mdl-option>
+</mdl-select>
+   ]]>
+</pre>
+
+<h5>Object value</h5>
+
+<p>
+  FormControl return array of coordinate object as value
+</p>
+<form [formGroup]="arrayForm">
+  <mdl-select [(ngModel)]="locations" [multiple]="true" formControlName="locations" placeholder="Select locations">
+    <mdl-option *ngFor="let c of cityCoordinates"
+                [value]="{ latitude: c.latitude , longitude: c.longitude }">{{ c.name }}</mdl-option>
+  </mdl-select>
+</form>
+<p>
+  Locations: {{ locations | json }}
+</p>
+
+<pre demoPrism ngNonBindable>
+  <![CDATA[
+<form [formGroup]="arrayForm">
+  <mdl-select [(ngModel)]="locations" [multiple]="true" formControlName="locations" placeholder="Select locations">
+    <mdl-option *ngFor="let c of cityCoordinates"
+                [value]="{ latitude: c.latitude , longitude: c.longitude }">{{ c.name }}</mdl-option>
+  </mdl-select>
+</form>
+   ]]>
+</pre>

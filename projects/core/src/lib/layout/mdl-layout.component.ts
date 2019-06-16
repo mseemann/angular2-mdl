@@ -85,9 +85,11 @@ export class MdlScreenSizeService {
           this.sizesSubject.next(query.matches);
         });
       };
-      query.addEventListener('change', queryListener);
+      // tslint:disable-next-line - addEventListener not working in Safari
+      query.addListener(queryListener);
       this.windowMediaQueryListener = () => {
-        query.removeEventListener('change', queryListener);
+        // tslint:disable-next-line
+        query.removeListener(queryListener);
       };
       // set the initial state
       this.sizesSubject.next(query.matches);

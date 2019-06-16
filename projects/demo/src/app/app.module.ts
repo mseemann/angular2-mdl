@@ -41,6 +41,9 @@ import {DatePickerComponent} from './date-picker/date-picker.component';
 import {MdlDatePickerModule} from '@angular-mdl/datepicker';
 import {PopoverComponent} from './popover/popover.component';
 import {MdlPopoverModule} from '@angular-mdl/popover';
+import {SelectComponent} from './select/select.component';
+import {MdlSelectModule} from '@angular-mdl/select';
+import {MatchSorterPipe} from './select/matchSorter.pipe';
 
 
 export const appRoutes: Routes = [
@@ -78,7 +81,7 @@ export const appRoutes: Routes = [
   // {path: 'expansion-panel'},
   // {path: 'fab-menu'},
   {path: 'popover', component: PopoverComponent, data: {title: 'Popover'}},
-  // {path: 'select'},
+  {path: 'select', component: SelectComponent, data: {title: 'Select'}},
   {path: '**', redirectTo: ''},
 ];
 
@@ -114,7 +117,9 @@ export const appRoutes: Routes = [
     PrismDirective,
     ReactiveFormsDemoComponent,
     DatePickerComponent,
-    PopoverComponent
+    PopoverComponent,
+    SelectComponent,
+    MatchSorterPipe
   ],
   imports: [
     BrowserModule,
@@ -125,7 +130,8 @@ export const appRoutes: Routes = [
     ReactiveFormsModule,
     LoginModule,
     MdlDatePickerModule,
-    MdlPopoverModule
+    MdlPopoverModule,
+    MdlSelectModule
   ],
   providers: [
     Title

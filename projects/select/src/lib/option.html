@@ -1,0 +1,21 @@
+<div
+    class="mdl-list__item"
+    (click)="select($event)"
+    [class.is-active]="selected">
+
+  <div *ngIf="multiple" class="mdl-list__item-secondary-action">
+    <div class="mdl-checkbox is-upgraded" [class.is-checked]="selected">
+      <input type="checkbox" class="mdl-checkbox__input">
+      <span class="mdl-checkbox__label"></span>
+      <span class="mdl-checkbox__focus-helper"></span>
+      <span class="mdl-checkbox__box-outline">
+        <span class="mdl-checkbox__tick-outline"></span>
+      </span>
+    </div>
+  </div>
+
+  <div #contentWrapper class="mdl-list__item-primary-content">
+    <ng-content></ng-content>
+  </div>
+
+</div>
