@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/select",
-  "version": "8.0.0-beta.0",
+  "version": "8.0.0",
   "description": "Angular Material Design Lite - Select Component",
   "repository": {
     "type": "git",

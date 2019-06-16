@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/datepicker",
-  "version": "8.0.0-alpha.2",
+  "version": "8.0.0",
   "description": "Angular Material Design Lite - Date Picker Component",
   "repository": {
     "type": "git",

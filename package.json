@@ -41,12 +41,13 @@
     "codeclimate": "CODECLIMATE_REPO_TOKEN=160aba8aa0baa5d0cab1d2162f50027cef9cda032fbc4eebefd54167ddce4c89 codeclimate-test-reporter < coverage/core/lcov.info",
     "generate-scss-from-mdl-scss": "rimraf projects/core/src/scss/mdl && node ./scripts/generate-scss-from-mdl-scss.js",
     "deploy-gh-pages": "npm run build-demo && scripts/deploy.sh --message \"Deploy gh-pages from commit $(git rev-parse HEAD) [ci skip]\" -n",
-    "publish-core": "cd dist/@angular-mdl/core && npm publish --access public --tag beta",
-    "publish-datepicker": "cd dist/@angular-mdl/datepicker && npm publish --access public --tag beta",
-    "publish-popover": "cd dist/@angular-mdl/popover && npm publish --access public --tag beta",
-    "publish-select": "cd dist/@angular-mdl/select && npm publish --access public --tag beta",
-    "publish-expansion-panel": "cd dist/@angular-mdl/expansion-panel && npm publish --access public --tag beta",
-    "publish-fab-menu": "cd dist/@angular-mdl/fab-menu && npm publish --access public --tag beta"
+    "publish-core": "cd dist/@angular-mdl/core && npm publish --access public",
+    "publish-datepicker": "cd dist/@angular-mdl/datepicker && npm publish --access public",
+    "publish-popover": "cd dist/@angular-mdl/popover && npm publish --access public",
+    "publish-select": "cd dist/@angular-mdl/select && npm publish --access public",
+    "publish-expansion-panel": "cd dist/@angular-mdl/expansion-panel && npm publish",
+    "publish-fab-menu": "cd dist/@angular-mdl/fab-menu && npm publish --access public",
+    "publish-all": "npm rnu publish-core && npm run publish-datepicker && npm run publish-popover && npm run publish-select && npm run publish-expansion-panel && npm run publish-fab-menu"
   },
   "private": true,
   "dependencies": {
