@@ -1,5 +1,6 @@
 ---
-engines:
+version: "2"
+plugins:
   csslint:
     enabled: true
   duplication:
@@ -11,11 +12,10 @@ engines:
     enabled: true
   fixme:
     enabled: true
-ratings:
-  paths:
-    - "**.scss"
-    - "**.module"
-    - "**.ts"
-exclude_paths:
-  - scripts
-  - projects/demo
+exclude_patterns:
+  - ".circleci/"
+  - "scripts/"
+  - "projects/demo/"
+  - "**/karma.conf.js"
+  - "*.json"
+  - "*.js"
