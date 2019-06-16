@@ -47,7 +47,7 @@
     "publish-select": "cd dist/@angular-mdl/select && npm publish --access public",
     "publish-expansion-panel": "cd dist/@angular-mdl/expansion-panel && npm publish",
     "publish-fab-menu": "cd dist/@angular-mdl/fab-menu && npm publish --access public",
-    "publish-all": "npm rnu publish-core && npm run publish-datepicker && npm run publish-popover && npm run publish-select && npm run publish-expansion-panel && npm run publish-fab-menu"
+    "publish-all": "npm run publish-core && npm run publish-datepicker && npm run publish-popover && npm run publish-select && npm run publish-expansion-panel && npm run publish-fab-menu"
   },
   "private": true,
   "dependencies": {
