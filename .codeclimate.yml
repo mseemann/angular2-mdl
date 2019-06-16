@@ -6,29 +6,17 @@ engines:
     enabled: true
     config:
       languages:
-      - javascript
+        - javascript
   eslint:
     enabled: true
   fixme:
     enabled: true
 ratings:
   paths:
-  - "**.css"
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
-  - "**.rb"
-  - "**.ts"
+    - "**.scss"
+    - "**.js"
+    - "**.module"
+    - "**.ts"
 exclude_paths:
-- config/
-- dev-scripts
-- scripts
-- src/app
-- src/scss
-- typings
-- angular-cli.json
-- angular-cli-build.js
-- src/prism.css
+  - scripts
+  - projects/demo
