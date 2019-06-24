@@ -1,7 +1,8 @@
 import {Component, HostListener, Inject, InjectionToken, ViewChild, ViewEncapsulation} from '@angular/core';
 import {MdlButtonComponent, MdlDialogReference} from '@angular-mdl/core';
 import * as momentNs from 'moment';
-import {DatePickerOptions} from './datepicker.service';
+import {DatePickerOptions} from './date-picker-option';
+
 // see https://github.com/ng-packagr/ng-packagr/issues/217
 const moment = momentNs;
 

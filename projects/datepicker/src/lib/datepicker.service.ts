@@ -2,12 +2,8 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {MdlDialogReference, MdlDialogService} from '@angular-mdl/core';
 import {CURRENT_DATE, DATEPICKER_CONFIG, DatePickerDialogComponent} from './datepicker.component';
+import {DatePickerOptions} from './date-picker-option';
 
-export interface DatePickerOptions {
-  openFrom?: MouseEvent;
-  okLabel?: string;
-  cancelLabel?: string;
-}
 
 @Injectable()
 export class MdlDatePickerService {
