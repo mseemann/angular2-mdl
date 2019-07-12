@@ -76,7 +76,7 @@
     "@types/jasminewd2": "~2.0.3",
     "codeclimate-test-reporter": "0.5.1",
     "codelyzer": "^5.0.0",
-    "coveralls": "3.0.4",
+    "coveralls": "3.0.5",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
