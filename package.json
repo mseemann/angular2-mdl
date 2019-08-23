@@ -90,7 +90,7 @@
     "protractor": "~5.4.0",
     "rimraf": "3.0.0",
     "ts-node": "~7.0.0",
-    "tsickle": "^0.36.0",
+    "tsickle": "^0.37.0",
     "tslint": "~5.15.0",
     "typescript": "3.4.3"
   }
