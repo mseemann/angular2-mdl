@@ -59,7 +59,7 @@
     "@angular/platform-browser": "8.2.3",
     "@angular/platform-browser-dynamic": "8.2.3",
     "@angular/router": "8.2.3",
-    "match-sorter": "4.0.1",
+    "match-sorter": "4.0.2",
     "moment": "^2.18.1",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",
