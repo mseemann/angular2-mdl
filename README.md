@@ -1,4 +1,3 @@
-
 Angular 8 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
 
 > **If you are looking for a stable Angular 6 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular6.  `master` is compatible with Angular 8.**
@@ -10,6 +9,7 @@ Angular 8 components, directives and styles based on material design lite https:
 [![Downloads](http://img.shields.io/npm/dm/@angular-mdl%2Fcore.svg)](https://npmjs.org/package/@angular-mdl/core)
 [![Coverage Status](https://coveralls.io/repos/github/mseemann/angular2-mdl/badge.svg?branch=master)](https://coveralls.io/github/mseemann/angular2-mdl?branch=master)
 [![Code Climate](https://codeclimate.com/github/mseemann/angular2-mdl/badges/gpa.svg)](https://codeclimate.com/github/mseemann/angular2-mdl)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmseemann%2Fangular2-mdl.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmseemann%2Fangular2-mdl?ref=badge_shield)
 
 * **Please don't use github to ask questions.** Use stackoverflow instead: http://stackoverflow.com/questions/tagged/angular-mdl.
 * plnkr if you'd like to play around http://plnkr.co/edit/f73PKEmzpAcchza8Q9rb?p=preview
@@ -150,3 +150,7 @@ Every contribution is welcome. Please checkout the [CONTRIBUTION.md](https://git
 # Remarks
 
 And if you would like to see a real world app that uses this package have a look at https://www.yovelino.de/apps/tour-planner/.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmseemann%2Fangular2-mdl.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmseemann%2Fangular2-mdl?ref=badge_large)
