@@ -20,10 +20,10 @@ const TEST = new InjectionToken<any>('test');
   // tslint:disable-next-line
   selector: 'test-view',
   template: `
-      <div></div>
-      <button mdl-button #targetBtn></button>
-      <button mdl-button #btn></button>
-      <dialog-outlet></dialog-outlet>
+    <div></div>
+    <button mdl-button #targetBtn></button>
+    <button mdl-button #btn></button>
+    <dialog-outlet></dialog-outlet>
   `
 })
 class MdlTestViewComponent {
@@ -78,7 +78,7 @@ class TestFailCustomDialogComponent {
 class TestDialogModul {
 }
 
-xdescribe('Service: MdlDialog', () => {
+describe('Service: MdlDialog', () => {
 
   let mdlDialogService: MdlDialogService;
   let mdlDialogOutletService: MdlDialogOutletService;
@@ -102,7 +102,7 @@ xdescribe('Service: MdlDialog', () => {
       doc = document;
     })));
 
-  it('should show an alert', async(() => {
+  xit('should show an alert', async(() => {
 
     const title = 'Alert';
     const fixture = TestBed.createComponent(MdlTestViewComponent);
@@ -135,7 +135,7 @@ xdescribe('Service: MdlDialog', () => {
 
   }));
 
-  it('should show a confirm dialog which is modal and can be closed with click on confirm', (done) => {
+  xit('should show a confirm dialog which is modal and can be closed with click on confirm', (done) => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -160,7 +160,7 @@ xdescribe('Service: MdlDialog', () => {
   });
 
 
-  it('should show a confirm dialog which is modal and can be closed esc', (done) => {
+  xit('should show a confirm dialog which is modal and can be closed esc', (done) => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -177,7 +177,7 @@ xdescribe('Service: MdlDialog', () => {
     dialog.onEsc();
   });
 
-  it('should be possible to open a custom dialog', async((done) => {
+  xit('should be possible to open a custom dialog', async((done) => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -203,7 +203,7 @@ xdescribe('Service: MdlDialog', () => {
 
   }));
 
-  it('should be able to pass data when hiding a custom dialog', async(() => {
+  xit('should be able to pass data when hiding a custom dialog', async(() => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -257,7 +257,7 @@ xdescribe('Service: MdlDialog', () => {
     }).toThrow();
   }));
 
-  it('should not hide the dialog on esc key  if there is no closing action', async(() => {
+  xit('should not hide the dialog on esc key  if there is no closing action', async(() => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -351,7 +351,7 @@ xdescribe('Service: MdlDialog', () => {
   }));
 
 
-  it('should disable animations if animate is false', async(() => {
+  xit('should disable animations if animate is false', async(() => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
