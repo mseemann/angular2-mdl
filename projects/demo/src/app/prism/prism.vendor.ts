@@ -13,7 +13,7 @@ var _self: any = (typeof window !== 'undefined')
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
  * MIT license http://www.opensource.org/licenses/mit-license.php/
- * @author Lea Verou http://lea.verou.me
+ * author Lea Verou http://lea.verou.me
  */
 
 export var Prism = (function () {

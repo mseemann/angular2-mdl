@@ -30,7 +30,7 @@ const MDL_CARD_DIRECTIVES = [
   declarations: MDL_CARD_DIRECTIVES,
 })
 export class MdlCardModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlCardModule> {
     return {
       ngModule: MdlCardModule,
       providers: []

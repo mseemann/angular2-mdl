@@ -11,7 +11,7 @@ import {DOCUMENT} from '@angular/common';
   // tslint:disable-next-line
   selector: 'test-icon',
   template: `
-    <mdl-slider [min]='min' [max]='max' [(ngModel)]='currentValue'></mdl-slider>`
+      <mdl-slider [min]='min' [max]='max' [(ngModel)]='currentValue'></mdl-slider>`
 })
 class MdlTestSliderComponent {
   public min = 0;
@@ -69,7 +69,7 @@ describe('Component: MdlSlider', () => {
 
     spyOn(hostElement, 'blur');
 
-    const evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
+    const evt = TestBed.inject(DOCUMENT).createEvent('HTMLEvents');
     evt.initEvent('mouseup', true, true);
     hostElement.dispatchEvent(evt);
 
@@ -90,7 +90,7 @@ describe('Component: MdlSlider', () => {
 
     spyOn(inputElement, 'dispatchEvent').and.callThrough();
 
-    const evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
+    const evt = TestBed.inject(DOCUMENT).createEvent('HTMLEvents');
     evt.initEvent('mousedown', true, true);
     hostElement.dispatchEvent(evt);
 
@@ -110,7 +110,7 @@ describe('Component: MdlSlider', () => {
 
     spyOn(inputElement, 'dispatchEvent').and.callThrough();
 
-    const evt = TestBed.get(DOCUMENT).createEvent('HTMLEvents');
+    const evt = TestBed.inject(DOCUMENT).createEvent('HTMLEvents');
     evt.initEvent('mousedown', true, true);
     inputElement.dispatchEvent(evt);
 

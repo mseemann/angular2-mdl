@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import {MdlSimpleTooltipComponent, MdlTooltipComponent} from './mdl-tooltip.component';
 
+@Directive()
 export abstract class AbstractMdlTooltipDirective implements OnInit, OnChanges {
 
   protected tooltip: string | MdlTooltipComponent;

@@ -44,7 +44,7 @@ export * from './mdl-layout-tab-panel.component';
   declarations: MDL_LAYOUT_DIRECTIVES,
 })
 export class MdlLayoutModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlLayoutModule> {
     return {
       ngModule: MdlLayoutModule,
       providers: [

@@ -13,7 +13,7 @@ const MDL_ICON_TOGGLE_DIRECTIVES = [MdlIconToggleComponent];
   declarations: MDL_ICON_TOGGLE_DIRECTIVES,
 })
 export class MdlIconToggleModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlIconToggleModule> {
     return {
       ngModule: MdlIconToggleModule,
       providers: []

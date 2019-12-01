@@ -10,7 +10,7 @@ const MDL_PROGRESS_DIRECTIVES = [MdlProgressComponent];
   declarations: MDL_PROGRESS_DIRECTIVES,
 })
 export class MdlProgressModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlProgressModule> {
     return {
       ngModule: MdlProgressModule,
       providers: []

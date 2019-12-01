@@ -2,9 +2,7 @@ import {TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {MdlMenuComponent, MdlMenuModule} from './mdl-menu.module';
-import {MdlButtonComponent} from '../button/mdl-button.component';
-import {MdlMenuRegisty} from './mdl-menu.component';
-import {MdlButtonModule} from '../button/mdl-button.module';
+import {MdlButtonComponent, MdlButtonModule, MdlMenuRegisty} from '@angular-mdl/core';
 
 
 @Component({
@@ -249,11 +247,11 @@ describe('Component: MdlMenu', () => {
   });
 
   it('should add and remove teh menucompoennts from the registry', () => {
-    const registry = TestBed.get(MdlMenuRegisty);
+    const registry = TestBed.inject(MdlMenuRegisty);
 
     expect(registry.menuComponents.length).toBe(0);
 
-    const menuComponentDummy = {};
+    const menuComponentDummy = {} as MdlMenuComponent;
     registry.add(menuComponentDummy);
 
     expect(registry.menuComponents.length).toBe(1);

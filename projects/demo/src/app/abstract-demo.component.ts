@@ -1,8 +1,10 @@
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
-import {HostBinding, OnDestroy, OnInit} from '@angular/core';
+import {Directive, HostBinding, OnDestroy, OnInit} from '@angular/core';
 
 
+@Directive()
+// tslint:disable-next-line
 export class AbstractDemoComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.display') style = 'block';

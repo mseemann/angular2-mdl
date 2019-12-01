@@ -50,7 +50,7 @@ const PRIVATE_COMPONENTS = [
   ]
 })
 export class MdlDialogModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlDialogModule> {
     return {
       ngModule: MdlDialogModule,
       providers: [

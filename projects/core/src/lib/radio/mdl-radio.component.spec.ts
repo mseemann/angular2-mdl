@@ -1,4 +1,4 @@
-import {async, getTestBed, TestBed} from '@angular/core/testing';
+import {async, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Component, OnInit} from '@angular/core';
 import {MdlRadioComponent, MdlRadioGroupRegisty} from './mdl-radio.component';
@@ -10,12 +10,12 @@ import {MdlRadioModule} from './mdl-radio.module';
   // tslint:disable-next-line
   selector: 'test-radio',
   template: `
-    <mdl-radio name="r" [(ngModel)]="radioValue" value="1" mdl-ripple
-               (change)="onChange($event)">radio label 1
-    </mdl-radio>
-    <mdl-radio name="r" [(ngModel)]="radioValue" value="2" mdl-ripple
-               (change)="onChange($event)">radio label 2
-    </mdl-radio>
+      <mdl-radio name="r" [(ngModel)]="radioValue" value="1" mdl-ripple
+                 (change)="onChange($event)">radio label 1
+      </mdl-radio>
+      <mdl-radio name="r" [(ngModel)]="radioValue" value="2" mdl-ripple
+                 (change)="onChange($event)">radio label 2
+      </mdl-radio>
   `
 })
 class MdlTestRadioComponent implements OnInit {
@@ -43,16 +43,16 @@ class MdlTestRadioComponent implements OnInit {
   // tslint:disable-next-line
   selector: 'test-radio',
   template: `
-    <form [formGroup]="testForm">
-      <div formGroupName="group1" mdl-radio-group>
-        <mdl-radio formControlName="type" value="type1" id="g1t1"></mdl-radio>
-        <mdl-radio formControlName="type" value="type2" id="g1t2"></mdl-radio>
-      </div>
-      <div formGroupName="group2">
-        <mdl-radio formControlName="type" value="type1" id="g2t1"></mdl-radio>
-        <mdl-radio formControlName="type" value="type2" id="g2t2"></mdl-radio>
-      </div>
-    </form>
+      <form [formGroup]="testForm">
+          <div formGroupName="group1" mdl-radio-group>
+              <mdl-radio formControlName="type" value="type1" id="g1t1"></mdl-radio>
+              <mdl-radio formControlName="type" value="type2" id="g1t2"></mdl-radio>
+          </div>
+          <div formGroupName="group2">
+              <mdl-radio formControlName="type" value="type1" id="g2t1"></mdl-radio>
+              <mdl-radio formControlName="type" value="type2" id="g2t2"></mdl-radio>
+          </div>
+      </form>
   `
 })
 class MdlTestUseSameRadioInGroupsComponent implements OnInit {
@@ -192,7 +192,7 @@ describe('Component: MdlRadio', () => {
     const fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();
 
-    const registry = getTestBed().get(MdlRadioGroupRegisty);
+    const registry = TestBed.inject(MdlRadioGroupRegisty);
 
     spyOn(registry, 'remove').and.callThrough();
 

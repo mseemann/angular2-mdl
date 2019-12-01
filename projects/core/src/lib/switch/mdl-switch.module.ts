@@ -11,7 +11,7 @@ const MDL_SWITCH_DIRECTIVES = [MdlSwitchComponent];
   declarations: MDL_SWITCH_DIRECTIVES,
 })
 export class MdlSwitchModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlSwitchModule> {
     return {
       ngModule: MdlSwitchModule,
       providers: []

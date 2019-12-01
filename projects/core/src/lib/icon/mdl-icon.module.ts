@@ -12,7 +12,7 @@ const MDL_ICON_DIRECTIVES = [MdlIconComponent];
   declarations: MDL_ICON_DIRECTIVES,
 })
 export class MdlIconModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlIconModule> {
     return {
       ngModule: MdlIconModule,
       providers: []

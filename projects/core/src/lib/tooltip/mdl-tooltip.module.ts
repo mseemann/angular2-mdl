@@ -24,7 +24,7 @@ export * from './mdl-tooltip.directive';
   entryComponents: [MdlSimpleTooltipComponent]
 })
 export class MdlTooltipModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlTooltipModule> {
     return {
       ngModule: MdlTooltipModule,
       providers: []

@@ -20,7 +20,7 @@ const MDL_TABLE_DIRECTIVES = [
   declarations: MDL_TABLE_DIRECTIVES,
 })
 export class MdlTableModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlTableModule> {
     return {
       ngModule: MdlTableModule,
       providers: []

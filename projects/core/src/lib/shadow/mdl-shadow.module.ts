@@ -9,7 +9,7 @@ const MDL_SHADOW_DIRECTIVES = [MdlShadowDirective];
   declarations: MDL_SHADOW_DIRECTIVES,
 })
 export class MdlShadowModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlShadowModule> {
     return {
       ngModule: MdlShadowModule,
       providers: []

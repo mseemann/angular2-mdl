@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 import {Component} from '@angular/core';
-import {MdlBadgeModule} from './mdl-badge.module';
+import {MdlBadgeModule} from '@angular-mdl/core';
 
 @Component({
   // tslint:disable-next-line

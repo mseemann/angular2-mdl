@@ -94,7 +94,7 @@ export class MdlModule {
 })
 // @deprectaed use MdlModule - all services are provided in root by default.
 export class MdlNonRootModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlModule> {
     return {ngModule: MdlModule};
   }
 }

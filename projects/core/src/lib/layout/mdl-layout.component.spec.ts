@@ -717,7 +717,7 @@ describe('Component: MdlLayout', () => {
       const fixture = TestBed.createComponent(MdlTestLayoutComponent);
       fixture.detectChanges();
 
-      const service = TestBed.get(MdlScreenSizeService);
+      const service = TestBed.inject(MdlScreenSizeService);
       // access a private property
       expect(service.layoutScreenSizeThreshold).toBe(230);
     });
@@ -726,7 +726,7 @@ describe('Component: MdlLayout', () => {
       const fixture = TestBed.createComponent(MdlTestLayoutComponent);
       fixture.detectChanges();
 
-      const service = TestBed.get(MdlScreenSizeService) as MdlScreenSizeService;
+      const service = TestBed.inject(MdlScreenSizeService);
 
       service.sizes().subscribe((anySize) => {
         done();
@@ -734,7 +734,7 @@ describe('Component: MdlLayout', () => {
     });
 
     it('should be possible to access the current screen size', () => {
-      const service = TestBed.get(MdlScreenSizeService) as MdlScreenSizeService;
+      const service = TestBed.inject(MdlScreenSizeService);
       expect(service.isSmallScreen()).toBeFalsy();
     });
   });

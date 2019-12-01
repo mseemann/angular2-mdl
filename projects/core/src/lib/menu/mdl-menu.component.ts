@@ -10,8 +10,9 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import {MdlButtonComponent} from '../button/mdl-button.component';
 import {MdlError} from '../common/mdl-error';
+import {MdlButtonComponent} from '../button/mdl-button.component';
+
 
 const BOTTOM_LEFT = 'bottom-left';
 const BOTTOM_RIGHT = 'bottom-right';
@@ -43,7 +44,7 @@ export class MdlMenuError extends MdlError {
 })
 export class MdlMenuRegisty {
 
-  private menuComponents: any[] = [];
+  menuComponents: any[] = [];
 
   public add(menuComponent: MdlMenuComponent) {
     this.menuComponents.push(menuComponent);
@@ -69,13 +70,13 @@ export class MdlMenuRegisty {
   selector: 'mdl-menu',
   exportAs: 'mdlMenu',
   template: `
-    <div #container class="mdl-menu__container is-upgraded">
-      <div #outline class="mdl-menu__outline" [ngClass]="cssPosition"
-      ></div>
-      <div class="mdl-menu" #menuElement>
-        <ng-content></ng-content>
+      <div #container class="mdl-menu__container is-upgraded">
+          <div #outline class="mdl-menu__outline" [ngClass]="cssPosition"
+          ></div>
+          <div class="mdl-menu" #menuElement>
+              <ng-content></ng-content>
+          </div>
       </div>
-    </div>
   `,
   encapsulation: ViewEncapsulation.None
 })

@@ -10,13 +10,13 @@ import {MdlDialogOutletModule} from '../dialog-outlet/mdl-dialog-outlet.module';
   // tslint:disable-next-line
   selector: 'test-component',
   template: `
-    <mdl-alert
-      #alert="mdlAlert"
-      title="Title (optional)"
-      message="This is a <em class='mdl-color-text--primary'>simple</em> Alert"
-      okText="Got it!"
-      (confirmed)="alertConfirmd()"></mdl-alert>
-    <dialog-outlet></dialog-outlet>
+      <mdl-alert
+              #alert="mdlAlert"
+              title="Title (optional)"
+              message="This is a <em class='mdl-color-text--primary'>simple</em> Alert"
+              okText="Got it!"
+              (confirmed)="alertConfirmd()"></mdl-alert>
+      <dialog-outlet></dialog-outlet>
   `
 })
 class MdlTestComponent {
@@ -35,7 +35,7 @@ describe('MdlAlert', () => {
     });
   }));
 
-  it('should create, show and close the dialog', async(() => {
+  it('should create, show and close the dialog', async () => {
 
     const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
@@ -45,18 +45,21 @@ describe('MdlAlert', () => {
     mdlAlert.show();
     fixture.detectChanges();
 
+
     spyOn(fixture.componentInstance, 'alertConfirmd');
 
+    // By.css is no longer working as of angualr 9 t´´or the dynamically inserted elements
+    const ne: HTMLElement = fixture.debugElement.nativeElement;
     // close the dialog by clicking the ok button
-    const buttonEl = fixture.debugElement.query(By.css('button')).nativeElement;
+    const buttonEl = ne.querySelector('button');
     buttonEl.click();
 
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(fixture.componentInstance.alertConfirmd).toHaveBeenCalled();
-    });
+    await fixture.whenStable();
 
-  }));
+    expect(fixture.componentInstance.alertConfirmd).toHaveBeenCalled();
+
+  });
 
 
 });

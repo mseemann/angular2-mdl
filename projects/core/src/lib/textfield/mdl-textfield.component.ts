@@ -133,7 +133,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   // tslint:disable-next-line
   @Output('keyup')
   public keyupEmitter: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
-  @ViewChild('input', {static: false}) public inputEl: ElementRef;
+  @ViewChild('input') public inputEl: ElementRef;
   @Input() public type = 'text';
   @Input() public label;
   @Input() public pattern;

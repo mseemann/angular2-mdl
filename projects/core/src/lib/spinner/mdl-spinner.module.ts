@@ -10,7 +10,7 @@ const MDL_SPINNER_DIRECTIVES = [MdlSpinnerComponent];
   declarations: MDL_SPINNER_DIRECTIVES,
 })
 export class MdlSpinnerModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlSpinnerModule> {
     return {
       ngModule: MdlSpinnerModule,
       providers: []

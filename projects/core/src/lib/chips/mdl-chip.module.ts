@@ -15,7 +15,7 @@ const DIRECTIVES = [MdlChipComponent, MdlChipContactDirective];
   declarations: DIRECTIVES,
 })
 export class MdlChipModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlChipModule> {
     return {
       ngModule: MdlChipModule,
       providers: []

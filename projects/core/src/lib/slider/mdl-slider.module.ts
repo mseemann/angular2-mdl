@@ -11,7 +11,7 @@ const MDL_SLIDER_DIRECTIVES = [MdlSliderComponent];
   declarations: MDL_SLIDER_DIRECTIVES,
 })
 export class MdlSliderModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlSliderModule> {
     return {
       ngModule: MdlSliderModule,
       providers: []

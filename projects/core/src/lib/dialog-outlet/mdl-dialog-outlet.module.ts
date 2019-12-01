@@ -29,7 +29,7 @@ const PRIVATE_COMPONENTS = [
   ]
 })
 export class MdlDialogOutletModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlDialogOutletModule> {
     return {
       ngModule: MdlDialogOutletModule,
       providers: [MdlDialogOutletService]

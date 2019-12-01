@@ -10,9 +10,9 @@ import {DOCUMENT} from '@angular/common';
   // tslint:disable-next-line
   selector: 'test-icon',
   template: `
-    <mdl-checkbox [disabled]="false" [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">
-      checkbox label
-    </mdl-checkbox>
+      <mdl-checkbox [disabled]="false" [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">
+          checkbox label
+      </mdl-checkbox>
   `,
 })
 class MdlTestCheckboxComponent {
@@ -90,7 +90,7 @@ describe('Component: MdlCheckbox', () => {
 
     const inputEl: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
-    const doc = TestBed.get(DOCUMENT);
+    const doc = TestBed.inject(DOCUMENT);
     const evt = doc.createEvent('HTMLEvents');
     evt.initEvent('focus', true, true);
     inputEl.dispatchEvent(evt);

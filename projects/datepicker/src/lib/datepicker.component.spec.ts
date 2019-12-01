@@ -62,21 +62,21 @@ describe('DatePickerDialogComponent', () => {
   });
 
   it('should call hide with null on cancel', () => {
-    const dialogRef: MdlDialogReference = TestBed.get<MdlDialogReference>(MdlDialogReference);
+    const dialogRef: MdlDialogReference = TestBed.inject<MdlDialogReference>(MdlDialogReference);
     spyOn(dialogRef, 'hide');
     fixture.componentInstance.onCancel();
     expect(dialogRef.hide).toHaveBeenCalledWith(null);
   });
 
   it('should call hide with null on esc', () => {
-    const dialogRef: MdlDialogReference = TestBed.get<MdlDialogReference>(MdlDialogReference);
+    const dialogRef: MdlDialogReference = TestBed.inject<MdlDialogReference>(MdlDialogReference);
     spyOn(dialogRef, 'hide');
     fixture.componentInstance.onEsc();
     expect(dialogRef.hide).toHaveBeenCalledWith(null);
   });
 
   it('should call hide with actual date on ok', () => {
-    const dialogRef: MdlDialogReference = TestBed.get<MdlDialogReference>(MdlDialogReference);
+    const dialogRef: MdlDialogReference = TestBed.inject<MdlDialogReference>(MdlDialogReference);
     spyOn(dialogRef, 'hide');
     fixture.componentInstance.onOk();
     expect(dialogRef.hide).toHaveBeenCalledWith(fixture.componentInstance.mDate.toDate());

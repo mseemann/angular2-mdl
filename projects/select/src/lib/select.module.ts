@@ -23,7 +23,7 @@ import {MDL_SELECT_VALUE_ACCESSOR, MdlSelectComponent} from './select.component'
   ]
 })
 export class MdlSelectModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<MdlSelectModule> {
     return {
       ngModule: MdlSelectModule,
       providers: []

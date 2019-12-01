@@ -9,7 +9,7 @@ import {MdlRadioComponent, MdlRadioGroupRegisty} from './mdl-radio.component';
   declarations: [MdlRadioComponent]
 })
 export class MdlRadioModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlRadioModule> {
     return {
       ngModule: MdlRadioModule,
       providers: [MdlRadioGroupRegisty]

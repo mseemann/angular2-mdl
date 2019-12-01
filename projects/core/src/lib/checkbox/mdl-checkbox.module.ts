@@ -11,7 +11,7 @@ const MDL_CHECKBOX_DIRECTIVES = [MdlCheckboxComponent];
   declarations: MDL_CHECKBOX_DIRECTIVES,
 })
 export class MdlCheckboxModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlCheckboxModule> {
     return {
       ngModule: MdlCheckboxModule,
       providers: []

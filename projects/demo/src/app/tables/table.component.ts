@@ -10,6 +10,7 @@ export interface ITableItem extends IMdlTableModelItem {
   material: string;
   quantity: number;
   unitPrice: number;
+  selected: boolean;
 }
 
 

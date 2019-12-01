@@ -32,7 +32,7 @@ const MDL_LIST_DIRECTIVES = [
   declarations: MDL_LIST_DIRECTIVES,
 })
 export class MdlListModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlListModule> {
     return {
       ngModule: MdlListModule,
       providers: []

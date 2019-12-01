@@ -13,7 +13,7 @@ import {MdlButtonModule} from '../button/mdl-button.module';
   declarations: [MdlTextFieldComponent],
 })
 export class MdlTextFieldModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlTextFieldModule> {
     return {
       ngModule: MdlTextFieldModule,
       providers: []

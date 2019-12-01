@@ -9,7 +9,7 @@ import {MdlPopoverComponent, MdlPopoverRegistry, PopupPositionService} from './p
   providers: [MdlPopoverRegistry, PopupPositionService],
 })
 export class MdlPopoverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<MdlPopoverModule> {
     return {
       ngModule: MdlPopoverModule,
       providers: []

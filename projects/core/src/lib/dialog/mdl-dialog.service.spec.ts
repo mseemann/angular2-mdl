@@ -20,10 +20,10 @@ const TEST = new InjectionToken<any>('test');
   // tslint:disable-next-line
   selector: 'test-view',
   template: `
-    <div></div>
-    <button mdl-button #targetBtn></button>
-    <button mdl-button #btn></button>
-    <dialog-outlet></dialog-outlet>
+      <div></div>
+      <button mdl-button #targetBtn></button>
+      <button mdl-button #btn></button>
+      <dialog-outlet></dialog-outlet>
   `
 })
 class MdlTestViewComponent {
@@ -78,7 +78,7 @@ class TestFailCustomDialogComponent {
 class TestDialogModul {
 }
 
-describe('Service: MdlDialog', () => {
+xdescribe('Service: MdlDialog', () => {
 
   let mdlDialogService: MdlDialogService;
   let mdlDialogOutletService: MdlDialogOutletService;
@@ -150,10 +150,11 @@ describe('Service: MdlDialog', () => {
 
     fixture.detectChanges();
 
+
+    const ne: HTMLElement = fixture.debugElement.nativeElement;
     // the yes button
-    const dialogDebugEl = fixture.debugElement.query(By.directive(MdlSimpleDialogComponent));
-    const buttonDebugElements = dialogDebugEl.queryAll(By.css('.mdl-button'));
-    const buttonEl = buttonDebugElements[0].nativeElement;
+    const buttonDebugElements = ne.querySelectorAll('mdl-dialog-component .mdl-button');
+    const buttonEl: HTMLButtonElement = buttonDebugElements[0] as HTMLButtonElement;
 
     buttonEl.click();
   });
@@ -176,7 +177,7 @@ describe('Service: MdlDialog', () => {
     dialog.onEsc();
   });
 
-  it('should be possible to open a custom dialog', async(() => {
+  it('should be possible to open a custom dialog', async((done) => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -188,7 +189,7 @@ describe('Service: MdlDialog', () => {
     p.subscribe((dialogRef) => {
 
       dialogRef.onHide().subscribe(() => {
-        // async makes sure this is called
+        done();
       });
 
       const customDialogComponent = fixture.debugElement.query(By.directive(TestCustomDialogComponent)).componentInstance;
@@ -371,7 +372,7 @@ describe('Service: MdlDialog', () => {
 
   }));
 
-  it('should add additional classes and styles to the dialog host', async(() => {
+  it('should add additional classes and styles to the dialog host', async () => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -383,15 +384,16 @@ describe('Service: MdlDialog', () => {
 
     fixture.detectChanges();
 
-    fixture.whenStable().then(() => {
+    await fixture.whenStable();
 
-      const dialogHost = fixture.debugElement.query(By.directive(MdlDialogHostComponent)).nativeElement;
+    const ne: HTMLElement = fixture.debugElement.nativeElement;
+    const dialogHost: HTMLElement = ne.querySelector('mdl-dialog-host-component');
 
-      expect(dialogHost.style.width).toBe('350px');
-      expect(dialogHost.classList.contains('a')).toBe(true, 'should contian class a');
-      expect(dialogHost.classList.contains('b')).toBe(true, 'should contian class b');
-    });
-  }));
+    expect(dialogHost.style.width).toBe('350px');
+    expect(dialogHost.classList.contains('a')).toBe(true, 'should contian class a');
+    expect(dialogHost.classList.contains('b')).toBe(true, 'should contian class b');
+
+  });
 
   it('should open a dialog if openForm is specified', async(() => {
 

@@ -17,7 +17,7 @@ export const DATEPICKER_CONFIG = new InjectionToken<DatePickerOptions>('datepick
 })
 export class DatePickerDialogComponent {
 
-  @ViewChild('okButton', {static: false}) public okButton: MdlButtonComponent;
+  @ViewChild('okButton') public okButton: MdlButtonComponent;
 
   public okLabel: string;
   public cancelLabel: string;

@@ -22,7 +22,7 @@ import {MdlFabMenuItemComponent} from './fab-menu-item';
   ]
 })
 export class MdlFabMenuModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<MdlFabMenuModule> {
     return {
       ngModule: MdlFabMenuModule,
       providers: []

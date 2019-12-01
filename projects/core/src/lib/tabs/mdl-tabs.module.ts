@@ -25,7 +25,7 @@ const MDL_TABS_DIRECTIVES = [
   declarations: [...MDL_TABS_DIRECTIVES],
 })
 export class MdlTabsModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlTabsModule> {
     return {
       ngModule: MdlTabsModule,
       providers: []

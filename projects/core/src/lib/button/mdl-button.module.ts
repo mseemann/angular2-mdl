@@ -9,7 +9,7 @@ const MDL_BUTTON_DIRECTIVES = [MdlButtonComponent];
   declarations: MDL_BUTTON_DIRECTIVES,
 })
 export class MdlButtonModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlButtonModule> {
     return {
       ngModule: MdlButtonModule,
       providers: []

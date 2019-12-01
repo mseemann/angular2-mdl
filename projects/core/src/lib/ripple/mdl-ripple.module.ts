@@ -23,7 +23,7 @@ const MDL_RIPPLE_DIRECTIVES = [MdlCheckboxRippleDirective,
   declarations: MDL_RIPPLE_DIRECTIVES,
 })
 export class MdlRippleModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlRippleModule> {
     return {
       ngModule: MdlRippleModule,
       providers: []

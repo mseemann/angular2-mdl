@@ -9,7 +9,7 @@ const MDL_BADGE_DIRECTIVES = [MdlBadgeDirective, MdlBadgeOverlapDirective, MdlBa
   declarations: MDL_BADGE_DIRECTIVES,
 })
 export class MdlBadgeModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MdlBadgeModule> {
     return {
       ngModule: MdlBadgeModule,
       providers: []

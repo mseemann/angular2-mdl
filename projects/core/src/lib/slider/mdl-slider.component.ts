@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   forwardRef,
@@ -23,33 +24,33 @@ import {callNative} from '../common/native-support';
     multi: true
   }],
   template: `
-    <input class="mdl-slider is-upgraded"
-           type="range"
-           [min]="min"
-           [max]="max"
-           [step]="step"
-           [(ngModel)]="value"
-           [disabled]="disabled"
-           tabindex="0"
-           #input>
-    <div class="mdl-slider__background-flex">
-      <div class="mdl-slider__background-lower" #lower></div>
-      <div class="mdl-slider__background-upper" #uppper></div>
-    </div>
+      <input class="mdl-slider is-upgraded"
+             type="range"
+             [min]="min"
+             [max]="max"
+             [step]="step"
+             [(ngModel)]="value"
+             [disabled]="disabled"
+             tabindex="0"
+             #input>
+      <div class="mdl-slider__background-flex">
+          <div class="mdl-slider__background-lower" #lower></div>
+          <div class="mdl-slider__background-upper" #uppper></div>
+      </div>
   `,
   styles: [
       `
-      :host {
-        height: 22px;
-        user-select: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-      }
+          :host {
+              height: 22px;
+              user-select: none;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+          }
     `
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class MdlSliderComponent implements ControlValueAccessor {
+export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
   @Input() public min: number;
   @Input() public max: number;
   @Input() public step: number;
@@ -82,6 +83,10 @@ export class MdlSliderComponent implements ControlValueAccessor {
     this.valueIntern = v;
     this.updateSliderUI();
     this.onChangeCallback(v);
+  }
+
+  ngAfterViewInit() {
+    this.updateSliderUI();
   }
 
   public writeValue(value: number): void {
@@ -127,6 +132,12 @@ export class MdlSliderComponent implements ControlValueAccessor {
   }
 
   private updateSliderUI() {
+    // if the input hat a static value (for example value="30"
+    // the setvalue method is called before the ViewChilds are initialized
+    // this has changed in Angular 9! :(
+    if (!this.inputEl) {
+      return;
+    }
     const fraction = (this.valueIntern - this.min) / (this.max - this.min);
 
     if (fraction === 0) {
