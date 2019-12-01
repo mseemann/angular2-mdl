@@ -9,7 +9,12 @@
     "lib": [
       "dom",
       "es2018"
-    ]
+    ],
+    "paths": {
+      "@angular-mdl/core": [
+        "dist/@angular-mdl/core"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,

@@ -24,28 +24,28 @@ import {callNative} from '../common/native-support';
     multi: true
   }],
   template: `
-      <input class="mdl-slider is-upgraded"
-             type="range"
-             [min]="min"
-             [max]="max"
-             [step]="step"
-             [(ngModel)]="value"
-             [disabled]="disabled"
-             tabindex="0"
-             #input>
-      <div class="mdl-slider__background-flex">
-          <div class="mdl-slider__background-lower" #lower></div>
-          <div class="mdl-slider__background-upper" #uppper></div>
-      </div>
+    <input class="mdl-slider is-upgraded"
+           type="range"
+           [min]="min"
+           [max]="max"
+           [step]="step"
+           [(ngModel)]="value"
+           [disabled]="disabled"
+           tabindex="0"
+           #input>
+    <div class="mdl-slider__background-flex">
+      <div class="mdl-slider__background-lower" #lower></div>
+      <div class="mdl-slider__background-upper" #uppper></div>
+    </div>
   `,
   styles: [
       `
-          :host {
-              height: 22px;
-              user-select: none;
-              -webkit-user-select: none;
-              -moz-user-select: none;
-          }
+      :host {
+        height: 22px;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+      }
     `
   ],
   encapsulation: ViewEncapsulation.None

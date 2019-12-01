@@ -9,7 +9,15 @@
     "lib": [
       "dom",
       "es2018"
-    ]
+    ],
+    "paths": {
+      "@angular-mdl/core": [
+        "dist/@angular-mdl/core"
+      ],
+      "@angular-mdl/popover": [
+        "dist/@angular-mdl/popover"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,
