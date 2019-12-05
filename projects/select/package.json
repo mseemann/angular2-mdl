@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/select",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "description": "Angular Material Design Lite - Select Component",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/mseemann/angular2-mdl/tree/master/src/projects/select",
   "peerDependencies": {
-    "@angular-mdl/core": ">=8.0.0",
-    "@angular-mdl/popover": ">=8.0.0"
+    "@angular-mdl/core": ">=9.0.0",
+    "@angular-mdl/popover": ">=9.0.0"
   }
 }

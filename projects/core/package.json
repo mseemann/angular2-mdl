@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/core",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "license": "MIT",
   "description": "Angular components, directives and styles based on material design lite https://getmdl.io.",
   "homepage": "http://mseemann.io/angular2-mdl/",
@@ -29,8 +29,8 @@
     "toggle"
   ],
   "peerDependencies": {
-    "@angular/core": ">=8.0.0 <9.0.0",
-    "@angular/common": ">=8.0.0 <9.0.0",
-    "@angular/forms": ">=8.0.0 <9.0.0"
+    "@angular/core": ">=9.0.0 <10.0.0",
+    "@angular/common": ">=9.0.0 <10.0.0",
+    "@angular/forms": ">=9.0.0 <10.0.0"
   }
 }
