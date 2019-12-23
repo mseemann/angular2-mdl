@@ -73,7 +73,7 @@
     "@angular/language-service": "9.0.0-rc.7",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.11.1",
+    "@types/node": "^13.1.0",
     "codeclimate-test-reporter": "0.5.1",
     "codelyzer": "^5.1.2",
     "coveralls": "3.0.9",
