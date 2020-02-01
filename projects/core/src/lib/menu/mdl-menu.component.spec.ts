@@ -1,8 +1,8 @@
 import {TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
-import {MdlMenuComponent, MdlMenuModule} from './mdl-menu.module';
-import {MdlButtonComponent, MdlButtonModule, MdlMenuRegisty} from '@angular-mdl/core';
+import {MdlMenuComponent, MdlMenuModule, MdlMenuRegisty} from './mdl-menu.module';
+import {MdlButtonComponent, MdlButtonModule} from './../button/mdl-button.module';
 
 
 @Component({

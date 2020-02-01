@@ -1,8 +1,8 @@
 import {ComponentRef} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 
-import {MdlDialogReference} from './mdl-dialog.service';
 import {IMdlDialogConfiguration} from './mdl-dialog-configuration';
+import {MdlDialogReference} from './mdl-dialog-reference';
 
 /**
  * Internal representation of the dialog ref. the service

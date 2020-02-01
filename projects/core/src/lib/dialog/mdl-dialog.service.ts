@@ -5,7 +5,6 @@ import {
   EventEmitter,
   Inject,
   Injectable,
-  InjectionToken,
   Injector,
   StaticProvider,
   TemplateRef,
@@ -24,43 +23,9 @@ import {
 } from './mdl-dialog-configuration';
 import {InternalMdlDialogReference} from './internal-dialog-reference';
 import {MdlDialogOutletService} from '../dialog-outlet/mdl-dialog-outlet.service';
+import {MdlDialogReference} from './mdl-dialog-reference';
+import {MDL_CONFIGUARTION, MIN_DIALOG_Z_INDEX} from './config';
 
-
-export const MDL_CONFIGUARTION = new InjectionToken<IMdlDialogConfiguration>('MDL_CONFIGUARTION');
-export const MIN_DIALOG_Z_INDEX = 100000;
-
-/**
- * The reference to the created and displayed dialog.
- */
-export class MdlDialogReference {
-
-  constructor(private internaleRef: InternalMdlDialogReference) {
-    internaleRef.dialogRef = this;
-  }
-
-  /**
-   * closes the dialog
-   */
-  public hide(data?: any) {
-    this.internaleRef.hide(data);
-  }
-
-  /**
-   * Observable that emits, if the dialog was closed.
-   * returns {Observable<void>}
-   */
-  public onHide(): Observable<any> {
-    return this.internaleRef.onHide();
-  }
-
-  /**
-   * Observable that emits, if the dialog is really visible and not only created.
-   * returns {Observable<void>}
-   */
-  public onVisible(): Observable<void> {
-    return this.internaleRef.onVisible();
-  }
-}
 
 /**
  * The MdlDialogService is used to open different kind of dialogs. SimpleDialogs and Custom Dialogs.

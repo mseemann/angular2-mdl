@@ -1,7 +1,8 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {MdlDialogInnerOutletComponent, MdlDialogOutletComponent} from './mdl-dialog-outlet.component';
+import {MdlDialogOutletComponent} from './mdl-dialog-outlet.component';
 import {MdlDialogOutletService} from './mdl-dialog-outlet.service';
 import {MdlBackdropOverlayComponent} from './mdl-backdrop-overlay.component';
+import {MdlDialogInnerOutletComponent} from './mdl-dialog-inner-outlet.component';
 
 export * from './mdl-dialog-outlet.component';
 export * from './mdl-dialog-outlet.service';

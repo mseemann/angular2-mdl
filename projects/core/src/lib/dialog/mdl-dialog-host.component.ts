@@ -13,7 +13,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import {MDL_CONFIGUARTION, MIN_DIALOG_Z_INDEX} from './mdl-dialog.service';
+import {MDL_CONFIGUARTION, MIN_DIALOG_Z_INDEX} from './config';
 import {IMdlDialogConfiguration, IOpenCloseRect} from './mdl-dialog-configuration';
 import {MdlButtonComponent} from '../button/mdl-button.component';
 import {InternalMdlDialogReference} from './internal-dialog-reference';

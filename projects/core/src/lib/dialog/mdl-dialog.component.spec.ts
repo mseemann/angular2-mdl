@@ -1,10 +1,9 @@
 import {async, TestBed} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
-import {MdlDialogModule} from './mdl-dialog.module';
+import {MdlDialogModule, MdlDialogReference} from './mdl-dialog.module';
 import {By} from '@angular/platform-browser';
 import {MdlDialogOutletModule} from '../dialog-outlet/mdl-dialog-outlet.module';
 import {MdlDialogComponent} from './mdl-dialog.component';
-import {MdlDialogReference} from './mdl-dialog.service';
 import {MdlBackdropOverlayComponent} from '../dialog-outlet/mdl-backdrop-overlay.component';
 
 

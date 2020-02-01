@@ -1,8 +1,8 @@
 import {async, inject, TestBed} from '@angular/core/testing';
 import {Component, Inject, InjectionToken, NgModule, Optional, ViewChild, ViewContainerRef} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {MdlDialogModule} from './mdl-dialog.module';
-import {MdlDialogReference, MdlDialogService} from './mdl-dialog.service';
+import {MdlDialogModule, MdlDialogReference} from './mdl-dialog.module';
+import {MdlDialogService} from './mdl-dialog.service';
 import {MdlDialogHostComponent} from './mdl-dialog-host.component';
 import {MdlSimpleDialogComponent} from './mdl-simple-dialog.component';
 import {IOpenCloseRect} from './mdl-dialog-configuration';

@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, Output, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 
-import {MdlDialogReference, MdlDialogService} from './mdl-dialog.service';
+import {MdlDialogService} from './mdl-dialog.service';
 import {IMdlDialogConfiguration} from './mdl-dialog-configuration';
+import {MdlDialogReference} from './mdl-dialog-reference';
 
 
 @Component({

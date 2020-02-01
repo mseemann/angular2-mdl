@@ -1,9 +1,10 @@
 import {async, inject, TestBed} from '@angular/core/testing';
 import {ApplicationRef, Component, NgModule} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {MdlDialogInnerOutletComponent, MdlDialogOutletComponent} from './mdl-dialog-outlet.component';
+import {MdlDialogOutletComponent} from './mdl-dialog-outlet.component';
 import {MdlDialogOutletModule} from './mdl-dialog-outlet.module';
 import {DOCUMENT} from '@angular/common';
+import {MdlDialogInnerOutletComponent} from './mdl-dialog-inner-outlet.component';
 
 
 @Component({

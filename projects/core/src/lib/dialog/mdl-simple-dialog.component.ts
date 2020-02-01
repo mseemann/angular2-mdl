@@ -1,7 +1,8 @@
 import {Component, forwardRef, HostListener, Inject, QueryList, ViewChildren, ViewEncapsulation} from '@angular/core';
-import {MDL_CONFIGUARTION, MdlDialogReference} from './mdl-dialog.service';
+import {MDL_CONFIGUARTION} from './config';
 import {IMdlDialogAction, IMdlSimpleDialogConfiguration} from './mdl-dialog-configuration';
 import {MdlButtonComponent} from '../button/mdl-button.component';
+import {MdlDialogReference} from './mdl-dialog-reference';
 
 
 @Component({
