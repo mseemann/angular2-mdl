@@ -1,6 +1,4 @@
-Angular 8 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
-
-> **If you are looking for a stable Angular 6 compatible version please refer to this branch: https://github.com/mseemann/angular2-mdl/tree/angular6.  `master` is compatible with Angular 8.**
+Angular 9 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
 
 
 [![Build Status](https://travis-ci.org/mseemann/angular2-mdl.svg?branch=master)](https://travis-ci.org/mseemann/angular2-mdl)
@@ -16,7 +14,7 @@ Angular 8 components, directives and styles based on material design lite https:
 * [Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
 * Porting of the [MDL-Dashboard](https://getmdl.io/templates/dashboard/index.html) provided by [AndreaM16](https://github.com/AndreaM16):  [Demo-App](https://angular-mdl-dashboard.herokuapp.com/#/home), [Sources](https://github.com/AndreaM16/angular-mdl-dashboard).
 
-### Status of the npm package version 8 (mdl version 1.3.0; angular 8)
+### Status of the npm package version 9 (mdl version 1.3.0; angular 9)
 
 - Badges
 - Buttons
@@ -82,8 +80,8 @@ sassLoader: {
 # @angular-mdl/*
 Additional components for @angular-mdl/core that are not part of material design lite
 
-* current angular version: 6
-* current angular-mdl version: 6
+* current angular version: 9
+* current angular-mdl version: 9
 
 
 ## The components
