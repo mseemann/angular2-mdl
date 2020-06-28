@@ -1,0 +1,43 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@angular-mdl/core": [
+        "projects/core/src/public-api.ts"
+      ],
+      "@angular-mdl/datepicker": [
+        "projects/datepicker/src/public-api.ts"
+      ],
+      "@angular-mdl/expansion-panel": [
+        "projects/expansion-panel/src/public-api.ts"
+      ],
+      "@angular-mdl/fab-menu": [
+        "projects/fab-menu/src/public-api.ts"
+      ],
+      "@angular-mdl/popover": [
+        "projects/popover/src/public-api.ts"
+      ],
+      "@angular-mdl/select": [
+        "projects/select/src/public-api.ts"
+      ]
+    }
+  }
+}

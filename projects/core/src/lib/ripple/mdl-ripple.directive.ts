@@ -2,6 +2,7 @@ import {Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges} from 
 import {MaterialRipple} from './ripple.vendor';
 
 // known bugs: https://github.com/google/material-design-lite/issues/4215
+@Directive()
 export class MdlRippleDirective implements OnChanges {
 
   public el: HTMLElement;

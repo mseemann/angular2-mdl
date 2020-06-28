@@ -22,5 +22,8 @@
   "peerDependencies": {
     "@angular-mdl/core": ">=9.0.0",
     "@angular-mdl/popover": ">=9.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }

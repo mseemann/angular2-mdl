@@ -21,5 +21,8 @@
   "homepage": "https://github.com/mseemann/angular2-mdl/tree/master/src/projects/popover",
   "peerDependencies": {
     "@angular-mdl/core": ">=9.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }

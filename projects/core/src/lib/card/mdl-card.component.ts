@@ -14,6 +14,8 @@ export class MdlCardComponent {
 }
 
 
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class MdlCardChildStructure implements OnInit {
 
   constructor(private mdlCardComponent: MdlCardComponent, private childComponentName: string) {

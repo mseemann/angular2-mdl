@@ -24,5 +24,8 @@
     "@angular/core": ">=9.0.0 <10.0.0",
     "@angular-mdl/core": ">=9.0.0",
     "moment": "^2.18.1"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }
