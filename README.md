@@ -14,7 +14,7 @@ Angular 9 components, directives and styles based on material design lite https:
 * [Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
 * Porting of the [MDL-Dashboard](https://getmdl.io/templates/dashboard/index.html) provided by [AndreaM16](https://github.com/AndreaM16):  [Demo-App](https://angular-mdl-dashboard.herokuapp.com/#/home), [Sources](https://github.com/AndreaM16/angular-mdl-dashboard).
 
-### Status of the npm package version 9 (mdl version 1.3.0; angular 9)
+### Status of the npm package version 10 (mdl version 1.3.0; angular 10)
 
 - Badges
 - Buttons
@@ -80,8 +80,8 @@ sassLoader: {
 # @angular-mdl/*
 Additional components for @angular-mdl/core that are not part of material design lite
 
-* current angular version: 9
-* current angular-mdl version: 9
+* current angular version: 10
+* current angular-mdl version: 10
 
 
 ## The components
