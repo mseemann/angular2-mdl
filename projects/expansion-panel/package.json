@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/expansion-panel",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "description": "Angular Material Design Lite - Extension Panel Component",
   "repository": {
     "type": "git",
@@ -10,6 +10,7 @@
     "angular2",
     "angular8",
     "angular9",
+    "angular10",
     "angular",
     "material design lite",
     "expansion panel"
@@ -20,7 +21,7 @@
   },
   "homepage": "https://github.com/mseemann/angular2-mdl/tree/master/src/projects/expansion-panel",
   "peerDependencies": {
-    "@angular-mdl/core": ">=9.0.0"
+    "@angular-mdl/core": ">=10.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
