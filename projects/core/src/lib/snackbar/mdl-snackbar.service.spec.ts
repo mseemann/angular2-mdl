@@ -1,4 +1,4 @@
-import {async, inject, TestBed} from '@angular/core/testing';
+import {inject, TestBed, waitForAsync} from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {MdlSnackbarService} from './mdl-snackbar.service';
 import {MdlDialogOutletModule} from '../dialog-outlet/mdl-dialog-outlet.module';
@@ -21,7 +21,7 @@ describe('Service: MdlSnackbar', () => {
   let mdlSnackbarServcie: MdlSnackbarService;
   let mdlDialogOutletService: MdlDialogOutletService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [MdlTestViewComponent],
       imports: [MdlSnackbarModule.forRoot(), MdlDialogOutletModule],
@@ -29,13 +29,13 @@ describe('Service: MdlSnackbar', () => {
     });
   }));
 
-  beforeEach(async(inject([MdlSnackbarService, MdlDialogOutletService],
+  beforeEach(waitForAsync(inject([MdlSnackbarService, MdlDialogOutletService],
     (service: MdlSnackbarService, dialogOutletService: MdlDialogOutletService) => {
       mdlSnackbarServcie = service;
       mdlDialogOutletService = dialogOutletService;
     })));
 
-  it('should show a snackbar and close the snackbar if the aciton button is clicked', async(() => {
+  it('should show a snackbar and close the snackbar if the aciton button is clicked', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
@@ -61,7 +61,7 @@ describe('Service: MdlSnackbar', () => {
 
   }));
 
-  it('should show a snackbar and close the snackbar if the action button is clicked or after timeout', async(() => {
+  it('should show a snackbar and close the snackbar if the action button is clicked or after timeout', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
@@ -106,7 +106,7 @@ describe('Service: MdlSnackbar', () => {
 
   });
 
-  it('should throw if no viewContainerRef is provided', async(() => {
+  it('should throw if no viewContainerRef is provided', waitForAsync(() => {
 
     mdlDialogOutletService.setDefaultViewContainerRef(null);
 
@@ -116,7 +116,7 @@ describe('Service: MdlSnackbar', () => {
 
   }));
 
-  it('should show one snackbar at a time', async(() => {
+  it('should show one snackbar at a time', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();

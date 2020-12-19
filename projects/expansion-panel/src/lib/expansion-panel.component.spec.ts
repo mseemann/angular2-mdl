@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {Component, DebugElement} from '@angular/core';
 import {MdlExpansionPanelModule} from './expansion-panel.module';
 import {By} from '@angular/platform-browser';
@@ -70,7 +70,7 @@ describe('MdlExpansionPanel', () => {
 
     let fixture: ComponentFixture<TestSinglePanelComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [MdlExpansionPanelModule.forRoot(), NoopAnimationsModule],
         declarations: [TestSinglePanelComponent],
@@ -82,11 +82,11 @@ describe('MdlExpansionPanel', () => {
       });
     }));
 
-    it('should be collapsed initially', async(() => {
+    it('should be collapsed initially', waitForAsync(() => {
       expect(fixture.debugElement.query(By.css('.expanded'))).toBeNull();
     }));
 
-    it('should toggle on clicking expansion icon', async(() => {
+    it('should toggle on clicking expansion icon', waitForAsync(() => {
       fixture.debugElement.nativeElement.querySelector('.mdl-expansion-panel__header--expand-icon').click();
       fixture.detectChanges();
       fixture.whenStable()
@@ -101,7 +101,7 @@ describe('MdlExpansionPanel', () => {
         });
     }));
 
-    it('should toggle on pressing enter if focused', async(() => {
+    it('should toggle on pressing enter if focused', waitForAsync(() => {
       const e = new KeyboardEvent('keyup', {
         key: 'Enter'
       });
@@ -112,7 +112,7 @@ describe('MdlExpansionPanel', () => {
       });
     }));
 
-    it('should not toggle if disabled', async(() => {
+    it('should not toggle if disabled', waitForAsync(() => {
       fixture.debugElement.nativeElement.querySelector('button').click();
       fixture.detectChanges();
       fixture.whenStable()
@@ -131,7 +131,7 @@ describe('MdlExpansionPanel', () => {
     let fixture: ComponentFixture<TestGroupPanelComponent>;
     let fixtureWithError: ComponentFixture<TestGroupPanelErrorComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [MdlExpansionPanelModule.forRoot(), NoopAnimationsModule],
         declarations: [
@@ -147,7 +147,7 @@ describe('MdlExpansionPanel', () => {
       });
     }));
 
-    it('should allow one panel which is initialized in expanded state', async(() => {
+    it('should allow one panel which is initialized in expanded state', waitForAsync(() => {
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         expect(fixture.debugElement.nativeElement
@@ -162,7 +162,7 @@ describe('MdlExpansionPanel', () => {
       });
     }));
 
-    it('should collapse previous panel', async(() => {
+    it('should collapse previous panel', waitForAsync(() => {
       fixture
         .debugElement
         .nativeElement
@@ -198,7 +198,7 @@ describe('MdlExpansionPanel', () => {
     let fixture: ComponentFixture<TestGroupPanelComponent>;
     let panel: DebugElement;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [MdlExpansionPanelModule.forRoot(), NoopAnimationsModule],
         declarations: [TestPanelHostComponent],

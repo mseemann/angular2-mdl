@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {MdlFabMenuModule} from './fab-menu.module';
 import {Component, DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
@@ -48,7 +48,7 @@ describe('MdlFabMenuComponent', () => {
 
   let fixture: ComponentFixture<TestMdlFabMenuComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [MdlFabMenuModule.forRoot()],
       declarations: [TestMdlFabMenuComponent]
@@ -63,11 +63,11 @@ describe('MdlFabMenuComponent', () => {
   describe('FAB', () => {
 
 
-    it('should instantiate the component', async(() => {
+    it('should instantiate the component', waitForAsync(() => {
       expect(fixture).toBeDefined();
     }));
 
-    it('should have the menu collapsed after the page loads', async(() => {
+    it('should have the menu collapsed after the page loads', waitForAsync(() => {
       const popoverComponent = fixture.debugElement.query(By.css('.mdl-popover'));
       const popoverComponentInstance = popoverComponent.componentInstance;
 
@@ -75,7 +75,7 @@ describe('MdlFabMenuComponent', () => {
 
     }));
 
-    it('should have the menu expanded after the user click once on the FAB', async(() => {
+    it('should have the menu expanded after the user click once on the FAB', waitForAsync(() => {
       const buttonComponent = fixture.debugElement.query(By.css('.mdl-button'));
 
       const popoverComponent = fixture.debugElement.query(By.css('.mdl-popover'));
@@ -98,7 +98,7 @@ describe('MdlFabMenuComponent', () => {
 
     }));
 
-    it('should have the menu collapsed after the user click on one item', async(() => {
+    it('should have the menu collapsed after the user click on one item', waitForAsync(() => {
 
       const popoverComponent = fixture.debugElement.query(By.css('.mdl-popover'));
 
@@ -136,7 +136,7 @@ describe('MdlFabMenuComponent', () => {
     }));
 
 
-    it('should toggle popover on button click', async(() => {
+    it('should toggle popover on button click', waitForAsync(() => {
 
       const popoverComponent = fixture.debugElement.query(By.css('.mdl-popover'));
 
@@ -184,7 +184,7 @@ describe('MdlFabMenuComponent', () => {
   describe('item tooltips', () => {
 
 
-    it('should not display tooltips after click on the FAB', async(() => {
+    it('should not display tooltips after click on the FAB', waitForAsync(() => {
 
       const buttonComponent = fixture.debugElement.query(By.css('.mdl-button'));
 
@@ -204,7 +204,7 @@ describe('MdlFabMenuComponent', () => {
 
     }));
 
-    it('should display tooltips on rollover', async(() => {
+    it('should display tooltips on rollover', waitForAsync(() => {
 
       const buttonComponent = fixture.debugElement.query(By.css('.mdl-button'));
 
@@ -236,7 +236,7 @@ describe('MdlFabMenuComponent', () => {
 
     }));
 
-    it('should display tooltips after click on the FAB', async(() => {
+    it('should display tooltips after click on the FAB', waitForAsync(() => {
 
       const buttonComponent = fixture.debugElement.query(By.css('.mdl-button'));
 
@@ -255,7 +255,7 @@ describe('MdlFabMenuComponent', () => {
 
     }));
 
-    it('should display tooltips after touch start on the FAB', async(() => {
+    it('should display tooltips after touch start on the FAB', waitForAsync(() => {
 
       const buttonElement = fixture.debugElement.query(By.css('.mdl-button')).nativeElement;
 

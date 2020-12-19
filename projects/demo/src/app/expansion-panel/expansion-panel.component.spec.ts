@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {ExpansionPanelComponent} from './expansion-panel.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
@@ -11,7 +11,7 @@ describe('ExpansionPanelComponent', () => {
   let component: ExpansionPanelComponent;
   let fixture: ComponentFixture<ExpansionPanelComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [MdlModule, MdlExpansionPanelModule, RouterTestingModule, NoopAnimationsModule],

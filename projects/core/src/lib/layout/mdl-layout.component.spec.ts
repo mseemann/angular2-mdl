@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {
@@ -99,7 +99,7 @@ describe('Component: MdlLayout', () => {
 
   });
 
-  it('should close the obfuscator if the escape key is pressed', async(() => {
+  it('should close the obfuscator if the escape key is pressed', waitForAsync(() => {
     TestBed.overrideComponent(MdlTestLayoutComponent, {
       set: {
         template: `
@@ -359,7 +359,7 @@ describe('Component: MdlLayout', () => {
   });
 
 
-  it('should be possible to create rich tabs', async(() => {
+  it('should be possible to create rich tabs', waitForAsync(() => {
 
     TestBed.overrideComponent(MdlTestLayoutComponent, {
       set: {

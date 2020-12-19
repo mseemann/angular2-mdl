@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {DatePickerComponent} from './date-picker.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
@@ -11,7 +11,7 @@ describe('DatePickerComponent', () => {
   let component: DatePickerComponent;
   let fixture: ComponentFixture<DatePickerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [MdlModule, MdlDatePickerModule, RouterTestingModule, NoopAnimationsModule],

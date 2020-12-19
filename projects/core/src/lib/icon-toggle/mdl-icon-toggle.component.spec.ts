@@ -1,4 +1,4 @@
-import {async, inject, TestBed} from '@angular/core/testing';
+import {inject, TestBed, waitForAsync} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {MdlIconToggleComponent} from './mdl-icon-toggle.component';
@@ -27,7 +27,7 @@ describe('Component: MdlIconToggle', () => {
 
   let doc: HTMLDocument;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, MdlIconToggleModule.forRoot()],
       declarations: [MdlTestIconToggleComponent],
@@ -35,7 +35,7 @@ describe('Component: MdlIconToggle', () => {
 
   }));
 
-  beforeEach(async(inject([DOCUMENT], (document) => {
+  beforeEach(waitForAsync(inject([DOCUMENT], (document) => {
     doc = document;
   })));
 
@@ -49,7 +49,7 @@ describe('Component: MdlIconToggle', () => {
 
   });
 
-  it('should fire a change event if the state changed', async(() => {
+  it('should fire a change event if the state changed', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestIconToggleComponent);
     fixture.detectChanges();
 
@@ -64,7 +64,7 @@ describe('Component: MdlIconToggle', () => {
 
   // the following test, tests implicity that annotation are inherited (@Input @BooleanPorperty is defined in the
   // class MdlCheckboxComponent and not in MdlTestIconToggleComponent
-  it('should be possible to disable the icon toggle', async(() => {
+  it('should be possible to disable the icon toggle', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestIconToggleComponent);
     fixture.detectChanges();
 

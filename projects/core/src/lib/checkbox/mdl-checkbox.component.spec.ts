@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {MdlCheckboxComponent} from './mdl-checkbox.component';
@@ -10,9 +10,9 @@ import {DOCUMENT} from '@angular/common';
   // tslint:disable-next-line
   selector: 'test-icon',
   template: `
-      <mdl-checkbox [disabled]="false" [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">
-          checkbox label
-      </mdl-checkbox>
+    <mdl-checkbox [disabled]="false" [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">
+      checkbox label
+    </mdl-checkbox>
   `,
 })
 class MdlTestCheckboxComponent {
@@ -27,7 +27,7 @@ class MdlTestCheckboxComponent {
 describe('Component: MdlCheckbox', () => {
 
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [MdlCheckboxModule.forRoot(), FormsModule],
       declarations: [MdlTestCheckboxComponent],
@@ -45,7 +45,7 @@ describe('Component: MdlCheckbox', () => {
 
   });
 
-  it('should support ngModel', async(() => {
+  it('should support ngModel', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
@@ -109,7 +109,7 @@ describe('Component: MdlCheckbox', () => {
 
   });
 
-  it('should fire a change event if the state changed', async(() => {
+  it('should fire a change event if the state changed', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
 
@@ -122,7 +122,7 @@ describe('Component: MdlCheckbox', () => {
     expect(instance.onChange).toHaveBeenCalledWith(true);
   }));
 
-  it('should be possible to disable the checkbox', async(() => {
+  it('should be possible to disable the checkbox', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
 

@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {MdlSliderComponent} from './mdl-slider.component';
@@ -11,7 +11,7 @@ import {DOCUMENT} from '@angular/common';
   // tslint:disable-next-line
   selector: 'test-icon',
   template: `
-      <mdl-slider [min]='min' [max]='max' [(ngModel)]='currentValue'></mdl-slider>`
+    <mdl-slider [min]='min' [max]='max' [(ngModel)]='currentValue'></mdl-slider>`
 })
 class MdlTestSliderComponent {
   public min = 0;
@@ -21,14 +21,14 @@ class MdlTestSliderComponent {
 
 describe('Component: MdlSlider', () => {
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [MdlSliderModule.forRoot(), FormsModule],
       declarations: [MdlTestSliderComponent],
     });
   }));
 
-  it('should add the css class mdl-slider__container to the host element', async(() => {
+  it('should add the css class mdl-slider__container to the host element', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
@@ -38,7 +38,7 @@ describe('Component: MdlSlider', () => {
 
   }));
 
-  it('should support ngModel', async(() => {
+  it('should support ngModel', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
@@ -60,7 +60,7 @@ describe('Component: MdlSlider', () => {
 
   }));
 
-  it('should call blur on mouseup events on the host element', async(() => {
+  it('should call blur on mouseup events on the host element', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
@@ -79,7 +79,7 @@ describe('Component: MdlSlider', () => {
 
   }));
 
-  it('should propagate mousedown events on the host to the input element', async(() => {
+  it('should propagate mousedown events on the host to the input element', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
@@ -101,7 +101,7 @@ describe('Component: MdlSlider', () => {
   }));
 
 
-  it('should not propagate mousedown events to the input element on other elements than the host', async(() => {
+  it('should not propagate mousedown events to the input element on other elements than the host', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
@@ -122,7 +122,7 @@ describe('Component: MdlSlider', () => {
   }));
 
 
-  it('should be possible to disable the slider', async(() => {
+  it('should be possible to disable the slider', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestSliderComponent);
     fixture.detectChanges();
 
@@ -141,7 +141,7 @@ describe('Component: MdlSlider', () => {
 
   }));
 
-  it('should support the min, max and step attributes', async(() => {
+  it('should support the min, max and step attributes', waitForAsync(() => {
 
     TestBed.overrideComponent(MdlTestSliderComponent, {
       set: {

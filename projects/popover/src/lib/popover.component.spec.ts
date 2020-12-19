@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
@@ -30,7 +30,7 @@ describe('MdlPopover', () => {
 
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [MdlPopoverModule.forRoot()],
       declarations: [TestComponent],
@@ -43,7 +43,7 @@ describe('MdlPopover', () => {
   }));
 
 
-  it('should create the component and add the mdl-popover css class', async(() => {
+  it('should create the component and add the mdl-popover css class', waitForAsync(() => {
 
     const popoverComponent = fixture.debugElement.query(By.directive(MdlPopoverComponent));
 
@@ -54,7 +54,7 @@ describe('MdlPopover', () => {
 
   }));
 
-  it('should hide on click outside of popover', async(() => {
+  it('should hide on click outside of popover', waitForAsync(() => {
 
     const popoverComponent = fixture.debugElement.query(By.directive(MdlPopoverComponent));
 
@@ -73,7 +73,7 @@ describe('MdlPopover', () => {
     expect(popoverComponentInstance.onHide.emit).toHaveBeenCalled();
   }));
 
-  it('should toggle popover on button click', async(() => {
+  it('should toggle popover on button click', waitForAsync(() => {
 
     const popoverComponent = fixture.debugElement.query(By.directive(MdlPopoverComponent));
 
@@ -122,7 +122,7 @@ describe('MdlPopover', () => {
     });
   }));
 
-  it('should toggle popover on another popover opening', async(() => {
+  it('should toggle popover on another popover opening', waitForAsync(() => {
 
     const popoverComponent = fixture.debugElement.query(By.directive(MdlPopoverComponent));
     const popoverNativeElement = popoverComponent.nativeElement;
@@ -172,7 +172,7 @@ describe('MdlPopover', () => {
     });
   }));
 
-  it('should use user specified popover position', async(async () => {
+  it('should use user specified popover position', waitForAsync(async () => {
     const popoverComponent = fixture.debugElement.query(By.css('#positionPopover'));
     const popoverNativeElement = popoverComponent.nativeElement;
     const popoverComponentInstance = popoverComponent.componentInstance;

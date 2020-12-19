@@ -1,53 +1,43 @@
-/*
-  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
-  It is not intended to be used to perform a compilation.
-
-  To learn more about this file see: https://angular.io/config/solution-tsconfig.
-*/
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./projects/core/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/core/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/demo/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/demo/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/datepicker/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/datepicker/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/expansion-panel/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/expansion-panel/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/fab-menu/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/fab-menu/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/popover/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/popover/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/select/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/select/tsconfig.spec.json"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@angular-mdl/core": [
+        "projects/core/src/public-api.ts"
+      ],
+      "@angular-mdl/datepicker": [
+        "projects/datepicker/src/public-api.ts"
+      ],
+      "@angular-mdl/expansion-panel": [
+        "projects/expansion-panel/src/public-api.ts"
+      ],
+      "@angular-mdl/fab-menu": [
+        "projects/fab-menu/src/public-api.ts"
+      ],
+      "@angular-mdl/popover": [
+        "projects/popover/src/public-api.ts"
+      ],
+      "@angular-mdl/select": [
+        "projects/select/src/public-api.ts"
+      ]
     }
-  ]
+  }
 }

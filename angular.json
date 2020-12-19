@@ -10,7 +10,7 @@
       "prefix": "mdl",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/core/tsconfig.lib.json",
             "project": "projects/core/ng-package.json"
@@ -82,7 +82,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -169,7 +168,7 @@
       "prefix": "mdl",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/datepicker/tsconfig.lib.json",
             "project": "projects/datepicker/ng-package.json"
@@ -209,7 +208,7 @@
       "prefix": "mdl",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/expansion-panel/tsconfig.lib.json",
             "project": "projects/expansion-panel/ng-package.json"
@@ -249,7 +248,7 @@
       "prefix": "mdl",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/fab-menu/tsconfig.lib.json",
             "project": "projects/fab-menu/ng-package.json"
@@ -289,7 +288,7 @@
       "prefix": "mdl",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/popover/tsconfig.lib.json",
             "project": "projects/popover/ng-package.json"
@@ -329,7 +328,7 @@
       "prefix": "mdl",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/select/tsconfig.lib.json",
             "project": "projects/select/ng-package.json"

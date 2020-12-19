@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {DISABLE_NATIVE_VALIDITY_CHECKING, MdlTextFieldComponent} from './mdl-textfield.component';
@@ -52,7 +52,7 @@ describe('Component: MdlTextField', () => {
 
   });
 
-  it('should support ngModel', async(() => {
+  it('should support ngModel', waitForAsync(() => {
 
     TestBed.overrideComponent(MdlTestComponent, {
       set: {
@@ -109,7 +109,7 @@ describe('Component: MdlTextField', () => {
 
   });
 
-  it('should mark the component as invalid ngModel (pattern)', async(() => {
+  it('should mark the component as invalid ngModel (pattern)', waitForAsync(() => {
 
     TestBed.overrideComponent(MdlTestComponent, {
       set: {
@@ -130,7 +130,7 @@ describe('Component: MdlTextField', () => {
     });
   }));
 
-  it('should mark the component as invalid ngModel (min)', async(() => {
+  it('should mark the component as invalid ngModel (min)', waitForAsync(() => {
 
     TestBed.overrideComponent(MdlTestComponent, {
       set: {
@@ -151,7 +151,7 @@ describe('Component: MdlTextField', () => {
     });
   }));
 
-  it('should mark the component as invalid ngModel (max)', async(() => {
+  it('should mark the component as invalid ngModel (max)', waitForAsync(() => {
 
     TestBed.overrideComponent(MdlTestComponent, {
       set: {
@@ -173,7 +173,7 @@ describe('Component: MdlTextField', () => {
   }));
 
 
-  it('should mark the component as invalid ngModel (step)', async(() => {
+  it('should mark the component as invalid ngModel (step)', waitForAsync(() => {
 
     TestBed.overrideComponent(MdlTestComponent, {
       set: {
@@ -505,7 +505,7 @@ describe('Component: MdlTextField', () => {
   });
 
 
-  it('should be possible to disable the textinputfield', async(() => {
+  it('should be possible to disable the textinputfield', waitForAsync(() => {
     TestBed.overrideComponent(MdlTestComponent, {
       set: {
         template: `
@@ -531,7 +531,7 @@ describe('Component: MdlTextField', () => {
 
   }));
 
-  it('should keep type number if the input field is type number', async(() => {
+  it('should keep type number if the input field is type number', waitForAsync(() => {
 
     TestBed.overrideComponent(MdlTestComponent, {
       set: {

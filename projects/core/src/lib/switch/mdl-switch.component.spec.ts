@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {MdlSwitchComponent} from './mdl-switch.component';
 import {FormsModule} from '@angular/forms';
@@ -22,7 +22,7 @@ class MdlTestSwitchComponent {
 
 describe('Component: MdlSwitch', () => {
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [MdlSwitchModule.forRoot(), FormsModule],
       declarations: [MdlTestSwitchComponent],
@@ -39,7 +39,7 @@ describe('Component: MdlSwitch', () => {
 
   });
 
-  it('should fire a change event if the state changed', async(() => {
+  it('should fire a change event if the state changed', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestSwitchComponent);
     fixture.detectChanges();
 

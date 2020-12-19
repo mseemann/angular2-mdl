@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Component, OnInit} from '@angular/core';
 import {MdlRadioComponent, MdlRadioGroupRegisty} from './mdl-radio.component';
@@ -10,12 +10,12 @@ import {MdlRadioModule} from './mdl-radio.module';
   // tslint:disable-next-line
   selector: 'test-radio',
   template: `
-      <mdl-radio name="r" [(ngModel)]="radioValue" value="1" mdl-ripple
-                 (change)="onChange($event)">radio label 1
-      </mdl-radio>
-      <mdl-radio name="r" [(ngModel)]="radioValue" value="2" mdl-ripple
-                 (change)="onChange($event)">radio label 2
-      </mdl-radio>
+    <mdl-radio name="r" [(ngModel)]="radioValue" value="1" mdl-ripple
+               (change)="onChange($event)">radio label 1
+    </mdl-radio>
+    <mdl-radio name="r" [(ngModel)]="radioValue" value="2" mdl-ripple
+               (change)="onChange($event)">radio label 2
+    </mdl-radio>
   `
 })
 class MdlTestRadioComponent implements OnInit {
@@ -43,16 +43,16 @@ class MdlTestRadioComponent implements OnInit {
   // tslint:disable-next-line
   selector: 'test-radio',
   template: `
-      <form [formGroup]="testForm">
-          <div formGroupName="group1" mdl-radio-group>
-              <mdl-radio formControlName="type" value="type1" id="g1t1"></mdl-radio>
-              <mdl-radio formControlName="type" value="type2" id="g1t2"></mdl-radio>
-          </div>
-          <div formGroupName="group2">
-              <mdl-radio formControlName="type" value="type1" id="g2t1"></mdl-radio>
-              <mdl-radio formControlName="type" value="type2" id="g2t2"></mdl-radio>
-          </div>
-      </form>
+    <form [formGroup]="testForm">
+      <div formGroupName="group1" mdl-radio-group>
+        <mdl-radio formControlName="type" value="type1" id="g1t1"></mdl-radio>
+        <mdl-radio formControlName="type" value="type2" id="g1t2"></mdl-radio>
+      </div>
+      <div formGroupName="group2">
+        <mdl-radio formControlName="type" value="type1" id="g2t1"></mdl-radio>
+        <mdl-radio formControlName="type" value="type2" id="g2t2"></mdl-radio>
+      </div>
+    </form>
   `
 })
 class MdlTestUseSameRadioInGroupsComponent implements OnInit {
@@ -77,7 +77,7 @@ class MdlTestUseSameRadioInGroupsComponent implements OnInit {
 
 describe('Component: MdlRadio', () => {
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [MdlRadioModule.forRoot(), FormsModule, ReactiveFormsModule],
       declarations: [MdlTestRadioComponent, MdlTestUseSameRadioInGroupsComponent],
@@ -95,7 +95,7 @@ describe('Component: MdlRadio', () => {
 
   });
 
-  it('should support ngModel', async(() => {
+  it('should support ngModel', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();
@@ -143,7 +143,7 @@ describe('Component: MdlRadio', () => {
 
   });
 
-  it('should throw if name and formcontrolname are different', async(() => {
+  it('should throw if name and formcontrolname are different', waitForAsync(() => {
     TestBed.overrideComponent(MdlTestRadioComponent, {
       set: {
         template: `
@@ -160,7 +160,7 @@ describe('Component: MdlRadio', () => {
 
   }));
 
-  it('should take the name from formcontrolname if no name os provided', async(() => {
+  it('should take the name from formcontrolname if no name os provided', waitForAsync(() => {
     TestBed.overrideComponent(MdlTestRadioComponent, {
       set: {
         template: `
@@ -177,7 +177,7 @@ describe('Component: MdlRadio', () => {
     expect(radioComponent.name).toEqual('test');
   }));
 
-  it('should remove mdl-radio if the component is destroyed', async(() => {
+  it('should remove mdl-radio if the component is destroyed', waitForAsync(() => {
 
     TestBed.overrideComponent(MdlTestRadioComponent, {
       set: {
@@ -205,7 +205,7 @@ describe('Component: MdlRadio', () => {
   }));
 
 
-  it('should fire a change event if the state changed', async(() => {
+  it('should fire a change event if the state changed', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();
 
@@ -216,10 +216,10 @@ describe('Component: MdlRadio', () => {
     const component2 = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[1];
     component2.nativeElement.click();
 
-    expect(instance.onChange).toHaveBeenCalledWith('2');
+    expect(instance.onChange).toHaveBeenCalledWith('2' as unknown as any);
   }));
 
-  it('should be possible to disable the radio input', async(() => {
+  it('should be possible to disable the radio input', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();
 
@@ -239,7 +239,7 @@ describe('Component: MdlRadio', () => {
 
   }));
 
-  it('should not change its current state if it is already checked', async(() => {
+  it('should not change its current state if it is already checked', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();

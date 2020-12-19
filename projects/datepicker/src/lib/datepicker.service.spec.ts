@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {MdlDatePickerModule} from './datepicker.module';
@@ -21,7 +21,7 @@ moment.locale('en');
   // tslint:disable-next-line
   selector: 'test-component',
   template: `
-      <dialog-outlet></dialog-outlet>
+    <dialog-outlet></dialog-outlet>
   `
 })
 class MdlTestComponent {
@@ -31,7 +31,7 @@ class MdlTestComponent {
 xdescribe('DatePickerService', () => {
 
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         CommonModule,
@@ -48,7 +48,7 @@ xdescribe('DatePickerService', () => {
     TestBed.compileComponents();
   }));
 
-  it('should instantiate the service', async(() => {
+  it('should instantiate the service', waitForAsync(() => {
     const service: MdlDatePickerService = TestBed.inject(MdlDatePickerService);
     expect(service).toBeDefined();
   }));

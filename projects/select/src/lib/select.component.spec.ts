@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {MdlSelectComponent} from './select.component';
 import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
@@ -164,7 +164,7 @@ describe('MdlSelect', () => {
 
     let fixture: ComponentFixture<TestSingleComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [MdlSelectModule.forRoot()],
         declarations: [TestSingleComponent],
@@ -176,7 +176,7 @@ describe('MdlSelect', () => {
       });
     }));
 
-    it('should support floating-label attr', async(() => {
+    it('should support floating-label attr', waitForAsync(() => {
 
       const selectComponent = fixture.debugElement.query(By.directive(MdlSelectComponent));
 
@@ -190,7 +190,7 @@ describe('MdlSelect', () => {
     }));
 
 
-    it('should create the component and add the mdl-select css class', async(() => {
+    it('should create the component and add the mdl-select css class', waitForAsync(() => {
 
       const selectComponent = fixture.debugElement.query(By.directive(MdlSelectComponent));
 
@@ -201,7 +201,7 @@ describe('MdlSelect', () => {
 
     }));
 
-    it('should support ngModel', async(() => {
+    it('should support ngModel', waitForAsync(() => {
 
       const testInstance = fixture.componentInstance;
       const selectComponent = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
@@ -221,7 +221,7 @@ describe('MdlSelect', () => {
 
     }));
 
-    it('should reset ngModel', async(() => {
+    it('should reset ngModel', waitForAsync(() => {
 
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
 
@@ -240,7 +240,7 @@ describe('MdlSelect', () => {
 
     }));
 
-    it('should bind options on options change', async(() => {
+    it('should bind options on options change', waitForAsync(() => {
 
       const testInstance = fixture.componentInstance;
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
@@ -261,7 +261,7 @@ describe('MdlSelect', () => {
       });
     }));
 
-    it('focus should have keyboard events', async(() => {
+    it('focus should have keyboard events', waitForAsync(() => {
 
       jasmine.clock().uninstall();
       jasmine.clock().install();
@@ -308,7 +308,7 @@ describe('MdlSelect', () => {
       jasmine.clock().uninstall();
     }));
 
-    it('should auto-select searched options', async(() => {
+    it('should auto-select searched options', waitForAsync(() => {
 
       jasmine.clock().uninstall();
       jasmine.clock().install();
@@ -362,7 +362,7 @@ describe('MdlSelect', () => {
 
     let fixture: ComponentFixture<TestSingleComponentNoModelComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [MdlSelectModule.forRoot()],
         declarations: [TestSingleComponentNoModelComponent],
@@ -374,7 +374,7 @@ describe('MdlSelect', () => {
       });
     }));
 
-    it('should select vlaue and display text', async(() => {
+    it('should select vlaue and display text', waitForAsync(() => {
 
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
 
@@ -407,7 +407,7 @@ describe('MdlSelect', () => {
 
     let fixture: ComponentFixture<TestDisabledComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [MdlSelectModule.forRoot(), ReactiveFormsModule],
         declarations: [TestDisabledComponent]
@@ -419,7 +419,7 @@ describe('MdlSelect', () => {
       });
     }));
 
-    it('should create the component and make it disabled', async(() => {
+    it('should create the component and make it disabled', waitForAsync(() => {
 
       const selectComponent = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
 
@@ -433,7 +433,7 @@ describe('MdlSelect', () => {
   describe('autocomplete', () => {
     let fixture: ComponentFixture<TestAutoCompleteComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [MdlSelectModule.forRoot()],
         declarations: [TestAutoCompleteComponent],
@@ -445,7 +445,7 @@ describe('MdlSelect', () => {
       });
     }));
 
-    it('should not make autoselection when it\'s on', async(() => {
+    it('should not make autoselection when it\'s on', waitForAsync(() => {
       const selectComponent = fixture.debugElement.query(By.directive(MdlSelectComponent));
 
       const selectNativeElement = selectComponent.nativeElement;
@@ -465,7 +465,7 @@ describe('MdlSelect', () => {
       expect(selectComponentInstance.ngModel).toBeNull();
     }));
 
-    it('should make autoselection on enter', async(() => {
+    it('should make autoselection on enter', waitForAsync(() => {
       const selectComponent = fixture.debugElement.query(By.directive(MdlSelectComponent));
 
       const selectNativeElement = selectComponent.nativeElement;
@@ -490,7 +490,7 @@ describe('MdlSelect', () => {
       expect(selectComponentInstance.ngModel).toEqual(1);
     }));
 
-    it('should make input writable when autoselection is off', async(() => {
+    it('should make input writable when autoselection is off', waitForAsync(() => {
       const selectComponent = fixture.debugElement.query(By.directive(MdlSelectComponent));
 
       const selectNativeElement = selectComponent.nativeElement;
@@ -503,7 +503,7 @@ describe('MdlSelect', () => {
 
     let fixture: ComponentFixture<TestMultipleComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [MdlSelectModule.forRoot()],
         declarations: [TestMultipleComponent],
@@ -515,7 +515,7 @@ describe('MdlSelect', () => {
       });
     }));
 
-    it('should create the component and add the mdl-select css class', async(() => {
+    it('should create the component and add the mdl-select css class', waitForAsync(() => {
 
       const selectComponent = fixture.debugElement.query(By.directive(MdlSelectComponent));
 
@@ -526,7 +526,7 @@ describe('MdlSelect', () => {
 
     }));
 
-    it('should support ngModel', async(() => {
+    it('should support ngModel', waitForAsync(() => {
 
       const testInstance = fixture.componentInstance;
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
@@ -546,7 +546,7 @@ describe('MdlSelect', () => {
 
     }));
 
-    it('should reset ngModel', async(() => {
+    it('should reset ngModel', waitForAsync(() => {
 
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
 
@@ -567,7 +567,7 @@ describe('MdlSelect', () => {
 
     }));
 
-    it('should select and deselect value', async(() => {
+    it('should select and deselect value', waitForAsync(() => {
 
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
 
@@ -596,7 +596,7 @@ describe('MdlSelect', () => {
 
     }));
 
-    it('should bind options on options change', async(() => {
+    it('should bind options on options change', waitForAsync(() => {
 
       const testInstance = fixture.componentInstance;
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
@@ -621,7 +621,7 @@ describe('MdlSelect', () => {
 
     let fixture: ComponentFixture<TestObjectComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [MdlSelectModule.forRoot()],
         declarations: [TestObjectComponent],
@@ -633,7 +633,7 @@ describe('MdlSelect', () => {
       });
     }));
 
-    it('should support ngModel', async(() => {
+    it('should support ngModel', waitForAsync(() => {
 
       const testInstance = fixture.componentInstance;
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
@@ -653,7 +653,7 @@ describe('MdlSelect', () => {
 
     }));
 
-    it('should reset ngModel', async(() => {
+    it('should reset ngModel', waitForAsync(() => {
 
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
 
@@ -674,7 +674,7 @@ describe('MdlSelect', () => {
 
     }));
 
-    it('should select and deselect value', async(() => {
+    it('should select and deselect value', waitForAsync(() => {
 
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;
 
@@ -716,7 +716,7 @@ describe('MdlSelect', () => {
     }));
 
 
-    it('should bind options on options change', async(() => {
+    it('should bind options on options change', waitForAsync(() => {
 
       const testInstance = fixture.componentInstance;
       const selectComponentInstance = fixture.debugElement.query(By.directive(MdlSelectComponent)).componentInstance;

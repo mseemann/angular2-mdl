@@ -1,4 +1,4 @@
-import {async, inject, TestBed} from '@angular/core/testing';
+import {inject, TestBed, waitForAsync} from '@angular/core/testing';
 import {ApplicationRef, Component, NgModule} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {MdlDialogOutletComponent} from './mdl-dialog-outlet.component';
@@ -31,7 +31,7 @@ describe('MdlDialogOutletComponent', () => {
   let el;
 
   // create the tesbed
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [],
       imports: [TestDialogModul],
@@ -39,18 +39,18 @@ describe('MdlDialogOutletComponent', () => {
   }));
 
   // now modify the dom and add a dialog-outlet element direct under the body
-  beforeEach(async(inject([DOCUMENT], (doc) => {
+  beforeEach(waitForAsync(inject([DOCUMENT], (doc) => {
     el = doc.createElement('dialog-outlet');
     doc.body.appendChild(el);
   })));
 
-  afterEach(async(inject([DOCUMENT], (doc) => {
+  afterEach(waitForAsync(inject([DOCUMENT], (doc) => {
     doc.body.removeChild(el);
   })));
 
   // now we can boostrap our MdlDialogOutletComponent component
   it('should create the dialog-outlet outside the app-root',
-    async(inject([ApplicationRef],
+    waitForAsync(inject([ApplicationRef],
       (ref: ApplicationRef) => {
 
         const compRef = ref.bootstrap(MdlDialogOutletComponent);
@@ -68,14 +68,14 @@ describe('MdlDialogInnerOutletComponent', () => {
 
   let doc: HTMLDocument;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [],
       imports: [TestDialogModul],
     });
   }));
 
-  beforeEach(async(inject([DOCUMENT], (document) => {
+  beforeEach(waitForAsync(inject([DOCUMENT], (document) => {
     doc = document;
   })));
 

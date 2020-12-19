@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {MdlDialogModule} from './mdl-dialog.module';
 import {By} from '@angular/platform-browser';
@@ -10,13 +10,13 @@ import {MdlDialogOutletModule} from '../dialog-outlet/mdl-dialog-outlet.module';
   // tslint:disable-next-line
   selector: 'test-component',
   template: `
-      <mdl-alert
-              #alert="mdlAlert"
-              title="Title (optional)"
-              message="This is a <em class='mdl-color-text--primary'>simple</em> Alert"
-              okText="Got it!"
-              (confirmed)="alertConfirmd()"></mdl-alert>
-      <dialog-outlet></dialog-outlet>
+    <mdl-alert
+      #alert="mdlAlert"
+      title="Title (optional)"
+      message="This is a <em class='mdl-color-text--primary'>simple</em> Alert"
+      okText="Got it!"
+      (confirmed)="alertConfirmd()"></mdl-alert>
+    <dialog-outlet></dialog-outlet>
   `
 })
 class MdlTestComponent {
@@ -28,7 +28,7 @@ class MdlTestComponent {
 
 describe('MdlAlert', () => {
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
       declarations: [MdlTestComponent]

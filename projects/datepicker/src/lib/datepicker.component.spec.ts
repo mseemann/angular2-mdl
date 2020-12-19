@@ -1,5 +1,5 @@
 import {CURRENT_DATE, DATEPICKER_CONFIG, DatePickerDialogComponent} from './datepicker.component';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {CommonModule} from '@angular/common';
 import {MdlButtonModule, MdlDialogModule, MdlDialogReference, MdlIconModule, MdlRippleModule} from '@angular-mdl/core';
 import {Subject} from 'rxjs';
@@ -26,7 +26,7 @@ describe('DatePickerDialogComponent', () => {
 
   let fixture: ComponentFixture<DatePickerDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         CommonModule,
@@ -87,7 +87,7 @@ describe('DatePickerDialogComponent', () => {
     expect(fixture.componentInstance.mCurrentMonth.isSame(fixture.componentInstance.mDate, 'day')).toBeTruthy();
   });
 
-  it('should be possible to set a specific date', async(() => {
+  it('should be possible to set a specific date', waitForAsync(() => {
     fixture.componentInstance.setCurrentDay(moment('2017-01-01'));
     expect(fixture.componentInstance.mDate.isSame(moment('2017-01-01'), 'day')).toBeTruthy();
   }));

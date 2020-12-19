@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {MdlDialogModule, MdlDialogReference} from './mdl-dialog.module';
 import {By} from '@angular/platform-browser';
@@ -80,7 +80,7 @@ class ModalComponent {
 
 describe('MdlDialog (embedded/declarative)', () => {
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
       declarations: [
@@ -91,7 +91,7 @@ describe('MdlDialog (embedded/declarative)', () => {
     });
   }));
 
-  it('should create, show and close the embedded dialog', async(() => {
+  it('should create, show and close the embedded dialog', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();

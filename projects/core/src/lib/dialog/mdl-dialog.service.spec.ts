@@ -1,4 +1,4 @@
-import {async, inject, TestBed} from '@angular/core/testing';
+import {inject, TestBed, waitForAsync} from '@angular/core/testing';
 import {Component, Inject, InjectionToken, NgModule, Optional, ViewChild, ViewContainerRef} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {MdlDialogModule, MdlDialogReference} from './mdl-dialog.module';
@@ -84,7 +84,7 @@ describe('Service: MdlDialog', () => {
   let mdlDialogOutletService: MdlDialogOutletService;
   let doc: HTMLDocument;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [MdlTestViewComponent],
       imports: [
@@ -95,14 +95,14 @@ describe('Service: MdlDialog', () => {
     });
   }));
 
-  beforeEach(async(inject([MdlDialogService, MdlDialogOutletService, DOCUMENT],
+  beforeEach(waitForAsync(inject([MdlDialogService, MdlDialogOutletService, DOCUMENT],
     (service: MdlDialogService, dialogOutletService: MdlDialogOutletService, document) => {
       mdlDialogService = service;
       mdlDialogOutletService = dialogOutletService;
       doc = document;
     })));
 
-  xit('should show an alert', async(() => {
+  xit('should show an alert', waitForAsync(() => {
 
     const title = 'Alert';
     const fixture = TestBed.createComponent(MdlTestViewComponent);
@@ -177,7 +177,7 @@ describe('Service: MdlDialog', () => {
     dialog.onEsc();
   });
 
-  xit('should be possible to open a custom dialog', async((done) => {
+  xit('should be possible to open a custom dialog', waitForAsync((done) => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -203,7 +203,7 @@ describe('Service: MdlDialog', () => {
 
   }));
 
-  xit('should be able to pass data when hiding a custom dialog', async(() => {
+  xit('should be able to pass data when hiding a custom dialog', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -225,7 +225,7 @@ describe('Service: MdlDialog', () => {
     });
   }));
 
-  it('should stop propagaton on overlay clicks', async(() => {
+  it('should stop propagaton on overlay clicks', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
@@ -245,7 +245,7 @@ describe('Service: MdlDialog', () => {
     expect(event.stopPropagation).toHaveBeenCalled();
   }));
 
-  it('should not be possible to create a simple dialog without actions', async(() => {
+  it('should not be possible to create a simple dialog without actions', waitForAsync(() => {
 
     expect(() => {
 
@@ -257,7 +257,7 @@ describe('Service: MdlDialog', () => {
     }).toThrow();
   }));
 
-  xit('should not hide the dialog on esc key  if there is no closing action', async(() => {
+  xit('should not hide the dialog on esc key  if there is no closing action', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -285,7 +285,7 @@ describe('Service: MdlDialog', () => {
 
   }));
 
-  it('should throw if no viewContainerRef is provided', async(() => {
+  it('should throw if no viewContainerRef is provided', waitForAsync(() => {
 
     mdlDialogOutletService.setDefaultViewContainerRef(null);
 
@@ -295,7 +295,7 @@ describe('Service: MdlDialog', () => {
 
   }));
 
-  it('should close the dialog on click on the backdrop if clickOutsideToClose true', async(() => {
+  it('should close the dialog on click on the backdrop if clickOutsideToClose true', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -320,7 +320,7 @@ describe('Service: MdlDialog', () => {
     });
   }));
 
-  it('should not close the dialog on click on the backdrop if clickOutsideToClose true', async(() => {
+  it('should not close the dialog on click on the backdrop if clickOutsideToClose true', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -351,7 +351,7 @@ describe('Service: MdlDialog', () => {
   }));
 
 
-  xit('should disable animations if animate is false', async(() => {
+  xit('should disable animations if animate is false', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -395,7 +395,7 @@ describe('Service: MdlDialog', () => {
 
   });
 
-  it('should open a dialog if openForm is specified', async(() => {
+  it('should open a dialog if openForm is specified', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
@@ -416,7 +416,7 @@ describe('Service: MdlDialog', () => {
 
   }));
 
-  it('should open a dialog if animation is false', async(() => {
+  it('should open a dialog if animation is false', waitForAsync(() => {
 
 
     const fixture = TestBed.createComponent(MdlTestViewComponent);
@@ -436,7 +436,7 @@ describe('Service: MdlDialog', () => {
 
   }));
 
-  it('should open a dialog from a button and close to a mouse event position', async(() => {
+  it('should open a dialog from a button and close to a mouse event position', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
@@ -457,7 +457,7 @@ describe('Service: MdlDialog', () => {
 
   }));
 
-  it('should open a dialog from a OpenCloseRect ', async(() => {
+  it('should open a dialog from a OpenCloseRect ', waitForAsync(() => {
 
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
@@ -477,7 +477,7 @@ describe('Service: MdlDialog', () => {
 
   }));
 
-  it('should emit an event when the first dialog instance is opened', async(() => {
+  it('should emit an event when the first dialog instance is opened', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 
@@ -500,7 +500,7 @@ describe('Service: MdlDialog', () => {
     expect(spy.calls.count()).toEqual(1);
   }));
 
-  it('should emit an event when the last dialog instance is closed', async(() => {
+  it('should emit an event when the last dialog instance is closed', waitForAsync(() => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
     fixture.detectChanges();
 

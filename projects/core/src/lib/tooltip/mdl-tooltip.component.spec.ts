@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {
   MdlSimpleTooltipComponent,
@@ -62,7 +62,7 @@ describe('Component: MdlTooltip', () => {
 
   });
 
-  it('should add create a simpletooltipcomponent for the mdl-tooltip directive with text', async(() => {
+  it('should add create a simpletooltipcomponent for the mdl-tooltip directive with text', waitForAsync(() => {
 
     TestBed.overrideComponent(MdlTestTooltipComponent, {
       set: {

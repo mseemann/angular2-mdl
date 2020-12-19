@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {PopoverComponent} from './popover.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
@@ -11,7 +11,7 @@ describe('PopoverComponent', () => {
   let component: PopoverComponent;
   let fixture: ComponentFixture<PopoverComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [MdlModule, MdlPopoverModule, RouterTestingModule, NoopAnimationsModule],
