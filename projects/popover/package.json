@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/popover",
-  "version": "10.0.1",
+  "version": "11.0.0",
   "description": "Angular Material Design Lite - Popover Component",
   "repository": {
     "type": "git",
@@ -11,6 +11,7 @@
     "angular8",
     "angular9",
     "angular10",
+    "angular11",
     "angular",
     "material design lite",
     "popover"
@@ -21,7 +22,7 @@
   },
   "homepage": "https://github.com/mseemann/angular2-mdl/tree/master/src/projects/popover",
   "peerDependencies": {
-    "@angular-mdl/core": ">=9.0.0"
+    "@angular-mdl/core": ">=11.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

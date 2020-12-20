@@ -1,11 +1,11 @@
 {
   "name": "@angular-mdl/core",
-  "version": "10.0.1",
+  "version": "11.0.0",
   "license": "MIT",
   "description": "Angular components, directives and styles based on material design lite https://getmdl.io.",
   "homepage": "http://mseemann.io/angular2-mdl/",
   "keywords": [
-    "angular 2 4 5 6 7 8 9 10",
+    "angular 2 4 5 6 7 8 9 10 11",
     "angular2",
     "angular4",
     "angular5",
@@ -14,6 +14,7 @@
     "angular8",
     "angular9",
     "angular10",
+    "angular11",
     "angular",
     "material",
     "material design",
@@ -33,9 +34,9 @@
     "toggle"
   ],
   "peerDependencies": {
-    "@angular/core": ">=10.0.0 <11.0.0",
-    "@angular/common": ">=10.0.0 <11.0.0",
-    "@angular/forms": ">=10.0.0 <11.0.0"
+    "@angular/core": ">=11.0.0 <12.0.0",
+    "@angular/common": ">=11.0.0 <12.0.0",
+    "@angular/forms": ">=11.0.0 <12.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
