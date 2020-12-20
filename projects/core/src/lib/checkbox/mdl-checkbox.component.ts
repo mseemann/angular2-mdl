@@ -10,41 +10,42 @@ import {
   Output,
   Provider,
   Renderer2,
-  ViewEncapsulation
-} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {toBoolean} from '../common/boolean-property';
-import {noop} from '../common/noop';
+  ViewEncapsulation,
+} from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { toBoolean } from "../common/boolean-property";
+import { noop } from "../common/noop";
 
-
-const IS_FOCUSED = 'is-focused';
+const IS_FOCUSED = "is-focused";
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => MdlCheckboxComponent),
-  multi: true
+  multi: true,
 };
 
 @Component({
-  selector: 'mdl-checkbox',
+  selector: "mdl-checkbox",
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
   template: `
-    <input type="checkbox" class="mdl-checkbox__input"
-           (focus)="onFocus()"
-           (blur)="onBlur()"
-           [disabled]="disabled"
-           [attr.tabindex]="tabindex"
-           [ngModel]="value">
+    <input
+      type="checkbox"
+      class="mdl-checkbox__input"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      [disabled]="disabled"
+      [attr.tabindex]="tabindex"
+      [ngModel]="value"
+    />
     <span class="mdl-checkbox__label"><ng-content></ng-content></span>
     <span class="mdl-checkbox__focus-helper"></span>
     <span class="mdl-checkbox__box-outline">
-    <span class="mdl-checkbox__tick-outline"></span>
-  </span>
+      <span class="mdl-checkbox__tick-outline"></span>
+    </span>
   `,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
-
   @Input()
   tabindex: number = null;
 
@@ -52,10 +53,10 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   @Output()
   change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @HostBinding('class.mdl-checkbox')
+  @HostBinding("class.mdl-checkbox")
   isCheckbox = true;
 
-  @HostBinding('class.is-upgraded')
+  @HostBinding("class.is-upgraded")
   isUpgraded = true;
 
   private readonly el: HTMLElement;
@@ -73,7 +74,7 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   }
 
   @Input()
-  @HostBinding('class.is-checked')
+  @HostBinding("class.is-checked")
   set value(v: boolean) {
     this.internalValue = v;
     this.onChangeCallback(v);
@@ -85,12 +86,12 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   }
 
   @Input()
-  @HostBinding('class.is-disabled')
+  @HostBinding("class.is-disabled")
   set disabled(value: boolean) {
     this.internalDisabled = toBoolean(value);
   }
 
-  @HostListener('click')
+  @HostListener("click")
   onClick(): void {
     if (this.disabled) {
       return;
@@ -122,6 +123,4 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
     this.renderer.removeClass(this.el, IS_FOCUSED);
     this.onTouchedCallback();
   }
-
 }
-

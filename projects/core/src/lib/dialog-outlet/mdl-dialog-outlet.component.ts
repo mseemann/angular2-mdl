@@ -1,5 +1,4 @@
-import {Component, ViewContainerRef} from '@angular/core';
-
+import { Component, ViewContainerRef } from "@angular/core";
 
 // the componnet is used outside the app-root. injecting MdlDialogService would not work
 // this component is not exported - needs to be instanciated by
@@ -7,15 +6,12 @@ import {Component, ViewContainerRef} from '@angular/core';
 @Component({
   // eslint-disable-next-line
   selector: 'dialog-outlet',
-  template: ''
+  template: "",
 })
 export class MdlDialogOutletComponent {
-
-  constructor(public readonly vCRef: ViewContainerRef) {
-  }
+  constructor(public readonly vCRef: ViewContainerRef) {}
 
   get viewContainerRef(): ViewContainerRef {
     return this.vCRef;
   }
 }
-

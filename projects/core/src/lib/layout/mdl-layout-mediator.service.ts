@@ -1,12 +1,11 @@
-import {Injectable} from '@angular/core';
-import {MdlLayoutTabPanelComponent} from './mdl-layout-tab-panel.component';
-import {Observable, Subject} from 'rxjs';
+import { Injectable } from "@angular/core";
+import { MdlLayoutTabPanelComponent } from "./mdl-layout-tab-panel.component";
+import { Observable, Subject } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MdlLayoutMediatorService {
-
   private tabMouseoverSubject = new Subject<MdlLayoutTabPanelComponent>();
   private tabMouseoutSubject = new Subject<MdlLayoutTabPanelComponent>();
   private tabSelectedSubject = new Subject<MdlLayoutTabPanelComponent>();

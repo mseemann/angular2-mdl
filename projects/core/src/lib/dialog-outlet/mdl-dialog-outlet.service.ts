@@ -4,18 +4,16 @@ import {
   EventEmitter,
   Injectable,
   NgZone,
-  ViewContainerRef
-} from '@angular/core';
-import {MdlDialogOutletComponent} from './mdl-dialog-outlet.component';
-import {MdlBackdropOverlayComponent} from './mdl-backdrop-overlay.component';
-import {take} from 'rxjs/operators';
-
+  ViewContainerRef,
+} from "@angular/core";
+import { MdlDialogOutletComponent } from "./mdl-dialog-outlet.component";
+import { MdlBackdropOverlayComponent } from "./mdl-backdrop-overlay.component";
+import { take } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MdlDialogOutletService {
-
   backdropClickEmitter: EventEmitter<void> = new EventEmitter();
 
   private viewContainerRefInternal: ViewContainerRef;
@@ -24,8 +22,8 @@ export class MdlDialogOutletService {
   constructor(
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
-    ngZone: NgZone) {
-
+    ngZone: NgZone
+  ) {
     let dialogOutletCompRef = null;
     ngZone.onStable.pipe(take(1)).subscribe(() => {
       try {
@@ -60,8 +58,12 @@ export class MdlDialogOutletService {
     this.viewContainerRefInternal = value;
 
     if (this.viewContainerRefInternal) {
-      const cFactory = this.componentFactoryResolver.resolveComponentFactory(MdlBackdropOverlayComponent);
-      this.backdropComponent = this.viewContainerRefInternal.createComponent(cFactory).instance;
+      const cFactory = this.componentFactoryResolver.resolveComponentFactory(
+        MdlBackdropOverlayComponent
+      );
+      this.backdropComponent = this.viewContainerRefInternal.createComponent(
+        cFactory
+      ).instance;
       this.backdropComponent.clickEmitter.subscribe(() => {
         this.backdropClickEmitter.emit();
       });

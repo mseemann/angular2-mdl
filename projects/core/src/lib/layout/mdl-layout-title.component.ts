@@ -1,12 +1,11 @@
-import {Component, HostBinding, ViewEncapsulation} from '@angular/core';
-
+import { Component, HostBinding, ViewEncapsulation } from "@angular/core";
 
 @Component({
-  selector: 'mdl-layout-title',
-  template: '<ng-content></ng-content>',
-  encapsulation: ViewEncapsulation.None
+  selector: "mdl-layout-title",
+  template: "<ng-content></ng-content>",
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlLayoutTitleComponent {
-  @HostBinding('class.mdl-layout-title')
+  @HostBinding("class.mdl-layout-title")
   isLayoutTitle = true;
 }

@@ -1,4 +1,4 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from "@angular/core";
 import {
   MdlListComponent,
   MdlListItemAvatarDirective,
@@ -9,8 +9,8 @@ import {
   MdlListItemSecondaryContentComponent,
   MdlListItemSecondaryInfoComponent,
   MdlListItemSubTitleComponent,
-  MdlListItemTextBodyComponent
-} from './mdl-list.component';
+  MdlListItemTextBodyComponent,
+} from "./mdl-list.component";
 
 const MDL_LIST_DIRECTIVES = [
   MdlListComponent,
@@ -22,9 +22,8 @@ const MDL_LIST_DIRECTIVES = [
   MdlListItemSecondaryActionComponent,
   MdlListItemSubTitleComponent,
   MdlListItemSecondaryInfoComponent,
-  MdlListItemTextBodyComponent
+  MdlListItemTextBodyComponent,
 ];
-
 
 @NgModule({
   imports: [],
@@ -35,9 +34,9 @@ export class MdlListModule {
   static forRoot(): ModuleWithProviders<MdlListModule> {
     return {
       ngModule: MdlListModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-list.component';
+export * from "./mdl-list.component";

@@ -1,11 +1,10 @@
-import {InternalMdlDialogReference} from './internal-dialog-reference';
-import {Observable} from 'rxjs';
+import { InternalMdlDialogReference } from "./internal-dialog-reference";
+import { Observable } from "rxjs";
 
 /**
  * The reference to the created and displayed dialog.
  */
 export class MdlDialogReference {
-
   constructor(private internaleRef: InternalMdlDialogReference) {
     internaleRef.dialogRef = this;
   }

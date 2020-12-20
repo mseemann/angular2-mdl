@@ -1,13 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MdlFabMenuComponent} from './fab-menu.component';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { MdlFabMenuComponent } from "./fab-menu.component";
 
 @Component({
-  selector: 'mdl-fab-menu-item',
-  templateUrl: 'fab-menu-item.html',
-  styleUrls: ['fab-menu-item.scss']
+  selector: "mdl-fab-menu-item",
+  templateUrl: "fab-menu-item.html",
+  styleUrls: ["fab-menu-item.scss"],
 })
 export class MdlFabMenuItemComponent implements OnInit {
-
   @Input()
   label: string;
   @Input()
@@ -24,5 +23,4 @@ export class MdlFabMenuItemComponent implements OnInit {
   ngOnInit(): void {
     this.isHoovering = false;
   }
-
 }

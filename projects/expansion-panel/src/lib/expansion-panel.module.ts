@@ -1,4 +1,4 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from "@angular/core";
 import {
   MdlExpansionPanelBodyComponent,
   MdlExpansionPanelComponent,
@@ -7,10 +7,9 @@ import {
   MdlExpansionPanelGroupComponent,
   MdlExpansionPanelHeaderComponent,
   MdlExpansionPanelHeaderListContentComponent,
-  MdlExpansionPanelHeaderSecondaryContentComponent
-} from './expansion-panel.component';
-import {CommonModule} from '@angular/common';
-
+  MdlExpansionPanelHeaderSecondaryContentComponent,
+} from "./expansion-panel.component";
+import { CommonModule } from "@angular/common";
 
 const MDL_EXPANSION_PANEL_DIRECTIVES = [
   MdlExpansionPanelGroupComponent,
@@ -20,7 +19,7 @@ const MDL_EXPANSION_PANEL_DIRECTIVES = [
   MdlExpansionPanelHeaderSecondaryContentComponent,
   MdlExpansionPanelContentComponent,
   MdlExpansionPanelBodyComponent,
-  MdlExpansionPanelFooterComponent
+  MdlExpansionPanelFooterComponent,
 ];
 
 @NgModule({
@@ -32,7 +31,7 @@ export class MdlExpansionPanelModule {
   static forRoot(): ModuleWithProviders<MdlExpansionPanelModule> {
     return {
       ngModule: MdlExpansionPanelModule,
-      providers: []
+      providers: [],
     };
   }
 }

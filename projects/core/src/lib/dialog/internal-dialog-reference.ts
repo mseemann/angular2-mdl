@@ -1,9 +1,9 @@
-import {ComponentRef} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import { ComponentRef } from "@angular/core";
+import { Observable, Subject } from "rxjs";
 
-import {IMdlDialogConfiguration} from './mdl-dialog-configuration';
-import {MdlDialogReference} from './mdl-dialog-reference';
-import {MdlDialogHostComponent} from './mdl-dialog-host.component';
+import { IMdlDialogConfiguration } from "./mdl-dialog-configuration";
+import { MdlDialogReference } from "./mdl-dialog-reference";
+import { MdlDialogHostComponent } from "./mdl-dialog-host.component";
 
 /**
  * Internal representation of the dialog ref. the service
@@ -11,7 +11,6 @@ import {MdlDialogHostComponent} from './mdl-dialog-host.component';
  * and internal implementations.
  */
 export class InternalMdlDialogReference {
-
   hostDialogComponentRef: ComponentRef<MdlDialogHostComponent>;
   closeCallback: () => void;
   isModal = false;

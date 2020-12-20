@@ -1,28 +1,25 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Title} from '@angular/platform-browser';
-import {AbstractDemoComponent} from '../abstract-demo.component';
-import {MdlTextFieldComponent} from '@angular-mdl/core';
-
+import { AfterViewInit, Component, ViewChild } from "@angular/core";
+import { flyInOutTrigger } from "../animations/flyInOutTrigger-animation";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
+import { AbstractDemoComponent } from "../abstract-demo.component";
+import { MdlTextFieldComponent } from "@angular-mdl/core";
 
 @Component({
-  selector: 'demo-textfield',
-  animations: [
-    flyInOutTrigger
-  ],
-  templateUrl: 'textfield.component.html'
+  selector: "demo-textfield",
+  animations: [flyInOutTrigger],
+  templateUrl: "textfield.component.html",
 })
-export class TextFieldDemoComponent extends AbstractDemoComponent implements AfterViewInit {
-
-  @ViewChild('theFirstTextfield', {static: true}) tf: MdlTextFieldComponent;
+export class TextFieldDemoComponent
+  extends AbstractDemoComponent
+  implements AfterViewInit {
+  @ViewChild("theFirstTextfield", { static: true }) tf: MdlTextFieldComponent;
   text1: string;
   text2: string;
   text3: string;
   text4: string;
   text5: string;
   text6: string;
-
 
   public number1: number = null;
 
@@ -35,15 +32,15 @@ export class TextFieldDemoComponent extends AbstractDemoComponent implements Aft
   }
 
   public onBlur(event: FocusEvent): void {
-    console.log('blur', event);
+    console.log("blur", event);
   }
 
   public onFocus(event: FocusEvent): void {
-    console.log('focus', event);
+    console.log("focus", event);
   }
 
   public onKeyup(event: KeyboardEvent): void {
-    console.log('keyup', event);
+    console.log("keyup", event);
   }
 
   public ngAfterViewInit(): void {

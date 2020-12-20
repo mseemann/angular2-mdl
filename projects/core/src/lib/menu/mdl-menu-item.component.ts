@@ -6,23 +6,21 @@ import {
   HostListener,
   Inject,
   Input,
-  ViewEncapsulation
-} from '@angular/core';
-import {MdlMenuComponent} from './mdl-menu.component';
-import {toBoolean} from '../common/boolean-property';
-import {callNative} from '../common/native-support';
-
+  ViewEncapsulation,
+} from "@angular/core";
+import { MdlMenuComponent } from "./mdl-menu.component";
+import { toBoolean } from "../common/boolean-property";
+import { callNative } from "../common/native-support";
 
 @Component({
-  selector: 'mdl-menu-item',
-  template: '<ng-content></ng-content>',
-  encapsulation: ViewEncapsulation.None
+  selector: "mdl-menu-item",
+  template: "<ng-content></ng-content>",
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlMenuItemComponent {
-
-  @HostBinding('tabindex')
+  @HostBinding("tabindex")
   tabindex = -1;
-  @HostBinding('class.mdl-menu__item')
+  @HostBinding("class.mdl-menu__item")
   isMenuItem = true;
 
   element: HTMLElement;
@@ -32,7 +30,9 @@ export class MdlMenuItemComponent {
   // forwardRef is needed because of he circular dependency menu queries menuitems; menuitem needs the parent
   constructor(
     private elementRef: ElementRef,
-    @Inject(forwardRef(() => MdlMenuComponent)) private mdlMenu: MdlMenuComponent) {
+    @Inject(forwardRef(() => MdlMenuComponent))
+    private mdlMenu: MdlMenuComponent
+  ) {
     this.element = elementRef.nativeElement;
   }
 
@@ -45,7 +45,7 @@ export class MdlMenuItemComponent {
     this.disabledIntern = toBoolean(value);
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener("click", ["$event"])
   onClick($event: Event): void {
     $event.stopPropagation();
     if (this.disabled) {
@@ -59,14 +59,13 @@ export class MdlMenuItemComponent {
   // But if we register a touchstart event - safari will no longer convert touch events to click events.
   // So we need to convert touch to click and the user still needs to register a (click) listener to be
   // informed if the menu item has clicked.
-  @HostListener('touchstart', ['$event'])
+  @HostListener("touchstart", ["$event"])
   onTouch($event: Event): void {
     // ensure that this event is totally consumed
     $event.stopPropagation();
     $event.preventDefault();
 
-    const event = new MouseEvent('click', {bubbles: true});
-    callNative(this.element, 'dispatchEvent', event);
+    const event = new MouseEvent("click", { bubbles: true });
+    callNative(this.element, "dispatchEvent", event);
   }
-
 }

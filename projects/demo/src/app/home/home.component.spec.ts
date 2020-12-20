@@ -1,22 +1,28 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import {HomeComponent} from './home.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MdlModule} from '@angular-mdl/core';
-import {FormsModule} from '@angular/forms';
+import { HomeComponent } from "./home.component";
+import { RouterTestingModule } from "@angular/router/testing";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { MdlModule } from "@angular-mdl/core";
+import { FormsModule } from "@angular/forms";
 
-describe('HomeComponent', () => {
+describe("HomeComponent", () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule, NoopAnimationsModule, MdlModule, FormsModule],
-      declarations: [HomeComponent]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          RouterTestingModule,
+          NoopAnimationsModule,
+          MdlModule,
+          FormsModule,
+        ],
+        declarations: [HomeComponent],
+      }).compileComponents();
     })
-      .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
@@ -24,7 +30,7 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

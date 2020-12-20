@@ -1,8 +1,7 @@
-import {TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {Component} from '@angular/core';
-import {MdlListModule} from './mdl-list.module';
-
+import { TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { Component } from "@angular/core";
+import { MdlListModule } from "./mdl-list.module";
 
 @Component({
   // eslint-disable-next-line
@@ -19,19 +18,14 @@ import {MdlListModule} from './mdl-list.module';
         <mdl-list-item-secondary-content>
           <mdl-list-item-secondary-info></mdl-list-item-secondary-info>
         </mdl-list-item-secondary-content>
-        <mdl-list-item-secondary-action>
-
-        </mdl-list-item-secondary-action>
+        <mdl-list-item-secondary-action> </mdl-list-item-secondary-action>
       </mdl-list-item>
     </mdl-list>
-  `
+  `,
 })
-class TestAppComponent {
-}
+class TestAppComponent {}
 
-
-describe('Components: MdlList*', () => {
-
+describe("Components: MdlList*", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MdlListModule.forRoot()],
@@ -39,134 +33,169 @@ describe('Components: MdlList*', () => {
     });
   });
 
-  it('should add the css class mdl-list to the element', () => {
-
+  it("should add the css class mdl-list to the element", () => {
     const fixture = TestBed.createComponent(TestAppComponent);
     fixture.detectChanges();
 
-    const mdlListElement = fixture.debugElement.query(By.css('mdl-list'));
-    expect(mdlListElement
-      .nativeElement.classList.contains('mdl-list')).toBe(true);
+    const mdlListElement = fixture.debugElement.query(By.css("mdl-list"));
+    expect(mdlListElement.nativeElement.classList.contains("mdl-list")).toBe(
+      true
+    );
 
-    const mdlListItemElement = fixture.debugElement.query(By.css('mdl-list-item'));
-    expect(mdlListItemElement
-      .nativeElement.classList.contains('mdl-list__item')).toBe(true);
+    const mdlListItemElement = fixture.debugElement.query(
+      By.css("mdl-list-item")
+    );
+    expect(
+      mdlListItemElement.nativeElement.classList.contains("mdl-list__item")
+    ).toBe(true);
 
-    const mdlListItemPrimaryContentElement = fixture.debugElement.query(By.css('mdl-list-item-primary-content'));
-    expect(mdlListItemPrimaryContentElement
-      .nativeElement.classList.contains('mdl-list__item-primary-content')).toBe(true);
+    const mdlListItemPrimaryContentElement = fixture.debugElement.query(
+      By.css("mdl-list-item-primary-content")
+    );
+    expect(
+      mdlListItemPrimaryContentElement.nativeElement.classList.contains(
+        "mdl-list__item-primary-content"
+      )
+    ).toBe(true);
 
-    const mdlListItemSecondaryContentElement = fixture.debugElement.query(By.css('mdl-list-item-secondary-content'));
-    expect(mdlListItemSecondaryContentElement
-      .nativeElement.classList.contains('mdl-list__item-secondary-content')).toBe(true);
+    const mdlListItemSecondaryContentElement = fixture.debugElement.query(
+      By.css("mdl-list-item-secondary-content")
+    );
+    expect(
+      mdlListItemSecondaryContentElement.nativeElement.classList.contains(
+        "mdl-list__item-secondary-content"
+      )
+    ).toBe(true);
 
-    const mdlListIconElement = fixture.debugElement.query(By.css('#icon1'));
-    expect(mdlListIconElement
-      .nativeElement.classList.contains('mdl-list__item-icon')).toBe(true);
+    const mdlListIconElement = fixture.debugElement.query(By.css("#icon1"));
+    expect(
+      mdlListIconElement.nativeElement.classList.contains("mdl-list__item-icon")
+    ).toBe(true);
 
-    const mdlListIconAvatarElement = fixture.debugElement.query(By.css('#icon2'));
-    expect(mdlListIconAvatarElement
-      .nativeElement.classList.contains('mdl-list__item-avatar')).toBe(true);
+    const mdlListIconAvatarElement = fixture.debugElement.query(
+      By.css("#icon2")
+    );
+    expect(
+      mdlListIconAvatarElement.nativeElement.classList.contains(
+        "mdl-list__item-avatar"
+      )
+    ).toBe(true);
 
-    const mdlListItemSecondaryActionElement = fixture.debugElement.query(By.css('mdl-list-item-secondary-action'));
-    expect(mdlListItemSecondaryActionElement
-      .nativeElement.classList.contains('mdl-list__item-secondary-action')).toBe(true);
+    const mdlListItemSecondaryActionElement = fixture.debugElement.query(
+      By.css("mdl-list-item-secondary-action")
+    );
+    expect(
+      mdlListItemSecondaryActionElement.nativeElement.classList.contains(
+        "mdl-list__item-secondary-action"
+      )
+    ).toBe(true);
 
-    const mdlListItemSubTitleElement = fixture.debugElement.query(By.css('mdl-list-item-sub-title'));
-    expect(mdlListItemSubTitleElement
-      .nativeElement.classList.contains('mdl-list__item-sub-title')).toBe(true);
+    const mdlListItemSubTitleElement = fixture.debugElement.query(
+      By.css("mdl-list-item-sub-title")
+    );
+    expect(
+      mdlListItemSubTitleElement.nativeElement.classList.contains(
+        "mdl-list__item-sub-title"
+      )
+    ).toBe(true);
 
-    const mdlListItemSecondaryInfoElement = fixture.debugElement.query(By.css('mdl-list-item-secondary-info'));
-    expect(mdlListItemSecondaryInfoElement
-      .nativeElement.classList.contains('mdl-list__item-secondary-info')).toBe(true);
+    const mdlListItemSecondaryInfoElement = fixture.debugElement.query(
+      By.css("mdl-list-item-secondary-info")
+    );
+    expect(
+      mdlListItemSecondaryInfoElement.nativeElement.classList.contains(
+        "mdl-list__item-secondary-info"
+      )
+    ).toBe(true);
 
-    const mdlListItemtextBodyElement = fixture.debugElement.query(By.css('mdl-list-item-text-body'));
-    expect(mdlListItemtextBodyElement
-      .nativeElement.classList.contains('mdl-list__item-text-body')).toBe(true);
-
+    const mdlListItemtextBodyElement = fixture.debugElement.query(
+      By.css("mdl-list-item-text-body")
+    );
+    expect(
+      mdlListItemtextBodyElement.nativeElement.classList.contains(
+        "mdl-list__item-text-body"
+      )
+    ).toBe(true);
   });
 
-  it('should throw if mdl-list-item-primary-content has no mdl-list-item parent', () => {
+  it("should throw if mdl-list-item-primary-content has no mdl-list-item parent", () => {
     TestBed.overrideComponent(TestAppComponent, {
       set: {
-        template: '<mdl-list-item-primary-content></mdl-list-item-primary-content>'
-      }
-    });
-    const fixture = TestBed.createComponent(TestAppComponent);
-
-    expect(() => fixture.detectChanges()).toThrow();
-
-  });
-
-  it('should throw if mdl-list-item-secondary-content has no mdl-list-item parent', () => {
-    TestBed.overrideComponent(TestAppComponent, {
-      set: {
-        template: '<mdl-list-item-secondary-content></mdl-list-item-secondary-content>'
-      }
-    });
-    const fixture = TestBed.createComponent(TestAppComponent);
-
-    expect(() => fixture.detectChanges()).toThrow();
-
-  });
-
-  it('should throw if mdl-list-item-secondary-action has no mdl-list-item parent', () => {
-    TestBed.overrideComponent(TestAppComponent, {
-      set: {
-        template: '<mdl-list-item-secondary-action></mdl-list-item-secondary-action>'
-      }
-    });
-    const fixture = TestBed.createComponent(TestAppComponent);
-
-    expect(() => fixture.detectChanges()).toThrow();
-
-  });
-
-  it('should throw if mdl-list-item-sub-title has no mdl-list-item-primary-content', () => {
-    TestBed.overrideComponent(TestAppComponent, {
-      set: {
-        template: '<mdl-list-item-sub-title></mdl-list-item-sub-title>'
-      }
-    });
-    const fixture = TestBed.createComponent(TestAppComponent);
-
-    expect(() => fixture.detectChanges()).toThrow();
-
-  });
-
-  it('should throw if mdl-list-item-secondary-info has no mdl-list-item-secondary-content', () => {
-    TestBed.overrideComponent(TestAppComponent, {
-      set: {
-        template: '<mdl-list-item-secondary-info></mdl-list-item-secondary-info>'
-      }
-    });
-    const fixture = TestBed.createComponent(TestAppComponent);
-
-    expect(() => fixture.detectChanges()).toThrow();
-
-  });
-
-  it('should throw if mdl-list-item-text-body has no mdl-list-item', () => {
-    TestBed.overrideComponent(TestAppComponent, {
-      set: {
-        template: '<mdl-list-item-text-body></mdl-list-item-text-body>'
-      }
-    });
-    const fixture = TestBed.createComponent(TestAppComponent);
-
-    expect(() => fixture.detectChanges()).toThrow();
-
-  });
-
-  it('should only support max 3 lines', () => {
-    TestBed.overrideComponent(TestAppComponent, {
-      set: {
-        template: '<mdl-list-item lines="4"></mdl-list-item>'
-      }
+        template:
+          "<mdl-list-item-primary-content></mdl-list-item-primary-content>",
+      },
     });
     const fixture = TestBed.createComponent(TestAppComponent);
 
     expect(() => fixture.detectChanges()).toThrow();
   });
 
+  it("should throw if mdl-list-item-secondary-content has no mdl-list-item parent", () => {
+    TestBed.overrideComponent(TestAppComponent, {
+      set: {
+        template:
+          "<mdl-list-item-secondary-content></mdl-list-item-secondary-content>",
+      },
+    });
+    const fixture = TestBed.createComponent(TestAppComponent);
+
+    expect(() => fixture.detectChanges()).toThrow();
+  });
+
+  it("should throw if mdl-list-item-secondary-action has no mdl-list-item parent", () => {
+    TestBed.overrideComponent(TestAppComponent, {
+      set: {
+        template:
+          "<mdl-list-item-secondary-action></mdl-list-item-secondary-action>",
+      },
+    });
+    const fixture = TestBed.createComponent(TestAppComponent);
+
+    expect(() => fixture.detectChanges()).toThrow();
+  });
+
+  it("should throw if mdl-list-item-sub-title has no mdl-list-item-primary-content", () => {
+    TestBed.overrideComponent(TestAppComponent, {
+      set: {
+        template: "<mdl-list-item-sub-title></mdl-list-item-sub-title>",
+      },
+    });
+    const fixture = TestBed.createComponent(TestAppComponent);
+
+    expect(() => fixture.detectChanges()).toThrow();
+  });
+
+  it("should throw if mdl-list-item-secondary-info has no mdl-list-item-secondary-content", () => {
+    TestBed.overrideComponent(TestAppComponent, {
+      set: {
+        template:
+          "<mdl-list-item-secondary-info></mdl-list-item-secondary-info>",
+      },
+    });
+    const fixture = TestBed.createComponent(TestAppComponent);
+
+    expect(() => fixture.detectChanges()).toThrow();
+  });
+
+  it("should throw if mdl-list-item-text-body has no mdl-list-item", () => {
+    TestBed.overrideComponent(TestAppComponent, {
+      set: {
+        template: "<mdl-list-item-text-body></mdl-list-item-text-body>",
+      },
+    });
+    const fixture = TestBed.createComponent(TestAppComponent);
+
+    expect(() => fixture.detectChanges()).toThrow();
+  });
+
+  it("should only support max 3 lines", () => {
+    TestBed.overrideComponent(TestAppComponent, {
+      set: {
+        template: '<mdl-list-item lines="4"></mdl-list-item>',
+      },
+    });
+    const fixture = TestBed.createComponent(TestAppComponent);
+
+    expect(() => fixture.detectChanges()).toThrow();
+  });
 });

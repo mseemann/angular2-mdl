@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {AbstractDemoComponent} from '../abstract-demo.component';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Title} from '@angular/platform-browser';
-import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { AbstractDemoComponent } from "../abstract-demo.component";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
+import { flyInOutTrigger } from "../animations/flyInOutTrigger-animation";
 
 /* eslint-disable */
 

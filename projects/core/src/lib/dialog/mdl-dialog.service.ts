@@ -8,22 +8,21 @@ import {
   StaticProvider,
   TemplateRef,
   Type,
-  ViewContainerRef
-} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+  ViewContainerRef,
+} from "@angular/core";
+import { Observable, Subject } from "rxjs";
 
-import {MdlSimpleDialogComponent} from './mdl-simple-dialog.component';
-import {MdlDialogHostComponent} from './mdl-dialog-host.component';
+import { MdlSimpleDialogComponent } from "./mdl-simple-dialog.component";
+import { MdlDialogHostComponent } from "./mdl-dialog-host.component";
 import {
   IMdlCustomDialogConfiguration,
   IMdlDialogConfiguration,
-  IMdlSimpleDialogConfiguration
-} from './mdl-dialog-configuration';
-import {InternalMdlDialogReference} from './internal-dialog-reference';
-import {MdlDialogOutletService} from '../dialog-outlet/mdl-dialog-outlet.service';
-import {MdlDialogReference} from './mdl-dialog-reference';
-import {MDL_CONFIGUARTION, MIN_DIALOG_Z_INDEX} from './config';
-
+  IMdlSimpleDialogConfiguration,
+} from "./mdl-dialog-configuration";
+import { InternalMdlDialogReference } from "./internal-dialog-reference";
+import { MdlDialogOutletService } from "../dialog-outlet/mdl-dialog-outlet.service";
+import { MdlDialogReference } from "./mdl-dialog-reference";
+import { MDL_CONFIGUARTION, MIN_DIALOG_Z_INDEX } from "./config";
 
 /**
  * The MdlDialogService is used to open different kind of dialogs. SimpleDialogs and Custom Dialogs.
@@ -32,10 +31,9 @@ import {MDL_CONFIGUARTION, MIN_DIALOG_Z_INDEX} from './config';
  */
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MdlDialogService {
-
   /**
    * Emits an event when either all modals are closed, or one gets opened.
    *
@@ -49,8 +47,8 @@ export class MdlDialogService {
     private componentFactoryResolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
     private mdlDialogOutletService: MdlDialogOutletService,
-    private injector: Injector) {
-
+    private injector: Injector
+  ) {
     this.mdlDialogOutletService.backdropClickEmitter.subscribe(() => {
       this.onBackdropClick();
     });
@@ -64,7 +62,11 @@ export class MdlDialogService {
    * @param title The optional title of the dialog
    * returns An Observable that is called if the user hits the Ok button.
    */
-  public alert(alertMessage: string, okText = 'Ok', title?: string): Observable<void> {
+  public alert(
+    alertMessage: string,
+    okText = "Ok",
+    title?: string
+  ): Observable<void> {
     const result: Subject<void> = new Subject();
 
     this.showDialog({
@@ -75,10 +77,11 @@ export class MdlDialogService {
           handler: () => {
             result.next(null);
             result.complete();
-          }, text: okText
-        }
+          },
+          text: okText,
+        },
       ],
-      isModal: true
+      isModal: true,
     });
 
     return result;
@@ -95,10 +98,10 @@ export class MdlDialogService {
    */
   public confirm(
     question: string,
-    declineText = 'Cancel',
-    confirmText = 'Ok',
-    title?: string): Observable<void> {
-
+    declineText = "Cancel",
+    confirmText = "Ok",
+    title?: string
+  ): Observable<void> {
     const result: Subject<void> = new Subject();
 
     this.showDialog({
@@ -109,16 +112,18 @@ export class MdlDialogService {
           handler: () => {
             result.next(null);
             result.complete();
-          }, text: confirmText
+          },
+          text: confirmText,
         },
         {
           handler: () => {
             result.error(null);
-
-          }, text: declineText, isClosingAction: true
-        }
+          },
+          text: declineText,
+          isClosingAction: true,
+        },
       ],
-      isModal: true
+      isModal: true,
     });
 
     return result.asObservable();
@@ -130,17 +135,21 @@ export class MdlDialogService {
    * @param config The simple dialog configuration.
    * returns An Observable that returns the MdlDialogReference.
    */
-  public showDialog(config: IMdlSimpleDialogConfiguration): Observable<MdlDialogReference> {
-
+  public showDialog(
+    config: IMdlSimpleDialogConfiguration
+  ): Observable<MdlDialogReference> {
     if (config.actions.length === 0) {
-      throw new Error('a dialog mus have at least one action');
+      throw new Error("a dialog mus have at least one action");
     }
 
     const internalDialogRef = new InternalMdlDialogReference(config);
 
     const providers = [
-      {provide: MdlDialogReference, useValue: new MdlDialogReference(internalDialogRef)},
-      {provide: MDL_CONFIGUARTION, useValue: config}
+      {
+        provide: MdlDialogReference,
+        useValue: new MdlDialogReference(internalDialogRef),
+      },
+      { provide: MDL_CONFIGUARTION, useValue: config },
     ];
 
     const hostComponentRef = this.createHostDialog(internalDialogRef, config);
@@ -148,7 +157,8 @@ export class MdlDialogService {
     this.createComponentInstance(
       hostComponentRef.instance.dialogTarget,
       providers,
-      MdlSimpleDialogComponent);
+      MdlSimpleDialogComponent
+    );
 
     return this.showHostDialog(internalDialogRef.dialogRef, hostComponentRef);
   }
@@ -159,12 +169,16 @@ export class MdlDialogService {
    * @param config The custom dialog configuration.
    * returns An Observable that returns the MdlDialogReference.
    */
-  public showCustomDialog(config: IMdlCustomDialogConfiguration): Observable<MdlDialogReference> {
-
+  public showCustomDialog(
+    config: IMdlCustomDialogConfiguration
+  ): Observable<MdlDialogReference> {
     const internalDialogRef = new InternalMdlDialogReference(config);
 
     const providers: StaticProvider[] = [
-      {provide: MdlDialogReference, useValue: new MdlDialogReference(internalDialogRef)}
+      {
+        provide: MdlDialogReference,
+        useValue: new MdlDialogReference(internalDialogRef),
+      },
     ];
 
     if (config.providers) {
@@ -173,13 +187,19 @@ export class MdlDialogService {
 
     const hostComponentRef = this.createHostDialog(internalDialogRef, config);
 
-    this.createComponentInstance(hostComponentRef.instance.dialogTarget, providers, config.component);
+    this.createComponentInstance(
+      hostComponentRef.instance.dialogTarget,
+      providers,
+      config.component
+    );
 
     return this.showHostDialog(internalDialogRef.dialogRef, hostComponentRef);
   }
 
-  public showDialogTemplate(template: TemplateRef<unknown>, config: IMdlDialogConfiguration): Observable<MdlDialogReference> {
-
+  public showDialogTemplate(
+    template: TemplateRef<unknown>,
+    config: IMdlDialogConfiguration
+  ): Observable<MdlDialogReference> {
     const internalDialogRef = new InternalMdlDialogReference(config);
 
     const hostComponentRef = this.createHostDialog(internalDialogRef, config);
@@ -189,8 +209,10 @@ export class MdlDialogService {
     return this.showHostDialog(internalDialogRef.dialogRef, hostComponentRef);
   }
 
-  private showHostDialog(dialogRef: MdlDialogReference, hostComponentRef: ComponentRef<MdlDialogHostComponent>) {
-
+  private showHostDialog(
+    dialogRef: MdlDialogReference,
+    hostComponentRef: ComponentRef<MdlDialogHostComponent>
+  ) {
     const result: Subject<MdlDialogReference> = new Subject();
 
     setTimeout(() => {
@@ -202,20 +224,28 @@ export class MdlDialogService {
     return result.asObservable();
   }
 
-  private createHostDialog(internalDialogRef: InternalMdlDialogReference, dialogConfig: IMdlDialogConfiguration) {
-
+  private createHostDialog(
+    internalDialogRef: InternalMdlDialogReference,
+    dialogConfig: IMdlDialogConfiguration
+  ) {
     const viewContainerRef = this.mdlDialogOutletService.viewContainerRef;
     if (!viewContainerRef) {
-      throw new Error('You did not provide a ViewContainerRef. ' +
-        'Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService');
+      throw new Error(
+        "You did not provide a ViewContainerRef. " +
+          "Please see https://github.com/mseemann/angular2-mdl/wiki/How-to-use-the-MdlDialogService"
+      );
     }
 
     const providers: StaticProvider[] = [
-      {provide: MDL_CONFIGUARTION, useValue: dialogConfig},
-      {provide: InternalMdlDialogReference, useValue: internalDialogRef}
+      { provide: MDL_CONFIGUARTION, useValue: dialogConfig },
+      { provide: InternalMdlDialogReference, useValue: internalDialogRef },
     ];
 
-    const hostDialogComponent = this.createComponentInstance(viewContainerRef, providers, MdlDialogHostComponent);
+    const hostDialogComponent = this.createComponentInstance(
+      viewContainerRef,
+      providers,
+      MdlDialogHostComponent
+    );
 
     internalDialogRef.hostDialogComponentRef = hostDialogComponent;
     internalDialogRef.isModal = dialogConfig.isModal;
@@ -230,7 +260,8 @@ export class MdlDialogService {
   }
 
   private pushDialog(dialogRef: InternalMdlDialogReference) {
-    if (this.openDialogs.length === 0) { // first dialog being opened
+    if (this.openDialogs.length === 0) {
+      // first dialog being opened
       this.onDialogsOpenChanged.emit(true);
     }
 
@@ -242,7 +273,8 @@ export class MdlDialogService {
     this.openDialogs.splice(this.openDialogs.indexOf(dialogRef), 1);
     this.orderDialogStack();
 
-    if (this.openDialogs.length === 0) { // last dialog being closed
+    if (this.openDialogs.length === 0) {
+      // last dialog being closed
       this.onDialogsOpenChanged.emit(false);
     }
   }
@@ -250,7 +282,6 @@ export class MdlDialogService {
   private orderDialogStack() {
     // +1 because the overlay may have MIN_DIALOG_Z_INDEX if the dialog is modal.
     let zIndex = MIN_DIALOG_Z_INDEX + 1;
-
 
     this.openDialogs.forEach((iDialogRef) => {
       iDialogRef.hostDialog.zIndex = zIndex;
@@ -264,15 +295,16 @@ export class MdlDialogService {
     const topMostModalDialog: InternalMdlDialogReference = this.getTopMostInternalDialogRef();
     if (topMostModalDialog) {
       // move the overlay diredct under the topmos modal dialog
-      this.mdlDialogOutletService.showBackdropWithZIndex(topMostModalDialog.hostDialog.zIndex - 1);
+      this.mdlDialogOutletService.showBackdropWithZIndex(
+        topMostModalDialog.hostDialog.zIndex - 1
+      );
     }
-
   }
 
   private getTopMostInternalDialogRef(): InternalMdlDialogReference {
     let topMostModalDialog: InternalMdlDialogReference = null;
 
-    for (let i = (this.openDialogs.length - 1); i >= 0; i--) {
+    for (let i = this.openDialogs.length - 1; i >= 0; i--) {
       if (this.openDialogs[i].isModal) {
         topMostModalDialog = this.openDialogs[i];
         break;
@@ -291,16 +323,24 @@ export class MdlDialogService {
   private createComponentInstance<T>(
     viewContainerRef: ViewContainerRef,
     providers: StaticProvider[],
-    component: Type<T>): ComponentRef<T> {
-
-    const cFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+    component: Type<T>
+  ): ComponentRef<T> {
+    const cFactory = this.componentFactoryResolver.resolveComponentFactory(
+      component
+    );
 
     const injector = Injector.create({
-      providers: [...providers, {provide: ViewContainerRef, useValue: viewContainerRef}],
-      parent: this.injector
+      providers: [
+        ...providers,
+        { provide: ViewContainerRef, useValue: viewContainerRef },
+      ],
+      parent: this.injector,
     });
 
-    return viewContainerRef.createComponent(cFactory, viewContainerRef.length, injector);
+    return viewContainerRef.createComponent(
+      cFactory,
+      viewContainerRef.length,
+      injector
+    );
   }
-
 }

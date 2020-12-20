@@ -10,20 +10,20 @@ import {
   Input,
   OnDestroy,
   Output,
-  ViewEncapsulation
-} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {MdlButtonComponent} from '@angular-mdl/core';
+  ViewEncapsulation,
+} from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { MdlButtonComponent } from "@angular-mdl/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MdlPopoverRegistry {
   private popoverComponents: MdlPopoverComponent[] = [];
 
   // eslint-disable-next-line
   constructor(@Inject(DOCUMENT) private doc: any) {
-    this.doc.addEventListener('click', () => {
+    this.doc.addEventListener("click", () => {
       this.popoverComponents
         .filter((component: MdlPopoverComponent) => component.isVisible)
         .forEach((component: MdlPopoverComponent) => component.hide());
@@ -35,7 +35,10 @@ export class MdlPopoverRegistry {
   }
 
   remove(popoverComponent: MdlPopoverComponent): void {
-    this.popoverComponents.slice(this.popoverComponents.indexOf(popoverComponent), 1);
+    this.popoverComponents.slice(
+      this.popoverComponents.indexOf(popoverComponent),
+      1
+    );
   }
 
   hideAllExcept(popoverComponent: MdlPopoverComponent): void {
@@ -47,10 +50,10 @@ export class MdlPopoverRegistry {
   }
 }
 
-const BOTTOM_LEFT = 'bottom-left'; // Below the element, aligned to its left.
-const BOTTOM_RIGHT = 'bottom-right'; // Below the element, aligned to its right.
-const TOP_LEFT = 'top-left'; // Above the element, aligned to its left.
-const TOP_RIGHT = 'top-right'; // Above the element, aligned to its right.
+const BOTTOM_LEFT = "bottom-left"; // Below the element, aligned to its left.
+const BOTTOM_RIGHT = "bottom-right"; // Below the element, aligned to its right.
+const TOP_LEFT = "top-left"; // Above the element, aligned to its left.
+const TOP_RIGHT = "top-right"; // Above the element, aligned to its right.
 
 export interface IPositionCoordinates {
   left: number;
@@ -58,27 +61,41 @@ export interface IPositionCoordinates {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class PopupPositionService {
-  public updatePosition(forElement: HTMLElement, popoverElement: HTMLElement, position: string): void {
-    const coordinates = this.calculateCoordinates(forElement, popoverElement, position);
+  public updatePosition(
+    forElement: HTMLElement,
+    popoverElement: HTMLElement,
+    position: string
+  ): void {
+    const coordinates = this.calculateCoordinates(
+      forElement,
+      popoverElement,
+      position
+    );
     this.applyCoordinates(coordinates, popoverElement.style);
   }
 
-  private applyCoordinates(coordinates: IPositionCoordinates, elementStyle: CSSStyleDeclaration) {
+  private applyCoordinates(
+    coordinates: IPositionCoordinates,
+    elementStyle: CSSStyleDeclaration
+  ) {
     if (!coordinates) {
       return;
     }
 
-    elementStyle.right =
-      elementStyle.bottom = '';
+    elementStyle.right = elementStyle.bottom = "";
 
-    elementStyle.left = coordinates.left + 'px';
-    elementStyle.top = coordinates.top + 'px';
+    elementStyle.left = coordinates.left + "px";
+    elementStyle.top = coordinates.top + "px";
   }
 
-  private calculateCoordinates(forElement: HTMLElement, popoverElement: HTMLElement, position: string): IPositionCoordinates {
+  private calculateCoordinates(
+    forElement: HTMLElement,
+    popoverElement: HTMLElement,
+    position: string
+  ): IPositionCoordinates {
     if (!forElement || !position) {
       return null;
     }
@@ -87,34 +104,39 @@ export class PopupPositionService {
       case BOTTOM_RIGHT:
         return {
           top: forElement.offsetTop + forElement.offsetHeight,
-          left: forElement.offsetLeft + forElement.offsetWidth - popoverElement.offsetWidth
+          left:
+            forElement.offsetLeft +
+            forElement.offsetWidth -
+            popoverElement.offsetWidth,
         };
       case BOTTOM_LEFT:
         return {
           top: forElement.offsetTop + forElement.offsetHeight,
-          left: forElement.offsetLeft
+          left: forElement.offsetLeft,
         };
       case TOP_LEFT:
         return {
           top: forElement.offsetTop - popoverElement.offsetHeight,
-          left: forElement.offsetLeft
+          left: forElement.offsetLeft,
         };
       case TOP_RIGHT:
         return {
           top: forElement.offsetTop - popoverElement.offsetHeight,
-          left: forElement.offsetLeft + forElement.offsetWidth - popoverElement.offsetWidth
+          left:
+            forElement.offsetLeft +
+            forElement.offsetWidth -
+            popoverElement.offsetWidth,
         };
     }
   }
 }
 
 @Component({
-  selector: 'mdl-popover',
-  templateUrl: 'popover.component.html',
+  selector: "mdl-popover",
+  templateUrl: "popover.component.html",
   encapsulation: ViewEncapsulation.None,
 })
 export class MdlPopoverComponent implements OnDestroy {
-
   // eslint-disable-next-line
   @Input('hide-on-click')
   hideOnClick = false;
@@ -127,19 +149,21 @@ export class MdlPopoverComponent implements OnDestroy {
   // eslint-disable-next-line
   @Output()
   onHide: EventEmitter<void> = new EventEmitter();
-  @HostBinding('class.mdl-popover')
+  @HostBinding("class.mdl-popover")
   isMdlPopover = true;
-  @HostBinding('class.is-visible')
+  @HostBinding("class.is-visible")
   isVisible = false;
 
-  constructor(private changeDetectionRef: ChangeDetectorRef,
-              public elementRef: ElementRef,
-              private popoverRegistry: MdlPopoverRegistry,
-              private popupPositionService: PopupPositionService) {
+  constructor(
+    private changeDetectionRef: ChangeDetectorRef,
+    public elementRef: ElementRef,
+    private popoverRegistry: MdlPopoverRegistry,
+    private popupPositionService: PopupPositionService
+  ) {
     this.popoverRegistry.add(this);
   }
 
-  @HostListener('click', ['$event']) onClick(event: Event): void {
+  @HostListener("click", ["$event"]) onClick(event: Event): void {
     if (!this.hideOnClick) {
       event.stopPropagation();
     }
@@ -149,7 +173,10 @@ export class MdlPopoverComponent implements OnDestroy {
     this.popoverRegistry.remove(this);
   }
 
-  toggle(event: Event, forElement: MdlButtonComponent | ElementRef = null): void {
+  toggle(
+    event: Event,
+    forElement: MdlButtonComponent | ElementRef = null
+  ): void {
     if (this.isVisible) {
       this.hide();
     } else {
@@ -184,13 +211,19 @@ export class MdlPopoverComponent implements OnDestroy {
       const popoverElement = this.elementRef.nativeElement;
 
       const forHtmlElement = this.getHtmlElement(forElement);
-      this.popupPositionService.updatePosition(forHtmlElement, popoverElement, this.position);
+      this.popupPositionService.updatePosition(
+        forHtmlElement,
+        popoverElement,
+        this.position
+      );
       this.changeDetectionRef.markForCheck();
       return;
     }
   }
 
-  private getHtmlElement(forElement: MdlButtonComponent | ElementRef): HTMLElement {
+  private getHtmlElement(
+    forElement: MdlButtonComponent | ElementRef
+  ): HTMLElement {
     if (forElement instanceof MdlButtonComponent) {
       return forElement.elementRef.nativeElement;
     }

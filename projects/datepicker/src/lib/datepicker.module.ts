@@ -1,15 +1,14 @@
-import {NgModule} from '@angular/core';
-import {DatePickerDialogComponent} from './datepicker.component';
+import { NgModule } from "@angular/core";
+import { DatePickerDialogComponent } from "./datepicker.component";
 import {
   MdlButtonModule,
   MdlDialogModule,
   MdlDialogOutletModule,
   MdlIconModule,
-  MdlRippleModule
-} from '@angular-mdl/core';
-import {MdlDatePickerService} from './datepicker.service';
-import {CommonModule} from '@angular/common';
-
+  MdlRippleModule,
+} from "@angular-mdl/core";
+import { MdlDatePickerService } from "./datepicker.service";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [DatePickerDialogComponent],
@@ -19,13 +18,10 @@ import {CommonModule} from '@angular/common';
     MdlIconModule,
     MdlRippleModule,
     MdlDialogModule,
-    MdlDialogOutletModule
+    MdlDialogOutletModule,
   ],
   exports: [DatePickerDialogComponent],
   entryComponents: [DatePickerDialogComponent],
-  providers: [
-    MdlDatePickerService
-  ]
+  providers: [MdlDatePickerService],
 })
-export class MdlDatePickerModule {
-}
+export class MdlDatePickerModule {}

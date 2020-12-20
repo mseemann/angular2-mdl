@@ -1,24 +1,30 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import {ExpansionPanelComponent} from './expansion-panel.component';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {RouterTestingModule} from '@angular/router/testing';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MdlModule} from '@angular-mdl/core';
-import {MdlExpansionPanelModule} from '@angular-mdl/expansion-panel';
+import { ExpansionPanelComponent } from "./expansion-panel.component";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { RouterTestingModule } from "@angular/router/testing";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { MdlModule } from "@angular-mdl/core";
+import { MdlExpansionPanelModule } from "@angular-mdl/expansion-panel";
 
-describe('ExpansionPanelComponent', () => {
+describe("ExpansionPanelComponent", () => {
   let component: ExpansionPanelComponent;
   let fixture: ComponentFixture<ExpansionPanelComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      imports: [MdlModule, MdlExpansionPanelModule, RouterTestingModule, NoopAnimationsModule],
-      declarations: [ExpansionPanelComponent]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        schemas: [NO_ERRORS_SCHEMA],
+        imports: [
+          MdlModule,
+          MdlExpansionPanelModule,
+          RouterTestingModule,
+          NoopAnimationsModule,
+        ],
+        declarations: [ExpansionPanelComponent],
+      }).compileComponents();
     })
-      .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ExpansionPanelComponent);
@@ -26,7 +32,7 @@ describe('ExpansionPanelComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

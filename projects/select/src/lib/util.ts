@@ -1,10 +1,10 @@
 export const stringifyValue = (value: unknown): string => {
   switch (typeof value) {
-    case 'number':
+    case "number":
       return String(value);
-    case 'object':
+    case "object":
       return JSON.stringify(value);
     default:
-      return (!!value) ? String(value) : '';
+      return !!value ? String(value) : "";
   }
 };

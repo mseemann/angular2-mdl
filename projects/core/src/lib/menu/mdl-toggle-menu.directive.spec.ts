@@ -1,11 +1,10 @@
-import {TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {Component} from '@angular/core';
-import {MdlMenuModule} from './mdl-menu.module';
-import {MdlButtonComponent} from '../button/mdl-button.component';
-import {MdlMenuComponent, MdlMenuRegisty} from './mdl-menu.component';
-import {MdlButtonModule} from '../button/mdl-button.module';
-
+import { TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { Component } from "@angular/core";
+import { MdlMenuModule } from "./mdl-menu.module";
+import { MdlButtonComponent } from "../button/mdl-button.component";
+import { MdlMenuComponent, MdlMenuRegisty } from "./mdl-menu.component";
+import { MdlButtonModule } from "../button/mdl-button.module";
 
 @Component({
   // eslint-disable-next-line
@@ -15,13 +14,11 @@ import {MdlButtonModule} from '../button/mdl-button.module';
     <mdl-menu #m="mdlMenu">
       <mdl-menu-item>x</mdl-menu-item>
     </mdl-menu>
-  `
+  `,
 })
-class MdlTestMenuItemComponent {
-}
+class MdlTestMenuItemComponent {}
 
-describe('Component: MdlToggleMenu-Directive', () => {
-
+describe("Component: MdlToggleMenu-Directive", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MdlMenuModule, MdlButtonModule],
@@ -30,16 +27,18 @@ describe('Component: MdlToggleMenu-Directive', () => {
     });
   });
 
-  it('should show the menu if the button is clicked', () => {
-
+  it("should show the menu if the button is clicked", () => {
     const fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
 
-    const item: HTMLElement = fixture.debugElement.query(By.directive(MdlButtonComponent)).nativeElement;
+    const item: HTMLElement = fixture.debugElement.query(
+      By.directive(MdlButtonComponent)
+    ).nativeElement;
 
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent)).componentInstance;
-    spyOn(menu, 'show').and.callThrough();
-    spyOn(menu, 'hide');
+    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
+      .componentInstance;
+    spyOn(menu, "show").and.callThrough();
+    spyOn(menu, "hide");
 
     // show
     item.click();
@@ -51,8 +50,5 @@ describe('Component: MdlToggleMenu-Directive', () => {
 
     expect(menu.show).toHaveBeenCalled();
     expect(menu.hide).toHaveBeenCalled();
-
   });
-
-
 });

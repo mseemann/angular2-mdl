@@ -1,9 +1,9 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from "@angular/core";
 
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {MdlIconToggleComponent} from './mdl-icon-toggle.component';
-import {MdlIconModule} from '../icon/mdl-icon.module';
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { MdlIconToggleComponent } from "./mdl-icon-toggle.component";
+import { MdlIconModule } from "../icon/mdl-icon.module";
 
 const MDL_ICON_TOGGLE_DIRECTIVES = [MdlIconToggleComponent];
 
@@ -16,9 +16,9 @@ export class MdlIconToggleModule {
   public static forRoot(): ModuleWithProviders<MdlIconToggleModule> {
     return {
       ngModule: MdlIconToggleModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-icon-toggle.component';
+export * from "./mdl-icon-toggle.component";

@@ -1,6 +1,5 @@
-import {StaticProvider, Type} from '@angular/core';
-import {MdlButtonComponent} from '../button/mdl-button.component';
-
+import { StaticProvider, Type } from "@angular/core";
+import { MdlButtonComponent } from "../button/mdl-button.component";
 
 /**
  * The simple Dialog can have as much actions as needed by the user.
@@ -35,7 +34,6 @@ export interface IOpenCloseRect {
  * Dialog configuration for all dialogs (simple or custom)
  */
 export interface IMdlDialogConfiguration {
-
   /**
    * true if the dialog should be opened as modal.
    */
@@ -72,7 +70,6 @@ export interface IMdlDialogConfiguration {
    *  MdlButtonComponent or mouse event  the dialog close animation shoul end.
    */
   closeTo?: MdlButtonComponent | MouseEvent | IOpenCloseRect;
-
 
   /**
    * The curation for the enter animation in ms. defaults to 300ms

@@ -13,48 +13,49 @@ import {
   Output,
   Renderer2,
   ViewChild,
-  ViewEncapsulation
-} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+  ViewEncapsulation,
+} from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import {toBoolean} from '../common/boolean-property';
-import {toNumber} from '../common/number.property';
-import {noop} from '../common/noop';
+import { toBoolean } from "../common/boolean-property";
+import { toNumber } from "../common/number.property";
+import { noop } from "../common/noop";
 
-export const DISABLE_NATIVE_VALIDITY_CHECKING = new InjectionToken<boolean>('disableNativeValidityChecking');
-
+export const DISABLE_NATIVE_VALIDITY_CHECKING = new InjectionToken<boolean>(
+  "disableNativeValidityChecking"
+);
 
 let nextId = 0;
 
-const IS_FOCUSED = 'is-focused';
-const IS_DISABLED = 'is-disabled';
-const IS_INVALID = 'is-invalid';
-const IS_DIRTY = 'is-dirty';
+const IS_FOCUSED = "is-focused";
+const IS_DISABLED = "is-disabled";
+const IS_INVALID = "is-invalid";
+const IS_DIRTY = "is-dirty";
 
 @Component({
-  selector: 'mdl-textfield',
+  selector: "mdl-textfield",
   template: `
     <div *ngIf="!icon">
-     <textarea
-       *ngIf="rows"
-       #input
-       [rows]="rows"
-       class="mdl-textfield__input"
-       type="text"
-       [attr.name]="name"
-       [id]="id"
-       [placeholder]="placeholder ? placeholder : ''"
-       (focus)="onFocus($event)"
-       (blur)="onBlur($event)"
-       (keydown)="keydownTextarea($event)"
-       (keyup)="onKeyup($event)"
-       [(ngModel)]="value"
-       [disabled]="disabled"
-       [required]="required"
-       [autofocus]="autofocus"
-       [readonly]="readonly"
-       [maxlength]="maxlength"
-     ></textarea>
+      <textarea
+        *ngIf="rows"
+        #input
+        [rows]="rows"
+        class="mdl-textfield__input"
+        type="text"
+        [attr.name]="name"
+        [id]="id"
+        [placeholder]="placeholder ? placeholder : ''"
+        (focus)="onFocus($event)"
+        (blur)="onBlur($event)"
+        (keydown)="keydownTextarea($event)"
+        (keyup)="onKeyup($event)"
+        [(ngModel)]="value"
+        [disabled]="disabled"
+        [required]="required"
+        [autofocus]="autofocus"
+        [readonly]="readonly"
+        [maxlength]="maxlength"
+      ></textarea>
       <input
         *ngIf="!rows"
         #input
@@ -78,13 +79,13 @@ const IS_DIRTY = 'is-dirty';
         [readonly]="readonly"
         [attr.tabindex]="tabindex"
         [maxlength]="maxlength"
-      >
-      <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
-      <span class="mdl-textfield__error">{{errorMessage}}</span>
+      />
+      <label class="mdl-textfield__label" [attr.for]="id">{{ label }}</label>
+      <span class="mdl-textfield__error">{{ errorMessage }}</span>
     </div>
     <div *ngIf="icon">
       <button mdl-button mdl-button-type="icon" (click)="setFocus()">
-        <mdl-icon>{{icon}}</mdl-icon>
+        <mdl-icon>{{ icon }}</mdl-icon>
       </button>
       <div class="mdl-textfield__expandable-holder">
         <input
@@ -109,34 +110,37 @@ const IS_DIRTY = 'is-dirty';
           [readonly]="readonly"
           [attr.tabindex]="tabindex"
           [maxlength]="maxlength"
-        >
-        <label class="mdl-textfield__label" [attr.for]="id">{{label}}</label>
-        <span class="mdl-textfield__error">{{errorMessage}}</span>
+        />
+        <label class="mdl-textfield__label" [attr.for]="id">{{ label }}</label>
+        <span class="mdl-textfield__error">{{ errorMessage }}</span>
       </div>
     </div>
   `,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => MdlTextFieldComponent),
-    multi: true
-  }],
-  encapsulation: ViewEncapsulation.None
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MdlTextFieldComponent),
+      multi: true,
+    },
+  ],
+  encapsulation: ViewEncapsulation.None,
 })
-// eslint-disable-next-line @angular-eslint/no-conflicting-lifecycle
-export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, DoCheck {
+/* eslint-disable  @angular-eslint/no-conflicting-lifecycle */
+export class MdlTextFieldComponent
+  implements ControlValueAccessor, OnChanges, DoCheck {
   // eslint-disable-next-line
-  @Output('blur')
+  @Output("blur")
   blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
   // eslint-disable-next-line
-  @Output('focus')
+  @Output("focus")
   focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
   // eslint-disable-next-line
-  @Output('keyup')
+  @Output("keyup")
   keyupEmitter: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
-  @ViewChild('input')
+  @ViewChild("input")
   inputEl: ElementRef;
   @Input()
-  type = 'text';
+  type = "text";
   @Input()
   label;
   @Input()
@@ -152,23 +156,23 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input()
   id = `mdl-textfield-${nextId++}`;
   // eslint-disable-next-line
-  @Input('error-msg')
+  @Input("error-msg")
   errorMessage;
-  @HostBinding('class.has-placeholder')
+  @HostBinding("class.has-placeholder")
   @Input()
   placeholder: string;
   @Input()
   autocomplete: string;
-  @HostBinding('class.mdl-textfield--expandable')
+  @HostBinding("class.mdl-textfield--expandable")
   @Input()
   icon: string;
   @Input()
   tabindex: number = null;
   @Input()
   maxlength: number = null;
-  @HostBinding('class.mdl-textfield')
+  @HostBinding("class.mdl-textfield")
   isTextfield = true;
-  @HostBinding('class.is-upgraded')
+  @HostBinding("class.is-upgraded")
   isUpgraded = true;
   private valueIntern: string | number;
 
@@ -188,7 +192,10 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   constructor(
     private renderer: Renderer2,
     private elmRef: ElementRef,
-    @Optional() @Inject(DISABLE_NATIVE_VALIDITY_CHECKING) private nativeCheckGlobalDisabled: boolean) {
+    @Optional()
+    @Inject(DISABLE_NATIVE_VALIDITY_CHECKING)
+    private nativeCheckGlobalDisabled: boolean
+  ) {
     this.el = elmRef.nativeElement;
   }
 
@@ -197,7 +204,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 
   @Input() set value(v: string | number) {
-    this.valueIntern = this.type === 'number' ? (v === '' ? null : parseFloat(v as string)) : v;
+    this.valueIntern =
+      this.type === "number" ? (v === "" ? null : parseFloat(v as string)) : v;
     this.onChangeCallback(this.value);
   }
 
@@ -237,8 +245,8 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.autofocusIntern = toBoolean(value);
   }
 
-  @HostBinding('class.mdl-textfield--floating-label')
-  @Input('floating-label')
+  @HostBinding("class.mdl-textfield--floating-label")
+  @Input("floating-label")
   get isFloatingLabel(): boolean {
     return this.isFloatingLabelIntern;
   }
@@ -306,11 +314,13 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     if (!this.inputEl) {
       return;
     }
-    (this.inputEl.nativeElement as HTMLInputElement).dispatchEvent(new Event('focus'));
+    (this.inputEl.nativeElement as HTMLInputElement).dispatchEvent(
+      new Event("focus")
+    );
   }
 
   keydownTextarea($event: KeyboardEvent): void {
-    const currentRowCount = this.inputEl.nativeElement.value.split('\n').length;
+    const currentRowCount = this.inputEl.nativeElement.value.split("\n").length;
     // eslint-disable-next-line
     if ($event.keyCode === 13) {
       if (currentRowCount >= this.maxrows && this.maxrows !== -1) {
@@ -367,12 +377,14 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   }
 
   private checkDirty() {
-    const dirty = this.inputEl && this.inputEl.nativeElement.value && this.inputEl.nativeElement.value.length > 0;
+    const dirty =
+      this.inputEl &&
+      this.inputEl.nativeElement.value &&
+      this.inputEl.nativeElement.value.length > 0;
     if (dirty) {
       this.renderer.addClass(this.el, IS_DIRTY);
     } else {
       this.renderer.removeClass(this.el, IS_DIRTY);
     }
-
   }
 }

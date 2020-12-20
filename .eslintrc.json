@@ -13,13 +13,19 @@
           "tsconfig.json",
           "e2e/tsconfig.json"
         ],
-        "createDefaultProgram": true
+        "createDefaultProgram": true,
+        // Allows for the parsing of modern ECMAScript features
+        "ecmaVersion": 2020,
+        // Allows for the use of imports
+        "sourceType": "module"
       },
       "extends": [
         "plugin:@angular-eslint/ng-cli-compat",
         "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
       ],
       "rules": {
         "@typescript-eslint/explicit-member-accessibility": [

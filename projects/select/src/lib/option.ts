@@ -1,28 +1,34 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, ViewChild} from '@angular/core';
-import {stringifyValue} from './util';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostBinding,
+  Input,
+  ViewChild,
+} from "@angular/core";
+import { stringifyValue } from "./util";
 
 @Component({
-  selector: 'mdl-option',
-  templateUrl: 'option.html'
+  selector: "mdl-option",
+  templateUrl: "option.html",
 })
 export class MdlOptionComponent implements AfterViewInit {
-
   // eslint-disable-next-line
   @HostBinding('class.mdl-option--disabled')
-  @Input('disabled')
+  @Input("disabled")
   disabled = false;
   // eslint-disable-next-line
   @Input('value')
   value: string;
-  @ViewChild('contentWrapper', {static: true}) contentWrapper: ElementRef;
-  @HostBinding('class.mdl-option__container') isOptionConatiner = true;
+  @ViewChild("contentWrapper", { static: true }) contentWrapper: ElementRef;
+  @HostBinding("class.mdl-option__container") isOptionConatiner = true;
   text: string;
   multiple = false;
   selected = false;
   onSelect = Function.prototype;
 
-  constructor(private changeDetectionRef: ChangeDetectorRef) {
-  }
+  constructor(private changeDetectionRef: ChangeDetectorRef) {}
 
   get stringValue(): string {
     return stringifyValue(this.value);
@@ -44,7 +50,10 @@ export class MdlOptionComponent implements AfterViewInit {
 
   updateSelected(value: string[] | string): void {
     if (this.multiple) {
-      this.selected = (((value as string[]) || []).map((v: unknown) => stringifyValue(v)).indexOf(this.stringValue) !== -1);
+      this.selected =
+        ((value as string[]) || [])
+          .map((v: unknown) => stringifyValue(v))
+          .indexOf(this.stringValue) !== -1;
     } else {
       this.selected = this.value === value;
     }
@@ -57,5 +66,4 @@ export class MdlOptionComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.text = this.contentWrapper.nativeElement.textContent.trim();
   }
-
 }

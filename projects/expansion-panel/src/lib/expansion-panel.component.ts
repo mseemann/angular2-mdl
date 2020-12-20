@@ -9,21 +9,27 @@ import {
   Input,
   Output,
   QueryList,
-} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+} from "@angular/core";
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from "@angular/animations";
 
 @Component({
-  selector: 'mdl-expansion-panel-header',
+  selector: "mdl-expansion-panel-header",
   template: `
     <ng-content></ng-content>
     <div class="mdl-expansion-panel__header--expand-icon" (click)="onClick()">
       <span *ngIf="!isExpanded" class="material-icons">expand_more</span>
       <span *ngIf="isExpanded" class="material-icons">expand_less</span>
     </div>
-  `
+  `,
 })
 export class MdlExpansionPanelHeaderComponent {
-  @HostBinding('class.mdl-expansion-panel__header') isHeader = true;
+  @HostBinding("class.mdl-expansion-panel__header") isHeader = true;
   isExpanded = false;
   onChange: EventEmitter<null> = new EventEmitter<null>();
 
@@ -33,72 +39,78 @@ export class MdlExpansionPanelHeaderComponent {
 }
 
 @Component({
-  selector: 'mdl-expansion-panel-header-list-content',
-  template: '<ng-content></ng-content>'
+  selector: "mdl-expansion-panel-header-list-content",
+  template: "<ng-content></ng-content>",
 })
 export class MdlExpansionPanelHeaderListContentComponent {
-  @HostBinding('class.mdl-expansion-panel__header--list-content') isContent = true;
+  @HostBinding("class.mdl-expansion-panel__header--list-content")
+  isContent = true;
 }
 
 @Component({
-  selector: 'mdl-expansion-panel-header-secondary-content',
-  template: '<ng-content></ng-content>'
+  selector: "mdl-expansion-panel-header-secondary-content",
+  template: "<ng-content></ng-content>",
 })
 export class MdlExpansionPanelHeaderSecondaryContentComponent {
-  @HostBinding('class.mdl-expansion-panel__header--secondary-content') isSecondaryContent = true;
+  @HostBinding("class.mdl-expansion-panel__header--secondary-content")
+  isSecondaryContent = true;
 }
 
 @Component({
-  selector: 'mdl-expansion-panel-content',
-  template: '<ng-content></ng-content>',
+  selector: "mdl-expansion-panel-content",
+  template: "<ng-content></ng-content>",
   // eslint-disable-next-line
   host: {
-    '[@isExpanded]': 'isExpanded'
+    "[@isExpanded]": "isExpanded",
   },
   animations: [
-    trigger('isExpanded', [
-      state('true', style({height: '*'})),
-      state('false', style({height: '0px'})),
-      transition('* => *', animate('250ms ease-in'))
-    ])
-  ]
+    trigger("isExpanded", [
+      state("true", style({ height: "*" })),
+      state("false", style({ height: "0px" })),
+      transition("* => *", animate("250ms ease-in")),
+    ]),
+  ],
 })
 export class MdlExpansionPanelContentComponent {
-  @HostBinding('class.mdl-expansion-panel__content') isPanelContent = true;
-  isExpanded = 'false';
+  @HostBinding("class.mdl-expansion-panel__content") isPanelContent = true;
+  isExpanded = "false";
 }
 
 @Component({
-  selector: 'mdl-expansion-panel-body',
-  template: '<ng-content></ng-content>'
+  selector: "mdl-expansion-panel-body",
+  template: "<ng-content></ng-content>",
 })
 export class MdlExpansionPanelBodyComponent {
-  @HostBinding('class.mdl-expansion-panel__content--body') isContentBody = true;
+  @HostBinding("class.mdl-expansion-panel__content--body") isContentBody = true;
 }
 
 @Component({
-  selector: 'mdl-expansion-panel-footer',
-  template: '<ng-content></ng-content>'
+  selector: "mdl-expansion-panel-footer",
+  template: "<ng-content></ng-content>",
 })
 export class MdlExpansionPanelFooterComponent {
-  @HostBinding('class.mdl-expansion-panel__content--footer') isContentFooter = true;
+  @HostBinding("class.mdl-expansion-panel__content--footer")
+  isContentFooter = true;
 }
 
 @Component({
-  selector: 'mdl-expansion-panel',
-  template: '<ng-content></ng-content>'
+  selector: "mdl-expansion-panel",
+  template: "<ng-content></ng-content>",
 })
 export class MdlExpansionPanelComponent implements AfterContentInit {
-  @ContentChild(MdlExpansionPanelHeaderComponent, {static: true}) header: MdlExpansionPanelHeaderComponent;
-  @ContentChild(MdlExpansionPanelContentComponent, {static: true}) content: MdlExpansionPanelContentComponent;
+  @ContentChild(MdlExpansionPanelHeaderComponent, { static: true })
+  header: MdlExpansionPanelHeaderComponent;
+  @ContentChild(MdlExpansionPanelContentComponent, { static: true })
+  content: MdlExpansionPanelContentComponent;
   // eslint-disable-next-line
   @Output() onChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @HostBinding('class.disabled')
-  @Input() disabled = false;
+  @HostBinding("class.disabled")
+  @Input()
+  disabled = false;
 
-  @HostBinding('tabindex') tabindex = 0;
-  @HostBinding('class.mdl-expansion-panel') isExpansionPanel = true;
+  @HostBinding("tabindex") tabindex = 0;
+  @HostBinding("class.mdl-expansion-panel") isExpansionPanel = true;
 
   private isExpanded = false;
 
@@ -107,15 +119,15 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
   }
 
   // expanded property is getter/setter for the internal 'isExpanded' flag
-  @HostBinding('class.expanded')
+  @HostBinding("class.expanded")
   @Input()
   public set expanded(bool: boolean) {
     this.toggleIt(bool);
   }
 
-  @HostListener('keyup', ['$event'])
+  @HostListener("keyup", ["$event"])
   onKeyUp($event: KeyboardEvent): void {
-    if ($event.key === 'Enter' && !this.disabled) {
+    if ($event.key === "Enter" && !this.disabled) {
       this.toggle();
     }
   }
@@ -157,12 +169,13 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
 }
 
 @Component({
-  selector: 'mdl-expansion-panel-group',
-  template: '<ng-content></ng-content>'
+  selector: "mdl-expansion-panel-group",
+  template: "<ng-content></ng-content>",
 })
 export class MdlExpansionPanelGroupComponent implements AfterContentInit {
-  @HostBinding('class.mdl-expansion-panel-group') isPanelGroup = true;
-  @ContentChildren(MdlExpansionPanelComponent) panels: QueryList<MdlExpansionPanelComponent>;
+  @HostBinding("class.mdl-expansion-panel-group") isPanelGroup = true;
+  @ContentChildren(MdlExpansionPanelComponent)
+  panels: QueryList<MdlExpansionPanelComponent>;
   expandedIndex = -1;
 
   ngAfterContentInit(): void {
@@ -211,5 +224,4 @@ export class MdlExpansionPanelGroupComponent implements AfterContentInit {
   getPanel(index: number): MdlExpansionPanelComponent {
     return this.panels.toArray()[index];
   }
-
 }

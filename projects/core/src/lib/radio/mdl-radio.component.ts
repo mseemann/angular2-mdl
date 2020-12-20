@@ -12,11 +12,15 @@ import {
   Optional,
   Output,
   Renderer2,
-  ViewEncapsulation
-} from '@angular/core';
-import {ControlValueAccessor, FormGroupName, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {toBoolean} from '../common/boolean-property';
-import {noop} from '../common/noop';
+  ViewEncapsulation,
+} from "@angular/core";
+import {
+  ControlValueAccessor,
+  FormGroupName,
+  NG_VALUE_ACCESSOR,
+} from "@angular/forms";
+import { toBoolean } from "../common/boolean-property";
+import { noop } from "../common/noop";
 
 const throwNameError = (): void => {
   throw new Error(`
@@ -25,37 +29,47 @@ const throwNameError = (): void => {
     `);
 };
 
-const IS_FOCUSED = 'is-focused';
+const IS_FOCUSED = "is-focused";
 
 // Registry for mdl-readio compnents. Is responsible to keep the
 // right state of the radio buttons of a radio group. It would be
 // easier if i had a mdl-radio-group component. but this would be
 // a big braking change.
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MdlRadioGroupRegisty {
-
-  private defaultFormGroup = 'defaultFromGroup';
-  private radioComponents: { radio: MdlRadioComponent; group: FormGroupName | string }[] = [];
+  private defaultFormGroup = "defaultFromGroup";
+  private radioComponents: {
+    radio: MdlRadioComponent;
+    group: FormGroupName | string;
+  }[] = [];
 
   add(radioComponent: MdlRadioComponent, formGroupName: FormGroupName): void {
     this.radioComponents.push({
       radio: radioComponent,
-      group: formGroupName || this.defaultFormGroup
+      group: formGroupName || this.defaultFormGroup,
     });
   }
 
   remove(radioComponent: MdlRadioComponent): void {
-    this.radioComponents = this.radioComponents.filter((radioComponentInArray) => (radioComponentInArray.radio !== radioComponent));
+    this.radioComponents = this.radioComponents.filter(
+      (radioComponentInArray) => radioComponentInArray.radio !== radioComponent
+    );
   }
 
-  select(radioComponent: MdlRadioComponent, formGroupName: FormGroupName): void {
+  select(
+    radioComponent: MdlRadioComponent,
+    formGroupName: FormGroupName
+  ): void {
     // unselect every radioComponent that is not the provided radiocomponent
     // and has the same name and is in teh same group.
     const groupToTest = formGroupName || this.defaultFormGroup;
     this.radioComponents.forEach((component) => {
-      if (component.radio.name === radioComponent.name && component.group === groupToTest) {
+      if (
+        component.radio.name === radioComponent.name &&
+        component.group === groupToTest
+      ) {
         if (component.radio !== radioComponent) {
           component.radio.deselect(radioComponent.value);
         }
@@ -69,29 +83,34 @@ export class MdlRadioGroupRegisty {
  */
 
 @Component({
-  selector: 'mdl-radio',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => MdlRadioComponent),
-    multi: true
-  }],
+  selector: "mdl-radio",
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MdlRadioComponent),
+      multi: true,
+    },
+  ],
   template: `
-    <input type="checkbox" class="mdl-radio__button"
-           [attr.name]="name"
-           (focus)="onFocus()"
-           (blur)="onBlur()"
-           (keyup.space)="spaceKeyPress()"
-           [disabled]="disabled"
-           [attr.tabindex]="tabindex"
-           [(ngModel)]="checked">
+    <input
+      type="checkbox"
+      class="mdl-radio__button"
+      [attr.name]="name"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      (keyup.space)="spaceKeyPress()"
+      [disabled]="disabled"
+      [attr.tabindex]="tabindex"
+      [(ngModel)]="checked"
+    />
     <span class="mdl-radio__label"><ng-content></ng-content></span>
     <span class="mdl-radio__outer-circle"></span>
     <span class="mdl-radio__inner-circle"></span>
   `,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
-export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestroy {
-
+export class MdlRadioComponent
+  implements ControlValueAccessor, OnInit, OnDestroy {
   @Input()
   name: string;
   @Input()
@@ -104,10 +123,10 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   @Output()
   change: EventEmitter<unknown> = new EventEmitter<unknown>();
   // the internal state - used to set the underlaying radio button state.
-  @HostBinding('class.is-checked')
+  @HostBinding("class.is-checked")
   checked = false;
-  @HostBinding('class.is-upgraded') isUpgraded = true;
-  @HostBinding('class.mdl-radio') isRadio = true;
+  @HostBinding("class.is-upgraded") isUpgraded = true;
+  @HostBinding("class.mdl-radio") isRadio = true;
 
   public optionValue: unknown;
 
@@ -120,11 +139,12 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private radioGroupRegistry: MdlRadioGroupRegisty,
-    @Optional() private formGroupName: FormGroupName) {
+    @Optional() private formGroupName: FormGroupName
+  ) {
     this.el = elementRef.nativeElement;
   }
 
-  @HostBinding('class.is-disabled')
+  @HostBinding("class.is-disabled")
   @Input()
   get disabled(): boolean {
     return this.disabledIntern;
@@ -134,7 +154,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     this.disabledIntern = toBoolean(value);
   }
 
-  @HostListener('click')
+  @HostListener("click")
   onClick(): void {
     if (this.disabled) {
       return;
@@ -144,7 +164,6 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     this.onChangeCallback();
     this.change.emit(this.optionValue);
   }
-
 
   ngOnInit(): void {
     // we need a name and it must be the same as in the formcontrol.
@@ -204,12 +223,15 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   }
 
   private checkName(): void {
-    if (this.name && this.formControlName && this.name !== this.formControlName) {
+    if (
+      this.name &&
+      this.formControlName &&
+      this.name !== this.formControlName
+    ) {
       throwNameError();
     }
     if (!this.name && this.formControlName) {
       this.name = this.formControlName;
     }
   }
-
 }

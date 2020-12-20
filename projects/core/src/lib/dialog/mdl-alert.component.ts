@@ -1,14 +1,18 @@
-import {Component, EventEmitter, HostBinding, Input, Output} from '@angular/core';
-import {MdlDialogService} from './mdl-dialog.service';
-
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  Output,
+} from "@angular/core";
+import { MdlDialogService } from "./mdl-dialog.service";
 
 @Component({
-  selector: 'mdl-alert',
+  selector: "mdl-alert",
   template: ``,
-  exportAs: 'mdlAlert'
+  exportAs: "mdlAlert",
 })
 export class MdlAlertComponent {
-
   @Input()
   title: string;
 
@@ -18,18 +22,19 @@ export class MdlAlertComponent {
   @Input()
   okText: string;
 
-  @HostBinding('style.display')
-  display = 'none';
+  @HostBinding("style.display")
+  display = "none";
 
   @Output()
   confirmed = new EventEmitter();
 
-  constructor(private mdlDialogService: MdlDialogService) {
-  }
+  constructor(private mdlDialogService: MdlDialogService) {}
 
   show(): void {
-    this.mdlDialogService.alert(this.message, this.okText, this.title).subscribe(() => {
-      this.confirmed.emit();
-    });
+    this.mdlDialogService
+      .alert(this.message, this.okText, this.title)
+      .subscribe(() => {
+        this.confirmed.emit();
+      });
   }
 }

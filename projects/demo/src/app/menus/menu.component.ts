@@ -1,15 +1,13 @@
-import {Component} from '@angular/core';
-import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Title} from '@angular/platform-browser';
-import {AbstractDemoComponent} from '../abstract-demo.component';
+import { Component } from "@angular/core";
+import { flyInOutTrigger } from "../animations/flyInOutTrigger-animation";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
+import { AbstractDemoComponent } from "../abstract-demo.component";
 
 @Component({
-  selector: 'demo-menu-demo',
-  animations: [
-    flyInOutTrigger
-  ],
-  templateUrl: 'menu.component.html',
+  selector: "demo-menu-demo",
+  animations: [flyInOutTrigger],
+  templateUrl: "menu.component.html",
   styles: [
     `
       :host {
@@ -42,16 +40,15 @@ import {AbstractDemoComponent} from '../abstract-demo.component';
         height: 148px;
         width: 100%;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class MenuDemoComponent extends AbstractDemoComponent {
-
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
   }
 
   public action(): void {
-    console.log('action clicked');
+    console.log("action clicked");
   }
 }

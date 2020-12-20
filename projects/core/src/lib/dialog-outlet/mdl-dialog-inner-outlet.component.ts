@@ -1,19 +1,19 @@
 // the component is used inside the app-root. this is possible because this component
 // is exported from the module
-import {Component, forwardRef, Inject, ViewContainerRef} from '@angular/core';
-import {MdlDialogOutletService} from './mdl-dialog-outlet.service';
+import { Component, forwardRef, Inject, ViewContainerRef } from "@angular/core";
+import { MdlDialogOutletService } from "./mdl-dialog-outlet.service";
 
 @Component({
   // eslint-disable-next-line
   selector: 'dialog-outlet',
-  template: ''
+  template: "",
 })
 export class MdlDialogInnerOutletComponent {
-
   constructor(
     private vCRef: ViewContainerRef,
-    @Inject(forwardRef(() => MdlDialogOutletService)) service: MdlDialogOutletService) {
-
+    @Inject(forwardRef(() => MdlDialogOutletService))
+    service: MdlDialogOutletService
+  ) {
     service.setDefaultViewContainerRef(vCRef);
   }
 }

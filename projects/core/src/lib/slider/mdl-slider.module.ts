@@ -1,7 +1,7 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
-import {MdlSliderComponent} from './mdl-slider.component';
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { MdlSliderComponent } from "./mdl-slider.component";
 
 const MDL_SLIDER_DIRECTIVES = [MdlSliderComponent];
 
@@ -14,9 +14,9 @@ export class MdlSliderModule {
   public static forRoot(): ModuleWithProviders<MdlSliderModule> {
     return {
       ngModule: MdlSliderModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-slider.component';
+export * from "./mdl-slider.component";

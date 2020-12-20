@@ -1,7 +1,15 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {MdlBadgeDirective, MdlBadgeNoBackgroundDirective, MdlBadgeOverlapDirective} from './mdl-badge.directive';
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import {
+  MdlBadgeDirective,
+  MdlBadgeNoBackgroundDirective,
+  MdlBadgeOverlapDirective,
+} from "./mdl-badge.directive";
 
-const MDL_BADGE_DIRECTIVES = [MdlBadgeDirective, MdlBadgeOverlapDirective, MdlBadgeNoBackgroundDirective];
+const MDL_BADGE_DIRECTIVES = [
+  MdlBadgeDirective,
+  MdlBadgeOverlapDirective,
+  MdlBadgeNoBackgroundDirective,
+];
 
 @NgModule({
   imports: [],
@@ -12,9 +20,9 @@ export class MdlBadgeModule {
   public static forRoot(): ModuleWithProviders<MdlBadgeModule> {
     return {
       ngModule: MdlBadgeModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-badge.directive';
+export * from "./mdl-badge.directive";

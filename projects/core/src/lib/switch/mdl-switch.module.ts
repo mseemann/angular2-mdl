@@ -1,7 +1,7 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {MdlSwitchComponent} from './mdl-switch.component';
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { MdlSwitchComponent } from "./mdl-switch.component";
 
 const MDL_SWITCH_DIRECTIVES = [MdlSwitchComponent];
 
@@ -14,9 +14,9 @@ export class MdlSwitchModule {
   static forRoot(): ModuleWithProviders<MdlSwitchModule> {
     return {
       ngModule: MdlSwitchModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-switch.component';
+export * from "./mdl-switch.component";

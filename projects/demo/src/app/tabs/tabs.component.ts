@@ -1,15 +1,13 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Title} from '@angular/platform-browser';
-import {AbstractDemoComponent} from '../abstract-demo.component';
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { flyInOutTrigger } from "../animations/flyInOutTrigger-animation";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
+import { AbstractDemoComponent } from "../abstract-demo.component";
 
 @Component({
-  selector: 'demo-tabs',
-  animations: [
-    flyInOutTrigger
-  ],
-  templateUrl: 'tabs.component.html',
+  selector: "demo-tabs",
+  animations: [flyInOutTrigger],
+  templateUrl: "tabs.component.html",
   styles: [
     `
       .demo-tab-container {
@@ -27,12 +25,11 @@ import {AbstractDemoComponent} from '../abstract-demo.component';
       .demo-toggle-disabled-container mdl-switch {
         margin: 5px 0;
       }
-    `
+    `,
   ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TabsDemoComponent extends AbstractDemoComponent implements OnInit {
-
   disableTargaryens = false;
   disableBaratheon = false;
 
@@ -43,14 +40,14 @@ export class TabsDemoComponent extends AbstractDemoComponent implements OnInit {
     super(router, route, titleService);
   }
 
-  public tabChanged({index}: { index: number }): void {
+  public tabChanged({ index }: { index: number }): void {
     this.activeIndex = index;
   }
 
   ngOnInit(): void {
     // Simulates a later change of tabs
     setTimeout(() => {
-      this.myArray = ['a', 'b', 'c'];
+      this.myArray = ["a", "b", "c"];
     }, 1000);
   }
 }

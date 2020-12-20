@@ -37,9 +37,11 @@ export enum KEYS {
 // eslint-disable-next-line
 export const keyboardEventKeyCode = ($event: KeyboardEvent): number => ($event.which || $event.charCode || $event.keyCode);
 
-export const keyboardEventKey = ($event: KeyboardEvent): string => $event.key || String.fromCharCode(keyboardEventKeyCode($event));
+export const keyboardEventKey = ($event: KeyboardEvent): string =>
+  $event.key || String.fromCharCode(keyboardEventKeyCode($event));
 
-export const isKey = ($event: KeyboardEvent, ...keys: KEYS[]): boolean => keys.indexOf(keyboardEventKeyCode($event)) !== -1;
+export const isKey = ($event: KeyboardEvent, ...keys: KEYS[]): boolean =>
+  keys.indexOf(keyboardEventKeyCode($event)) !== -1;
 
 export const isCharacterKey = ($event: KeyboardEvent): boolean => {
   const keyCode = keyboardEventKeyCode($event);

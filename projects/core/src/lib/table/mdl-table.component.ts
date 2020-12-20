@@ -1,4 +1,10 @@
-import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from "@angular/core";
 
 export interface IMdlTableColumn {
   key: string;
@@ -11,13 +17,11 @@ export interface IMdlTableModelItem {
 }
 
 export interface IMdlTableModel {
-
   columns: IMdlTableColumn[];
   data: IMdlTableModelItem[];
 }
 
 export class MdlDefaultTableModel implements IMdlTableModel {
-
   public columns: IMdlTableColumn[];
   public data: IMdlTableModelItem[] = [];
 
@@ -28,9 +32,7 @@ export class MdlDefaultTableModel implements IMdlTableModel {
   addAll(data: IMdlTableModelItem[]): void {
     this.data.push(...data);
   }
-
 }
-
 
 const template = `
         <table class="mdl-data-table">
@@ -61,21 +63,19 @@ const template = `
         </table>
     `;
 
-const styles =
-  `
+const styles = `
     :host{
       display:inline-block;
     }
     `;
 
 @Component({
-  selector: 'mdl-table',
+  selector: "mdl-table",
   template,
   styles: [styles],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlTableComponent {
-
   // eslint-disable-next-line
   @Input('table-model')
   model: IMdlTableModel;
@@ -87,23 +87,19 @@ export class MdlTableComponent {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  toogleAll(): void {
-  }
+  toogleAll(): void {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  selectionChanged(): void {
-  }
+  selectionChanged(): void {}
 }
 
-
 @Component({
-  selector: 'mdl-table-selectable',
+  selector: "mdl-table-selectable",
   template,
   styles: [styles],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlSelectableTableComponent extends MdlTableComponent {
-
   // eslint-disable-next-line
   @Input('table-model')
   model: IMdlTableModel;
@@ -118,12 +114,12 @@ export class MdlSelectableTableComponent extends MdlTableComponent {
   public allSelected = false;
 
   isAllSelected(): boolean {
-    return this.model.data.every(data => data.selected);
+    return this.model.data.every((data) => data.selected);
   }
 
   toogleAll(): void {
     const selected = !this.isAllSelected();
-    this.model.data.forEach(data => data.selected = selected);
+    this.model.data.forEach((data) => (data.selected = selected));
     this.updateSelected();
   }
 
@@ -132,8 +128,7 @@ export class MdlSelectableTableComponent extends MdlTableComponent {
   }
 
   private updateSelected() {
-    this.selected = this.model.data.filter(data => data.selected);
-    this.selectionChange.emit({value: this.selected});
+    this.selected = this.model.data.filter((data) => data.selected);
+    this.selectionChange.emit({ value: this.selected });
   }
-
 }

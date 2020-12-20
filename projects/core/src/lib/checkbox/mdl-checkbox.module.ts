@@ -1,7 +1,7 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {MdlCheckboxComponent} from './mdl-checkbox.component';
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { MdlCheckboxComponent } from "./mdl-checkbox.component";
 
 const MDL_CHECKBOX_DIRECTIVES = [MdlCheckboxComponent];
 
@@ -14,9 +14,9 @@ export class MdlCheckboxModule {
   static forRoot(): ModuleWithProviders<MdlCheckboxModule> {
     return {
       ngModule: MdlCheckboxModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-checkbox.component';
+export * from "./mdl-checkbox.component";

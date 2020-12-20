@@ -1,96 +1,107 @@
-import {Component} from '@angular/core';
-import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Title} from '@angular/platform-browser';
-import {AbstractDemoComponent} from '../abstract-demo.component';
+import { Component } from "@angular/core";
+import { flyInOutTrigger } from "../animations/flyInOutTrigger-animation";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
+import { AbstractDemoComponent } from "../abstract-demo.component";
 
-import {LoginDialogComponent, TEST_VALUE} from './login-dialog.component';
+import { LoginDialogComponent, TEST_VALUE } from "./login-dialog.component";
 
-import {onErrorResumeNext} from 'rxjs';
-import {IOpenCloseRect, MdlDialogReference, MdlDialogService, MdlSnackbarService} from '@angular-mdl/core';
-
+import { onErrorResumeNext } from "rxjs";
+import {
+  IOpenCloseRect,
+  MdlDialogReference,
+  MdlDialogService,
+  MdlSnackbarService,
+} from "@angular-mdl/core";
 
 @Component({
-  selector: 'demo-dialog',
-  animations: [
-    flyInOutTrigger
-  ],
-  templateUrl: 'dialog.component.html'
+  selector: "demo-dialog",
+  animations: [flyInOutTrigger],
+  templateUrl: "dialog.component.html",
 })
 export class DialogDemoComponent extends AbstractDemoComponent {
-
   constructor(
     router: Router,
     route: ActivatedRoute,
     titleService: Title,
     private dialogService: MdlDialogService,
-    private snackbarService: MdlSnackbarService) {
-
+    private snackbarService: MdlSnackbarService
+  ) {
     super(router, route, titleService);
-
   }
 
   public showAlert(): void {
-    const result = this.dialogService.alert('This is a simple Alert');
-    result.subscribe(() => console.log('alert closed'));
+    const result = this.dialogService.alert("This is a simple Alert");
+    result.subscribe(() => console.log("alert closed"));
   }
 
   public showConfirmMessage(): void {
-    const result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
+    const result = this.dialogService.confirm(
+      "Would you like a mug of coffee?",
+      "No",
+      "Yes"
+    );
     // if you need both answers
-    result.subscribe(() => {
-        console.log('confirmed');
+    result.subscribe(
+      () => {
+        console.log("confirmed");
       },
       () => {
-        console.log('declined');
+        console.log("declined");
       }
     );
     // if you only need the confirm answer
     onErrorResumeNext(result).subscribe(() => {
-      console.log('confirmed 2');
+      console.log("confirmed 2");
     });
   }
 
   public showConfirmMessageWithTitle(): void {
-    const result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes', 'Excuse me');
+    const result = this.dialogService.confirm(
+      "Would you like a mug of coffee?",
+      "No",
+      "Yes",
+      "Excuse me"
+    );
     // if you need both answers
-    result.subscribe(() => {
-        console.log('confirmed');
+    result.subscribe(
+      () => {
+        console.log("confirmed");
       },
       () => {
-        console.log('declined');
+        console.log("declined");
       }
     );
     // if you only need the confirm answer
     onErrorResumeNext(result).subscribe(() => {
-      console.log('confirmed 2');
+      console.log("confirmed 2");
     });
   }
 
   public showDialogFullWidthAction($event: MouseEvent): void {
     const pDialog = this.dialogService.showDialog({
-      title: 'Your choice?',
-      message: 'What drink do you prefer to your meal?',
+      title: "Your choice?",
+      message: "What drink do you prefer to your meal?",
       actions: [
         {
           handler: () => {
-            this.snackbarService.showToast('Coke');
+            this.snackbarService.showToast("Coke");
           },
-          text: 'One Coke',
-          isClosingAction: true
+          text: "One Coke",
+          isClosingAction: true,
         },
         {
           handler: () => {
-            this.snackbarService.showToast('Vine');
+            this.snackbarService.showToast("Vine");
           },
-          text: 'A bottle of vine'
+          text: "A bottle of vine",
         },
         {
           handler: () => {
-            this.snackbarService.showToast('Beer');
+            this.snackbarService.showToast("Beer");
           },
-          text: 'A pint of beer'
-        }
+          text: "A pint of beer",
+        },
       ],
       fullWidthAction: true,
       isModal: false,
@@ -99,27 +110,27 @@ export class DialogDemoComponent extends AbstractDemoComponent {
         left: document.body.offsetWidth / 2,
         height: 0,
         top: document.body.offsetHeight / 2,
-        width: 0
-      } as IOpenCloseRect
+        width: 0,
+      } as IOpenCloseRect,
     });
-    pDialog.subscribe((dialogReference) => console.log('dialog visible', dialogReference));
+    pDialog.subscribe((dialogReference) =>
+      console.log("dialog visible", dialogReference)
+    );
   }
 
   public showDialog($event: MouseEvent): void {
-
     const pDialog = this.dialogService.showCustomDialog({
       component: LoginDialogComponent,
-      providers: [{provide: TEST_VALUE, useValue: 'Just an example'}],
+      providers: [{ provide: TEST_VALUE, useValue: "Just an example" }],
       isModal: true,
-      styles: {width: '300px'},
+      styles: { width: "300px" },
       clickOutsideToClose: true,
       openFrom: $event,
       enterTransitionDuration: 400,
-      leaveTransitionDuration: 400
+      leaveTransitionDuration: 400,
     });
     pDialog.subscribe((dialogReference: MdlDialogReference) => {
-      console.log('dialog visible', dialogReference);
+      console.log("dialog visible", dialogReference);
     });
   }
-
 }

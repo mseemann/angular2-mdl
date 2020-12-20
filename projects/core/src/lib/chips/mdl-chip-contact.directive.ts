@@ -1,23 +1,30 @@
-import {Directive, HostBinding, Inject, OnInit, Optional} from '@angular/core';
-import {MdlChipComponent} from './mdl-chip.component';
-import {MdlStructureError} from '../common/mdl-error';
+import {
+  Directive,
+  HostBinding,
+  Inject,
+  OnInit,
+  Optional,
+} from "@angular/core";
+import { MdlChipComponent } from "./mdl-chip.component";
+import { MdlStructureError } from "../common/mdl-error";
 
 @Directive({
   // eslint-disable-next-line
   selector: '[mdl-chip-contact]'
 })
 export class MdlChipContactDirective implements OnInit {
+  @HostBinding("class.mdl-chip__contact") isChipContact = true;
 
-  @HostBinding('class.mdl-chip__contact') isChipContact = true;
-
-  constructor(@Optional() @Inject(MdlChipComponent) private mdlChipComponent: MdlChipComponent) {
-  }
+  constructor(
+    @Optional()
+    @Inject(MdlChipComponent)
+    private mdlChipComponent: MdlChipComponent
+  ) {}
 
   ngOnInit(): void {
     if (!this.mdlChipComponent) {
-      throw new MdlStructureError('mdl-chip-contact', 'mdl-chip');
+      throw new MdlStructureError("mdl-chip-contact", "mdl-chip");
     }
     (this.mdlChipComponent as MdlChipComponent).isChipContact = true;
   }
 }
-

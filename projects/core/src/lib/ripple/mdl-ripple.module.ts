@@ -1,4 +1,4 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from "@angular/core";
 import {
   MdlAnchorRippleDirective,
   MdlButtonRippleDirective,
@@ -6,16 +6,18 @@ import {
   MdlIconToggleRippleDirective,
   MdlMenuItemRippleDirective,
   MdlRadioRippleDirective,
-  MdlSwitchRippleDirective
-} from './mdl-ripple.directive';
+  MdlSwitchRippleDirective,
+} from "./mdl-ripple.directive";
 
-const MDL_RIPPLE_DIRECTIVES = [MdlCheckboxRippleDirective,
+const MDL_RIPPLE_DIRECTIVES = [
+  MdlCheckboxRippleDirective,
   MdlButtonRippleDirective,
   MdlRadioRippleDirective,
   MdlIconToggleRippleDirective,
   MdlSwitchRippleDirective,
   MdlMenuItemRippleDirective,
-  MdlAnchorRippleDirective];
+  MdlAnchorRippleDirective,
+];
 
 @NgModule({
   imports: [],
@@ -26,9 +28,9 @@ export class MdlRippleModule {
   public static forRoot(): ModuleWithProviders<MdlRippleModule> {
     return {
       ngModule: MdlRippleModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from '../ripple/mdl-ripple.directive';
+export * from "../ripple/mdl-ripple.directive";

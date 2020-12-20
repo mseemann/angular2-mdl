@@ -7,32 +7,34 @@ import {
   OnChanges,
   OnInit,
   SimpleChanges,
-  ViewContainerRef
-} from '@angular/core';
-import {MdlSimpleTooltipComponent, MdlTooltipComponent} from './mdl-tooltip.component';
+  ViewContainerRef,
+} from "@angular/core";
+import {
+  MdlSimpleTooltipComponent,
+  MdlTooltipComponent,
+} from "./mdl-tooltip.component";
 
 @Directive()
 export abstract class AbstractMdlTooltipDirective implements OnInit, OnChanges {
-
   protected tooltip: string | MdlTooltipComponent;
-  protected position: 'left' | 'right' | 'top' | 'bottom';
+  protected position: "left" | "right" | "top" | "bottom";
 
   protected tooltipComponent: MdlSimpleTooltipComponent;
 
   protected constructor(
     private vcRef: ViewContainerRef,
     private large: boolean,
-    private componentFactoryResolver: ComponentFactoryResolver) {
-  }
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {}
 
-  @HostListener('touchend', ['$event'])
-  @HostListener('mouseenter', ['$event'])
+  @HostListener("touchend", ["$event"])
+  @HostListener("mouseenter", ["$event"])
   onMouseEnter(event: MouseEvent): void {
     this.tooltipComponent.mouseEnter(event);
   }
 
-  @HostListener('window:touchstart')
-  @HostListener('mouseleave')
+  @HostListener("window:touchstart")
+  @HostListener("mouseleave")
   onMouseLeave(): void {
     this.tooltipComponent.mouseLeave();
   }
@@ -41,19 +43,20 @@ export abstract class AbstractMdlTooltipDirective implements OnInit, OnChanges {
     // if the tooltip is not an instance of MdlTooltipComponent
     // we create a simpleTooltipComponent on the fly.
     if (!(this.tooltip instanceof MdlTooltipComponent)) {
-
-      const cFactory = this.componentFactoryResolver.resolveComponentFactory(MdlSimpleTooltipComponent);
-      const cRef: ComponentRef<MdlSimpleTooltipComponent> = this.vcRef.createComponent(cFactory);
+      const cFactory = this.componentFactoryResolver.resolveComponentFactory(
+        MdlSimpleTooltipComponent
+      );
+      const cRef: ComponentRef<MdlSimpleTooltipComponent> = this.vcRef.createComponent(
+        cFactory
+      );
 
       this.tooltipComponent = cRef.instance as MdlSimpleTooltipComponent;
       this.tooltipComponent.tooltipText = this.tooltip;
       this.configureTooltipComponent();
-
     } else {
       this.tooltipComponent = this.tooltip;
       this.configureTooltipComponent();
     }
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -70,23 +73,25 @@ export abstract class AbstractMdlTooltipDirective implements OnInit, OnChanges {
   }
 }
 
-
 @Directive({
   // eslint-disable-next-line
   selector: '[mdl-tooltip]'
 })
 export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
-
-  @Input('mdl-tooltip') public tooltip: string | MdlTooltipComponent;
+  @Input("mdl-tooltip") public tooltip: string | MdlTooltipComponent;
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('mdl-tooltip-position') public position: 'left' | 'right' | 'top' | 'bottom';
+  @Input("mdl-tooltip-position") public position:
+    | "left"
+    | "right"
+    | "top"
+    | "bottom";
 
   constructor(
     vcRef: ViewContainerRef,
-    componentFactoryResolver: ComponentFactoryResolver) {
+    componentFactoryResolver: ComponentFactoryResolver
+  ) {
     super(vcRef, false, componentFactoryResolver);
   }
-
 }
 
 @Directive({
@@ -94,15 +99,18 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
   selector: '[mdl-tooltip-large]'
 })
 export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
-
-  @Input('mdl-tooltip-large') public tooltip: string | MdlTooltipComponent;
+  @Input("mdl-tooltip-large") public tooltip: string | MdlTooltipComponent;
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('mdl-tooltip-position') public position: 'left' | 'right' | 'top' | 'bottom';
+  @Input("mdl-tooltip-position") public position:
+    | "left"
+    | "right"
+    | "top"
+    | "bottom";
 
   constructor(
     vcRef: ViewContainerRef,
-    componentFactoryResolver: ComponentFactoryResolver) {
+    componentFactoryResolver: ComponentFactoryResolver
+  ) {
     super(vcRef, true, componentFactoryResolver);
   }
-
 }

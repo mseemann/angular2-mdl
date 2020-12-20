@@ -1,6 +1,6 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MdlProgressComponent} from './mdl-progress.component';
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MdlProgressComponent } from "./mdl-progress.component";
 
 const MDL_PROGRESS_DIRECTIVES = [MdlProgressComponent];
 
@@ -13,9 +13,9 @@ export class MdlProgressModule {
   static forRoot(): ModuleWithProviders<MdlProgressModule> {
     return {
       ngModule: MdlProgressModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-progress.component';
+export * from "./mdl-progress.component";

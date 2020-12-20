@@ -1,1 +1,1 @@
-export * from './prism.component';
+export * from "./prism.component";

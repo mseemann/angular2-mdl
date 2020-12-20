@@ -1,4 +1,4 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from "@angular/core";
 import {
   MdlCardActionsComponent,
   MdlCardBorderDirective,
@@ -8,9 +8,8 @@ import {
   MdlCardMenuComponent,
   MdlCardSupportingTextComponent,
   MdlCardTitleComponent,
-  MdlCardTitleTextDirective
-} from './mdl-card.component';
-
+  MdlCardTitleTextDirective,
+} from "./mdl-card.component";
 
 const MDL_CARD_DIRECTIVES = [
   MdlCardComponent,
@@ -21,7 +20,7 @@ const MDL_CARD_DIRECTIVES = [
   MdlCardMenuComponent,
   MdlCardTitleTextDirective,
   MdlCardBorderDirective,
-  MdlCardExpandDirective
+  MdlCardExpandDirective,
 ];
 
 @NgModule({
@@ -33,9 +32,9 @@ export class MdlCardModule {
   public static forRoot(): ModuleWithProviders<MdlCardModule> {
     return {
       ngModule: MdlCardModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-card.component';
+export * from "./mdl-card.component";

@@ -8,17 +8,16 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
-  ViewEncapsulation
-} from '@angular/core';
-import {MdlError} from '../common/mdl-error';
-import {MdlButtonComponent} from '../button/mdl-button.component';
+  ViewEncapsulation,
+} from "@angular/core";
+import { MdlError } from "../common/mdl-error";
+import { MdlButtonComponent } from "../button/mdl-button.component";
 
-
-const BOTTOM_LEFT = 'bottom-left';
-const BOTTOM_RIGHT = 'bottom-right';
-const TOP_LEFT = 'top-left';
-const TOP_RIGHT = 'top-right';
-const UNALIGNED = 'unaligned';
+const BOTTOM_LEFT = "bottom-left";
+const BOTTOM_RIGHT = "bottom-right";
+const TOP_LEFT = "top-left";
+const TOP_RIGHT = "top-right";
+const UNALIGNED = "unaligned";
 
 // Total duration of the menu animation.
 const TRANSITION_DURATION_SECONDS = 0.3;
@@ -29,21 +28,18 @@ const TRANSITION_DURATION_FRACTION = 0.8;
 const CLOSE_TIMEOUT = 175;
 
 const CSS_ALIGN_MAP = {};
-CSS_ALIGN_MAP[BOTTOM_LEFT] = 'mdl-menu--bottom-left';
-CSS_ALIGN_MAP[BOTTOM_RIGHT] = 'mdl-menu--bottom-right';
-CSS_ALIGN_MAP[TOP_LEFT] = 'mdl-menu--top-left';
-CSS_ALIGN_MAP[TOP_RIGHT] = 'mdl-menu--top-right';
-CSS_ALIGN_MAP[UNALIGNED] = 'mdl-menu--unaligned';
+CSS_ALIGN_MAP[BOTTOM_LEFT] = "mdl-menu--bottom-left";
+CSS_ALIGN_MAP[BOTTOM_RIGHT] = "mdl-menu--bottom-right";
+CSS_ALIGN_MAP[TOP_LEFT] = "mdl-menu--top-left";
+CSS_ALIGN_MAP[TOP_RIGHT] = "mdl-menu--top-right";
+CSS_ALIGN_MAP[UNALIGNED] = "mdl-menu--unaligned";
 
-
-export class MdlMenuError extends MdlError {
-}
+export class MdlMenuError extends MdlError {}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MdlMenuRegisty {
-
   menuComponents: MdlMenuComponent[] = [];
 
   add(menuComponent: MdlMenuComponent): void {
@@ -56,7 +52,6 @@ export class MdlMenuRegisty {
   }
 
   hideAllExcept(menuComponent: MdlMenuComponent): void {
-
     this.menuComponents.forEach((component) => {
       if (component !== menuComponent) {
         component.hide();
@@ -65,40 +60,41 @@ export class MdlMenuRegisty {
   }
 }
 
-
 @Component({
-  selector: 'mdl-menu',
-  exportAs: 'mdlMenu',
+  selector: "mdl-menu",
+  exportAs: "mdlMenu",
   template: `
     <div #container class="mdl-menu__container is-upgraded">
-      <div #outline class="mdl-menu__outline" [ngClass]="cssPosition"
-      ></div>
+      <div #outline class="mdl-menu__outline" [ngClass]="cssPosition"></div>
       <div class="mdl-menu" #menuElement>
         <ng-content></ng-content>
       </div>
     </div>
   `,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   // eslint-disable-next-line
   @Input('mdl-menu-position')
   position: string;
 
-  @ViewChild('container', {static: true})
+  @ViewChild("container", { static: true })
   containerChild: ElementRef;
-  @ViewChild('menuElement', {static: true})
+  @ViewChild("menuElement", { static: true })
   menuElementChild: ElementRef;
-  @ViewChild('outline', {static: true})
+  @ViewChild("outline", { static: true })
   outlineChild: ElementRef;
 
-  public cssPosition = 'mdl-menu--bottom-left';
+  public cssPosition = "mdl-menu--bottom-left";
   private container: HTMLElement;
   private menuElement: HTMLElement;
   private outline: HTMLElement;
   private isVisible = false;
 
-  constructor(private renderer: Renderer2, private menuRegistry: MdlMenuRegisty) {
+  constructor(
+    private renderer: Renderer2,
+    private menuRegistry: MdlMenuRegisty
+  ) {
     this.menuRegistry.add(this);
   }
 
@@ -118,10 +114,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       return true;
     };
-    this.renderer.listen('window', 'click', callback);
-    this.renderer.listen('window', 'touchstart', callback);
+    this.renderer.listen("window", "click", callback);
+    this.renderer.listen("window", "touchstart", callback);
   }
-
 
   toggle(event: Event, mdlButton: MdlButtonComponent): void {
     if (!mdlButton) {
@@ -143,8 +138,8 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
   hide(): void {
     // Remove all transition delays; menu items fade out concurrently.
-    document.querySelectorAll('mdl-menu-item').forEach(el => {
-      (el as HTMLElement).style.removeProperty('transition-delay');
+    document.querySelectorAll("mdl-menu-item").forEach((el) => {
+      (el as HTMLElement).style.removeProperty("transition-delay");
     });
     // this.menuItemComponents.toArray().forEach(mi => {
     //   mi.element.style.removeProperty('transition-delay');
@@ -157,9 +152,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // Turn on animation, and apply the final clip. Also make invisible.
     // This triggers the transitions.
-    this.renderer.addClass(this.menuElement, 'is-animating');
+    this.renderer.addClass(this.menuElement, "is-animating");
     this.applyClip(height, width);
-    this.renderer.removeClass(this.container, 'is-visible');
+    this.renderer.removeClass(this.container, "is-visible");
 
     // Clean up after the animation is complete.
     this.addAnimationEndListener();
@@ -168,7 +163,6 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   show(event: Event, mdlButton: MdlButtonComponent): void {
-
     this.menuRegistry.hideAllExcept(this);
 
     event.stopPropagation();
@@ -182,39 +176,45 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
       // manually specify position.
     } else if (this.position === BOTTOM_RIGHT) {
       // Position below the "for" element, aligned to its right.
-      this.container.style.right = (forRect.right - rect.right) + 'px';
-      this.container.style.top = forElement.offsetTop + forElement.offsetHeight + 'px';
+      this.container.style.right = forRect.right - rect.right + "px";
+      this.container.style.top =
+        forElement.offsetTop + forElement.offsetHeight + "px";
     } else if (this.position === TOP_LEFT) {
       // Position above the "for" element, aligned to its left.
-      this.container.style.left = forElement.offsetLeft + 'px';
-      this.container.style.bottom = (forRect.bottom - rect.top) + 'px';
+      this.container.style.left = forElement.offsetLeft + "px";
+      this.container.style.bottom = forRect.bottom - rect.top + "px";
     } else if (this.position === TOP_RIGHT) {
       // Position above the "for" element, aligned to its right.
-      this.container.style.right = (forRect.right - rect.right) + 'px';
-      this.container.style.bottom = (forRect.bottom - rect.top) + 'px';
+      this.container.style.right = forRect.right - rect.right + "px";
+      this.container.style.bottom = forRect.bottom - rect.top + "px";
     } else {
       // Default: position below the "for" element, aligned to its left.
-      this.container.style.left = forElement.offsetLeft + 'px';
-      this.container.style.top = forElement.offsetTop + forElement.offsetHeight + 'px';
+      this.container.style.left = forElement.offsetLeft + "px";
+      this.container.style.top =
+        forElement.offsetTop + forElement.offsetHeight + "px";
     }
 
     // Measure the inner element.
     const height = this.menuElement.getBoundingClientRect().height;
     const width = this.menuElement.getBoundingClientRect().width;
 
-    this.container.style.width = width + 'px';
-    this.container.style.height = height + 'px';
-    this.outline.style.width = width + 'px';
-    this.outline.style.height = height + 'px';
+    this.container.style.width = width + "px";
+    this.container.style.height = height + "px";
+    this.outline.style.width = width + "px";
+    this.outline.style.height = height + "px";
 
-    const transitionDuration = TRANSITION_DURATION_SECONDS * TRANSITION_DURATION_FRACTION;
-    document.querySelectorAll('mdl-menu-item').forEach(el => {
+    const transitionDuration =
+      TRANSITION_DURATION_SECONDS * TRANSITION_DURATION_FRACTION;
+    document.querySelectorAll("mdl-menu-item").forEach((el) => {
       const mi = el as HTMLElement;
       let itemDelay;
-      if ((this.position === TOP_LEFT) || this.position === TOP_RIGHT) {
-        itemDelay = ((height - mi.offsetTop - mi.offsetHeight) / height * transitionDuration) + 's';
+      if (this.position === TOP_LEFT || this.position === TOP_RIGHT) {
+        itemDelay =
+          ((height - mi.offsetTop - mi.offsetHeight) / height) *
+            transitionDuration +
+          "s";
       } else {
-        itemDelay = (mi.offsetTop / height * transitionDuration) + 's';
+        itemDelay = (mi.offsetTop / height) * transitionDuration + "s";
       }
       mi.style.transitionDelay = itemDelay;
     });
@@ -222,9 +222,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     // Apply the initial clip to the text before we start animating.
     this.applyClip(height, width);
 
-    this.renderer.addClass(this.container, 'is-visible');
-    this.menuElement.style.clip = 'rect(0 ' + width + 'px ' + height + 'px 0)';
-    this.renderer.addClass(this.menuElement, 'is-animating');
+    this.renderer.addClass(this.container, "is-visible");
+    this.menuElement.style.clip = "rect(0 " + width + "px " + height + "px 0)";
+    this.renderer.addClass(this.menuElement, "is-animating");
 
     this.addAnimationEndListener();
 
@@ -236,8 +236,8 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private addAnimationEndListener() {
-    this.renderer.listen(this.menuElement, 'transitionend', () => {
-      this.renderer.removeClass(this.menuElement, 'is-animating');
+    this.renderer.listen(this.menuElement, "transitionend", () => {
+      this.renderer.removeClass(this.menuElement, "is-animating");
       return true;
     });
   }
@@ -245,20 +245,30 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   private applyClip(height, width) {
     if (this.position === UNALIGNED) {
       // Do not clip.
-      this.menuElement.style.clip = '';
+      this.menuElement.style.clip = "";
     } else if (this.position === BOTTOM_RIGHT) {
       // Clip to the top right corner of the menu.
-      this.menuElement.style.clip = 'rect(0 ' + width + 'px ' + '0 ' + width + 'px)';
+      this.menuElement.style.clip =
+        "rect(0 " + width + "px " + "0 " + width + "px)";
     } else if (this.position === TOP_LEFT) {
       // Clip to the bottom left corner of the menu.
-      this.menuElement.style.clip = 'rect(' + height + 'px 0 ' + height + 'px 0)';
+      this.menuElement.style.clip =
+        "rect(" + height + "px 0 " + height + "px 0)";
     } else if (this.position === TOP_RIGHT) {
       // Clip to the bottom right corner of the menu.
-      this.menuElement.style.clip = 'rect(' + height + 'px ' + width + 'px ' + height + 'px ' + width + 'px)';
+      this.menuElement.style.clip =
+        "rect(" +
+        height +
+        "px " +
+        width +
+        "px " +
+        height +
+        "px " +
+        width +
+        "px)";
     } else {
       // Default: do not clip (same as clipping to the top left corner).
-      this.menuElement.style.clip = '';
+      this.menuElement.style.clip = "";
     }
   }
 }
-

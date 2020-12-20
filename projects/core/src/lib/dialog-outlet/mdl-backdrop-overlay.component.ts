@@ -1,8 +1,14 @@
-import {Component, EventEmitter, HostBinding, HostListener, NgZone, ViewEncapsulation} from '@angular/core';
-
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  NgZone,
+  ViewEncapsulation,
+} from "@angular/core";
 
 @Component({
-  selector: 'mdl-backdrop-overlay',
+  selector: "mdl-backdrop-overlay",
   template: ``,
   styles: [
     `
@@ -14,30 +20,29 @@ import {Component, EventEmitter, HostBinding, HostListener, NgZone, ViewEncapsul
         left: 0;
         background: rgba(0, 0, 0, 0.1);
       }
-    `
+    `,
   ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlBackdropOverlayComponent {
-  @HostBinding('style.zIndex')
+  @HostBinding("style.zIndex")
   zIndex = 0;
 
-  @HostBinding('class.dialog-backdrop')
+  @HostBinding("class.dialog-backdrop")
   isBackdrop = true;
 
   public clickEmitter: EventEmitter<void> = new EventEmitter();
 
   private visible = false;
 
-  constructor(private ngZone: NgZone) {
-  }
+  constructor(private ngZone: NgZone) {}
 
-  @HostBinding('style.display')
+  @HostBinding("style.display")
   get display(): string | null {
-    return this.visible ? null : 'none';
+    return this.visible ? null : "none";
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener("click", ["$event"])
   onBackdropClick(e: Event): void {
     // this event runs not in angular zone of the main app. make sure it runs in the main angular zone
     // and change detection works

@@ -1,26 +1,32 @@
-import {Component, ElementRef, HostBinding, Input, Renderer2, ViewEncapsulation} from '@angular/core';
-import {MdlTooltipPositionService} from './mdl-tooltip-position.service';
+import {
+  Component,
+  ElementRef,
+  HostBinding,
+  Input,
+  Renderer2,
+  ViewEncapsulation,
+} from "@angular/core";
+import { MdlTooltipPositionService } from "./mdl-tooltip-position.service";
 
-const IS_ACTIVE = 'is-active';
+const IS_ACTIVE = "is-active";
 
 @Component({
-  selector: 'mdl-simple-tooltip',
-  template: '<div>{{tooltipText}}</div>',
+  selector: "mdl-simple-tooltip",
+  template: "<div>{{tooltipText}}</div>",
   providers: [MdlTooltipPositionService],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlSimpleTooltipComponent {
-
-  @HostBinding('class.mdl-tooltip--large')
+  @HostBinding("class.mdl-tooltip--large")
   large = false;
 
   @Input()
-  position: 'left' | 'right' | 'top' | 'bottom';
+  position: "left" | "right" | "top" | "bottom";
 
   @Input()
   delay: number;
 
-  @HostBinding('class.mdl-tooltip')
+  @HostBinding("class.mdl-tooltip")
   isTooltip = true;
 
   tooltipText: string;
@@ -32,25 +38,25 @@ export class MdlSimpleTooltipComponent {
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2,
-    private mdlTooltipPositionService: MdlTooltipPositionService) {
-
+    private mdlTooltipPositionService: MdlTooltipPositionService
+  ) {
     this.element = elRef.nativeElement;
   }
 
-  @HostBinding('class.mdl-tooltip--bottom') get isBottom(): boolean {
-    return this.position === 'bottom';
+  @HostBinding("class.mdl-tooltip--bottom") get isBottom(): boolean {
+    return this.position === "bottom";
   }
 
-  @HostBinding('class.mdl-tooltip--right') get isRight(): boolean {
-    return this.position === 'right';
+  @HostBinding("class.mdl-tooltip--right") get isRight(): boolean {
+    return this.position === "right";
   }
 
-  @HostBinding('class.mdl-tooltip--left') get isLeft(): boolean {
-    return this.position === 'left';
+  @HostBinding("class.mdl-tooltip--left") get isLeft(): boolean {
+    return this.position === "left";
   }
 
-  @HostBinding('class.mdl-tooltip--top') isTop(): boolean {
-    return this.position === 'top';
+  @HostBinding("class.mdl-tooltip--top") isTop(): boolean {
+    return this.position === "top";
   }
 
   mouseLeave(): void {
@@ -79,7 +85,12 @@ export class MdlSimpleTooltipComponent {
     const offsetWidth = this.element.offsetWidth;
     const offsetHeight = this.element.offsetHeight;
 
-    const style = this.mdlTooltipPositionService.calcStyle(offsetWidth, offsetHeight, props, this.position);
+    const style = this.mdlTooltipPositionService.calcStyle(
+      offsetWidth,
+      offsetHeight,
+      props,
+      this.position
+    );
 
     for (const key of Object.keys(style)) {
       this.renderer.setStyle(this.elRef.nativeElement, key, style[key]);
@@ -99,14 +110,18 @@ export class MdlSimpleTooltipComponent {
 }
 
 @Component({
-  selector: 'mdl-tooltip',
-  template: '<div><ng-content></ng-content></div>',
-  exportAs: 'mdlTooltip',
+  selector: "mdl-tooltip",
+  template: "<div><ng-content></ng-content></div>",
+  exportAs: "mdlTooltip",
   providers: [MdlTooltipPositionService],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MdlTooltipComponent extends MdlSimpleTooltipComponent {
-  constructor(elRef: ElementRef, renderer: Renderer2, mdlTooltipPositionService: MdlTooltipPositionService) {
+  constructor(
+    elRef: ElementRef,
+    renderer: Renderer2,
+    mdlTooltipPositionService: MdlTooltipPositionService
+  ) {
     super(elRef, renderer, mdlTooltipPositionService);
   }
 }

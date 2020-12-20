@@ -1,6 +1,6 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MdlSpinnerComponent} from './mdl-spinner.component';
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MdlSpinnerComponent } from "./mdl-spinner.component";
 
 const MDL_SPINNER_DIRECTIVES = [MdlSpinnerComponent];
 
@@ -13,9 +13,9 @@ export class MdlSpinnerModule {
   static forRoot(): ModuleWithProviders<MdlSpinnerModule> {
     return {
       ngModule: MdlSpinnerModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-spinner.component';
+export * from "./mdl-spinner.component";

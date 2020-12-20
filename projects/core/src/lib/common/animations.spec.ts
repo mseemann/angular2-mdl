@@ -1,9 +1,7 @@
-import {NoopWebAnimations} from './animations';
+import { NoopWebAnimations } from "./animations";
 
-describe('Animations', () => {
-
-  it('should  be safe to call the mock animations api', () => {
-
+describe("Animations", () => {
+  it("should  be safe to call the mock animations api", () => {
     const noopAnim = new NoopWebAnimations();
 
     const animation = noopAnim.animate();
@@ -12,13 +10,10 @@ describe('Animations', () => {
 
     // should not throw
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    animation.onDone(() => {
-    });
-
+    animation.onDone(() => {});
   });
 
-  it('should call the animation done callback even if there is no web animation polyfill', (done) => {
-
+  it("should call the animation done callback even if there is no web animation polyfill", (done) => {
     const noopAnim = new NoopWebAnimations();
 
     const animation = noopAnim.animate();
@@ -30,5 +25,4 @@ describe('Animations', () => {
 
     animation.play();
   });
-
 });

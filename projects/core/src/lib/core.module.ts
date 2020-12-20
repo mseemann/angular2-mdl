@@ -1,29 +1,29 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {MdlCommonsModule} from './common/mdl-common.module';
-import {MdlLayoutModule} from './layout/mdl-layout.module';
-import {MdlIconModule} from './icon/mdl-icon.module';
-import {MdlBadgeModule} from './badge/mdl-badge.module';
-import {MdlButtonModule} from './button/mdl-button.module';
-import {MdlCardModule} from './card/mdl-card.module';
-import {MdlCheckboxModule} from './checkbox/mdl-checkbox.module';
-import {MdlChipModule} from './chips/mdl-chip.module';
-import {MdlDialogModule} from './dialog/mdl-dialog.module';
-import {MdlDialogOutletModule} from './dialog-outlet/mdl-dialog-outlet.module';
-import {MdlIconToggleModule} from './icon-toggle/mdl-icon-toggle.module';
-import {MdlListModule} from './list/mdl-list.module';
-import {MdlMenuModule} from './menu/mdl-menu.module';
-import {MdlProgressModule} from './progress/mdl-progress.module';
-import {MdlRadioModule} from './radio/mdl-radio.module';
-import {MdlShadowModule} from './shadow/mdl-shadow.module';
-import {MdlSliderModule} from './slider/mdl-slider.module';
-import {MdlSnackbarModule} from './snackbar/mdl-snackbar.module';
-import {MdlSpinnerModule} from './spinner/mdl-spinner.module';
-import {MdlSwitchModule} from './switch/mdl-switch.module';
-import {MdlTableModule} from './table/mdl-table.module';
-import {MdlTabsModule} from './tabs/mdl-tabs.module';
-import {MdlTextFieldModule} from './textfield/mdl-textfield.module';
-import {MdlTooltipModule} from './tooltip/mdl-tooltip.module';
-import {MdlRippleModule} from './ripple/mdl-ripple.module';
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { MdlCommonsModule } from "./common/mdl-common.module";
+import { MdlLayoutModule } from "./layout/mdl-layout.module";
+import { MdlIconModule } from "./icon/mdl-icon.module";
+import { MdlBadgeModule } from "./badge/mdl-badge.module";
+import { MdlButtonModule } from "./button/mdl-button.module";
+import { MdlCardModule } from "./card/mdl-card.module";
+import { MdlCheckboxModule } from "./checkbox/mdl-checkbox.module";
+import { MdlChipModule } from "./chips/mdl-chip.module";
+import { MdlDialogModule } from "./dialog/mdl-dialog.module";
+import { MdlDialogOutletModule } from "./dialog-outlet/mdl-dialog-outlet.module";
+import { MdlIconToggleModule } from "./icon-toggle/mdl-icon-toggle.module";
+import { MdlListModule } from "./list/mdl-list.module";
+import { MdlMenuModule } from "./menu/mdl-menu.module";
+import { MdlProgressModule } from "./progress/mdl-progress.module";
+import { MdlRadioModule } from "./radio/mdl-radio.module";
+import { MdlShadowModule } from "./shadow/mdl-shadow.module";
+import { MdlSliderModule } from "./slider/mdl-slider.module";
+import { MdlSnackbarModule } from "./snackbar/mdl-snackbar.module";
+import { MdlSpinnerModule } from "./spinner/mdl-spinner.module";
+import { MdlSwitchModule } from "./switch/mdl-switch.module";
+import { MdlTableModule } from "./table/mdl-table.module";
+import { MdlTabsModule } from "./tabs/mdl-tabs.module";
+import { MdlTextFieldModule } from "./textfield/mdl-textfield.module";
+import { MdlTooltipModule } from "./tooltip/mdl-tooltip.module";
+import { MdlRippleModule } from "./ripple/mdl-ripple.module";
 
 const MODULES = [
   MdlBadgeModule,
@@ -50,7 +50,7 @@ const MODULES = [
   MdlTableModule,
   MdlTabsModule,
   MdlTextFieldModule,
-  MdlTooltipModule
+  MdlTooltipModule,
 ];
 
 @NgModule({
@@ -79,22 +79,19 @@ const MODULES = [
     MdlTableModule.forRoot(),
     MdlMenuModule.forRoot(),
     MdlTabsModule.forRoot(),
-    MdlTextFieldModule.forRoot()
+    MdlTextFieldModule.forRoot(),
   ],
-  exports: [
-    ...MODULES
-  ]
+  exports: [...MODULES],
 })
-export class MdlModule {
-}
+export class MdlModule {}
 
 @NgModule({
   imports: MODULES,
-  exports: MODULES
+  exports: MODULES,
 })
 // @deprectaed use MdlModule - all services are provided in root by default.
 export class MdlNonRootModule {
   static forRoot(): ModuleWithProviders<MdlModule> {
-    return {ngModule: MdlModule};
+    return { ngModule: MdlModule };
   }
 }

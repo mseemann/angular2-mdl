@@ -1,5 +1,5 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {MdlButtonComponent} from './mdl-button.component';
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { MdlButtonComponent } from "./mdl-button.component";
 
 const MDL_BUTTON_DIRECTIVES = [MdlButtonComponent];
 
@@ -12,9 +12,9 @@ export class MdlButtonModule {
   public static forRoot(): ModuleWithProviders<MdlButtonModule> {
     return {
       ngModule: MdlButtonModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-button.component';
+export * from "./mdl-button.component";

@@ -1,27 +1,33 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import {SelectComponent} from './select.component';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {RouterTestingModule} from '@angular/router/testing';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MdlModule} from '@angular-mdl/core';
-import {MdlPopoverModule} from '@angular-mdl/popover';
-import {MdlSelectModule} from '@angular-mdl/select';
-import {MatchSorterPipe} from './matchSorter.pipe';
+import { SelectComponent } from "./select.component";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { RouterTestingModule } from "@angular/router/testing";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { MdlModule } from "@angular-mdl/core";
+import { MdlPopoverModule } from "@angular-mdl/popover";
+import { MdlSelectModule } from "@angular-mdl/select";
+import { MatchSorterPipe } from "./matchSorter.pipe";
 
-
-describe('SelectComponent', () => {
+describe("SelectComponent", () => {
   let component: SelectComponent;
   let fixture: ComponentFixture<SelectComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      imports: [MdlModule, MdlPopoverModule, MdlSelectModule, RouterTestingModule, NoopAnimationsModule],
-      declarations: [SelectComponent, MatchSorterPipe]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        schemas: [NO_ERRORS_SCHEMA],
+        imports: [
+          MdlModule,
+          MdlPopoverModule,
+          MdlSelectModule,
+          RouterTestingModule,
+          NoopAnimationsModule,
+        ],
+        declarations: [SelectComponent, MatchSorterPipe],
+      }).compileComponents();
     })
-      .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectComponent);
@@ -29,7 +35,7 @@ describe('SelectComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

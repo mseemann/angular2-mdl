@@ -1,5 +1,5 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {MdlShadowDirective} from './mdl-shadow.directive';
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { MdlShadowDirective } from "./mdl-shadow.directive";
 
 const MDL_SHADOW_DIRECTIVES = [MdlShadowDirective];
 
@@ -12,9 +12,9 @@ export class MdlShadowModule {
   public static forRoot(): ModuleWithProviders<MdlShadowModule> {
     return {
       ngModule: MdlShadowModule,
-      providers: []
+      providers: [],
     };
   }
 }
 
-export * from './mdl-shadow.directive';
+export * from "./mdl-shadow.directive";
