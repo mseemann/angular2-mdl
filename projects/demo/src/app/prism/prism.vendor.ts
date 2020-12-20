@@ -1,5 +1,5 @@
 /* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript */
-/* tslint:disable */
+/* eslint-disable */
 declare var WorkerGlobalScope: any;
 
 var _self: any = (typeof window !== 'undefined')

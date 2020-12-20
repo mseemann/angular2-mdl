@@ -51,7 +51,7 @@ export class MdlExpansionPanelHeaderSecondaryContentComponent {
 @Component({
   selector: 'mdl-expansion-panel-content',
   template: '<ng-content></ng-content>',
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   host: {
     '[@isExpanded]': 'isExpanded'
   },
@@ -91,7 +91,7 @@ export class MdlExpansionPanelFooterComponent {
 export class MdlExpansionPanelComponent implements AfterContentInit {
   @ContentChild(MdlExpansionPanelHeaderComponent, {static: true}) header: MdlExpansionPanelHeaderComponent;
   @ContentChild(MdlExpansionPanelContentComponent, {static: true}) content: MdlExpansionPanelContentComponent;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output() onChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @HostBinding('class.disabled')
@@ -110,15 +110,7 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
   @HostBinding('class.expanded')
   @Input()
   public set expanded(bool: boolean) {
-    this._toggle(bool);
-  }
-
-  ngAfterContentInit() {
-    this.header.onChange.subscribe(() => {
-      if (!this.disabled) {
-        this._toggle(!this.isExpanded);
-      }
-    });
+    this.toggleIt(bool);
   }
 
   @HostListener('keyup', ['$event'])
@@ -128,16 +120,24 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
     }
   }
 
+  ngAfterContentInit() {
+    this.header.onChange.subscribe(() => {
+      if (!this.disabled) {
+        this.toggleIt(!this.isExpanded);
+      }
+    });
+  }
+
   toggle() {
-    this._toggle(!this.isExpanded);
+    this.toggleIt(!this.isExpanded);
   }
 
   expand() {
-    this._toggle(true);
+    this.toggleIt(true);
   }
 
   collapse() {
-    this._toggle(false);
+    this.toggleIt(false);
   }
 
   disableToggle() {
@@ -148,7 +148,7 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
     this.disabled = false;
   }
 
-  private _toggle(isExpanded: boolean) {
+  private toggleIt(isExpanded: boolean) {
     this.isExpanded = isExpanded;
     this.content.isExpanded = `${isExpanded}`;
     this.header.isExpanded = isExpanded;
@@ -180,7 +180,7 @@ export class MdlExpansionPanelGroupComponent implements AfterContentInit {
 
             Make sure only one <mdl-expansion-panel> receives input like [expanded]="true".
             `;
-          this.throw(errorMessage);
+          throw new Error(errorMessage);
         }
         this.expandedIndex = i;
       }
@@ -212,7 +212,4 @@ export class MdlExpansionPanelGroupComponent implements AfterContentInit {
     return this.panels.toArray()[index];
   }
 
-  private throw(message: string) {
-    throw new Error(message);
-  }
 }

@@ -8,7 +8,7 @@ import {MdlDialogInnerOutletComponent} from './mdl-dialog-inner-outlet.component
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-view',
   template: '<div><dialog-outlet></dialog-outlet></div>'
 })

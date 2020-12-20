@@ -15,7 +15,7 @@ export class MdlCardComponent {
 
 
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
+// eslint-disable-next-line @angular-eslint/directive-class-suffix
 export class MdlCardChildStructure implements OnInit {
 
   constructor(private mdlCardComponent: MdlCardComponent, private childComponentName: string) {
@@ -104,7 +104,7 @@ export class MdlCardMenuComponent extends MdlCardChildStructure {
 }
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-card-title-text]'
 })
 export class MdlCardTitleTextDirective {
@@ -114,7 +114,7 @@ export class MdlCardTitleTextDirective {
 }
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-card-border]'
 })
 export class MdlCardBorderDirective {
@@ -124,7 +124,7 @@ export class MdlCardBorderDirective {
 }
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-card-expand]'
 })
 export class MdlCardExpandDirective {

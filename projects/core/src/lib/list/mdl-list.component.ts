@@ -182,7 +182,7 @@ export class MdlListItemTextBodyComponent implements OnInit {
 
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'mdl-icon[mdl-list-item-icon]'
 })
 export class MdlListItemIconDirective {
@@ -190,7 +190,7 @@ export class MdlListItemIconDirective {
 }
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'mdl-icon[mdl-list-item-avatar]'
 })
 export class MdlListItemAvatarDirective {

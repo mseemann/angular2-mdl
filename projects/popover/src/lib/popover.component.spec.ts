@@ -6,7 +6,7 @@ import {MdlPopoverModule} from './popover.module';
 import {MdlPopoverComponent} from './popover.component';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-component',
   template: `
     <button id="mainButton" (click)="popover.toggle($event)">button</button>

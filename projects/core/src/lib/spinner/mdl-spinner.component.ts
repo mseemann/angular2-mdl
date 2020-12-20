@@ -20,10 +20,14 @@ import {toBoolean} from '../common/boolean-property';
   encapsulation: ViewEncapsulation.None
 })
 export class MdlSpinnerComponent {
-  public layers = [1, 2, 3, 4];
 
-  @HostBinding('class.mdl-spinner') isSpinner = true;
-  @HostBinding('class.is-upgraded') isUpgraded = true;
+  @HostBinding('class.mdl-spinner')
+  public isSpinner = true;
+
+  @HostBinding('class.is-upgraded')
+  public isUpgraded = true;
+
+  public layers = [1, 2, 3, 4];
   private activeIntern = false;
   private singleColorIntern = false;
 

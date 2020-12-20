@@ -8,7 +8,7 @@ import {MdlButtonModule} from '../button/mdl-button.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-menu',
   template: `
     <button mdl-button [mdl-toggle-menu]="m"></button>

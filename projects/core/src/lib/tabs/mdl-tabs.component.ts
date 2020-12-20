@@ -42,7 +42,7 @@ import {toBoolean} from '../common/boolean-property';
 })
 export class MdlTabsComponent implements AfterContentInit, OnChanges {
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('mdl-tab-active-changed') public selectedTabEmitter = new EventEmitter();
   @ContentChildren(MdlTabPanelComponent) public tabs: QueryList<MdlTabPanelComponent>;
 

@@ -7,7 +7,7 @@ import {MdlIconToggleModule} from './mdl-icon-toggle.module';
 import {DOCUMENT} from '@angular/common';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-icon',
   template: `
     <mdl-icon-toggle [disabled]="false" [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">

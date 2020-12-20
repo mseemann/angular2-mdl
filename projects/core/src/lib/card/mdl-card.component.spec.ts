@@ -5,7 +5,7 @@ import {MdlCardModule} from './mdl-card.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-app',
   template: `
     <mdl-card>

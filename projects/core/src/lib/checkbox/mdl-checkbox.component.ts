@@ -19,7 +19,7 @@ import {noop} from '../common/noop';
 const IS_FOCUSED = 'is-focused';
 export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   useExisting: forwardRef(() => MdlCheckboxComponent),
   multi: true
 };
@@ -47,52 +47,54 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
 
   @Input() tabindex: number = null;
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @HostBinding('class.mdl-checkbox') isCheckbox = true;
   @HostBinding('class.is-upgraded') isUpgraded = true;
 
-
-  private el: HTMLElement;
+  private readonly el: HTMLElement;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
+  private internalValue = false;
+  private internalDisabled = false;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.el = elementRef.nativeElement;
   }
 
-  // tslint:disable-next-line
-  private _value = false;
-
-
   get value(): boolean {
-    return this._value;
+    return this.internalValue;
   }
 
   @Input()
   @HostBinding('class.is-checked')
   set value(v: boolean) {
-    this._value = v;
+    this.internalValue = v;
     this.onChangeCallback(v);
     this.change.emit(v);
   }
 
-  // tslint:disable-next-line
-  private _disabled = false;
-
   get disabled(): boolean {
-    return this._disabled;
+    return this.internalDisabled;
   }
 
   @Input()
   @HostBinding('class.is-disabled')
   set disabled(value) {
-    this._disabled = toBoolean(value);
+    this.internalDisabled = toBoolean(value);
+  }
+
+  @HostListener('click')
+  public onClick() {
+    if (this.disabled) {
+      return;
+    }
+    this.value = !this.value;
   }
 
   public writeValue(value: any): void {
-    this._value = value;
+    this.internalValue = value;
   }
 
   public registerOnChange(fn: any): void {
@@ -116,12 +118,5 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
     this.onTouchedCallback();
   }
 
-  @HostListener('click')
-  public onClick() {
-    if (this.disabled) {
-      return;
-    }
-    this.value = !this.value;
-  }
 }
 

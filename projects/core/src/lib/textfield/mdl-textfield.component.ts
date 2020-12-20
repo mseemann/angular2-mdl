@@ -123,14 +123,15 @@ const IS_DIRTY = 'is-dirty';
   }],
   encapsulation: ViewEncapsulation.None
 })
+// eslint-disable-next-line @angular-eslint/no-conflicting-lifecycle
 export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, DoCheck {
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('blur')
   public blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('focus')
   public focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('keyup')
   public keyupEmitter: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
   @ViewChild('input') public inputEl: ElementRef;
@@ -142,7 +143,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
   @Input() public step;
   @Input() public name;
   @Input() public id = `mdl-textfield-${nextId++}`;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('error-msg') public errorMessage;
   @HostBinding('class.has-placeholder')
   @Input() public placeholder: string;
@@ -273,10 +274,12 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
     this.disabled = isDisabled;
   }
 
+  // eslint-disable-next-line @angular-eslint/no-conflicting-lifecycle
   public ngOnChanges(changes: SimpleChanges) {
     this.checkDisabled();
   }
 
+  // eslint-disable-next-line @angular-eslint/no-conflicting-lifecycle
   public ngDoCheck() {
     this.checkValidity();
     this.checkDirty();
@@ -291,7 +294,7 @@ export class MdlTextFieldComponent implements ControlValueAccessor, OnChanges, D
 
   public keydownTextarea($event: KeyboardEvent) {
     const currentRowCount = this.inputEl.nativeElement.value.split('\n').length;
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     if ($event.keyCode === 13) {
       if (currentRowCount >= this.maxrows && this.maxrows !== -1) {
         $event.preventDefault();

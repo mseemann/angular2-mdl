@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 import {MdlShadowModule} from './mdl-shadow.module';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-shadow',
   template: 'replaced by the test'
 })

@@ -29,6 +29,7 @@ import {MDL_CONFIGUARTION, MIN_DIALOG_Z_INDEX} from './config';
 
 /**
  * The MdlDialogService is used to open different kind of dialogs. SimpleDialogs and Custom Dialogs.
+ *
  * @experimental
  */
 
@@ -39,6 +40,7 @@ export class MdlDialogService {
 
   /**
    * Emits an event when either all modals are closed, or one gets opened.
+   *
    * @returns A subscribable event emitter that provides a boolean indicating whether a modal is open or not.
    */
   public onDialogsOpenChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -58,6 +60,7 @@ export class MdlDialogService {
 
   /**
    * Shows a dialog that is just an alert - e.g. with one button.
+   *
    * @param alertMessage The message that should be displayed.
    * @param okText The text that the button should have
    * @param title The optional title of the dialog
@@ -85,6 +88,7 @@ export class MdlDialogService {
 
   /**
    * Shows a dialog that is just a confirm message - e.g. with two button.
+   *
    * @param question The question that should be displayed.
    * @param title The title that should be displayed on top of Question.
    * @param declineText The text for decline button. defaults to Cancel
@@ -124,6 +128,7 @@ export class MdlDialogService {
 
   /**
    * Shows a dialog that is specified by the provided configuration.
+   *
    * @param config The simple dialog configuration.
    * returns An Observable that returns the MdlDialogReference.
    */
@@ -152,6 +157,7 @@ export class MdlDialogService {
 
   /**
    * Shows a dialog that is specified by the provided configuration.
+   *
    * @param config The custom dialog configuration.
    * returns An Observable that returns the MdlDialogReference.
    */

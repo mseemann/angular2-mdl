@@ -6,7 +6,7 @@ import {MdlButtonComponent, MdlButtonModule} from './../button/mdl-button.module
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-menu',
   template: 'replaced by the test'
 })

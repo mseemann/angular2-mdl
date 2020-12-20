@@ -31,7 +31,7 @@ const IS_FOCUSED = 'is-focused';
 export class MdlRadioGroupRegisty {
 
   private defaultFormGroup = 'defaultFromGroup';
-  private radioComponents: { radio: MdlRadioComponent, group: FormGroupName | string }[] = [];
+  private radioComponents: { radio: MdlRadioComponent; group: FormGroupName | string }[] = [];
 
   public add(radioComponent: MdlRadioComponent, formGroupName: FormGroupName) {
     this.radioComponents.push({
@@ -41,9 +41,7 @@ export class MdlRadioGroupRegisty {
   }
 
   public remove(radioComponent: MdlRadioComponent) {
-    this.radioComponents = this.radioComponents.filter((radioComponentInArray) => {
-      return (radioComponentInArray.radio !== radioComponent);
-    });
+    this.radioComponents = this.radioComponents.filter((radioComponentInArray) => (radioComponentInArray.radio !== radioComponent));
   }
 
   public select(radioComponent: MdlRadioComponent, formGroupName: FormGroupName) {
@@ -92,13 +90,15 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   @Input() public formControlName: string;
   @Input() public value: any;
   @Input() public tabindex = null;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output() public change: EventEmitter<any> = new EventEmitter<any>();
-  public optionValue: any;
   // the internal state - used to set the underlaying radio button state.
   @HostBinding('class.is-checked') public checked = false;
   @HostBinding('class.is-upgraded') isUpgraded = true;
   @HostBinding('class.mdl-radio') isRadio = true;
+
+  public optionValue: any;
+
   private el: HTMLElement;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: () => void = noop;
@@ -121,6 +121,18 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   set disabled(value) {
     this.disabledIntern = toBoolean(value);
   }
+
+  @HostListener('click')
+  public onClick() {
+    if (this.disabled) {
+      return;
+    }
+    this.optionValue = this.value;
+    this.updateCheckState();
+    this.onChangeCallback();
+    this.change.emit(this.optionValue);
+  }
+
 
   public ngOnInit() {
     // we need a name and it must be the same as in the formcontrol.
@@ -171,17 +183,6 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     this.renderer.removeClass(this.el, IS_FOCUSED);
   }
 
-  @HostListener('click')
-  public onClick() {
-    if (this.disabled) {
-      return;
-    }
-    this.optionValue = this.value;
-    this.updateCheckState();
-    this.onChangeCallback();
-    this.change.emit(this.optionValue);
-  }
-
   spaceKeyPress(event) {
     this.checked = false; // in case of space key is pressed radio button value must remain same
   }
@@ -206,4 +207,3 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     `);
   }
 }
-

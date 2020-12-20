@@ -14,7 +14,7 @@ import {MdlRippleModule} from '../ripple/mdl-ripple.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-layout',
   template: 'replaced by the test'
 })

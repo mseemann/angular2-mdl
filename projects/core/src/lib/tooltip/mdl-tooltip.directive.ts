@@ -27,6 +27,18 @@ export abstract class AbstractMdlTooltipDirective implements OnInit, OnChanges {
     private renderer: Renderer2) {
   }
 
+  @HostListener('touchend', ['$event'])
+  @HostListener('mouseenter', ['$event'])
+  onMouseEnter(event) {
+    this.tooltipComponent.mouseEnter(event);
+  }
+
+  @HostListener('window:touchstart')
+  @HostListener('mouseleave')
+  onMouseLeave() {
+    this.tooltipComponent.mouseLeave();
+  }
+
 
   public ngOnInit() {
     // if the tooltip is not an instance of MdlTooltipComponent
@@ -55,18 +67,6 @@ export abstract class AbstractMdlTooltipDirective implements OnInit, OnChanges {
     }
   }
 
-  @HostListener('touchend', ['$event'])
-  @HostListener('mouseenter', ['$event'])
-  onMouseEnter(event) {
-    this.tooltipComponent.mouseEnter(event);
-  }
-
-  @HostListener('window:touchstart')
-  @HostListener('mouseleave')
-  onMouseLeave() {
-    this.tooltipComponent.mouseLeave();
-  }
-
   private configureTooltipComponent() {
     this.tooltipComponent.large = this.large;
     this.tooltipComponent.position = this.position;
@@ -75,13 +75,13 @@ export abstract class AbstractMdlTooltipDirective implements OnInit, OnChanges {
 
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-tooltip]'
 })
 export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
 
   @Input('mdl-tooltip') public tooltip: string | MdlTooltipComponent;
-  // tslint:disable-next-line:no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('mdl-tooltip-position') public position: 'left' | 'right' | 'top' | 'bottom';
 
   constructor(
@@ -94,13 +94,13 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
 }
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-tooltip-large]'
 })
 export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
 
   @Input('mdl-tooltip-large') public tooltip: string | MdlTooltipComponent;
-  // tslint:disable-next-line:no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('mdl-tooltip-position') public position: 'left' | 'right' | 'top' | 'bottom';
 
   constructor(

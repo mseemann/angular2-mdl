@@ -7,7 +7,7 @@ import {MdlSnackbarModule} from './mdl-snackbar.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-view',
   template: '<div></div><dialog-outlet></dialog-outlet>',
   providers: [MdlSnackbarService]

@@ -70,18 +70,18 @@ export class MdlMenuRegisty {
   selector: 'mdl-menu',
   exportAs: 'mdlMenu',
   template: `
-      <div #container class="mdl-menu__container is-upgraded">
-          <div #outline class="mdl-menu__outline" [ngClass]="cssPosition"
-          ></div>
-          <div class="mdl-menu" #menuElement>
-              <ng-content></ng-content>
-          </div>
+    <div #container class="mdl-menu__container is-upgraded">
+      <div #outline class="mdl-menu__outline" [ngClass]="cssPosition"
+      ></div>
+      <div class="mdl-menu" #menuElement>
+        <ng-content></ng-content>
       </div>
+    </div>
   `,
   encapsulation: ViewEncapsulation.None
 })
 export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('mdl-menu-position') public position: string;
 
   @ViewChild('container', {static: true}) public containerChild: ElementRef;
@@ -207,7 +207,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     const transitionDuration = TRANSITION_DURATION_SECONDS * TRANSITION_DURATION_FRACTION;
     document.querySelectorAll('mdl-menu-item').forEach(el => {
       const mi = el as HTMLElement;
-      let itemDelay = null;
+      let itemDelay;
       if ((this.position === TOP_LEFT) || this.position === TOP_RIGHT) {
         itemDelay = ((height - mi.offsetTop - mi.offsetHeight) / height * transitionDuration) + 's';
       } else {

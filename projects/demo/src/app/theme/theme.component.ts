@@ -143,9 +143,9 @@ export class ThemeDemoComponent extends AbstractDemoComponent implements OnInit 
     if (!(this.selectedPrimaryColor && this.selectedAccentColor)) {
       return '';
     }
-    /* tslint:disable */
+    /* eslint-disable */
     let cdnLinkElem = `<link rel="stylesheet" href="${this.stylescheetUrl}" />`;
-    /* tslint:enable */
+    /* eslint-enable */
     return Prism.highlight(cdnLinkElem, Prism.languages.html);
   }
 
@@ -155,9 +155,7 @@ export class ThemeDemoComponent extends AbstractDemoComponent implements OnInit 
 
   get secondaryColors() {
     const colors = MD_COLORS
-      .filter((color) => {
-        return FORBIDDEN_ACCENTS.indexOf(color) === -1;
-      })
+      .filter((color) => FORBIDDEN_ACCENTS.indexOf(color) === -1)
       .map(this.mapToColorObject);
 
     colors.forEach((color) => {

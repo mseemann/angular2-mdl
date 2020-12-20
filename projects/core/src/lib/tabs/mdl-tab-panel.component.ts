@@ -22,9 +22,9 @@ export class MdlTabPanelContentComponent {
 export class MdlTabPanelComponent {
 
   @ContentChild(MdlTabPanelTitleComponent, {static: true}) public titleComponent;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('mdl-tab-panel-title') title;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('disabled') disabled;
 
   @HostBinding('class.mdl-tabs__panel') isTabPanel = true;

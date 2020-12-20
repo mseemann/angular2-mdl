@@ -15,7 +15,7 @@ export class MdlFabMenuItemComponent implements OnInit {
   @Input()
   fabMenu: MdlFabMenuComponent;
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('menu-clicked')
   menuClick: EventEmitter<any> = new EventEmitter();
 

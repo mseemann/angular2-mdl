@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
 import {MdlLayoutComponent, MdlLayoutHeaderComponent, MdlLayoutModule} from './mdl-layout.module';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-layout',
   template: 'replaced by the test'
 })

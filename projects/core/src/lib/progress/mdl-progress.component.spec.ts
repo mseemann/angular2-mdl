@@ -6,7 +6,7 @@ import {MdlProgressModule} from './mdl-progress.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-progress',
   template: 'replaced by the test'
 })

@@ -194,9 +194,7 @@ export class MdlDialogHostComponent implements OnInit {
   }
 
   private applyClasses(classes: string) {
-    classes.split(' ').filter((cssClass) => {
-      return !!cssClass;
-    }).forEach((cssClass) => {
+    classes.split(' ').filter((cssClass) => !!cssClass).forEach((cssClass) => {
       this.renderer.addClass(this.elementRef.nativeElement, cssClass);
     });
   }

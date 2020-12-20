@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
 import {MdlTabPanelComponent, MdlTabsComponent, MdlTabsModule} from './mdl-tabs.module';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test',
   template: 'replaced by the test'
 })

@@ -3,12 +3,12 @@ import {MdlMenuComponent} from './mdl-menu.component';
 import {MdlButtonComponent} from '../button/mdl-button.component';
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-button][mdl-toggle-menu]'
 })
 export class MdlToggleMenuDirective {
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('mdl-toggle-menu') public menu: MdlMenuComponent;
 
   constructor(private button: MdlButtonComponent) {

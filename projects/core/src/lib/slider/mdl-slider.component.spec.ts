@@ -8,7 +8,7 @@ import {DOCUMENT} from '@angular/common';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-icon',
   template: `
     <mdl-slider [min]='min' [max]='max' [(ngModel)]='currentValue'></mdl-slider>`

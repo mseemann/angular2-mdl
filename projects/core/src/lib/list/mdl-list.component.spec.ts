@@ -5,7 +5,7 @@ import {MdlListModule} from './mdl-list.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-app',
   template: `
     <mdl-list>

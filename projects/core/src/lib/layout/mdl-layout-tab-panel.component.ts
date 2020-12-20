@@ -14,7 +14,7 @@ import {MdlTabPanelTitleComponent} from '../tabs/mdl-tab-panel-title.component';
 export class MdlLayoutTabPanelComponent {
 
   @ContentChild(MdlTabPanelTitleComponent, {static: true}) public titleComponent;
-  // tslint:disable-next-line:no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('mdl-layout-tab-panel-title') public title;
 
   @HostBinding('class.mdl-layout__tab-panel') isLayoutTabPanel = true;

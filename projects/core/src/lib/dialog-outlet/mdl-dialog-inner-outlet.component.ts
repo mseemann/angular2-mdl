@@ -4,7 +4,7 @@ import {Component, forwardRef, Inject, ViewContainerRef} from '@angular/core';
 import {MdlDialogOutletService} from './mdl-dialog-outlet.service';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'dialog-outlet',
   template: ''
 })

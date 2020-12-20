@@ -87,7 +87,7 @@ export interface IMdlSnackbarMessage {
 export class MdlSnackbarService {
 
   private cFactory: ComponentFactory<any>;
-  private previousSnack: { component: MdlSnackbarComponent, cRef: ComponentRef<any> };
+  private previousSnack: { component: MdlSnackbarComponent; cRef: ComponentRef<any> };
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,

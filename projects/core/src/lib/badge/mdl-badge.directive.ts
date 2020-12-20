@@ -4,7 +4,7 @@ import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2, SimpleC
 const DATA_BADE_ATTR = 'data-badge';
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-badge]'
 })
 export class MdlBadgeDirective implements OnChanges {
@@ -13,7 +13,7 @@ export class MdlBadgeDirective implements OnChanges {
 
   @HostBinding('class.mdl-badge') isBadge = true;
 
-  private el: HTMLElement;
+  private readonly el: HTMLElement;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.el = elementRef.nativeElement;
@@ -30,7 +30,7 @@ export class MdlBadgeDirective implements OnChanges {
 }
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-badge-overlap]'
 })
 export class MdlBadgeOverlapDirective {
@@ -39,7 +39,7 @@ export class MdlBadgeOverlapDirective {
 }
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-badge-no-background]'
 })
 export class MdlBadgeNoBackgroundDirective {

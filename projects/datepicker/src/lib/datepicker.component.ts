@@ -10,7 +10,7 @@ export const CURRENT_DATE = new InjectionToken<Date>('current-date');
 export const DATEPICKER_CONFIG = new InjectionToken<DatePickerOptions>('datepicker-options');
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'datepicker',
   templateUrl: 'datepicker.component.html',
   encapsulation: ViewEncapsulation.None

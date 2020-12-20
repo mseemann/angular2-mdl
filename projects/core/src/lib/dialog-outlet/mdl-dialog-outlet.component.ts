@@ -5,7 +5,7 @@ import {Component, ViewContainerRef} from '@angular/core';
 // this component is not exported - needs to be instanciated by
 //    let x = this.appRef.bootstrap(MdlDialogOutletComponent);
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'dialog-outlet',
   template: ''
 })

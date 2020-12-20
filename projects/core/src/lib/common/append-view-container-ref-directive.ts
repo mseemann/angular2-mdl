@@ -1,7 +1,7 @@
 import {AfterViewInit, Directive, Input, Renderer2, ViewContainerRef} from '@angular/core';
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[append-view-container-ref]'
 })
 export class AppendViewContainerRefDirective implements AfterViewInit {

@@ -6,7 +6,7 @@ import {MdlMenuRegisty} from './mdl-menu.component';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-menu',
   template: '<mdl-menu><mdl-menu-item mdl-menu-item-full-bleed-divider>x</mdl-menu-item></mdl-menu>'
 })

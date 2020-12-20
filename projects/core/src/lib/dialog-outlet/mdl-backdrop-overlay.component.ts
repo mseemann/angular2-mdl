@@ -5,7 +5,7 @@ import {Component, EventEmitter, HostBinding, HostListener, NgZone, ViewEncapsul
   selector: 'mdl-backdrop-overlay',
   template: ``,
   styles: [
-      `
+    `
       .dialog-backdrop {
         position: fixed;
         top: 0;
@@ -19,12 +19,13 @@ import {Component, EventEmitter, HostBinding, HostListener, NgZone, ViewEncapsul
   encapsulation: ViewEncapsulation.None
 })
 export class MdlBackdropOverlayComponent {
-
-  public clickEmitter: EventEmitter<any> = new EventEmitter();
   @HostBinding('style.zIndex')
   public zIndex = 0;
 
-  @HostBinding('class.dialog-backdrop') isBackdrop = true;
+  @HostBinding('class.dialog-backdrop')
+  public isBackdrop = true;
+
+  public clickEmitter: EventEmitter<any> = new EventEmitter();
 
   private visible = false;
 

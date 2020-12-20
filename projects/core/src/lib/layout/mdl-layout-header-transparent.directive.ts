@@ -2,7 +2,7 @@ import {Directive, HostBinding} from '@angular/core';
 
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'mdl-layout-header[mdl-layout-header-transparent]'
 })
 export class MdlLayoutHeaderTransparentDirective {

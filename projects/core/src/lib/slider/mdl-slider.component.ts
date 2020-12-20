@@ -39,7 +39,7 @@ import {callNative} from '../common/native-support';
     </div>
   `,
   styles: [
-      `
+    `
       :host {
         height: 22px;
         user-select: none;
@@ -85,27 +85,6 @@ export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
     this.onChangeCallback(v);
   }
 
-  ngAfterViewInit() {
-    this.updateSliderUI();
-  }
-
-  public writeValue(value: number): void {
-    this.valueIntern = value;
-    this.updateSliderUI();
-  }
-
-  public registerOnChange(fn: any): void {
-    this.onChangeCallback = fn;
-  }
-
-  public registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
-  }
-
-  public setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
   @HostListener('mouseup', ['$event'])
   public onMouseUp(event) {
     event.target.blur();
@@ -129,6 +108,27 @@ export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
       screenY: event.screenY
     });
     callNative(this.inputEl.nativeElement, 'dispatchEvent', newEvent);
+  }
+
+  ngAfterViewInit() {
+    this.updateSliderUI();
+  }
+
+  public writeValue(value: number): void {
+    this.valueIntern = value;
+    this.updateSliderUI();
+  }
+
+  public registerOnChange(fn: any): void {
+    this.onChangeCallback = fn;
+  }
+
+  public registerOnTouched(fn: any): void {
+    this.onTouchedCallback = fn;
+  }
+
+  public setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 
   private updateSliderUI() {

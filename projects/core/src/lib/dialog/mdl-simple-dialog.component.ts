@@ -42,10 +42,6 @@ export class MdlSimpleDialogComponent {
     });
   }
 
-  public actionClicked(action: IMdlDialogAction) {
-    action.handler();
-    this.dialog.hide();
-  }
 
   @HostListener('keydown.esc')
   public onEsc(): void {
@@ -55,6 +51,12 @@ export class MdlSimpleDialogComponent {
       closeAction.handler();
       this.dialog.hide();
     }
+  }
+
+
+  public actionClicked(action: IMdlDialogAction) {
+    action.handler();
+    this.dialog.hide();
   }
 
 }

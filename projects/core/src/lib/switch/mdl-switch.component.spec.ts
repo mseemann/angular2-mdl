@@ -6,7 +6,7 @@ import {By} from '@angular/platform-browser';
 import {MdlSwitchModule} from './mdl-switch.module';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-icon',
   template: '<mdl-switch [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">switch</mdl-switch>'
 })

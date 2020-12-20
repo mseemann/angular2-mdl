@@ -18,11 +18,11 @@ import {MdlDialogReference} from './mdl-dialog-reference';
 export class MdlDialogComponent {
 
   @ViewChild(TemplateRef, {static: true}) public template: TemplateRef<any>;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('mdl-dialog-config') public config: IMdlDialogConfiguration;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('show') public showEmitter: EventEmitter<MdlDialogReference> = new EventEmitter<MdlDialogReference>();
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('hide') public hideEmitter: EventEmitter<void> = new EventEmitter<void>();
   private isShown = false;
   private dialogRef: MdlDialogReference = null;

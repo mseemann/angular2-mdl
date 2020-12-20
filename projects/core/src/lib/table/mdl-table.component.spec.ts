@@ -13,7 +13,7 @@ interface ITableItem extends IMdlTableModelItem {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-icon',
   template: `
     <mdl-table-selectable mdl-shadow="2"

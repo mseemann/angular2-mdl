@@ -34,14 +34,20 @@ import {MdlLayoutMediatorService} from './mdl-layout-mediator.service';
 })
 export class MdlLayoutHeaderComponent {
 
-  @HostBinding('class.mdl-layout__header') isLayoutHeader = true;
+  @HostBinding('class.mdl-layout__header--seamed')
+  public isSeamed = false;
+  @HostBinding('class.mdl-layout__header')
+  public isLayoutHeader = true;
+  @HostBinding('class.is-compact')
+  public isCompact = false;
+
+  public isAnimating = false;
+
+  public isRipple = true;
   // set from MdlLayoutComponent
   public mode: string;
   public el: HTMLElement;
-  @HostBinding('class.is-compact') isCompact = false;
-  public isAnimating = false;
-  @HostBinding('class.mdl-layout__header--seamed') isSeamed = false;
-  public isRipple = true;
+
   // will be set from mdllayoutcomponent
   public tabs: QueryList<MdlLayoutTabPanelComponent>;
 

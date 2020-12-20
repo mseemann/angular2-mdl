@@ -1,3 +1,1 @@
-export function toBoolean(value: any): boolean {
-  return value != null && `${value}` !== 'false';
-}
+export const toBoolean = (value: any): boolean => value != null && `${value}` !== 'false';

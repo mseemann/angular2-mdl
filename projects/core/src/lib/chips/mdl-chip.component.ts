@@ -14,13 +14,13 @@ import {Component, EventEmitter, HostBinding, Input, Output, ViewEncapsulation} 
 })
 export class MdlChipComponent {
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('mdl-label') public mdlLabel;
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('mdl-action-icon') public mdlActionIcon;
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('action-click') public actionClick = new EventEmitter();
 
   @HostBinding('class.mdl-chip') isChip = true;

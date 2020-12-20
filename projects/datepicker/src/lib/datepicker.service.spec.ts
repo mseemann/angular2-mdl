@@ -18,7 +18,7 @@ const moment = momentNs;
 moment.locale('en');
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-component',
   template: `
     <dialog-outlet></dialog-outlet>

@@ -3,12 +3,12 @@ import {MdlSelectComponent} from './select.component';
 import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {Key} from './keyboard';
+import {KEYS} from './keyboard';
 import {MdlSelectModule} from './select.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-disabled-component',
   template: `
     <form [formGroup]="form">
@@ -36,7 +36,7 @@ class TestDisabledComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-single-component',
   template: `
     <mdl-select label="{{label}}" floating-label [autocomplete]="true" [(ngModel)]="selectedValue">
@@ -55,7 +55,7 @@ class TestAutoCompleteComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-single-component',
   template: `
     <mdl-select label="{{label}}" floating-label [(ngModel)]="personId">
@@ -74,7 +74,7 @@ class TestSingleComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-single-component-no-model',
   template: `
     <mdl-select placeholder="{{placeholder}}">
@@ -89,7 +89,7 @@ class TestSingleComponentNoModelComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-multiple-component',
   template: `
     <mdl-select [(ngModel)]="personIds" [multiple]="true">
@@ -107,7 +107,7 @@ class TestMultipleComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-object-component',
   template: `
     <mdl-select [(ngModel)]="personObjs" [multiple]="true">
@@ -126,14 +126,14 @@ class TestObjectComponent {
 
 
 // based on @angular/cdk
-export function createKeyboardEvent(type: string, keyCode: number, target?: Element, key?: string) {
+export const createKeyboardEvent = (type: string, keyCode: number, target?: Element, key?: string) => {
   const event = document.createEvent('KeyboardEvent') as any;
 
   // Firefox does not support `initKeyboardEvent`, but supports `initKeyEvent`.
   if (event.initKeyEvent) {
     event.initKeyEvent(type, true, true, window, 0, 0, 0, 0, 0, keyCode);
   } else {
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     event.initKeyboardEvent(type, true, true, window, 0, key, 0, '', false);
   }
 
@@ -146,17 +146,15 @@ export function createKeyboardEvent(type: string, keyCode: number, target?: Elem
   });
 
   return event;
-}
+};
 
 // based on @angular/cdk
-export function dispatchEvent(node: Node | Window, event: Event): Event {
+export const dispatchEvent = (node: Node | Window, event: Event): Event => {
   node.dispatchEvent(event);
   return event;
-}
+};
 
-export function dispatchKeydownEvent(node: any, keycode: number) {
-  return dispatchEvent(node, createKeyboardEvent('keydown', keycode, node));
-}
+export const dispatchKeydownEvent = (node: any, keycode: number) => dispatchEvent(node, createKeyboardEvent('keydown', keycode, node));
 
 describe('MdlSelect', () => {
 
@@ -288,11 +286,11 @@ describe('MdlSelect', () => {
       expect(selectComponentInstance.popoverComponent.isVisible)
         .toEqual(true, 'toggle did not update isVisible to true');
 
-      dispatchKeydownEvent(selectNativeElement.querySelector('span'), Key.DownArrow);
+      dispatchKeydownEvent(selectNativeElement.querySelector('span'), KEYS.downArrow);
 
-      dispatchKeydownEvent(selectNativeElement.querySelector('span'), Key.UpArrow);
+      dispatchKeydownEvent(selectNativeElement.querySelector('span'), KEYS.upArrow);
 
-      dispatchKeydownEvent(selectNativeElement.querySelector('span'), Key.Tab);
+      dispatchKeydownEvent(selectNativeElement.querySelector('span'), KEYS.tab);
 
       fixture.detectChanges();
 
@@ -329,14 +327,14 @@ describe('MdlSelect', () => {
       fixture.detectChanges();
 
       expect(selectComponentInstance.ngModel).toEqual(1);
-      dispatchKeydownEvent(selectNativeElement, Key.B);
+      dispatchKeydownEvent(selectNativeElement, KEYS.b);
       fixture.detectChanges();
 
       expect(selectComponentInstance.onSelect).not.toHaveBeenCalled();
       expect(selectComponentInstance.onCharacterKeydown).toHaveBeenCalled();
       expect(selectComponentInstance.ngModel).toEqual(1);
 
-      dispatchKeydownEvent(selectNativeElement, Key.O);
+      dispatchKeydownEvent(selectNativeElement, KEYS.o);
       fixture.detectChanges();
 
       expect(selectComponentInstance.onSelect).toHaveBeenCalled();
@@ -347,7 +345,7 @@ describe('MdlSelect', () => {
 
       expect(selectComponentInstance.searchQuery).toEqual('');
 
-      dispatchKeydownEvent(selectNativeElement, Key.A);
+      dispatchKeydownEvent(selectNativeElement, KEYS.a);
       fixture.detectChanges();
 
       expect(selectComponentInstance.onSelect).toHaveBeenCalled();
@@ -459,7 +457,7 @@ describe('MdlSelect', () => {
       fixture.detectChanges();
 
       expect(selectComponentInstance.ngModel).toBeNull();
-      dispatchKeydownEvent(selectNativeElement, Key.B);
+      dispatchKeydownEvent(selectNativeElement, KEYS.b);
       fixture.detectChanges();
 
       expect(selectComponentInstance.ngModel).toBeNull();
@@ -481,11 +479,11 @@ describe('MdlSelect', () => {
       fixture.detectChanges();
       expect(selectComponentInstance.ngModel).toBeNull();
 
-      dispatchEvent(input, createKeyboardEvent('keyup', Key.B, input));
+      dispatchEvent(input, createKeyboardEvent('keyup', KEYS.b, input));
       fixture.detectChanges();
       expect(selectComponentInstance.ngModel).toBeNull();
 
-      dispatchEvent(input, createKeyboardEvent('keyup', Key.Enter, input));
+      dispatchEvent(input, createKeyboardEvent('keyup', KEYS.enter, input));
       fixture.detectChanges();
       expect(selectComponentInstance.ngModel).toEqual(1);
     }));

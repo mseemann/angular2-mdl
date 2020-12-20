@@ -17,7 +17,7 @@ const TEST = new InjectionToken<any>('test');
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-view',
   template: `
     <div></div>
@@ -41,7 +41,7 @@ class MdlTestViewComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-dialog-component',
   template: '<div>TestCustomDialog</div>'
 })
@@ -60,7 +60,7 @@ class TestCustomDialogComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-fail-dialog-component',
   template: '<div>TestFalCustomDialog</div>'
 })

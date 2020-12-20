@@ -7,7 +7,7 @@ import {MdlDialogOutletModule} from '../dialog-outlet/mdl-dialog-outlet.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-component',
   template: `
     <mdl-alert

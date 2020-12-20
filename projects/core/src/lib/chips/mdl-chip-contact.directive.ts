@@ -3,7 +3,7 @@ import {MdlChipComponent} from './mdl-chip.component';
 import {MdlStructureError} from '../common/mdl-error';
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-chip-contact]'
 })
 export class MdlChipContactDirective implements OnInit {

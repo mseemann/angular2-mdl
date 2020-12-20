@@ -51,11 +51,11 @@ const MDL_COLORED_TYPES = [
 export class MdlButtonComponent implements OnChanges {
 
   @HostBinding('class.mdl-button') isButton = true;
-  // tslint:disable-next-line:no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('mdl-button-type') public mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '';
-  // tslint:disable-next-line:no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('mdl-colored') public mdlColoredType: 'primary' | 'accent' | '';
-  private element: HTMLElement;
+  private readonly element: HTMLElement;
   private disabledIntern = false;
 
   constructor(public elementRef: ElementRef, private renderer: Renderer2) {
@@ -99,6 +99,16 @@ export class MdlButtonComponent implements OnChanges {
     this.disabledIntern = toBoolean(value);
   }
 
+  @HostListener('mouseup')
+  public onMouseUp() {
+    this.blurIt();
+  }
+
+  @HostListener('mouseleave')
+  public onMouseLeave() {
+    this.blurIt();
+  }
+
   public ngOnChanges(changes: SimpleChanges) {
 
     if (this.mdlButtonType && MDL_BUTTON_TYPES.indexOf(this.mdlButtonType) === -1) {
@@ -108,16 +118,6 @@ export class MdlButtonComponent implements OnChanges {
     if (this.mdlColoredType && MDL_COLORED_TYPES.indexOf(this.mdlColoredType) === -1) {
       throw new MdlUnsupportedColoredTypeError(this.mdlColoredType);
     }
-  }
-
-  @HostListener('mouseup')
-  public onMouseUp() {
-    this.blurIt();
-  }
-
-  @HostListener('mouseleave')
-  public onMouseLeave() {
-    this.blurIt();
   }
 
   public blurIt() {

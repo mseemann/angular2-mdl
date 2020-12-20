@@ -12,7 +12,7 @@ export const TEST_VALUE = new InjectionToken<string>('test value');
   selector: 'demo-login-dialog',
   templateUrl: 'login-dialog.component.html',
   styles: [
-      `
+    `
       .status-bar {
         text-align: center;
       }
@@ -20,13 +20,13 @@ export const TEST_VALUE = new InjectionToken<string>('test value');
   ]
 })
 export class LoginDialogComponent implements OnInit {
-
+  @ViewChild('firstElement', {static: true}) public inputElement: MdlTextFieldComponent;
   public form: FormGroup;
   public username = new FormControl('', Validators.required);
   public password = new FormControl('', Validators.required);
   public processingLogin = false;
   public statusMessage = '';
-  @ViewChild('firstElement', {static: true}) private inputElement: MdlTextFieldComponent;
+
 
   constructor(
     private dialog: MdlDialogReference,
@@ -51,6 +51,10 @@ export class LoginDialogComponent implements OnInit {
 
   }
 
+  @HostListener('keydown.esc')
+  public onEsc(): void {
+    this.dialog.hide();
+  }
 
   public ngOnInit() {
     this.form = this.fb.group({
@@ -77,8 +81,4 @@ export class LoginDialogComponent implements OnInit {
     });
   }
 
-  @HostListener('keydown.esc')
-  public onEsc(): void {
-    this.dialog.hide();
-  }
 }

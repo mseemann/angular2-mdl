@@ -7,7 +7,7 @@ import {MdlCheckboxModule} from './mdl-checkbox.module';
 import {DOCUMENT} from '@angular/common';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-icon',
   template: `
     <mdl-checkbox [disabled]="false" [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">

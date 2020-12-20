@@ -6,7 +6,7 @@ import {MdlRippleModule} from '../ripple/mdl-ripple.module';
 import {MdlButtonModule} from './mdl-button.module';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-button',
   template: 'replaced by the test'
 })

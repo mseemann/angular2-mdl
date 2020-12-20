@@ -4,7 +4,7 @@ import {MdlBadgeModule} from './mdl-badge.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-badge',
   template: 'replaced by the test'
 })

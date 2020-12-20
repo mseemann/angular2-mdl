@@ -18,28 +18,28 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {MdlPopoverComponent} from '@angular-mdl/popover';
 import {MdlOptionComponent} from './option';
-import {isCharacterKey, isKey, Key, keyboardEventKey} from './keyboard';
+import {isCharacterKey, isKey, keyboardEventKey, KEYS} from './keyboard';
+import {stringifyValue} from './util';
 
 const uniq = (array: any[]) => Array.from(new Set(array));
 
 const isEqual = (a: any, b: any) => JSON.stringify(a) === JSON.stringify(b);
 
-function toBoolean(value: any): boolean {
-  return value != null && `${value}` !== 'false';
-}
+const toBoolean = (value: any): boolean => value != null && `${value}` !== 'false';
 
-function randomId() {
-  // tslint:disable-next-line
+const randomId = () => {
+  // eslint-disable-next-line
   const S4 = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
   return (S4() + S4());
-}
+};
 
 export const MDL_SELECT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   useExisting: forwardRef(() => MdlSelectComponent),
   multi: true
 };
+
 
 export class SearchableComponent {
   public searchQuery = '';
@@ -72,9 +72,9 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
   @Input() public label = '';
   @Input() placeholder = '';
   @Input() multiple = false;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output() change: EventEmitter<any> = new EventEmitter(true);
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output() blur: EventEmitter<any> = new EventEmitter(true);
   @Output() inputChange: EventEmitter<any> = new EventEmitter(true);
   @ViewChild('selectInput', {static: true}) selectInput: ElementRef;
@@ -106,10 +106,47 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     return this.misFloatingLabel;
   }
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @HostBinding('class.mdl-select--floating-label')
   @Input('floating-label')
   set isFloatingLabel(value) {
     this.misFloatingLabel = toBoolean(value);
+  }
+
+
+  @HostListener('keydown', ['$event'])
+  public onKeyDown($event: KeyboardEvent) {
+    if (!this.disabled && this.popoverComponent.isVisible && !this.multiple) {
+      if (isKey($event, KEYS.upArrow)) {
+        this.onArrow($event, -1);
+      } else if (isKey($event, KEYS.downArrow)) {
+        this.onArrow($event, 1);
+      } else if (!this.autocomplete && isCharacterKey($event)) {
+        this.onCharacterKeydown($event);
+      }
+    }
+  }
+
+  @HostListener('keyup', ['$event'])
+  public onKeyUp($event: KeyboardEvent) {
+    const inputField = $event.target as HTMLInputElement;
+    const inputValue = inputField.value;
+
+    if (!this.multiple && isKey($event, KEYS.enter, KEYS.escape, KEYS.tab)) {
+      this.searchQuery = '';
+      if (isKey($event, KEYS.enter)) {
+        this.setCurrentOptionValue();
+      } else {
+        inputField.value = this.text;
+      }
+      inputField.blur();
+      this.popoverComponent.hide();
+    } else if (this.autocomplete && !isKey($event, KEYS.downArrow, KEYS.upArrow)) {
+      this.inputChange.emit(inputValue);
+      this.searchQuery = inputValue;
+    }
+
+    $event.preventDefault();
   }
 
   public ngAfterContentInit() {
@@ -158,7 +195,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     }
   }
 
-  public onInputFocus($event: Event) {
+  public onInputFocus() {
     if (this.autocomplete) {
       this.selectInput.nativeElement.select();
     }
@@ -171,8 +208,8 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
         // skip ngModel update when undefined value or multiple selects initialized with same array
       } else if (Array.isArray(value)) {
         this.ngModel = uniq(this.ngModel.concat(value));
-      } else if (this.ngModel.map((v: any) => this.stringifyValue(v)).indexOf(this.stringifyValue(value)) !== -1) {
-        this.ngModel = [...this.ngModel.filter((v: any) => this.stringifyValue(v) !== this.stringifyValue(value))];
+      } else if (this.ngModel.map((v: any) => stringifyValue(v)).indexOf(stringifyValue(value)) !== -1) {
+        this.ngModel = [...this.ngModel.filter((v: any) => stringifyValue(v) !== stringifyValue(value))];
       } else if (!!value) {
         this.ngModel = [...this.ngModel, value];
       }
@@ -187,47 +224,12 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: () => {}): void {
+  public registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
   public setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
-  }
-
-  @HostListener('keydown', ['$event'])
-  onKeyDown($event: KeyboardEvent) {
-    if (!this.disabled && this.popoverComponent.isVisible && !this.multiple) {
-      if (isKey($event, Key.UpArrow)) {
-        this.onArrow($event, -1);
-      } else if (isKey($event, Key.DownArrow)) {
-        this.onArrow($event, 1);
-      } else if (!this.autocomplete && isCharacterKey($event)) {
-        this.onCharacterKeydown($event);
-      }
-    }
-  }
-
-  @HostListener('keyup', ['$event'])
-  onKeyUp($event: KeyboardEvent) {
-    const inputField = $event.target as HTMLInputElement;
-    const inputValue = inputField.value;
-
-    if (!this.multiple && isKey($event, Key.Enter, Key.Escape, Key.Tab)) {
-      this.searchQuery = '';
-      if (isKey($event, Key.Enter)) {
-        this.setCurrentOptionValue();
-      } else {
-        inputField.value = this.text;
-      }
-      inputField.blur();
-      this.popoverComponent.hide();
-    } else if (this.autocomplete && !isKey($event, Key.DownArrow, Key.UpArrow)) {
-      this.inputChange.emit(inputValue);
-      this.searchQuery = inputValue;
-    }
-
-    $event.preventDefault();
   }
 
   private setCurrentOptionValue() {
@@ -265,9 +267,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
   private getAutoSelection(): any {
     const filteredOptions = this.optionComponents
       .filter(({disabled}) => !disabled)
-      .filter(option => {
-        return option.text.toLowerCase().startsWith(this.searchQuery);
-      });
+      .filter(option => option.text.toLowerCase().startsWith(this.searchQuery));
 
     const selectedOption = this.optionComponents.find(option => option.selected);
 
@@ -318,7 +318,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
       selectOptionComponent.onSelect = this.onSelect.bind(this);
 
       if (selectOptionComponent.value != null) {
-        this.textByValue[this.stringifyValue(selectOptionComponent.value)]
+        this.textByValue[stringifyValue(selectOptionComponent.value)]
           = selectOptionComponent.contentWrapper.nativeElement.textContent.trim();
       }
     });
@@ -326,9 +326,9 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
 
   private renderValue(value: any) {
     if (this.multiple) {
-      this.text = (value || []).map((valueItem: string) => this.textByValue[this.stringifyValue(valueItem)]).join(', ');
+      this.text = (value || []).map((valueItem: string) => this.textByValue[stringifyValue(valueItem)]).join(', ');
     } else {
-      this.text = this.textByValue[this.stringifyValue(value)] || '';
+      this.text = this.textByValue[stringifyValue(value)] || '';
     }
     this.changeDetectionRef.detectChanges();
 
@@ -340,17 +340,6 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
       this.optionComponents.forEach((selectOptionComponent) => {
         selectOptionComponent.updateSelected(mvalue);
       });
-    }
-  }
-
-  private stringifyValue(value: any): string {
-    switch (typeof value) {
-      case 'number':
-        return String(value);
-      case 'object':
-        return JSON.stringify(value);
-      default:
-        return (!!value) ? String(value) : '';
     }
   }
 

@@ -6,7 +6,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-component',
   template: `
     <mdl-expansion-panel #panel>
@@ -20,7 +20,7 @@ class TestSinglePanelComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-group-component',
   template: `
     <mdl-expansion-panel-group #panelGroup>
@@ -35,7 +35,7 @@ class TestGroupPanelComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-group-error',
   template: `
     <mdl-expansion-panel-group>
@@ -50,7 +50,7 @@ class TestGroupPanelErrorComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-host-component',
   template: `
     <mdl-expansion-panel [disabled]="disabled" [expanded]="expanded">

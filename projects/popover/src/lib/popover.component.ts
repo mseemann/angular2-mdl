@@ -114,13 +114,13 @@ export class PopupPositionService {
 })
 export class MdlPopoverComponent implements OnDestroy {
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('hide-on-click') public hideOnClick = false;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('mdl-popover-position') public position: string;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output() onShow: EventEmitter<any> = new EventEmitter();
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output() onHide: EventEmitter<any> = new EventEmitter();
   @HostBinding('class.mdl-popover') isMdlPopover = true;
   @HostBinding('class.is-visible') public isVisible = false;

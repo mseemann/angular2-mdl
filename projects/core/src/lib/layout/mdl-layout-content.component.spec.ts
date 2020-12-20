@@ -5,7 +5,7 @@ import {MdlLayoutContentComponent} from './mdl-layout-content.component';
 import {MdlLayoutModule} from './mdl-layout.module';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-layout',
   template: '<mdl-layout-content>x</mdl-layout-content>',
 })

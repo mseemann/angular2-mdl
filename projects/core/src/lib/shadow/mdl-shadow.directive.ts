@@ -12,7 +12,7 @@ export class MdlUnsupportedShadowValueError extends MdlError {
 const MDL_SHADOW_VALUES = [0, 2, 3, 4, 6, 8, 16, 24];
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: '[mdl-shadow]'
 })
 export class MdlShadowDirective implements OnChanges {

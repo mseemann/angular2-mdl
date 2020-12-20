@@ -4,7 +4,7 @@ import {MdlSpinnerModule} from './mdl-spinner.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-progress',
   template: 'replaced by the test'
 })

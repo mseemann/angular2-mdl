@@ -4,7 +4,7 @@ import {Directive, HostBinding, OnDestroy, OnInit} from '@angular/core';
 
 
 @Directive()
-// tslint:disable-next-line
+// eslint-disable-next-line
 export class AbstractDemoComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.display') style = 'block';

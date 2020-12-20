@@ -8,7 +8,7 @@ import {MdlMenuModule} from '../menu/mdl-menu.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-ripple',
   template: 'replaced by the test'
 })
@@ -17,12 +17,12 @@ class MdlTestRippleComponent {
 }
 
 
-function getFiytureForTemplate(template) {
+const getFiytureForTemplate = (template) => {
   TestBed.overrideComponent(MdlTestRippleComponent, {set: {template}});
   const fixture = TestBed.createComponent(MdlTestRippleComponent);
   fixture.detectChanges();
   return fixture;
-}
+};
 
 describe('Directive: MdlRipple', () => {
 
@@ -34,7 +34,7 @@ describe('Directive: MdlRipple', () => {
     });
   });
 
-  function getSpan1IfAny(fixture, elementName: string) {
+  const getSpan1IfAny = (fixture, elementName: string) => {
 
     const rippleTarget = fixture.debugElement.query(By.css(elementName)).nativeElement;
     if (rippleTarget.children.length === 0) {
@@ -42,7 +42,7 @@ describe('Directive: MdlRipple', () => {
     }
     const span0 = rippleTarget.children.item(0);
     return span0.children.item(0);
-  }
+  };
 
   it('should add the ripple span elements if mdl-ripple is empty', () => {
 

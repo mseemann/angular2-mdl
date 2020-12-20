@@ -5,7 +5,7 @@ import {MdlLayoutModule, MdlLayoutTabPanelComponent} from './mdl-layout.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test',
   template: 'replaced by the test'
 })

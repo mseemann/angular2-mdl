@@ -86,10 +86,10 @@ export class MdlScreenSizeService {
         });
       };
       // - addEventListener not working in Safari
-      // tslint:disable-next-line
+      // eslint-disable-next-line
       query.addListener(queryListener);
       this.windowMediaQueryListener = () => {
-        // tslint:disable-next-line
+        // eslint-disable-next-line
         query.removeListener(queryListener);
       };
       // set the initial state
@@ -117,27 +117,27 @@ export class MdlScreenSizeService {
 @Component({
   selector: 'mdl-layout',
   template: `
-      <div class="mdl-layout__container" [ngClass]="{'has-scrolling-header': mode==='scroll'}">
-          <div class="mdl-layout is-upgraded"
-               [ngClass]="{
+    <div class="mdl-layout__container" [ngClass]="{'has-scrolling-header': mode==='scroll'}">
+      <div class="mdl-layout is-upgraded"
+           [ngClass]="{
           'is-small-screen': isSmallScreen,
           'mdl-layout--fixed-drawer': isFixedDrawer,
           'mdl-layout--fixed-header': isFixedHeader,
           'mdl-layout--fixed-tabs': 'tabs.toArray().length > 0'
           }">
-              <ng-content select="mdl-layout-header"></ng-content>
-              <ng-content select="mdl-layout-drawer"></ng-content>
-              <div *ngIf="drawers.length > 0 && isNoDrawer==false" class="mdl-layout__drawer-button"
-                   (click)="toggleDrawer()">
-                  <mdl-icon>&#xE5D2;</mdl-icon>
-              </div>
-              <ng-content select="mdl-layout-content"></ng-content>
-              <div class="mdl-layout__obfuscator"
-                   [ngClass]="{'is-visible':isDrawerVisible}"
-                   (click)="toggleDrawer()"
-                   (keydown)="obfuscatorKeyDown($event)"></div>
-          </div>
+        <ng-content select="mdl-layout-header"></ng-content>
+        <ng-content select="mdl-layout-drawer"></ng-content>
+        <div *ngIf="drawers.length > 0 && isNoDrawer==false" class="mdl-layout__drawer-button"
+             (click)="toggleDrawer()">
+          <mdl-icon>&#xE5D2;</mdl-icon>
+        </div>
+        <ng-content select="mdl-layout-content"></ng-content>
+        <div class="mdl-layout__obfuscator"
+             [ngClass]="{'is-visible':isDrawerVisible}"
+             (click)="toggleDrawer()"
+             (keydown)="obfuscatorKeyDown($event)"></div>
       </div>
+    </div>
   `,
   exportAs: 'mdlLayout',
   encapsulation: ViewEncapsulation.None
@@ -150,17 +150,17 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   @ContentChildren(MdlLayoutDrawerComponent, {descendants: false}) public drawers: QueryList<MdlLayoutDrawerComponent>;
   @ContentChild(MdlLayoutContentComponent, {static: true}) public content;
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('mdl-layout-mode') public mode: string = STANDARD;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('mdl-layout-tab-active-changed') public selectedTabEmitter = new EventEmitter();
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('mdl-layout-tab-mouseover') public mouseoverTabEmitter = new EventEmitter();
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('mdl-layout-tab-mouseout') public mouseoutTabEmitter = new EventEmitter();
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('open') public onOpen = new EventEmitter<void>();
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('close') public onClose = new EventEmitter<void>();
   public isDrawerVisible = false;
   public isSmallScreen = false;
@@ -401,6 +401,10 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
 
   private setDrawerVisible(visible: boolean) {
     this.drawers.first.isDrawerVisible = visible;
-    this.drawers.first.isDrawerVisible ? this.onOpen.emit() : this.onClose.emit();
+    if (this.drawers.first.isDrawerVisible) {
+      this.onOpen.emit();
+    } else {
+      this.onClose.emit();
+    }
   }
 }

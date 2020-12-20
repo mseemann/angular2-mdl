@@ -4,7 +4,7 @@ import {MdlIconModule} from './mdl-icon.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-icon',
   template: '<mdl-icon>x</mdl-icon>'
 })

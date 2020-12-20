@@ -15,11 +15,11 @@ import {MdlDialogComponent, MdlDialogReference, MdlTextFieldComponent} from '@an
 })
 export class DialogDeclarativeDemoComponent extends AbstractDemoComponent {
 
+  @ViewChild('editUserDialog', {static: true}) public editUserDialog: MdlDialogComponent;
+  @ViewChild(MdlTextFieldComponent, {static: true}) public tfName: MdlTextFieldComponent;
   public username = 'Marvin';
   public editedUsername: string;
 
-  @ViewChild('editUserDialog', {static: true}) private editUserDialog: MdlDialogComponent;
-  @ViewChild(MdlTextFieldComponent, {static: true}) private tfName: MdlTextFieldComponent;
 
   constructor(
     router: Router,

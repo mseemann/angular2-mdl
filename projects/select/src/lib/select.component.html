@@ -10,7 +10,7 @@
   </span>
   <input #selectInput (change)="$event.stopPropagation()"
          (click)="toggle($event)"
-         (focus)="onInputFocus($event);"
+         (focus)="onInputFocus();"
          [attr.id]="textfieldId"
          [placeholder]="placeholder ? placeholder : ''"
          [readonly]="disabled || !autocomplete"

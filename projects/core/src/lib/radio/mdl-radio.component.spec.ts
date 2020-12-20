@@ -7,7 +7,7 @@ import {MdlRadioModule} from './mdl-radio.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-radio',
   template: `
     <mdl-radio name="r" [(ngModel)]="radioValue" value="1" mdl-ripple
@@ -40,7 +40,7 @@ class MdlTestRadioComponent implements OnInit {
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-radio',
   template: `
     <form [formGroup]="testForm">

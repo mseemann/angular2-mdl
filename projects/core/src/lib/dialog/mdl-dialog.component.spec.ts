@@ -8,7 +8,7 @@ import {MdlBackdropOverlayComponent} from '../dialog-outlet/mdl-backdrop-overlay
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-component',
   template: `
     <mdl-dialog #dialog (show)="onDialogShow($event)" [mdl-dialog-config]="{isModal: true}" (hide)="onDialogHide()">
@@ -32,7 +32,7 @@ class MdlTestComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-component-2',
   template: `
     <mdl-dialog #dialog [mdl-dialog-config]="{isModal: true}">
@@ -47,7 +47,7 @@ class ModalTrueConfigFalseComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-component-4',
   template: `
     <mdl-dialog #dialog
@@ -63,7 +63,7 @@ class ModalFalseConfigTrueComponent {
 }
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-component-4',
   template: `
     <mdl-dialog #dialog

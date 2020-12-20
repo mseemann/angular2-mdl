@@ -5,7 +5,7 @@ import {MdlChipComponent, MdlChipModule} from './mdl-chip.module';
 
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'test-chip',
   template: '<mdl-chip mdl-label="test" mdl-action-icon="cancel" (action-click)="onAction()"></mdl-chip>'
 })

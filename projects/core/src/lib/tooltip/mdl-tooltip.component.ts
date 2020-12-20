@@ -10,8 +10,6 @@ const IS_ACTIVE = 'is-active';
   encapsulation: ViewEncapsulation.None
 })
 export class MdlSimpleTooltipComponent {
-  public tooltipText: string;
-  public element: HTMLElement;
 
   @HostBinding('class.mdl-tooltip--large')
   public large = false;
@@ -19,9 +17,14 @@ export class MdlSimpleTooltipComponent {
   @Input()
   public position: 'left' | 'right' | 'top' | 'bottom';
 
-  @Input() delay: number;
+  @Input()
+  public delay: number;
 
-  @HostBinding('class.mdl-tooltip') isTooltip = true;
+  @HostBinding('class.mdl-tooltip')
+  public isTooltip = true;
+
+  public tooltipText: string;
+  public element: HTMLElement;
 
   private active = false;
   private delayTimeout: any;

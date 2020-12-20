@@ -1,4 +1,5 @@
 import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, ViewChild} from '@angular/core';
+import {stringifyValue} from './util';
 
 @Component({
   selector: 'mdl-option',
@@ -6,10 +7,10 @@ import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostBinding, In
 })
 export class MdlOptionComponent implements AfterViewInit {
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @HostBinding('class.mdl-option--disabled')
   @Input('disabled') public disabled = false;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('value') public value: any;
   @ViewChild('contentWrapper', {static: true}) contentWrapper: ElementRef;
   @HostBinding('class.mdl-option__container') isOptionConatiner = true;
@@ -22,7 +23,7 @@ export class MdlOptionComponent implements AfterViewInit {
   }
 
   get stringValue(): string {
-    return this.stringifyValue(this.value);
+    return stringifyValue(this.value);
   }
 
   public select(event: Event) {
@@ -41,7 +42,7 @@ export class MdlOptionComponent implements AfterViewInit {
 
   public updateSelected(value: any) {
     if (this.multiple) {
-      this.selected = ((value || []).map((v: any) => this.stringifyValue(v)).indexOf(this.stringValue) !== -1);
+      this.selected = ((value || []).map((v: any) => stringifyValue(v)).indexOf(this.stringValue) !== -1);
     } else {
       this.selected = this.value === value;
     }
@@ -54,14 +55,4 @@ export class MdlOptionComponent implements AfterViewInit {
     this.text = this.contentWrapper.nativeElement.textContent.trim();
   }
 
-  private stringifyValue(value: any): string {
-    switch (typeof value) {
-      case 'number':
-        return String(value);
-      case 'object':
-        return JSON.stringify(value);
-      default:
-        return (!!value) ? String(value) : '';
-    }
-  }
 }

@@ -5,7 +5,7 @@ import matchSorter from 'match-sorter';
   name: 'matchSorter',
 })
 export class MatchSorterPipe implements PipeTransform {
-  transform(input: any[] = [], options: object | string, value: string): any {
+  transform(input: any[] = [], options: unknown | string, value: string): any {
     return matchSorter(
       input,
       value,

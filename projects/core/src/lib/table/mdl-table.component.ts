@@ -76,7 +76,7 @@ const styles =
 })
 export class MdlTableComponent {
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('table-model') public model: IMdlTableModel;
 
   public selectable = false;
@@ -103,11 +103,11 @@ export class MdlTableComponent {
 })
 export class MdlSelectableTableComponent extends MdlTableComponent {
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('table-model') public model: IMdlTableModel;
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Input('table-model-selected') public selected: IMdlTableModelItem[];
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   @Output('table-model-selectionChanged') public selectionChange = new EventEmitter();
 
   public selectable = true;
