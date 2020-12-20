@@ -138,10 +138,10 @@ export class PopupPositionService {
 })
 export class MdlPopoverComponent implements OnDestroy {
   // eslint-disable-next-line
-  @Input('hide-on-click')
+  @Input("hide-on-click")
   hideOnClick = false;
   // eslint-disable-next-line
-  @Input('mdl-popover-position')
+  @Input("mdl-popover-position")
   position: string;
   // eslint-disable-next-line
   @Output()
