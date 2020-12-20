@@ -30,23 +30,23 @@ export class TextFieldDemoComponent extends AbstractDemoComponent implements Aft
     super(router, route, titleService);
   }
 
-  get valueType() {
+  get valueType(): string {
     return typeof this.number1;
   }
 
-  public onBlur(event: FocusEvent) {
+  public onBlur(event: FocusEvent): void {
     console.log('blur', event);
   }
 
-  public onFocus(event: FocusEvent) {
+  public onFocus(event: FocusEvent): void {
     console.log('focus', event);
   }
 
-  public onKeyup(event: KeyboardEvent) {
+  public onKeyup(event: KeyboardEvent): void {
     console.log('keyup', event);
   }
 
-  public ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     this.tf.setFocus();
   }
 }

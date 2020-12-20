@@ -21,7 +21,7 @@ export class MdlCardChildStructure implements OnInit {
   constructor(private mdlCardComponent: MdlCardComponent, private childComponentName: string) {
   }
 
-  public ngOnInit() {
+  ngOnInit(): void {
     if (this.mdlCardComponent === null) {
       throw new MdlStructureError(this.childComponentName, 'mdl-card');
     }
@@ -35,7 +35,8 @@ export class MdlCardChildStructure implements OnInit {
 })
 export class MdlCardTitleComponent extends MdlCardChildStructure {
 
-  @HostBinding('class.mdl-card__title') isCardTitle = true;
+  @HostBinding('class.mdl-card__title')
+  isCardTitle = true;
 
   constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-title');
@@ -50,7 +51,8 @@ export class MdlCardTitleComponent extends MdlCardChildStructure {
 })
 export class MdlCardSupportingTextComponent extends MdlCardChildStructure {
 
-  @HostBinding('class.mdl-card__supporting-text') isSupportingText = true;
+  @HostBinding('class.mdl-card__supporting-text')
+  isSupportingText = true;
 
   constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-supporting-text');
@@ -65,7 +67,8 @@ export class MdlCardSupportingTextComponent extends MdlCardChildStructure {
 })
 export class MdlCardMediaComponent extends MdlCardChildStructure {
 
-  @HostBinding('class.mdl-card__media') isCardMedia = true;
+  @HostBinding('class.mdl-card__media')
+  isCardMedia = true;
 
   constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-media');
@@ -80,7 +83,8 @@ export class MdlCardMediaComponent extends MdlCardChildStructure {
 })
 export class MdlCardActionsComponent extends MdlCardChildStructure {
 
-  @HostBinding('class.mdl-card__actions') isCardAction = true;
+  @HostBinding('class.mdl-card__actions')
+  isCardAction = true;
 
   constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-actions');
@@ -95,7 +99,8 @@ export class MdlCardActionsComponent extends MdlCardChildStructure {
 })
 export class MdlCardMenuComponent extends MdlCardChildStructure {
 
-  @HostBinding('class.mdl-card__menu') isCardMenu = true;
+  @HostBinding('class.mdl-card__menu')
+  isCardMenu = true;
 
   constructor(@Optional() mdlCardComponent: MdlCardComponent) {
     super(mdlCardComponent, 'mdl-card-menu');
@@ -109,7 +114,8 @@ export class MdlCardMenuComponent extends MdlCardChildStructure {
 })
 export class MdlCardTitleTextDirective {
 
-  @HostBinding('class.mdl-card__title-text') isCardTitleText = true;
+  @HostBinding('class.mdl-card__title-text')
+  isCardTitleText = true;
 
 }
 
@@ -119,7 +125,8 @@ export class MdlCardTitleTextDirective {
 })
 export class MdlCardBorderDirective {
 
-  @HostBinding('class.mdl-card--border') isCardBorder = true;
+  @HostBinding('class.mdl-card--border')
+  isCardBorder = true;
 
 }
 
@@ -129,6 +136,7 @@ export class MdlCardBorderDirective {
 })
 export class MdlCardExpandDirective {
 
-  @HostBinding('class.mdl-card--expand') isCardExpand = true;
+  @HostBinding('class.mdl-card--expand')
+  isCardExpand = true;
 
 }

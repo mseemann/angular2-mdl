@@ -27,7 +27,7 @@ export class MdlExpansionPanelHeaderComponent {
   isExpanded = false;
   onChange: EventEmitter<null> = new EventEmitter<null>();
 
-  onClick() {
+  onClick(): void {
     this.onChange.emit();
   }
 }
@@ -102,7 +102,7 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
 
   private isExpanded = false;
 
-  public get expanded() {
+  public get expanded(): boolean {
     return this.isExpanded;
   }
 
@@ -114,13 +114,13 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
   }
 
   @HostListener('keyup', ['$event'])
-  onKeyUp($event: any) {
+  onKeyUp($event: KeyboardEvent): void {
     if ($event.key === 'Enter' && !this.disabled) {
       this.toggle();
     }
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.header.onChange.subscribe(() => {
       if (!this.disabled) {
         this.toggleIt(!this.isExpanded);
@@ -128,23 +128,23 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
     });
   }
 
-  toggle() {
+  toggle(): void {
     this.toggleIt(!this.isExpanded);
   }
 
-  expand() {
+  expand(): void {
     this.toggleIt(true);
   }
 
-  collapse() {
+  collapse(): void {
     this.toggleIt(false);
   }
 
-  disableToggle() {
+  disableToggle(): void {
     this.disabled = true;
   }
 
-  enableToggle() {
+  enableToggle(): void {
     this.disabled = false;
   }
 
@@ -165,7 +165,7 @@ export class MdlExpansionPanelGroupComponent implements AfterContentInit {
   @ContentChildren(MdlExpansionPanelComponent) panels: QueryList<MdlExpansionPanelComponent>;
   expandedIndex = -1;
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.panels.forEach((panel, i) => {
       /**
        * Set the expanded index to the panel index which is initialized in expanded state

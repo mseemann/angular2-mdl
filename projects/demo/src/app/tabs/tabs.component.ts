@@ -11,7 +11,7 @@ import {AbstractDemoComponent} from '../abstract-demo.component';
   ],
   templateUrl: 'tabs.component.html',
   styles: [
-      `
+    `
       .demo-tab-container {
         display: inline-block;
       }
@@ -43,11 +43,11 @@ export class TabsDemoComponent extends AbstractDemoComponent implements OnInit {
     super(router, route, titleService);
   }
 
-  public tabChanged({index}) {
+  public tabChanged({index}: { index: number }): void {
     this.activeIndex = index;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Simulates a later change of tabs
     setTimeout(() => {
       this.myArray = ['a', 'b', 'c'];

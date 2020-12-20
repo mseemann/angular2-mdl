@@ -25,13 +25,47 @@ const leaveTransitionDuration = 250;
 const enterTransitionEasingCurve = 'cubic-bezier(0.0, 0.0, 0.2, 1)';
 const leaveTransitionEasingCurve = 'cubic-bezier(0.0, 0.0, 0.2, 1)';
 
+const createOpenCloseRect = (rect: ClientRect): IOpenCloseRect => ({
+  height: rect.top - rect.bottom,
+  left: rect.left,
+  top: rect.top,
+  width: rect.right - rect.left
+});
+
+const getCenterInScreen = (rect: IOpenCloseRect) => ({
+  cx: Math.round(rect.left + (rect.width / 2)),
+  cy: Math.round(rect.top + (rect.height / 2))
+});
+
+const getClientRect = (input: MdlButtonComponent | MouseEvent | IOpenCloseRect): IOpenCloseRect => {
+
+  if (input instanceof MdlButtonComponent) {
+    const elRef = (input as MdlButtonComponent).elementRef;
+    const rect: ClientRect = elRef.nativeElement.getBoundingClientRect();
+    return createOpenCloseRect(rect);
+
+  } else if (input instanceof MouseEvent) {
+
+    const evt: MouseEvent = input as MouseEvent;
+    // just to make it possible to test this code with a fake event - target is
+    // readonly and con not be mutated.
+    // eslint-disable-next-line
+    const htmlElement = (evt.target || (evt as any).testtarget) as HTMLElement;
+    const rect: ClientRect = htmlElement.getBoundingClientRect();
+    return createOpenCloseRect(rect);
+
+  }
+  return input as IOpenCloseRect;
+};
+
+
 // @experimental
 @Component({
   selector: 'mdl-dialog-host-component',
   template: `
     <div #dialogTarget></div>`,
   styles: [
-      `
+    `
       mdl-dialog-host-component {
         width: fit-content;
         height: fit-content;
@@ -60,15 +94,17 @@ const leaveTransitionEasingCurve = 'cubic-bezier(0.0, 0.0, 0.2, 1)';
 })
 export class MdlDialogHostComponent implements OnInit {
 
-  @ViewChild('dialogTarget', {read: ViewContainerRef, static: true}) public dialogTarget;
+  @ViewChild('dialogTarget', {read: ViewContainerRef, static: true})
+  dialogTarget;
 
-  @HostBinding('class.mdl-dialog') isDialog = true;
+  @HostBinding('class.mdl-dialog')
+  isDialog = true;
 
   @HostBinding('class.open')
-  public visible = false;
+  visible = false;
 
   @HostBinding('style.zIndex')
-  public zIndex: number = MIN_DIALOG_Z_INDEX + 1;
+  zIndex: number = MIN_DIALOG_Z_INDEX + 1;
 
   private showAnimationStartStyle: { [key: string]: string } = {
     top: '38%',
@@ -92,7 +128,7 @@ export class MdlDialogHostComponent implements OnInit {
     private internalDialogRef: InternalMdlDialogReference) {
   }
 
-  public show() {
+  show(): void {
 
     this.visible = true;
     // give the dialogs time to draw so that a focus can be set
@@ -108,12 +144,12 @@ export class MdlDialogHostComponent implements OnInit {
 
         const targetClientRect = this.elementRef.nativeElement.getBoundingClientRect();
 
-        const openFromRect = this.getClientRect(this.config.openFrom);
-        const closeToRect = this.config.closeTo ? this.getClientRect(this.config.closeTo) : openFromRect;
+        const openFromRect = getClientRect(this.config.openFrom);
+        const closeToRect = this.config.closeTo ? getClientRect(this.config.closeTo) : openFromRect;
 
-        const centerTarget = this.getCenterInScreen(targetClientRect);
-        const centerFrom = this.getCenterInScreen(openFromRect);
-        const centerTo = this.getCenterInScreen(closeToRect);
+        const centerTarget = getCenterInScreen(targetClientRect);
+        const centerFrom = getCenterInScreen(openFromRect);
+        const centerTo = getCenterInScreen(closeToRect);
 
         const translationFrom = {
           x: Math.round(centerFrom.cx - centerTarget.cx),
@@ -143,7 +179,7 @@ export class MdlDialogHostComponent implements OnInit {
       }
 
 
-      const animation: any = this.animations.animate(
+      const animation = this.animations.animate(
         this.elementRef.nativeElement,
         [
           this.showAnimationStartStyle,
@@ -157,10 +193,10 @@ export class MdlDialogHostComponent implements OnInit {
     }
   }
 
-  public hide(selfComponentRef: ComponentRef<MdlDialogHostComponent>) {
+  hide(selfComponentRef: ComponentRef<MdlDialogHostComponent>): void {
     if (this.isAnimateEnabled()) {
 
-      const animation: any = this.animations.animate(
+      const animation = this.animations.animate(
         this.elementRef.nativeElement,
         [
           this.showStyle,
@@ -180,7 +216,7 @@ export class MdlDialogHostComponent implements OnInit {
     }
   }
 
-  public ngOnInit() {
+  ngOnInit(): void {
     this.applyStyle(this.config.styles);
     this.applyClasses(this.config.classes ? this.config.classes : '');
   }
@@ -205,43 +241,6 @@ export class MdlDialogHostComponent implements OnInit {
       return true;
     }
     return this.config.animate;
-  }
-
-  private getClientRect(input: MdlButtonComponent | MouseEvent | IOpenCloseRect): IOpenCloseRect {
-
-    if (input instanceof MdlButtonComponent) {
-
-      const elRef = (input as MdlButtonComponent).elementRef;
-      const rect: ClientRect = elRef.nativeElement.getBoundingClientRect();
-      return this.createOpenCloseRect(rect);
-
-    } else if (input instanceof MouseEvent) {
-
-      const evt: MouseEvent = input as MouseEvent;
-      // just to make it possible to test this code with a fake event - target is
-      // readonly and con not be mutated.
-      const htmlElement = (evt.target || (evt as any).testtarget) as HTMLElement;
-      const rect: ClientRect = htmlElement.getBoundingClientRect();
-      return this.createOpenCloseRect(rect);
-
-    }
-    return input as IOpenCloseRect;
-  }
-
-  private createOpenCloseRect(rect: ClientRect): IOpenCloseRect {
-    return {
-      height: rect.top - rect.bottom,
-      left: rect.left,
-      top: rect.top,
-      width: rect.right - rect.left
-    };
-  }
-
-  private getCenterInScreen(rect: IOpenCloseRect) {
-    return {
-      cx: Math.round(rect.left + (rect.width / 2)),
-      cy: Math.round(rect.top + (rect.height / 2))
-    };
   }
 
 

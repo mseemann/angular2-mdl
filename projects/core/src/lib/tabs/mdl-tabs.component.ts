@@ -19,58 +19,62 @@ import {toBoolean} from '../common/boolean-property';
 @Component({
   selector: 'mdl-tabs',
   template:
-      `
-    <div class="mdl-tabs__tab-bar">
-      <div *ngFor="let tab of tabs.toArray()">
-        <div
-          *ngIf="tab.titleComponent"
-          class="mdl-tabs__tab"
-          (click)="tabSelected(tab)"
-          [mdl-ripple]="isRipple && !tab.disabled"
-          [ngClass]="{'is-active': tab.isActive, 'disabled': tab.disabled}"
-          [append-view-container-ref]="tab.titleComponent.vcRef"></div>
-        <a *ngIf="!tab.titleComponent" href="javascript:void(0)"
-           (click)="tabSelected(tab)"
-           class="mdl-tabs__tab"
-           [mdl-ripple]="isRipple && !tab.disabled"
-           [ngClass]="{'is-active': tab.isActive, 'disabled': tab.disabled}">{{tab.title}}</a>
+    `
+      <div class="mdl-tabs__tab-bar">
+        <div *ngFor="let tab of tabs.toArray()">
+          <div
+            *ngIf="tab.titleComponent"
+            class="mdl-tabs__tab"
+            (click)="tabSelected(tab)"
+            [mdl-ripple]="isRipple && !tab.disabled"
+            [ngClass]="{'is-active': tab.isActive, 'disabled': tab.disabled}"
+            [append-view-container-ref]="tab.titleComponent.vcRef"></div>
+          <a *ngIf="!tab.titleComponent" href="javascript:void(0)"
+             (click)="tabSelected(tab)"
+             class="mdl-tabs__tab"
+             [mdl-ripple]="isRipple && !tab.disabled"
+             [ngClass]="{'is-active': tab.isActive, 'disabled': tab.disabled}">{{tab.title}}</a>
+        </div>
       </div>
-    </div>
-    <ng-content></ng-content>
-  `,
+      <ng-content></ng-content>
+    `,
   encapsulation: ViewEncapsulation.None
 })
 export class MdlTabsComponent implements AfterContentInit, OnChanges {
 
   // eslint-disable-next-line
-  @Output('mdl-tab-active-changed') public selectedTabEmitter = new EventEmitter();
-  @ContentChildren(MdlTabPanelComponent) public tabs: QueryList<MdlTabPanelComponent>;
+  @Output('mdl-tab-active-changed')
+  selectedTabEmitter = new EventEmitter();
+  @ContentChildren(MdlTabPanelComponent)
+  tabs: QueryList<MdlTabPanelComponent>;
 
-  @HostBinding('class.mdl-tabs') isTabs = true;
-  @HostBinding('class.is-upgraded') isUpgraded = true;
+  @HostBinding('class.mdl-tabs')
+  isTabs = true;
+  @HostBinding('class.is-upgraded')
+  isUpgraded = true;
 
   private selectedIndexIntern = 0;
   private isRippleIntern = false;
 
   @Input('mdl-tab-active-index')
-  get selectedIndex() {
+  get selectedIndex(): number {
     return this.selectedIndexIntern;
   }
 
-  set selectedIndex(value) {
+  set selectedIndex(value: number) {
     this.selectedIndexIntern = toNumber(value);
   }
 
   @Input('mdl-ripple')
-  get isRipple() {
+  get isRipple(): boolean {
     return this.isRippleIntern;
   }
 
-  set isRipple(value) {
+  set isRipple(value: boolean) {
     this.isRippleIntern = toBoolean(value);
   }
 
-  public ngAfterContentInit() {
+  ngAfterContentInit(): void {
     // the initial tabs
     this.updateSelectedTabIndex();
     // listen to tab changes - this would not be necessary if this would be fixed:
@@ -80,13 +84,13 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
     });
   }
 
-  public ngOnChanges(changes: SimpleChanges): any {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.selectedIndex) {
       this.updateSelectedTabIndex();
     }
   }
 
-  public tabSelected(tab: MdlTabPanelComponent) {
+  tabSelected(tab: MdlTabPanelComponent): void {
     if (tab.disabled) {
       return;
     }

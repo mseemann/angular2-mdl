@@ -23,7 +23,7 @@ export class SnackbarDemoComponent extends AbstractDemoComponent {
     super(router, route, titleService);
   }
 
-  public showSnackbar() {
+  public showSnackbar(): void {
     this.mdlSnackbarService.showSnackbar({
       message: 'The Message',
       action: {

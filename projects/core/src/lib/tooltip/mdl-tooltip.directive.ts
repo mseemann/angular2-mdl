@@ -6,7 +6,6 @@ import {
   Input,
   OnChanges,
   OnInit,
-  Renderer2,
   SimpleChanges,
   ViewContainerRef
 } from '@angular/core';
@@ -20,27 +19,25 @@ export abstract class AbstractMdlTooltipDirective implements OnInit, OnChanges {
 
   protected tooltipComponent: MdlSimpleTooltipComponent;
 
-  constructor(
+  protected constructor(
     private vcRef: ViewContainerRef,
     private large: boolean,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private renderer: Renderer2) {
+    private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   @HostListener('touchend', ['$event'])
   @HostListener('mouseenter', ['$event'])
-  onMouseEnter(event) {
+  onMouseEnter(event: MouseEvent): void {
     this.tooltipComponent.mouseEnter(event);
   }
 
   @HostListener('window:touchstart')
   @HostListener('mouseleave')
-  onMouseLeave() {
+  onMouseLeave(): void {
     this.tooltipComponent.mouseLeave();
   }
 
-
-  public ngOnInit() {
+  ngOnInit(): void {
     // if the tooltip is not an instance of MdlTooltipComponent
     // we create a simpleTooltipComponent on the fly.
     if (!(this.tooltip instanceof MdlTooltipComponent)) {
@@ -59,7 +56,7 @@ export abstract class AbstractMdlTooltipDirective implements OnInit, OnChanges {
 
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.tooltip && !changes.tooltip.isFirstChange()) {
       if (!(this.tooltip instanceof MdlTooltipComponent)) {
         this.tooltipComponent.tooltipText = this.tooltip;
@@ -86,9 +83,8 @@ export class MdlTooltipDirective extends AbstractMdlTooltipDirective {
 
   constructor(
     vcRef: ViewContainerRef,
-    componentFactoryResolver: ComponentFactoryResolver,
-    renderer: Renderer2) {
-    super(vcRef, false, componentFactoryResolver, renderer);
+    componentFactoryResolver: ComponentFactoryResolver) {
+    super(vcRef, false, componentFactoryResolver);
   }
 
 }
@@ -105,9 +101,8 @@ export class MdlTooltipLargeDirective extends AbstractMdlTooltipDirective {
 
   constructor(
     vcRef: ViewContainerRef,
-    componentFactoryResolver: ComponentFactoryResolver,
-    renderer: Renderer2) {
-    super(vcRef, true, componentFactoryResolver, renderer);
+    componentFactoryResolver: ComponentFactoryResolver) {
+    super(vcRef, true, componentFactoryResolver);
   }
 
 }

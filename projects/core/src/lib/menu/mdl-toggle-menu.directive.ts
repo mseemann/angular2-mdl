@@ -9,13 +9,14 @@ import {MdlButtonComponent} from '../button/mdl-button.component';
 export class MdlToggleMenuDirective {
 
   // eslint-disable-next-line
-  @Input('mdl-toggle-menu') public menu: MdlMenuComponent;
+  @Input('mdl-toggle-menu')
+  menu: MdlMenuComponent;
 
   constructor(private button: MdlButtonComponent) {
   }
 
   @HostListener('click', ['$event'])
-  public onClick($event) {
+  public onClick($event: Event): void {
     this.menu.toggle($event, this.button);
   }
 }

@@ -1,14 +1,4 @@
-import {
-  Component,
-  Directive,
-  HostBinding,
-  Input,
-  OnChanges,
-  OnInit,
-  Optional,
-  SimpleChanges,
-  ViewEncapsulation
-} from '@angular/core';
+import {Component, Directive, HostBinding, Input, OnChanges, OnInit, Optional, ViewEncapsulation} from '@angular/core';
 import {MdlError, MdlStructureError} from '../common/mdl-error';
 import {toNumber} from '../common/number.property';
 
@@ -25,7 +15,8 @@ export class MdlUnsupportedCountOfListItemLinesError extends MdlError {
   encapsulation: ViewEncapsulation.None
 })
 export class MdlListComponent {
-  @HostBinding('class.mdl-list') isMdlList = true;
+  @HostBinding('class.mdl-list')
+  isMdlList = true;
 }
 
 
@@ -36,29 +27,29 @@ export class MdlListComponent {
 })
 export class MdlListItemComponent implements OnChanges {
 
-  @HostBinding('class.mdl-list__item') isMdlListItem = true;
+  @HostBinding('class.mdl-list__item')
+  isMdlListItem = true;
 
   private linesIntern = 1;
 
   @Input()
-  get lines() {
+  get lines(): number {
     return this.linesIntern;
   }
 
-  set lines(value) {
+  set lines(value: number) {
     this.linesIntern = toNumber(value);
   }
 
-  @HostBinding('class.mdl-list__item--two-line') get lines2() {
+  @HostBinding('class.mdl-list__item--two-line') get lines2(): boolean {
     return this.lines === 2;
   }
 
-  @HostBinding('class.mdl-list__item--three-line') get lines3() {
+  @HostBinding('class.mdl-list__item--three-line') get lines3(): boolean {
     return this.lines === 3;
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-
+  ngOnChanges(): void {
     if (this.lines && this.lines > 3) {
       throw new MdlUnsupportedCountOfListItemLinesError(this.lines);
     }
@@ -72,12 +63,13 @@ export class MdlListItemComponent implements OnChanges {
 })
 export class MdlListItemPrimaryContentComponent implements OnInit {
 
-  @HostBinding('class.mdl-list__item-primary-content') isPrimaryContent = true;
+  @HostBinding('class.mdl-list__item-primary-content')
+  isPrimaryContent = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemComponent) {
   }
 
-  public ngOnInit() {
+  ngOnInit(): void {
     if (this.mdlListItemComponent === null) {
       throw new MdlStructureError('mdl-list-item-primary-content', 'mdl-list-item');
     }
@@ -92,12 +84,13 @@ export class MdlListItemPrimaryContentComponent implements OnInit {
 })
 export class MdlListItemSecondaryContentComponent implements OnInit {
 
-  @HostBinding('class.mdl-list__item-secondary-content') isSecondaryContent = true;
+  @HostBinding('class.mdl-list__item-secondary-content')
+  isSecondaryContent = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemComponent) {
   }
 
-  public ngOnInit() {
+  ngOnInit(): void {
     if (this.mdlListItemComponent === null) {
       throw new MdlStructureError('mdl-list-item-secondary-content', 'mdl-list-item');
     }
@@ -111,12 +104,13 @@ export class MdlListItemSecondaryContentComponent implements OnInit {
 })
 export class MdlListItemSecondaryActionComponent implements OnInit {
 
-  @HostBinding('class.mdl-list__item-secondary-action') isSecondaryAction = true;
+  @HostBinding('class.mdl-list__item-secondary-action')
+  isSecondaryAction = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemComponent) {
   }
 
-  public ngOnInit() {
+  ngOnInit(): void {
     if (this.mdlListItemComponent === null) {
       throw new MdlStructureError('mdl-list-item-secondary-action', 'mdl-list-item');
     }
@@ -130,12 +124,13 @@ export class MdlListItemSecondaryActionComponent implements OnInit {
 })
 export class MdlListItemSubTitleComponent implements OnInit {
 
-  @HostBinding('class.mdl-list__item-sub-title') isSubTitle = true;
+  @HostBinding('class.mdl-list__item-sub-title')
+  isSubTitle = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemPrimaryContentComponent) {
   }
 
-  public ngOnInit() {
+  ngOnInit(): void {
     if (this.mdlListItemComponent === null) {
       throw new MdlStructureError('mdl-list-item-sub-title', 'mdl-list-item-primary-content');
     }
@@ -149,12 +144,13 @@ export class MdlListItemSubTitleComponent implements OnInit {
 })
 export class MdlListItemSecondaryInfoComponent implements OnInit {
 
-  @HostBinding('class.mdl-list__item-secondary-info') isSecondaryInfo = true;
+  @HostBinding('class.mdl-list__item-secondary-info')
+  isSecondaryInfo = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemSecondaryContentComponent) {
   }
 
-  public ngOnInit() {
+  ngOnInit(): void {
     if (this.mdlListItemComponent === null) {
       throw new MdlStructureError('mdl-list-item-secondary-info', 'mdl-list-item-secondary-content');
     }
@@ -168,12 +164,13 @@ export class MdlListItemSecondaryInfoComponent implements OnInit {
 })
 export class MdlListItemTextBodyComponent implements OnInit {
 
-  @HostBinding('class.mdl-list__item-text-body') isTextBody = true;
+  @HostBinding('class.mdl-list__item-text-body')
+  isTextBody = true;
 
   constructor(@Optional() private mdlListItemComponent: MdlListItemComponent) {
   }
 
-  public ngOnInit() {
+  ngOnInit(): void {
     if (this.mdlListItemComponent === null) {
       throw new MdlStructureError('mdl-list-item-text-body', 'mdl-list-item');
     }
@@ -186,7 +183,8 @@ export class MdlListItemTextBodyComponent implements OnInit {
   selector: 'mdl-icon[mdl-list-item-icon]'
 })
 export class MdlListItemIconDirective {
-  @HostBinding('class.mdl-list__item-icon') isItemIcon = true;
+  @HostBinding('class.mdl-list__item-icon')
+  isItemIcon = true;
 }
 
 @Directive({
@@ -194,6 +192,7 @@ export class MdlListItemIconDirective {
   selector: 'mdl-icon[mdl-list-item-avatar]'
 })
 export class MdlListItemAvatarDirective {
-  @HostBinding('class.mdl-list__item-avatar') isItemAvatar = true;
+  @HostBinding('class.mdl-list__item-avatar')
+  isItemAvatar = true;
 }
 

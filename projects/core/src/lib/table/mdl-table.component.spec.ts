@@ -24,26 +24,26 @@ interface ITableItem extends IMdlTableModelItem {
   `,
 })
 class MdlTestTableComponent implements OnInit {
-  public tableData: ITableItem[] = [
+  tableData: ITableItem[] = [
     {material: 'Acrylic (Transparent)', quantity: 25, unitPrice: 2.90, selected: true},
     {material: 'Plywood (Birch)', quantity: 50, unitPrice: 1.25, selected: false},
     {material: 'Laminate (Gold on Blue)', quantity: 10, unitPrice: 2.35, selected: false}
   ];
 
-  public selected: Array<ITableItem> = new Array<ITableItem>();
+  selected: Array<ITableItem> = new Array<ITableItem>();
 
-  public tableModel = new MdlDefaultTableModel([
+  tableModel = new MdlDefaultTableModel([
     {key: 'material', name: 'Material'},
     {key: 'quantity', name: 'Quantity', numeric: true},
     {key: 'unitPrice', name: 'Unit price', numeric: true}
   ]);
 
-  public ngOnInit() {
+  ngOnInit(): void {
     this.tableModel.addAll(this.tableData);
     this.selected = this.tableData.filter(data => data.selected);
   }
 
-  public selectionChanged($event) {
+  selectionChanged($event): void {
     this.selected = $event.value;
   }
 }

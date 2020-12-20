@@ -7,5 +7,6 @@ import {Component, HostBinding, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class MdlLayoutTitleComponent {
-  @HostBinding('class.mdl-layout-title') isLayoutTitle = true;
+  @HostBinding('class.mdl-layout-title')
+  isLayoutTitle = true;
 }

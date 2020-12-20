@@ -1,4 +1,4 @@
-export const stringifyValue = (value: any): string => {
+export const stringifyValue = (value: unknown): string => {
   switch (typeof value) {
     case 'number':
       return String(value);

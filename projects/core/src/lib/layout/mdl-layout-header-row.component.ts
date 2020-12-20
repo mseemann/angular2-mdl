@@ -7,5 +7,6 @@ import {Component, HostBinding, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class MdlLayoutHeaderRowComponent {
-  @HostBinding('class.mdl-layout__header-row') isHeaderRow = true;
+  @HostBinding('class.mdl-layout__header-row')
+  isHeaderRow = true;
 }

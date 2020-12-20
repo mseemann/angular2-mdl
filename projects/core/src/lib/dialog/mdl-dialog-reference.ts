@@ -13,7 +13,7 @@ export class MdlDialogReference {
   /**
    * closes the dialog
    */
-  public hide(data?: any) {
+  hide(data?: unknown): void {
     this.internaleRef.hide(data);
   }
 
@@ -21,7 +21,7 @@ export class MdlDialogReference {
    * Observable that emits, if the dialog was closed.
    * returns {Observable<void>}
    */
-  public onHide(): Observable<any> {
+  public onHide(): Observable<unknown> {
     return this.internaleRef.onHide();
   }
 

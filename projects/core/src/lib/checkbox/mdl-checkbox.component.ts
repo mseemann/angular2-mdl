@@ -8,6 +8,7 @@ import {
   HostListener,
   Input,
   Output,
+  Provider,
   Renderer2,
   ViewEncapsulation
 } from '@angular/core';
@@ -17,9 +18,8 @@ import {noop} from '../common/noop';
 
 
 const IS_FOCUSED = 'is-focused';
-export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
+export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  // eslint-disable-next-line
   useExisting: forwardRef(() => MdlCheckboxComponent),
   multi: true
 };
@@ -45,17 +45,22 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
 
-  @Input() tabindex: number = null;
+  @Input()
+  tabindex: number = null;
 
   // eslint-disable-next-line
-  @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output()
+  change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @HostBinding('class.mdl-checkbox') isCheckbox = true;
-  @HostBinding('class.is-upgraded') isUpgraded = true;
+  @HostBinding('class.mdl-checkbox')
+  isCheckbox = true;
+
+  @HostBinding('class.is-upgraded')
+  isUpgraded = true;
 
   private readonly el: HTMLElement;
   private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
+  private onChangeCallback: (_: unknown) => void = noop;
   private internalValue = false;
   private internalDisabled = false;
 
@@ -81,39 +86,39 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
 
   @Input()
   @HostBinding('class.is-disabled')
-  set disabled(value) {
+  set disabled(value: boolean) {
     this.internalDisabled = toBoolean(value);
   }
 
   @HostListener('click')
-  public onClick() {
+  onClick(): void {
     if (this.disabled) {
       return;
     }
     this.value = !this.value;
   }
 
-  public writeValue(value: any): void {
+  writeValue(value: boolean): void {
     this.internalValue = value;
   }
 
-  public registerOnChange(fn: any): void {
+  registerOnChange(fn: () => unknown): void {
     this.onChangeCallback = fn;
   }
 
-  public registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => unknown): void {
     this.onTouchedCallback = fn;
   }
 
-  public setDisabledState(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
 
-  public onFocus() {
+  onFocus(): void {
     this.renderer.addClass(this.el, IS_FOCUSED);
   }
 
-  public onBlur() {
+  onBlur(): void {
     this.renderer.removeClass(this.el, IS_FOCUSED);
     this.onTouchedCallback();
   }

@@ -12,7 +12,7 @@ export class AppComponent {
 
   title = 'Angular - Material Design Lite';
 
-  componentSelected(mainLayout: MdlLayoutComponent) {
+  componentSelected(mainLayout: MdlLayoutComponent): void {
     mainLayout.closeDrawerOnSmallScreens();
   }
 

@@ -28,24 +28,24 @@ export class DialogDeclarativeDemoComponent extends AbstractDemoComponent {
     super(router, route, titleService);
   }
 
-  public alertConfirmd() {
+  public alertConfirmd(): void {
     console.log('alertConfirmd');
   }
 
-  public saveUser() {
+  public saveUser(): void {
     console.log('user saved!');
     this.username = this.editedUsername;
     this.editUserDialog.close();
   }
 
-  public onDialogShow(dialogRef: MdlDialogReference) {
+  public onDialogShow(dialogRef: MdlDialogReference): void {
     console.log(`dialog shown`, dialogRef);
     this.editedUsername = this.username;
     this.tfName.setFocus();
   }
 
 
-  public onDialogHide() {
+  public onDialogHide(): void {
     console.log(`dialog hidden`);
   }
 }

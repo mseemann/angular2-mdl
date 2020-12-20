@@ -19,7 +19,7 @@ export class FabMenuComponent extends AbstractDemoComponent {
     super(router, route, titleService);
   }
 
-  alert(msg: string) {
+  alert(msg: string): void {
     console.log(msg);
   }
 }

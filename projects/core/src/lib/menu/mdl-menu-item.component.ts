@@ -20,16 +20,19 @@ import {callNative} from '../common/native-support';
 })
 export class MdlMenuItemComponent {
 
-  @HostBinding('tabindex') tabindex = -1;
-  @HostBinding('class.mdl-menu__item') isMenuItem = true;
-  public element: HTMLElement;
+  @HostBinding('tabindex')
+  tabindex = -1;
+  @HostBinding('class.mdl-menu__item')
+  isMenuItem = true;
+
+  element: HTMLElement;
+
   private disabledIntern = false;
 
   // forwardRef is needed because of he circular dependency menu queries menuitems; menuitem needs the parent
   constructor(
     private elementRef: ElementRef,
-    @Inject(forwardRef(() => MdlMenuComponent)) private mdlMenu) {
-    this.mdlMenu = mdlMenu as MdlMenuComponent;
+    @Inject(forwardRef(() => MdlMenuComponent)) private mdlMenu: MdlMenuComponent) {
     this.element = elementRef.nativeElement;
   }
 
@@ -38,12 +41,12 @@ export class MdlMenuItemComponent {
     return this.disabledIntern;
   }
 
-  set disabled(value) {
+  set disabled(value: boolean) {
     this.disabledIntern = toBoolean(value);
   }
 
   @HostListener('click', ['$event'])
-  public onClick($event) {
+  onClick($event: Event): void {
     $event.stopPropagation();
     if (this.disabled) {
       this.mdlMenu.hide();
@@ -57,7 +60,7 @@ export class MdlMenuItemComponent {
   // So we need to convert touch to click and the user still needs to register a (click) listener to be
   // informed if the menu item has clicked.
   @HostListener('touchstart', ['$event'])
-  public onTouch($event) {
+  onTouch($event: Event): void {
     // ensure that this event is totally consumed
     $event.stopPropagation();
     $event.preventDefault();

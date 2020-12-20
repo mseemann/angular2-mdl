@@ -50,7 +50,7 @@ export interface IMdlDialogConfiguration {
    * css classes as space delimted list of classes applied to
    * the dialog-host component. (e.g. a b -> <mdl-dialog-host-component class="a b"...
    */
-  classes?: any;
+  classes?: string;
 
   /**
    * Key Value object with additional styles that will be applied to
@@ -132,6 +132,6 @@ export interface IMdlSimpleDialogConfiguration extends IMdlDialogConfiguration {
  * }
  */
 export interface IMdlCustomDialogConfiguration extends IMdlDialogConfiguration {
-  component: Type<any>;
+  component: Type<unknown>;
   providers?: StaticProvider[];
 }

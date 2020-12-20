@@ -106,7 +106,7 @@ export class MdlScreenSizeService {
     return this.sizesSubject.asObservable();
   }
 
-  destroy() {
+  destroy(): void {
     if (this.windowMediaQueryListener) {
       this.windowMediaQueryListener();
       this.windowMediaQueryListener = null;
@@ -144,30 +144,39 @@ export class MdlScreenSizeService {
 })
 export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChanges {
 
-  @ContentChild(MdlLayoutHeaderComponent) public header;
+  @ContentChild(MdlLayoutHeaderComponent)
+  header;
   // will be set to undefined, if not a direct child or not present in 2.0.0 i
   // n 2.0.1 it is now the grand child drawer again :(
-  @ContentChildren(MdlLayoutDrawerComponent, {descendants: false}) public drawers: QueryList<MdlLayoutDrawerComponent>;
-  @ContentChild(MdlLayoutContentComponent, {static: true}) public content;
+  @ContentChildren(MdlLayoutDrawerComponent, {descendants: false})
+  drawers: QueryList<MdlLayoutDrawerComponent>;
+  @ContentChild(MdlLayoutContentComponent, {static: true})
+  content;
 
   // eslint-disable-next-line
-  @Input('mdl-layout-mode') public mode: string = STANDARD;
+  @Input('mdl-layout-mode')
+  mode: string = STANDARD;
   // eslint-disable-next-line
-  @Output('mdl-layout-tab-active-changed') public selectedTabEmitter = new EventEmitter();
+  @Output('mdl-layout-tab-active-changed')
+  selectedTabEmitter = new EventEmitter();
   // eslint-disable-next-line
-  @Output('mdl-layout-tab-mouseover') public mouseoverTabEmitter = new EventEmitter();
+  @Output('mdl-layout-tab-mouseover')
+  mouseoverTabEmitter = new EventEmitter();
   // eslint-disable-next-line
-  @Output('mdl-layout-tab-mouseout') public mouseoutTabEmitter = new EventEmitter();
+  @Output('mdl-layout-tab-mouseout')
+  mouseoutTabEmitter = new EventEmitter();
   // eslint-disable-next-line
-  @Output('open') public onOpen = new EventEmitter<void>();
+  @Output('open')
+  onOpen = new EventEmitter<void>();
   // eslint-disable-next-line
-  @Output('close') public onClose = new EventEmitter<void>();
-  public isDrawerVisible = false;
-  public isSmallScreen = false;
+  @Output('close')
+  onClose = new EventEmitter<void>();
+  isDrawerVisible = false;
+  isSmallScreen = false;
   private scrollListener: (
-    target?: 'window' | 'document' | 'body' | any,
+    target?: 'window' | 'document' | 'body' | unknown,
     eventName?: string,
-    callback?: (event: any) => boolean | void) => void;
+    callback?: (event: Event) => boolean | void) => void;
   private isFixedDrawerIntern = false;
   private isFixedHeaderIntern = false;
   private isSeamedIntern = false;
@@ -185,51 +194,51 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
   }
 
   @Input('mdl-layout-fixed-drawer')
-  get isFixedDrawer() {
+  get isFixedDrawer(): boolean {
     return this.isFixedDrawerIntern;
   }
 
-  set isFixedDrawer(value) {
+  set isFixedDrawer(value: boolean) {
     this.isFixedDrawerIntern = toBoolean(value);
   }
 
   @Input('mdl-layout-fixed-header')
-  get isFixedHeader() {
+  get isFixedHeader(): boolean {
     return this.isFixedHeaderIntern;
   }
 
-  set isFixedHeader(value) {
+  set isFixedHeader(value: boolean) {
     this.isFixedHeaderIntern = toBoolean(value);
   }
 
   @Input('mdl-layout-header-seamed')
-  get isSeamed() {
+  get isSeamed(): boolean {
     return this.isSeamedIntern;
   }
 
-  set isSeamed(value) {
+  set isSeamed(value: boolean) {
     this.isSeamedIntern = toBoolean(value);
   }
 
   @Input('mdl-layout-tab-active-index')
-  get selectedIndex() {
+  get selectedIndex(): number {
     return this.selectedIndexIntern;
   }
 
-  set selectedIndex(value) {
+  set selectedIndex(value: number) {
     this.selectedIndexIntern = toNumber(value);
   }
 
   @Input('mdl-layout-no-drawer-button')
-  get isNoDrawer() {
+  get isNoDrawer(): boolean {
     return this.isNoDrawerIntern;
   }
 
-  set isNoDrawer(value) {
+  set isNoDrawer(value: boolean) {
     this.isNoDrawerIntern = toBoolean(value);
   }
 
-  public ngAfterContentInit() {
+  ngAfterContentInit(): void {
 
     this.validateMode();
 
@@ -254,40 +263,40 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     }
   }
 
-  public ngOnChanges(changes: SimpleChanges): any {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes.selectedIndex) {
       this.updateSelectedTabIndex();
     }
   }
 
-  public toggleDrawer() {
+  toggleDrawer(): void {
     this.isDrawerVisible = !this.isDrawerVisible;
     if (this.drawers.length > 0) {
       this.setDrawerVisible(this.isDrawerVisible);
     }
   }
 
-  public closeDrawer() {
+  closeDrawer(): void {
     this.isDrawerVisible = false;
     if (this.drawers.length > 0) {
       this.setDrawerVisible(false);
     }
   }
 
-  public openDrawer() {
+  openDrawer(): void {
     this.isDrawerVisible = true;
     if (this.drawers.length > 0) {
       this.setDrawerVisible(true);
     }
   }
 
-  public obfuscatorKeyDown($event) {
+  obfuscatorKeyDown($event: KeyboardEvent): void {
     if ($event.keyCode === ESCAPE) {
       this.toggleDrawer();
     }
   }
 
-  public ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.scrollListener) {
       this.scrollListener();
       this.scrollListener = null;
@@ -295,19 +304,19 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  public closeDrawerOnSmallScreens() {
+  closeDrawerOnSmallScreens(): void {
     if (this.isSmallScreen && this.isDrawerVisible) {
       this.closeDrawer();
     }
   }
 
-  public openDrawerOnSmallScreens() {
+  openDrawerOnSmallScreens(): void {
     if (this.isSmallScreen && !this.isDrawerVisible) {
       this.openDrawer();
     }
   }
 
-  public hasDrawer() {
+  hasDrawer(): boolean {
     return this.drawers.length > 0;
   }
 
@@ -355,7 +364,7 @@ export class MdlLayoutComponent implements AfterContentInit, OnDestroy, OnChange
 
 
     if (this.content) {
-      this.scrollListener = this.renderer.listen(this.content.el, 'scroll', (e) => {
+      this.scrollListener = this.renderer.listen(this.content.el, 'scroll', () => {
         this.onScroll(this.content.el.scrollTop);
         return true;
       });

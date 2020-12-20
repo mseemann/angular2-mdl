@@ -22,32 +22,32 @@ import {toBoolean} from '../common/boolean-property';
 export class MdlSpinnerComponent {
 
   @HostBinding('class.mdl-spinner')
-  public isSpinner = true;
+  isSpinner = true;
 
   @HostBinding('class.is-upgraded')
-  public isUpgraded = true;
+  isUpgraded = true;
 
-  public layers = [1, 2, 3, 4];
+  layers = [1, 2, 3, 4];
   private activeIntern = false;
   private singleColorIntern = false;
 
   @HostBinding('class.is-active')
   @Input()
-  get active() {
+  get active(): boolean {
     return this.activeIntern;
   }
 
-  set active(value) {
+  set active(value: boolean) {
     this.activeIntern = toBoolean(value);
   }
 
   @HostBinding('class.mdl-spinner--single-color')
   @Input('single-color')
-  get singleColor() {
+  get singleColor(): boolean {
     return this.singleColorIntern;
   }
 
-  set singleColor(value) {
+  set singleColor(value: boolean) {
     this.singleColorIntern = toBoolean(value);
   }
 

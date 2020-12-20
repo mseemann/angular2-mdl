@@ -11,7 +11,7 @@ import {AbstractDemoComponent} from '../abstract-demo.component';
   ],
   templateUrl: 'menu.component.html',
   styles: [
-      `
+    `
       :host {
         flex-grow: 1;
       }
@@ -51,7 +51,7 @@ export class MenuDemoComponent extends AbstractDemoComponent {
     super(router, route, titleService);
   }
 
-  public action() {
+  public action(): void {
     console.log('action clicked');
   }
 }

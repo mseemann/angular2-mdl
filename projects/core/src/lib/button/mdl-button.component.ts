@@ -1,14 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  Input,
-  OnChanges,
-  Renderer2,
-  SimpleChanges,
-  ViewEncapsulation
-} from '@angular/core';
+import {Component, ElementRef, HostBinding, HostListener, Input, OnChanges, ViewEncapsulation} from '@angular/core';
 import {MdlError} from '../common/mdl-error';
 import {toBoolean} from '../common/boolean-property';
 import {callNative} from '../common/native-support';
@@ -50,43 +40,49 @@ const MDL_COLORED_TYPES = [
 })
 export class MdlButtonComponent implements OnChanges {
 
-  @HostBinding('class.mdl-button') isButton = true;
+  @HostBinding('class.mdl-button')
+  isButton = true;
+
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('mdl-button-type') public mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '';
+  @Input('mdl-button-type')
+  mdlButtonType: 'raised' | 'fab' | 'mini-fab' | 'icon' | '';
+
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('mdl-colored') public mdlColoredType: 'primary' | 'accent' | '';
-  private readonly element: HTMLElement;
+  @Input('mdl-colored')
+  mdlColoredType: 'primary' | 'accent' | '';
+
+  readonly element: HTMLElement;
   private disabledIntern = false;
 
-  constructor(public elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(public elementRef: ElementRef) {
     this.element = elementRef.nativeElement;
   }
 
-  @HostBinding('attr.disabled') get isDisable() {
+  @HostBinding('attr.disabled') get isDisable(): string | null {
     return this.disabled ? 'disabled' : null;
   }
 
-  @HostBinding('class.mdl-button--raised') get raised() {
+  @HostBinding('class.mdl-button--raised') get raised(): boolean {
     return this.mdlButtonType === 'raised';
   }
 
-  @HostBinding('class.mdl-button--fab') get fab() {
+  @HostBinding('class.mdl-button--fab') get fab(): boolean {
     return this.mdlButtonType === 'fab' || this.mdlButtonType === 'mini-fab';
   }
 
-  @HostBinding('class.mdl-button--mini-fab') get miniFab() {
+  @HostBinding('class.mdl-button--mini-fab') get miniFab(): boolean {
     return this.mdlButtonType === 'mini-fab';
   }
 
-  @HostBinding('class.mdl-button--icon') get icon() {
+  @HostBinding('class.mdl-button--icon') get icon(): boolean {
     return this.mdlButtonType === 'icon';
   }
 
-  @HostBinding('class.mdl-button--primary') get primary() {
+  @HostBinding('class.mdl-button--primary') get primary(): boolean {
     return this.mdlColoredType === 'primary';
   }
 
-  @HostBinding('class.mdl-button--accent') get accent() {
+  @HostBinding('class.mdl-button--accent') get accent(): boolean {
     return this.mdlColoredType === 'accent';
   }
 
@@ -95,21 +91,21 @@ export class MdlButtonComponent implements OnChanges {
     return this.disabledIntern;
   }
 
-  set disabled(value) {
+  set disabled(value: boolean) {
     this.disabledIntern = toBoolean(value);
   }
 
   @HostListener('mouseup')
-  public onMouseUp() {
+  onMouseUp(): void {
     this.blurIt();
   }
 
   @HostListener('mouseleave')
-  public onMouseLeave() {
+  onMouseLeave(): void {
     this.blurIt();
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(): void {
 
     if (this.mdlButtonType && MDL_BUTTON_TYPES.indexOf(this.mdlButtonType) === -1) {
       throw new MdlUnsupportedButtonTypeError(this.mdlButtonType);
@@ -120,7 +116,7 @@ export class MdlButtonComponent implements OnChanges {
     }
   }
 
-  public blurIt() {
+  blurIt(): void {
     callNative(this.element, 'blur');
   }
 }

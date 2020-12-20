@@ -16,7 +16,8 @@ import {take} from 'rxjs/operators';
 })
 export class MdlDialogOutletService {
 
-  public backdropClickEmitter: EventEmitter<any> = new EventEmitter();
+  backdropClickEmitter: EventEmitter<void> = new EventEmitter();
+
   private viewContainerRefInternal: ViewContainerRef;
   private backdropComponent: MdlBackdropOverlayComponent;
 
@@ -39,19 +40,19 @@ export class MdlDialogOutletService {
     });
   }
 
-  public get viewContainerRef(): ViewContainerRef {
+  get viewContainerRef(): ViewContainerRef {
     return this.viewContainerRefInternal;
   }
 
-  public setDefaultViewContainerRef(vCRef: ViewContainerRef) {
+  setDefaultViewContainerRef(vCRef: ViewContainerRef): void {
     this.setViewContainerRef(vCRef);
   }
 
-  public hideBackdrop() {
+  hideBackdrop(): void {
     this.backdropComponent.hide();
   }
 
-  public showBackdropWithZIndex(zIndex: number) {
+  showBackdropWithZIndex(zIndex: number): void {
     this.backdropComponent.showWithZIndex(zIndex);
   }
 

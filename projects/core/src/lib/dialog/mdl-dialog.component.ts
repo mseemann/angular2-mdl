@@ -17,20 +17,28 @@ import {MdlDialogReference} from './mdl-dialog-reference';
 })
 export class MdlDialogComponent {
 
-  @ViewChild(TemplateRef, {static: true}) public template: TemplateRef<any>;
+  @ViewChild(TemplateRef, {static: true})
+  template: TemplateRef<unknown>;
+
   // eslint-disable-next-line
-  @Input('mdl-dialog-config') public config: IMdlDialogConfiguration;
+  @Input('mdl-dialog-config')
+  config: IMdlDialogConfiguration;
+
   // eslint-disable-next-line
-  @Output('show') public showEmitter: EventEmitter<MdlDialogReference> = new EventEmitter<MdlDialogReference>();
+  @Output('show')
+  showEmitter: EventEmitter<MdlDialogReference> = new EventEmitter<MdlDialogReference>();
+
   // eslint-disable-next-line
-  @Output('hide') public hideEmitter: EventEmitter<void> = new EventEmitter<void>();
+  @Output('hide')
+  hideEmitter: EventEmitter<void> = new EventEmitter<void>();
+
   private isShown = false;
   private dialogRef: MdlDialogReference = null;
 
   constructor(private dialogService: MdlDialogService) {
   }
 
-  public show(): Observable<MdlDialogReference> {
+  show(): Observable<MdlDialogReference> {
 
     if (this.isShown) {
       throw new Error('Only one instance of an embedded mdl-dialog can exist!');
@@ -44,7 +52,7 @@ export class MdlDialogComponent {
       mergedConfig.isModal = true;
     }
 
-    const result: Subject<any> = new Subject();
+    const result: Subject<MdlDialogReference> = new Subject();
 
     const p = this.dialogService.showDialogTemplate(this.template, mergedConfig);
     p.subscribe((dialogRef: MdlDialogReference) => {
@@ -69,7 +77,7 @@ export class MdlDialogComponent {
     return result.asObservable();
   }
 
-  public close() {
+  close(): void {
     if (this.dialogRef) {
       this.dialogRef.hide();
     }

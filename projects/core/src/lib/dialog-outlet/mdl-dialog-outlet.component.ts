@@ -11,10 +11,10 @@ import {Component, ViewContainerRef} from '@angular/core';
 })
 export class MdlDialogOutletComponent {
 
-  constructor(private vCRef: ViewContainerRef) {
+  constructor(public readonly vCRef: ViewContainerRef) {
   }
 
-  public get viewContainerRef() {
+  get viewContainerRef(): ViewContainerRef {
     return this.vCRef;
   }
 }

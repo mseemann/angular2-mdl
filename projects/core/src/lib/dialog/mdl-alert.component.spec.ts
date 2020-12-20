@@ -21,6 +21,7 @@ import {MdlDialogOutletModule} from '../dialog-outlet/mdl-dialog-outlet.module';
 })
 class MdlTestComponent {
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   public alertConfirmd() {
   }
 }

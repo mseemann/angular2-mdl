@@ -1,10 +1,9 @@
-import {inject, TestBed, waitForAsync} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Component} from '@angular/core';
 import {MdlIconToggleComponent} from './mdl-icon-toggle.component';
 import {FormsModule} from '@angular/forms';
 import {MdlIconToggleModule} from './mdl-icon-toggle.module';
-import {DOCUMENT} from '@angular/common';
 
 @Component({
   // eslint-disable-next-line
@@ -19,13 +18,13 @@ class MdlTestIconToggleComponent {
 
   public checkboxValue1 = false;
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   public onChange(v: boolean) {
   }
 }
 
 describe('Component: MdlIconToggle', () => {
 
-  let doc: HTMLDocument;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -34,10 +33,6 @@ describe('Component: MdlIconToggle', () => {
     });
 
   }));
-
-  beforeEach(waitForAsync(inject([DOCUMENT], (document) => {
-    doc = document;
-  })));
 
   it('should add the css class mdl-icon-toggle to the host element', () => {
 

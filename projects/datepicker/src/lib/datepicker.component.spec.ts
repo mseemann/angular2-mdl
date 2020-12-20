@@ -12,11 +12,12 @@ const moment = momentNs;
 moment.locale('en');
 
 class MdlDialogMockReference {
-
+  // eslint-disable-next-line
   onVisible() {
-    return new Subject<any>().asObservable();
+    return new Subject<void>().asObservable();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   hide(date: Date) {
   }
 }

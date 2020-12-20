@@ -23,30 +23,27 @@ const ANIMATION_TIME = 250;
   encapsulation: ViewEncapsulation.None
 })
 export class MdlSnackbarComponent {
-  public message: string;
-  public actionText: string;
-  public showIt = false;
-  public onAction: () => void;
+  message: string;
+  actionText: string;
+  showIt = false;
+  onAction: () => void;
 
-  constructor() {
-  }
-
-  public onClick() {
+  onClick(): void {
     this.onAction();
   }
 
-  public isActive() {
+  isActive(): boolean {
     return this.showIt;
   }
 
-  public show(): Observable<void> {
-    const result: Subject<any> = new Subject();
+  show(): Observable<void> {
+    const result: Subject<void> = new Subject();
     // wait unit the dom is in place - then showIt will change the css class
     setTimeout(() => {
       this.showIt = true;
       // fire after the view animation is done
       setTimeout(() => {
-        result.next(null);
+        result.next();
         result.complete();
       }, ANIMATION_TIME);
     }, ANIMATION_TIME);
@@ -55,10 +52,10 @@ export class MdlSnackbarComponent {
     return result.asObservable();
   }
 
-  public hide(): Observable<void> {
+  hide(): Observable<void> {
     this.showIt = false;
 
-    const result: Subject<any> = new Subject();
+    const result: Subject<void> = new Subject();
 
     // fire after the view animation is done
     setTimeout(() => {
@@ -86,8 +83,8 @@ export interface IMdlSnackbarMessage {
 })
 export class MdlSnackbarService {
 
-  private cFactory: ComponentFactory<any>;
-  private previousSnack: { component: MdlSnackbarComponent; cRef: ComponentRef<any> };
+  private readonly cFactory: ComponentFactory<MdlSnackbarComponent>;
+  private previousSnack: { component: MdlSnackbarComponent; cRef: ComponentRef<MdlSnackbarComponent> };
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -96,14 +93,14 @@ export class MdlSnackbarService {
   }
 
 
-  public showToast(message: string, timeout?: number): Observable<MdlSnackbarComponent> {
+  showToast(message: string, timeout?: number): Observable<MdlSnackbarComponent> {
     return this.showSnackbar({
       message,
       timeout
     });
   }
 
-  public showSnackbar(snackbarMessage: IMdlSnackbarMessage): Observable<MdlSnackbarComponent> {
+  showSnackbar(snackbarMessage: IMdlSnackbarMessage): Observable<MdlSnackbarComponent> {
 
     const optTimeout = snackbarMessage.timeout || 2750;
     const closeAfterTimeout = !!snackbarMessage.closeAfterTimeout;

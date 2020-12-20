@@ -3,6 +3,7 @@ import {Observable, Subject} from 'rxjs';
 
 import {IMdlDialogConfiguration} from './mdl-dialog-configuration';
 import {MdlDialogReference} from './mdl-dialog-reference';
+import {MdlDialogHostComponent} from './mdl-dialog-host.component';
 
 /**
  * Internal representation of the dialog ref. the service
@@ -11,33 +12,34 @@ import {MdlDialogReference} from './mdl-dialog-reference';
  */
 export class InternalMdlDialogReference {
 
-  public hostDialogComponentRef: ComponentRef<any>;
-  public closeCallback: () => void;
-  public isModal = false;
-  public dialogRef: MdlDialogReference;
-  private onHideSubject: Subject<any> = new Subject();
-  private onVisibleSubject: Subject<any> = new Subject();
+  hostDialogComponentRef: ComponentRef<MdlDialogHostComponent>;
+  closeCallback: () => void;
+  isModal = false;
+  dialogRef: MdlDialogReference;
+
+  private onHideSubject: Subject<unknown> = new Subject();
+  private onVisibleSubject: Subject<void> = new Subject();
 
   constructor(public config: IMdlDialogConfiguration) {
     this.dialogRef = new MdlDialogReference(this);
   }
 
-  get hostDialog() {
+  get hostDialog(): MdlDialogHostComponent {
     return this.hostDialogComponentRef.instance;
   }
 
-  public hide(data?: any) {
+  hide(data?: unknown): void {
     this.onHideSubject.next(data);
     this.onHideSubject.complete();
     this.closeCallback();
   }
 
-  public visible() {
+  visible(): void {
     this.onVisibleSubject.next();
     this.onVisibleSubject.complete();
   }
 
-  public onHide(): Observable<any> {
+  public onHide(): Observable<unknown> {
     return this.onHideSubject.asObservable();
   }
 

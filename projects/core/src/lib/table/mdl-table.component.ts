@@ -25,7 +25,7 @@ export class MdlDefaultTableModel implements IMdlTableModel {
     this.columns = columns;
   }
 
-  public addAll(data: IMdlTableModelItem[]) {
+  addAll(data: IMdlTableModelItem[]): void {
     this.data.push(...data);
   }
 
@@ -50,7 +50,7 @@ const template = `
               <td *ngIf="selectable">
                  <mdl-checkbox mdl-ripple
                       [(ngModel)]="data.selected"
-                      (ngModelChange)="selectionChanged(data)"></mdl-checkbox>
+                      (ngModelChange)="selectionChanged()"></mdl-checkbox>
               </td>
               <td *ngFor="let column of model.columns"
                   [ngClass]="{'mdl-data-table__cell--non-numeric': !column.numeric}"
@@ -77,20 +77,21 @@ const styles =
 export class MdlTableComponent {
 
   // eslint-disable-next-line
-  @Input('table-model') public model: IMdlTableModel;
+  @Input('table-model')
+  model: IMdlTableModel;
 
-  public selectable = false;
+  selectable = false;
 
-  public isAllSelected() {
+  isAllSelected(): boolean {
     return false;
   }
 
-  toogleAll() {
-
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  toogleAll(): void {
   }
 
-  selectionChanged(data) {
-
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  selectionChanged(): void {
   }
 }
 
@@ -104,26 +105,29 @@ export class MdlTableComponent {
 export class MdlSelectableTableComponent extends MdlTableComponent {
 
   // eslint-disable-next-line
-  @Input('table-model') public model: IMdlTableModel;
+  @Input('table-model')
+  model: IMdlTableModel;
   // eslint-disable-next-line
-  @Input('table-model-selected') public selected: IMdlTableModelItem[];
+  @Input('table-model-selected')
+  selected: IMdlTableModelItem[];
   // eslint-disable-next-line
-  @Output('table-model-selectionChanged') public selectionChange = new EventEmitter();
+  @Output('table-model-selectionChanged')
+  selectionChange = new EventEmitter();
 
   public selectable = true;
   public allSelected = false;
 
-  public isAllSelected() {
+  isAllSelected(): boolean {
     return this.model.data.every(data => data.selected);
   }
 
-  toogleAll() {
+  toogleAll(): void {
     const selected = !this.isAllSelected();
     this.model.data.forEach(data => data.selected = selected);
     this.updateSelected();
   }
 
-  selectionChanged(data) {
+  selectionChanged(): void {
     this.updateSelected();
   }
 

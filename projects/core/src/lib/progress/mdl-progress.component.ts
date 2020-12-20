@@ -4,7 +4,7 @@ import {
   HostBinding,
   Input,
   OnChanges,
-  SimpleChange,
+  SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 import {toBoolean} from '../common/boolean-property';
@@ -20,24 +20,26 @@ import {toBoolean} from '../common/boolean-property';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MdlProgressComponent implements OnChanges {
-  @Input() public progress = 0;
-  @Input() public buffer = 100;
-  @Input() public aux = 0;
+  @Input() progress = 0;
+  @Input() buffer = 100;
+  @Input() aux = 0;
 
-  @HostBinding('class.mdl-progress') isProgess = true;
+  @HostBinding('class.mdl-progress')
+  isProgess = true;
+
   private indeterminateIntern = false;
 
   @HostBinding('class.mdl-progress__indeterminate')
   @Input()
-  get indeterminate() {
+  get indeterminate(): boolean {
     return this.indeterminateIntern;
   }
 
-  set indeterminate(value) {
+  set indeterminate(value: boolean) {
     this.indeterminateIntern = toBoolean(value);
   }
 
-  public ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.buffer) {
       this.setBuffer(changes.buffer.currentValue);
     }

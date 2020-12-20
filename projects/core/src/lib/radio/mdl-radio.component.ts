@@ -18,6 +18,12 @@ import {ControlValueAccessor, FormGroupName, NG_VALUE_ACCESSOR} from '@angular/f
 import {toBoolean} from '../common/boolean-property';
 import {noop} from '../common/noop';
 
+const throwNameError = (): void => {
+  throw new Error(`
+      If you define both a name and a formControlName attribute on your radio button, their values
+      must match. Ex: <mdl-radio formControlName="food" name="food"></mdl-radio>
+    `);
+};
 
 const IS_FOCUSED = 'is-focused';
 
@@ -33,18 +39,18 @@ export class MdlRadioGroupRegisty {
   private defaultFormGroup = 'defaultFromGroup';
   private radioComponents: { radio: MdlRadioComponent; group: FormGroupName | string }[] = [];
 
-  public add(radioComponent: MdlRadioComponent, formGroupName: FormGroupName) {
+  add(radioComponent: MdlRadioComponent, formGroupName: FormGroupName): void {
     this.radioComponents.push({
       radio: radioComponent,
       group: formGroupName || this.defaultFormGroup
     });
   }
 
-  public remove(radioComponent: MdlRadioComponent) {
+  remove(radioComponent: MdlRadioComponent): void {
     this.radioComponents = this.radioComponents.filter((radioComponentInArray) => (radioComponentInArray.radio !== radioComponent));
   }
 
-  public select(radioComponent: MdlRadioComponent, formGroupName: FormGroupName) {
+  select(radioComponent: MdlRadioComponent, formGroupName: FormGroupName): void {
     // unselect every radioComponent that is not the provided radiocomponent
     // and has the same name and is in teh same group.
     const groupToTest = formGroupName || this.defaultFormGroup;
@@ -74,7 +80,7 @@ export class MdlRadioGroupRegisty {
            [attr.name]="name"
            (focus)="onFocus()"
            (blur)="onBlur()"
-           (keyup.space)="spaceKeyPress($event)"
+           (keyup.space)="spaceKeyPress()"
            [disabled]="disabled"
            [attr.tabindex]="tabindex"
            [(ngModel)]="checked">
@@ -86,20 +92,26 @@ export class MdlRadioGroupRegisty {
 })
 export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestroy {
 
-  @Input() public name: string;
-  @Input() public formControlName: string;
-  @Input() public value: any;
-  @Input() public tabindex = null;
+  @Input()
+  name: string;
+  @Input()
+  formControlName: string;
+  @Input()
+  value: unknown;
+  @Input()
+  tabindex = null;
   // eslint-disable-next-line
-  @Output() public change: EventEmitter<any> = new EventEmitter<any>();
+  @Output()
+  change: EventEmitter<unknown> = new EventEmitter<unknown>();
   // the internal state - used to set the underlaying radio button state.
-  @HostBinding('class.is-checked') public checked = false;
+  @HostBinding('class.is-checked')
+  checked = false;
   @HostBinding('class.is-upgraded') isUpgraded = true;
   @HostBinding('class.mdl-radio') isRadio = true;
 
-  public optionValue: any;
+  public optionValue: unknown;
 
-  private el: HTMLElement;
+  private readonly el: HTMLElement;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: () => void = noop;
   private disabledIntern = false;
@@ -118,12 +130,12 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     return this.disabledIntern;
   }
 
-  set disabled(value) {
+  set disabled(value: boolean) {
     this.disabledIntern = toBoolean(value);
   }
 
   @HostListener('click')
-  public onClick() {
+  onClick(): void {
     if (this.disabled) {
       return;
     }
@@ -134,7 +146,7 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
   }
 
 
-  public ngOnInit() {
+  ngOnInit(): void {
     // we need a name and it must be the same as in the formcontrol.
     // a radio group without name is useless.
     this.checkName();
@@ -144,22 +156,22 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     this.radioGroupRegistry.add(this, this.formGroupName);
   }
 
-  public ngOnDestroy() {
+  ngOnDestroy(): void {
     this.radioGroupRegistry.remove(this);
   }
 
-  public writeValue(optionValue: any): void {
+  writeValue(optionValue: unknown): void {
     this.optionValue = optionValue;
     this.updateCheckState();
   }
 
-  public deselect(value: any) {
+  deselect(value: unknown): void {
     // called from the registry. the value is the value of the selected radio button
     // e.g. the radio button get unselected if it isnÄt the selected one.
     this.writeValue(value);
   }
 
-  public registerOnChange(fn: any): void {
+  registerOnChange(fn: (v: unknown) => unknown): void {
     // wrap the callback, so that we can call select on the registry
     this.onChangeCallback = () => {
       fn(this.value);
@@ -167,23 +179,23 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
     };
   }
 
-  public registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => unknown): void {
     this.onTouchedCallback = fn;
   }
 
-  public setDisabledState(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
 
-  public onFocus() {
+  onFocus(): void {
     this.renderer.addClass(this.el, IS_FOCUSED);
   }
 
-  public onBlur() {
+  onBlur(): void {
     this.renderer.removeClass(this.el, IS_FOCUSED);
   }
 
-  spaceKeyPress(event) {
+  spaceKeyPress(): void {
     this.checked = false; // in case of space key is pressed radio button value must remain same
   }
 
@@ -193,17 +205,11 @@ export class MdlRadioComponent implements ControlValueAccessor, OnInit, OnDestro
 
   private checkName(): void {
     if (this.name && this.formControlName && this.name !== this.formControlName) {
-      this.throwNameError();
+      throwNameError();
     }
     if (!this.name && this.formControlName) {
       this.name = this.formControlName;
     }
   }
 
-  private throwNameError(): void {
-    throw new Error(`
-      If you define both a name and a formControlName attribute on your radio button, their values
-      must match. Ex: <mdl-radio formControlName="food" name="food"></mdl-radio>
-    `);
-  }
 }

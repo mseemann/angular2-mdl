@@ -20,12 +20,12 @@ import {Component, EventEmitter, HostBinding, HostListener, NgZone, ViewEncapsul
 })
 export class MdlBackdropOverlayComponent {
   @HostBinding('style.zIndex')
-  public zIndex = 0;
+  zIndex = 0;
 
   @HostBinding('class.dialog-backdrop')
-  public isBackdrop = true;
+  isBackdrop = true;
 
-  public clickEmitter: EventEmitter<any> = new EventEmitter();
+  public clickEmitter: EventEmitter<void> = new EventEmitter();
 
   private visible = false;
 
@@ -33,12 +33,12 @@ export class MdlBackdropOverlayComponent {
   }
 
   @HostBinding('style.display')
-  public get display() {
+  get display(): string | null {
     return this.visible ? null : 'none';
   }
 
   @HostListener('click', ['$event'])
-  public onBackdropClick(e) {
+  onBackdropClick(e: Event): void {
     // this event runs not in angular zone of the main app. make sure it runs in the main angular zone
     // and change detection works
     this.ngZone.run(() => {
@@ -47,11 +47,11 @@ export class MdlBackdropOverlayComponent {
     e.stopPropagation();
   }
 
-  public hide() {
+  hide(): void {
     this.visible = false;
   }
 
-  public showWithZIndex(zIndex: number) {
+  showWithZIndex(zIndex: number): void {
     this.zIndex = zIndex;
     this.visible = true;
   }

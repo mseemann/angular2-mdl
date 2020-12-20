@@ -1,3 +1,4 @@
 /* istanbul ignore next */
-export const noop = (_?: any) => {
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export const noop = (): void => {
 };

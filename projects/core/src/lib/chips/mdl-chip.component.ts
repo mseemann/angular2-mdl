@@ -15,20 +15,24 @@ import {Component, EventEmitter, HostBinding, Input, Output, ViewEncapsulation} 
 export class MdlChipComponent {
 
   // eslint-disable-next-line
-  @Input('mdl-label') public mdlLabel;
+  @Input('mdl-label')
+  mdlLabel;
 
   // eslint-disable-next-line
-  @Input('mdl-action-icon') public mdlActionIcon;
+  @Input('mdl-action-icon')
+  mdlActionIcon;
 
   // eslint-disable-next-line
-  @Output('action-click') public actionClick = new EventEmitter();
+  @Output('action-click')
+  actionClick = new EventEmitter();
 
-  @HostBinding('class.mdl-chip') isChip = true;
+  @HostBinding('class.mdl-chip')
+  isChip = true;
 
   @HostBinding('class.mdl-chip--contact')
-  public isChipContact = false;
+  isChipContact = false;
 
-  public action() {
+  action(): void {
     this.actionClick.emit();
   }
 }

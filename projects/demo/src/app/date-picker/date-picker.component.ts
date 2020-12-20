@@ -17,15 +17,15 @@ import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 })
 export class DatePickerComponent extends AbstractDemoComponent {
 
-
+  // eslint-disable-next-line
   public selectedDate: any;
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title, private datePicker: MdlDatePickerService) {
     super(router, route, titleService);
   }
 
-  public pickADate($event: MouseEvent) {
-    this.datePicker.selectDate(this.selectedDate, {openFrom: $event}).subscribe((selectedDate: Date) => {
+  public pickADate($event: MouseEvent): void {
+    this.datePicker.selectDate(this.selectedDate as Date, {openFrom: $event}).subscribe((selectedDate: Date) => {
       this.selectedDate = selectedDate ? moment(selectedDate) : null;
     });
   }

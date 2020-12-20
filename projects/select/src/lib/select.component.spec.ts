@@ -22,7 +22,7 @@ import {MdlSelectModule} from './select.module';
 class TestDisabledComponent {
   form: FormGroup;
   personId: FormControl = new FormControl({value: 1, disabled: true});
-  people: any[] = [
+  people: unknown[] = [
     {id: 1, name: 'Bryan Cranston'},
     {id: 2, name: 'Aaron Paul'},
     {id: 3, name: 'Bob Odenkirk'},
@@ -45,9 +45,9 @@ class TestDisabledComponent {
   `
 })
 class TestAutoCompleteComponent {
-  selectedValue: any = null;
+  selectedValue: unknown = null;
   label = 'floating label';
-  people: any[] = [
+  people: unknown[] = [
     {id: 1, name: 'Bryan Cranston'},
     {id: 2, name: 'Aaron Paul'},
     {id: 3, name: 'Bob Odenkirk'},
@@ -66,7 +66,7 @@ class TestAutoCompleteComponent {
 class TestSingleComponent {
   personId = 1;
   label = 'floating label';
-  people: any[] = [
+  people: unknown[] = [
     {id: 1, name: 'Bryan Cranston'},
     {id: 2, name: 'Aaron Paul'},
     {id: 3, name: 'Bob Odenkirk'},
@@ -99,7 +99,7 @@ class TestSingleComponentNoModelComponent {
 })
 class TestMultipleComponent {
   personIds: number[] = [1, 2];
-  people: any[] = [
+  people: unknown[] = [
     {id: 1, name: 'Bryan Cranston'},
     {id: 2, name: 'Aaron Paul'},
     {id: 3, name: 'Bob Odenkirk'},
@@ -116,8 +116,8 @@ class TestMultipleComponent {
   `
 })
 class TestObjectComponent {
-  personObjs: any[] = [{i: 1, n: 'Bryan Cranston'}, {i: 2, n: 'Aaron Paul'}];
-  people: any[] = [
+  personObjs: unknown[] = [{i: 1, n: 'Bryan Cranston'}, {i: 2, n: 'Aaron Paul'}];
+  people: unknown[] = [
     {id: 1, name: 'Bryan Cranston'},
     {id: 2, name: 'Aaron Paul'},
     {id: 3, name: 'Bob Odenkirk'},
@@ -126,7 +126,9 @@ class TestObjectComponent {
 
 
 // based on @angular/cdk
-export const createKeyboardEvent = (type: string, keyCode: number, target?: Element, key?: string) => {
+export const createKeyboardEvent = (type: string, keyCode: number, target?: Element, key?: string): KeyboardEvent => {
+
+  // eslint-disable-next-line
   const event = document.createEvent('KeyboardEvent') as any;
 
   // Firefox does not support `initKeyboardEvent`, but supports `initKeyEvent`.
@@ -154,6 +156,8 @@ export const dispatchEvent = (node: Node | Window, event: Event): Event => {
   return event;
 };
 
+
+// eslint-disable-next-line
 export const dispatchKeydownEvent = (node: any, keycode: number) => dispatchEvent(node, createKeyboardEvent('keydown', keycode, node));
 
 describe('MdlSelect', () => {
@@ -264,7 +268,6 @@ describe('MdlSelect', () => {
       jasmine.clock().uninstall();
       jasmine.clock().install();
 
-      const testInstance = fixture.componentInstance;
 
       const selectComponent = fixture.debugElement.query(By.directive(MdlSelectComponent));
 
@@ -301,6 +304,7 @@ describe('MdlSelect', () => {
         .toEqual(false, 'toggle did not update isVisible to false');
 
       expect(selectComponentInstance.onKeyDown).toHaveBeenCalled();
+      // eslint-disable-next-line
       expect(selectComponentInstance.onArrow.calls.allArgs().map((args: any) => args[1])).toEqual([1, -1]);
 
       jasmine.clock().uninstall();
@@ -310,8 +314,6 @@ describe('MdlSelect', () => {
 
       jasmine.clock().uninstall();
       jasmine.clock().install();
-
-      const testInstance = fixture.componentInstance;
 
       const selectComponent = fixture.debugElement.query(By.directive(MdlSelectComponent));
 

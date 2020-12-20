@@ -24,7 +24,7 @@ export * from './mdl-toggle-menu.directive';
   declarations: MDL_MENU_DIRECTIVES,
 })
 export class MdlMenuModule {
-  public static forRoot(): ModuleWithProviders<MdlMenuModule> {
+  static forRoot(): ModuleWithProviders<MdlMenuModule> {
     return {
       ngModule: MdlMenuModule,
       providers: [MdlMenuRegisty]

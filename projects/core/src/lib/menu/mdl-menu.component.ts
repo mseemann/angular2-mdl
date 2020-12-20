@@ -44,18 +44,18 @@ export class MdlMenuError extends MdlError {
 })
 export class MdlMenuRegisty {
 
-  menuComponents: any[] = [];
+  menuComponents: MdlMenuComponent[] = [];
 
-  public add(menuComponent: MdlMenuComponent) {
+  add(menuComponent: MdlMenuComponent): void {
     this.menuComponents.push(menuComponent);
   }
 
-  public remove(menuComponent: MdlMenuComponent) {
+  remove(menuComponent: MdlMenuComponent): void {
     const fromIndex = this.menuComponents.indexOf(menuComponent);
     this.menuComponents.splice(fromIndex, 1);
   }
 
-  public hideAllExcept(menuComponent: MdlMenuComponent) {
+  hideAllExcept(menuComponent: MdlMenuComponent): void {
 
     this.menuComponents.forEach((component) => {
       if (component !== menuComponent) {
@@ -82,12 +82,15 @@ export class MdlMenuRegisty {
 })
 export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   // eslint-disable-next-line
-  @Input('mdl-menu-position') public position: string;
+  @Input('mdl-menu-position')
+  position: string;
 
-  @ViewChild('container', {static: true}) public containerChild: ElementRef;
-  @ViewChild('menuElement', {static: true}) public menuElementChild: ElementRef;
-  @ViewChild('outline', {static: true}) public outlineChild: ElementRef;
-  // @ContentChildren(MdlMenuItemComponent) public menuItemComponents: QueryList<MdlMenuItemComponent>;
+  @ViewChild('container', {static: true})
+  containerChild: ElementRef;
+  @ViewChild('menuElement', {static: true})
+  menuElementChild: ElementRef;
+  @ViewChild('outline', {static: true})
+  outlineChild: ElementRef;
 
   public cssPosition = 'mdl-menu--bottom-left';
   private container: HTMLElement;
@@ -99,11 +102,11 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     this.menuRegistry.add(this);
   }
 
-  public ngOnInit() {
+  ngOnInit(): void {
     this.cssPosition = CSS_ALIGN_MAP[this.position] || BOTTOM_LEFT;
   }
 
-  public ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.container = this.containerChild.nativeElement;
     this.menuElement = this.menuElementChild.nativeElement;
     this.outline = this.outlineChild.nativeElement;
@@ -120,7 +123,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
-  public toggle(event: Event, mdlButton: MdlButtonComponent) {
+  toggle(event: Event, mdlButton: MdlButtonComponent): void {
     if (!mdlButton) {
       throw new MdlMenuError(`MdlButtonComponent is required`);
     }
@@ -131,14 +134,14 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  public hideOnItemClicked() {
+  hideOnItemClicked(): void {
     // Wait some time before closing menu, so the user can see the ripple.
     setTimeout(() => {
       this.hide();
     }, CLOSE_TIMEOUT);
   }
 
-  public hide() {
+  hide(): void {
     // Remove all transition delays; menu items fade out concurrently.
     document.querySelectorAll('mdl-menu-item').forEach(el => {
       (el as HTMLElement).style.removeProperty('transition-delay');
@@ -164,7 +167,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isVisible = false;
   }
 
-  public show(event, mdlButton) {
+  show(event: Event, mdlButton: MdlButtonComponent): void {
 
     this.menuRegistry.hideAllExcept(this);
 
@@ -228,7 +231,7 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isVisible = true;
   }
 
-  public ngOnDestroy() {
+  ngOnDestroy(): void {
     this.menuRegistry.remove(this);
   }
 

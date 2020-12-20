@@ -10,7 +10,7 @@ import {MdlSnackbarComponent, MdlSnackbarService} from './mdl-snackbar.service';
   entryComponents: [MdlSnackbarComponent]
 })
 export class MdlSnackbarModule {
-  public static forRoot(): ModuleWithProviders<MdlSnackbarModule> {
+  static forRoot(): ModuleWithProviders<MdlSnackbarModule> {
     return {
       ngModule: MdlSnackbarModule,
       providers: [MdlSnackbarService]

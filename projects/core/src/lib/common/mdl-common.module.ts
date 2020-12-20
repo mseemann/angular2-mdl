@@ -8,7 +8,7 @@ function isWebAnimationsSupported() {
 }
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-export function instantiateSupportedAnimationDriver() {
+export function instantiateSupportedAnimationDriver(): Animations {
   /* istanbul ignore next */
   if (isWebAnimationsSupported()) {
     return new NativeWebAnimations();

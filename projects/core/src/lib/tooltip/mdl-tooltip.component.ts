@@ -12,22 +12,22 @@ const IS_ACTIVE = 'is-active';
 export class MdlSimpleTooltipComponent {
 
   @HostBinding('class.mdl-tooltip--large')
-  public large = false;
+  large = false;
 
   @Input()
-  public position: 'left' | 'right' | 'top' | 'bottom';
+  position: 'left' | 'right' | 'top' | 'bottom';
 
   @Input()
-  public delay: number;
+  delay: number;
 
   @HostBinding('class.mdl-tooltip')
-  public isTooltip = true;
+  isTooltip = true;
 
-  public tooltipText: string;
-  public element: HTMLElement;
+  tooltipText: string;
+  element: HTMLElement;
 
-  private active = false;
-  private delayTimeout: any;
+  active = false;
+  delayTimeout: unknown;
 
   constructor(
     private elRef: ElementRef,
@@ -37,40 +37,40 @@ export class MdlSimpleTooltipComponent {
     this.element = elRef.nativeElement;
   }
 
-  @HostBinding('class.mdl-tooltip--bottom') get isBottom() {
+  @HostBinding('class.mdl-tooltip--bottom') get isBottom(): boolean {
     return this.position === 'bottom';
   }
 
-  @HostBinding('class.mdl-tooltip--right') get isRight() {
+  @HostBinding('class.mdl-tooltip--right') get isRight(): boolean {
     return this.position === 'right';
   }
 
-  @HostBinding('class.mdl-tooltip--left') get isLeft() {
+  @HostBinding('class.mdl-tooltip--left') get isLeft(): boolean {
     return this.position === 'left';
   }
 
-  @HostBinding('class.mdl-tooltip--top') isTop() {
+  @HostBinding('class.mdl-tooltip--top') isTop(): boolean {
     return this.position === 'top';
   }
 
-  public mouseLeave() {
+  mouseLeave(): void {
     if (this.delayTimeout) {
-      clearTimeout(this.delayTimeout);
+      clearTimeout(this.delayTimeout as number);
     }
     this.setActive(false);
   }
 
-  public mouseEnter(event: any) {
+  mouseEnter(event: Event): void {
     if (this.delay) {
       this.delayTimeout = setTimeout(() => {
-        this.show(event.target);
+        this.show(event.target as HTMLElement);
       }, this.delay);
     } else {
-      this.show(event.target);
+      this.show(event.target as HTMLElement);
     }
   }
 
-  public isActive() {
+  isActive(): boolean {
     return this.active;
   }
 

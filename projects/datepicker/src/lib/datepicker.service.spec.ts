@@ -53,7 +53,7 @@ xdescribe('DatePickerService', () => {
     expect(service).toBeDefined();
   }));
 
-  it('should open the date picker dialog', (done: any) => {
+  it('should open the date picker dialog', (done: () => unknown) => {
 
     const fixture = TestBed.createComponent(MdlTestComponent);
 

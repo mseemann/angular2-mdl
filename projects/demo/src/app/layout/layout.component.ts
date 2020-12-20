@@ -13,7 +13,7 @@ import {MdlScreenSizeService} from '@angular-mdl/core';
   ],
   templateUrl: 'layout.component.html',
   styles: [
-      `
+    `
       .demo-container {
         width: 100%;
         position: relative;
@@ -54,16 +54,16 @@ export class LayoutDemoComponent extends AbstractDemoComponent {
 
   }
 
-  public tabChanged({index}) {
+  public tabChanged({index}: { index: number }): void {
     this.activeIndex = index;
     console.log(`tabChanged: ${index}`);
   }
 
-  public tabMouseover({index}) {
+  public tabMouseover({index}: { index: number }): void {
     console.log(`mouseover: ${index}`);
   }
 
-  public tabMouseout({index}) {
+  public tabMouseout({index}: { index: number }): void {
     console.log(`mouseout: ${index}`);
   }
 }

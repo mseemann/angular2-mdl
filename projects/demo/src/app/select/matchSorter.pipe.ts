@@ -5,6 +5,7 @@ import matchSorter from 'match-sorter';
   name: 'matchSorter',
 })
 export class MatchSorterPipe implements PipeTransform {
+  // eslint-disable-next-line
   transform(input: any[] = [], options: unknown | string, value: string): any {
     return matchSorter(
       input,

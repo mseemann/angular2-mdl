@@ -30,18 +30,18 @@ export class DialogDemoComponent extends AbstractDemoComponent {
 
   }
 
-  public showAlert() {
+  public showAlert(): void {
     const result = this.dialogService.alert('This is a simple Alert');
     result.subscribe(() => console.log('alert closed'));
   }
 
-  public showConfirmMessage() {
+  public showConfirmMessage(): void {
     const result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
     // if you need both answers
     result.subscribe(() => {
         console.log('confirmed');
       },
-      (err: any) => {
+      () => {
         console.log('declined');
       }
     );
@@ -51,13 +51,13 @@ export class DialogDemoComponent extends AbstractDemoComponent {
     });
   }
 
-  public showConfirmMessageWithTitle() {
+  public showConfirmMessageWithTitle(): void {
     const result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes', 'Excuse me');
     // if you need both answers
     result.subscribe(() => {
         console.log('confirmed');
       },
-      (err: any) => {
+      () => {
         console.log('declined');
       }
     );
@@ -67,7 +67,7 @@ export class DialogDemoComponent extends AbstractDemoComponent {
     });
   }
 
-  public showDialogFullWidthAction($event: MouseEvent) {
+  public showDialogFullWidthAction($event: MouseEvent): void {
     const pDialog = this.dialogService.showDialog({
       title: 'Your choice?',
       message: 'What drink do you prefer to your meal?',
@@ -105,7 +105,7 @@ export class DialogDemoComponent extends AbstractDemoComponent {
     pDialog.subscribe((dialogReference) => console.log('dialog visible', dialogReference));
   }
 
-  public showDialog($event: MouseEvent) {
+  public showDialog($event: MouseEvent): void {
 
     const pDialog = this.dialogService.showCustomDialog({
       component: LoginDialogComponent,

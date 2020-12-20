@@ -9,6 +9,16 @@ const moment = momentNs;
 export const CURRENT_DATE = new InjectionToken<Date>('current-date');
 export const DATEPICKER_CONFIG = new InjectionToken<DatePickerOptions>('datepicker-options');
 
+interface DpDays {
+  isCurrentMonth: boolean;
+  day: momentNs.Moment;
+}
+
+interface DpWeek {
+  days: DpDays[];
+  week: number;
+}
+
 @Component({
   // eslint-disable-next-line
   selector: 'datepicker',
@@ -17,17 +27,18 @@ export const DATEPICKER_CONFIG = new InjectionToken<DatePickerOptions>('datepick
 })
 export class DatePickerDialogComponent {
 
-  @ViewChild('okButton') public okButton: MdlButtonComponent;
+  @ViewChild('okButton')
+  okButton: MdlButtonComponent;
 
-  public okLabel: string;
-  public cancelLabel: string;
+  okLabel: string;
+  cancelLabel: string;
 
-  public mDate: momentNs.Moment;
-  public prevEnabled = true;
-  public nextEnabled = true;
-  public monthGridWeekDays: string[];
-  public monthGridDays: any[];
-  private pmCurrentMonth: momentNs.Moment;
+  mDate: momentNs.Moment;
+  prevEnabled = true;
+  nextEnabled = true;
+  monthGridWeekDays: string[];
+  monthGridDays: DpWeek[];
+  pmCurrentMonth: momentNs.Moment;
 
   constructor(
     private dialog: MdlDialogReference,
@@ -56,11 +67,11 @@ export class DatePickerDialogComponent {
     });
   }
 
-  get mCurrentMonth() {
+  get mCurrentMonth(): momentNs.Moment {
     return this.pmCurrentMonth;
   }
 
-  set mCurrentMonth(m) {
+  set mCurrentMonth(m: momentNs.Moment) {
     this.pmCurrentMonth = m;
     this.calculateMonthGrid();
   }
@@ -70,19 +81,19 @@ export class DatePickerDialogComponent {
     this.dialog.hide(this.initialDate);
   }
 
-  public onOk() {
+  onOk(): void {
     this.dialog.hide(this.mDate.toDate());
   }
 
-  public onCancel() {
+  onCancel(): void {
     this.dialog.hide(this.initialDate);
   }
 
-  public prevMonth() {
+  prevMonth(): void {
     this.mCurrentMonth = this.mCurrentMonth.subtract(1, 'months');
   }
 
-  public nextMonth() {
+  nextMonth(): void {
     this.mCurrentMonth = this.mCurrentMonth.add(1, 'months');
   }
 
@@ -90,7 +101,7 @@ export class DatePickerDialogComponent {
     return this.mDate.isSame(day, 'day');
   }
 
-  public setCurrentDay(day: momentNs.Moment) {
+  setCurrentDay(day: momentNs.Moment): void {
     this.mDate = day;
   }
 
@@ -116,7 +127,7 @@ export class DatePickerDialogComponent {
     } while (week !== endWeek);
   }
 
-  private createMonthRow(mDate: any, week: number) {
+  private createMonthRow(mDate: momentNs.Moment, week: number): DpWeek {
     const startWeek = mDate.week(week).startOf('week');
     return {
       week,

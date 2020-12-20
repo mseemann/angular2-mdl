@@ -4,16 +4,18 @@ import {MdlLayoutTabPanelComponent} from './mdl-layout-tab-panel.component';
 @Component({
   selector: 'mdl-layout-content',
   template:
-      `
-    <ng-content></ng-content>`,
+    `
+      <ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
 })
 export class MdlLayoutContentComponent {
 
-  @HostBinding('class.mdl-layout__content') isContent = true;
-  @ContentChildren(MdlLayoutTabPanelComponent) public tabs: QueryList<MdlLayoutTabPanelComponent>;
+  @HostBinding('class.mdl-layout__content')
+  isContent = true;
+  @ContentChildren(MdlLayoutTabPanelComponent)
+  tabs: QueryList<MdlLayoutTabPanelComponent>;
 
-  public el: HTMLElement;
+  el: HTMLElement;
 
   constructor(private elRef: ElementRef) {
     this.el = elRef.nativeElement;

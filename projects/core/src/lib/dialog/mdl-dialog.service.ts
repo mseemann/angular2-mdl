@@ -3,7 +3,6 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
   EventEmitter,
-  Inject,
   Injectable,
   Injector,
   StaticProvider,
@@ -11,7 +10,6 @@ import {
   Type,
   ViewContainerRef
 } from '@angular/core';
-import {DOCUMENT} from '@angular/common';
 import {Observable, Subject} from 'rxjs';
 
 import {MdlSimpleDialogComponent} from './mdl-simple-dialog.component';
@@ -43,12 +41,12 @@ export class MdlDialogService {
    *
    * @returns A subscribable event emitter that provides a boolean indicating whether a modal is open or not.
    */
-  public onDialogsOpenChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  onDialogsOpenChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   private openDialogs = new Array<InternalMdlDialogReference>();
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    @Inject(DOCUMENT) private doc: any,
     private appRef: ApplicationRef,
     private mdlDialogOutletService: MdlDialogOutletService,
     private injector: Injector) {
@@ -67,7 +65,7 @@ export class MdlDialogService {
    * returns An Observable that is called if the user hits the Ok button.
    */
   public alert(alertMessage: string, okText = 'Ok', title?: string): Observable<void> {
-    const result: Subject<any> = new Subject();
+    const result: Subject<void> = new Subject();
 
     this.showDialog({
       title,
@@ -101,7 +99,7 @@ export class MdlDialogService {
     confirmText = 'Ok',
     title?: string): Observable<void> {
 
-    const result: Subject<any> = new Subject();
+    const result: Subject<void> = new Subject();
 
     this.showDialog({
       title,
@@ -180,7 +178,7 @@ export class MdlDialogService {
     return this.showHostDialog(internalDialogRef.dialogRef, hostComponentRef);
   }
 
-  public showDialogTemplate(template: TemplateRef<any>, config: IMdlDialogConfiguration): Observable<MdlDialogReference> {
+  public showDialogTemplate(template: TemplateRef<unknown>, config: IMdlDialogConfiguration): Observable<MdlDialogReference> {
 
     const internalDialogRef = new InternalMdlDialogReference(config);
 
@@ -193,7 +191,7 @@ export class MdlDialogService {
 
   private showHostDialog(dialogRef: MdlDialogReference, hostComponentRef: ComponentRef<MdlDialogHostComponent>) {
 
-    const result: Subject<any> = new Subject();
+    const result: Subject<MdlDialogReference> = new Subject();
 
     setTimeout(() => {
       result.next(dialogRef);
@@ -293,7 +291,7 @@ export class MdlDialogService {
   private createComponentInstance<T>(
     viewContainerRef: ViewContainerRef,
     providers: StaticProvider[],
-    component: Type<T>): ComponentRef<any> {
+    component: Type<T>): ComponentRef<T> {
 
     const cFactory = this.componentFactoryResolver.resolveComponentFactory(component);
 

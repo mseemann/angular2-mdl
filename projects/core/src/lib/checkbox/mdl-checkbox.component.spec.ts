@@ -16,10 +16,10 @@ import {DOCUMENT} from '@angular/common';
   `,
 })
 class MdlTestCheckboxComponent {
-  public checkboxValue1 = false;
+  checkboxValue1 = false;
 
-
-  public onChange(v: boolean) {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
+  onChange(value: boolean): void {
   }
 }
 

@@ -20,24 +20,28 @@ import {MdlRippleModule} from '../ripple/mdl-ripple.module';
 })
 class MdlTestLayoutComponent {
 
-  public activeIndex = 0;
+  activeIndex = 0;
 
-  public selectedIndexOutput = -1;
+  selectedIndexOutput = -1;
 
-  public tabChanged($event) {
+  tabChanged($event) {
     this.selectedIndexOutput = $event.index;
   }
 
-  public tabMouseover($event) {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
+  tabMouseover($event) {
   }
 
-  public tabMouseout($event) {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
+  tabMouseout($event) {
   }
 
-  public onDrawerClose() {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onDrawerClose() {
   }
 
-  public onDrawerOpen() {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onDrawerOpen() {
   }
 }
 
@@ -128,6 +132,7 @@ describe('Component: MdlLayout', () => {
     const obfuscatorElement = fixture.debugElement.query(By.css('.mdl-layout__obfuscator')).nativeElement;
 
     // dirty hack to provide an event with keyCode
+    // eslint-disable-next-line
     const e = new Event('keydown') as any;
     e.keyCode = 27;
     obfuscatorElement.dispatchEvent(e);
@@ -728,7 +733,7 @@ describe('Component: MdlLayout', () => {
 
       const service = TestBed.inject(MdlScreenSizeService);
 
-      service.sizes().subscribe((anySize) => {
+      service.sizes().subscribe(() => {
         done();
       });
     });

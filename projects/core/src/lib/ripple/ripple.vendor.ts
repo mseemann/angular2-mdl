@@ -24,7 +24,7 @@
  * https://github.com/jasonmayes/mdl-component-design-pattern
  *
  */
-export function MaterialRipple(renderer, element) {
+export function MaterialRipple(renderer, element): void {
   this.renderer_ = renderer;
   this.element_ = element;
 

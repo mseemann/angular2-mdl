@@ -6,11 +6,12 @@ describe('Animations', () => {
 
     const noopAnim = new NoopWebAnimations();
 
-    const animation = noopAnim.animate(null, null, null, null);
+    const animation = noopAnim.animate();
 
     expect(animation).toBeDefined();
 
     // should not throw
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     animation.onDone(() => {
     });
 
@@ -20,7 +21,7 @@ describe('Animations', () => {
 
     const noopAnim = new NoopWebAnimations();
 
-    const animation = noopAnim.animate(null, null, null, null);
+    const animation = noopAnim.animate();
 
     animation.onDone(() => {
       // test would timeout if the done callback isn#t called

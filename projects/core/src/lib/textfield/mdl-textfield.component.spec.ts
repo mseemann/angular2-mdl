@@ -17,12 +17,15 @@ class MdlTestComponent {
 
   public numberValue = 0;
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   public onBlur(event: FocusEvent) {
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   public onFocus(event: FocusEvent) {
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   public onKeyup(event: KeyboardEvent) {
   }
 }
@@ -225,6 +228,7 @@ describe('Component: MdlTextField', () => {
 
     el.value = 'a';
 
+    // eslint-disable-next-line
     const e = new Event('keydown') as any;
     e.keyCode = 13;
 
@@ -250,7 +254,7 @@ describe('Component: MdlTextField', () => {
     const el = fixture.debugElement.query(By.css('textarea')).nativeElement;
 
     el.value = 'a';
-
+    // eslint-disable-next-line
     const e = new Event('keydown') as any;
     e.keyCode = 13;
     el.dispatchEvent(e);
@@ -549,6 +553,7 @@ describe('Component: MdlTextField', () => {
     const el: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
     el.value = '1';
+    // eslint-disable-next-line
     tfFieldComp.componentInstance.triggerChange({target: el} as any);
     fixture.detectChanges();
 
@@ -556,6 +561,7 @@ describe('Component: MdlTextField', () => {
     expect(typeof tfFieldComp.componentInstance.value).toBe('number');
 
     el.value = '';
+    // eslint-disable-next-line
     tfFieldComp.componentInstance.triggerChange({target: el} as any);
     fixture.detectChanges();
 
@@ -691,7 +697,6 @@ describe('Component: MdlTextField', () => {
     spyOn(testComponent, 'onKeyup');
 
     const debugElement = fixture.debugElement.query(By.css('input'));
-    const el: HTMLElement = debugElement.nativeElement;
     debugElement.triggerEventHandler('keyup', {});
 
     expect(testComponent.onKeyup).toHaveBeenCalled();

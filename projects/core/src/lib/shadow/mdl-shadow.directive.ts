@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChange} from '@angular/core';
+import {Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
 import {MdlError} from '../common/mdl-error';
 import {toNumber} from '../common/number.property';
 
@@ -17,7 +17,7 @@ const MDL_SHADOW_VALUES = [0, 2, 3, 4, 6, 8, 16, 24];
 })
 export class MdlShadowDirective implements OnChanges {
 
-  private el: HTMLElement;
+  private readonly el: HTMLElement;
   private mdlShadowIntern = 2;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
@@ -25,16 +25,15 @@ export class MdlShadowDirective implements OnChanges {
   }
 
   @Input('mdl-shadow')
-  get mdlShadow() {
+  get mdlShadow(): number {
     return this.mdlShadowIntern;
   }
 
-  set mdlShadow(value) {
+  set mdlShadow(value: number) {
     this.mdlShadowIntern = toNumber(value);
   }
 
-  public ngOnChanges(changes: { [key: string]: SimpleChange }) {
-
+  ngOnChanges(changes: SimpleChanges): void {
 
     if (MDL_SHADOW_VALUES.indexOf(Number(this.mdlShadow)) === -1) {
       throw new MdlUnsupportedShadowValueError(this.mdlShadow);

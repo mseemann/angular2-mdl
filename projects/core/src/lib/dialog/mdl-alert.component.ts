@@ -9,22 +9,27 @@ import {MdlDialogService} from './mdl-dialog.service';
 })
 export class MdlAlertComponent {
 
-  @Input() public title: string;
-  @Input() public message: string;
-  @Input() public okText: string;
+  @Input()
+  title: string;
 
-  @HostBinding('style.display') display = 'none';
+  @Input()
+  message: string;
 
-  @Output() public confirmed = new EventEmitter();
+  @Input()
+  okText: string;
+
+  @HostBinding('style.display')
+  display = 'none';
+
+  @Output()
+  confirmed = new EventEmitter();
 
   constructor(private mdlDialogService: MdlDialogService) {
   }
 
-  public show() {
-
+  show(): void {
     this.mdlDialogService.alert(this.message, this.okText, this.title).subscribe(() => {
       this.confirmed.emit();
     });
-
   }
 }

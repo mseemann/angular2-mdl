@@ -24,7 +24,8 @@ import {MdlCheckboxComponent} from '../checkbox/mdl-checkbox.component';
 })
 export class MdlSwitchComponent extends MdlCheckboxComponent {
 
-  @HostBinding('class.mdl-switch') isSwitch = true;
+  @HostBinding('class.mdl-switch')
+  isSwitch = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer);

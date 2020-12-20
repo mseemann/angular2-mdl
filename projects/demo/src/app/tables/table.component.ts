@@ -40,13 +40,13 @@ export class TableDemoComponent extends AbstractDemoComponent implements OnInit 
     super(router, route, titleService);
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     super.ngOnInit();
     this.tableModel.addAll(this.tableData);
     this.selected = this.tableData.filter(data => data.selected);
   }
 
-  selectionChanged($event) {
+  selectionChanged($event: { value: ITableItem[] }): void {
     this.selected = $event.value;
   }
 

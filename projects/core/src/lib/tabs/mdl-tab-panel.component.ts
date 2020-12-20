@@ -13,21 +13,25 @@ export class MdlTabPanelContentComponent {
 @Component({
   selector: 'mdl-tab-panel',
   template:
-      `
-    <ng-content *ngIf="titleComponent" select="mdl-tab-panel-content"></ng-content>
-    <ng-content *ngIf="!titleComponent"></ng-content>
-  `,
+    `
+      <ng-content *ngIf="titleComponent" select="mdl-tab-panel-content"></ng-content>
+      <ng-content *ngIf="!titleComponent"></ng-content>
+    `,
   encapsulation: ViewEncapsulation.None
 })
 export class MdlTabPanelComponent {
 
-  @ContentChild(MdlTabPanelTitleComponent, {static: true}) public titleComponent;
+  @ContentChild(MdlTabPanelTitleComponent, {static: true})
+  titleComponent: MdlTabPanelTitleComponent;
   // eslint-disable-next-line
-  @Input('mdl-tab-panel-title') title;
+  @Input('mdl-tab-panel-title')
+  title;
   // eslint-disable-next-line
-  @Input('disabled') disabled;
-
-  @HostBinding('class.mdl-tabs__panel') isTabPanel = true;
-  @HostBinding('class.is-active') isActive = false;
+  @Input('disabled')
+  disabled;
+  @HostBinding('class.mdl-tabs__panel')
+  isTabPanel = true;
+  @HostBinding('class.is-active')
+  isActive = false;
 
 }

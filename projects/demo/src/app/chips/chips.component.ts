@@ -17,7 +17,7 @@ export class ChipsDemoComponent extends AbstractDemoComponent {
     super(router, route, titleService);
   }
 
-  public deleteChip() {
+  public deleteChip(): void {
     console.log('delete the chip');
   }
 

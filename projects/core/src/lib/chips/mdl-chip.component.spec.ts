@@ -11,6 +11,7 @@ import {MdlChipComponent, MdlChipModule} from './mdl-chip.module';
 })
 class MdlTestComponent {
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   public onAction() {
   }
 

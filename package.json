@@ -30,6 +30,7 @@
     "build-select": "ng build select --prod && cp ./projects/select/src/lib/select.include.scss ./dist/@angular-mdl/select/select.include.scss && cp ./projects/select/src/lib/select.scss.txt ./dist/@angular-mdl/select/select.scss",
     "build-expansion-panel": "ng build expansion-panel --prod && cp ./projects/expansion-panel/src/lib/expansion-panel.include.scss ./dist/@angular-mdl/expansion-panel/expansion-panel.include.scss && cp ./projects/expansion-panel/src/lib/expansion-panel.scss.txt ./dist/@angular-mdl/expansion-panel/expansion-panel.scss",
     "build-fab-menu": "ng build fab-menu --prod",
+    "lint:core:fix": "ng lint core --fix",
     "lint:all:fix": "ng lint select --fix && ng lint popover --fix && ng lint fab-menu --fix && ng lint expansion-panel --fix && ng lint datepicker --fix && ng lint demo --fix && ng lint core --fix",
     "all-core": "npm run test-core && npm run build-core",
     "all-datepicker": "npm run test-datepicker  && npm run build-datepicker",

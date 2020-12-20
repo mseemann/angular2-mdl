@@ -1,4 +1,4 @@
-import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
+import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2} from '@angular/core';
 
 
 const DATA_BADE_ATTR = 'data-badge';
@@ -19,7 +19,7 @@ export class MdlBadgeDirective implements OnChanges {
     this.el = elementRef.nativeElement;
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(): void {
     if (this.mdlBadgeContent === null || typeof this.mdlBadgeContent === 'undefined') {
       this.renderer.removeAttribute(this.el, DATA_BADE_ATTR);
       return;

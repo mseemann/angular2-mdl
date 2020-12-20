@@ -19,11 +19,11 @@ export class PopoverComponent extends AbstractDemoComponent {
     super(router, route, titleService);
   }
 
-  onShow() {
+  onShow(): void {
     console.log('onShow');
   }
 
-  onHide() {
+  onHide(): void {
     console.log('onHide');
   }
 }

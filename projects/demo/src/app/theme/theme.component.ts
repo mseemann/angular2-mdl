@@ -5,6 +5,13 @@ import {Title} from '@angular/platform-browser';
 import {AbstractDemoComponent} from '../abstract-demo.component';
 import {Prism} from '../prism/prism.vendor';
 
+interface ColorDescription {
+  name: string;
+  htmlColor: string;
+  accentColor: string;
+  isSelectable: boolean;
+}
+
 const LIGHT_BLUE = 'Light Blue';
 const AMBER = 'Amber';
 
@@ -78,7 +85,7 @@ const MD_PALETTE = [
   ],
   templateUrl: 'theme.component.html',
   styles: [
-      `
+    `
 
       .palette-entry {
         padding: 2px;
@@ -123,15 +130,15 @@ export class ThemeDemoComponent extends AbstractDemoComponent implements OnInit 
     super(router, route, titleService);
   }
 
-  get primaryColorName() {
+  get primaryColorName(): string {
     return this.normaliseColorName(this.selectedPrimaryColor);
   }
 
-  get accentColorName() {
+  get accentColorName(): string {
     return this.normaliseColorName(this.selectedAccentColor);
   }
 
-  get stylescheetUrl() {
+  get stylescheetUrl(): string {
     if (!(this.selectedPrimaryColor && this.selectedAccentColor)) {
       return '';
     }
@@ -139,42 +146,39 @@ export class ThemeDemoComponent extends AbstractDemoComponent implements OnInit 
     return `https://code.getmdl.io/1.3.0/material.${this.primaryColorName}-${this.accentColorName}.min.css`;
   }
 
-  get cdnLink() {
+  get cdnLink(): string {
     if (!(this.selectedPrimaryColor && this.selectedAccentColor)) {
       return '';
     }
     /* eslint-disable */
     let cdnLinkElem = `<link rel="stylesheet" href="${this.stylescheetUrl}" />`;
     /* eslint-enable */
-    return Prism.highlight(cdnLinkElem, Prism.languages.html);
+    return Prism.highlight(cdnLinkElem, Prism.languages.html, null);
   }
 
-  get primaryColors() {
+  get primaryColors(): ColorDescription[] {
     return MD_COLORS.map(this.mapToColorObject);
   }
 
-  get secondaryColors() {
+  get secondaryColors(): ColorDescription[] {
     const colors = MD_COLORS
       .filter((color) => FORBIDDEN_ACCENTS.indexOf(color) === -1)
       .map(this.mapToColorObject);
 
     colors.forEach((color) => {
-      color.isSelectable = true;
-      if (this.selectedPrimaryColor && this.selectedPrimaryColor.name === color.name) {
-        color.isSelectable = false;
-      }
+      color.isSelectable = !(this.selectedPrimaryColor && this.selectedPrimaryColor.name === color.name);
     });
     return colors;
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     super.ngOnInit();
     this.styleElement = document.createElement('link');
     this.styleElement.setAttribute('rel', 'stylesheet');
     document.head.appendChild(this.styleElement);
   }
 
-  public selectPrimaryColor(color) {
+  public selectPrimaryColor(color: ColorDescription): void {
     // remove the selected accent color if they are the same
     if (this.selectedAccentColor && this.selectedAccentColor.name === color.name) {
       this.selectedAccentColor = null;
@@ -183,7 +187,7 @@ export class ThemeDemoComponent extends AbstractDemoComponent implements OnInit 
     this.updateStylesheet();
   }
 
-  public selectAccentColor(color) {
+  public selectAccentColor(color: ColorDescription): void {
     if (!color.isSelectable) {
       return;
     }
@@ -191,7 +195,7 @@ export class ThemeDemoComponent extends AbstractDemoComponent implements OnInit 
     this.updateStylesheet();
   }
 
-  private mapToColorObject(color, i) {
+  private mapToColorObject(color, i): ColorDescription {
     return {
       name: color,
       htmlColor: `rgb(${MD_PALETTE[i][5]})`, // 5 = 500
@@ -200,7 +204,7 @@ export class ThemeDemoComponent extends AbstractDemoComponent implements OnInit 
     };
   }
 
-  private normaliseColorName(color) {
+  private normaliseColorName(color): string {
     if (!color) {
       return '';
     }

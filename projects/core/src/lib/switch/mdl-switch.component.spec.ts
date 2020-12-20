@@ -12,8 +12,9 @@ import {MdlSwitchModule} from './mdl-switch.module';
 })
 class MdlTestSwitchComponent {
 
-  checkboxValue1: any;
+  checkboxValue1: boolean;
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   public onChange(v: boolean) {
   }
 

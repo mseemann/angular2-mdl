@@ -7,7 +7,8 @@ import {Component, HostBinding, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class MdlIconComponent {
-  @HostBinding('class.material-icons') isMatIcon = true;
+  @HostBinding('class.material-icons')
+  isMatIcon = true;
 }
 
 

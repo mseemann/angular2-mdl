@@ -6,6 +6,7 @@ import {Directive, HostBinding} from '@angular/core';
 })
 export class MdlMenuItemFullBleedDeviderDirective {
 
-  @HostBinding('class.mdl-menu__item--full-bleed-divider') isFullBleedDivider = true;
+  @HostBinding('class.mdl-menu__item--full-bleed-divider')
+  isFullBleedDivider = true;
 
 }

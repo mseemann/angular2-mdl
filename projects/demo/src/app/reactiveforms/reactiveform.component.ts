@@ -32,7 +32,7 @@ export class ReactiveFormsDemoComponent extends AbstractDemoComponent implements
     super(router, route, titleService);
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     super.ngOnInit();
     this.form = this.fb.group({
       firstName: this.firstName,
@@ -65,11 +65,11 @@ export class ReactiveFormsDemoComponent extends AbstractDemoComponent implements
     });
   }
 
-  public onSubmit() {
+  public onSubmit(): void {
     console.log(this.form);
   }
 
-  public onDisableForm(formDisabled: boolean) {
+  public onDisableForm(formDisabled: boolean): void {
     if (formDisabled) {
       this.form.disable();
     } else {

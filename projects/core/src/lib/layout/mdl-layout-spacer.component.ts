@@ -7,5 +7,6 @@ import {Component, HostBinding, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class MdlLayoutSpacerComponent {
-  @HostBinding('class.mdl-layout-spacer') isLayoutSpacer = true;
+  @HostBinding('class.mdl-layout-spacer')
+  isLayoutSpacer = true;
 }

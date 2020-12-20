@@ -149,10 +149,8 @@ export const appRoutes: Routes = [
 })
 export class AppModule implements DoBootstrap {
 
-  constructor() {
-  }
 
-  public ngDoBootstrap(appRef: ApplicationRef) {
+  ngDoBootstrap(appRef: ApplicationRef): void {
     appRef.isStable.pipe(take(1)).subscribe(() => {
       const script = document.createElement('script');
       script.innerHTML = '';

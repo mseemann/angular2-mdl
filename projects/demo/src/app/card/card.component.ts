@@ -20,9 +20,11 @@ export class CardDemoComponent extends AbstractDemoComponent implements AfterCon
     super(router, route, titleService);
   }
 
-  public ngAfterContentInit() {
+  public ngAfterContentInit(): void {
     ((d, sc, u) => {
+      // eslint-disable-next-line
       const s: any = d.createElement(sc);
+      // eslint-disable-next-line
       const p: any = d.getElementsByTagName(sc)[0];
       s.type = 'text/javascript';
       s.async = true;
@@ -31,7 +33,7 @@ export class CardDemoComponent extends AbstractDemoComponent implements AfterCon
     })(document, 'script', '//aff.bstatic.com/static/affiliate_base/js/flexiproduct.js');
   }
 
-  public booknow() {
+  public booknow(): void {
     const url = 'http://www.booking.com/index.html?aid=818140';
     window.open(url);
   }

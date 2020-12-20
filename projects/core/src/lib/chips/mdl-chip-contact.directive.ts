@@ -13,7 +13,7 @@ export class MdlChipContactDirective implements OnInit {
   constructor(@Optional() @Inject(MdlChipComponent) private mdlChipComponent: MdlChipComponent) {
   }
 
-  public ngOnInit() {
+  ngOnInit(): void {
     if (!this.mdlChipComponent) {
       throw new MdlStructureError('mdl-chip-contact', 'mdl-chip');
     }

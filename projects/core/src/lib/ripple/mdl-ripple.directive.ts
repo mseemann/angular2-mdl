@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
+import {Directive, ElementRef, Input, OnChanges, Renderer2} from '@angular/core';
 import {MaterialRipple} from './ripple.vendor';
 
 const RIPPLE = 'mdl-ripple';
@@ -8,11 +8,11 @@ const RIPPLE = 'mdl-ripple';
 export class MdlRippleDirective implements OnChanges {
 
   public el: HTMLElement;
-  public rippleActive: boolean | string = true;
+  rippleActive: boolean | string = true;
 
 
   private rippleContainer: HTMLElement;
-  private ripple: any;
+  private ripple: () => void;
 
   constructor(
     private elementRef: ElementRef,
@@ -22,7 +22,7 @@ export class MdlRippleDirective implements OnChanges {
   }
 
 
-  public ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(): void {
 
     // remove any existing ripple container
     if (this.rippleContainer) {

@@ -19,8 +19,9 @@ import {MdlButtonComponent} from '@angular-mdl/core';
   providedIn: 'root'
 })
 export class MdlPopoverRegistry {
-  private popoverComponents: any[] = [];
+  private popoverComponents: MdlPopoverComponent[] = [];
 
+  // eslint-disable-next-line
   constructor(@Inject(DOCUMENT) private doc: any) {
     this.doc.addEventListener('click', () => {
       this.popoverComponents
@@ -29,15 +30,15 @@ export class MdlPopoverRegistry {
     });
   }
 
-  public add(popoverComponent: MdlPopoverComponent) {
+  add(popoverComponent: MdlPopoverComponent): void {
     this.popoverComponents.push(popoverComponent);
   }
 
-  public remove(popoverComponent: MdlPopoverComponent) {
+  remove(popoverComponent: MdlPopoverComponent): void {
     this.popoverComponents.slice(this.popoverComponents.indexOf(popoverComponent), 1);
   }
 
-  public hideAllExcept(popoverComponent: MdlPopoverComponent) {
+  hideAllExcept(popoverComponent: MdlPopoverComponent): void {
     this.popoverComponents.forEach((component) => {
       if (component !== popoverComponent) {
         component.hide();
@@ -115,15 +116,21 @@ export class PopupPositionService {
 export class MdlPopoverComponent implements OnDestroy {
 
   // eslint-disable-next-line
-  @Input('hide-on-click') public hideOnClick = false;
+  @Input('hide-on-click')
+  hideOnClick = false;
   // eslint-disable-next-line
-  @Input('mdl-popover-position') public position: string;
+  @Input('mdl-popover-position')
+  position: string;
   // eslint-disable-next-line
-  @Output() onShow: EventEmitter<any> = new EventEmitter();
+  @Output()
+  onShow: EventEmitter<void> = new EventEmitter();
   // eslint-disable-next-line
-  @Output() onHide: EventEmitter<any> = new EventEmitter();
-  @HostBinding('class.mdl-popover') isMdlPopover = true;
-  @HostBinding('class.is-visible') public isVisible = false;
+  @Output()
+  onHide: EventEmitter<void> = new EventEmitter();
+  @HostBinding('class.mdl-popover')
+  isMdlPopover = true;
+  @HostBinding('class.is-visible')
+  isVisible = false;
 
   constructor(private changeDetectionRef: ChangeDetectorRef,
               public elementRef: ElementRef,
@@ -132,17 +139,17 @@ export class MdlPopoverComponent implements OnDestroy {
     this.popoverRegistry.add(this);
   }
 
-  @HostListener('click', ['$event']) onClick(event: Event) {
+  @HostListener('click', ['$event']) onClick(event: Event): void {
     if (!this.hideOnClick) {
       event.stopPropagation();
     }
   }
 
-  public ngOnDestroy() {
+  ngOnDestroy(): void {
     this.popoverRegistry.remove(this);
   }
 
-  public toggle(event: Event, forElement: any = null) {
+  toggle(event: Event, forElement: MdlButtonComponent | ElementRef = null): void {
     if (this.isVisible) {
       this.hide();
     } else {
@@ -150,7 +157,7 @@ export class MdlPopoverComponent implements OnDestroy {
     }
   }
 
-  public hide() {
+  hide(): void {
     if (this.isVisible) {
       this.onHide.emit(null);
       this.isVisible = false;
@@ -158,13 +165,13 @@ export class MdlPopoverComponent implements OnDestroy {
     }
   }
 
-  public show(event: Event, forElement: any = null) {
+  show(event: Event, forElement: MdlButtonComponent | ElementRef = null): void {
     this.hideAllPopovers();
     event.stopPropagation();
     if (!this.isVisible) {
       this.onShow.emit(null);
       this.isVisible = true;
-      this.updateDirection(event, forElement);
+      this.updateDirection(forElement);
     }
   }
 
@@ -172,7 +179,7 @@ export class MdlPopoverComponent implements OnDestroy {
     this.popoverRegistry.hideAllExcept(this);
   }
 
-  private updateDirection(event: Event, forElement: any) {
+  private updateDirection(forElement: MdlButtonComponent | ElementRef) {
     if (forElement && this.position) {
       const popoverElement = this.elementRef.nativeElement;
 
@@ -183,15 +190,13 @@ export class MdlPopoverComponent implements OnDestroy {
     }
   }
 
-  private getHtmlElement(forElement: any): HTMLElement {
+  private getHtmlElement(forElement: MdlButtonComponent | ElementRef): HTMLElement {
     if (forElement instanceof MdlButtonComponent) {
-      const buttonComponent: MdlButtonComponent = forElement;
-      return buttonComponent.elementRef.nativeElement;
+      return forElement.elementRef.nativeElement;
     }
 
     if (forElement instanceof ElementRef) {
-      const elementRef: ElementRef = forElement;
-      return elementRef.nativeElement;
+      return forElement.nativeElement;
     }
 
     return forElement;

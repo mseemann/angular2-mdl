@@ -10,10 +10,9 @@ export class PrismDirective implements OnInit {
   constructor(private el: ElementRef) {
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     const rawHtml = this.el.nativeElement.textContent.replace(new RegExp('=""', 'g'), '');
-    const html = Prism.highlight(rawHtml, Prism.languages.html);
-    this.el.nativeElement.innerHTML = html;
+    this.el.nativeElement.innerHTML = Prism.highlight(rawHtml, Prism.languages.html);
   }
 
 }

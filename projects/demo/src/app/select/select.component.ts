@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {flyInOutTrigger} from '../animations/flyInOutTrigger-animation';
 
+/* eslint-disable */
+
 @Component({
   selector: 'demo-select',
   templateUrl: 'select.component.html',
@@ -92,7 +94,7 @@ export class SelectComponent extends AbstractDemoComponent implements OnInit {
     super(router, route, titleService);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     super.ngOnInit();
     this.form = new FormGroup({
       personId: this.personId
@@ -121,7 +123,7 @@ export class SelectComponent extends AbstractDemoComponent implements OnInit {
       });
   }
 
-  onChange(value: any) {
+  onChange(value: any): void {
     console.log('onChange', value);
   }
 }

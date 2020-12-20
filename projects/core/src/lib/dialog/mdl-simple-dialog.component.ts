@@ -26,14 +26,15 @@ import {MdlDialogReference} from './mdl-dialog-reference';
 })
 export class MdlSimpleDialogComponent {
 
-  @ViewChildren(MdlButtonComponent) public buttons: QueryList<MdlButtonComponent>;
+  @ViewChildren(MdlButtonComponent)
+  buttons: QueryList<MdlButtonComponent>;
 
   // why do i need forwardRef at this point, the demo LoginDialog dosn't need this!?!?
   constructor(
     @Inject(forwardRef(() => MDL_CONFIGUARTION)) public dialogConfiguration: IMdlSimpleDialogConfiguration,
-    @Inject(forwardRef(() => MdlDialogReference)) public dialog) {
+    @Inject(forwardRef(() => MdlDialogReference)) public dialog: MdlDialogReference) {
 
-    this.dialog = dialog as MdlDialogReference;
+    this.dialog = dialog;
 
     dialog.onVisible().subscribe(() => {
       if (this.buttons) {
@@ -44,7 +45,7 @@ export class MdlSimpleDialogComponent {
 
 
   @HostListener('keydown.esc')
-  public onEsc(): void {
+  onEsc(): void {
     // run the first action that is marked as closing action
     const closeAction = this.dialogConfiguration.actions.find(action => action.isClosingAction);
     if (closeAction) {
@@ -54,7 +55,7 @@ export class MdlSimpleDialogComponent {
   }
 
 
-  public actionClicked(action: IMdlDialogAction) {
+  actionClicked(action: IMdlDialogAction): void {
     action.handler();
     this.dialog.hide();
   }

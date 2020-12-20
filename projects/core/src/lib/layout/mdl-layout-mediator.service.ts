@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {MdlLayoutTabPanelComponent} from './mdl-layout-tab-panel.component';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,27 +11,27 @@ export class MdlLayoutMediatorService {
   private tabMouseoutSubject = new Subject<MdlLayoutTabPanelComponent>();
   private tabSelectedSubject = new Subject<MdlLayoutTabPanelComponent>();
 
-  onTabMouseover() {
+  onTabMouseover(): Observable<MdlLayoutTabPanelComponent> {
     return this.tabMouseoverSubject.asObservable();
   }
 
-  tabMouseover(tab: MdlLayoutTabPanelComponent) {
+  tabMouseover(tab: MdlLayoutTabPanelComponent): void {
     this.tabMouseoverSubject.next(tab);
   }
 
-  onTabMouseOut() {
+  onTabMouseOut(): Observable<MdlLayoutTabPanelComponent> {
     return this.tabMouseoutSubject.asObservable();
   }
 
-  tabMouseout(tab: MdlLayoutTabPanelComponent) {
+  tabMouseout(tab: MdlLayoutTabPanelComponent): void {
     this.tabMouseoutSubject.next(tab);
   }
 
-  onTabSelected() {
+  onTabSelected(): Observable<MdlLayoutTabPanelComponent> {
     return this.tabSelectedSubject.asObservable();
   }
 
-  tabSelected(tab: MdlLayoutTabPanelComponent) {
+  tabSelected(tab: MdlLayoutTabPanelComponent): void {
     this.tabSelectedSubject.next(tab);
   }
 }

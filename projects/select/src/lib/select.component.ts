@@ -11,6 +11,7 @@ import {
   HostListener,
   Input,
   Output,
+  Provider,
   QueryList,
   ViewChild,
   ViewEncapsulation
@@ -21,11 +22,11 @@ import {MdlOptionComponent} from './option';
 import {isCharacterKey, isKey, keyboardEventKey, KEYS} from './keyboard';
 import {stringifyValue} from './util';
 
-const uniq = (array: any[]) => Array.from(new Set(array));
+const uniq = (array: string[]) => Array.from(new Set(array));
 
-const isEqual = (a: any, b: any) => JSON.stringify(a) === JSON.stringify(b);
+const isEqual = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
 
-const toBoolean = (value: any): boolean => value != null && `${value}` !== 'false';
+const toBoolean = (value: unknown): boolean => value != null && `${value}` !== 'false';
 
 const randomId = () => {
   // eslint-disable-next-line
@@ -33,7 +34,7 @@ const randomId = () => {
   return (S4() + S4());
 };
 
-export const MDL_SELECT_VALUE_ACCESSOR: any = {
+export const MDL_SELECT_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
   // eslint-disable-next-line
   useExisting: forwardRef(() => MdlSelectComponent),
@@ -43,12 +44,12 @@ export const MDL_SELECT_VALUE_ACCESSOR: any = {
 
 export class SearchableComponent {
   public searchQuery = '';
-  private clearTimeout: any = null;
+  private clearTimeout: unknown = null;
 
   // short search query will be cleared after 300 ms
-  protected updateShortSearchQuery($event: KeyboardEvent) {
+  protected updateShortSearchQuery($event: KeyboardEvent): void {
     if (this.clearTimeout) {
-      clearTimeout(this.clearTimeout);
+      clearTimeout(this.clearTimeout as number);
     }
 
     this.clearTimeout = setTimeout(() => {
@@ -66,7 +67,7 @@ export class SearchableComponent {
   providers: [MDL_SELECT_VALUE_ACCESSOR]
 })
 export class MdlSelectComponent extends SearchableComponent implements ControlValueAccessor, AfterContentInit, AfterViewInit {
-  @Input() ngModel: any;
+  @Input() ngModel: string[] | string;
   @Input() disabled = false;
   @Input() autocomplete = false;
   @Input() public label = '';
@@ -76,7 +77,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
   @Output() change: EventEmitter<any> = new EventEmitter(true);
   // eslint-disable-next-line
   @Output() blur: EventEmitter<any> = new EventEmitter(true);
-  @Output() inputChange: EventEmitter<any> = new EventEmitter(true);
+  @Output() inputChange: EventEmitter<string> = new EventEmitter(true);
   @ViewChild('selectInput', {static: true}) selectInput: ElementRef;
   @ViewChild(MdlPopoverComponent, {static: true}) public popoverComponent: MdlPopoverComponent;
   @ContentChildren(MdlOptionComponent) public optionComponents: QueryList<MdlOptionComponent>;
@@ -87,9 +88,9 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
   focused = false;
   private selectElement: HTMLElement;
   private popoverElement: HTMLElement;
-  private textByValue: any = {};
-  private onChange: any = Function.prototype;
-  private onTouched: any = Function.prototype;
+  private textByValue: { [property: string]: string } = {};
+  private onChange = Function.prototype;
+  private onTouched = Function.prototype;
   private misFloatingLabel = false;
 
   constructor(private changeDetectionRef: ChangeDetectorRef,
@@ -98,24 +99,24 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     this.textfieldId = `mdl-textfield-${randomId()}`;
   }
 
-  @HostBinding('class.has-placeholder') get isPlaceholder() {
+  @HostBinding('class.has-placeholder') get isPlaceholder(): boolean {
     return !!this.placeholder;
   }
 
-  get isFloatingLabel() {
+  get isFloatingLabel(): boolean {
     return this.misFloatingLabel;
   }
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @HostBinding('class.mdl-select--floating-label')
   @Input('floating-label')
-  set isFloatingLabel(value) {
+  set isFloatingLabel(value: boolean) {
     this.misFloatingLabel = toBoolean(value);
   }
 
 
   @HostListener('keydown', ['$event'])
-  public onKeyDown($event: KeyboardEvent) {
+  public onKeyDown($event: KeyboardEvent): void {
     if (!this.disabled && this.popoverComponent.isVisible && !this.multiple) {
       if (isKey($event, KEYS.upArrow)) {
         this.onArrow($event, -1);
@@ -128,7 +129,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
   }
 
   @HostListener('keyup', ['$event'])
-  public onKeyUp($event: KeyboardEvent) {
+  public onKeyUp($event: KeyboardEvent): void {
     const inputField = $event.target as HTMLInputElement;
     const inputValue = inputField.value;
 
@@ -149,7 +150,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     $event.preventDefault();
   }
 
-  public ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.bindOptions();
     this.renderValue(this.ngModel);
     this.optionComponents.changes.subscribe(() => {
@@ -160,7 +161,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     this.popoverComponent.onHide.subscribe(() => this.onClose());
   }
 
-  public ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.selectElement = this.elementRef.nativeElement as HTMLElement;
     this.popoverElement = this.popoverComponent.elementRef.nativeElement as HTMLElement;
   }
@@ -170,7 +171,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
   }
 
   // rebind options and reset value in connected select
-  public reset(resetValue: boolean = true) {
+  reset(resetValue: boolean = true): void {
     if (resetValue && !this.isEmpty()) {
       this.ngModel = this.multiple ? [] : '';
       this.onChange(this.ngModel);
@@ -179,14 +180,14 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     }
   }
 
-  public toggle($event: Event) {
+  toggle($event: Event): void {
     if (!this.disabled) {
       $event.stopPropagation();
       this.popoverComponent.toggle($event);
     }
   }
 
-  public onFocus($event: Event) {
+  onFocus($event: Event): void {
     if (!this.popoverComponent.isVisible) {
       setTimeout(() => {
         this.popoverComponent.show($event);
@@ -195,23 +196,23 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     }
   }
 
-  public onInputFocus() {
+  onInputFocus(): void {
     if (this.autocomplete) {
       this.selectInput.nativeElement.select();
     }
   }
 
-  public writeValue(value: any): void {
+  public writeValue(value: string | string[]): void {
     if (this.multiple) {
       this.ngModel = this.ngModel || [];
       if (!value || this.ngModel === value) {
         // skip ngModel update when undefined value or multiple selects initialized with same array
       } else if (Array.isArray(value)) {
-        this.ngModel = uniq(this.ngModel.concat(value));
-      } else if (this.ngModel.map((v: any) => stringifyValue(v)).indexOf(stringifyValue(value)) !== -1) {
-        this.ngModel = [...this.ngModel.filter((v: any) => stringifyValue(v) !== stringifyValue(value))];
+        this.ngModel = uniq((this.ngModel as string[]).concat(value));
+      } else if ((this.ngModel as string[]).map((v: string) => stringifyValue(v)).indexOf(stringifyValue(value)) !== -1) {
+        this.ngModel = [...(this.ngModel as string[]).filter((v: string) => stringifyValue(v) !== stringifyValue(value))];
       } else if (!!value) {
-        this.ngModel = [...this.ngModel, value];
+        this.ngModel = [...(this.ngModel as string[]), value];
       }
     } else {
       this.ngModel = value;
@@ -220,15 +221,15 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     this.renderValue(this.ngModel);
   }
 
-  public registerOnChange(fn: (value: any) => void) {
+  registerOnChange(fn: (value: unknown) => void): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => unknown): void {
     this.onTouched = fn;
   }
 
-  public setDisabledState(isDisabled: boolean) {
+  setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
 
@@ -264,7 +265,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     $event.preventDefault();
   }
 
-  private getAutoSelection(): any {
+  private getAutoSelection(): string {
     const filteredOptions = this.optionComponents
       .filter(({disabled}) => !disabled)
       .filter(option => option.text.toLowerCase().startsWith(this.searchQuery));
@@ -298,7 +299,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     $event.preventDefault();
   }
 
-  private selectValue(value: any) {
+  private selectValue(value: string | string[]) {
     this.scrollToValue(value);
 
     if (this.optionComponents) {
@@ -324,9 +325,9 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     });
   }
 
-  private renderValue(value: any) {
+  private renderValue(value: string | string[]) {
     if (this.multiple) {
-      this.text = (value || []).map((valueItem: string) => this.textByValue[stringifyValue(valueItem)]).join(', ');
+      this.text = ((value as string[]) || []).map((valueItem: string) => this.textByValue[stringifyValue(valueItem)]).join(', ');
     } else {
       this.text = this.textByValue[stringifyValue(value)] || '';
     }
@@ -377,7 +378,7 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     }
   }
 
-  private onSelect(value: any) {
+  private onSelect(value: string | string[]) {
     if (!this.multiple) {
       this.scrollToValue(value);
     }
@@ -387,12 +388,12 @@ export class MdlSelectComponent extends SearchableComponent implements ControlVa
     }
   }
 
-  private scrollToValue(value: any) {
-    const popover: any = this.popoverComponent.elementRef.nativeElement;
-    const list: any = popover.querySelector('.mdl-list');
+  private scrollToValue(value: string | string[]) {
+    const popover: HTMLElement = this.popoverComponent.elementRef.nativeElement;
+    const list: HTMLElement = popover.querySelector('.mdl-list');
 
     const optionComponent = this.optionComponents.find(o => o.value === value);
-    const optionElement: any = optionComponent
+    const optionElement: HTMLElement = optionComponent
       ? optionComponent.contentWrapper.nativeElement
       : null;
 

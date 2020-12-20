@@ -13,7 +13,7 @@ import {MdlButtonComponent} from '../button/mdl-button.component';
 import {MdlButtonModule} from '../button/mdl-button.module';
 import {DOCUMENT} from '@angular/common';
 
-const TEST = new InjectionToken<any>('test');
+const TEST = new InjectionToken<string>('test');
 
 
 @Component({
@@ -34,6 +34,7 @@ class MdlTestViewComponent {
 
   public getFakeMouseEvent() {
     const mouseEvent = new MouseEvent('click');
+    // eslint-disable-next-line
     (mouseEvent as any).testtarget = this.targetBtn.elementRef.nativeElement;
     return mouseEvent;
   }
@@ -53,7 +54,7 @@ class TestCustomDialogComponent {
     @Optional() @Inject(TEST) public test: string) {
   }
 
-  public close(data?: any) {
+  close(data?: unknown): void {
     this.dialog.hide(data);
   }
 
@@ -145,7 +146,6 @@ describe('Service: MdlDialog', () => {
       // test passed because the action was called
       // async makes sure this is called
       done();
-    }, () => {
     });
 
     fixture.detectChanges();
@@ -165,6 +165,7 @@ describe('Service: MdlDialog', () => {
     fixture.detectChanges();
 
     const result = mdlDialogService.confirm('?', 'no', 'yes');
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     result.subscribe(() => {
     }, () => {
       done();
@@ -266,6 +267,7 @@ describe('Service: MdlDialog', () => {
       message: 'm',
       actions: [
         {
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
           handler: () => {
           }, text: 'ok'
         }
@@ -330,7 +332,7 @@ describe('Service: MdlDialog', () => {
       clickOutsideToClose: false
     });
 
-    p.subscribe((dialogRef) => {
+    p.subscribe(() => {
 
       const backdrop = doc.querySelector('.dialog-backdrop') as HTMLDivElement;
       expect(backdrop).toBeDefined('dialog-backdrop should be present');

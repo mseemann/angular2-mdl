@@ -66,7 +66,6 @@ describe('MdlDialogOutletComponent', () => {
 
 describe('MdlDialogInnerOutletComponent', () => {
 
-  let doc: HTMLDocument;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -75,9 +74,6 @@ describe('MdlDialogInnerOutletComponent', () => {
     });
   }));
 
-  beforeEach(waitForAsync(inject([DOCUMENT], (document) => {
-    doc = document;
-  })));
 
   it('should create the dialog-outlet if within the app-root', () => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);

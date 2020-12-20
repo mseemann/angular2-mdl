@@ -35,21 +35,21 @@ import {MdlLayoutMediatorService} from './mdl-layout-mediator.service';
 export class MdlLayoutHeaderComponent {
 
   @HostBinding('class.mdl-layout__header--seamed')
-  public isSeamed = false;
+  isSeamed = false;
   @HostBinding('class.mdl-layout__header')
-  public isLayoutHeader = true;
+  isLayoutHeader = true;
   @HostBinding('class.is-compact')
-  public isCompact = false;
+  isCompact = false;
 
-  public isAnimating = false;
+  isAnimating = false;
 
-  public isRipple = true;
+  isRipple = true;
   // set from MdlLayoutComponent
-  public mode: string;
-  public el: HTMLElement;
+  mode: string;
+  el: HTMLElement;
 
   // will be set from mdllayoutcomponent
-  public tabs: QueryList<MdlLayoutTabPanelComponent>;
+  tabs: QueryList<MdlLayoutTabPanelComponent>;
 
   constructor(
     private elementRef: ElementRef,
@@ -57,40 +57,40 @@ export class MdlLayoutHeaderComponent {
     this.el = elementRef.nativeElement;
   }
 
-  @HostBinding('class.mdl-layout__header--waterfall') get isWaterfall() {
+  @HostBinding('class.mdl-layout__header--waterfall') get isWaterfall(): boolean {
     return this.mode === 'waterfall';
   }
 
-  @HostBinding('class.is-casting-shadow') get isCastingShadow() {
+  @HostBinding('class.is-casting-shadow') get isCastingShadow(): boolean {
     return this.mode === 'standard' || this.isCompact;
   }
 
-  @HostBinding('class.mdl-layout__header--scroll') get isHeaderScroll() {
+  @HostBinding('class.mdl-layout__header--scroll') get isHeaderScroll(): boolean {
     return this.mode === 'scroll';
   }
 
   @HostListener('transitionend')
-  public onTransitionEnd() {
+  onTransitionEnd(): void {
     this.isAnimating = false;
   }
 
   @HostListener('click')
-  public onClick() {
+  onClick(): void {
     if (this.isCompact) {
       this.isCompact = false;
       this.isAnimating = true;
     }
   }
 
-  onTabMouseover(tab: MdlLayoutTabPanelComponent) {
+  onTabMouseover(tab: MdlLayoutTabPanelComponent): void {
     this.layoutMediatorService.tabMouseover(tab);
   }
 
-  onTabMouseout(tab: MdlLayoutTabPanelComponent) {
+  onTabMouseout(tab: MdlLayoutTabPanelComponent): void {
     this.layoutMediatorService.tabMouseout(tab);
   }
 
-  tabSelected(tab: MdlLayoutTabPanelComponent) {
+  tabSelected(tab: MdlLayoutTabPanelComponent): void {
     this.layoutMediatorService.tabSelected(tab);
   }
 }

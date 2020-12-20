@@ -17,14 +17,11 @@ export class MdlFabMenuItemComponent implements OnInit {
 
   // eslint-disable-next-line
   @Output('menu-clicked')
-  menuClick: EventEmitter<any> = new EventEmitter();
+  menuClick: EventEmitter<void> = new EventEmitter();
 
   isHoovering = false;
 
-  constructor() {
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.isHoovering = false;
   }
 

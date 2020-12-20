@@ -29,7 +29,7 @@ const MDL_EXPANSION_PANEL_DIRECTIVES = [
   declarations: MDL_EXPANSION_PANEL_DIRECTIVES,
 })
 export class MdlExpansionPanelModule {
-  public static forRoot(): ModuleWithProviders<MdlExpansionPanelModule> {
+  static forRoot(): ModuleWithProviders<MdlExpansionPanelModule> {
     return {
       ngModule: MdlExpansionPanelModule,
       providers: []

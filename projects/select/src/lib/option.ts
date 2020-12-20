@@ -9,15 +9,17 @@ export class MdlOptionComponent implements AfterViewInit {
 
   // eslint-disable-next-line
   @HostBinding('class.mdl-option--disabled')
-  @Input('disabled') public disabled = false;
+  @Input('disabled')
+  disabled = false;
   // eslint-disable-next-line
-  @Input('value') public value: any;
+  @Input('value')
+  value: string;
   @ViewChild('contentWrapper', {static: true}) contentWrapper: ElementRef;
   @HostBinding('class.mdl-option__container') isOptionConatiner = true;
-  public text: any;
-  public multiple = false;
-  public selected = false;
-  public onSelect: any = Function.prototype;
+  text: string;
+  multiple = false;
+  selected = false;
+  onSelect = Function.prototype;
 
   constructor(private changeDetectionRef: ChangeDetectorRef) {
   }
@@ -26,7 +28,7 @@ export class MdlOptionComponent implements AfterViewInit {
     return stringifyValue(this.value);
   }
 
-  public select(event: Event) {
+  select(event: Event): void {
     if (this.disabled) {
       event.stopPropagation();
       event.preventDefault();
@@ -35,23 +37,24 @@ export class MdlOptionComponent implements AfterViewInit {
     }
   }
 
-  public setMultiple(multiple: boolean) {
+  setMultiple(multiple: boolean): void {
     this.multiple = multiple;
     this.changeDetectionRef.detectChanges();
   }
 
-  public updateSelected(value: any) {
+  updateSelected(value: string[] | string): void {
     if (this.multiple) {
-      this.selected = ((value || []).map((v: any) => stringifyValue(v)).indexOf(this.stringValue) !== -1);
+      this.selected = (((value as string[]) || []).map((v: unknown) => stringifyValue(v)).indexOf(this.stringValue) !== -1);
     } else {
       this.selected = this.value === value;
     }
+    // eslint-disable-next-line
     if (!(this.changeDetectionRef as any).destroyed) {
       this.changeDetectionRef.detectChanges();
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.text = this.contentWrapper.nativeElement.textContent.trim();
   }
 

@@ -51,16 +51,23 @@ import {callNative} from '../common/native-support';
   encapsulation: ViewEncapsulation.None
 })
 export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
-  @Input() public min: number;
-  @Input() public max: number;
-  @Input() public step: number;
-  @ViewChild('lower', {static: true}) public lowerEl: ElementRef;
-  @ViewChild('uppper', {static: true}) public upperEl: ElementRef;
-  @ViewChild('input', {static: true}) public inputEl: ElementRef;
-  @HostBinding('class.mdl-slider__container') isSliderContainer = true;
-  private valueIntern: any;
+  @Input()
+  min: number;
+  @Input()
+  max: number;
+  @Input()
+  step: number;
+  @ViewChild('lower', {static: true})
+  lowerEl: ElementRef;
+  @ViewChild('uppper', {static: true})
+  upperEl: ElementRef;
+  @ViewChild('input', {static: true})
+  inputEl: ElementRef;
+  @HostBinding('class.mdl-slider__container')
+  isSliderContainer = true;
+  private valueIntern: number;
   private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
+  private onChangeCallback: (_: unknown) => void = noop;
   private disabledIntern = false;
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) {
@@ -71,27 +78,27 @@ export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
     return this.disabledIntern;
   }
 
-  set disabled(value) {
+  set disabled(value: boolean) {
     this.disabledIntern = toBoolean(value);
   }
 
-  get value(): any {
+  get value(): number {
     return this.valueIntern;
   }
 
-  @Input() set value(v: any) {
+  @Input() set value(v: number) {
     this.valueIntern = v;
     this.updateSliderUI();
     this.onChangeCallback(v);
   }
 
   @HostListener('mouseup', ['$event'])
-  public onMouseUp(event) {
-    event.target.blur();
+  onMouseUp(event: MouseEvent): void {
+    (event.target as HTMLElement).blur();
   }
 
   @HostListener('mousedown', ['$event'])
-  public onMouseDown(event: MouseEvent) {
+  onMouseDown(event: MouseEvent): void {
     if (event.target !== this.elRef.nativeElement) {
       return;
     }
@@ -110,28 +117,28 @@ export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
     callNative(this.inputEl.nativeElement, 'dispatchEvent', newEvent);
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.updateSliderUI();
   }
 
-  public writeValue(value: number): void {
+  writeValue(value: number): void {
     this.valueIntern = value;
     this.updateSliderUI();
   }
 
-  public registerOnChange(fn: any): void {
+  registerOnChange(fn: () => unknown): void {
     this.onChangeCallback = fn;
   }
 
-  public registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => unknown): void {
     this.onTouchedCallback = fn;
   }
 
-  public setDisabledState(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
 
-  private updateSliderUI() {
+  updateSliderUI(): void {
     // if the input hat a static value (for example value="30"
     // the setvalue method is called before the ViewChilds are initialized
     // this has changed in Angular 9! :(

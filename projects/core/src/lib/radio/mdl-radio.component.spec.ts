@@ -19,10 +19,10 @@ import {MdlRadioModule} from './mdl-radio.module';
   `
 })
 class MdlTestRadioComponent implements OnInit {
-  public radioValue = '2';
-  public radioVisible = true;
-  public form: FormGroup;
-  public test = new FormControl('');
+  radioValue = '2';
+  radioVisible = true;
+  form: FormGroup;
+  test = new FormControl('');
 
   constructor(private fb: FormBuilder) {
   }
@@ -34,7 +34,8 @@ class MdlTestRadioComponent implements OnInit {
   }
 
 
-  public onChange(v: boolean) {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
+  public onChange(v: string) {
   }
 }
 
@@ -58,9 +59,6 @@ class MdlTestRadioComponent implements OnInit {
 class MdlTestUseSameRadioInGroupsComponent implements OnInit {
 
   public testForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-  }
 
   public ngOnInit() {
     this.testForm = new FormGroup({
@@ -216,7 +214,7 @@ describe('Component: MdlRadio', () => {
     const component2 = fixture.debugElement.queryAll(By.directive(MdlRadioComponent))[1];
     component2.nativeElement.click();
 
-    expect(instance.onChange).toHaveBeenCalledWith('2' as unknown as any);
+    expect(instance.onChange).toHaveBeenCalledWith('2');
   }));
 
   it('should be possible to disable the radio input', waitForAsync(() => {

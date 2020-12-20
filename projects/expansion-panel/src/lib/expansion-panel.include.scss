@@ -10,14 +10,14 @@ $gutter-horizontal: 24px;
   background-color: unquote("rgb(#{$color-white})");
   display: block;
   outline: none;
-  margin: $gutter-vertical 0px;
+  margin: $gutter-vertical 0;
   @include shadow-2dp();
 
   &__header {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: 0px $gutter-horizontal;
+    padding: 0 $gutter-horizontal;
     align-items: center;
     line-height: 48px;
     @include divider();
@@ -50,7 +50,7 @@ $gutter-horizontal: 24px;
 
     &--body {
       display: block;
-      padding: 0px $gutter-horizontal $gutter-vertical $gutter-horizontal;
+      padding: 0 $gutter-horizontal $gutter-vertical $gutter-horizontal;
       @include divider();
     }
 
@@ -60,7 +60,7 @@ $gutter-horizontal: 24px;
       padding: $gutter-vertical $gutter-vertical/2 $gutter-vertical $gutter-horizontal;
 
       .mdl-button {
-        padding: 0px $gutter-vertical/2;
+        padding: 0 $gutter-vertical/2;
       }
     }
   }
@@ -83,7 +83,7 @@ $gutter-horizontal: 24px;
   display: block;
 
   .mdl-expansion-panel {
-    margin: 0px;
+    margin: 0;
 
     &:focus {
       background-color: unquote("rgb(#{$palette-grey-200})");
@@ -94,7 +94,7 @@ $gutter-horizontal: 24px;
     }
 
     &.expanded {
-      margin: $gutter-vertical 0px;
+      margin: $gutter-vertical 0;
       background-color: unquote("rgb(#{$color-white})");
 
       .mdl-expansion.panel__header--expand-icon {

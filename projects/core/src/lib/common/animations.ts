@@ -8,17 +8,17 @@ export class NativeWebAnimationPlayer implements AnimationPlayer {
 
   private onDoneCallback: (() => void)[] = [];
 
-  constructor(private element: any,
+  constructor(private element: HTMLElement,
               private keyframes: { [key: string]: string | number }[],
               private duration: number,
               private easing: string) {
   }
 
-  public onDone(fn: () => void) {
+  onDone(fn: () => void): void {
     this.onDoneCallback.push(fn);
   }
 
-  public play() {
+  play(): void {
 
     const animation = this.element.animate(
       this.keyframes,
@@ -36,31 +36,25 @@ export class NoopAnimationPlayer implements AnimationPlayer {
 
   private onDoneCallback: (() => void)[] = [];
 
-  constructor(private element: any,
-              private keyframes: { [key: string]: string | number }[],
-              private duration: number,
-              private easing: string) {
-  }
-
-  public onDone(fn: () => void) {
+  onDone(fn: () => void): void {
     this.onDoneCallback.push(fn);
   }
 
-  public play() {
+  play(): void {
     this.onDoneCallback.forEach(fn => fn());
   }
 }
 
 export abstract class Animations {
   abstract animate(
-    element: any, keyframes: { [key: string]: string | number }[], duration: number,
+    element: HTMLElement, keyframes: { [key: string]: string | number }[], duration: number,
     easing: string): AnimationPlayer;
 }
 
 export class NativeWebAnimations implements Animations {
 
   public animate(
-    element: any, keyframes: { [key: string]: string | number }[], duration: number,
+    element: HTMLElement, keyframes: { [key: string]: string | number }[], duration: number,
     easing: string): AnimationPlayer {
     return new NativeWebAnimationPlayer(element, keyframes, duration, easing);
   }
@@ -68,9 +62,7 @@ export class NativeWebAnimations implements Animations {
 
 export class NoopWebAnimations implements Animations {
 
-  public animate(
-    element: any, keyframes: { [key: string]: string | number }[], duration: number,
-    easing: string): AnimationPlayer {
-    return new NoopAnimationPlayer(element, keyframes, duration, easing);
+  public animate(): AnimationPlayer {
+    return new NoopAnimationPlayer();
   }
 }

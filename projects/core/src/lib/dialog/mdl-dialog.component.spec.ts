@@ -26,6 +26,7 @@ class MdlTestComponent {
     this.dialogRef = dialogRef;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   public onDialogHide() {
   }
 

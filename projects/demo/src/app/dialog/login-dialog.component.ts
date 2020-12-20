@@ -56,7 +56,7 @@ export class LoginDialogComponent implements OnInit {
     this.dialog.hide();
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.form = this.fb.group({
       username: this.username,
       password: this.password
@@ -64,7 +64,7 @@ export class LoginDialogComponent implements OnInit {
   }
 
 
-  public login() {
+  public login(): void {
     this.processingLogin = true;
     this.statusMessage = 'checking your credentials ...';
 
