@@ -2,16 +2,20 @@ import {NgModule} from '@angular/core';
 import {AppendViewContainerRefDirective} from './append-view-container-ref-directive';
 import {Animations, NativeWebAnimations, NoopWebAnimations} from './animations';
 
-const isWebAnimationsSupported = () => typeof Element !== 'undefined' && typeof Element.prototype.animate === 'function';
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+function isWebAnimationsSupported() {
+  return typeof Element !== 'undefined' && typeof Element.prototype.animate === 'function';
+}
 
-export const instantiateSupportedAnimationDriver = () => {
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+export function instantiateSupportedAnimationDriver() {
   /* istanbul ignore next */
   if (isWebAnimationsSupported()) {
     return new NativeWebAnimations();
   }
   /* istanbul ignore next */
   return new NoopWebAnimations();
-};
+}
 
 
 @NgModule({
