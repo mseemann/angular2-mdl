@@ -1,14 +1,14 @@
 import {
   ApplicationRef,
   ComponentFactoryResolver,
+  ComponentRef,
   EventEmitter,
   Injectable,
-  NgZone,
   ViewContainerRef,
 } from "@angular/core";
-import { MdlDialogOutletComponent } from "./mdl-dialog-outlet.component";
 import { MdlBackdropOverlayComponent } from "./mdl-backdrop-overlay.component";
-import { take } from "rxjs/operators";
+import { filter, take } from "rxjs/operators";
+import { MdlDialogOutletComponent } from "./mdl-dialog-outlet.component";
 
 @Injectable({
   providedIn: "root",
@@ -16,26 +16,32 @@ import { take } from "rxjs/operators";
 export class MdlDialogOutletService {
   backdropClickEmitter: EventEmitter<void> = new EventEmitter();
 
-  private viewContainerRefInternal: ViewContainerRef;
+  private viewContainerRefInternal: ViewContainerRef | null = null;
   private backdropComponent: MdlBackdropOverlayComponent;
 
   constructor(
     private appRef: ApplicationRef,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    ngZone: NgZone
+    private componentFactoryResolver: ComponentFactoryResolver
   ) {
-    let dialogOutletCompRef = null;
-    ngZone.onStable.pipe(take(1)).subscribe(() => {
-      try {
-        dialogOutletCompRef = this.appRef.bootstrap(MdlDialogOutletComponent);
-      } catch (e) {
-        // the user did not use the dialog.outlet element outside of his root app.
-        // console.log(e);
-      }
-      if (dialogOutletCompRef) {
-        this.setViewContainerRef(dialogOutletCompRef.instance.viewContainerRef);
-      }
-    });
+    let dialogOutletCompRef: ComponentRef<MdlDialogOutletComponent> = null;
+    appRef.isStable
+      .pipe(
+        take(1),
+        filter(() => this.viewContainerRefInternal == null)
+      )
+      .subscribe(() => {
+        try {
+          dialogOutletCompRef = this.appRef.bootstrap(MdlDialogOutletComponent);
+        } catch (e) {
+          // the user did not use the dialog.outlet element outside of his root app.
+          // console.log(e);
+        }
+        if (dialogOutletCompRef) {
+          this.setViewContainerRef(
+            dialogOutletCompRef.instance.viewContainerRef
+          );
+        }
+      });
   }
 
   get viewContainerRef(): ViewContainerRef {

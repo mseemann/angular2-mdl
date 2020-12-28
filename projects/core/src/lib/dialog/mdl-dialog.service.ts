@@ -1,5 +1,4 @@
 import {
-  ApplicationRef,
   ComponentFactoryResolver,
   ComponentRef,
   EventEmitter,
@@ -45,7 +44,6 @@ export class MdlDialogService {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private appRef: ApplicationRef,
     private mdlDialogOutletService: MdlDialogOutletService,
     private injector: Injector
   ) {

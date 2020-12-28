@@ -1,4 +1,9 @@
-import { inject, TestBed, waitForAsync } from "@angular/core/testing";
+import {
+  ComponentFixture,
+  inject,
+  TestBed,
+  waitForAsync,
+} from "@angular/core/testing";
 import {
   Component,
   Inject,
@@ -15,17 +20,39 @@ import { MdlDialogHostComponent } from "./mdl-dialog-host.component";
 import { MdlSimpleDialogComponent } from "./mdl-simple-dialog.component";
 import { IOpenCloseRect } from "./mdl-dialog-configuration";
 import { MdlDialogOutletModule } from "../dialog-outlet/mdl-dialog-outlet.module";
-import { MdlBackdropOverlayComponent } from "../dialog-outlet/mdl-backdrop-overlay.component";
 import { MdlDialogOutletService } from "../dialog-outlet/mdl-dialog-outlet.service";
 import { MdlButtonComponent } from "../button/mdl-button.component";
 import { MdlButtonModule } from "../button/mdl-button.module";
 import { DOCUMENT } from "@angular/common";
+import { MdlBackdropOverlayComponent } from "./../dialog-outlet/mdl-backdrop-overlay.component";
 
 const TEST = new InjectionToken<string>("test");
 
+// https://github.com/angular/angular/issues/36623
+// https://angular.io/api/core/global/ngGetComponent
+
+declare const ng: {
+  getComponent<T>(element: Element): T | null;
+};
+
+const getComponent = <T>(
+  fixture: ComponentFixture<unknown>,
+  cssQuery: string
+): T => {
+  const componentElement = getNativeElement(fixture, cssQuery);
+  return ng.getComponent(componentElement);
+};
+
+const getNativeElement = (
+  fixture: ComponentFixture<unknown>,
+  cssQuery: string
+): HTMLElement => {
+  return fixture.nativeElement.querySelector(cssQuery);
+};
+
 @Component({
   // eslint-disable-next-line
-  selector: 'test-view',
+  selector: "test-view",
   template: `
     <div></div>
     <button mdl-button #targetBtn></button>
@@ -47,7 +74,7 @@ class MdlTestViewComponent {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-dialog-component',
+  selector: "test-dialog-component",
   template: "<div>TestCustomDialog</div>",
 })
 class TestCustomDialogComponent {
@@ -64,7 +91,7 @@ class TestCustomDialogComponent {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-fail-dialog-component',
+  selector: "test-fail-dialog-component",
   template: "<div>TestFalCustomDialog</div>",
 })
 class TestFailCustomDialogComponent {}
@@ -114,63 +141,49 @@ describe("Service: MdlDialog", () => {
     )
   );
 
-  xit(
-    "should show an alert",
-    waitForAsync(() => {
-      const title = "Alert";
-      const fixture = TestBed.createComponent(MdlTestViewComponent);
-      fixture.detectChanges();
-
-      const result = mdlDialogService.alert(title);
-      result.subscribe(() => {
-        // test passed because the action was called
-        // async makes sure this is called
-      });
-
-      fixture.detectChanges();
-
-      const dialogHostComponent = fixture.debugElement.query(
-        By.directive(MdlDialogHostComponent)
-      ).componentInstance;
-      expect(dialogHostComponent.zIndex).toBe(
-        100001,
-        "the zIndex should be 100001"
-      );
-
-      // the backdrop shoud be visible and hav an zIndex of 100000
-      const backdrop = fixture.debugElement.query(
-        By.directive(MdlBackdropOverlayComponent)
-      ).componentInstance;
-
-      expect(backdrop.zIndex).toBe(
-        100000,
-        "the zIndex of the background should be 100000"
-      );
-
-      const dialogComponentDebugElem = fixture.debugElement.query(
-        By.directive(MdlSimpleDialogComponent)
-      );
-
-      const titleDiv = dialogComponentDebugElem.query(
-        By.css(".mdl-dialog__content")
-      ).nativeElement;
-      expect(titleDiv.textContent).toBe(title);
-
-      // close the dialog by clicking the ok button
-      const buttonEl = fixture.debugElement.query(By.css("button"))
-        .nativeElement;
-      buttonEl.click();
-    })
-  );
-
-  xit("should show a confirm dialog which is modal and can be closed with click on confirm", (done) => {
+  it("should show an alert", (done) => {
+    const title = "Alert";
     const fixture = TestBed.createComponent(MdlTestViewComponent);
+
+    const result = mdlDialogService.alert(title);
+    result.subscribe(() => done());
+
     fixture.detectChanges();
+
+    const dialogHostComponent: MdlDialogHostComponent = getComponent(
+      fixture,
+      "mdl-dialog-host-component"
+    );
+
+    expect(dialogHostComponent.zIndex).toBe(
+      100001,
+      "the zIndex should be 100001"
+    );
+
+    // the backdrop shoud be visible and have an zIndex of 100000
+    const backdrop: MdlBackdropOverlayComponent = getComponent(
+      fixture,
+      "mdl-backdrop-overlay"
+    );
+
+    expect(backdrop.zIndex).toBe(
+      100000,
+      "the zIndex of the background should be 100000"
+    );
+
+    const titleDiv = getNativeElement(fixture, ".mdl-dialog__content");
+    expect(titleDiv.textContent).toBe(title);
+
+    // close the dialog by clicking the ok button
+    const buttonEl = getNativeElement(fixture, ".mdl-button--primary");
+    buttonEl.click();
+  });
+
+  it("should show a confirm dialog which is modal and can be closed with click on confirm", (done) => {
+    const fixture = TestBed.createComponent(MdlTestViewComponent);
 
     const result = mdlDialogService.confirm("?", "no", "yes");
     result.subscribe(() => {
-      // test passed because the action was called
-      // async makes sure this is called
       done();
     });
 
@@ -186,9 +199,8 @@ describe("Service: MdlDialog", () => {
     buttonEl.click();
   });
 
-  xit("should show a confirm dialog which is modal and can be closed esc", (done) => {
+  it("should show a confirm dialog which is modal and can be closed esc", (done) => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
 
     const result = mdlDialogService.confirm("?", "no", "yes");
 
@@ -202,67 +214,67 @@ describe("Service: MdlDialog", () => {
 
     fixture.detectChanges();
 
-    const dialog = fixture.debugElement.query(
-      By.directive(MdlSimpleDialogComponent)
-    ).componentInstance;
+    const dialog: MdlSimpleDialogComponent = getComponent(
+      fixture,
+      "mdl-dialog-component"
+    );
     // sending an keybord event to the dialog would be better
     dialog.onEsc();
   });
 
-  xit(
-    "should be possible to open a custom dialog",
-    waitForAsync((done) => {
-      const fixture = TestBed.createComponent(MdlTestViewComponent);
-      fixture.detectChanges();
+  it("should be possible to open a custom dialog", (done) => {
+    const fixture = TestBed.createComponent(MdlTestViewComponent);
 
-      const p = mdlDialogService.showCustomDialog({
-        component: TestCustomDialogComponent,
-        providers: [{ provide: TEST, useValue: "test" }],
+    const p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialogComponent,
+      providers: [{ provide: TEST, useValue: "test" }],
+    });
+
+    p.subscribe((dialogRef) => {
+      dialogRef.onHide().subscribe(() => {
+        done();
       });
 
-      p.subscribe((dialogRef) => {
-        dialogRef.onHide().subscribe(() => {
-          done();
-        });
+      const customDialogComponent: TestCustomDialogComponent = getComponent(
+        fixture,
+        "test-dialog-component"
+      );
 
-        const customDialogComponent = fixture.debugElement.query(
-          By.directive(TestCustomDialogComponent)
-        ).componentInstance;
+      // value should be jnjected
+      expect(customDialogComponent.test).toBe("test");
 
-        // value should be jnjected
-        expect(customDialogComponent.test).toBe("test");
+      // call close by calling hide on the dialog reference
+      customDialogComponent.close();
+    });
 
-        // call close by calling hide on the dialog reference
-        customDialogComponent.close();
+    fixture.detectChanges();
+  });
+
+  it("should be able to pass data when hiding a custom dialog", (done) => {
+    const fixture = TestBed.createComponent(MdlTestViewComponent);
+
+    const p = mdlDialogService.showCustomDialog({
+      component: TestCustomDialogComponent,
+    });
+
+    p.subscribe((dialogRef) => {
+      dialogRef.onHide().subscribe((data) => {
+        // async makes sure this is called
+        expect(data).toEqual("teststring");
+        done();
       });
-    })
-  );
 
-  xit(
-    "should be able to pass data when hiding a custom dialog",
-    waitForAsync(() => {
-      const fixture = TestBed.createComponent(MdlTestViewComponent);
-      fixture.detectChanges();
+      const customDialogComponent: TestCustomDialogComponent = getComponent(
+        fixture,
+        "test-dialog-component"
+      );
 
-      const p = mdlDialogService.showCustomDialog({
-        component: TestCustomDialogComponent,
-      });
+      // call close by calling hide on the dialog reference
+      customDialogComponent.close("teststring");
+    });
 
-      p.subscribe((dialogRef) => {
-        dialogRef.onHide().subscribe((data) => {
-          // async makes sure this is called
-          expect(data).toEqual("teststring");
-        });
-
-        const customDialogComponent = fixture.debugElement.query(
-          By.directive(TestCustomDialogComponent)
-        ).componentInstance;
-
-        // call close by calling hide on the dialog reference
-        customDialogComponent.close("teststring");
-      });
-    })
-  );
+    fixture.detectChanges();
+  });
 
   it(
     "should stop propagaton on overlay clicks",
@@ -296,35 +308,34 @@ describe("Service: MdlDialog", () => {
     })
   );
 
-  xit(
-    "should not hide the dialog on esc key  if there is no closing action",
-    waitForAsync(() => {
-      const fixture = TestBed.createComponent(MdlTestViewComponent);
-      fixture.detectChanges();
+  it("should not hide the dialog on esc key  if there is no closing action", (done) => {
+    const fixture = TestBed.createComponent(MdlTestViewComponent);
 
-      const pDialogRef = mdlDialogService.showDialog({
-        message: "m",
-        actions: [
-          {
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            handler: () => {},
-            text: "ok",
-          },
-        ],
-      });
+    const pDialogRef = mdlDialogService.showDialog({
+      message: "m",
+      actions: [
+        {
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          handler: () => {},
+          text: "ok",
+        },
+      ],
+    });
 
-      pDialogRef.subscribe((dialogRef: MdlDialogReference) => {
-        spyOn(dialogRef, "hide");
-        const dialog = fixture.debugElement.query(
-          By.directive(MdlSimpleDialogComponent)
-        ).componentInstance;
-        // sending an keybord event to the dialog would be better
-        dialog.onEsc();
+    pDialogRef.subscribe((dialogRef: MdlDialogReference) => {
+      spyOn(dialogRef, "hide");
+      const dialog = fixture.debugElement.query(
+        By.directive(MdlSimpleDialogComponent)
+      ).componentInstance;
+      // sending an keybord event to the dialog would be better
+      dialog.onEsc();
 
-        expect(dialogRef.hide).not.toHaveBeenCalled();
-      });
-    })
-  );
+      expect(dialogRef.hide).not.toHaveBeenCalled();
+
+      done();
+    });
+    fixture.detectChanges();
+  });
 
   it(
     "should throw if no viewContainerRef is provided",
@@ -401,7 +412,7 @@ describe("Service: MdlDialog", () => {
     })
   );
 
-  xit(
+  it(
     "should disable animations if animate is false",
     waitForAsync(() => {
       const fixture = TestBed.createComponent(MdlTestViewComponent);

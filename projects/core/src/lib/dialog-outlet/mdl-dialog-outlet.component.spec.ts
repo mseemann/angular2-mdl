@@ -1,14 +1,15 @@
 import { inject, TestBed, waitForAsync } from "@angular/core/testing";
 import { ApplicationRef, Component, NgModule } from "@angular/core";
 import { By } from "@angular/platform-browser";
-import { MdlDialogOutletComponent } from "./mdl-dialog-outlet.component";
 import { MdlDialogOutletModule } from "./mdl-dialog-outlet.module";
 import { DOCUMENT } from "@angular/common";
 import { MdlDialogInnerOutletComponent } from "./mdl-dialog-inner-outlet.component";
+import { MdlDialogOutletService } from "./mdl-dialog-outlet.service";
+import { take } from "rxjs/operators";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-view',
+  selector: "test-view",
   template: "<div><dialog-outlet></dialog-outlet></div>",
 })
 class MdlTestViewComponent {}
@@ -28,7 +29,7 @@ describe("MdlDialogOutletComponent", () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [],
-        imports: [TestDialogModul],
+        imports: [MdlDialogOutletModule.forRoot()],
       });
     })
   );
@@ -52,16 +53,15 @@ describe("MdlDialogOutletComponent", () => {
   );
 
   // now we can boostrap our MdlDialogOutletComponent component
-  it(
-    "should create the dialog-outlet outside the app-root",
-    waitForAsync(
-      inject([ApplicationRef], (ref: ApplicationRef) => {
-        const compRef = ref.bootstrap(MdlDialogOutletComponent);
-        expect(compRef).toBeDefined();
-        expect(compRef.instance.viewContainerRef).toBeDefined();
-      })
-    )
-  );
+  it("should create the dialog-outlet outside the app-root", async () => {
+    const ref = TestBed.inject(ApplicationRef);
+
+    const service = TestBed.inject(MdlDialogOutletService);
+
+    await ref.isStable.pipe(take(1)).toPromise();
+
+    expect(service.viewContainerRef).toBeDefined();
+  });
 });
 
 describe("MdlDialogInnerOutletComponent", () => {

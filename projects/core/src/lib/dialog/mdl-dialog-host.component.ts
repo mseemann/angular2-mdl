@@ -92,7 +92,7 @@ const getClientRect = (
 })
 export class MdlDialogHostComponent implements OnInit {
   @ViewChild("dialogTarget", { read: ViewContainerRef, static: true })
-  dialogTarget;
+  dialogTarget: ViewContainerRef;
 
   @HostBinding("class.mdl-dialog")
   isDialog = true;
