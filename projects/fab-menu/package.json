@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/fab-menu",
-  "version": "11.0.0",
+  "version": "12.0.0",
   "description": "Angular Material Design Lite - Fab menu Component",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
     "angular9",
     "angular10",
     "angular11",
+    "angular12",
     "angular",
     "material design lite",
     "fab-menu"
@@ -22,8 +23,8 @@
   },
   "homepage": "https://github.com/mseemann/angular2-mdl/tree/master/src/projects/fab-menu",
   "peerDependencies": {
-    "@angular-mdl/core": ">=11.0.0",
-    "@angular-mdl/popover": ">=11.0.0"
+    "@angular-mdl/core": ">=12.0.0",
+    "@angular-mdl/popover": ">=12.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

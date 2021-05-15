@@ -1,4 +1,4 @@
-Angular 11 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package
+Angular 12 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package
 assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
 
 [![Build Status](https://travis-ci.org/mseemann/angular2-mdl.svg?branch=master)](https://travis-ci.org/mseemann/angular2-mdl)
@@ -9,15 +9,15 @@ assumes that you are building an Angular app with TypeScript. Angular CLI makes 
 [![Code Climate](https://codeclimate.com/github/mseemann/angular2-mdl/badges/gpa.svg)](https://codeclimate.com/github/mseemann/angular2-mdl)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmseemann%2Fangular2-mdl.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmseemann%2Fangular2-mdl?ref=badge_shield)
 
-* **Please don't use github to ask questions.** Use stackoverflow
+- **Please don't use github to ask questions.** Use stackoverflow
   instead: http://stackoverflow.com/questions/tagged/angular-mdl.
-* plnkr if you'd like to play around http://plnkr.co/edit/f73PKEmzpAcchza8Q9rb?p=preview
-* [Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
-* Porting of the [MDL-Dashboard](https://getmdl.io/templates/dashboard/index.html) provided
-  by [AndreaM16](https://github.com/AndreaM16):  [Demo-App](https://angular-mdl-dashboard.herokuapp.com/#/home)
+- plnkr if you'd like to play around http://plnkr.co/edit/f73PKEmzpAcchza8Q9rb?p=preview
+- [Demo-App with all supported components and documentation](http://mseemann.io/angular2-mdl/)
+- Porting of the [MDL-Dashboard](https://getmdl.io/templates/dashboard/index.html) provided
+  by [AndreaM16](https://github.com/AndreaM16): [Demo-App](https://angular-mdl-dashboard.herokuapp.com/#/home)
   , [Sources](https://github.com/AndreaM16/angular-mdl-dashboard).
 
-### Status of the npm package version 11 (mdl version 1.3.0; angular 11)
+### Status of the npm package version 12 (mdl version 1.3.0; angular 12)
 
 - Badges
 - Buttons
@@ -70,7 +70,7 @@ $color-accent: $palette-amber-A200;
 $color-primary-contrast: $color-dark-contrast;
 $color-accent-contrast: $color-dark-contrast;
 
-@import '~@angular-mdl/core/scss/material-design-lite';
+@import "~@angular-mdl/core/scss/material-design-lite";
 ```
 
 To make this working you need to find out the way how you could tell your build system where the scss is located. For
@@ -83,22 +83,22 @@ sassLoader: {
 }
 ```
 
-# @angular-mdl/*
+# @angular-mdl/\*
 
 Additional components for @angular-mdl/core that are not part of material design lite
 
-* current angular version: 11
-* current angular-mdl version: 11
+- current angular version: 12
+- current angular-mdl version: 12
 
 ## The components
 
-| Name | Provided By | Description | npm | documentation | status | demo
-| --- | --- | --- | --- | --- | --- | --- |
-| datepicker | [mseemann](https://github.com/mseemann) | a simple date picker | [![npm version](https://badge.fury.io/js/@angular-mdl%2Fdatepicker.svg)](https://www.npmjs.com/package/@angular-mdl/datepicker)| [readme](https://github.com/mseemann/angular2-mdl/tree/master/projects/datepicker) | experimental | [demo](http://mseemann.io/angular2-mdl/date-picker)
-| expansion-panel | [abdulqadir93](https://github.com/abdulqadir93) | organise arbitrary content in an expansion panel | [![npm version](https://badge.fury.io/js/@angular-mdl%2Fexpansion-panel.svg)](https://www.npmjs.com/package/@angular-mdl/expansion-panel)| [readme](https://github.com/mseemann/angular2-mdl/tree/master/projects/expansion-panel) | experimental | [demo](http://mseemann.io/angular2-mdl/expansion-panel)
-| fab-menu | [leojpod](https://github.com/leojpod) | a fab menu component | [![npm version](https://badge.fury.io/js/@angular-mdl%2Ffab-menu.svg)](https://www.npmjs.com/package/@angular-mdl/fab-menu)| [readme](https://github.com/mseemann/angular2-mdl/tree/master/projects/fab-menu) | experimental | [demo](http://mseemann.io/angular2-mdl/fab-menu)
-| popover | [tb](https://github.com/tb) | popover with arbitrary content | [![npm version](https://badge.fury.io/js/%40angular-mdl%2Fpopover.svg)](https://www.npmjs.com/package/@angular-mdl/popover)| [readme](https://github.com/mseemann/angular2-mdl-ext/tree/master/projects/popover) | experimental | [demo](http://mseemann.io/angular2-mdl/popover)
-| select | [tb](https://github.com/tb) | a select box | [![npm version](https://badge.fury.io/js/%40angular-mdl%2Fselect.svg)](https://www.npmjs.com/package/@angular-mdl/select)| [readme](https://github.com/mseemann/angular2-mdl-ext/tree/master/projects/select) | experimental | [demo](http://mseemann.io/angular2-mdl/select)
+| Name            | Provided By                                     | Description                                      | npm                                                                                                                                       | documentation                                                                           | status       | demo                                                    |
+| --------------- | ----------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------- |
+| datepicker      | [mseemann](https://github.com/mseemann)         | a simple date picker                             | [![npm version](https://badge.fury.io/js/@angular-mdl%2Fdatepicker.svg)](https://www.npmjs.com/package/@angular-mdl/datepicker)           | [readme](https://github.com/mseemann/angular2-mdl/tree/master/projects/datepicker)      | experimental | [demo](http://mseemann.io/angular2-mdl/date-picker)     |
+| expansion-panel | [abdulqadir93](https://github.com/abdulqadir93) | organise arbitrary content in an expansion panel | [![npm version](https://badge.fury.io/js/@angular-mdl%2Fexpansion-panel.svg)](https://www.npmjs.com/package/@angular-mdl/expansion-panel) | [readme](https://github.com/mseemann/angular2-mdl/tree/master/projects/expansion-panel) | experimental | [demo](http://mseemann.io/angular2-mdl/expansion-panel) |
+| fab-menu        | [leojpod](https://github.com/leojpod)           | a fab menu component                             | [![npm version](https://badge.fury.io/js/@angular-mdl%2Ffab-menu.svg)](https://www.npmjs.com/package/@angular-mdl/fab-menu)               | [readme](https://github.com/mseemann/angular2-mdl/tree/master/projects/fab-menu)        | experimental | [demo](http://mseemann.io/angular2-mdl/fab-menu)        |
+| popover         | [tb](https://github.com/tb)                     | popover with arbitrary content                   | [![npm version](https://badge.fury.io/js/%40angular-mdl%2Fpopover.svg)](https://www.npmjs.com/package/@angular-mdl/popover)               | [readme](https://github.com/mseemann/angular2-mdl-ext/tree/master/projects/popover)     | experimental | [demo](http://mseemann.io/angular2-mdl/popover)         |
+| select          | [tb](https://github.com/tb)                     | a select box                                     | [![npm version](https://badge.fury.io/js/%40angular-mdl%2Fselect.svg)](https://www.npmjs.com/package/@angular-mdl/select)                 | [readme](https://github.com/mseemann/angular2-mdl-ext/tree/master/projects/select)      | experimental | [demo](http://mseemann.io/angular2-mdl/select)          |
 
 These components support AOT and TreeShaking!
 
@@ -140,9 +140,9 @@ sassLoader: {
 
 ### Development
 
-* npm start - local dev server
-* npm build - build a production release
-* npm test - run the unit tests
+- npm start - local dev server
+- npm build - build a production release
+- npm test - run the unit tests
 
 The coverage report is stored under: coverage/coverage-remap/index.html
 
