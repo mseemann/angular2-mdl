@@ -9,32 +9,7 @@ import { MdlScreenSizeService } from "@angular-mdl/core";
   selector: "demo-layout",
   animations: [flyInOutTrigger],
   templateUrl: "layout.component.html",
-  styles: [
-    `
-      .demo-container {
-        width: 100%;
-        position: relative;
-        height: 300px;
-      }
-
-      .demo-layout-transparent {
-        background: url("assets/oslo.jpg") center / cover;
-        color: white;
-      }
-
-      .page-content {
-        height: 600px;
-      }
-
-      mdl-icon {
-        vertical-align: middle;
-      }
-
-      .mdl-layout__tab {
-        cursor: pointer;
-      }
-    `,
-  ],
+  styleUrls: ["layout.component.scss"],
   encapsulation: ViewEncapsulation.None,
 })
 export class LayoutDemoComponent extends AbstractDemoComponent {
