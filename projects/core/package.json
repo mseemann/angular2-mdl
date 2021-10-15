@@ -4,6 +4,11 @@
   "license": "MIT",
   "description": "Angular components, directives and styles based on material design lite https://getmdl.io.",
   "homepage": "http://mseemann.io/angular2-mdl/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mseemann/angular2-mdl.git",
+    "directory": "projects/core"
+  },
   "keywords": [
     "angular 2 4 5 6 7 8 9 10 11 12",
     "angular2",
