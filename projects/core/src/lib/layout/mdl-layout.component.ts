@@ -137,7 +137,7 @@ export class MdlScreenSizeService {
         <ng-content select="mdl-layout-header"></ng-content>
         <ng-content select="mdl-layout-drawer"></ng-content>
         <div
-          *ngIf="drawers.length > 0 && isNoDrawer == false"
+          *ngIf="drawers.length > 0 && isNoDrawer === false"
           class="mdl-layout__drawer-button"
           (click)="toggleDrawer()"
         >
@@ -168,22 +168,24 @@ export class MdlLayoutComponent
   content;
 
   // eslint-disable-next-line
-  @Input('mdl-layout-mode')
+  @Input("mdl-layout-mode")
   mode: string = STANDARD;
   // eslint-disable-next-line
-  @Output('mdl-layout-tab-active-changed')
+  @Output("mdl-layout-tab-active-changed")
   selectedTabEmitter = new EventEmitter();
   // eslint-disable-next-line
-  @Output('mdl-layout-tab-mouseover')
+  @Output("mdl-layout-tab-mouseover")
   mouseoverTabEmitter = new EventEmitter();
   // eslint-disable-next-line
-  @Output('mdl-layout-tab-mouseout')
+  @Output("mdl-layout-tab-mouseout")
   mouseoutTabEmitter = new EventEmitter();
   // eslint-disable-next-line
-  @Output('open')
+  @Output("open")
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onOpen = new EventEmitter<void>();
   // eslint-disable-next-line
-  @Output('close')
+  @Output("close")
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onClose = new EventEmitter<void>();
   isDrawerVisible = false;
   isSmallScreen = false;

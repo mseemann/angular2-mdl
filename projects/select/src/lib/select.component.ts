@@ -32,7 +32,8 @@ const toBoolean = (value: unknown): boolean =>
 
 const randomId = () => {
   // eslint-disable-next-line
-  const S4 = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+  const S4 = () =>
+    (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
   return S4() + S4();
 };
 
@@ -114,8 +115,8 @@ export class MdlSelectComponent
     return this.misFloatingLabel;
   }
 
-  // eslint-disable-next-line @angular-eslint/no-input-rename
   @HostBinding("class.mdl-select--floating-label")
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input("floating-label")
   set isFloatingLabel(value: boolean) {
     this.misFloatingLabel = toBoolean(value);

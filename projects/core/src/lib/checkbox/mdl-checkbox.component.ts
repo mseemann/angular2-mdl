@@ -49,8 +49,8 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   @Input()
   tabindex: number = null;
 
-  // eslint-disable-next-line
   @Output()
+  // eslint-disable-next-line  @angular-eslint/no-output-native
   change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @HostBinding("class.mdl-checkbox")

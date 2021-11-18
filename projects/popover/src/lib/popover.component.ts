@@ -143,11 +143,13 @@ export class MdlPopoverComponent implements OnDestroy {
   // eslint-disable-next-line
   @Input("mdl-popover-position")
   position: string;
-  // eslint-disable-next-line
+
   @Output()
+  // eslint-disable-next-line  @angular-eslint/no-output-on-prefix
   onShow: EventEmitter<void> = new EventEmitter();
-  // eslint-disable-next-line
+
   @Output()
+  // eslint-disable-next-line  @angular-eslint/no-output-on-prefix
   onHide: EventEmitter<void> = new EventEmitter();
   @HostBinding("class.mdl-popover")
   isMdlPopover = true;

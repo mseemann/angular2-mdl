@@ -119,8 +119,8 @@ export class MdlRadioComponent
   value: unknown;
   @Input()
   tabindex = null;
-  // eslint-disable-next-line
   @Output()
+  // eslint-disable-next-line @angular-eslint/no-output-native
   change: EventEmitter<unknown> = new EventEmitter<unknown>();
   // the internal state - used to set the underlaying radio button state.
   @HostBinding("class.is-checked")

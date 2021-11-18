@@ -15,11 +15,11 @@ import { stringifyValue } from "./util";
 })
 export class MdlOptionComponent implements AfterViewInit {
   // eslint-disable-next-line
-  @HostBinding('class.mdl-option--disabled')
-  @Input("disabled")
+  @HostBinding("class.mdl-option--disabled")
+  @Input()
   disabled = false;
   // eslint-disable-next-line
-  @Input('value')
+  @Input("value")
   value: string;
   @ViewChild("contentWrapper", { static: true }) contentWrapper: ElementRef;
   @HostBinding("class.mdl-option__container") isOptionConatiner = true;
