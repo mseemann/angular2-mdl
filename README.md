@@ -1,4 +1,4 @@
-Angular 12 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package
+Angular 13 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package
 assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
 
 [![Build Status](https://travis-ci.org/mseemann/angular2-mdl.svg?branch=master)](https://travis-ci.org/mseemann/angular2-mdl)
@@ -17,7 +17,7 @@ assumes that you are building an Angular app with TypeScript. Angular CLI makes 
   by [AndreaM16](https://github.com/AndreaM16): [Demo-App](https://angular-mdl-dashboard.herokuapp.com/#/home)
   , [Sources](https://github.com/AndreaM16/angular-mdl-dashboard).
 
-### Status of the npm package version 12 (mdl version 1.3.0; angular 12)
+### Status of the npm package version 13 (mdl version 1.3.0; angular 13)
 
 - Badges
 - Buttons
@@ -87,8 +87,8 @@ sassLoader: {
 
 Additional components for @angular-mdl/core that are not part of material design lite
 
-- current angular version: 12
-- current angular-mdl version: 12
+- current angular version: 13
+- current angular-mdl version: 13
 
 ## The components
 

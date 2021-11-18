@@ -7,6 +7,7 @@ import { MdlDialogInnerOutletComponent } from "./mdl-dialog-inner-outlet.compone
 export * from "./mdl-dialog-outlet.component";
 export * from "./mdl-dialog-outlet.service";
 export * from "./mdl-backdrop-overlay.component";
+export * from "./mdl-dialog-inner-outlet.component";
 
 const PUBLIC_COMPONENTS = [MdlDialogInnerOutletComponent];
 

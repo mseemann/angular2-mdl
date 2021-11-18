@@ -2,9 +2,6 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/@angular-mdl/expansion-panel",
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "@angular-mdl/core": "@angular-mdl/core"
-    }
+    "entryFile": "src/public-api.ts"
   }
 }
