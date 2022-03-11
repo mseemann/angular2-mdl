@@ -13,7 +13,7 @@ import {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-menu',
+  selector: "test-menu",
   template: "replaced by the test",
 })
 class MdlTestComponent {}
@@ -55,7 +55,7 @@ describe("Component: MdlMenu", () => {
       By.directive(MdlMenuComponent)
     ).references;
 
-    expect(references.menu).toBeDefined();
+    expect(references["menu"]).toBeDefined();
   });
 
   it("should throw if toggle is called without a button", () => {
@@ -67,8 +67,9 @@ describe("Component: MdlMenu", () => {
     const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
-      .componentInstance;
+    const menu = fixture.debugElement.query(
+      By.directive(MdlMenuComponent)
+    ).componentInstance;
 
     expect(() => {
       menu.toggle(null, null);
@@ -90,8 +91,9 @@ describe("Component: MdlMenu", () => {
     const buttonElement = fixture.debugElement.query(
       By.directive(MdlButtonComponent)
     ).nativeElement;
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
-      .componentInstance;
+    const menu = fixture.debugElement.query(
+      By.directive(MdlMenuComponent)
+    ).componentInstance;
 
     buttonElement.click();
     expect(menu.isVisible).toBe(true, "menu should be visible");
@@ -171,8 +173,9 @@ describe("Component: MdlMenu", () => {
     const buttonElement = fixture.debugElement.query(
       By.directive(MdlButtonComponent)
     ).nativeElement;
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
-      .componentInstance;
+    const menu = fixture.debugElement.query(
+      By.directive(MdlMenuComponent)
+    ).componentInstance;
 
     buttonElement.click();
     expect(menu.isVisible).toBe(true);
@@ -200,8 +203,9 @@ describe("Component: MdlMenu", () => {
     const buttonElement = fixture.debugElement.query(
       By.directive(MdlButtonComponent)
     ).nativeElement;
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
-      .componentInstance;
+    const menu = fixture.debugElement.query(
+      By.directive(MdlMenuComponent)
+    ).componentInstance;
 
     buttonElement.click();
     expect(menu.isVisible).toBe(true);
@@ -229,8 +233,9 @@ describe("Component: MdlMenu", () => {
     const buttonElement = fixture.debugElement.query(
       By.directive(MdlButtonComponent)
     ).nativeElement;
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
-      .componentInstance;
+    const menu = fixture.debugElement.query(
+      By.directive(MdlMenuComponent)
+    ).componentInstance;
 
     buttonElement.click();
     expect(menu.isVisible).toBe(true);
@@ -258,8 +263,9 @@ describe("Component: MdlMenu", () => {
     const buttonElement = fixture.debugElement.query(
       By.directive(MdlButtonComponent)
     ).nativeElement;
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
-      .componentInstance;
+    const menu = fixture.debugElement.query(
+      By.directive(MdlMenuComponent)
+    ).componentInstance;
 
     buttonElement.click();
     expect(menu.isVisible).toBe(true);

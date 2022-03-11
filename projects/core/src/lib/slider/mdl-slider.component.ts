@@ -14,6 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { toBoolean } from "../common/boolean-property";
 import { noop } from "../common/noop";
 import { callNative } from "../common/native-support";
+import { toNumber } from "../common/number.property";
 
 @Component({
   selector: "mdl-slider",
@@ -55,20 +56,20 @@ import { callNative } from "../common/native-support";
 })
 export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
   @Input()
-  min: number;
+  min: number | string | undefined;
   @Input()
-  max: number;
+  max: number | string | undefined;
   @Input()
-  step: number;
+  step: number | string | undefined;
   @ViewChild("lower", { static: true })
-  lowerEl: ElementRef;
+  lowerEl: ElementRef | undefined;
   @ViewChild("uppper", { static: true })
-  upperEl: ElementRef;
+  upperEl: ElementRef | undefined;
   @ViewChild("input", { static: true })
-  inputEl: ElementRef;
+  inputEl: ElementRef | undefined;
   @HostBinding("class.mdl-slider__container")
   isSliderContainer = true;
-  private valueIntern: number;
+  private valueIntern: number | null | undefined;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: unknown) => void = noop;
   private disabledIntern = false;
@@ -84,12 +85,12 @@ export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
     this.disabledIntern = toBoolean(value);
   }
 
-  get value(): number {
+  get value(): number | string | undefined | null {
     return this.valueIntern;
   }
 
-  @Input() set value(v: number) {
-    this.valueIntern = v;
+  @Input() set value(v: number | string | undefined | null) {
+    this.valueIntern = toNumber(v);
     this.updateSliderUI();
     this.onChangeCallback(v);
   }
@@ -112,11 +113,11 @@ export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
       button: event.button,
       buttons: event.buttons,
       clientX: event.clientX,
-      clientY: this.inputEl.nativeElement.getBoundingClientRect().y,
+      clientY: this.inputEl?.nativeElement.getBoundingClientRect().y,
       screenX: event.screenX,
       screenY: event.screenY,
     });
-    callNative(this.inputEl.nativeElement, "dispatchEvent", newEvent);
+    callNative(this.inputEl?.nativeElement, "dispatchEvent", newEvent);
   }
 
   ngAfterViewInit(): void {
@@ -144,10 +145,17 @@ export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
     // if the input hat a static value (for example value="30"
     // the setvalue method is called before the ViewChilds are initialized
     // this has changed in Angular 9! :(
-    if (!this.inputEl) {
+    const min = toNumber(this.min);
+    const max = toNumber(this.max);
+    if (
+      !this.inputEl ||
+      this.valueIntern == null ||
+      max == null ||
+      min == null
+    ) {
       return;
     }
-    const fraction = (this.valueIntern - this.min) / (this.max - this.min);
+    const fraction = (this.valueIntern - min) / (max - min);
 
     if (fraction === 0) {
       this.renderer.addClass(this.inputEl.nativeElement, "is-lowest-value");
@@ -155,9 +163,9 @@ export class MdlSliderComponent implements ControlValueAccessor, AfterViewInit {
       this.renderer.removeClass(this.inputEl.nativeElement, "is-lowest-value");
     }
 
-    this.renderer.setStyle(this.lowerEl.nativeElement, "flex", "" + fraction);
+    this.renderer.setStyle(this.lowerEl?.nativeElement, "flex", "" + fraction);
     this.renderer.setStyle(
-      this.upperEl.nativeElement,
+      this.upperEl?.nativeElement,
       "flex",
       "" + (1 - fraction)
     );

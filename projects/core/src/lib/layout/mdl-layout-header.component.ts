@@ -14,7 +14,7 @@ import { MdlLayoutMediatorService } from "./mdl-layout-mediator.service";
   template: `
     <ng-content></ng-content>
     <div
-      *ngIf="tabs?.toArray()?.length > 0"
+      *ngIf="tabs?.toArray() && tabs.toArray().length > 0"
       class="mdl-layout__tab-bar-container"
     >
       <div class="mdl-layout__tab-bar is-casting-shadow">
@@ -58,11 +58,12 @@ export class MdlLayoutHeaderComponent {
 
   isRipple = true;
   // set from MdlLayoutComponent
-  mode: string;
+  mode: string | undefined;
   el: HTMLElement;
 
   // will be set from mdllayoutcomponent
-  tabs: QueryList<MdlLayoutTabPanelComponent>;
+  tabs: QueryList<MdlLayoutTabPanelComponent> =
+    new QueryList<MdlLayoutTabPanelComponent>();
 
   constructor(
     private elementRef: ElementRef,

@@ -22,7 +22,7 @@ class MdlTestViewComponent {}
 class TestDialogModul {}
 
 describe("MdlDialogOutletComponent", () => {
-  let el;
+  let el: HTMLElement | undefined;
 
   // create the tesbed
   beforeEach(
@@ -37,7 +37,7 @@ describe("MdlDialogOutletComponent", () => {
   // now modify the dom and add a dialog-outlet element direct under the body
   beforeEach(
     waitForAsync(
-      inject([DOCUMENT], (doc) => {
+      inject([DOCUMENT], (doc: Document) => {
         el = doc.createElement("dialog-outlet");
         doc.body.appendChild(el);
       })
@@ -46,8 +46,10 @@ describe("MdlDialogOutletComponent", () => {
 
   afterEach(
     waitForAsync(
-      inject([DOCUMENT], (doc) => {
-        doc.body.removeChild(el);
+      inject([DOCUMENT], (doc: Document) => {
+        if (el) {
+          doc.body.removeChild(el);
+        }
       })
     )
   );

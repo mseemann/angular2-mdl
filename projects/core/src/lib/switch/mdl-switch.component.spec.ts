@@ -7,12 +7,12 @@ import { MdlSwitchModule } from "./mdl-switch.module";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-icon',
+  selector: "test-icon",
   template:
     '<mdl-switch [(ngModel)]="checkboxValue1" mdl-ripple (change)="onChange($event)">switch</mdl-switch>',
 })
 class MdlTestSwitchComponent {
-  checkboxValue1: boolean;
+  checkboxValue1 = false;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   public onChange(v: boolean) {}

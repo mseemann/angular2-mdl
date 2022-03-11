@@ -237,9 +237,10 @@ describe("MdlFabMenuComponent", () => {
           By.css(".mdl-button")
         );
 
-        const tooltipNotAlwaysDebugElement: DebugElement = fixture.debugElement.query(
-          By.css("#itemNotAlwaysTooltip > mdl-chip")
-        );
+        const tooltipNotAlwaysDebugElement: DebugElement =
+          fixture.debugElement.query(
+            By.css("#itemNotAlwaysTooltip > mdl-chip")
+          );
 
         const tooltipNotAlwaysElement: HTMLElement =
           tooltipNotAlwaysDebugElement.nativeElement;
@@ -287,8 +288,9 @@ describe("MdlFabMenuComponent", () => {
     it(
       "should display tooltips after touch start on the FAB",
       waitForAsync(() => {
-        const buttonElement = fixture.debugElement.query(By.css(".mdl-button"))
-          .nativeElement;
+        const buttonElement = fixture.debugElement.query(
+          By.css(".mdl-button")
+        ).nativeElement;
 
         const tooltipAlwaysElement: HTMLElement = fixture.debugElement.query(
           By.css("#itemNotAlwaysTooltip > mdl-chip")

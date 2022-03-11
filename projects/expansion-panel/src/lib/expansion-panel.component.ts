@@ -61,6 +61,7 @@ export class MdlExpansionPanelHeaderSecondaryContentComponent {
   template: "<ng-content></ng-content>",
   // eslint-disable-next-line
   host: {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     "[@isExpanded]": "isExpanded",
   },
   animations: [
@@ -99,9 +100,9 @@ export class MdlExpansionPanelFooterComponent {
 })
 export class MdlExpansionPanelComponent implements AfterContentInit {
   @ContentChild(MdlExpansionPanelHeaderComponent, { static: true })
-  header: MdlExpansionPanelHeaderComponent;
+  header: MdlExpansionPanelHeaderComponent | undefined;
   @ContentChild(MdlExpansionPanelContentComponent, { static: true })
-  content: MdlExpansionPanelContentComponent;
+  content: MdlExpansionPanelContentComponent | undefined;
   // eslint-disable-next-line
   @Output() onChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -133,7 +134,7 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    this.header.onChange.subscribe(() => {
+    this.header?.onChange.subscribe(() => {
       if (!this.disabled) {
         this.toggleIt(!this.isExpanded);
       }
@@ -162,8 +163,12 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
 
   private toggleIt(isExpanded: boolean) {
     this.isExpanded = isExpanded;
-    this.content.isExpanded = `${isExpanded}`;
-    this.header.isExpanded = isExpanded;
+    if (this.content) {
+      this.content.isExpanded = `${isExpanded}`;
+    }
+    if (this.header) {
+      this.header.isExpanded = isExpanded;
+    }
     this.onChange.emit(isExpanded);
   }
 }
@@ -175,7 +180,7 @@ export class MdlExpansionPanelComponent implements AfterContentInit {
 export class MdlExpansionPanelGroupComponent implements AfterContentInit {
   @HostBinding("class.mdl-expansion-panel-group") isPanelGroup = true;
   @ContentChildren(MdlExpansionPanelComponent)
-  panels: QueryList<MdlExpansionPanelComponent>;
+  panels: QueryList<MdlExpansionPanelComponent> = new QueryList<MdlExpansionPanelComponent>();
   expandedIndex = -1;
 
   ngAfterContentInit(): void {

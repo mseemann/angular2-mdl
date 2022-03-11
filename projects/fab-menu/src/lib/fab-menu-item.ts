@@ -8,14 +8,14 @@ import { MdlFabMenuComponent } from "./fab-menu.component";
 })
 export class MdlFabMenuItemComponent implements OnInit {
   @Input()
-  label: string;
+  label: string | undefined;
   @Input()
-  icon: string;
+  icon: string | undefined;
   @Input()
-  fabMenu: MdlFabMenuComponent;
+  fabMenu: MdlFabMenuComponent | undefined;
 
   // eslint-disable-next-line
-  @Output('menu-clicked')
+  @Output("menu-clicked")
   menuClick: EventEmitter<void> = new EventEmitter();
 
   isHoovering = false;

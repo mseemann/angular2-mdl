@@ -10,7 +10,7 @@ import { MdlMenuRegisty } from "./mdl-menu.component";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-menu',
+  selector: "test-menu",
   template: "replaced by the test",
 })
 class MdlTestMenuItemComponent {}
@@ -48,8 +48,9 @@ describe("Component: MdlMenuItem", () => {
     const fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
 
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
-      .componentInstance;
+    const menu = fixture.debugElement.query(
+      By.directive(MdlMenuComponent)
+    ).componentInstance;
 
     const menuItemEl: HTMLElement = fixture.debugElement.query(
       By.directive(MdlMenuItemComponent)
@@ -72,8 +73,9 @@ describe("Component: MdlMenuItem", () => {
     const fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
 
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
-      .componentInstance;
+    const menu = fixture.debugElement.query(
+      By.directive(MdlMenuComponent)
+    ).componentInstance;
 
     const menuItemEl: HTMLElement = fixture.debugElement.query(
       By.directive(MdlMenuItemComponent)
@@ -98,8 +100,9 @@ describe("Component: MdlMenuItem", () => {
     const fixture = TestBed.createComponent(MdlTestMenuItemComponent);
     fixture.detectChanges();
 
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
-      .componentInstance;
+    const menu = fixture.debugElement.query(
+      By.directive(MdlMenuComponent)
+    ).componentInstance;
 
     const menuItemEl: HTMLElement = fixture.debugElement.query(
       By.directive(MdlMenuItemComponent)

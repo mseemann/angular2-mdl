@@ -17,13 +17,14 @@ export class MdlDialogOutletService {
   backdropClickEmitter: EventEmitter<void> = new EventEmitter();
 
   private viewContainerRefInternal: ViewContainerRef | null = null;
-  private backdropComponent: MdlBackdropOverlayComponent;
+  private backdropComponent: MdlBackdropOverlayComponent | undefined;
 
   constructor(
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver
   ) {
-    let dialogOutletCompRef: ComponentRef<MdlDialogOutletComponent> = null;
+    let dialogOutletCompRef: ComponentRef<MdlDialogOutletComponent> | null =
+      null;
     appRef.isStable
       .pipe(
         take(1),
@@ -44,32 +45,31 @@ export class MdlDialogOutletService {
       });
   }
 
-  get viewContainerRef(): ViewContainerRef {
+  get viewContainerRef(): ViewContainerRef | null {
     return this.viewContainerRefInternal;
   }
 
-  setDefaultViewContainerRef(vCRef: ViewContainerRef): void {
+  setDefaultViewContainerRef(vCRef: ViewContainerRef | null): void {
     this.setViewContainerRef(vCRef);
   }
 
   hideBackdrop(): void {
-    this.backdropComponent.hide();
+    this.backdropComponent?.hide();
   }
 
   showBackdropWithZIndex(zIndex: number): void {
-    this.backdropComponent.showWithZIndex(zIndex);
+    this.backdropComponent?.showWithZIndex(zIndex);
   }
 
-  private setViewContainerRef(value: ViewContainerRef) {
+  private setViewContainerRef(value: ViewContainerRef | null) {
     this.viewContainerRefInternal = value;
 
     if (this.viewContainerRefInternal) {
       const cFactory = this.componentFactoryResolver.resolveComponentFactory(
         MdlBackdropOverlayComponent
       );
-      this.backdropComponent = this.viewContainerRefInternal.createComponent(
-        cFactory
-      ).instance;
+      this.backdropComponent =
+        this.viewContainerRefInternal.createComponent(cFactory).instance;
       this.backdropComponent.clickEmitter.subscribe(() => {
         this.backdropClickEmitter.emit();
       });

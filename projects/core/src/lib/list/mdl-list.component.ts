@@ -44,8 +44,8 @@ export class MdlListItemComponent implements OnChanges {
     return this.linesIntern;
   }
 
-  set lines(value: number) {
-    this.linesIntern = toNumber(value);
+  set lines(value: number | string) {
+    this.linesIntern = toNumber(value) ?? 1;
   }
 
   @HostBinding("class.mdl-list__item--two-line") get lines2(): boolean {
@@ -193,7 +193,7 @@ export class MdlListItemTextBodyComponent implements OnInit {
 
 @Directive({
   // eslint-disable-next-line
-  selector: 'mdl-icon[mdl-list-item-icon]'
+  selector: "mdl-icon[mdl-list-item-icon]",
 })
 export class MdlListItemIconDirective {
   @HostBinding("class.mdl-list__item-icon")
@@ -202,7 +202,7 @@ export class MdlListItemIconDirective {
 
 @Directive({
   // eslint-disable-next-line
-  selector: 'mdl-icon[mdl-list-item-avatar]'
+  selector: "mdl-icon[mdl-list-item-avatar]",
 })
 export class MdlListItemAvatarDirective {
   @HostBinding("class.mdl-list__item-avatar")

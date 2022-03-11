@@ -3,7 +3,6 @@ import {
   HostListener,
   Inject,
   InjectionToken,
-  OnInit,
   ViewChild,
 } from "@angular/core";
 import { LoginService } from "./login.service";
@@ -29,9 +28,9 @@ export const TEST_VALUE = new InjectionToken<string>("test value");
     `,
   ],
 })
-export class LoginDialogComponent implements OnInit {
+export class LoginDialogComponent {
   @ViewChild("firstElement", { static: true })
-  public inputElement: MdlTextFieldComponent;
+  public inputElement: MdlTextFieldComponent | undefined;
   public form: FormGroup;
   public username = new FormControl("", Validators.required);
   public password = new FormControl("", Validators.required);
@@ -56,20 +55,17 @@ export class LoginDialogComponent implements OnInit {
 
     this.dialog.onVisible().subscribe(() => {
       console.log("set focus");
-      this.inputElement.setFocus();
+      this.inputElement?.setFocus();
+    });
+    this.form = this.fb.group({
+      username: this.username,
+      password: this.password,
     });
   }
 
   @HostListener("keydown.esc")
   public onEsc(): void {
     this.dialog.hide();
-  }
-
-  public ngOnInit(): void {
-    this.form = this.fb.group({
-      username: this.username,
-      password: this.password,
-    });
   }
 
   public login(): void {

@@ -70,9 +70,9 @@ export class SearchableComponent {
 })
 export class MdlSelectComponent
   extends SearchableComponent
-  implements ControlValueAccessor, AfterContentInit, AfterViewInit {
-  @Input() ngModel: string[] | string;
-  @Input() disabled = false;
+  implements ControlValueAccessor, AfterContentInit, AfterViewInit
+{
+  @Input() disabled: boolean | string = false;
   @Input() autocomplete = false;
   @Input() public label = "";
   @Input() placeholder = "";
@@ -82,18 +82,21 @@ export class MdlSelectComponent
   // eslint-disable-next-line
   @Output() blur: EventEmitter<any> = new EventEmitter(true);
   @Output() inputChange: EventEmitter<string> = new EventEmitter(true);
-  @ViewChild("selectInput", { static: true }) selectInput: ElementRef;
+  @ViewChild("selectInput", { static: true }) selectInput:
+    | ElementRef
+    | undefined;
   @ViewChild(MdlPopoverComponent, { static: true })
-  public popoverComponent: MdlPopoverComponent;
+  public popoverComponent: MdlPopoverComponent | undefined;
   @ContentChildren(MdlOptionComponent)
-  public optionComponents: QueryList<MdlOptionComponent>;
+  public optionComponents: QueryList<MdlOptionComponent> = new QueryList<MdlOptionComponent>();
   @HostBinding("class.mdl-select") isMdlSelect = true;
+  public internalModel: string[] | string | undefined;
   directionUp = false;
   textfieldId: string;
   text = "";
   focused = false;
-  private selectElement: HTMLElement;
-  private popoverElement: HTMLElement;
+  private selectElement: HTMLElement | undefined;
+  private popoverElement: HTMLElement | undefined;
   private textByValue: { [property: string]: string } = {};
   private onChange = Function.prototype;
   private onTouched = Function.prototype;
@@ -111,20 +114,20 @@ export class MdlSelectComponent
     return !!this.placeholder;
   }
 
-  get isFloatingLabel(): boolean {
+  get isFloatingLabel(): boolean | string {
     return this.misFloatingLabel;
   }
 
   @HostBinding("class.mdl-select--floating-label")
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input("floating-label")
-  set isFloatingLabel(value: boolean) {
+  set isFloatingLabel(value: boolean | string) {
     this.misFloatingLabel = toBoolean(value);
   }
 
   @HostListener("keydown", ["$event"])
   public onKeyDown($event: KeyboardEvent): void {
-    if (!this.disabled && this.popoverComponent.isVisible && !this.multiple) {
+    if (!this.disabled && this.popoverComponent?.isVisible && !this.multiple) {
       if (isKey($event, KEYS.upArrow)) {
         this.onArrow($event, -1);
       } else if (isKey($event, KEYS.downArrow)) {
@@ -148,7 +151,7 @@ export class MdlSelectComponent
         inputField.value = this.text;
       }
       inputField.blur();
-      this.popoverComponent.hide();
+      this.popoverComponent?.hide();
     } else if (
       this.autocomplete &&
       !isKey($event, KEYS.downArrow, KEYS.upArrow)
@@ -162,82 +165,84 @@ export class MdlSelectComponent
 
   ngAfterContentInit(): void {
     this.bindOptions();
-    this.renderValue(this.ngModel);
+    this.renderValue(this.internalModel);
     this.optionComponents.changes.subscribe(() => {
       this.bindOptions();
-      this.renderValue(this.ngModel);
+      this.renderValue(this.internalModel);
     });
-    this.popoverComponent.onShow.subscribe(() => this.onOpen());
-    this.popoverComponent.onHide.subscribe(() => this.onClose());
+    this.popoverComponent?.onShow.subscribe(() => this.onOpen());
+    this.popoverComponent?.onHide.subscribe(() => this.onClose());
   }
 
   ngAfterViewInit(): void {
     this.selectElement = this.elementRef.nativeElement as HTMLElement;
-    this.popoverElement = this.popoverComponent.elementRef
+    this.popoverElement = this.popoverComponent?.elementRef
       .nativeElement as HTMLElement;
   }
 
   public isDirty(): boolean {
-    return Boolean(this.selectInput.nativeElement.value);
+    return Boolean(this.selectInput?.nativeElement.value);
   }
 
   // rebind options and reset value in connected select
   reset(resetValue: boolean = true): void {
     if (resetValue && !this.isEmpty()) {
-      this.ngModel = this.multiple ? [] : "";
-      this.onChange(this.ngModel);
-      this.change.emit(this.ngModel);
-      this.renderValue(this.ngModel);
+      this.internalModel = this.multiple ? [] : "";
+      this.onChange(this.internalModel);
+      this.change.emit(this.internalModel);
+      this.renderValue(this.internalModel);
     }
   }
 
   toggle($event: Event): void {
     if (!this.disabled) {
       $event.stopPropagation();
-      this.popoverComponent.toggle($event);
+      this.popoverComponent?.toggle($event);
     }
   }
 
   onFocus($event: Event): void {
-    if (!this.popoverComponent.isVisible) {
+    if (!this.popoverComponent?.isVisible) {
       setTimeout(() => {
-        this.popoverComponent.show($event);
-        this.selectInput.nativeElement.focus();
+        this.popoverComponent?.show($event);
+        this.selectInput?.nativeElement.focus();
       }, 200);
     }
   }
 
   onInputFocus(): void {
     if (this.autocomplete) {
-      this.selectInput.nativeElement.select();
+      this.selectInput?.nativeElement.select();
     }
   }
 
-  public writeValue(value: string | string[]): void {
+  public writeValue(value: string | string[] | undefined): void {
     if (this.multiple) {
-      this.ngModel = this.ngModel || [];
-      if (!value || this.ngModel === value) {
+      this.internalModel = this.internalModel || [];
+      if (!value || this.internalModel === value) {
         // skip ngModel update when undefined value or multiple selects initialized with same array
       } else if (Array.isArray(value)) {
-        this.ngModel = uniq((this.ngModel as string[]).concat(value));
+        this.internalModel = uniq(
+          (this.internalModel as string[]).concat(value)
+        );
       } else if (
-        (this.ngModel as string[])
+        (this.internalModel as string[])
           .map((v: string) => stringifyValue(v))
           .indexOf(stringifyValue(value)) !== -1
       ) {
-        this.ngModel = [
-          ...(this.ngModel as string[]).filter(
+        this.internalModel = [
+          ...(this.internalModel as string[]).filter(
             (v: string) => stringifyValue(v) !== stringifyValue(value)
           ),
         ];
       } else if (!!value) {
-        this.ngModel = [...(this.ngModel as string[]), value];
+        this.internalModel = [...(this.internalModel as string[]), value];
       }
     } else {
-      this.ngModel = value;
+      this.internalModel = value;
     }
-    this.onChange(this.ngModel);
-    this.renderValue(this.ngModel);
+    this.onChange(this.internalModel);
+    this.renderValue(this.internalModel);
   }
 
   registerOnChange(fn: (value: unknown) => void): void {
@@ -256,18 +261,19 @@ export class MdlSelectComponent
     const currentOption = this.getCurrentOption();
     const autoSelectedValue = this.getAutoSelection();
     const value =
-      autoSelectedValue || (currentOption ? currentOption.value : this.ngModel);
+      autoSelectedValue ||
+      (currentOption ? currentOption.value : this.internalModel);
 
     this.resetText();
 
-    if (!isEqual(this.ngModel, value)) {
+    if (!isEqual(this.internalModel, value)) {
       this.writeValue(value);
       this.change.emit(value);
     }
   }
 
   private resetText() {
-    this.text = this.selectInput.nativeElement.value;
+    this.text = this.selectInput?.nativeElement.value;
     this.changeDetectionRef.detectChanges();
   }
 
@@ -287,11 +293,11 @@ export class MdlSelectComponent
     $event.preventDefault();
   }
 
-  private getAutoSelection(): string {
+  private getAutoSelection(): string | null | undefined {
     const filteredOptions = this.optionComponents
       .filter(({ disabled }) => !disabled)
       .filter((option) =>
-        option.text.toLowerCase().startsWith(this.searchQuery)
+        option.text?.toLowerCase().startsWith(this.searchQuery)
       );
 
     const selectedOption = this.optionComponents.find(
@@ -299,11 +305,12 @@ export class MdlSelectComponent
     );
 
     if (filteredOptions.length > 0) {
-      const selectedOptionInFiltered =
-        filteredOptions.indexOf(selectedOption) !== -1;
-
-      if (!selectedOptionInFiltered && !filteredOptions[0].selected) {
-        return filteredOptions[0].value;
+      if (selectedOption instanceof MdlOptionComponent) {
+        const selectedOptionInFiltered =
+          filteredOptions.indexOf(selectedOption) !== -1;
+        if (!selectedOptionInFiltered && !filteredOptions[0].selected) {
+          return filteredOptions[0]?.value;
+        }
       }
     }
 
@@ -315,21 +322,24 @@ export class MdlSelectComponent
       .toArray()
       .filter(({ disabled }) => !disabled);
     const selectedOption = arr.find((option) => option.selected);
-    const selectedOptionIndex = arr.indexOf(selectedOption);
-    const optionForSelection =
-      selectedOption !== null
-        ? arr[selectedOptionIndex + offset]
-        : arr[offset > 0 ? -1 : 0];
+    if (selectedOption instanceof MdlOptionComponent) {
+      const selectedOptionIndex = arr.indexOf(selectedOption);
 
-    if (optionForSelection) {
-      const value = optionForSelection.value;
-      this.selectValue(value);
+      const optionForSelection =
+        selectedOption !== null
+          ? arr[selectedOptionIndex + offset]
+          : arr[offset > 0 ? -1 : 0];
+
+      if (optionForSelection) {
+        const value = optionForSelection.value;
+        this.selectValue(value);
+      }
     }
 
     $event.preventDefault();
   }
 
-  private selectValue(value: string | string[]) {
+  private selectValue(value: string | string[] | undefined) {
     this.scrollToValue(value);
 
     if (this.optionComponents) {
@@ -340,7 +350,7 @@ export class MdlSelectComponent
   }
 
   private isEmpty() {
-    return this.multiple ? !this.ngModel.length : !this.ngModel;
+    return this.multiple ? !this.internalModel?.length : !this.internalModel;
   }
 
   private bindOptions() {
@@ -350,15 +360,14 @@ export class MdlSelectComponent
         selectOptionComponent.onSelect = this.onSelect.bind(this);
 
         if (selectOptionComponent.value != null) {
-          this.textByValue[
-            stringifyValue(selectOptionComponent.value)
-          ] = selectOptionComponent.contentWrapper.nativeElement.textContent.trim();
+          this.textByValue[stringifyValue(selectOptionComponent.value)] =
+            selectOptionComponent?.contentWrapper?.nativeElement.textContent.trim();
         }
       }
     );
   }
 
-  private renderValue(value: string | string[]) {
+  private renderValue(value: string | string[] | undefined) {
     if (this.multiple) {
       this.text = ((value as string[]) || [])
         .map((valueItem: string) => this.textByValue[stringifyValue(valueItem)])
@@ -381,23 +390,25 @@ export class MdlSelectComponent
   }
 
   private onOpen() {
-    if (!this.disabled) {
+    if (!this.disabled && this.popoverElement) {
       this.popoverElement.style.visibility = "hidden";
 
       setTimeout(() => {
         this.focused = true;
-        this.selectValue(this.ngModel);
+        this.selectValue(this.internalModel);
         this.tryToUpdateDirection();
-        this.popoverElement.style.visibility = "visible";
+        if (this.popoverElement) {
+          this.popoverElement.style.visibility = "visible";
+        }
       });
     }
   }
 
   private tryToUpdateDirection() {
-    const targetRect = this.selectElement.getBoundingClientRect();
+    const targetRect = this.selectElement?.getBoundingClientRect();
     const viewHeight = window.innerHeight;
-    const height = this.popoverElement.offsetHeight;
-    if (height) {
+    const height = this.popoverElement?.offsetHeight;
+    if (height && targetRect) {
       const bottomSpaceAvailable = viewHeight - targetRect.bottom;
       this.directionUp = bottomSpaceAvailable < height;
       this.changeDetectionRef.markForCheck();
@@ -407,10 +418,14 @@ export class MdlSelectComponent
   private onClose() {
     if (!this.disabled) {
       this.focused = false;
-      this.selectValue(this.ngModel);
-      this.selectInput.nativeElement.value = this.text;
-      this.popoverElement.style.visibility = "hidden";
-      this.blur.emit(this.ngModel);
+      this.selectValue(this.internalModel);
+      if (this.selectInput) {
+        this.selectInput.nativeElement.value = this.text;
+      }
+      if (this.popoverElement) {
+        this.popoverElement.style.visibility = "hidden";
+      }
+      this.blur.emit(this.internalModel);
     }
   }
 
@@ -418,30 +433,33 @@ export class MdlSelectComponent
     if (!this.multiple) {
       this.scrollToValue(value);
     }
-    if (!isEqual(this.ngModel, value)) {
+    if (!isEqual(this.internalModel, value)) {
       this.writeValue(value);
       this.change.emit(value);
     }
   }
 
-  private scrollToValue(value: string | string[]) {
-    const popover: HTMLElement = this.popoverComponent.elementRef.nativeElement;
-    const list: HTMLElement = popover.querySelector(".mdl-list");
+  private scrollToValue(value: string | string[] | undefined) {
+    const popover: HTMLElement =
+      this.popoverComponent?.elementRef.nativeElement;
+    const list: HTMLElement | null = popover.querySelector(".mdl-list");
 
     const optionComponent = this.optionComponents.find(
       (o) => o.value === value
     );
     const optionElement: HTMLElement = optionComponent
-      ? optionComponent.contentWrapper.nativeElement
+      ? optionComponent?.contentWrapper?.nativeElement
       : null;
 
     if (optionElement) {
       const selectedItemElem = optionElement.parentElement;
-      const computedScrollTop =
-        selectedItemElem.offsetTop -
-        list.clientHeight / 2 +
-        selectedItemElem.clientHeight / 2;
-      list.scrollTop = Math.max(computedScrollTop, 0);
+      if (selectedItemElem && list) {
+        const computedScrollTop =
+          selectedItemElem.offsetTop -
+          list.clientHeight / 2 +
+          selectedItemElem.clientHeight / 2;
+        list.scrollTop = Math.max(computedScrollTop, 0);
+      }
     }
   }
 }

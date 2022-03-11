@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { flyInOutTrigger } from "../animations/flyInOutTrigger-animation";
 import {
   FormBuilder,
@@ -20,9 +20,7 @@ const emailValidator = Validators.pattern(
   animations: [flyInOutTrigger],
   templateUrl: "reactiveform.component.html",
 })
-export class ReactiveFormsDemoComponent
-  extends AbstractDemoComponent
-  implements OnInit {
+export class ReactiveFormsDemoComponent extends AbstractDemoComponent {
   public disableForm = false;
   public form: FormGroup;
   public firstName = new FormControl("");
@@ -41,10 +39,6 @@ export class ReactiveFormsDemoComponent
     private fb: FormBuilder
   ) {
     super(router, route, titleService);
-  }
-
-  public ngOnInit(): void {
-    super.ngOnInit();
     this.form = this.fb.group({
       firstName: this.firstName,
       lastName: this.lastName,

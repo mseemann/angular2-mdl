@@ -33,13 +33,13 @@ const ANIMATION_TIME = 250;
   encapsulation: ViewEncapsulation.None,
 })
 export class MdlSnackbarComponent {
-  message: string;
-  actionText: string;
+  message: string | undefined;
+  actionText: string | undefined;
   showIt = false;
-  onAction: () => void;
+  onAction: (() => void) | undefined;
 
   onClick(): void {
-    this.onAction();
+    this.onAction?.();
   }
 
   isActive(): boolean {
@@ -68,7 +68,7 @@ export class MdlSnackbarComponent {
 
     // fire after the view animation is done
     setTimeout(() => {
-      result.next(null);
+      result.next();
       result.complete();
     }, ANIMATION_TIME);
 
@@ -91,18 +91,21 @@ export interface IMdlSnackbarMessage {
 })
 export class MdlSnackbarService {
   private readonly cFactory: ComponentFactory<MdlSnackbarComponent>;
-  private previousSnack: {
-    component: MdlSnackbarComponent;
-    cRef: ComponentRef<MdlSnackbarComponent>;
-  };
+  private previousSnack:
+    | {
+        component: MdlSnackbarComponent;
+        cRef: ComponentRef<MdlSnackbarComponent>;
+      }
+    | undefined;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private dialogOutletService: MdlDialogOutletService
   ) {
-    this.cFactory = this.componentFactoryResolver.resolveComponentFactory(
-      MdlSnackbarComponent
-    );
+    this.cFactory =
+      this.componentFactoryResolver.resolveComponentFactory(
+        MdlSnackbarComponent
+      );
   }
 
   showToast(
@@ -158,14 +161,15 @@ export class MdlSnackbarService {
       mdlSnackbarComponent.onAction = () => {
         mdlSnackbarComponent.hide().subscribe(() => {
           cRef.destroy();
-          snackbarMessage.action.handler();
+          snackbarMessage.action?.handler();
         });
       };
     } else {
       this.hideAndDestroySnack(mdlSnackbarComponent, cRef, optTimeout);
     }
 
-    const result: Subject<MdlSnackbarComponent> = new Subject<MdlSnackbarComponent>();
+    const result: Subject<MdlSnackbarComponent> =
+      new Subject<MdlSnackbarComponent>();
 
     mdlSnackbarComponent.show().subscribe(() => {
       result.next(mdlSnackbarComponent);
@@ -175,7 +179,11 @@ export class MdlSnackbarService {
     return result.asObservable();
   }
 
-  private hideAndDestroySnack(component, componentRef, timeOut) {
+  private hideAndDestroySnack(
+    component: MdlSnackbarComponent,
+    componentRef: ComponentRef<MdlSnackbarComponent>,
+    timeOut: number
+  ) {
     setTimeout(() => {
       component.hide().subscribe(() => {
         componentRef.destroy();

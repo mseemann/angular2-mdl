@@ -39,24 +39,24 @@ const template = `
            <thead>
            <tr>
               <th *ngIf="selectable">
-                 <mdl-checkbox mdl-ripple [ngModel]="isAllSelected()" (ngModelChange)="toogleAll()"></mdl-checkbox>
+                 <mdl-checkbox mdl-ripple [ngModel]="isAllSelected()" (ngModelChange)="toggleAll()"></mdl-checkbox>
               </th>
-              <th *ngFor="let column of model.columns"
+              <th *ngFor="let column of model?.columns"
                   [ngClass]="{'mdl-data-table__cell--non-numeric': !column.numeric}">
                  {{column.name}}
               </th>
            </tr>
            </thead>
            <tbody>
-           <tr *ngFor="let data of model.data; let i = index" [ngClass]="{'is-selected': selectable && data.selected}">
+           <tr *ngFor="let data of model?.data; let i = index" [ngClass]="{'is-selected': selectable && data.selected}">
               <td *ngIf="selectable">
                  <mdl-checkbox mdl-ripple
                       [(ngModel)]="data.selected"
                       (ngModelChange)="selectionChanged()"></mdl-checkbox>
               </td>
-              <td *ngFor="let column of model.columns"
+              <td *ngFor="let column of model?.columns"
                   [ngClass]="{'mdl-data-table__cell--non-numeric': !column.numeric}"
-                  [innerHTML]="data[column.key]">
+                  [innerHTML]="$any(data)[column.key]">
               </td>
            </tr>
            </tbody>
@@ -77,8 +77,8 @@ const styles = `
 })
 export class MdlTableComponent {
   // eslint-disable-next-line
-  @Input('table-model')
-  model: IMdlTableModel;
+  @Input("table-model")
+  model: IMdlTableModel | undefined;
 
   selectable = false;
 
@@ -87,7 +87,7 @@ export class MdlTableComponent {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  toogleAll(): void {}
+  toggleAll(): void {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   selectionChanged(): void {}
@@ -101,34 +101,34 @@ export class MdlTableComponent {
 })
 export class MdlSelectableTableComponent extends MdlTableComponent {
   // eslint-disable-next-line
-  @Input('table-model')
-  model: IMdlTableModel;
+  @Input("table-model")
+  override model: IMdlTableModel | undefined;
   // eslint-disable-next-line
-  @Input('table-model-selected')
-  selected: IMdlTableModelItem[];
+  @Input("table-model-selected")
+  selected: IMdlTableModelItem[] = [];
   // eslint-disable-next-line
-  @Output('table-model-selectionChanged')
+  @Output("table-model-selectionChanged")
   selectionChange = new EventEmitter();
 
-  public selectable = true;
+  public override selectable = true;
   public allSelected = false;
 
-  isAllSelected(): boolean {
-    return this.model.data.every((data) => data.selected);
+  override isAllSelected(): boolean {
+    return this.model?.data.every((data) => data.selected) ?? false;
   }
 
-  toogleAll(): void {
+  override toggleAll(): void {
     const selected = !this.isAllSelected();
-    this.model.data.forEach((data) => (data.selected = selected));
+    this.model?.data.forEach((data) => (data.selected = selected));
     this.updateSelected();
   }
 
-  selectionChanged(): void {
+  override selectionChanged(): void {
     this.updateSelected();
   }
 
   private updateSelected() {
-    this.selected = this.model.data.filter((data) => data.selected);
+    this.selected = this.model?.data.filter((data) => data.selected) ?? [];
     this.selectionChange.emit({ value: this.selected });
   }
 }

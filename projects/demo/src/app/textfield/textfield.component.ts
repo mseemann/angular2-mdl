@@ -12,16 +12,19 @@ import { MdlTextFieldComponent } from "@angular-mdl/core";
 })
 export class TextFieldDemoComponent
   extends AbstractDemoComponent
-  implements AfterViewInit {
-  @ViewChild("theFirstTextfield", { static: true }) tf: MdlTextFieldComponent;
-  text1: string;
-  text2: string;
-  text3: string;
-  text4: string;
-  text5: string;
-  text6: string;
+  implements AfterViewInit
+{
+  @ViewChild("theFirstTextfield", { static: true }) tf:
+    | MdlTextFieldComponent
+    | undefined;
+  text1: string | undefined;
+  text2: string | undefined;
+  text3: string | undefined;
+  text4: string | undefined;
+  text5: string | undefined;
+  text6: string | undefined;
 
-  public number1: number = null;
+  public number1: number | null = null;
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
@@ -44,6 +47,6 @@ export class TextFieldDemoComponent
   }
 
   public ngAfterViewInit(): void {
-    this.tf.setFocus();
+    this.tf?.setFocus();
   }
 }

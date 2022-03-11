@@ -4,11 +4,11 @@ import { MdlBadgeModule } from "./mdl-badge.module";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-badge',
+  selector: "test-badge",
   template: "replaced by the test",
 })
 class MdlTestBadgeComponent {
-  badgeCount = 1;
+  badgeCount: number | undefined | null = 1;
 }
 
 describe("Directive: MdlBadge", () => {

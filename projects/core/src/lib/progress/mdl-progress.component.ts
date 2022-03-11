@@ -40,8 +40,8 @@ export class MdlProgressComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.buffer) {
-      this.setBuffer(changes.buffer.currentValue);
+    if (changes["buffer"]) {
+      this.setBuffer(changes["buffer"].currentValue);
     }
   }
 

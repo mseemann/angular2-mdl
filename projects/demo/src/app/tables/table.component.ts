@@ -20,7 +20,8 @@ export interface ITableItem extends IMdlTableModelItem {
 })
 export class TableDemoComponent
   extends AbstractDemoComponent
-  implements OnInit {
+  implements OnInit
+{
   public tableModel = new MdlDefaultTableModel([
     { key: "material", name: "Material" },
     { key: "quantity", name: "Quantity", numeric: true },
@@ -53,7 +54,7 @@ export class TableDemoComponent
     super(router, route, titleService);
   }
 
-  public ngOnInit(): void {
+  public override ngOnInit(): void {
     super.ngOnInit();
     this.tableModel.addAll(this.tableData);
     this.selected = this.tableData.filter((data) => data.selected);

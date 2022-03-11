@@ -12,7 +12,7 @@ import { AbstractDemoComponent } from "../abstract-demo.component";
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent extends AbstractDemoComponent {
-  theText: string;
+  theText = "";
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);

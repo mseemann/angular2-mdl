@@ -20,10 +20,12 @@ export class MdlOptionComponent implements AfterViewInit {
   disabled = false;
   // eslint-disable-next-line
   @Input("value")
-  value: string;
-  @ViewChild("contentWrapper", { static: true }) contentWrapper: ElementRef;
+  value: string | any | undefined;
+  @ViewChild("contentWrapper", { static: true }) contentWrapper:
+    | ElementRef
+    | undefined;
   @HostBinding("class.mdl-option__container") isOptionConatiner = true;
-  text: string;
+  text: string | undefined;
   multiple = false;
   selected = false;
   onSelect = Function.prototype;
@@ -48,7 +50,7 @@ export class MdlOptionComponent implements AfterViewInit {
     this.changeDetectionRef.detectChanges();
   }
 
-  updateSelected(value: string[] | string): void {
+  updateSelected(value: string[] | string | undefined): void {
     if (this.multiple) {
       this.selected =
         ((value as string[]) || [])
@@ -64,6 +66,6 @@ export class MdlOptionComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.text = this.contentWrapper.nativeElement.textContent.trim();
+    this.text = this.contentWrapper?.nativeElement.textContent.trim();
   }
 }

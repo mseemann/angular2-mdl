@@ -11,10 +11,10 @@ const DATA_BADE_ATTR = "data-badge";
 
 @Directive({
   // eslint-disable-next-line
-  selector: '[mdl-badge]'
+  selector: "[mdl-badge]",
 })
 export class MdlBadgeDirective implements OnChanges {
-  @Input("mdl-badge") public mdlBadgeContent: string;
+  @Input("mdl-badge") public mdlBadgeContent: number | string | undefined;
 
   @HostBinding("class.mdl-badge") isBadge = true;
 
@@ -32,13 +32,17 @@ export class MdlBadgeDirective implements OnChanges {
       this.renderer.removeAttribute(this.el, DATA_BADE_ATTR);
       return;
     }
-    this.renderer.setAttribute(this.el, DATA_BADE_ATTR, this.mdlBadgeContent);
+    this.renderer.setAttribute(
+      this.el,
+      DATA_BADE_ATTR,
+      String(this.mdlBadgeContent)
+    );
   }
 }
 
 @Directive({
   // eslint-disable-next-line
-  selector: '[mdl-badge-overlap]'
+  selector: "[mdl-badge-overlap]",
 })
 export class MdlBadgeOverlapDirective {
   @HostBinding("class.mdl-badge--overlap") isOverlapping = true;
@@ -46,7 +50,7 @@ export class MdlBadgeOverlapDirective {
 
 @Directive({
   // eslint-disable-next-line
-  selector: '[mdl-badge-no-background]'
+  selector: "[mdl-badge-no-background]",
 })
 export class MdlBadgeNoBackgroundDirective {
   @HostBinding("class.mdl-badge--no-background") isNoBackground = true;

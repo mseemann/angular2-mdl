@@ -19,7 +19,7 @@ moment.locale("en");
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-component',
+  selector: "test-component",
   template: ` <dialog-outlet></dialog-outlet> `,
 })
 class MdlTestComponent {}
@@ -47,9 +47,8 @@ xdescribe("DatePickerService", () => {
   it(
     "should instantiate the service",
     waitForAsync(() => {
-      const service: MdlDatePickerService = TestBed.inject(
-        MdlDatePickerService
-      );
+      const service: MdlDatePickerService =
+        TestBed.inject(MdlDatePickerService);
       expect(service).toBeDefined();
     })
   );

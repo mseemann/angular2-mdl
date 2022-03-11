@@ -8,7 +8,7 @@ import { DOCUMENT } from "@angular/common";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-icon',
+  selector: "test-icon",
   template: ` <mdl-slider
     [min]="min"
     [max]="max"
@@ -72,8 +72,9 @@ describe("Component: MdlSlider", () => {
       const fixture = TestBed.createComponent(MdlTestSliderComponent);
       fixture.detectChanges();
 
-      const hostElement = fixture.debugElement.query(By.css("mdl-slider"))
-        .nativeElement;
+      const hostElement = fixture.debugElement.query(
+        By.css("mdl-slider")
+      ).nativeElement;
 
       spyOn(hostElement, "blur");
 
@@ -93,11 +94,13 @@ describe("Component: MdlSlider", () => {
       const fixture = TestBed.createComponent(MdlTestSliderComponent);
       fixture.detectChanges();
 
-      const hostElement = fixture.debugElement.query(By.css("mdl-slider"))
-        .nativeElement;
+      const hostElement = fixture.debugElement.query(
+        By.css("mdl-slider")
+      ).nativeElement;
 
-      const inputElement = fixture.debugElement.query(By.css("input"))
-        .nativeElement;
+      const inputElement = fixture.debugElement.query(
+        By.css("input")
+      ).nativeElement;
 
       spyOn(inputElement, "dispatchEvent").and.callThrough();
 
@@ -117,8 +120,9 @@ describe("Component: MdlSlider", () => {
       const fixture = TestBed.createComponent(MdlTestSliderComponent);
       fixture.detectChanges();
 
-      const inputElement = fixture.debugElement.query(By.css("input"))
-        .nativeElement;
+      const inputElement = fixture.debugElement.query(
+        By.css("input")
+      ).nativeElement;
 
       spyOn(inputElement, "dispatchEvent").and.callThrough();
 

@@ -41,7 +41,7 @@ export class MdlMenuItemComponent {
     return this.disabledIntern;
   }
 
-  set disabled(value: boolean) {
+  set disabled(value: boolean | string) {
     this.disabledIntern = toBoolean(value);
   }
 

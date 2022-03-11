@@ -17,7 +17,7 @@ import { MdlRippleModule } from "../ripple/mdl-ripple.module";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-layout',
+  selector: "test-layout",
   template: "replaced by the test",
 })
 class MdlTestLayoutComponent {
@@ -25,15 +25,15 @@ class MdlTestLayoutComponent {
 
   selectedIndexOutput = -1;
 
-  tabChanged($event) {
+  tabChanged($event: any) {
     this.selectedIndexOutput = $event.index;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
-  tabMouseover($event) {}
+  tabMouseover($event: any) {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
-  tabMouseout($event) {}
+  tabMouseout($event: any) {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onDrawerClose() {}
@@ -137,7 +137,7 @@ describe("Component: MdlLayout", () => {
 
       // dirty hack to provide an event with keyCode
       // eslint-disable-next-line
-    const e = new Event('keydown') as any;
+      const e = new Event("keydown") as any;
       e.keyCode = 27;
       obfuscatorElement.dispatchEvent(e);
 
@@ -171,7 +171,7 @@ describe("Component: MdlLayout", () => {
 
     layoutComponent.ngOnDestroy();
 
-    expect(layoutComponent.scrollListener).toBeNull();
+    expect(layoutComponent.scrollListener).toBeUndefined();
   });
 
   it("should safely unregister the scroll listener if no content is present", (done) => {
@@ -223,8 +223,9 @@ describe("Component: MdlLayout", () => {
     // small screen
     layoutComponent.onQueryChange(true);
     fixture.detectChanges();
-    const mdlLayoutElement = fixture.debugElement.query(By.css(".mdl-layout"))
-      .nativeElement;
+    const mdlLayoutElement = fixture.debugElement.query(
+      By.css(".mdl-layout")
+    ).nativeElement;
     expect(mdlLayoutElement.classList.contains("is-small-screen")).toBe(true);
 
     // large screen
@@ -656,8 +657,9 @@ describe("Component: MdlLayout", () => {
     spyOn(testComponent, "tabMouseover");
     spyOn(testComponent, "tabMouseout");
 
-    const tab1Elem = fixture.debugElement.query(By.css(".mdl-layout__tab"))
-      .nativeElement;
+    const tab1Elem = fixture.debugElement.query(
+      By.css(".mdl-layout__tab")
+    ).nativeElement;
 
     const eventMouseover = new Event("mouseover", {});
     tab1Elem.dispatchEvent(eventMouseover);

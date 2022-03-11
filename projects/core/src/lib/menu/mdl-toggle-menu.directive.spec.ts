@@ -8,7 +8,7 @@ import { MdlButtonModule } from "../button/mdl-button.module";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-menu',
+  selector: "test-menu",
   template: `
     <button mdl-button [mdl-toggle-menu]="m"></button>
     <mdl-menu #m="mdlMenu">
@@ -35,8 +35,9 @@ describe("Component: MdlToggleMenu-Directive", () => {
       By.directive(MdlButtonComponent)
     ).nativeElement;
 
-    const menu = fixture.debugElement.query(By.directive(MdlMenuComponent))
-      .componentInstance;
+    const menu = fixture.debugElement.query(
+      By.directive(MdlMenuComponent)
+    ).componentInstance;
     spyOn(menu, "show").and.callThrough();
     spyOn(menu, "hide");
 

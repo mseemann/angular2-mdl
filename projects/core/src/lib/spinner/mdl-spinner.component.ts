@@ -43,7 +43,7 @@ export class MdlSpinnerComponent {
     return this.activeIntern;
   }
 
-  set active(value: boolean) {
+  set active(value: boolean | undefined | string) {
     this.activeIntern = toBoolean(value);
   }
 
@@ -53,7 +53,9 @@ export class MdlSpinnerComponent {
     return this.singleColorIntern;
   }
 
-  set singleColor(value: boolean) {
+  set singleColor(value: boolean | string | undefined) {
+    // FIXME check that this is true if the input property is present
+    //  check also for the other properties - that are toBoolean
     this.singleColorIntern = toBoolean(value);
   }
 }

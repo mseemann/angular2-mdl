@@ -7,7 +7,7 @@ import { MdlDialogOutletModule } from "../dialog-outlet/mdl-dialog-outlet.module
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-component',
+  selector: "test-component",
   template: `
     <mdl-alert
       #alert="mdlAlert"
@@ -38,8 +38,9 @@ describe("MdlAlert", () => {
     const fixture = TestBed.createComponent(MdlTestComponent);
     fixture.detectChanges();
 
-    const mdlAlert = fixture.debugElement.query(By.directive(MdlAlertComponent))
-      .componentInstance;
+    const mdlAlert = fixture.debugElement.query(
+      By.directive(MdlAlertComponent)
+    ).componentInstance;
 
     mdlAlert.show();
     fixture.detectChanges();
@@ -50,7 +51,7 @@ describe("MdlAlert", () => {
     const ne: HTMLElement = fixture.debugElement.nativeElement;
     // close the dialog by clicking the ok button
     const buttonEl = ne.querySelector("button");
-    buttonEl.click();
+    buttonEl?.click();
 
     fixture.detectChanges();
     await fixture.whenStable();

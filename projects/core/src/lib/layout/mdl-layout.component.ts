@@ -23,7 +23,7 @@ import { EventManager } from "@angular/platform-browser";
 import { MdlLayoutHeaderComponent } from "./mdl-layout-header.component";
 import { MdlLayoutDrawerComponent } from "./mdl-layout-drawer.component";
 import { MdlLayoutContentComponent } from "./mdl-layout-content.component";
-import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import { BehaviorSubject, Observable, Subject, Subscription } from "rxjs";
 import { toBoolean } from "../common/boolean-property";
 import { toNumber } from "../common/number.property";
 import { MdlError } from "../common/mdl-error";
@@ -65,8 +65,11 @@ export class MdLUnsupportedLayoutTypeError extends MdlError {
   providedIn: "root",
 })
 export class MdlScreenSizeService {
-  private sizesSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  private windowMediaQueryListener: () => void;
+  private sizesSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
+
+  private windowMediaQueryListener: (() => void) | null = null;
 
   constructor(
     ngZone: NgZone,
@@ -157,15 +160,16 @@ export class MdlScreenSizeService {
   encapsulation: ViewEncapsulation.None,
 })
 export class MdlLayoutComponent
-  implements AfterContentInit, OnDestroy, OnChanges {
+  implements AfterContentInit, OnDestroy, OnChanges
+{
   @ContentChild(MdlLayoutHeaderComponent)
-  header;
+  header: MdlLayoutHeaderComponent | undefined;
   // will be set to undefined, if not a direct child or not present in 2.0.0 i
   // n 2.0.1 it is now the grand child drawer again :(
   @ContentChildren(MdlLayoutDrawerComponent, { descendants: false })
-  drawers: QueryList<MdlLayoutDrawerComponent>;
+  drawers: QueryList<MdlLayoutDrawerComponent> = new QueryList<MdlLayoutDrawerComponent>();
   @ContentChild(MdlLayoutContentComponent, { static: true })
-  content;
+  content: MdlLayoutContentComponent | undefined;
 
   // eslint-disable-next-line
   @Input("mdl-layout-mode")
@@ -189,15 +193,17 @@ export class MdlLayoutComponent
   onClose = new EventEmitter<void>();
   isDrawerVisible = false;
   isSmallScreen = false;
-  private scrollListener: (
-    target?: "window" | "document" | "body" | unknown,
-    eventName?: string,
-    callback?: (event: Event) => boolean | void
-  ) => void;
+  private scrollListener:
+    | ((
+        target?: "window" | "document" | "body" | unknown,
+        eventName?: string,
+        callback?: (event: Event) => boolean | void
+      ) => void)
+    | undefined;
   private isFixedDrawerIntern = false;
   private isFixedHeaderIntern = false;
   private isSeamedIntern = false;
-  private selectedIndexIntern = 0;
+  private selectedIndexIntern: number | null | undefined = 0;
   private isNoDrawerIntern = false;
 
   private subscriptions: Subscription[] = [];
@@ -215,7 +221,7 @@ export class MdlLayoutComponent
     return this.isFixedDrawerIntern;
   }
 
-  set isFixedDrawer(value: boolean) {
+  set isFixedDrawer(value: boolean | string) {
     this.isFixedDrawerIntern = toBoolean(value);
   }
 
@@ -224,7 +230,7 @@ export class MdlLayoutComponent
     return this.isFixedHeaderIntern;
   }
 
-  set isFixedHeader(value: boolean) {
+  set isFixedHeader(value: boolean | string) {
     this.isFixedHeaderIntern = toBoolean(value);
   }
 
@@ -233,16 +239,16 @@ export class MdlLayoutComponent
     return this.isSeamedIntern;
   }
 
-  set isSeamed(value: boolean) {
+  set isSeamed(value: boolean | string) {
     this.isSeamedIntern = toBoolean(value);
   }
 
   @Input("mdl-layout-tab-active-index")
   get selectedIndex(): number {
-    return this.selectedIndexIntern;
+    return this.selectedIndexIntern ? this.selectedIndexIntern : 0;
   }
 
-  set selectedIndex(value: number) {
+  set selectedIndex(value: number | undefined) {
     this.selectedIndexIntern = toNumber(value);
   }
 
@@ -251,7 +257,7 @@ export class MdlLayoutComponent
     return this.isNoDrawerIntern;
   }
 
-  set isNoDrawer(value: boolean) {
+  set isNoDrawer(value: boolean | string) {
     this.isNoDrawerIntern = toBoolean(value);
   }
 
@@ -291,28 +297,28 @@ export class MdlLayoutComponent
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.selectedIndex) {
+    if (changes["selectedIndex"]) {
       this.updateSelectedTabIndex();
     }
   }
 
   toggleDrawer(): void {
     this.isDrawerVisible = !this.isDrawerVisible;
-    if (this.drawers.length > 0) {
+    if (this.drawers && this.drawers.length > 0) {
       this.setDrawerVisible(this.isDrawerVisible);
     }
   }
 
   closeDrawer(): void {
     this.isDrawerVisible = false;
-    if (this.drawers.length > 0) {
+    if (this.drawers && this.drawers.length > 0) {
       this.setDrawerVisible(false);
     }
   }
 
   openDrawer(): void {
     this.isDrawerVisible = true;
-    if (this.drawers.length > 0) {
+    if (this.drawers && this.drawers.length > 0) {
       this.setDrawerVisible(true);
     }
   }
@@ -326,7 +332,7 @@ export class MdlLayoutComponent
   ngOnDestroy(): void {
     if (this.scrollListener) {
       this.scrollListener();
-      this.scrollListener = null;
+      this.scrollListener = undefined;
     }
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
@@ -344,11 +350,11 @@ export class MdlLayoutComponent
   }
 
   hasDrawer(): boolean {
-    return this.drawers.length > 0;
+    return !!(this.drawers && this.drawers.length > 0);
   }
 
   private tabSelected(tab: MdlLayoutTabPanelComponent) {
-    const index = this.header.tabs.toArray().indexOf(tab);
+    const index = this.header?.tabs.toArray().indexOf(tab);
     if (index !== this.selectedIndex) {
       this.selectedIndex = index;
       this.updateSelectedTabIndex();
@@ -357,12 +363,12 @@ export class MdlLayoutComponent
   }
 
   private onTabMouseover(tab: MdlLayoutTabPanelComponent) {
-    const index = this.header.tabs.toArray().indexOf(tab);
+    const index = this.header?.tabs.toArray().indexOf(tab);
     this.mouseoverTabEmitter.emit({ index });
   }
 
   private onTabMouseout(tab: MdlLayoutTabPanelComponent) {
-    const index = this.header.tabs.toArray().indexOf(tab);
+    const index = this.header?.tabs.toArray().indexOf(tab);
     this.mouseoutTabEmitter.emit({ index });
   }
 
@@ -371,7 +377,8 @@ export class MdlLayoutComponent
       this.header.tabs.forEach((tab) => (tab.isActive = false));
       if (
         this.header.tabs.toArray().length > 0 &&
-        this.selectedIndex < this.header.tabs.toArray().length
+        this.selectedIndex < this.header.tabs.toArray().length &&
+        this.selectedIndex !== -1
       ) {
         this.header.tabs.toArray()[this.selectedIndex].isActive = true;
       }
@@ -397,7 +404,7 @@ export class MdlLayoutComponent
         this.content.el,
         "scroll",
         () => {
-          this.onScroll(this.content.el.scrollTop);
+          this.onScroll(this.content?.el.scrollTop);
           return true;
         }
       );
@@ -408,25 +415,27 @@ export class MdlLayoutComponent
     }
   }
 
-  private onScroll(scrollTop) {
+  private onScroll(scrollTop: number | undefined) {
     if (this.mode !== WATERFALL) {
       return;
     }
 
-    if (this.header.isAnimating) {
+    if (this.header?.isAnimating) {
       return;
     }
 
     const headerVisible = !this.isSmallScreen || this.isFixedHeader;
-    if (scrollTop > 0 && !this.header.isCompact) {
-      this.header.isCompact = true;
-      if (headerVisible) {
-        this.header.isAnimating = true;
-      }
-    } else if (scrollTop <= 0 && this.header.isCompact) {
-      this.header.isCompact = false;
-      if (headerVisible) {
-        this.header.isAnimating = true;
+    if (this.header) {
+      if (scrollTop != null && scrollTop > 0 && !this.header.isCompact) {
+        this.header.isCompact = true;
+        if (headerVisible) {
+          this.header.isAnimating = true;
+        }
+      } else if (scrollTop != null && scrollTop <= 0 && this.header.isCompact) {
+        this.header.isCompact = false;
+        if (headerVisible) {
+          this.header.isAnimating = true;
+        }
       }
     }
   }

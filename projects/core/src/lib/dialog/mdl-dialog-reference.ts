@@ -20,7 +20,8 @@ export class MdlDialogReference {
    * Observable that emits, if the dialog was closed.
    * returns {Observable<void>}
    */
-  public onHide(): Observable<unknown> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public onHide(): Observable<any> {
     return this.internaleRef.onHide();
   }
 

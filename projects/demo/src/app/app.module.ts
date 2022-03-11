@@ -209,7 +209,7 @@ export class AppModule implements DoBootstrap {
       script.innerHTML = "";
       script.src = "https://buttons.github.io/buttons.js";
       const anyScriptTag = document.getElementsByTagName("script")[0];
-      anyScriptTag.parentNode.insertBefore(script, anyScriptTag);
+      anyScriptTag?.parentNode?.insertBefore(script, anyScriptTag);
     });
     appRef.bootstrap(AppComponent);
   }

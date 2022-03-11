@@ -17,7 +17,7 @@ export class MdlLayoutContentComponent {
   @HostBinding("class.mdl-layout__content")
   isContent = true;
   @ContentChildren(MdlLayoutTabPanelComponent)
-  tabs: QueryList<MdlLayoutTabPanelComponent>;
+  tabs: QueryList<MdlLayoutTabPanelComponent> = new QueryList<MdlLayoutTabPanelComponent>();
 
   el: HTMLElement;
 

@@ -1,7 +1,7 @@
 import { MdlDefaultTableModel } from "./mdl-table.component";
 
 describe("Component: MdlTableModel", () => {
-  let tableModel;
+  let tableModel: MdlDefaultTableModel | undefined;
 
   beforeEach(() => {
     tableModel = new MdlDefaultTableModel([
@@ -10,12 +10,12 @@ describe("Component: MdlTableModel", () => {
   });
 
   it("should be possible to access the columns", () => {
-    expect(tableModel.columns.length).toBe(1);
+    expect(tableModel?.columns.length).toBe(1);
   });
 
   it("should be possible to add tabel data", () => {
-    tableModel.addAll([{ selected: true }]);
+    tableModel?.addAll([{ selected: true }]);
 
-    expect(tableModel.data.length).toBe(1);
+    expect(tableModel?.data.length).toBe(1);
   });
 });

@@ -1,4 +1,4 @@
-import { TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { MdlCommonsModule } from "../common/mdl-common.module";
@@ -8,14 +8,14 @@ import { MdlMenuModule } from "../menu/mdl-menu.module";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-ripple',
+  selector: "test-ripple",
   template: "replaced by the test",
 })
 class MdlTestRippleComponent {
   protected doRipple = true;
 }
 
-const getFiytureForTemplate = (template) => {
+const getFixtureForTemplate = (template: string) => {
   TestBed.overrideComponent(MdlTestRippleComponent, { set: { template } });
   const fixture = TestBed.createComponent(MdlTestRippleComponent);
   fixture.detectChanges();
@@ -36,9 +36,13 @@ describe("Directive: MdlRipple", () => {
     });
   });
 
-  const getSpan1IfAny = (fixture, elementName: string) => {
-    const rippleTarget = fixture.debugElement.query(By.css(elementName))
-      .nativeElement;
+  const getSpan1IfAny = (
+    fixture: ComponentFixture<any>,
+    elementName: string
+  ) => {
+    const rippleTarget = fixture.debugElement.query(
+      By.css(elementName)
+    ).nativeElement;
     if (rippleTarget.children.length === 0) {
       return null;
     }
@@ -47,7 +51,7 @@ describe("Directive: MdlRipple", () => {
   };
 
   it("should add the ripple span elements if mdl-ripple is empty", () => {
-    const fixture = getFiytureForTemplate(
+    const fixture = getFixtureForTemplate(
       "<mdl-button mdl-ripple></mdl-button>"
     );
 
@@ -57,7 +61,7 @@ describe("Directive: MdlRipple", () => {
   });
 
   it("should add the ripple if mdl-ripple is set to true", () => {
-    const fixture = getFiytureForTemplate(
+    const fixture = getFixtureForTemplate(
       '<mdl-button [mdl-ripple]="true"></mdl-button>'
     );
 
@@ -67,7 +71,7 @@ describe("Directive: MdlRipple", () => {
   });
 
   it("should not add ripple if mdl-ripple is set to false", () => {
-    const fixture = getFiytureForTemplate(
+    const fixture = getFixtureForTemplate(
       '<mdl-button [mdl-ripple]="false"></mdl-button>'
     );
 
@@ -77,7 +81,7 @@ describe("Directive: MdlRipple", () => {
   });
 
   it("should remove the ripple if mdl-ripple is set to false", () => {
-    const fixture = getFiytureForTemplate(
+    const fixture = getFixtureForTemplate(
       '<mdl-checkbox [mdl-ripple]="doRipple"></mdl-checkbox>'
     );
 
@@ -93,7 +97,7 @@ describe("Directive: MdlRipple", () => {
   });
 
   it("should add the ripple to button", () => {
-    const fixture = getFiytureForTemplate("<button mdl-ripple></button>");
+    const fixture = getFixtureForTemplate("<button mdl-ripple></button>");
 
     const span1 = getSpan1IfAny(fixture, "button");
 
@@ -101,7 +105,7 @@ describe("Directive: MdlRipple", () => {
   });
 
   it("should add the ripple to mdl-radio", () => {
-    const fixture = getFiytureForTemplate("<mdl-radio mdl-ripple></mdl-radio>");
+    const fixture = getFixtureForTemplate("<mdl-radio mdl-ripple></mdl-radio>");
 
     const span1 = getSpan1IfAny(fixture, "mdl-radio");
 
@@ -109,7 +113,7 @@ describe("Directive: MdlRipple", () => {
   });
 
   it("should add the ripple to mdl-icon-toggle", () => {
-    const fixture = getFiytureForTemplate(
+    const fixture = getFixtureForTemplate(
       "<mdl-icon-toggle mdl-ripple></mdl-icon-toggle>"
     );
 
@@ -119,7 +123,7 @@ describe("Directive: MdlRipple", () => {
   });
 
   it("should add the ripple to mdl-switch", () => {
-    const fixture = getFiytureForTemplate(
+    const fixture = getFixtureForTemplate(
       " <mdl-switch mdl-ripple></mdl-switch>"
     );
 
@@ -129,7 +133,7 @@ describe("Directive: MdlRipple", () => {
   });
 
   it("should add the ripple to mdl-menu-item", () => {
-    const fixture = getFiytureForTemplate(`
+    const fixture = getFixtureForTemplate(`
           <mdl-menu>
             <mdl-menu-item mdl-ripple></mdl-menu-item>
           </mdl-menu>
@@ -141,7 +145,7 @@ describe("Directive: MdlRipple", () => {
   });
 
   it("should add the ripple to anchor tag for tabs", () => {
-    const fixture = getFiytureForTemplate("<a mdl-ripple></a>");
+    const fixture = getFixtureForTemplate("<a mdl-ripple></a>");
 
     const span1 = getSpan1IfAny(fixture, "a");
 
@@ -149,7 +153,7 @@ describe("Directive: MdlRipple", () => {
   });
 
   it("should add the ripple tag for a", () => {
-    const fixture = getFiytureForTemplate(`
+    const fixture = getFixtureForTemplate(`
          <a [mdl-ripple]="true"></a>
         `);
 
