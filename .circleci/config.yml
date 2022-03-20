@@ -1,6 +1,6 @@
 version: 2
 orbs:
-  browser-tools: circleci/browser-tools@1.1.0
+  browser-tools: circleci/browser-tools@1.2.4
 jobs:
   build:
     docker:
@@ -8,7 +8,8 @@ jobs:
         environment:
           CHROME_BIN: "/usr/local/bin/google-chrome"
     steps:
-      - browser-tools/install-browser-tools
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - checkout
 
       - restore_cache:
