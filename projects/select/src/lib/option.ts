@@ -20,7 +20,8 @@ export class MdlOptionComponent implements AfterViewInit {
   disabled = false;
   // eslint-disable-next-line
   @Input("value")
-  value: string | any | undefined;
+  // eslint-disable-next-line
+  value: any;
   @ViewChild("contentWrapper", { static: true }) contentWrapper:
     | ElementRef
     | undefined;

@@ -72,7 +72,8 @@ export class MdlSelectComponent
   extends SearchableComponent
   implements ControlValueAccessor, AfterContentInit, AfterViewInit
 {
-  @Input() disabled: boolean | string = false;
+  @Input() ngModel: string[] | string | undefined;
+  @Input() disabled = false;
   @Input() autocomplete = false;
   @Input() public label = "";
   @Input() placeholder = "";
@@ -88,9 +89,8 @@ export class MdlSelectComponent
   @ViewChild(MdlPopoverComponent, { static: true })
   public popoverComponent: MdlPopoverComponent | undefined;
   @ContentChildren(MdlOptionComponent)
-  public optionComponents: QueryList<MdlOptionComponent> = new QueryList<MdlOptionComponent>();
+  public optionComponents: QueryList<MdlOptionComponent> | undefined;
   @HostBinding("class.mdl-select") isMdlSelect = true;
-  public internalModel: string[] | string | undefined;
   directionUp = false;
   textfieldId: string;
   text = "";
@@ -114,14 +114,14 @@ export class MdlSelectComponent
     return !!this.placeholder;
   }
 
-  get isFloatingLabel(): boolean | string {
+  get isFloatingLabel(): boolean {
     return this.misFloatingLabel;
   }
 
   @HostBinding("class.mdl-select--floating-label")
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input("floating-label")
-  set isFloatingLabel(value: boolean | string) {
+  set isFloatingLabel(value: boolean) {
     this.misFloatingLabel = toBoolean(value);
   }
 
@@ -165,10 +165,10 @@ export class MdlSelectComponent
 
   ngAfterContentInit(): void {
     this.bindOptions();
-    this.renderValue(this.internalModel);
-    this.optionComponents.changes.subscribe(() => {
+    this.renderValue(this.ngModel);
+    this.optionComponents?.changes.subscribe(() => {
       this.bindOptions();
-      this.renderValue(this.internalModel);
+      this.renderValue(this.ngModel);
     });
     this.popoverComponent?.onShow.subscribe(() => this.onOpen());
     this.popoverComponent?.onHide.subscribe(() => this.onClose());
@@ -187,10 +187,10 @@ export class MdlSelectComponent
   // rebind options and reset value in connected select
   reset(resetValue: boolean = true): void {
     if (resetValue && !this.isEmpty()) {
-      this.internalModel = this.multiple ? [] : "";
-      this.onChange(this.internalModel);
-      this.change.emit(this.internalModel);
-      this.renderValue(this.internalModel);
+      this.ngModel = this.multiple ? [] : "";
+      this.onChange(this.ngModel);
+      this.change.emit(this.ngModel);
+      this.renderValue(this.ngModel);
     }
   }
 
@@ -218,31 +218,29 @@ export class MdlSelectComponent
 
   public writeValue(value: string | string[] | undefined): void {
     if (this.multiple) {
-      this.internalModel = this.internalModel || [];
-      if (!value || this.internalModel === value) {
+      this.ngModel = this.ngModel || [];
+      if (!value || this.ngModel === value) {
         // skip ngModel update when undefined value or multiple selects initialized with same array
       } else if (Array.isArray(value)) {
-        this.internalModel = uniq(
-          (this.internalModel as string[]).concat(value)
-        );
+        this.ngModel = uniq((this.ngModel as string[]).concat(value));
       } else if (
-        (this.internalModel as string[])
+        (this.ngModel as string[])
           .map((v: string) => stringifyValue(v))
           .indexOf(stringifyValue(value)) !== -1
       ) {
-        this.internalModel = [
-          ...(this.internalModel as string[]).filter(
+        this.ngModel = [
+          ...(this.ngModel as string[]).filter(
             (v: string) => stringifyValue(v) !== stringifyValue(value)
           ),
         ];
       } else if (!!value) {
-        this.internalModel = [...(this.internalModel as string[]), value];
+        this.ngModel = [...(this.ngModel as string[]), value];
       }
     } else {
-      this.internalModel = value;
+      this.ngModel = value;
     }
-    this.onChange(this.internalModel);
-    this.renderValue(this.internalModel);
+    this.onChange(this.ngModel);
+    this.renderValue(this.ngModel);
   }
 
   registerOnChange(fn: (value: unknown) => void): void {
@@ -261,12 +259,10 @@ export class MdlSelectComponent
     const currentOption = this.getCurrentOption();
     const autoSelectedValue = this.getAutoSelection();
     const value =
-      autoSelectedValue ||
-      (currentOption ? currentOption.value : this.internalModel);
-
+      autoSelectedValue || (currentOption ? currentOption.value : this.ngModel);
     this.resetText();
 
-    if (!isEqual(this.internalModel, value)) {
+    if (!isEqual(this.ngModel, value)) {
       this.writeValue(value);
       this.change.emit(value);
     }
@@ -295,22 +291,21 @@ export class MdlSelectComponent
 
   private getAutoSelection(): string | null | undefined {
     const filteredOptions = this.optionComponents
-      .filter(({ disabled }) => !disabled)
+      ?.filter(({ disabled }) => !disabled)
       .filter((option) =>
         option.text?.toLowerCase().startsWith(this.searchQuery)
       );
 
-    const selectedOption = this.optionComponents.find(
+    const selectedOption = this.optionComponents?.find(
       (option) => option.selected
     );
 
-    if (filteredOptions.length > 0) {
-      if (selectedOption instanceof MdlOptionComponent) {
-        const selectedOptionInFiltered =
-          filteredOptions.indexOf(selectedOption) !== -1;
-        if (!selectedOptionInFiltered && !filteredOptions[0].selected) {
-          return filteredOptions[0]?.value;
-        }
+    if (filteredOptions && filteredOptions.length > 0) {
+      const selectedOptionInFiltered =
+        selectedOption && filteredOptions.indexOf(selectedOption) !== -1;
+
+      if (!selectedOptionInFiltered && !filteredOptions[0].selected) {
+        return filteredOptions[0].value;
       }
     }
 
@@ -319,21 +314,23 @@ export class MdlSelectComponent
 
   private onArrow($event: KeyboardEvent, offset: number) {
     const arr = this.optionComponents
-      .toArray()
+      ?.toArray()
       .filter(({ disabled }) => !disabled);
+    if (!arr) {
+      return;
+    }
+    let optionForSelection: MdlOptionComponent | undefined;
     const selectedOption = arr.find((option) => option.selected);
-    if (selectedOption instanceof MdlOptionComponent) {
+    if (!selectedOption) {
+      optionForSelection = arr[offset > 0 ? -1 : 0];
+    } else {
       const selectedOptionIndex = arr.indexOf(selectedOption);
+      optionForSelection = arr[selectedOptionIndex + offset];
+    }
 
-      const optionForSelection =
-        selectedOption !== null
-          ? arr[selectedOptionIndex + offset]
-          : arr[offset > 0 ? -1 : 0];
-
-      if (optionForSelection) {
-        const value = optionForSelection.value;
-        this.selectValue(value);
-      }
+    if (optionForSelection) {
+      const value = optionForSelection.value;
+      this.selectValue(value);
     }
 
     $event.preventDefault();
@@ -350,18 +347,18 @@ export class MdlSelectComponent
   }
 
   private isEmpty() {
-    return this.multiple ? !this.internalModel?.length : !this.internalModel;
+    return this.multiple ? !this.ngModel?.length : !this.ngModel;
   }
 
   private bindOptions() {
-    this.optionComponents.forEach(
+    this.optionComponents?.forEach(
       (selectOptionComponent: MdlOptionComponent) => {
         selectOptionComponent.setMultiple(this.multiple);
         selectOptionComponent.onSelect = this.onSelect.bind(this);
 
         if (selectOptionComponent.value != null) {
           this.textByValue[stringifyValue(selectOptionComponent.value)] =
-            selectOptionComponent?.contentWrapper?.nativeElement.textContent.trim();
+            selectOptionComponent.contentWrapper?.nativeElement.textContent.trim();
         }
       }
     );
@@ -390,12 +387,14 @@ export class MdlSelectComponent
   }
 
   private onOpen() {
-    if (!this.disabled && this.popoverElement) {
-      this.popoverElement.style.visibility = "hidden";
+    if (!this.disabled) {
+      if (this.popoverElement) {
+        this.popoverElement.style.visibility = "hidden";
+      }
 
       setTimeout(() => {
         this.focused = true;
-        this.selectValue(this.internalModel);
+        this.selectValue(this.ngModel);
         this.tryToUpdateDirection();
         if (this.popoverElement) {
           this.popoverElement.style.visibility = "visible";
@@ -418,14 +417,14 @@ export class MdlSelectComponent
   private onClose() {
     if (!this.disabled) {
       this.focused = false;
-      this.selectValue(this.internalModel);
+      this.selectValue(this.ngModel);
       if (this.selectInput) {
         this.selectInput.nativeElement.value = this.text;
       }
       if (this.popoverElement) {
         this.popoverElement.style.visibility = "hidden";
       }
-      this.blur.emit(this.internalModel);
+      this.blur.emit(this.ngModel);
     }
   }
 
@@ -433,7 +432,7 @@ export class MdlSelectComponent
     if (!this.multiple) {
       this.scrollToValue(value);
     }
-    if (!isEqual(this.internalModel, value)) {
+    if (!isEqual(this.ngModel, value)) {
       this.writeValue(value);
       this.change.emit(value);
     }
@@ -442,24 +441,22 @@ export class MdlSelectComponent
   private scrollToValue(value: string | string[] | undefined) {
     const popover: HTMLElement =
       this.popoverComponent?.elementRef.nativeElement;
-    const list: HTMLElement | null = popover.querySelector(".mdl-list");
+    const list = popover.querySelector(".mdl-list");
 
-    const optionComponent = this.optionComponents.find(
+    const optionComponent = this.optionComponents?.find(
       (o) => o.value === value
     );
-    const optionElement: HTMLElement = optionComponent
-      ? optionComponent?.contentWrapper?.nativeElement
+    const optionElement = optionComponent
+      ? optionComponent.contentWrapper?.nativeElement
       : null;
 
-    if (optionElement) {
-      const selectedItemElem = optionElement.parentElement;
-      if (selectedItemElem && list) {
-        const computedScrollTop =
-          selectedItemElem.offsetTop -
-          list.clientHeight / 2 +
-          selectedItemElem.clientHeight / 2;
-        list.scrollTop = Math.max(computedScrollTop, 0);
-      }
+    const selectedItemElem = optionElement?.parentElement;
+    if (list && selectedItemElem) {
+      const computedScrollTop =
+        selectedItemElem.offsetTop -
+        list.clientHeight / 2 +
+        selectedItemElem.clientHeight / 2;
+      list.scrollTop = Math.max(computedScrollTop, 0);
     }
   }
 }

@@ -286,7 +286,7 @@
     >
   </mdl-select>
 </form>
-<p>Locations: {{ locations | json }}</p>
+<p>Locations: {{ arrayForm.get("locations")?.value | json }}</p>
 
 <pre demoPrism ngNonBindable>
   <![CDATA[
