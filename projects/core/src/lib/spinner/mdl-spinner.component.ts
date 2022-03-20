@@ -54,8 +54,6 @@ export class MdlSpinnerComponent {
   }
 
   set singleColor(value: boolean | string | undefined) {
-    // FIXME check that this is true if the input property is present
-    //  check also for the other properties - that are toBoolean
     this.singleColorIntern = toBoolean(value);
   }
 }
