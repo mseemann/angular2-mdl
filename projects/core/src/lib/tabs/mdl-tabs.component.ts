@@ -46,10 +46,10 @@ import { toBoolean } from "../common/boolean-property";
 })
 export class MdlTabsComponent implements AfterContentInit, OnChanges {
   // eslint-disable-next-line
-  @Output('mdl-tab-active-changed')
+  @Output("mdl-tab-active-changed")
   selectedTabEmitter = new EventEmitter();
   @ContentChildren(MdlTabPanelComponent)
-  tabs: QueryList<MdlTabPanelComponent>;
+  tabs: QueryList<MdlTabPanelComponent> = new QueryList<MdlTabPanelComponent>();
 
   @HostBinding("class.mdl-tabs")
   isTabs = true;
@@ -64,8 +64,8 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
     return this.selectedIndexIntern;
   }
 
-  set selectedIndex(value: number) {
-    this.selectedIndexIntern = toNumber(value);
+  set selectedIndex(value: number | string) {
+    this.selectedIndexIntern = toNumber(value) ?? 0;
   }
 
   @Input("mdl-ripple")
@@ -73,7 +73,7 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
     return this.isRippleIntern;
   }
 
-  set isRipple(value: boolean) {
+  set isRipple(value: boolean | string) {
     this.isRippleIntern = toBoolean(value);
   }
 
@@ -88,7 +88,7 @@ export class MdlTabsComponent implements AfterContentInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.selectedIndex) {
+    if (changes["selectedIndex"]) {
       this.updateSelectedTabIndex();
     }
   }

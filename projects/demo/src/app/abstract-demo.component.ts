@@ -7,7 +7,7 @@ import { Subscription } from "rxjs";
 // eslint-disable-next-line
 export class AbstractDemoComponent implements OnInit, OnDestroy {
   @HostBinding("style.display") style = "block";
-  private sub: Subscription;
+  private sub: Subscription | undefined;
   private windowTitle = "angular2-mdl";
 
   constructor(
@@ -24,8 +24,9 @@ export class AbstractDemoComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.titleService.setTitle(this.windowTitle);
     this.sub = this.router.events.subscribe(() => {
-      if (this.route.snapshot.data && this.route.snapshot.data.title) {
-        const title = this.windowTitle + " - " + this.route.snapshot.data.title;
+      if (this.route.snapshot.data && this.route.snapshot.data["title"]) {
+        const title =
+          this.windowTitle + " - " + this.route.snapshot.data["title"];
         this.titleService.setTitle(title);
       } else {
         this.titleService.setTitle(this.windowTitle);

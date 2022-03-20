@@ -7,5 +7,5 @@ import { Component, Input } from "@angular/core";
 })
 export class MdlFabMenuComponent {
   @Input()
-  alwaysShowTooltips: boolean;
+  alwaysShowTooltips = false;
 }

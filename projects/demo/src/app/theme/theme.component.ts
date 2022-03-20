@@ -369,19 +369,20 @@ const MD_PALETTE = [
 })
 export class ThemeDemoComponent
   extends AbstractDemoComponent
-  implements OnInit {
-  text3: string;
+  implements OnInit
+{
+  text3: string | undefined;
   public checkbox1 = true;
   public radioOption = "1";
   public selectedPrimaryColor = this.mapToColorObject(
     LIGHT_BLUE,
     MD_COLORS.indexOf(LIGHT_BLUE)
   );
-  public selectedAccentColor = this.mapToColorObject(
+  public selectedAccentColor: ColorDescription | null = this.mapToColorObject(
     AMBER,
     MD_COLORS.indexOf(AMBER)
   );
-  private styleElement: HTMLLinkElement;
+  private styleElement: HTMLLinkElement | undefined;
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
@@ -431,7 +432,7 @@ export class ThemeDemoComponent
     return colors;
   }
 
-  public ngOnInit(): void {
+  public override ngOnInit(): void {
     super.ngOnInit();
     this.styleElement = document.createElement("link");
     this.styleElement.setAttribute("rel", "stylesheet");
@@ -458,7 +459,7 @@ export class ThemeDemoComponent
     this.updateStylesheet();
   }
 
-  private mapToColorObject(color, i): ColorDescription {
+  private mapToColorObject(color: string, i: number): ColorDescription {
     return {
       name: color,
       htmlColor: `rgb(${MD_PALETTE[i][5]})`, // 5 = 500
@@ -467,7 +468,7 @@ export class ThemeDemoComponent
     };
   }
 
-  private normaliseColorName(color): string {
+  private normaliseColorName(color: ColorDescription | null): string {
     if (!color) {
       return "";
     }
@@ -478,6 +479,8 @@ export class ThemeDemoComponent
     if (!this.stylescheetUrl) {
       return;
     }
-    this.styleElement.href = this.stylescheetUrl;
+    if (this.styleElement) {
+      this.styleElement.href = this.stylescheetUrl;
+    }
   }
 }

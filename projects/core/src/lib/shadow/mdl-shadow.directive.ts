@@ -22,7 +22,7 @@ const MDL_SHADOW_VALUES = [0, 2, 3, 4, 6, 8, 16, 24];
 
 @Directive({
   // eslint-disable-next-line
-  selector: '[mdl-shadow]'
+  selector: "[mdl-shadow]",
 })
 export class MdlShadowDirective implements OnChanges {
   private readonly el: HTMLElement;
@@ -37,8 +37,8 @@ export class MdlShadowDirective implements OnChanges {
     return this.mdlShadowIntern;
   }
 
-  set mdlShadow(value: number) {
-    this.mdlShadowIntern = toNumber(value);
+  set mdlShadow(value: number | string) {
+    this.mdlShadowIntern = toNumber(value) ?? 2;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -46,7 +46,7 @@ export class MdlShadowDirective implements OnChanges {
       throw new MdlUnsupportedShadowValueError(this.mdlShadow);
     }
 
-    const change = changes.mdlShadow;
+    const change = changes["mdlShadow"];
 
     if (!change.isFirstChange()) {
       this.renderer.removeClass(

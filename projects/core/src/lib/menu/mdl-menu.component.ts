@@ -27,7 +27,7 @@ const TRANSITION_DURATION_FRACTION = 0.8;
 // the ripple).
 const CLOSE_TIMEOUT = 175;
 
-const CSS_ALIGN_MAP = {};
+const CSS_ALIGN_MAP: { [key: string]: string } = {};
 CSS_ALIGN_MAP[BOTTOM_LEFT] = "mdl-menu--bottom-left";
 CSS_ALIGN_MAP[BOTTOM_RIGHT] = "mdl-menu--bottom-right";
 CSS_ALIGN_MAP[TOP_LEFT] = "mdl-menu--top-left";
@@ -75,20 +75,20 @@ export class MdlMenuRegisty {
 })
 export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   // eslint-disable-next-line
-  @Input('mdl-menu-position')
-  position: string;
+  @Input("mdl-menu-position")
+  position: string | undefined;
 
   @ViewChild("container", { static: true })
-  containerChild: ElementRef;
+  containerChild: ElementRef | undefined;
   @ViewChild("menuElement", { static: true })
-  menuElementChild: ElementRef;
+  menuElementChild: ElementRef | undefined;
   @ViewChild("outline", { static: true })
-  outlineChild: ElementRef;
+  outlineChild: ElementRef | undefined;
 
   public cssPosition = "mdl-menu--bottom-left";
-  private container: HTMLElement;
-  private menuElement: HTMLElement;
-  private outline: HTMLElement;
+  private container: HTMLElement | undefined;
+  private menuElement: HTMLElement | undefined;
+  private outline: HTMLElement | undefined;
   private isVisible = false;
 
   constructor(
@@ -99,13 +99,13 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.cssPosition = CSS_ALIGN_MAP[this.position] || BOTTOM_LEFT;
+    this.cssPosition = CSS_ALIGN_MAP[this.position ?? BOTTOM_LEFT];
   }
 
   ngAfterViewInit(): void {
-    this.container = this.containerChild.nativeElement;
-    this.menuElement = this.menuElementChild.nativeElement;
-    this.outline = this.outlineChild.nativeElement;
+    this.container = this.containerChild?.nativeElement;
+    this.menuElement = this.menuElementChild?.nativeElement;
+    this.outline = this.outlineChild?.nativeElement;
 
     // Add a click listener to the document, to close the menu.
     const callback = () => {
@@ -146,9 +146,9 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     // });
 
     // Measure the inner element.
-    const rect = this.menuElement.getBoundingClientRect();
-    const height = rect.height;
-    const width = rect.width;
+    const rect = this.menuElement?.getBoundingClientRect();
+    const height = rect?.height;
+    const width = rect?.width;
 
     // Turn on animation, and apply the final clip. Also make invisible.
     // This triggers the transitions.
@@ -169,8 +169,11 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const forElement = mdlButton.element;
     const rect = forElement.getBoundingClientRect();
-    const forRect = forElement.parentElement.getBoundingClientRect();
+    const forRect = forElement?.parentElement?.getBoundingClientRect();
 
+    if (!this.container || !forRect) {
+      return;
+    }
     if (this.position === UNALIGNED) {
       // Do not position the menu automatically. Requires the developer to
       // manually specify position.
@@ -195,13 +198,15 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     // Measure the inner element.
-    const height = this.menuElement.getBoundingClientRect().height;
-    const width = this.menuElement.getBoundingClientRect().width;
+    const height = this.menuElement?.getBoundingClientRect().height ?? 0;
+    const width = this.menuElement?.getBoundingClientRect().width ?? 0;
 
     this.container.style.width = width + "px";
     this.container.style.height = height + "px";
-    this.outline.style.width = width + "px";
-    this.outline.style.height = height + "px";
+    if (this.outline) {
+      this.outline.style.width = width + "px";
+      this.outline.style.height = height + "px";
+    }
 
     const transitionDuration =
       TRANSITION_DURATION_SECONDS * TRANSITION_DURATION_FRACTION;
@@ -223,8 +228,11 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     this.applyClip(height, width);
 
     this.renderer.addClass(this.container, "is-visible");
-    this.menuElement.style.clip = "rect(0 " + width + "px " + height + "px 0)";
-    this.renderer.addClass(this.menuElement, "is-animating");
+    if (this.menuElement) {
+      this.menuElement.style.clip =
+        "rect(0 " + width + "px " + height + "px 0)";
+      this.renderer.addClass(this.menuElement, "is-animating");
+    }
 
     this.addAnimationEndListener();
 
@@ -242,7 +250,10 @@ export class MdlMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  private applyClip(height, width) {
+  private applyClip(height: number | undefined, width: number | undefined) {
+    if (!this.menuElement) {
+      return;
+    }
     if (this.position === UNALIGNED) {
       // Do not clip.
       this.menuElement.style.clip = "";

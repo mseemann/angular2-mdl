@@ -11,10 +11,9 @@ import { MdlDialogHostComponent } from "./mdl-dialog-host.component";
  * and internal implementations.
  */
 export class InternalMdlDialogReference {
-  hostDialogComponentRef: ComponentRef<MdlDialogHostComponent>;
-  closeCallback: () => void;
-  isModal = false;
-  dialogRef: MdlDialogReference;
+  hostDialogComponentRef: ComponentRef<MdlDialogHostComponent> | undefined;
+  isModal: boolean | undefined = false;
+  dialogRef: MdlDialogReference | undefined;
 
   private onHideSubject: Subject<unknown> = new Subject();
   private onVisibleSubject: Subject<void> = new Subject();
@@ -23,8 +22,11 @@ export class InternalMdlDialogReference {
     this.dialogRef = new MdlDialogReference(this);
   }
 
-  get hostDialog(): MdlDialogHostComponent {
-    return this.hostDialogComponentRef.instance;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  closeCallback: () => void = () => {};
+
+  get hostDialog(): MdlDialogHostComponent | undefined {
+    return this.hostDialogComponentRef?.instance;
   }
 
   hide(data?: unknown): void {

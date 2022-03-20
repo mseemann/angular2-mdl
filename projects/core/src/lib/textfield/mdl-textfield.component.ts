@@ -127,7 +127,8 @@ const IS_DIRTY = "is-dirty";
 })
 /* eslint-disable  @angular-eslint/no-conflicting-lifecycle */
 export class MdlTextFieldComponent
-  implements ControlValueAccessor, OnChanges, DoCheck {
+  implements ControlValueAccessor, OnChanges, DoCheck
+{
   // eslint-disable-next-line
   @Output("blur")
   blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
@@ -138,43 +139,43 @@ export class MdlTextFieldComponent
   @Output("keyup")
   keyupEmitter: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
   @ViewChild("input")
-  inputEl: ElementRef;
+  inputEl: ElementRef | undefined;
   @Input()
   type = "text";
   @Input()
-  label;
+  label: string | undefined;
   @Input()
-  pattern;
+  pattern: string | undefined;
   @Input()
-  min;
+  min: number | string | undefined;
   @Input()
-  max;
+  max: number | string | undefined;
   @Input()
-  step;
+  step: number | string | undefined;
   @Input()
-  name;
+  name: string | undefined;
   @Input()
   id = `mdl-textfield-${nextId++}`;
   // eslint-disable-next-line
   @Input("error-msg")
-  errorMessage;
+  errorMessage: string | undefined;
   @HostBinding("class.has-placeholder")
   @Input()
-  placeholder: string;
+  placeholder: string | undefined;
   @Input()
-  autocomplete: string;
+  autocomplete: string | undefined;
   @HostBinding("class.mdl-textfield--expandable")
   @Input()
-  icon: string;
+  icon: string | undefined;
   @Input()
-  tabindex: number = null;
+  tabindex: number | string | null = null;
   @Input()
-  maxlength: number = null;
+  maxlength: number | string | null = null;
   @HostBinding("class.mdl-textfield")
   isTextfield = true;
   @HostBinding("class.is-upgraded")
   isUpgraded = true;
-  private valueIntern: string | number;
+  private valueIntern: string | number | null = null;
 
   private readonly el: HTMLElement;
   private onTouchedCallback: () => void = noop;
@@ -184,7 +185,7 @@ export class MdlTextFieldComponent
   private requiredIntern = false;
   private autofocusIntern = false;
   private isFloatingLabelIntern = false;
-  private rowsIntern: number = null;
+  private rowsIntern: number | undefined | null = null;
   private maxrowsIntern = -1;
   // @experimental
   private disableNativeValidityCheckingIntern = false;
@@ -199,11 +200,11 @@ export class MdlTextFieldComponent
     this.el = elmRef.nativeElement;
   }
 
-  get value(): string | number {
+  get value(): string | number | null {
     return this.valueIntern;
   }
 
-  @Input() set value(v: string | number) {
+  @Input() set value(v: string | number | null) {
     this.valueIntern =
       this.type === "number" ? (v === "" ? null : parseFloat(v as string)) : v;
     this.onChangeCallback(this.value);
@@ -214,7 +215,7 @@ export class MdlTextFieldComponent
     return this.disabledIntern;
   }
 
-  set disabled(value: boolean) {
+  set disabled(value: boolean | string) {
     this.disabledIntern = toBoolean(value);
   }
 
@@ -232,7 +233,7 @@ export class MdlTextFieldComponent
     return this.requiredIntern;
   }
 
-  set required(value: boolean) {
+  set required(value: boolean | string) {
     this.requiredIntern = toBoolean(value);
   }
 
@@ -241,7 +242,7 @@ export class MdlTextFieldComponent
     return this.autofocusIntern;
   }
 
-  set autofocus(value: boolean) {
+  set autofocus(value: boolean | string) {
     this.autofocusIntern = toBoolean(value);
   }
 
@@ -251,16 +252,16 @@ export class MdlTextFieldComponent
     return this.isFloatingLabelIntern;
   }
 
-  set isFloatingLabel(value: boolean) {
+  set isFloatingLabel(value: boolean | string) {
     this.isFloatingLabelIntern = toBoolean(value);
   }
 
   @Input()
-  get rows(): number {
+  get rows(): number | string | null | undefined {
     return this.rowsIntern;
   }
 
-  set rows(value: number) {
+  set rows(value: number | string | null | undefined) {
     this.rowsIntern = toNumber(value);
   }
 
@@ -269,16 +270,16 @@ export class MdlTextFieldComponent
     return this.maxrowsIntern;
   }
 
-  set maxrows(value: number) {
-    this.maxrowsIntern = toNumber(value);
+  set maxrows(value: number | string | null) {
+    this.maxrowsIntern = toNumber(value) ?? -1;
   }
 
   @Input()
-  get disableNativeValidityChecking(): boolean {
+  get disableNativeValidityChecking(): boolean | string {
     return this.disableNativeValidityCheckingIntern;
   }
 
-  set disableNativeValidityChecking(value: boolean) {
+  set disableNativeValidityChecking(value: boolean | string) {
     this.disableNativeValidityCheckingIntern = toBoolean(value);
   }
 
@@ -320,7 +321,8 @@ export class MdlTextFieldComponent
   }
 
   keydownTextarea($event: KeyboardEvent): void {
-    const currentRowCount = this.inputEl.nativeElement.value.split("\n").length;
+    const currentRowCount =
+      this.inputEl?.nativeElement.value.split("\n").length;
     // eslint-disable-next-line
     if ($event.keyCode === 13) {
       if (currentRowCount >= this.maxrows && this.maxrows !== -1) {

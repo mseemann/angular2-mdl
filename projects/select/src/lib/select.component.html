@@ -1,36 +1,40 @@
 <div
   [class.is-dirty]="isDirty()"
   [class.is-disabled]="disabled"
-  [class.is-focused]="popoverComponent.isVisible || focused"
+  [class.is-focused]="popoverComponent?.isVisible || focused"
   class="mdl-textfield is-upgraded"
 >
-  <span
-    (focus)="onFocus($event);"
-    [attr.tabindex]="!disabled ? 0 : null">
+  <span (focus)="onFocus($event)" [attr.tabindex]="!disabled ? 0 : null">
   </span>
-  <input #selectInput (change)="$event.stopPropagation()"
-         (click)="toggle($event)"
-         (focus)="onInputFocus();"
-         [attr.id]="textfieldId"
-         [placeholder]="placeholder ? placeholder : ''"
-         [readonly]="disabled || !autocomplete"
-         [value]="text"
-         class="mdl-textfield__input"
-         tabindex="-1">
-  <span
+  <input
+    #selectInput
+    (change)="$event.stopPropagation()"
     (click)="toggle($event)"
-    class="mdl-select__toggle material-icons">
+    (focus)="onInputFocus()"
+    [attr.id]="textfieldId"
+    [placeholder]="placeholder ? placeholder : ''"
+    [readonly]="disabled || !autocomplete"
+    [value]="text"
+    class="mdl-textfield__input"
+    tabindex="-1"
+  />
+  <span (click)="toggle($event)" class="mdl-select__toggle material-icons">
     keyboard_arrow_down
   </span>
-  <label [attr.for]="textfieldId" class="mdl-textfield__label">{{ label }}</label>
+  <label [attr.for]="textfieldId" class="mdl-textfield__label">{{
+    label
+  }}</label>
   <span class="mdl-textfield__error"></span>
-  <mdl-popover #popover [class.direction-up]="directionUp"
-               [class.mdl-popover--above]="autocomplete"
-               [hide-on-click]="!multiple"
-               [style.minWidth.%]="100"
-               tabindex="-1">
+  <mdl-popover
+    #popover
+    [class.direction-up]="directionUp"
+    [class.mdl-popover--above]="autocomplete"
+    [hide-on-click]="!multiple"
+    [style.minWidth.%]="100"
+    tabindex="-1"
+  >
     <div class="mdl-list mdl-shadow--6dp">
-      <ng-content *ngIf="popoverComponent.isVisible"></ng-content>
+      <ng-content *ngIf="popoverComponent?.isVisible"></ng-content>
     </div>
   </mdl-popover>
 </div>

@@ -13,7 +13,7 @@ export class MdlDatePickerService {
   constructor(private dialogService: MdlDialogService) {}
 
   public selectDate(
-    currentDate: Date = null,
+    currentDate: Date | null = null,
     options: DatePickerOptions = {}
   ): Observable<Date> {
     const subject = new Subject<Date>();

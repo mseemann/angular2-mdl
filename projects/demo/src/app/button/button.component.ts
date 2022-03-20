@@ -3,6 +3,7 @@ import { flyInOutTrigger } from "../animations/flyInOutTrigger-animation";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 import { AbstractDemoComponent } from "../abstract-demo.component";
+import { MdlButtonType, MdlColorType } from "@angular-mdl/core";
 
 @Component({
   selector: "demo-button",
@@ -10,9 +11,9 @@ import { AbstractDemoComponent } from "../abstract-demo.component";
   templateUrl: "button.component.html",
 })
 export class ButtonDemoComponent extends AbstractDemoComponent {
-  public buttonType = "raised";
+  public buttonType: MdlButtonType = "raised";
   public doRipple = false;
-  public colored = "";
+  public colored: MdlColorType = "";
   public btnDisabled = false;
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {

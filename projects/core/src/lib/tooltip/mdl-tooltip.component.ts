@@ -21,15 +21,15 @@ export class MdlSimpleTooltipComponent {
   large = false;
 
   @Input()
-  position: "left" | "right" | "top" | "bottom";
+  position: "left" | "right" | "top" | "bottom" = "top";
 
   @Input()
-  delay: number;
+  delay: number | undefined;
 
   @HostBinding("class.mdl-tooltip")
   isTooltip = true;
 
-  tooltipText: string;
+  tooltipText: string | undefined = "";
   element: HTMLElement;
 
   active = false;

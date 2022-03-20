@@ -20,10 +20,10 @@ import { MdlTabPanelTitleComponent } from "../tabs/mdl-tab-panel-title.component
 })
 export class MdlLayoutTabPanelComponent {
   @ContentChild(MdlTabPanelTitleComponent, { static: true })
-  titleComponent;
+  titleComponent: MdlTabPanelTitleComponent | undefined;
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input("mdl-layout-tab-panel-title")
-  title;
+  title: string | undefined;
 
   @HostBinding("class.mdl-layout__tab-panel")
   isLayoutTabPanel = true;

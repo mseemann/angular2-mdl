@@ -33,6 +33,9 @@ const MDL_BUTTON_TYPES = ["raised", "fab", "mini-fab", "icon", ""];
 
 const MDL_COLORED_TYPES = ["primary", "accent", ""];
 
+export type MdlButtonType = "raised" | "fab" | "mini-fab" | "icon" | "";
+export type MdlColorType = "primary" | "accent" | "";
+
 @Component({
   selector: "mdl-button, button[mdl-button], a[mdl-button]",
   exportAs: "mdlButton",
@@ -45,11 +48,11 @@ export class MdlButtonComponent implements OnChanges {
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input("mdl-button-type")
-  mdlButtonType: "raised" | "fab" | "mini-fab" | "icon" | "";
+  mdlButtonType: MdlButtonType = "";
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input("mdl-colored")
-  mdlColoredType: "primary" | "accent" | "";
+  mdlColoredType: MdlColorType = "";
 
   readonly element: HTMLElement;
   private disabledIntern = false;
@@ -91,7 +94,7 @@ export class MdlButtonComponent implements OnChanges {
     return this.disabledIntern;
   }
 
-  set disabled(value: boolean) {
+  set disabled(value: boolean | string) {
     this.disabledIntern = toBoolean(value);
   }
 

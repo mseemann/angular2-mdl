@@ -14,13 +14,13 @@ import { MdlDialogService } from "./mdl-dialog.service";
 })
 export class MdlAlertComponent {
   @Input()
-  title: string;
+  title: string | undefined;
 
   @Input()
-  message: string;
+  message = "";
 
   @Input()
-  okText: string;
+  okText: string | undefined;
 
   @HostBinding("style.display")
   display = "none";

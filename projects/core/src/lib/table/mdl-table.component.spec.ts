@@ -17,7 +17,7 @@ interface ITableItem extends IMdlTableModelItem {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-icon',
+  selector: "test-icon",
   template: `
     <mdl-table-selectable
       mdl-shadow="2"
@@ -63,7 +63,7 @@ class MdlTestTableComponent implements OnInit {
     this.selected = this.tableData.filter((data) => data.selected);
   }
 
-  selectionChanged($event): void {
+  selectionChanged($event: { value: any }): void {
     this.selected = $event.value;
   }
 }

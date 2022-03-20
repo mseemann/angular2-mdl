@@ -15,7 +15,6 @@
         "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:@typescript-eslint/recommended",
-        "prettier/@typescript-eslint",
         "plugin:prettier/recommended"
       ],
       "rules": {
@@ -26,7 +25,9 @@
           }
         ],
         "arrow-parens": ["off", "always"],
-        "import/order": "off"
+        "import/order": "off",
+        "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/no-explicit-any": "warn"
       }
     },
     {

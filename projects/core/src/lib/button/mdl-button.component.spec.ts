@@ -7,7 +7,7 @@ import { MdlButtonModule } from "./mdl-button.module";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-button',
+  selector: "test-button",
   template: "replaced by the test",
 })
 class MdlTestButtonComponent {}
@@ -108,7 +108,7 @@ describe("Component: MdlButton", () => {
       By.directive(MdlButtonComponent)
     ).references;
 
-    expect(references.button).toBeDefined();
+    expect(references["button"]).toBeDefined();
   });
 
   it("should expose the elementRef to be used as openFrom for dialogs", () => {
@@ -121,8 +121,9 @@ describe("Component: MdlButton", () => {
 
     fixture.detectChanges();
 
-    const button = fixture.debugElement.query(By.directive(MdlButtonComponent))
-      .componentInstance;
+    const button = fixture.debugElement.query(
+      By.directive(MdlButtonComponent)
+    ).componentInstance;
 
     expect(button.elementRef).toBeDefined("elementRef must be present!");
   });

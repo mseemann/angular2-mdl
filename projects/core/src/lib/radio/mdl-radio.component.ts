@@ -110,11 +110,12 @@ export class MdlRadioGroupRegisty {
   encapsulation: ViewEncapsulation.None,
 })
 export class MdlRadioComponent
-  implements ControlValueAccessor, OnInit, OnDestroy {
+  implements ControlValueAccessor, OnInit, OnDestroy
+{
   @Input()
-  name: string;
+  name: string | undefined;
   @Input()
-  formControlName: string;
+  formControlName: string | undefined;
   @Input()
   value: unknown;
   @Input()

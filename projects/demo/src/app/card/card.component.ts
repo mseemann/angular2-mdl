@@ -13,7 +13,8 @@ import { AbstractDemoComponent } from "../abstract-demo.component";
 })
 export class CardDemoComponent
   extends AbstractDemoComponent
-  implements AfterContentInit {
+  implements AfterContentInit
+{
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
   }

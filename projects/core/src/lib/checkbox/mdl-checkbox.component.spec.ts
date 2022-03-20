@@ -8,7 +8,7 @@ import { DOCUMENT } from "@angular/common";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-icon',
+  selector: "test-icon",
   template: `
     <mdl-checkbox
       [disabled]="false"
@@ -166,8 +166,9 @@ describe("Component: MdlCheckbox", () => {
     const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
 
-    const btnEl: HTMLInputElement = fixture.debugElement.query(By.css("input"))
-      .nativeElement;
+    const btnEl: HTMLInputElement = fixture.debugElement.query(
+      By.css("input")
+    ).nativeElement;
     expect(btnEl.tabIndex).toBe(2);
   });
 
@@ -181,8 +182,9 @@ describe("Component: MdlCheckbox", () => {
     const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
     fixture.detectChanges();
 
-    const btnEl: HTMLInputElement = fixture.debugElement.query(By.css("input"))
-      .nativeElement;
+    const btnEl: HTMLInputElement = fixture.debugElement.query(
+      By.css("input")
+    ).nativeElement;
     expect(btnEl.getAttribute("tabindex")).toEqual(null);
   });
 });

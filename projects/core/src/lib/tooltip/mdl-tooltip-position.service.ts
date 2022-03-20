@@ -16,30 +16,30 @@ export class MdlTooltipPositionService {
 
     if (position === "left" || position === "right") {
       if (top + marginTop < 0) {
-        result.top = "0";
-        result.marginTop = "0";
+        result["top"] = "0";
+        result["marginTop"] = "0";
       } else {
-        result.top = top + "px";
-        result.marginTop = marginTop + "px";
+        result["top"] = top + "px";
+        result["marginTop"] = marginTop + "px";
       }
     } else {
       if (left + marginLeft < 0) {
-        result.left = "0";
-        result.marginLeft = "0";
+        result["left"] = "0";
+        result["marginLeft"] = "0";
       } else {
-        result.left = left + "px";
-        result.marginLeft = marginLeft + "px";
+        result["left"] = left + "px";
+        result["marginLeft"] = marginLeft + "px";
       }
     }
 
     if (position === "top") {
-      result.top = props.top - offsetHeight - 10 + "px";
+      result["top"] = props.top - offsetHeight - 10 + "px";
     } else if (position === "right") {
-      result.left = props.left + props.width + 10 + "px";
+      result["left"] = props.left + props.width + 10 + "px";
     } else if (position === "left") {
-      result.left = props.left - offsetWidth - 10 + "px";
+      result["left"] = props.left - offsetWidth - 10 + "px";
     } else {
-      result.top = props.top + props.height + 10 + "px";
+      result["top"] = props.top + props.height + 10 + "px";
     }
 
     return result;

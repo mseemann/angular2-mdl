@@ -24,22 +24,22 @@ import { MdlDialogReference } from "./mdl-dialog-reference";
 })
 export class MdlDialogComponent {
   @ViewChild(TemplateRef, { static: true })
-  template: TemplateRef<unknown>;
+  template: TemplateRef<unknown> | undefined;
 
   // eslint-disable-next-line
-  @Input('mdl-dialog-config')
-  config: IMdlDialogConfiguration;
+  @Input("mdl-dialog-config")
+  config: IMdlDialogConfiguration | undefined;
 
   // eslint-disable-next-line
-  @Output('show')
+  @Output("show")
   showEmitter: EventEmitter<MdlDialogReference> = new EventEmitter<MdlDialogReference>();
 
   // eslint-disable-next-line
-  @Output('hide')
+  @Output("hide")
   hideEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   private isShown = false;
-  private dialogRef: MdlDialogReference = null;
+  private dialogRef: MdlDialogReference | null = null;
 
   constructor(private dialogService: MdlDialogService) {}
 
@@ -58,6 +58,9 @@ export class MdlDialogComponent {
 
     const result: Subject<MdlDialogReference> = new Subject();
 
+    if (!this.template) {
+      return result.asObservable();
+    }
     const p = this.dialogService.showDialogTemplate(
       this.template,
       mergedConfig
@@ -73,7 +76,7 @@ export class MdlDialogComponent {
       });
 
       this.dialogRef.onHide().subscribe(() => {
-        this.hideEmitter.emit(null);
+        this.hideEmitter.emit();
         this.dialogRef = null;
         this.isShown = false;
       });

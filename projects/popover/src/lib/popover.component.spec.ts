@@ -7,7 +7,7 @@ import { MdlPopoverComponent } from "./popover.component";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-component',
+  selector: "test-component",
   template: `
     <button id="mainButton" (click)="popover.toggle($event)">button</button>
     <mdl-popover id="mainPopover" #popover>popover content</mdl-popover>
@@ -99,8 +99,9 @@ describe("MdlPopover", () => {
 
       const popoverNativeElement = popoverComponent.nativeElement;
 
-      const buttonNativeElement = fixture.debugElement.query(By.css("button"))
-        .nativeElement;
+      const buttonNativeElement = fixture.debugElement.query(
+        By.css("button")
+      ).nativeElement;
 
       const popoverComponentInstance = popoverComponent.componentInstance;
 
@@ -158,8 +159,9 @@ describe("MdlPopover", () => {
         By.directive(MdlPopoverComponent)
       );
       const popoverNativeElement = popoverComponent.nativeElement;
-      const buttonNativeElement = fixture.debugElement.query(By.css("button"))
-        .nativeElement;
+      const buttonNativeElement = fixture.debugElement.query(
+        By.css("button")
+      ).nativeElement;
       const popoverComponentInstance = popoverComponent.componentInstance;
       const anotherButtonNativeElement = fixture.debugElement.query(
         By.css("#anotherButton")

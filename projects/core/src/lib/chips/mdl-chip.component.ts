@@ -25,15 +25,15 @@ import {
 })
 export class MdlChipComponent {
   // eslint-disable-next-line
-  @Input('mdl-label')
-  mdlLabel;
+  @Input("mdl-label")
+  mdlLabel: string | undefined;
 
   // eslint-disable-next-line
-  @Input('mdl-action-icon')
-  mdlActionIcon;
+  @Input("mdl-action-icon")
+  mdlActionIcon: string | undefined;
 
   // eslint-disable-next-line
-  @Output('action-click')
+  @Output("action-click")
   actionClick = new EventEmitter();
 
   @HostBinding("class.mdl-chip")

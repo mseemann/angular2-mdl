@@ -78,7 +78,7 @@ export class PopupPositionService {
   }
 
   private applyCoordinates(
-    coordinates: IPositionCoordinates,
+    coordinates: IPositionCoordinates | null,
     elementStyle: CSSStyleDeclaration
   ) {
     if (!coordinates) {
@@ -95,7 +95,7 @@ export class PopupPositionService {
     forElement: HTMLElement,
     popoverElement: HTMLElement,
     position: string
-  ): IPositionCoordinates {
+  ): IPositionCoordinates | null {
     if (!forElement || !position) {
       return null;
     }
@@ -128,6 +128,7 @@ export class PopupPositionService {
             popoverElement.offsetWidth,
         };
     }
+    return null;
   }
 }
 
@@ -142,7 +143,7 @@ export class MdlPopoverComponent implements OnDestroy {
   hideOnClick = false;
   // eslint-disable-next-line
   @Input("mdl-popover-position")
-  position: string;
+  position: string | undefined;
 
   @Output()
   // eslint-disable-next-line  @angular-eslint/no-output-on-prefix
@@ -177,7 +178,7 @@ export class MdlPopoverComponent implements OnDestroy {
 
   toggle(
     event: Event,
-    forElement: MdlButtonComponent | ElementRef = null
+    forElement: MdlButtonComponent | ElementRef | null = null
   ): void {
     if (this.isVisible) {
       this.hide();
@@ -188,17 +189,20 @@ export class MdlPopoverComponent implements OnDestroy {
 
   hide(): void {
     if (this.isVisible) {
-      this.onHide.emit(null);
+      this.onHide.emit();
       this.isVisible = false;
       this.changeDetectionRef.markForCheck();
     }
   }
 
-  show(event: Event, forElement: MdlButtonComponent | ElementRef = null): void {
+  show(
+    event: Event,
+    forElement: MdlButtonComponent | ElementRef | null = null
+  ): void {
     this.hideAllPopovers();
     event.stopPropagation();
     if (!this.isVisible) {
-      this.onShow.emit(null);
+      this.onShow.emit();
       this.isVisible = true;
       this.updateDirection(forElement);
     }
@@ -208,7 +212,7 @@ export class MdlPopoverComponent implements OnDestroy {
     this.popoverRegistry.hideAllExcept(this);
   }
 
-  private updateDirection(forElement: MdlButtonComponent | ElementRef) {
+  private updateDirection(forElement: MdlButtonComponent | ElementRef | null) {
     if (forElement && this.position) {
       const popoverElement = this.elementRef.nativeElement;
 

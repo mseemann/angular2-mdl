@@ -27,13 +27,13 @@ export class MdlTabPanelContentComponent {}
 })
 export class MdlTabPanelComponent {
   @ContentChild(MdlTabPanelTitleComponent, { static: true })
-  titleComponent: MdlTabPanelTitleComponent;
+  titleComponent: MdlTabPanelTitleComponent | undefined;
   // eslint-disable-next-line
-  @Input('mdl-tab-panel-title')
-  title;
+  @Input("mdl-tab-panel-title")
+  title: string | undefined;
   // eslint-disable-next-line
-  @Input('disabled')
-  disabled;
+  @Input("disabled")
+  disabled: boolean | undefined;
   @HostBinding("class.mdl-tabs__panel")
   isTabPanel = true;
   @HostBinding("class.is-active")

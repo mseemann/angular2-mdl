@@ -13,7 +13,7 @@ import { MdlRadioModule } from "./mdl-radio.module";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-radio',
+  selector: "test-radio",
   template: `
     <mdl-radio
       name="r"
@@ -33,27 +33,25 @@ import { MdlRadioModule } from "./mdl-radio.module";
     </mdl-radio>
   `,
 })
-class MdlTestRadioComponent implements OnInit {
+class MdlTestRadioComponent {
   radioValue = "2";
   radioVisible = true;
   form: FormGroup;
   test = new FormControl("");
 
-  constructor(private fb: FormBuilder) {}
-
-  public ngOnInit() {
+  constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       test: this.test,
     });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
-  public onChange(v: string) {}
+  public onChange(v: string | unknown) {}
 }
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-radio',
+  selector: "test-radio",
   template: `
     <form [formGroup]="testForm">
       <div formGroupName="group1" mdl-radio-group>
@@ -67,19 +65,15 @@ class MdlTestRadioComponent implements OnInit {
     </form>
   `,
 })
-class MdlTestUseSameRadioInGroupsComponent implements OnInit {
-  public testForm: FormGroup;
-
-  public ngOnInit() {
-    this.testForm = new FormGroup({
-      group1: new FormGroup({
-        type: new FormControl(""),
-      }),
-      group2: new FormGroup({
-        type: new FormControl(""),
-      }),
-    });
-  }
+class MdlTestUseSameRadioInGroupsComponent {
+  public testForm = new FormGroup({
+    group1: new FormGroup({
+      type: new FormControl(""),
+    }),
+    group2: new FormGroup({
+      type: new FormControl(""),
+    }),
+  });
 }
 
 describe("Component: MdlRadio", () => {
@@ -333,8 +327,9 @@ describe("Component: MdlRadio", () => {
     const fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();
 
-    const btnEl: HTMLInputElement = fixture.debugElement.query(By.css("input"))
-      .nativeElement;
+    const btnEl: HTMLInputElement = fixture.debugElement.query(
+      By.css("input")
+    ).nativeElement;
     expect(btnEl.tabIndex).toBe(2);
   });
 
@@ -348,8 +343,9 @@ describe("Component: MdlRadio", () => {
     const fixture = TestBed.createComponent(MdlTestRadioComponent);
     fixture.detectChanges();
 
-    const el: HTMLInputElement = fixture.debugElement.query(By.css("input"))
-      .nativeElement;
+    const el: HTMLInputElement = fixture.debugElement.query(
+      By.css("input")
+    ).nativeElement;
 
     expect(el.getAttribute("tabindex")).toEqual(null);
   });

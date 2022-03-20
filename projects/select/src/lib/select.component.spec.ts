@@ -2,13 +2,18 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { MdlSelectComponent } from "./select.component";
 import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from "@angular/forms";
 import { KEYS } from "./keyboard";
 import { MdlSelectModule } from "./select.module";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-disabled-component',
+  selector: "test-disabled-component",
   template: `
     <form [formGroup]="form">
       <mdl-select formControlName="personId">
@@ -37,7 +42,7 @@ class TestDisabledComponent {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-single-component',
+  selector: "test-single-component",
   template: `
     <mdl-select
       label="{{ label }}"
@@ -63,7 +68,7 @@ class TestAutoCompleteComponent {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-single-component',
+  selector: "test-single-component",
   template: `
     <mdl-select label="{{ label }}" floating-label [(ngModel)]="personId">
       <mdl-option *ngFor="let p of people" [value]="p.id">{{
@@ -84,7 +89,7 @@ class TestSingleComponent {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-single-component-no-model',
+  selector: "test-single-component-no-model",
   template: `
     <mdl-select placeholder="{{ placeholder }}">
       <mdl-option value="first">Bryan Cranston</mdl-option>
@@ -99,7 +104,7 @@ class TestSingleComponentNoModelComponent {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-multiple-component',
+  selector: "test-multiple-component",
   template: `
     <mdl-select [(ngModel)]="personIds" [multiple]="true">
       <mdl-option *ngFor="let p of people" [value]="p.id">{{
@@ -119,7 +124,7 @@ class TestMultipleComponent {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-object-component',
+  selector: "test-object-component",
   template: `
     <mdl-select [(ngModel)]="personObjs" [multiple]="true">
       <mdl-option *ngFor="let p of people" [value]="{ i: p.id, n: p.name }">{{
@@ -148,14 +153,14 @@ export const createKeyboardEvent = (
   key?: string
 ): KeyboardEvent => {
   // eslint-disable-next-line
-  const event = document.createEvent('KeyboardEvent') as any;
+  const event = document.createEvent("KeyboardEvent") as any;
 
   // Firefox does not support `initKeyboardEvent`, but supports `initKeyEvent`.
   if (event.initKeyEvent) {
     event.initKeyEvent(type, true, true, window, 0, 0, 0, 0, 0, keyCode);
   } else {
     // eslint-disable-next-line
-    event.initKeyboardEvent(type, true, true, window, 0, key, 0, '', false);
+    event.initKeyboardEvent(type, true, true, window, 0, key, 0, "", false);
   }
 
   // Webkit Browsers don't set the keyCode when calling the init function.
@@ -176,7 +181,8 @@ export const dispatchEvent = (node: Node | Window, event: Event): Event => {
 };
 
 // eslint-disable-next-line
-export const dispatchKeydownEvent = (node: any, keycode: number) => dispatchEvent(node, createKeyboardEvent('keydown', keycode, node));
+export const dispatchKeydownEvent = (node: any, keycode: number) =>
+  dispatchEvent(node, createKeyboardEvent("keydown", keycode, node));
 
 describe("MdlSelect", () => {
   describe("single", () => {
@@ -185,7 +191,7 @@ describe("MdlSelect", () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          imports: [MdlSelectModule.forRoot()],
+          imports: [MdlSelectModule.forRoot(), FormsModule],
           declarations: [TestSingleComponent],
         });
 
@@ -244,16 +250,13 @@ describe("MdlSelect", () => {
         ).componentInstance;
 
         fixture.whenStable().then(() => {
-          expect(selectComponent.ngModel).toEqual(1, "did not init ngModel");
+          expect(selectComponent.model).toEqual(1, "did not init ngModel");
 
           testInstance.personId = 2;
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponent.ngModel).toEqual(
-              2,
-              "did not update ngModel"
-            );
+            expect(selectComponent.model).toEqual(2, "did not update ngModel");
           });
         });
       })
@@ -267,7 +270,7 @@ describe("MdlSelect", () => {
         ).componentInstance;
 
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             1,
             "did not init ngModel"
           );
@@ -276,7 +279,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               "",
               "did not reset ngModel"
             );
@@ -363,7 +366,11 @@ describe("MdlSelect", () => {
 
         expect(selectComponentInstance.onKeyDown).toHaveBeenCalled();
         // eslint-disable-next-line
-      expect(selectComponentInstance.onArrow.calls.allArgs().map((args: any) => args[1])).toEqual([1, -1]);
+        expect(
+          selectComponentInstance.onArrow.calls
+            .allArgs()
+            .map((args: any) => args[1])
+        ).toEqual([1, -1]);
 
         jasmine.clock().uninstall();
       })
@@ -390,20 +397,20 @@ describe("MdlSelect", () => {
         jasmine.clock().tick(500); // onFocus timeout is cleared
         fixture.detectChanges();
 
-        expect(selectComponentInstance.ngModel).toEqual(1);
+        expect(selectComponentInstance.model).toEqual(1);
         dispatchKeydownEvent(selectNativeElement, KEYS.b);
         fixture.detectChanges();
 
         expect(selectComponentInstance.onSelect).not.toHaveBeenCalled();
         expect(selectComponentInstance.onCharacterKeydown).toHaveBeenCalled();
-        expect(selectComponentInstance.ngModel).toEqual(1);
+        expect(selectComponentInstance.model).toEqual(1);
 
         dispatchKeydownEvent(selectNativeElement, KEYS.o);
         fixture.detectChanges();
 
         expect(selectComponentInstance.onSelect).toHaveBeenCalled();
         expect(selectComponentInstance.searchQuery).toEqual("bo");
-        expect(selectComponentInstance.ngModel).toEqual(3); // B and O typed, so 'Bob Odenkirk' selected
+        expect(selectComponentInstance.model).toEqual(3); // B and O typed, so 'Bob Odenkirk' selected
 
         jasmine.clock().tick(300); // search query timeout is cleared
 
@@ -413,7 +420,7 @@ describe("MdlSelect", () => {
         fixture.detectChanges();
 
         expect(selectComponentInstance.onSelect).toHaveBeenCalled();
-        expect(selectComponentInstance.ngModel).toEqual(2); // A typed, so 'Aaron Paul' selected
+        expect(selectComponentInstance.model).toEqual(2); // A typed, so 'Aaron Paul' selected
 
         jasmine.clock().uninstall();
       })
@@ -509,7 +516,7 @@ describe("MdlSelect", () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          imports: [MdlSelectModule.forRoot()],
+          imports: [MdlSelectModule.forRoot(), FormsModule],
           declarations: [TestAutoCompleteComponent],
         });
 
@@ -537,11 +544,11 @@ describe("MdlSelect", () => {
         selectNativeElement.querySelector("input").focus();
         fixture.detectChanges();
 
-        expect(selectComponentInstance.ngModel).toBeNull();
+        expect(selectComponentInstance.model).toBeNull();
         dispatchKeydownEvent(selectNativeElement, KEYS.b);
         fixture.detectChanges();
 
-        expect(selectComponentInstance.ngModel).toBeNull();
+        expect(selectComponentInstance.model).toBeNull();
       })
     );
 
@@ -563,15 +570,15 @@ describe("MdlSelect", () => {
         input.focus();
 
         fixture.detectChanges();
-        expect(selectComponentInstance.ngModel).toBeNull();
+        expect(selectComponentInstance.model).toBeNull();
 
         dispatchEvent(input, createKeyboardEvent("keyup", KEYS.b, input));
         fixture.detectChanges();
-        expect(selectComponentInstance.ngModel).toBeNull();
+        expect(selectComponentInstance.model).toBeNull();
 
         dispatchEvent(input, createKeyboardEvent("keyup", KEYS.enter, input));
         fixture.detectChanges();
-        expect(selectComponentInstance.ngModel).toEqual(1);
+        expect(selectComponentInstance.model).toEqual(1);
       })
     );
 
@@ -595,7 +602,7 @@ describe("MdlSelect", () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          imports: [MdlSelectModule.forRoot()],
+          imports: [MdlSelectModule.forRoot(), FormsModule],
           declarations: [TestMultipleComponent],
         });
 
@@ -631,17 +638,17 @@ describe("MdlSelect", () => {
         ).componentInstance;
 
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             [1, 2],
             "did not init ngModel"
           );
 
-          testInstance.personIds = [1];
+          testInstance.personIds = [3];
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
-              [1],
+            expect(selectComponentInstance.model).toEqual(
+              [3],
               "did not update ngModel"
             );
           });
@@ -659,7 +666,7 @@ describe("MdlSelect", () => {
         spyOn(selectComponentInstance, "bindOptions");
 
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             [1, 2],
             "did not init ngModel"
           );
@@ -668,7 +675,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               [],
               "did not reset ngModel"
             );
@@ -680,9 +687,10 @@ describe("MdlSelect", () => {
     it(
       "should select and deselect value",
       waitForAsync(() => {
-        const selectComponentInstance = fixture.debugElement.query(
-          By.directive(MdlSelectComponent)
-        ).componentInstance;
+        const selectComponentInstance: MdlSelectComponent =
+          fixture.debugElement.query(
+            By.directive(MdlSelectComponent)
+          ).componentInstance;
 
         expect(selectComponentInstance.multiple).toBe(true, "is not multiple");
 
@@ -690,7 +698,7 @@ describe("MdlSelect", () => {
 
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             [1, 2, 3],
             "did not update ngModel on select 3"
           );
@@ -699,7 +707,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               [1, 2],
               "did not update ngModel on deselect 3"
             );
@@ -735,7 +743,7 @@ describe("MdlSelect", () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          imports: [MdlSelectModule.forRoot()],
+          imports: [MdlSelectModule.forRoot(), FormsModule],
           declarations: [TestObjectComponent],
         });
 
@@ -755,7 +763,7 @@ describe("MdlSelect", () => {
         ).componentInstance;
 
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             [
               { i: 1, n: "Bryan Cranston" },
               { i: 2, n: "Aaron Paul" },
@@ -767,7 +775,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               [{ i: 1, n: "Bryan Cranston" }],
               "did not update ngModel"
             );
@@ -786,7 +794,7 @@ describe("MdlSelect", () => {
         spyOn(selectComponentInstance, "bindOptions");
 
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             [
               { i: 1, n: "Bryan Cranston" },
               { i: 2, n: "Aaron Paul" },
@@ -798,7 +806,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               [],
               "did not reset ngModel"
             );
@@ -826,7 +834,7 @@ describe("MdlSelect", () => {
 
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             arrWith3Obj,
             "did not update ngModel on select 3"
           );
@@ -835,7 +843,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               [arrWith3Obj[0], arrWith3Obj[1]],
               "did not update ngModel on deselect 3"
             );
@@ -844,7 +852,7 @@ describe("MdlSelect", () => {
 
             fixture.detectChanges();
             fixture.whenStable().then(() => {
-              expect(selectComponentInstance.ngModel).toEqual(
+              expect(selectComponentInstance.model).toEqual(
                 [arrWith3Obj[0]],
                 "did not update ngModel on deselect 3"
               );

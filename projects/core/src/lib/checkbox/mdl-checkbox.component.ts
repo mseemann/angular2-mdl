@@ -47,27 +47,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
 })
 export class MdlCheckboxComponent implements ControlValueAccessor {
   @Input()
-  tabindex: number = null;
-
-  @Output()
-  // eslint-disable-next-line  @angular-eslint/no-output-native
-  change: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  @HostBinding("class.mdl-checkbox")
-  isCheckbox = true;
-
-  @HostBinding("class.is-upgraded")
-  isUpgraded = true;
-
-  private readonly el: HTMLElement;
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: unknown) => void = noop;
-  private internalValue = false;
-  private internalDisabled = false;
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    this.el = elementRef.nativeElement;
-  }
+  tabindex: number | null = null;
 
   get value(): boolean {
     return this.internalValue;
@@ -89,6 +69,26 @@ export class MdlCheckboxComponent implements ControlValueAccessor {
   @HostBinding("class.is-disabled")
   set disabled(value: boolean) {
     this.internalDisabled = toBoolean(value);
+  }
+
+  @Output()
+  // eslint-disable-next-line  @angular-eslint/no-output-native
+  change: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @HostBinding("class.mdl-checkbox")
+  isCheckbox = true;
+
+  @HostBinding("class.is-upgraded")
+  isUpgraded = true;
+
+  private readonly el: HTMLElement;
+  private onTouchedCallback: () => void = noop;
+  private onChangeCallback: (_: unknown) => void = noop;
+  private internalValue = false;
+  private internalDisabled = false;
+
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    this.el = elementRef.nativeElement;
   }
 
   @HostListener("click")

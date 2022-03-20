@@ -41,7 +41,7 @@ const getCenterInScreen = (rect: IOpenCloseRect) => ({
 });
 
 const getClientRect = (
-  input: MdlButtonComponent | MouseEvent | IOpenCloseRect
+  input: MdlButtonComponent | MouseEvent | IOpenCloseRect | undefined
 ): IOpenCloseRect => {
   if (input instanceof MdlButtonComponent) {
     const elRef = (input as MdlButtonComponent).elementRef;
@@ -92,7 +92,7 @@ const getClientRect = (
 })
 export class MdlDialogHostComponent implements OnInit {
   @ViewChild("dialogTarget", { read: ViewContainerRef, static: true })
-  dialogTarget: ViewContainerRef;
+  dialogTarget: ViewContainerRef | undefined;
 
   @HostBinding("class.mdl-dialog")
   isDialog = true;
@@ -136,11 +136,12 @@ export class MdlDialogHostComponent implements OnInit {
     if (this.isAnimateEnabled()) {
       if (this.config.openFrom || this.config.closeTo) {
         // transform is modified during anmiation and must be part of each animation keyframe.
-        this.showStyle.transform = "translate(0, -50%) scale(1.0)";
+        this.showStyle["transform"] = "translate(0, -50%) scale(1.0)";
 
-        const targetClientRect = this.elementRef.nativeElement.getBoundingClientRect();
+        const targetClientRect =
+          this.elementRef.nativeElement.getBoundingClientRect();
 
-        const openFromRect = getClientRect(this.config.openFrom);
+        const openFromRect = getClientRect(this.config?.openFrom);
         const closeToRect = this.config.closeTo
           ? getClientRect(this.config.closeTo)
           : openFromRect;
@@ -224,7 +225,7 @@ export class MdlDialogHostComponent implements OnInit {
     this.applyClasses(this.config.classes ? this.config.classes : "");
   }
 
-  private applyStyle(styles: { [key: string]: string }) {
+  private applyStyle(styles: { [p: string]: string } | undefined) {
     if (styles) {
       for (const style of Object.keys(styles)) {
         this.renderer.setStyle(

@@ -8,7 +8,7 @@ import { MdlBackdropOverlayComponent } from "../dialog-outlet/mdl-backdrop-overl
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-component',
+  selector: "test-component",
   template: `
     <mdl-dialog
       #dialog
@@ -21,8 +21,10 @@ import { MdlBackdropOverlayComponent } from "../dialog-outlet/mdl-backdrop-overl
   `,
 })
 class MdlTestComponent {
-  @ViewChild("dialog", { static: true }) public dialog: MdlDialogComponent;
-  public dialogRef: MdlDialogReference;
+  @ViewChild("dialog", { static: true }) public dialog:
+    | MdlDialogComponent
+    | undefined;
+  public dialogRef: MdlDialogReference | undefined;
 
   public onDialogShow(dialogRef: MdlDialogReference) {
     this.dialogRef = dialogRef;
@@ -34,38 +36,44 @@ class MdlTestComponent {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-component-2',
+  selector: "test-component-2",
   template: `
     <mdl-dialog #dialog [mdl-dialog-config]="{ isModal: true }"> </mdl-dialog>
     <dialog-outlet></dialog-outlet>
   `,
 })
 class ModalTrueConfigFalseComponent {
-  @ViewChild("dialog", { static: true }) public dialog: MdlDialogComponent;
+  @ViewChild("dialog", { static: true }) public dialog:
+    | MdlDialogComponent
+    | undefined;
 }
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-component-4',
+  selector: "test-component-4",
   template: `
     <mdl-dialog #dialog [mdl-dialog-config]="{ isModal: false }"> </mdl-dialog>
     <dialog-outlet></dialog-outlet>
   `,
 })
 class ModalFalseConfigTrueComponent {
-  @ViewChild("dialog", { static: true }) public dialog: MdlDialogComponent;
+  @ViewChild("dialog", { static: true }) public dialog:
+    | MdlDialogComponent
+    | undefined;
 }
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-component-4',
+  selector: "test-component-4",
   template: `
     <mdl-dialog #dialog [mdl-dialog-config]="{}"> </mdl-dialog>
     <dialog-outlet></dialog-outlet>
   `,
 })
 class ModalComponent {
-  @ViewChild("dialog", { static: true }) public dialog: MdlDialogComponent;
+  @ViewChild("dialog", { static: true }) public dialog:
+    | MdlDialogComponent
+    | undefined;
 }
 
 describe("MdlDialog (embedded/declarative)", () => {
@@ -94,7 +102,7 @@ describe("MdlDialog (embedded/declarative)", () => {
       spyOn(fixture.componentInstance, "onDialogShow").and.callThrough();
       spyOn(fixture.componentInstance, "onDialogHide");
 
-      dialog.show().subscribe(() => {
+      dialog?.show().subscribe(() => {
         dialog.close();
 
         expect(fixture.componentInstance.onDialogShow).toHaveBeenCalled();
@@ -108,10 +116,10 @@ describe("MdlDialog (embedded/declarative)", () => {
     fixture.detectChanges();
     const dialog = fixture.componentInstance.dialog;
 
-    dialog.show();
+    dialog?.show();
 
     expect(() => {
-      dialog.show();
+      dialog?.show();
     }).toThrow();
   });
 
@@ -120,7 +128,7 @@ describe("MdlDialog (embedded/declarative)", () => {
     fixture.detectChanges();
 
     const dialog = fixture.componentInstance.dialog;
-    dialog.show().subscribe(() => {
+    dialog?.show().subscribe(() => {
       const backdrop = fixture.debugElement.query(
         By.directive(MdlBackdropOverlayComponent)
       ).componentInstance;
@@ -137,6 +145,6 @@ describe("MdlDialog (embedded/declarative)", () => {
     const dialog = fixture.componentInstance.dialog;
 
     // throws if the guard for dialogRef is not present.
-    dialog.close();
+    dialog?.close();
   });
 });

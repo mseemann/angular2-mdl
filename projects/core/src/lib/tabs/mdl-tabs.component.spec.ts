@@ -7,15 +7,15 @@ import { Component } from "@angular/core";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test',
+  selector: "test",
   template: "replaced by the test",
 })
 class MdlTestComponent {
-  public selectedIndexOutput: number;
+  public selectedIndexOutput: number | undefined;
 
   public tabs = ["1", "2"];
 
-  public tabChanged($event) {
+  public tabChanged($event: any) {
     this.selectedIndexOutput = $event.index;
   }
 }

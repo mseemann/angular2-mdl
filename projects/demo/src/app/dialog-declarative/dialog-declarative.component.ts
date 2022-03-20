@@ -16,11 +16,11 @@ import {
 })
 export class DialogDeclarativeDemoComponent extends AbstractDemoComponent {
   @ViewChild("editUserDialog", { static: true })
-  public editUserDialog: MdlDialogComponent;
+  public editUserDialog: MdlDialogComponent | undefined;
   @ViewChild(MdlTextFieldComponent, { static: true })
-  public tfName: MdlTextFieldComponent;
+  public tfName: MdlTextFieldComponent | undefined;
   public username = "Marvin";
-  public editedUsername: string;
+  public editedUsername = "";
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
@@ -33,13 +33,13 @@ export class DialogDeclarativeDemoComponent extends AbstractDemoComponent {
   public saveUser(): void {
     console.log("user saved!");
     this.username = this.editedUsername;
-    this.editUserDialog.close();
+    this.editUserDialog?.close();
   }
 
   public onDialogShow(dialogRef: MdlDialogReference): void {
     console.log(`dialog shown`, dialogRef);
     this.editedUsername = this.username;
-    this.tfName.setFocus();
+    this.tfName?.setFocus();
   }
 
   public onDialogHide(): void {

@@ -34,7 +34,7 @@ export class TabsDemoComponent extends AbstractDemoComponent implements OnInit {
   disableBaratheon = false;
 
   public activeIndex = 0;
-  public myArray: string[] = null;
+  public myArray: string[] = [];
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
@@ -44,7 +44,7 @@ export class TabsDemoComponent extends AbstractDemoComponent implements OnInit {
     this.activeIndex = index;
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     // Simulates a later change of tabs
     setTimeout(() => {
       this.myArray = ["a", "b", "c"];

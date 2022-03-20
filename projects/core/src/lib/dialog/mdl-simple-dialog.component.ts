@@ -47,7 +47,7 @@ import { MdlDialogReference } from "./mdl-dialog-reference";
 })
 export class MdlSimpleDialogComponent {
   @ViewChildren(MdlButtonComponent)
-  buttons: QueryList<MdlButtonComponent>;
+  buttons: QueryList<MdlButtonComponent> | undefined;
 
   // why do i need forwardRef at this point, the demo LoginDialog dosn't need this!?!?
   constructor(

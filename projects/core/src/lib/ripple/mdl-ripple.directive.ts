@@ -15,8 +15,8 @@ export class MdlRippleDirective implements OnChanges {
   public el: HTMLElement;
   rippleActive: boolean | string = true;
 
-  private rippleContainer: HTMLElement;
-  private ripple: () => void;
+  private rippleContainer: HTMLElement | undefined;
+  private ripple: (() => void) | undefined;
 
   constructor(
     private elementRef: ElementRef,
@@ -43,9 +43,12 @@ export class MdlRippleDirective implements OnChanges {
       });
       const rippleElement = this.renderer.createElement("span");
       this.renderer.addClass(rippleElement, RIPPLE);
-      this.rippleContainer.appendChild(rippleElement);
-      this.el.appendChild(this.rippleContainer);
-
+      this.rippleContainer?.appendChild(rippleElement);
+      if (this.rippleContainer) {
+        this.el.appendChild(this.rippleContainer);
+      }
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       this.ripple = new MaterialRipple(this.renderer, this.el);
     }
   }
@@ -53,11 +56,11 @@ export class MdlRippleDirective implements OnChanges {
 
 @Directive({
   // eslint-disable-next-line
-  selector: 'mdl-button[mdl-ripple], button[mdl-ripple]'
+  selector: "mdl-button[mdl-ripple], button[mdl-ripple]",
 })
 export class MdlButtonRippleDirective extends MdlRippleDirective {
   // eslint-disable-next-line
-  @Input('mdl-ripple') public rippleActive: boolean | string = true;
+  @Input("mdl-ripple") public override rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer, ["mdl-button__ripple-container"]);
@@ -66,11 +69,11 @@ export class MdlButtonRippleDirective extends MdlRippleDirective {
 
 @Directive({
   // eslint-disable-next-line
-  selector: 'mdl-checkbox[mdl-ripple]'
+  selector: "mdl-checkbox[mdl-ripple]",
 })
 export class MdlCheckboxRippleDirective extends MdlRippleDirective {
   // eslint-disable-next-line
-  @Input('mdl-ripple') public rippleActive: boolean | string = true;
+  @Input("mdl-ripple") public override rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer, [
@@ -82,11 +85,11 @@ export class MdlCheckboxRippleDirective extends MdlRippleDirective {
 
 @Directive({
   // eslint-disable-next-line
-  selector: 'mdl-radio[mdl-ripple]'
+  selector: "mdl-radio[mdl-ripple]",
 })
 export class MdlRadioRippleDirective extends MdlRippleDirective {
   // eslint-disable-next-line
-  @Input('mdl-ripple') public rippleActive: boolean | string = true;
+  @Input("mdl-ripple") public override rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer, [
@@ -98,11 +101,11 @@ export class MdlRadioRippleDirective extends MdlRippleDirective {
 
 @Directive({
   // eslint-disable-next-line
-  selector: 'mdl-icon-toggle[mdl-ripple]'
+  selector: "mdl-icon-toggle[mdl-ripple]",
 })
 export class MdlIconToggleRippleDirective extends MdlRippleDirective {
   // eslint-disable-next-line
-  @Input('mdl-ripple') public rippleActive: boolean | string = true;
+  @Input("mdl-ripple") public override rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer, [
@@ -114,11 +117,11 @@ export class MdlIconToggleRippleDirective extends MdlRippleDirective {
 
 @Directive({
   // eslint-disable-next-line
-  selector: 'mdl-switch[mdl-ripple]'
+  selector: "mdl-switch[mdl-ripple]",
 })
 export class MdlSwitchRippleDirective extends MdlRippleDirective {
   // eslint-disable-next-line
-  @Input('mdl-ripple') public rippleActive: boolean | string = true;
+  @Input("mdl-ripple") public override rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer, [
@@ -130,11 +133,11 @@ export class MdlSwitchRippleDirective extends MdlRippleDirective {
 
 @Directive({
   // eslint-disable-next-line
-  selector: 'mdl-menu-item[mdl-ripple]'
+  selector: "mdl-menu-item[mdl-ripple]",
 })
 export class MdlMenuItemRippleDirective extends MdlRippleDirective {
   // eslint-disable-next-line
-  @Input('mdl-ripple') public rippleActive: boolean | string = true;
+  @Input("mdl-ripple") public override rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer, ["mdl-menu__item--ripple-container"]);
@@ -143,11 +146,11 @@ export class MdlMenuItemRippleDirective extends MdlRippleDirective {
 
 @Directive({
   // eslint-disable-next-line
-  selector: 'a[mdl-ripple],div[mdl-ripple]'
+  selector: "a[mdl-ripple],div[mdl-ripple]",
 })
 export class MdlAnchorRippleDirective extends MdlRippleDirective {
   // eslint-disable-next-line
-  @Input('mdl-ripple') public rippleActive: boolean | string = true;
+  @Input("mdl-ripple") public override rippleActive: boolean | string = true;
 
   constructor(elementRef: ElementRef, renderer: Renderer2) {
     super(elementRef, renderer, [

@@ -30,13 +30,13 @@ interface DpWeek {
 
 @Component({
   // eslint-disable-next-line
-  selector: 'datepicker',
+  selector: "datepicker",
   templateUrl: "datepicker.component.html",
   encapsulation: ViewEncapsulation.None,
 })
 export class DatePickerDialogComponent {
   @ViewChild("okButton")
-  okButton: MdlButtonComponent;
+  okButton: MdlButtonComponent | undefined;
 
   okLabel: string;
   cancelLabel: string;
@@ -45,7 +45,7 @@ export class DatePickerDialogComponent {
   prevEnabled = true;
   nextEnabled = true;
   monthGridWeekDays: string[];
-  monthGridDays: DpWeek[];
+  monthGridDays: DpWeek[] = [];
   pmCurrentMonth: momentNs.Moment;
 
   constructor(
@@ -54,6 +54,7 @@ export class DatePickerDialogComponent {
     @Inject(DATEPICKER_CONFIG) private options: DatePickerOptions
   ) {
     this.mDate = moment(initialDate || new Date());
+    this.pmCurrentMonth = moment(initialDate || new Date());
     this.mCurrentMonth = this.mDate.clone();
 
     const startOfWeek = moment().startOf("week");
@@ -70,7 +71,7 @@ export class DatePickerDialogComponent {
     this.cancelLabel = options.cancelLabel || "Cancel";
 
     dialog.onVisible().subscribe(() => {
-      this.okButton.elementRef.nativeElement.focus();
+      this.okButton?.elementRef.nativeElement.focus();
     });
   }
 

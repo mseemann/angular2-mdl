@@ -38,7 +38,7 @@ declare const ng: {
 const getComponent = <T>(
   fixture: ComponentFixture<unknown>,
   cssQuery: string
-): T => {
+): T | null => {
   const componentElement = getNativeElement(fixture, cssQuery);
   return ng.getComponent(componentElement);
 };
@@ -61,13 +61,15 @@ const getNativeElement = (
   `,
 })
 class MdlTestViewComponent {
-  @ViewChild("btn", { static: true }) button: MdlButtonComponent;
-  @ViewChild("targetBtn", { static: true }) targetBtn: MdlButtonComponent;
+  @ViewChild("btn", { static: true }) button: MdlButtonComponent | undefined;
+  @ViewChild("targetBtn", { static: true }) targetBtn:
+    | MdlButtonComponent
+    | undefined;
 
   public getFakeMouseEvent() {
     const mouseEvent = new MouseEvent("click");
     // eslint-disable-next-line
-    (mouseEvent as any).testtarget = this.targetBtn.elementRef.nativeElement;
+    (mouseEvent as any).testtarget = this.targetBtn?.elementRef.nativeElement;
     return mouseEvent;
   }
 }
@@ -131,7 +133,7 @@ describe("Service: MdlDialog", () => {
         (
           service: MdlDialogService,
           dialogOutletService: MdlDialogOutletService,
-          document
+          document: HTMLDocument
         ) => {
           mdlDialogService = service;
           mdlDialogOutletService = dialogOutletService;
@@ -150,23 +152,23 @@ describe("Service: MdlDialog", () => {
 
     fixture.detectChanges();
 
-    const dialogHostComponent: MdlDialogHostComponent = getComponent(
+    const dialogHostComponent: MdlDialogHostComponent | null = getComponent(
       fixture,
       "mdl-dialog-host-component"
     );
 
-    expect(dialogHostComponent.zIndex).toBe(
+    expect(dialogHostComponent?.zIndex).toBe(
       100001,
       "the zIndex should be 100001"
     );
 
     // the backdrop shoud be visible and have an zIndex of 100000
-    const backdrop: MdlBackdropOverlayComponent = getComponent(
+    const backdrop: MdlBackdropOverlayComponent | null = getComponent(
       fixture,
       "mdl-backdrop-overlay"
     );
 
-    expect(backdrop.zIndex).toBe(
+    expect(backdrop?.zIndex).toBe(
       100000,
       "the zIndex of the background should be 100000"
     );
@@ -194,7 +196,8 @@ describe("Service: MdlDialog", () => {
     const buttonDebugElements = ne.querySelectorAll(
       "mdl-dialog-component .mdl-button"
     );
-    const buttonEl: HTMLButtonElement = buttonDebugElements[0] as HTMLButtonElement;
+    const buttonEl: HTMLButtonElement =
+      buttonDebugElements[0] as HTMLButtonElement;
 
     buttonEl.click();
   });
@@ -214,12 +217,12 @@ describe("Service: MdlDialog", () => {
 
     fixture.detectChanges();
 
-    const dialog: MdlSimpleDialogComponent = getComponent(
+    const dialog: MdlSimpleDialogComponent | null = getComponent(
       fixture,
       "mdl-dialog-component"
     );
     // sending an keybord event to the dialog would be better
-    dialog.onEsc();
+    dialog?.onEsc();
   });
 
   it("should be possible to open a custom dialog", (done) => {
@@ -235,16 +238,14 @@ describe("Service: MdlDialog", () => {
         done();
       });
 
-      const customDialogComponent: TestCustomDialogComponent = getComponent(
-        fixture,
-        "test-dialog-component"
-      );
+      const customDialogComponent: TestCustomDialogComponent | null =
+        getComponent(fixture, "test-dialog-component");
 
       // value should be jnjected
-      expect(customDialogComponent.test).toBe("test");
+      expect(customDialogComponent?.test).toBe("test");
 
       // call close by calling hide on the dialog reference
-      customDialogComponent.close();
+      customDialogComponent?.close();
     });
 
     fixture.detectChanges();
@@ -264,13 +265,11 @@ describe("Service: MdlDialog", () => {
         done();
       });
 
-      const customDialogComponent: TestCustomDialogComponent = getComponent(
-        fixture,
-        "test-dialog-component"
-      );
+      const customDialogComponent: TestCustomDialogComponent | null =
+        getComponent(fixture, "test-dialog-component");
 
       // call close by calling hide on the dialog reference
-      customDialogComponent.close("teststring");
+      customDialogComponent?.close("teststring");
     });
 
     fixture.detectChanges();
@@ -453,16 +452,16 @@ describe("Service: MdlDialog", () => {
     await fixture.whenStable();
 
     const ne: HTMLElement = fixture.debugElement.nativeElement;
-    const dialogHost: HTMLElement = ne.querySelector(
+    const dialogHost: HTMLElement | null = ne.querySelector(
       "mdl-dialog-host-component"
     );
 
-    expect(dialogHost.style.width).toBe("350px");
-    expect(dialogHost.classList.contains("a")).toBe(
+    expect(dialogHost?.style.width).toBe("350px");
+    expect(dialogHost?.classList.contains("a")).toBe(
       true,
       "should contian class a"
     );
-    expect(dialogHost.classList.contains("b")).toBe(
+    expect(dialogHost?.classList.contains("b")).toBe(
       true,
       "should contian class b"
     );
