@@ -2,7 +2,12 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { MdlSelectComponent } from "./select.component";
 import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from "@angular/forms";
 import { KEYS } from "./keyboard";
 import { MdlSelectModule } from "./select.module";
 
@@ -186,7 +191,7 @@ describe("MdlSelect", () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          imports: [MdlSelectModule.forRoot()],
+          imports: [MdlSelectModule.forRoot(), FormsModule],
           declarations: [TestSingleComponent],
         });
 
@@ -245,16 +250,13 @@ describe("MdlSelect", () => {
         ).componentInstance;
 
         fixture.whenStable().then(() => {
-          expect(selectComponent.ngModel).toEqual(1, "did not init ngModel");
+          expect(selectComponent.model).toEqual(1, "did not init ngModel");
 
           testInstance.personId = 2;
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponent.ngModel).toEqual(
-              2,
-              "did not update ngModel"
-            );
+            expect(selectComponent.model).toEqual(2, "did not update ngModel");
           });
         });
       })
@@ -268,7 +270,7 @@ describe("MdlSelect", () => {
         ).componentInstance;
 
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             1,
             "did not init ngModel"
           );
@@ -277,7 +279,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               "",
               "did not reset ngModel"
             );
@@ -395,20 +397,20 @@ describe("MdlSelect", () => {
         jasmine.clock().tick(500); // onFocus timeout is cleared
         fixture.detectChanges();
 
-        expect(selectComponentInstance.ngModel).toEqual(1);
+        expect(selectComponentInstance.model).toEqual(1);
         dispatchKeydownEvent(selectNativeElement, KEYS.b);
         fixture.detectChanges();
 
         expect(selectComponentInstance.onSelect).not.toHaveBeenCalled();
         expect(selectComponentInstance.onCharacterKeydown).toHaveBeenCalled();
-        expect(selectComponentInstance.ngModel).toEqual(1);
+        expect(selectComponentInstance.model).toEqual(1);
 
         dispatchKeydownEvent(selectNativeElement, KEYS.o);
         fixture.detectChanges();
 
         expect(selectComponentInstance.onSelect).toHaveBeenCalled();
         expect(selectComponentInstance.searchQuery).toEqual("bo");
-        expect(selectComponentInstance.ngModel).toEqual(3); // B and O typed, so 'Bob Odenkirk' selected
+        expect(selectComponentInstance.model).toEqual(3); // B and O typed, so 'Bob Odenkirk' selected
 
         jasmine.clock().tick(300); // search query timeout is cleared
 
@@ -418,7 +420,7 @@ describe("MdlSelect", () => {
         fixture.detectChanges();
 
         expect(selectComponentInstance.onSelect).toHaveBeenCalled();
-        expect(selectComponentInstance.ngModel).toEqual(2); // A typed, so 'Aaron Paul' selected
+        expect(selectComponentInstance.model).toEqual(2); // A typed, so 'Aaron Paul' selected
 
         jasmine.clock().uninstall();
       })
@@ -514,7 +516,7 @@ describe("MdlSelect", () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          imports: [MdlSelectModule.forRoot()],
+          imports: [MdlSelectModule.forRoot(), FormsModule],
           declarations: [TestAutoCompleteComponent],
         });
 
@@ -542,11 +544,11 @@ describe("MdlSelect", () => {
         selectNativeElement.querySelector("input").focus();
         fixture.detectChanges();
 
-        expect(selectComponentInstance.ngModel).toBeNull();
+        expect(selectComponentInstance.model).toBeNull();
         dispatchKeydownEvent(selectNativeElement, KEYS.b);
         fixture.detectChanges();
 
-        expect(selectComponentInstance.ngModel).toBeNull();
+        expect(selectComponentInstance.model).toBeNull();
       })
     );
 
@@ -568,15 +570,15 @@ describe("MdlSelect", () => {
         input.focus();
 
         fixture.detectChanges();
-        expect(selectComponentInstance.ngModel).toBeNull();
+        expect(selectComponentInstance.model).toBeNull();
 
         dispatchEvent(input, createKeyboardEvent("keyup", KEYS.b, input));
         fixture.detectChanges();
-        expect(selectComponentInstance.ngModel).toBeNull();
+        expect(selectComponentInstance.model).toBeNull();
 
         dispatchEvent(input, createKeyboardEvent("keyup", KEYS.enter, input));
         fixture.detectChanges();
-        expect(selectComponentInstance.ngModel).toEqual(1);
+        expect(selectComponentInstance.model).toEqual(1);
       })
     );
 
@@ -600,7 +602,7 @@ describe("MdlSelect", () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          imports: [MdlSelectModule.forRoot()],
+          imports: [MdlSelectModule.forRoot(), FormsModule],
           declarations: [TestMultipleComponent],
         });
 
@@ -636,17 +638,17 @@ describe("MdlSelect", () => {
         ).componentInstance;
 
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             [1, 2],
             "did not init ngModel"
           );
 
-          testInstance.personIds = [1];
+          testInstance.personIds = [3];
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
-              [1],
+            expect(selectComponentInstance.model).toEqual(
+              [3],
               "did not update ngModel"
             );
           });
@@ -664,7 +666,7 @@ describe("MdlSelect", () => {
         spyOn(selectComponentInstance, "bindOptions");
 
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             [1, 2],
             "did not init ngModel"
           );
@@ -673,7 +675,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               [],
               "did not reset ngModel"
             );
@@ -685,9 +687,10 @@ describe("MdlSelect", () => {
     it(
       "should select and deselect value",
       waitForAsync(() => {
-        const selectComponentInstance = fixture.debugElement.query(
-          By.directive(MdlSelectComponent)
-        ).componentInstance;
+        const selectComponentInstance: MdlSelectComponent =
+          fixture.debugElement.query(
+            By.directive(MdlSelectComponent)
+          ).componentInstance;
 
         expect(selectComponentInstance.multiple).toBe(true, "is not multiple");
 
@@ -695,7 +698,7 @@ describe("MdlSelect", () => {
 
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             [1, 2, 3],
             "did not update ngModel on select 3"
           );
@@ -704,7 +707,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               [1, 2],
               "did not update ngModel on deselect 3"
             );
@@ -740,7 +743,7 @@ describe("MdlSelect", () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          imports: [MdlSelectModule.forRoot()],
+          imports: [MdlSelectModule.forRoot(), FormsModule],
           declarations: [TestObjectComponent],
         });
 
@@ -760,7 +763,7 @@ describe("MdlSelect", () => {
         ).componentInstance;
 
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             [
               { i: 1, n: "Bryan Cranston" },
               { i: 2, n: "Aaron Paul" },
@@ -772,7 +775,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               [{ i: 1, n: "Bryan Cranston" }],
               "did not update ngModel"
             );
@@ -791,7 +794,7 @@ describe("MdlSelect", () => {
         spyOn(selectComponentInstance, "bindOptions");
 
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             [
               { i: 1, n: "Bryan Cranston" },
               { i: 2, n: "Aaron Paul" },
@@ -803,7 +806,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               [],
               "did not reset ngModel"
             );
@@ -831,7 +834,7 @@ describe("MdlSelect", () => {
 
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.ngModel).toEqual(
+          expect(selectComponentInstance.model).toEqual(
             arrWith3Obj,
             "did not update ngModel on select 3"
           );
@@ -840,7 +843,7 @@ describe("MdlSelect", () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(selectComponentInstance.ngModel).toEqual(
+            expect(selectComponentInstance.model).toEqual(
               [arrWith3Obj[0], arrWith3Obj[1]],
               "did not update ngModel on deselect 3"
             );
@@ -849,7 +852,7 @@ describe("MdlSelect", () => {
 
             fixture.detectChanges();
             fixture.whenStable().then(() => {
-              expect(selectComponentInstance.ngModel).toEqual(
+              expect(selectComponentInstance.model).toEqual(
                 [arrWith3Obj[0]],
                 "did not update ngModel on deselect 3"
               );

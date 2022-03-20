@@ -72,8 +72,7 @@ export class MdlSelectComponent
   extends SearchableComponent
   implements ControlValueAccessor, AfterContentInit, AfterViewInit
 {
-  @Input() ngModel: string[] | string | undefined;
-  @Input() disabled = false;
+  @Input() disabled: boolean | string = false;
   @Input() autocomplete = false;
   @Input() public label = "";
   @Input() placeholder = "";
@@ -95,6 +94,8 @@ export class MdlSelectComponent
   textfieldId: string;
   text = "";
   focused = false;
+  // eslint-disable-next-line
+  model: any[] | any | null = null;
   private selectElement: HTMLElement | undefined;
   private popoverElement: HTMLElement | undefined;
   private textByValue: { [property: string]: string } = {};
@@ -121,7 +122,7 @@ export class MdlSelectComponent
   @HostBinding("class.mdl-select--floating-label")
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input("floating-label")
-  set isFloatingLabel(value: boolean) {
+  set isFloatingLabel(value: boolean | string) {
     this.misFloatingLabel = toBoolean(value);
   }
 
@@ -165,10 +166,10 @@ export class MdlSelectComponent
 
   ngAfterContentInit(): void {
     this.bindOptions();
-    this.renderValue(this.ngModel);
+    this.renderValue(this.model);
     this.optionComponents?.changes.subscribe(() => {
       this.bindOptions();
-      this.renderValue(this.ngModel);
+      this.renderValue(this.model);
     });
     this.popoverComponent?.onShow.subscribe(() => this.onOpen());
     this.popoverComponent?.onHide.subscribe(() => this.onClose());
@@ -187,10 +188,10 @@ export class MdlSelectComponent
   // rebind options and reset value in connected select
   reset(resetValue: boolean = true): void {
     if (resetValue && !this.isEmpty()) {
-      this.ngModel = this.multiple ? [] : "";
-      this.onChange(this.ngModel);
-      this.change.emit(this.ngModel);
-      this.renderValue(this.ngModel);
+      this.model = this.multiple ? [] : "";
+      this.onChange(this.model);
+      this.change.emit(this.model);
+      this.renderValue(this.model);
     }
   }
 
@@ -218,29 +219,28 @@ export class MdlSelectComponent
 
   public writeValue(value: string | string[] | undefined): void {
     if (this.multiple) {
-      this.ngModel = this.ngModel || [];
-      if (!value || this.ngModel === value) {
+      this.model = this.model || [];
+      if (!value || this.model === value) {
         // skip ngModel update when undefined value or multiple selects initialized with same array
       } else if (Array.isArray(value)) {
-        this.ngModel = uniq((this.ngModel as string[]).concat(value));
+        this.model = value; // why the uniq call? uniq((this.model as string[]).concat(value));
       } else if (
-        (this.ngModel as string[])
+        (this.model as string[])
           .map((v: string) => stringifyValue(v))
           .indexOf(stringifyValue(value)) !== -1
       ) {
-        this.ngModel = [
-          ...(this.ngModel as string[]).filter(
+        this.model = [
+          ...(this.model as string[]).filter(
             (v: string) => stringifyValue(v) !== stringifyValue(value)
           ),
         ];
       } else if (!!value) {
-        this.ngModel = [...(this.ngModel as string[]), value];
+        this.model = [...(this.model as string[]), value];
       }
     } else {
-      this.ngModel = value;
+      this.model = value;
     }
-    this.onChange(this.ngModel);
-    this.renderValue(this.ngModel);
+    this.renderValue(this.model);
   }
 
   registerOnChange(fn: (value: unknown) => void): void {
@@ -259,12 +259,13 @@ export class MdlSelectComponent
     const currentOption = this.getCurrentOption();
     const autoSelectedValue = this.getAutoSelection();
     const value =
-      autoSelectedValue || (currentOption ? currentOption.value : this.ngModel);
+      autoSelectedValue || (currentOption ? currentOption.value : this.model);
     this.resetText();
 
-    if (!isEqual(this.ngModel, value)) {
+    if (!isEqual(this.model, value)) {
       this.writeValue(value);
       this.change.emit(value);
+      this.onChange(this.model);
     }
   }
 
@@ -347,7 +348,7 @@ export class MdlSelectComponent
   }
 
   private isEmpty() {
-    return this.multiple ? !this.ngModel?.length : !this.ngModel;
+    return this.multiple ? !this.model?.length : !this.model;
   }
 
   private bindOptions() {
@@ -394,7 +395,7 @@ export class MdlSelectComponent
 
       setTimeout(() => {
         this.focused = true;
-        this.selectValue(this.ngModel);
+        this.selectValue(this.model);
         this.tryToUpdateDirection();
         if (this.popoverElement) {
           this.popoverElement.style.visibility = "visible";
@@ -417,24 +418,25 @@ export class MdlSelectComponent
   private onClose() {
     if (!this.disabled) {
       this.focused = false;
-      this.selectValue(this.ngModel);
+      this.selectValue(this.model);
       if (this.selectInput) {
         this.selectInput.nativeElement.value = this.text;
       }
       if (this.popoverElement) {
         this.popoverElement.style.visibility = "hidden";
       }
-      this.blur.emit(this.ngModel);
+      this.blur.emit(this.model);
     }
   }
 
-  private onSelect(value: string | string[]) {
+  onSelect(value: any | any[]) {
     if (!this.multiple) {
       this.scrollToValue(value);
     }
-    if (!isEqual(this.ngModel, value)) {
+    if (!isEqual(this.model, value)) {
       this.writeValue(value);
       this.change.emit(value);
+      this.onChange(this.model);
     }
   }
 
