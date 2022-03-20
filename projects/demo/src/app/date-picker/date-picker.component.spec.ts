@@ -11,18 +11,20 @@ describe("DatePickerComponent", () => {
   let component: DatePickerComponent;
   let fixture: ComponentFixture<DatePickerComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      imports: [
-        MdlModule,
-        MdlDatePickerModule,
-        RouterTestingModule,
-        NoopAnimationsModule,
-      ],
-      declarations: [DatePickerComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        schemas: [NO_ERRORS_SCHEMA],
+        imports: [
+          MdlModule,
+          MdlDatePickerModule,
+          RouterTestingModule,
+          NoopAnimationsModule,
+        ],
+        declarations: [DatePickerComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DatePickerComponent);

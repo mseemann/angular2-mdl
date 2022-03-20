@@ -28,12 +28,14 @@ class MdlTestCheckboxComponent {
 }
 
 describe("Component: MdlCheckbox", () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [MdlCheckboxModule.forRoot(), FormsModule],
-      declarations: [MdlTestCheckboxComponent],
-    });
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [MdlCheckboxModule.forRoot(), FormsModule],
+        declarations: [MdlTestCheckboxComponent],
+      });
+    })
+  );
 
   it("should add the css class mdl-checkbox to the host element", () => {
     const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
@@ -43,26 +45,29 @@ describe("Component: MdlCheckbox", () => {
     expect(checkboxEl.classList.contains("mdl-checkbox")).toBe(true);
   });
 
-  it("should support ngModel", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      const testInstance = fixture.componentInstance;
-
-      // let el = <HTMLInputElement> fixture.debugElement.query(By.css('input')).nativeElement;
-      const checkboxComponent = fixture.debugElement.query(
-        By.directive(MdlCheckboxComponent)
-      ).componentInstance;
-
-      testInstance.checkboxValue1 = true;
-
+  it(
+    "should support ngModel",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        // but el.checked is not true ?
-        expect(checkboxComponent.value).toEqual(true);
+        const testInstance = fixture.componentInstance;
+
+        // let el = <HTMLInputElement> fixture.debugElement.query(By.css('input')).nativeElement;
+        const checkboxComponent = fixture.debugElement.query(
+          By.directive(MdlCheckboxComponent)
+        ).componentInstance;
+
+        testInstance.checkboxValue1 = true;
+
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          // but el.checked is not true ?
+          expect(checkboxComponent.value).toEqual(true);
+        });
       });
-    });
-  }));
+    })
+  );
 
   it("should change the value on click", () => {
     const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
@@ -107,43 +112,49 @@ describe("Component: MdlCheckbox", () => {
     expect(checkboxEl.classList.contains("is-focused")).toBe(false);
   });
 
-  it("should fire a change event if the state changed", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
-    fixture.detectChanges();
+  it(
+    "should fire a change event if the state changed",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
+      fixture.detectChanges();
 
-    const instance = fixture.componentInstance;
+      const instance = fixture.componentInstance;
 
-    spyOn(instance, "onChange");
+      spyOn(instance, "onChange");
 
-    fixture.debugElement
-      .query(By.directive(MdlCheckboxComponent))
-      .nativeElement.click();
+      fixture.debugElement
+        .query(By.directive(MdlCheckboxComponent))
+        .nativeElement.click();
 
-    expect(instance.onChange).toHaveBeenCalledWith(true);
-  }));
+      expect(instance.onChange).toHaveBeenCalledWith(true);
+    })
+  );
 
-  it("should be possible to disable the checkbox", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
-    fixture.detectChanges();
+  it(
+    "should be possible to disable the checkbox",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestCheckboxComponent);
+      fixture.detectChanges();
 
-    const instance = fixture.componentInstance;
-    const cbDebugElem = fixture.debugElement.query(
-      By.directive(MdlCheckboxComponent)
-    );
+      const instance = fixture.componentInstance;
+      const cbDebugElem = fixture.debugElement.query(
+        By.directive(MdlCheckboxComponent)
+      );
 
-    cbDebugElem.componentInstance.setDisabledState(true);
-    fixture.detectChanges();
+      cbDebugElem.componentInstance.setDisabledState(true);
+      fixture.detectChanges();
 
-    const checkboxEl: HTMLElement = cbDebugElem.nativeElement;
-    expect(checkboxEl.classList.contains("is-disabled")).toBe(
-      true,
-      "should have css is-disabled"
-    );
+      const checkboxEl: HTMLElement = cbDebugElem.nativeElement;
+      expect(checkboxEl.classList.contains("is-disabled")).toBe(
+        true,
+        "should have css is-disabled"
+      );
 
-    // should not change on click
-    cbDebugElem.nativeElement.click();
-    expect(instance.checkboxValue1).toEqual(false);
-  }));
+      // should not change on click
+      cbDebugElem.nativeElement.click();
+      expect(instance.checkboxValue1).toEqual(false);
+    })
+  );
 
   it("should be possible to set a tabindex", () => {
     TestBed.overrideComponent(MdlTestCheckboxComponent, {

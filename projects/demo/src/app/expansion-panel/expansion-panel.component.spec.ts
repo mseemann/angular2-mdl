@@ -11,18 +11,20 @@ describe("ExpansionPanelComponent", () => {
   let component: ExpansionPanelComponent;
   let fixture: ComponentFixture<ExpansionPanelComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      imports: [
-        MdlModule,
-        MdlExpansionPanelModule,
-        RouterTestingModule,
-        NoopAnimationsModule,
-      ],
-      declarations: [ExpansionPanelComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        schemas: [NO_ERRORS_SCHEMA],
+        imports: [
+          MdlModule,
+          MdlExpansionPanelModule,
+          RouterTestingModule,
+          NoopAnimationsModule,
+        ],
+        declarations: [ExpansionPanelComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ExpansionPanelComponent);

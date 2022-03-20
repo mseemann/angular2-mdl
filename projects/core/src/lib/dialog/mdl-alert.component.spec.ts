@@ -25,12 +25,14 @@ class MdlTestComponent {
 }
 
 describe("MdlAlert", () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
-      declarations: [MdlTestComponent],
-    });
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
+        declarations: [MdlTestComponent],
+      });
+    })
+  );
 
   it("should create, show and close the dialog", async () => {
     const fixture = TestBed.createComponent(MdlTestComponent);

@@ -11,18 +11,20 @@ describe("PopoverComponent", () => {
   let component: PopoverComponent;
   let fixture: ComponentFixture<PopoverComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      imports: [
-        MdlModule,
-        MdlPopoverModule,
-        RouterTestingModule,
-        NoopAnimationsModule,
-      ],
-      declarations: [PopoverComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        schemas: [NO_ERRORS_SCHEMA],
+        imports: [
+          MdlModule,
+          MdlPopoverModule,
+          RouterTestingModule,
+          NoopAnimationsModule,
+        ],
+        declarations: [PopoverComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PopoverComponent);
