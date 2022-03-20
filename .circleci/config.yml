@@ -4,9 +4,9 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/node:14.19-browsers 
-      environment:
-        CHROME_BIN: "/usr/bin/google-chrome"
+      - image: cimg/node:14.19-browsers
+        environment:
+          CHROME_BIN: "/usr/bin/google-chrome"
     steps:
       - checkout
 
