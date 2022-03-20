@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.2.4
+  coveralls: coveralls/coveralls@1.0.6
 jobs:
   build:
     docker:
@@ -26,4 +27,5 @@ jobs:
 
       - run: npm run all
 
-      - run: cat ./coverage/core/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+      - coveralls/upload:
+          path_to_lcov: ./coverage/core/lcov.info
