@@ -10,7 +10,7 @@ import { Component } from "@angular/core";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-icon',
+  selector: "test-icon",
   template: "replaced by the test",
 })
 class MdlTestTooltipComponent {
@@ -58,31 +58,28 @@ describe("Component: MdlTooltip", () => {
     expect(tooltipEl.classList.contains("mdl-tooltip--large")).toBe(true);
   });
 
-  it(
-    "should add create a simpletooltipcomponent for the mdl-tooltip directive with text",
-    waitForAsync(() => {
-      TestBed.overrideComponent(MdlTestTooltipComponent, {
-        set: {
-          template: `
+  it("should add create a simpletooltipcomponent for the mdl-tooltip directive with text", waitForAsync(() => {
+    TestBed.overrideComponent(MdlTestTooltipComponent, {
+      set: {
+        template: `
            <div mdl-tooltip="test"></div>
         `,
-        },
-      });
-      const fixture = TestBed.createComponent(MdlTestTooltipComponent);
-      fixture.detectChanges();
+      },
+    });
+    const fixture = TestBed.createComponent(MdlTestTooltipComponent);
+    fixture.detectChanges();
 
-      // wait for async component creation
-      setTimeout(() => {
-        // let angular prepare the tooltip with class and text
-        fixture.detectChanges();
-        // check the result
-        const tooltipEl: HTMLElement = fixture.debugElement.query(
-          By.directive(MdlSimpleTooltipComponent)
-        ).nativeElement;
-        expect(tooltipEl.classList.contains("mdl-tooltip")).toBe(true);
-      }, 0);
-    })
-  );
+    // wait for async component creation
+    setTimeout(() => {
+      // let angular prepare the tooltip with class and text
+      fixture.detectChanges();
+      // check the result
+      const tooltipEl: HTMLElement = fixture.debugElement.query(
+        By.directive(MdlSimpleTooltipComponent)
+      ).nativeElement;
+      expect(tooltipEl.classList.contains("mdl-tooltip")).toBe(true);
+    }, 0);
+  }));
 
   it("should add the css class is-active if the mouse enters the directive element", () => {
     TestBed.overrideComponent(MdlTestTooltipComponent, {

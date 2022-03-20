@@ -19,14 +19,12 @@ class MdlTestSwitchComponent {
 }
 
 describe("Component: MdlSwitch", () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [MdlSwitchModule.forRoot(), FormsModule],
-        declarations: [MdlTestSwitchComponent],
-      });
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [MdlSwitchModule.forRoot(), FormsModule],
+      declarations: [MdlTestSwitchComponent],
+    });
+  }));
 
   it("should add the css class mdl-switch to the host element", () => {
     const fixture = TestBed.createComponent(MdlTestSwitchComponent);
@@ -36,21 +34,18 @@ describe("Component: MdlSwitch", () => {
     expect(checkboxEl.classList.contains("mdl-switch")).toBe(true);
   });
 
-  it(
-    "should fire a change event if the state changed",
-    waitForAsync(() => {
-      const fixture = TestBed.createComponent(MdlTestSwitchComponent);
-      fixture.detectChanges();
+  it("should fire a change event if the state changed", waitForAsync(() => {
+    const fixture = TestBed.createComponent(MdlTestSwitchComponent);
+    fixture.detectChanges();
 
-      const instance = fixture.componentInstance;
+    const instance = fixture.componentInstance;
 
-      spyOn(instance, "onChange");
+    spyOn(instance, "onChange");
 
-      fixture.debugElement
-        .query(By.directive(MdlSwitchComponent))
-        .nativeElement.click();
+    fixture.debugElement
+      .query(By.directive(MdlSwitchComponent))
+      .nativeElement.click();
 
-      expect(instance.onChange).toHaveBeenCalledWith(true);
-    })
-  );
+    expect(instance.onChange).toHaveBeenCalledWith(true);
+  }));
 });

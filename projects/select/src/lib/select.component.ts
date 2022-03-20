@@ -22,8 +22,6 @@ import { MdlOptionComponent } from "./option";
 import { isCharacterKey, isKey, keyboardEventKey, KEYS } from "./keyboard";
 import { stringifyValue } from "./util";
 
-const uniq = (array: string[]) => Array.from(new Set(array));
-
 const isEqual = (a: unknown, b: unknown) =>
   JSON.stringify(a) === JSON.stringify(b);
 
@@ -223,7 +221,7 @@ export class MdlSelectComponent
       if (!value || this.model === value) {
         // skip ngModel update when undefined value or multiple selects initialized with same array
       } else if (Array.isArray(value)) {
-        this.model = value; // why the uniq call? uniq((this.model as string[]).concat(value));
+        this.model = value;
       } else if (
         (this.model as string[])
           .map((v: string) => stringifyValue(v))

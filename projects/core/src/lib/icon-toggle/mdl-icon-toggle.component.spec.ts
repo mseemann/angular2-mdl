@@ -7,7 +7,7 @@ import { MdlIconToggleModule } from "./mdl-icon-toggle.module";
 
 @Component({
   // eslint-disable-next-line
-  selector: 'test-icon',
+  selector: "test-icon",
   template: `
     <mdl-icon-toggle
       [disabled]="false"
@@ -27,14 +27,12 @@ class MdlTestIconToggleComponent {
 }
 
 describe("Component: MdlIconToggle", () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [FormsModule, MdlIconToggleModule.forRoot()],
-        declarations: [MdlTestIconToggleComponent],
-      });
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [FormsModule, MdlIconToggleModule.forRoot()],
+      declarations: [MdlTestIconToggleComponent],
+    });
+  }));
 
   it("should add the css class mdl-icon-toggle to the host element", () => {
     const fixture = TestBed.createComponent(MdlTestIconToggleComponent);
@@ -44,49 +42,43 @@ describe("Component: MdlIconToggle", () => {
     expect(checkboxEl.classList.contains("mdl-icon-toggle")).toBe(true);
   });
 
-  it(
-    "should fire a change event if the state changed",
-    waitForAsync(() => {
-      const fixture = TestBed.createComponent(MdlTestIconToggleComponent);
-      fixture.detectChanges();
+  it("should fire a change event if the state changed", waitForAsync(() => {
+    const fixture = TestBed.createComponent(MdlTestIconToggleComponent);
+    fixture.detectChanges();
 
-      const instance = fixture.componentInstance;
+    const instance = fixture.componentInstance;
 
-      spyOn(instance, "onChange");
+    spyOn(instance, "onChange");
 
-      fixture.debugElement
-        .query(By.directive(MdlIconToggleComponent))
-        .nativeElement.click();
+    fixture.debugElement
+      .query(By.directive(MdlIconToggleComponent))
+      .nativeElement.click();
 
-      expect(instance.onChange).toHaveBeenCalledWith(true);
-    })
-  );
+    expect(instance.onChange).toHaveBeenCalledWith(true);
+  }));
 
   // the following test, tests implicity that annotation are inherited (@Input @BooleanPorperty is defined in the
   // class MdlCheckboxComponent and not in MdlTestIconToggleComponent
-  it(
-    "should be possible to disable the icon toggle",
-    waitForAsync(() => {
-      const fixture = TestBed.createComponent(MdlTestIconToggleComponent);
-      fixture.detectChanges();
+  it("should be possible to disable the icon toggle", waitForAsync(() => {
+    const fixture = TestBed.createComponent(MdlTestIconToggleComponent);
+    fixture.detectChanges();
 
-      const instance = fixture.componentInstance;
-      const cbDebugElem = fixture.debugElement.query(
-        By.directive(MdlIconToggleComponent)
-      );
+    const instance = fixture.componentInstance;
+    const cbDebugElem = fixture.debugElement.query(
+      By.directive(MdlIconToggleComponent)
+    );
 
-      cbDebugElem.componentInstance.setDisabledState(true);
-      fixture.detectChanges();
+    cbDebugElem.componentInstance.setDisabledState(true);
+    fixture.detectChanges();
 
-      const checkboxEl: HTMLElement = cbDebugElem.nativeElement;
-      expect(checkboxEl.classList.contains("is-disabled")).toBe(
-        true,
-        "should have css is-disabled"
-      );
+    const checkboxEl: HTMLElement = cbDebugElem.nativeElement;
+    expect(checkboxEl.classList.contains("is-disabled")).toBe(
+      true,
+      "should have css is-disabled"
+    );
 
-      // should not change on click
-      cbDebugElem.nativeElement.click();
-      expect(instance.checkboxValue1).toEqual(false);
-    })
-  );
+    // should not change on click
+    cbDebugElem.nativeElement.click();
+    expect(instance.checkboxValue1).toEqual(false);
+  }));
 });

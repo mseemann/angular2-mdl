@@ -13,21 +13,19 @@ describe("SelectComponent", () => {
   let component: SelectComponent;
   let fixture: ComponentFixture<SelectComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        schemas: [NO_ERRORS_SCHEMA],
-        imports: [
-          MdlModule,
-          MdlPopoverModule,
-          MdlSelectModule,
-          RouterTestingModule,
-          NoopAnimationsModule,
-        ],
-        declarations: [SelectComponent, MatchSorterPipe],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [
+        MdlModule,
+        MdlPopoverModule,
+        MdlSelectModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+      ],
+      declarations: [SelectComponent, MatchSorterPipe],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectComponent);

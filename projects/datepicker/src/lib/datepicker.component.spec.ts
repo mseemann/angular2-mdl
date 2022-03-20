@@ -34,38 +34,36 @@ class MdlDialogMockReference {
 describe("DatePickerDialogComponent", () => {
   let fixture: ComponentFixture<DatePickerDialogComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          CommonModule,
-          MdlButtonModule,
-          MdlIconModule,
-          MdlRippleModule,
-          MdlDialogModule.forRoot(),
-        ],
-        declarations: [DatePickerDialogComponent],
-        providers: [
-          { provide: MdlDialogReference, useClass: MdlDialogMockReference },
-          { provide: CURRENT_DATE, useValue: null },
-          { provide: DATEPICKER_CONFIG, useValue: {} },
-        ],
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        CommonModule,
+        MdlButtonModule,
+        MdlIconModule,
+        MdlRippleModule,
+        MdlDialogModule.forRoot(),
+      ],
+      declarations: [DatePickerDialogComponent],
+      providers: [
+        { provide: MdlDialogReference, useClass: MdlDialogMockReference },
+        { provide: CURRENT_DATE, useValue: null },
+        { provide: DATEPICKER_CONFIG, useValue: {} },
+      ],
+    });
+
+    TestBed.compileComponents().then(() => {
+      // LOOKS LIKE THE DEMO APP
+      moment.updateLocale("en", {
+        week: {
+          dow: 1,
+          doy: 4,
+        },
       });
 
-      TestBed.compileComponents().then(() => {
-        // LOOKS LIKE THE DEMO APP
-        moment.updateLocale("en", {
-          week: {
-            dow: 1,
-            doy: 4,
-          },
-        });
-
-        fixture = TestBed.createComponent(DatePickerDialogComponent);
-        fixture.detectChanges();
-      });
-    })
-  );
+      fixture = TestBed.createComponent(DatePickerDialogComponent);
+      fixture.detectChanges();
+    });
+  }));
 
   it("should instantiate the component", () => {
     expect(fixture).toBeDefined();
@@ -109,15 +107,12 @@ describe("DatePickerDialogComponent", () => {
     ).toBeTruthy();
   });
 
-  it(
-    "should be possible to set a specific date",
-    waitForAsync(() => {
-      fixture.componentInstance.setCurrentDay(moment("2017-01-01"));
-      expect(
-        fixture.componentInstance.mDate.isSame(moment("2017-01-01"), "day")
-      ).toBeTruthy();
-    })
-  );
+  it("should be possible to set a specific date", waitForAsync(() => {
+    fixture.componentInstance.setCurrentDay(moment("2017-01-01"));
+    expect(
+      fixture.componentInstance.mDate.isSame(moment("2017-01-01"), "day")
+    ).toBeTruthy();
+  }));
 
   it("should be possible to go to the next month", () => {
     fixture.componentInstance.mCurrentMonth = moment("2017-01-01");
