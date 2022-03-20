@@ -18,8 +18,6 @@ jobs:
 
       - run: npm ci
 
-      - run: cat ./coverage/core/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-
       - save_cache:
           name: Save Package Cache
           key: packages-{{ .Branch }}-{{ checksum "package-lock.json" }}
@@ -27,3 +25,5 @@ jobs:
             - node_modules/
 
       - run: npm run all
+
+      - run: cat ./coverage/core/lcov.info | ./node_modules/coveralls/bin/coveralls.js
