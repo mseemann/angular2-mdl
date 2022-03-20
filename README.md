@@ -1,7 +1,6 @@
 Angular 13 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package
 assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
 
-[![Build Status](https://travis-ci.org/mseemann/angular2-mdl.svg?branch=master)](https://travis-ci.org/mseemann/angular2-mdl)
 [![CircleCI](https://circleci.com/gh/mseemann/angular2-mdl/tree/master.svg?style=shield)](https://circleci.com/gh/mseemann/angular2-mdl/tree/master)
 [![npm version](https://badge.fury.io/js/@angular-mdl%2Fcore.svg)](https://www.npmjs.com/package/@angular-mdl/core)
 [![Downloads](http://img.shields.io/npm/dm/@angular-mdl%2Fcore.svg)](https://npmjs.org/package/@angular-mdl/core)
