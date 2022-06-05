@@ -7,9 +7,9 @@ import {
 } from "@angular/core";
 import { LoginService } from "./login.service";
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from "@angular/forms";
 
@@ -31,15 +31,15 @@ export const TEST_VALUE = new InjectionToken<string>("test value");
 export class LoginDialogComponent {
   @ViewChild("firstElement", { static: true })
   public inputElement: MdlTextFieldComponent | undefined;
-  public form: FormGroup;
-  public username = new FormControl("", Validators.required);
-  public password = new FormControl("", Validators.required);
+  public form: UntypedFormGroup;
+  public username = new UntypedFormControl("", Validators.required);
+  public password = new UntypedFormControl("", Validators.required);
   public processingLogin = false;
   public statusMessage = "";
 
   constructor(
     private dialog: MdlDialogReference,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private loginService: LoginService,
     @Inject(TEST_VALUE) testValue: string
   ) {

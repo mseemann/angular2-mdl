@@ -8,7 +8,6 @@ import { MdlModule } from "@angular-mdl/core";
 @NgModule({
   imports: [MdlModule, CommonModule, ReactiveFormsModule],
   declarations: [LoginDialogComponent],
-  entryComponents: [LoginDialogComponent],
   providers: [LoginService],
 })
 export class LoginModule {}

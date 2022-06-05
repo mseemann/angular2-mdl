@@ -77,39 +77,34 @@ class ModalComponent {
 }
 
 describe("MdlDialog (embedded/declarative)", () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
-        declarations: [
-          MdlTestComponent,
-          ModalTrueConfigFalseComponent,
-          ModalFalseConfigTrueComponent,
-          ModalComponent,
-        ],
-      });
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [MdlDialogModule.forRoot(), MdlDialogOutletModule],
+      declarations: [
+        MdlTestComponent,
+        ModalTrueConfigFalseComponent,
+        ModalFalseConfigTrueComponent,
+        ModalComponent,
+      ],
+    });
+  }));
 
-  it(
-    "should create, show and close the embedded dialog",
-    waitForAsync(() => {
-      const fixture = TestBed.createComponent(MdlTestComponent);
-      fixture.detectChanges();
-      const dialog = fixture.componentInstance.dialog;
-      expect(dialog).toBeDefined("mdldialog should be created");
+  it("should create, show and close the embedded dialog", waitForAsync(() => {
+    const fixture = TestBed.createComponent(MdlTestComponent);
+    fixture.detectChanges();
+    const dialog = fixture.componentInstance.dialog;
+    expect(dialog).toBeDefined("mdldialog should be created");
 
-      spyOn(fixture.componentInstance, "onDialogShow").and.callThrough();
-      spyOn(fixture.componentInstance, "onDialogHide");
+    spyOn(fixture.componentInstance, "onDialogShow").and.callThrough();
+    spyOn(fixture.componentInstance, "onDialogHide");
 
-      dialog?.show().subscribe(() => {
-        dialog.close();
+    dialog?.show().subscribe(() => {
+      dialog.close();
 
-        expect(fixture.componentInstance.onDialogShow).toHaveBeenCalled();
-        expect(fixture.componentInstance.onDialogHide).toHaveBeenCalled();
-      });
-    })
-  );
+      expect(fixture.componentInstance.onDialogShow).toHaveBeenCalled();
+      expect(fixture.componentInstance.onDialogHide).toHaveBeenCalled();
+    });
+  }));
 
   it("should not be possible to create a second embedded dialog", () => {
     const fixture = TestBed.createComponent(MdlTestComponent);

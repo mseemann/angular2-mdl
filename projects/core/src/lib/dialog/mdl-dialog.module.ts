@@ -33,7 +33,6 @@ const PRIVATE_COMPONENTS = [MdlDialogHostComponent, MdlSimpleDialogComponent];
   ],
   exports: [...PUBLIC_COMPONENTS],
   declarations: [...PUBLIC_COMPONENTS, ...PRIVATE_COMPONENTS],
-  entryComponents: [...PUBLIC_COMPONENTS, ...PRIVATE_COMPONENTS],
 })
 export class MdlDialogModule {
   public static forRoot(): ModuleWithProviders<MdlDialogModule> {

@@ -11,20 +11,18 @@ describe("FabMenuComponent", () => {
   let component: FabMenuComponent;
   let fixture: ComponentFixture<FabMenuComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        schemas: [NO_ERRORS_SCHEMA],
-        imports: [
-          MdlModule,
-          MdlFabMenuModule,
-          RouterTestingModule,
-          NoopAnimationsModule,
-        ],
-        declarations: [FabMenuComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [
+        MdlModule,
+        MdlFabMenuModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+      ],
+      declarations: [FabMenuComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FabMenuComponent);

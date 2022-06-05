@@ -3,21 +3,14 @@
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
     "declarationMap": true,
-    "target": "es2015",
+    "target": "es2020",
     "declaration": true,
     "inlineSources": true,
     "types": [],
-    "lib": [
-      "dom",
-      "es2018"
-    ],
+    "lib": ["dom", "es2018"],
     "paths": {
-      "@angular-mdl/core": [
-        "dist/@angular-mdl/core"
-      ],
-      "@angular-mdl/popover": [
-        "dist/@angular-mdl/popover"
-      ]
+      "@angular-mdl/core": ["dist/@angular-mdl/core"],
+      "@angular-mdl/popover": ["dist/@angular-mdl/popover"]
     }
   },
   "angularCompilerOptions": {
@@ -27,8 +20,5 @@
     "strictInjectionParameters": true,
     "enableResourceInlining": true
   },
-  "exclude": [
-    "src/test.ts",
-    "**/*.spec.ts"
-  ]
+  "exclude": ["src/test.ts", "**/*.spec.ts"]
 }

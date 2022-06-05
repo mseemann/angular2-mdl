@@ -20,7 +20,6 @@ const PRIVATE_COMPONENTS = [
   imports: [],
   exports: PUBLIC_COMPONENTS,
   declarations: [...PUBLIC_COMPONENTS, ...PRIVATE_COMPONENTS],
-  entryComponents: [MdlDialogOutletComponent, MdlBackdropOverlayComponent],
 })
 export class MdlDialogOutletModule {
   public static forRoot(): ModuleWithProviders<MdlDialogOutletModule> {

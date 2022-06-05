@@ -25,34 +25,28 @@ describe("MdlDialogOutletComponent", () => {
   let el: HTMLElement | undefined;
 
   // create the tesbed
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [],
-        imports: [MdlDialogOutletModule.forRoot()],
-      });
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [],
+      imports: [MdlDialogOutletModule.forRoot()],
+    });
+  }));
 
   // now modify the dom and add a dialog-outlet element direct under the body
-  beforeEach(
-    waitForAsync(
-      inject([DOCUMENT], (doc: Document) => {
-        el = doc.createElement("dialog-outlet");
-        doc.body.appendChild(el);
-      })
-    )
-  );
+  beforeEach(waitForAsync(
+    inject([DOCUMENT], (doc: Document) => {
+      el = doc.createElement("dialog-outlet");
+      doc.body.appendChild(el);
+    })
+  ));
 
-  afterEach(
-    waitForAsync(
-      inject([DOCUMENT], (doc: Document) => {
-        if (el) {
-          doc.body.removeChild(el);
-        }
-      })
-    )
-  );
+  afterEach(waitForAsync(
+    inject([DOCUMENT], (doc: Document) => {
+      if (el) {
+        doc.body.removeChild(el);
+      }
+    })
+  ));
 
   // now we can boostrap our MdlDialogOutletComponent component
   it("should create the dialog-outlet outside the app-root", async () => {
@@ -67,14 +61,12 @@ describe("MdlDialogOutletComponent", () => {
 });
 
 describe("MdlDialogInnerOutletComponent", () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [],
-        imports: [TestDialogModul],
-      });
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [],
+      imports: [TestDialogModul],
+    });
+  }));
 
   it("should create the dialog-outlet if within the app-root", () => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);

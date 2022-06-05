@@ -21,7 +21,6 @@ import { CommonModule } from "@angular/common";
     MdlDialogOutletModule,
   ],
   exports: [DatePickerDialogComponent],
-  entryComponents: [DatePickerDialogComponent],
   providers: [MdlDatePickerService],
 })
 export class MdlDatePickerModule {}

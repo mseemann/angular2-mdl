@@ -199,7 +199,6 @@ export const appRoutes: Routes = [
     MdlFabMenuModule,
   ],
   providers: [Title],
-  entryComponents: [AppComponent],
   bootstrap: [],
 })
 export class AppModule implements DoBootstrap {

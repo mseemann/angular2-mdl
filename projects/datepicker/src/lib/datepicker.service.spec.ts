@@ -25,33 +25,27 @@ moment.locale("en");
 class MdlTestComponent {}
 
 xdescribe("DatePickerService", () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          CommonModule,
-          MdlButtonModule,
-          MdlIconModule,
-          MdlRippleModule,
-          MdlDatePickerModule,
-          MdlDialogModule.forRoot(),
-          MdlDialogOutletModule,
-        ],
-        declarations: [MdlTestComponent],
-      });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        CommonModule,
+        MdlButtonModule,
+        MdlIconModule,
+        MdlRippleModule,
+        MdlDatePickerModule,
+        MdlDialogModule.forRoot(),
+        MdlDialogOutletModule,
+      ],
+      declarations: [MdlTestComponent],
+    });
 
-      TestBed.compileComponents();
-    })
-  );
+    TestBed.compileComponents();
+  }));
 
-  it(
-    "should instantiate the service",
-    waitForAsync(() => {
-      const service: MdlDatePickerService =
-        TestBed.inject(MdlDatePickerService);
-      expect(service).toBeDefined();
-    })
-  );
+  it("should instantiate the service", waitForAsync(() => {
+    const service: MdlDatePickerService = TestBed.inject(MdlDatePickerService);
+    expect(service).toBeDefined();
+  }));
 
   it("should open the date picker dialog", (done: () => unknown) => {
     const fixture = TestBed.createComponent(MdlTestComponent);

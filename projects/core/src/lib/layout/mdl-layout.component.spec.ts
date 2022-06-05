@@ -102,50 +102,47 @@ describe("Component: MdlLayout", () => {
     }).toThrow();
   });
 
-  it(
-    "should close the obfuscator if the escape key is pressed",
-    waitForAsync(() => {
-      TestBed.overrideComponent(MdlTestLayoutComponent, {
-        set: {
-          template: `
+  it("should close the obfuscator if the escape key is pressed", waitForAsync(() => {
+    TestBed.overrideComponent(MdlTestLayoutComponent, {
+      set: {
+        template: `
           <mdl-layout (open)="onDrawerOpen()" (close)="onDrawerClose()">
             <mdl-layout-header></mdl-layout-header>
             <mdl-layout-drawer></mdl-layout-drawer>
             <mdl-layout-content></mdl-layout-content>
           </mdl-layout>
         `,
-        },
-      });
-      const fixture = TestBed.createComponent(MdlTestLayoutComponent);
-      fixture.detectChanges();
+      },
+    });
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
 
-      const testComponent = fixture.componentInstance;
+    const testComponent = fixture.componentInstance;
 
-      spyOn(testComponent, "onDrawerOpen").and.callThrough();
-      spyOn(testComponent, "onDrawerClose").and.callThrough();
+    spyOn(testComponent, "onDrawerOpen").and.callThrough();
+    spyOn(testComponent, "onDrawerClose").and.callThrough();
 
-      const layoutComponent = fixture.debugElement.query(
-        By.directive(MdlLayoutComponent)
-      ).componentInstance;
-      layoutComponent.toggleDrawer();
+    const layoutComponent = fixture.debugElement.query(
+      By.directive(MdlLayoutComponent)
+    ).componentInstance;
+    layoutComponent.toggleDrawer();
 
-      expect(testComponent.onDrawerOpen).toHaveBeenCalled();
+    expect(testComponent.onDrawerOpen).toHaveBeenCalled();
 
-      const obfuscatorElement = fixture.debugElement.query(
-        By.css(".mdl-layout__obfuscator")
-      ).nativeElement;
+    const obfuscatorElement = fixture.debugElement.query(
+      By.css(".mdl-layout__obfuscator")
+    ).nativeElement;
 
-      // dirty hack to provide an event with keyCode
-      // eslint-disable-next-line
-      const e = new Event("keydown") as any;
-      e.keyCode = 27;
-      obfuscatorElement.dispatchEvent(e);
+    // dirty hack to provide an event with keyCode
+    // eslint-disable-next-line
+    const e = new Event("keydown") as any;
+    e.keyCode = 27;
+    obfuscatorElement.dispatchEvent(e);
 
-      expect(layoutComponent.isDrawerVisible).toBe(false);
+    expect(layoutComponent.isDrawerVisible).toBe(false);
 
-      expect(testComponent.onDrawerClose).toHaveBeenCalled();
-    })
-  );
+    expect(testComponent.onDrawerClose).toHaveBeenCalled();
+  }));
 
   it("should unregister the scroll listener if a content is present", () => {
     TestBed.overrideComponent(MdlTestLayoutComponent, {
@@ -368,12 +365,10 @@ describe("Component: MdlLayout", () => {
     done();
   });
 
-  it(
-    "should be possible to create rich tabs",
-    waitForAsync(() => {
-      TestBed.overrideComponent(MdlTestLayoutComponent, {
-        set: {
-          template: `
+  it("should be possible to create rich tabs", waitForAsync(() => {
+    TestBed.overrideComponent(MdlTestLayoutComponent, {
+      set: {
+        template: `
           <mdl-layout>
            <mdl-layout-header></mdl-layout-header>
             <mdl-layout-content>
@@ -388,20 +383,19 @@ describe("Component: MdlLayout", () => {
             </mdl-layout-content>
          </mdl-layout>
         `,
-        },
-      });
-      const fixture = TestBed.createComponent(MdlTestLayoutComponent);
-      fixture.detectChanges();
+      },
+    });
+    const fixture = TestBed.createComponent(MdlTestLayoutComponent);
+    fixture.detectChanges();
 
-      // must have a MdlLayoutHeaderComponent
-      const layoutHeader = fixture.debugElement.query(
-        By.directive(MdlLayoutHeaderComponent)
-      );
-      const titleDebugElement = layoutHeader.query(By.css(".test"));
+    // must have a MdlLayoutHeaderComponent
+    const layoutHeader = fixture.debugElement.query(
+      By.directive(MdlLayoutHeaderComponent)
+    );
+    const titleDebugElement = layoutHeader.query(By.css(".test"));
 
-      expect(titleDebugElement.nativeElement.nodeName).toEqual("SPAN");
-    })
-  );
+    expect(titleDebugElement.nativeElement.nodeName).toEqual("SPAN");
+  }));
 
   it("should open the drawer if openDrawer is called", (done) => {
     TestBed.overrideComponent(MdlTestLayoutComponent, {

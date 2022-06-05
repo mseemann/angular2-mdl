@@ -67,159 +67,135 @@ describe("MdlExpansionPanel", () => {
   describe("single", () => {
     let fixture: ComponentFixture<TestSinglePanelComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [MdlExpansionPanelModule.forRoot(), NoopAnimationsModule],
-          declarations: [TestSinglePanelComponent],
-        });
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [MdlExpansionPanelModule.forRoot(), NoopAnimationsModule],
+        declarations: [TestSinglePanelComponent],
+      });
 
-        TestBed.compileComponents().then(() => {
-          fixture = TestBed.createComponent(TestSinglePanelComponent);
-          fixture.detectChanges();
-        });
-      })
-    );
-
-    it(
-      "should be collapsed initially",
-      waitForAsync(() => {
-        expect(fixture.debugElement.query(By.css(".expanded"))).toBeNull();
-      })
-    );
-
-    it(
-      "should toggle on clicking expansion icon",
-      waitForAsync(() => {
-        fixture.debugElement.nativeElement
-          .querySelector(".mdl-expansion-panel__header--expand-icon")
-          .click();
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestSinglePanelComponent);
         fixture.detectChanges();
-        fixture
-          .whenStable()
-          .then(() => {
-            expect(
-              fixture.debugElement.query(By.css(".expanded"))
-            ).not.toBeNull();
-            fixture.debugElement.nativeElement
-              .querySelector(".mdl-expansion-panel__header--expand-icon")
-              .click();
-            fixture.detectChanges();
-            return fixture.whenStable();
-          })
-          .then(() => {
-            expect(fixture.debugElement.query(By.css(".expanded"))).toBeNull();
-          });
-      })
-    );
+      });
+    }));
 
-    it(
-      "should toggle on pressing enter if focused",
-      waitForAsync(() => {
-        const e = new KeyboardEvent("keyup", {
-          key: "Enter",
-        });
-        fixture.debugElement.nativeElement
-          .querySelector(".mdl-expansion-panel")
-          .dispatchEvent(e);
-        fixture.detectChanges();
-        fixture.whenStable().then(() => {
+    it("should be collapsed initially", waitForAsync(() => {
+      expect(fixture.debugElement.query(By.css(".expanded"))).toBeNull();
+    }));
+
+    it("should toggle on clicking expansion icon", waitForAsync(() => {
+      fixture.debugElement.nativeElement
+        .querySelector(".mdl-expansion-panel__header--expand-icon")
+        .click();
+      fixture.detectChanges();
+      fixture
+        .whenStable()
+        .then(() => {
           expect(
             fixture.debugElement.query(By.css(".expanded"))
           ).not.toBeNull();
+          fixture.debugElement.nativeElement
+            .querySelector(".mdl-expansion-panel__header--expand-icon")
+            .click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(fixture.debugElement.query(By.css(".expanded"))).toBeNull();
         });
-      })
-    );
+    }));
 
-    it(
-      "should not toggle if disabled",
-      waitForAsync(() => {
-        fixture.debugElement.nativeElement.querySelector("button").click();
-        fixture.detectChanges();
-        fixture
-          .whenStable()
-          .then(() => {
-            fixture.debugElement.nativeElement
-              .querySelector(".mdl-expansion-panel__header--expand-icon")
-              .click();
-            fixture.detectChanges();
-            return fixture.whenStable();
-          })
-          .then(() => {
-            expect(fixture.debugElement.query(By.css(".expanded"))).toBeNull();
-          });
-      })
-    );
+    it("should toggle on pressing enter if focused", waitForAsync(() => {
+      const e = new KeyboardEvent("keyup", {
+        key: "Enter",
+      });
+      fixture.debugElement.nativeElement
+        .querySelector(".mdl-expansion-panel")
+        .dispatchEvent(e);
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(fixture.debugElement.query(By.css(".expanded"))).not.toBeNull();
+      });
+    }));
+
+    it("should not toggle if disabled", waitForAsync(() => {
+      fixture.debugElement.nativeElement.querySelector("button").click();
+      fixture.detectChanges();
+      fixture
+        .whenStable()
+        .then(() => {
+          fixture.debugElement.nativeElement
+            .querySelector(".mdl-expansion-panel__header--expand-icon")
+            .click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(fixture.debugElement.query(By.css(".expanded"))).toBeNull();
+        });
+    }));
   });
 
   describe("group", () => {
     let fixture: ComponentFixture<TestGroupPanelComponent>;
     let fixtureWithError: ComponentFixture<TestGroupPanelErrorComponent>;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [MdlExpansionPanelModule.forRoot(), NoopAnimationsModule],
-          declarations: [TestGroupPanelComponent, TestGroupPanelErrorComponent],
-        });
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [MdlExpansionPanelModule.forRoot(), NoopAnimationsModule],
+        declarations: [TestGroupPanelComponent, TestGroupPanelErrorComponent],
+      });
 
-        TestBed.compileComponents().then(() => {
-          fixture = TestBed.createComponent(TestGroupPanelComponent);
-          fixtureWithError = TestBed.createComponent(
-            TestGroupPanelErrorComponent
-          );
-          fixture.detectChanges();
-        });
-      })
-    );
-
-    it(
-      "should allow one panel which is initialized in expanded state",
-      waitForAsync(() => {
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestGroupPanelComponent);
+        fixtureWithError = TestBed.createComponent(
+          TestGroupPanelErrorComponent
+        );
         fixture.detectChanges();
-        fixture.whenStable().then(() => {
-          expect(
-            fixture.debugElement.nativeElement
-              .querySelector(".mdl-expansion-panel:nth-child(1)")
-              .getAttribute("class")
-          ).toContain("expanded");
-          expect(
-            fixture.debugElement.nativeElement
-              .querySelector(".mdl-expansion-panel:nth-child(2)")
-              .getAttribute("class")
-          ).not.toContain("expanded");
-          expect(
-            fixture.debugElement.nativeElement
-              .querySelector(".mdl-expansion-panel:nth-child(3)")
-              .getAttribute("class")
-          ).not.toContain("expanded");
-        });
-      })
-    );
+      });
+    }));
 
-    it(
-      "should collapse previous panel",
-      waitForAsync(() => {
-        fixture.debugElement.nativeElement
-          .querySelector(
-            ".mdl-expansion-panel:nth-child(2) .mdl-expansion-panel__header--expand-icon"
-          )
-          .click();
-        fixture.detectChanges();
-        fixture.whenStable().then(() => {
-          expect(
-            fixture.debugElement.nativeElement
-              .querySelector(".mdl-expansion-panel:nth-child(1)")
-              .getAttribute("class")
-          ).not.toContain("expanded");
-          expect(
-            fixture.debugElement.nativeElement
-              .querySelector(".mdl-expansion-panel:nth-child(2)")
-              .getAttribute("class")
-          ).toContain("expanded");
-        });
-      })
-    );
+    it("should allow one panel which is initialized in expanded state", waitForAsync(() => {
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(
+          fixture.debugElement.nativeElement
+            .querySelector(".mdl-expansion-panel:nth-child(1)")
+            .getAttribute("class")
+        ).toContain("expanded");
+        expect(
+          fixture.debugElement.nativeElement
+            .querySelector(".mdl-expansion-panel:nth-child(2)")
+            .getAttribute("class")
+        ).not.toContain("expanded");
+        expect(
+          fixture.debugElement.nativeElement
+            .querySelector(".mdl-expansion-panel:nth-child(3)")
+            .getAttribute("class")
+        ).not.toContain("expanded");
+      });
+    }));
+
+    it("should collapse previous panel", waitForAsync(() => {
+      fixture.debugElement.nativeElement
+        .querySelector(
+          ".mdl-expansion-panel:nth-child(2) .mdl-expansion-panel__header--expand-icon"
+        )
+        .click();
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(
+          fixture.debugElement.nativeElement
+            .querySelector(".mdl-expansion-panel:nth-child(1)")
+            .getAttribute("class")
+        ).not.toContain("expanded");
+        expect(
+          fixture.debugElement.nativeElement
+            .querySelector(".mdl-expansion-panel:nth-child(2)")
+            .getAttribute("class")
+        ).toContain("expanded");
+      });
+    }));
 
     it("throws if panel group panels are initialized incorrectly", () => {
       let error;
@@ -237,21 +213,19 @@ describe("MdlExpansionPanel", () => {
     let fixture: ComponentFixture<TestGroupPanelComponent>;
     let panel: DebugElement;
 
-    beforeEach(
-      waitForAsync(() => {
-        TestBed.configureTestingModule({
-          imports: [MdlExpansionPanelModule.forRoot(), NoopAnimationsModule],
-          declarations: [TestPanelHostComponent],
-        });
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [MdlExpansionPanelModule.forRoot(), NoopAnimationsModule],
+        declarations: [TestPanelHostComponent],
+      });
 
-        TestBed.compileComponents().then(() => {
-          fixture = TestBed.createComponent(TestPanelHostComponent);
-          fixture.detectChanges();
+      TestBed.compileComponents().then(() => {
+        fixture = TestBed.createComponent(TestPanelHostComponent);
+        fixture.detectChanges();
 
-          panel = fixture.debugElement.query(By.css("mdl-expansion-panel"));
-        });
-      })
-    );
+        panel = fixture.debugElement.query(By.css("mdl-expansion-panel"));
+      });
+    }));
 
     it("should be disabled depending on input", () => {
       expect(panel.classes).toEqual(

@@ -10,7 +10,6 @@ import {
   imports: [CommonModule, MdlDialogOutletModule.forRoot()],
   exports: [MdlSnackbarComponent],
   declarations: [MdlSnackbarComponent],
-  entryComponents: [MdlSnackbarComponent],
 })
 export class MdlSnackbarModule {
   static forRoot(): ModuleWithProviders<MdlSnackbarModule> {

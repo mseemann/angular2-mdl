@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { flyInOutTrigger } from "../animations/flyInOutTrigger-animation";
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -22,21 +22,21 @@ const emailValidator = Validators.pattern(
 })
 export class ReactiveFormsDemoComponent extends AbstractDemoComponent {
   public disableForm = false;
-  public form: FormGroup;
-  public firstName = new FormControl("");
-  public lastName = new FormControl("", Validators.required);
-  public email = new FormControl("", emailValidator);
-  public email2 = new FormControl("", emailValidator);
-  public breakfast = new FormControl("Continental");
-  public toDrink = new FormControl("Tea");
+  public form: UntypedFormGroup;
+  public firstName = new UntypedFormControl("");
+  public lastName = new UntypedFormControl("", Validators.required);
+  public email = new UntypedFormControl("", emailValidator);
+  public email2 = new UntypedFormControl("", emailValidator);
+  public breakfast = new UntypedFormControl("Continental");
+  public toDrink = new UntypedFormControl("Tea");
 
-  public testForm: FormGroup;
+  public testForm: UntypedFormGroup;
 
   constructor(
     router: Router,
     route: ActivatedRoute,
     titleService: Title,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {
     super(router, route, titleService);
     this.form = this.fb.group({
@@ -63,12 +63,12 @@ export class ReactiveFormsDemoComponent extends AbstractDemoComponent {
       });
 
     // testform radio buttons inside groups
-    this.testForm = new FormGroup({
-      group1: new FormGroup({
-        type: new FormControl(""),
+    this.testForm = new UntypedFormGroup({
+      group1: new UntypedFormGroup({
+        type: new UntypedFormControl(""),
       }),
-      group2: new FormGroup({
-        type: new FormControl(""),
+      group2: new UntypedFormGroup({
+        type: new UntypedFormControl(""),
       }),
     });
   }

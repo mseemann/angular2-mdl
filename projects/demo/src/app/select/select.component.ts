@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
 import { AbstractDemoComponent } from "../abstract-demo.component";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
@@ -14,9 +14,9 @@ import { flyInOutTrigger } from "../animations/flyInOutTrigger-animation";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent extends AbstractDemoComponent {
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  personId: FormControl = new FormControl(1);
+  personId: UntypedFormControl = new UntypedFormControl(1);
   people: any[] = [
     { id: 1, name: "Bryan Cranston" },
     { id: 2, name: "Aaron Paul" },
@@ -90,8 +90,8 @@ export class SelectComponent extends AbstractDemoComponent {
   };
   food: string[] = [];
 
-  arrayForm: FormGroup;
-  locationControl = new FormControl("");
+  arrayForm: UntypedFormGroup;
+  locationControl = new UntypedFormControl("");
 
   cityCoordinates: any = [
     { name: "İstanbul", latitude: "41.0055005", longitude: "28.7319952" },
@@ -106,11 +106,11 @@ export class SelectComponent extends AbstractDemoComponent {
 
   constructor(router: Router, route: ActivatedRoute, titleService: Title) {
     super(router, route, titleService);
-    this.form = new FormGroup({
+    this.form = new UntypedFormGroup({
       personId: this.personId,
     });
 
-    this.arrayForm = new FormGroup({
+    this.arrayForm = new UntypedFormGroup({
       locations: this.locationControl,
     });
 
