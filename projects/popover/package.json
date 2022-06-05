@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/popover",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "description": "Angular Material Design Lite - Popover Component",
   "repository": {
     "type": "git",
@@ -14,6 +14,7 @@
     "angular11",
     "angular12",
     "angular13",
+    "angular14",
     "angular",
     "material design lite",
     "popover"
