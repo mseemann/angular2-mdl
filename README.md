@@ -1,4 +1,4 @@
-Angular 13 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package
+Angular 14 components, directives and styles based on material design lite https://getmdl.io (v: 1.3.0). This package
 assumes that you are building an Angular app with TypeScript. Angular CLI makes it even easier but isn't required.
 
 [![CircleCI](https://circleci.com/gh/mseemann/angular2-mdl/tree/master.svg?style=shield)](https://circleci.com/gh/mseemann/angular2-mdl/tree/master)
@@ -16,7 +16,7 @@ assumes that you are building an Angular app with TypeScript. Angular CLI makes 
   by [AndreaM16](https://github.com/AndreaM16): [Demo-App](https://angular-mdl-dashboard.herokuapp.com/#/home)
   , [Sources](https://github.com/AndreaM16/angular-mdl-dashboard).
 
-### Status of the npm package version 13 (mdl version 1.3.0; angular 13)
+### Status of the npm package version 14 (mdl version 1.3.0; angular 14)
 
 - Badges
 - Buttons
