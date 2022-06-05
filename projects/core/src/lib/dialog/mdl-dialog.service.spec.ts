@@ -111,32 +111,36 @@ describe("Service: MdlDialog", () => {
   let mdlDialogOutletService: MdlDialogOutletService;
   let doc: HTMLDocument;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [MdlTestViewComponent],
-      imports: [
-        MdlDialogModule.forRoot(),
-        MdlDialogOutletModule,
-        TestDialogModul,
-        MdlButtonModule.forRoot(),
-      ],
-    });
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [MdlTestViewComponent],
+        imports: [
+          MdlDialogModule.forRoot(),
+          MdlDialogOutletModule,
+          TestDialogModul,
+          MdlButtonModule.forRoot(),
+        ],
+      });
+    })
+  );
 
-  beforeEach(waitForAsync(
-    inject(
-      [MdlDialogService, MdlDialogOutletService, DOCUMENT],
-      (
-        service: MdlDialogService,
-        dialogOutletService: MdlDialogOutletService,
-        document: HTMLDocument
-      ) => {
-        mdlDialogService = service;
-        mdlDialogOutletService = dialogOutletService;
-        doc = document;
-      }
+  beforeEach(
+    waitForAsync(
+      inject(
+        [MdlDialogService, MdlDialogOutletService, DOCUMENT],
+        (
+          service: MdlDialogService,
+          dialogOutletService: MdlDialogOutletService,
+          document: HTMLDocument
+        ) => {
+          mdlDialogService = service;
+          mdlDialogOutletService = dialogOutletService;
+          doc = document;
+        }
+      )
     )
-  ));
+  );
 
   it("should show an alert", (done) => {
     const title = "Alert";
@@ -270,31 +274,37 @@ describe("Service: MdlDialog", () => {
     fixture.detectChanges();
   });
 
-  it("should stop propagaton on overlay clicks", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
+  it(
+    "should stop propagaton on overlay clicks",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestViewComponent);
+      fixture.detectChanges();
 
-    mdlDialogService.alert("Alert");
+      mdlDialogService.alert("Alert");
 
-    const backdrop = doc.querySelector(".dialog-backdrop") as HTMLDivElement;
+      const backdrop = doc.querySelector(".dialog-backdrop") as HTMLDivElement;
 
-    const event = new MouseEvent("click", {});
+      const event = new MouseEvent("click", {});
 
-    spyOn(event, "stopPropagation");
+      spyOn(event, "stopPropagation");
 
-    backdrop.dispatchEvent(event);
+      backdrop.dispatchEvent(event);
 
-    expect(event.stopPropagation).toHaveBeenCalled();
-  }));
+      expect(event.stopPropagation).toHaveBeenCalled();
+    })
+  );
 
-  it("should not be possible to create a simple dialog without actions", waitForAsync(() => {
-    expect(() => {
-      mdlDialogService.showDialog({
-        message: "x",
-        actions: [],
-      });
-    }).toThrow();
-  }));
+  it(
+    "should not be possible to create a simple dialog without actions",
+    waitForAsync(() => {
+      expect(() => {
+        mdlDialogService.showDialog({
+          message: "x",
+          actions: [],
+        });
+      }).toThrow();
+    })
+  );
 
   it("should not hide the dialog on esc key  if there is no closing action", (done) => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
@@ -325,90 +335,106 @@ describe("Service: MdlDialog", () => {
     fixture.detectChanges();
   });
 
-  it("should throw if no viewContainerRef is provided", waitForAsync(() => {
-    mdlDialogOutletService.setDefaultViewContainerRef(null);
+  it(
+    "should throw if no viewContainerRef is provided",
+    waitForAsync(() => {
+      mdlDialogOutletService.setDefaultViewContainerRef(null);
 
-    expect(() => {
-      mdlDialogService.alert("m");
-    }).toThrow();
-  }));
+      expect(() => {
+        mdlDialogService.alert("m");
+      }).toThrow();
+    })
+  );
 
-  it("should close the dialog on click on the backdrop if clickOutsideToClose true", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
+  it(
+    "should close the dialog on click on the backdrop if clickOutsideToClose true",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestViewComponent);
+      fixture.detectChanges();
 
-    const p = mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      isModal: true,
-      clickOutsideToClose: true,
-    });
-
-    p.subscribe((dialogRef) => {
-      dialogRef.onHide().subscribe(() => {
-        // async -> this have to been called to fullfill all open obseravbles
+      const p = mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        isModal: true,
+        clickOutsideToClose: true,
       });
 
-      const backdrop = doc.querySelector(".dialog-backdrop") as HTMLDivElement;
+      p.subscribe((dialogRef) => {
+        dialogRef.onHide().subscribe(() => {
+          // async -> this have to been called to fullfill all open obseravbles
+        });
 
-      const event = new MouseEvent("click", {});
+        const backdrop = doc.querySelector(
+          ".dialog-backdrop"
+        ) as HTMLDivElement;
 
-      backdrop.dispatchEvent(event);
-    });
-  }));
+        const event = new MouseEvent("click", {});
 
-  it("should not close the dialog on click on the backdrop if clickOutsideToClose true", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
+        backdrop.dispatchEvent(event);
+      });
+    })
+  );
 
-    const p = mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      isModal: true,
-      clickOutsideToClose: false,
-    });
+  it(
+    "should not close the dialog on click on the backdrop if clickOutsideToClose true",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestViewComponent);
+      fixture.detectChanges();
 
-    p.subscribe(() => {
-      const backdrop = doc.querySelector(".dialog-backdrop") as HTMLDivElement;
-      expect(backdrop).toBeDefined("dialog-backdrop should be present");
+      const p = mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        isModal: true,
+        clickOutsideToClose: false,
+      });
 
-      const event = new MouseEvent("click", {});
+      p.subscribe(() => {
+        const backdrop = doc.querySelector(
+          ".dialog-backdrop"
+        ) as HTMLDivElement;
+        expect(backdrop).toBeDefined("dialog-backdrop should be present");
 
-      backdrop.dispatchEvent(event);
+        const event = new MouseEvent("click", {});
+
+        backdrop.dispatchEvent(event);
+
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          const dialogHost = fixture.debugElement.query(
+            By.directive(MdlDialogHostComponent)
+          );
+
+          expect(dialogHost).toBeDefined(
+            "dialog host should not be null - because it is not closed."
+          );
+        });
+      });
+    })
+  );
+
+  it(
+    "should disable animations if animate is false",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestViewComponent);
+      fixture.detectChanges();
+
+      mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        animate: false,
+      });
 
       fixture.detectChanges();
+
       fixture.whenStable().then(() => {
         const dialogHost = fixture.debugElement.query(
           By.directive(MdlDialogHostComponent)
         );
 
-        expect(dialogHost).toBeDefined(
-          "dialog host should not be null - because it is not closed."
+        expect(dialogHost.componentInstance.isAnimateEnabled()).toBe(
+          false,
+          "animate should be false"
         );
       });
-    });
-  }));
-
-  it("should disable animations if animate is false", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
-
-    mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      animate: false,
-    });
-
-    fixture.detectChanges();
-
-    fixture.whenStable().then(() => {
-      const dialogHost = fixture.debugElement.query(
-        By.directive(MdlDialogHostComponent)
-      );
-
-      expect(dialogHost.componentInstance.isAnimateEnabled()).toBe(
-        false,
-        "animate should be false"
-      );
-    });
-  }));
+    })
+  );
 
   it("should add additional classes and styles to the dialog host", async () => {
     const fixture = TestBed.createComponent(MdlTestViewComponent);
@@ -440,120 +466,138 @@ describe("Service: MdlDialog", () => {
     );
   });
 
-  it("should open a dialog if openForm is specified", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
+  it(
+    "should open a dialog if openForm is specified",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestViewComponent);
+      fixture.detectChanges();
 
-    const p = mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      styles: { width: "350px" },
-      classes: "a b",
-      openFrom: fixture.componentInstance.button,
-    });
-
-    p.subscribe((dialogRef) => {
-      dialogRef.hide();
-    });
-  }));
-
-  it("should open a dialog if animation is false", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
-
-    const p = mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      animate: false,
-    });
-
-    p.subscribe((dialogRef) => {
-      dialogRef.hide();
-    });
-  }));
-
-  it("should open a dialog from a button and close to a mouse event position", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
-
-    const p = mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      styles: { width: "350px" },
-      classes: "a b",
-      openFrom: fixture.componentInstance.button,
-      closeTo: fixture.componentInstance.getFakeMouseEvent(),
-    });
-
-    p.subscribe((dialogRef) => {
-      dialogRef.hide();
-    });
-  }));
-
-  it("should open a dialog from a OpenCloseRect ", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
-
-    const p = mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      styles: { width: "350px" },
-      classes: "a b",
-      openFrom: { height: 10, left: 0, top: 0, width: 0 } as IOpenCloseRect,
-    });
-
-    p.subscribe((dialogRef) => {
-      dialogRef.hide();
-    });
-  }));
-
-  it("should emit an event when the first dialog instance is opened", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
-
-    const spy = spyOn(mdlDialogService.onDialogsOpenChanged, "emit");
-
-    mdlDialogService.onDialogsOpenChanged.subscribe((dialogsOpen) => {
-      expect(dialogsOpen).toBe(true);
-    });
-
-    mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      providers: [{ provide: TEST, useValue: "test" }],
-    });
-
-    mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      providers: [{ provide: TEST, useValue: "test 2" }],
-    });
-
-    expect(spy.calls.count()).toEqual(1);
-  }));
-
-  it("should emit an event when the last dialog instance is closed", waitForAsync(() => {
-    const fixture = TestBed.createComponent(MdlTestViewComponent);
-    fixture.detectChanges();
-
-    const spy = spyOn(mdlDialogService.onDialogsOpenChanged, "emit");
-
-    const p = mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      providers: [{ provide: TEST, useValue: "test 1" }],
-    });
-
-    const p2 = mdlDialogService.showCustomDialog({
-      component: TestCustomDialogComponent,
-      providers: [{ provide: TEST, useValue: "test 2" }],
-    });
-
-    mdlDialogService.onDialogsOpenChanged.subscribe((dialogsOpen) => {
-      expect(dialogsOpen).toBe(false);
-    });
-
-    p.subscribe((dialogRef) => {
-      dialogRef.hide();
-
-      p2.subscribe((dialogRef2) => {
-        dialogRef2.hide();
-
-        expect(spy.calls.count()).toEqual(2); // 1 open, 1 close.
+      const p = mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        styles: { width: "350px" },
+        classes: "a b",
+        openFrom: fixture.componentInstance.button,
       });
-    });
-  }));
+
+      p.subscribe((dialogRef) => {
+        dialogRef.hide();
+      });
+    })
+  );
+
+  it(
+    "should open a dialog if animation is false",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestViewComponent);
+      fixture.detectChanges();
+
+      const p = mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        animate: false,
+      });
+
+      p.subscribe((dialogRef) => {
+        dialogRef.hide();
+      });
+    })
+  );
+
+  it(
+    "should open a dialog from a button and close to a mouse event position",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestViewComponent);
+      fixture.detectChanges();
+
+      const p = mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        styles: { width: "350px" },
+        classes: "a b",
+        openFrom: fixture.componentInstance.button,
+        closeTo: fixture.componentInstance.getFakeMouseEvent(),
+      });
+
+      p.subscribe((dialogRef) => {
+        dialogRef.hide();
+      });
+    })
+  );
+
+  it(
+    "should open a dialog from a OpenCloseRect ",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestViewComponent);
+      fixture.detectChanges();
+
+      const p = mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        styles: { width: "350px" },
+        classes: "a b",
+        openFrom: { height: 10, left: 0, top: 0, width: 0 } as IOpenCloseRect,
+      });
+
+      p.subscribe((dialogRef) => {
+        dialogRef.hide();
+      });
+    })
+  );
+
+  it(
+    "should emit an event when the first dialog instance is opened",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestViewComponent);
+      fixture.detectChanges();
+
+      const spy = spyOn(mdlDialogService.onDialogsOpenChanged, "emit");
+
+      mdlDialogService.onDialogsOpenChanged.subscribe((dialogsOpen) => {
+        expect(dialogsOpen).toBe(true);
+      });
+
+      mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        providers: [{ provide: TEST, useValue: "test" }],
+      });
+
+      mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        providers: [{ provide: TEST, useValue: "test 2" }],
+      });
+
+      expect(spy.calls.count()).toEqual(1);
+    })
+  );
+
+  it(
+    "should emit an event when the last dialog instance is closed",
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(MdlTestViewComponent);
+      fixture.detectChanges();
+
+      const spy = spyOn(mdlDialogService.onDialogsOpenChanged, "emit");
+
+      const p = mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        providers: [{ provide: TEST, useValue: "test 1" }],
+      });
+
+      const p2 = mdlDialogService.showCustomDialog({
+        component: TestCustomDialogComponent,
+        providers: [{ provide: TEST, useValue: "test 2" }],
+      });
+
+      mdlDialogService.onDialogsOpenChanged.subscribe((dialogsOpen) => {
+        expect(dialogsOpen).toBe(false);
+      });
+
+      p.subscribe((dialogRef) => {
+        dialogRef.hide();
+
+        p2.subscribe((dialogRef2) => {
+          dialogRef2.hide();
+
+          expect(spy.calls.count()).toEqual(2); // 1 open, 1 close.
+        });
+      });
+    })
+  );
 });
