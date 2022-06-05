@@ -191,623 +191,703 @@ describe("MdlSelect", () => {
   describe("single", () => {
     let fixture: ComponentFixture<TestSingleComponent>;
 
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [MdlSelectModule.forRoot(), FormsModule],
-        declarations: [TestSingleComponent],
-      });
-
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestSingleComponent);
-        fixture.detectChanges();
-      });
-    }));
-
-    it("should support floating-label attr", waitForAsync(() => {
-      const selectComponent = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      );
-
-      const selectNativeElement = selectComponent.nativeElement;
-
-      expect(
-        selectNativeElement.classList.contains("mdl-select--floating-label")
-      ).toBe(true, "did not has css class mdl-select--floating-label");
-
-      expect(
-        selectComponent.nativeElement.querySelector(".mdl-textfield__label")
-          .innerText
-      ).toBe(
-        selectComponent.componentInstance.label,
-        "did not set correct label text"
-      );
-    }));
-
-    it("should create the component and add the mdl-select css class", waitForAsync(() => {
-      const selectComponent = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      );
-
-      const selectNativeElement = selectComponent.nativeElement;
-
-      expect(selectNativeElement.classList.contains("mdl-select")).toBe(
-        true,
-        "did not has css class mdl-select"
-      );
-    }));
-
-    it("should support ngModel", waitForAsync(() => {
-      const testInstance = fixture.componentInstance;
-      const selectComponent = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
-
-      fixture.whenStable().then(() => {
-        expect(selectComponent.model).toEqual(1, "did not init ngModel");
-
-        testInstance.personId = 2;
-
-        fixture.detectChanges();
-        fixture.whenStable().then(() => {
-          expect(selectComponent.model).toEqual(2, "did not update ngModel");
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [MdlSelectModule.forRoot(), FormsModule],
+          declarations: [TestSingleComponent],
         });
-      });
-    }));
 
-    it("should reset ngModel", waitForAsync(() => {
-      const selectComponentInstance = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
+        TestBed.compileComponents().then(() => {
+          fixture = TestBed.createComponent(TestSingleComponent);
+          fixture.detectChanges();
+        });
+      })
+    );
 
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.model).toEqual(
-          1,
-          "did not init ngModel"
+    it(
+      "should support floating-label attr",
+      waitForAsync(() => {
+        const selectComponent = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
         );
 
-        selectComponentInstance.reset();
+        const selectNativeElement = selectComponent.nativeElement;
+
+        expect(
+          selectNativeElement.classList.contains("mdl-select--floating-label")
+        ).toBe(true, "did not has css class mdl-select--floating-label");
+
+        expect(
+          selectComponent.nativeElement.querySelector(".mdl-textfield__label")
+            .innerText
+        ).toBe(
+          selectComponent.componentInstance.label,
+          "did not set correct label text"
+        );
+      })
+    );
+
+    it(
+      "should create the component and add the mdl-select css class",
+      waitForAsync(() => {
+        const selectComponent = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        );
+
+        const selectNativeElement = selectComponent.nativeElement;
+
+        expect(selectNativeElement.classList.contains("mdl-select")).toBe(
+          true,
+          "did not has css class mdl-select"
+        );
+      })
+    );
+
+    it(
+      "should support ngModel",
+      waitForAsync(() => {
+        const testInstance = fixture.componentInstance;
+        const selectComponent = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
+
+        fixture.whenStable().then(() => {
+          expect(selectComponent.model).toEqual(1, "did not init ngModel");
+
+          testInstance.personId = 2;
+
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(selectComponent.model).toEqual(2, "did not update ngModel");
+          });
+        });
+      })
+    );
+
+    it(
+      "should reset ngModel",
+      waitForAsync(() => {
+        const selectComponentInstance = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
+
+        fixture.whenStable().then(() => {
+          expect(selectComponentInstance.model).toEqual(
+            1,
+            "did not init ngModel"
+          );
+
+          selectComponentInstance.reset();
+
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(selectComponentInstance.model).toEqual(
+              "",
+              "did not reset ngModel"
+            );
+          });
+        });
+      })
+    );
+
+    it(
+      "should bind options on options change",
+      waitForAsync(() => {
+        const testInstance = fixture.componentInstance;
+        const selectComponentInstance = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
+
+        spyOn(selectComponentInstance, "bindOptions").and.callThrough();
+
+        testInstance.people.push({ id: 4, name: "Gary Cole" });
 
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.model).toEqual(
-            "",
-            "did not reset ngModel"
-          );
+          expect(selectComponentInstance.bindOptions).toHaveBeenCalled();
+
+          expect(selectComponentInstance.textByValue[4]).toEqual("Gary Cole");
         });
-      });
-    }));
+      })
+    );
 
-    it("should bind options on options change", waitForAsync(() => {
-      const testInstance = fixture.componentInstance;
-      const selectComponentInstance = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
+    it(
+      "focus should have keyboard events",
+      waitForAsync(() => {
+        jasmine.clock().uninstall();
+        jasmine.clock().install();
 
-      spyOn(selectComponentInstance, "bindOptions").and.callThrough();
+        const selectComponent = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        );
 
-      testInstance.people.push({ id: 4, name: "Gary Cole" });
+        const selectNativeElement = selectComponent.nativeElement;
 
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.bindOptions).toHaveBeenCalled();
+        const selectComponentInstance = selectComponent.componentInstance;
 
-        expect(selectComponentInstance.textByValue[4]).toEqual("Gary Cole");
-      });
-    }));
+        spyOn(selectComponentInstance, "onKeyDown").and.callThrough();
 
-    it("focus should have keyboard events", waitForAsync(() => {
-      jasmine.clock().uninstall();
-      jasmine.clock().install();
+        spyOn(selectComponentInstance, "onArrow").and.callThrough();
 
-      const selectComponent = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      );
+        // console.log(selectNativeElement.querySelector("span[tabindex]"));
+        // document.body.appendChild(selectNativeElement);
 
-      const selectNativeElement = selectComponent.nativeElement;
+        selectNativeElement.querySelector("span[tabindex]").focus();
+        jasmine.clock().tick(500); // onFocus timeout is cleared
+        fixture.detectChanges();
 
-      const selectComponentInstance = selectComponent.componentInstance;
+        expect(selectComponentInstance.popoverComponent.isVisible).toEqual(
+          true,
+          "toggle did not update isVisible to true"
+        );
 
-      spyOn(selectComponentInstance, "onKeyDown").and.callThrough();
+        dispatchKeydownEvent(
+          selectNativeElement.querySelector("span"),
+          KEYS.downArrow
+        );
 
-      spyOn(selectComponentInstance, "onArrow").and.callThrough();
+        dispatchKeydownEvent(
+          selectNativeElement.querySelector("span"),
+          KEYS.upArrow
+        );
 
-      // console.log(selectNativeElement.querySelector("span[tabindex]"));
-      // document.body.appendChild(selectNativeElement);
+        dispatchKeydownEvent(
+          selectNativeElement.querySelector("span"),
+          KEYS.tab
+        );
 
-      selectNativeElement.querySelector("span[tabindex]").focus();
-      jasmine.clock().tick(500); // onFocus timeout is cleared
-      fixture.detectChanges();
+        fixture.detectChanges();
 
-      expect(selectComponentInstance.popoverComponent.isVisible).toEqual(
-        true,
-        "toggle did not update isVisible to true"
-      );
+        fixture.debugElement.nativeElement.click(); // click outside select to close
+        fixture.detectChanges();
 
-      dispatchKeydownEvent(
-        selectNativeElement.querySelector("span"),
-        KEYS.downArrow
-      );
+        expect(selectComponentInstance.popoverComponent.isVisible).toEqual(
+          false,
+          "toggle did not update isVisible to false"
+        );
 
-      dispatchKeydownEvent(
-        selectNativeElement.querySelector("span"),
-        KEYS.upArrow
-      );
+        expect(selectComponentInstance.onKeyDown).toHaveBeenCalled();
+        // eslint-disable-next-line
+        expect(
+          selectComponentInstance.onArrow.calls
+            .allArgs()
+            .map((args: any) => args[1])
+        ).toEqual([1, -1]);
 
-      dispatchKeydownEvent(selectNativeElement.querySelector("span"), KEYS.tab);
+        jasmine.clock().uninstall();
+      })
+    );
 
-      fixture.detectChanges();
+    it(
+      "should auto-select searched options",
+      waitForAsync(() => {
+        jasmine.clock().uninstall();
+        jasmine.clock().install();
 
-      fixture.debugElement.nativeElement.click(); // click outside select to close
-      fixture.detectChanges();
+        const selectComponent = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        );
 
-      expect(selectComponentInstance.popoverComponent.isVisible).toEqual(
-        false,
-        "toggle did not update isVisible to false"
-      );
+        const selectNativeElement = selectComponent.nativeElement;
 
-      expect(selectComponentInstance.onKeyDown).toHaveBeenCalled();
-      // eslint-disable-next-line
-      expect(
-        selectComponentInstance.onArrow.calls
-          .allArgs()
-          .map((args: any) => args[1])
-      ).toEqual([1, -1]);
+        const selectComponentInstance = selectComponent.componentInstance;
 
-      jasmine.clock().uninstall();
-    }));
+        spyOn(selectComponentInstance, "onSelect").and.callThrough();
+        spyOn(selectComponentInstance, "onCharacterKeydown").and.callThrough();
 
-    it("should auto-select searched options", waitForAsync(() => {
-      jasmine.clock().uninstall();
-      jasmine.clock().install();
+        selectNativeElement.querySelector("span[tabindex]").focus();
+        jasmine.clock().tick(500); // onFocus timeout is cleared
+        fixture.detectChanges();
 
-      const selectComponent = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      );
+        expect(selectComponentInstance.model).toEqual(1);
+        dispatchKeydownEvent(selectNativeElement, KEYS.b);
+        fixture.detectChanges();
 
-      const selectNativeElement = selectComponent.nativeElement;
+        expect(selectComponentInstance.onSelect).not.toHaveBeenCalled();
+        expect(selectComponentInstance.onCharacterKeydown).toHaveBeenCalled();
+        expect(selectComponentInstance.model).toEqual(1);
 
-      const selectComponentInstance = selectComponent.componentInstance;
+        dispatchKeydownEvent(selectNativeElement, KEYS.o);
+        fixture.detectChanges();
 
-      spyOn(selectComponentInstance, "onSelect").and.callThrough();
-      spyOn(selectComponentInstance, "onCharacterKeydown").and.callThrough();
+        expect(selectComponentInstance.onSelect).toHaveBeenCalled();
+        expect(selectComponentInstance.searchQuery).toEqual("bo");
+        expect(selectComponentInstance.model).toEqual(3); // B and O typed, so 'Bob Odenkirk' selected
 
-      selectNativeElement.querySelector("span[tabindex]").focus();
-      jasmine.clock().tick(500); // onFocus timeout is cleared
-      fixture.detectChanges();
+        jasmine.clock().tick(300); // search query timeout is cleared
 
-      expect(selectComponentInstance.model).toEqual(1);
-      dispatchKeydownEvent(selectNativeElement, KEYS.b);
-      fixture.detectChanges();
+        expect(selectComponentInstance.searchQuery).toEqual("");
 
-      expect(selectComponentInstance.onSelect).not.toHaveBeenCalled();
-      expect(selectComponentInstance.onCharacterKeydown).toHaveBeenCalled();
-      expect(selectComponentInstance.model).toEqual(1);
+        dispatchKeydownEvent(selectNativeElement, KEYS.a);
+        fixture.detectChanges();
 
-      dispatchKeydownEvent(selectNativeElement, KEYS.o);
-      fixture.detectChanges();
+        expect(selectComponentInstance.onSelect).toHaveBeenCalled();
+        expect(selectComponentInstance.model).toEqual(2); // A typed, so 'Aaron Paul' selected
 
-      expect(selectComponentInstance.onSelect).toHaveBeenCalled();
-      expect(selectComponentInstance.searchQuery).toEqual("bo");
-      expect(selectComponentInstance.model).toEqual(3); // B and O typed, so 'Bob Odenkirk' selected
-
-      jasmine.clock().tick(300); // search query timeout is cleared
-
-      expect(selectComponentInstance.searchQuery).toEqual("");
-
-      dispatchKeydownEvent(selectNativeElement, KEYS.a);
-      fixture.detectChanges();
-
-      expect(selectComponentInstance.onSelect).toHaveBeenCalled();
-      expect(selectComponentInstance.model).toEqual(2); // A typed, so 'Aaron Paul' selected
-
-      jasmine.clock().uninstall();
-    }));
+        jasmine.clock().uninstall();
+      })
+    );
   });
 
   describe("single, without model", () => {
     let fixture: ComponentFixture<TestSingleComponentNoModelComponent>;
 
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [MdlSelectModule.forRoot()],
-        declarations: [TestSingleComponentNoModelComponent],
-      });
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [MdlSelectModule.forRoot()],
+          declarations: [TestSingleComponentNoModelComponent],
+        });
 
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestSingleComponentNoModelComponent);
-        fixture.detectChanges();
-      });
-    }));
+        TestBed.compileComponents().then(() => {
+          fixture = TestBed.createComponent(
+            TestSingleComponentNoModelComponent
+          );
+          fixture.detectChanges();
+        });
+      })
+    );
 
-    it("should select vlaue and display text", waitForAsync(() => {
-      const selectComponentInstance = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
+    it(
+      "should select vlaue and display text",
+      waitForAsync(() => {
+        const selectComponentInstance = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
 
-      const noModelData = [
-        { value: "first", text: "Bryan Cranston" },
-        { value: "second", text: "Aaron Paul" },
-        { value: "third", text: "Bob Odenkirk" },
-      ];
+        const noModelData = [
+          { value: "first", text: "Bryan Cranston" },
+          { value: "second", text: "Aaron Paul" },
+          { value: "third", text: "Bob Odenkirk" },
+        ];
 
-      selectComponentInstance.onSelect(noModelData[0].value);
-
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.text).toEqual(noModelData[0].text);
-
-        selectComponentInstance.onSelect(noModelData[1].value);
+        selectComponentInstance.onSelect(noModelData[0].value);
 
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-          expect(selectComponentInstance.text).toEqual(noModelData[1].text);
+          expect(selectComponentInstance.text).toEqual(noModelData[0].text);
+
+          selectComponentInstance.onSelect(noModelData[1].value);
+
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(selectComponentInstance.text).toEqual(noModelData[1].text);
+          });
         });
-      });
-    }));
+      })
+    );
   });
 
   describe("disabled", () => {
     let fixture: ComponentFixture<TestDisabledComponent>;
 
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [MdlSelectModule.forRoot(), ReactiveFormsModule],
-        declarations: [TestDisabledComponent],
-      });
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [MdlSelectModule.forRoot(), ReactiveFormsModule],
+          declarations: [TestDisabledComponent],
+        });
 
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestDisabledComponent);
-        fixture.detectChanges();
-      });
-    }));
+        TestBed.compileComponents().then(() => {
+          fixture = TestBed.createComponent(TestDisabledComponent);
+          fixture.detectChanges();
+        });
+      })
+    );
 
-    it("should create the component and make it disabled", waitForAsync(() => {
-      const selectComponent = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
+    it(
+      "should create the component and make it disabled",
+      waitForAsync(() => {
+        const selectComponent = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
 
-      fixture.whenStable().then(() => {
-        expect(selectComponent.disabled).toBe(
-          true,
-          "select field should be disabled"
-        );
-      });
-    }));
+        fixture.whenStable().then(() => {
+          expect(selectComponent.disabled).toBe(
+            true,
+            "select field should be disabled"
+          );
+        });
+      })
+    );
   });
 
   describe("autocomplete", () => {
     let fixture: ComponentFixture<TestAutoCompleteComponent>;
 
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [MdlSelectModule.forRoot(), FormsModule],
-        declarations: [TestAutoCompleteComponent],
-      });
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [MdlSelectModule.forRoot(), FormsModule],
+          declarations: [TestAutoCompleteComponent],
+        });
 
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestAutoCompleteComponent);
+        TestBed.compileComponents().then(() => {
+          fixture = TestBed.createComponent(TestAutoCompleteComponent);
+          fixture.detectChanges();
+        });
+      })
+    );
+
+    it(
+      "should not make autoselection when it's on",
+      waitForAsync(() => {
+        const selectComponent = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        );
+
+        const selectNativeElement = selectComponent.nativeElement;
+
+        const selectComponentInstance = selectComponent.componentInstance;
+
+        spyOn(selectComponentInstance, "onSelect").and.callThrough();
+        spyOn(selectComponentInstance, "onCharacterKeydown").and.callThrough();
+
+        selectNativeElement.querySelector("input").focus();
         fixture.detectChanges();
-      });
-    }));
 
-    it("should not make autoselection when it's on", waitForAsync(() => {
-      const selectComponent = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      );
+        expect(selectComponentInstance.model).toBeNull();
+        dispatchKeydownEvent(selectNativeElement, KEYS.b);
+        fixture.detectChanges();
 
-      const selectNativeElement = selectComponent.nativeElement;
+        expect(selectComponentInstance.model).toBeNull();
+      })
+    );
 
-      const selectComponentInstance = selectComponent.componentInstance;
+    it(
+      "should make autoselection on enter",
+      waitForAsync(() => {
+        const selectComponent = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        );
 
-      spyOn(selectComponentInstance, "onSelect").and.callThrough();
-      spyOn(selectComponentInstance, "onCharacterKeydown").and.callThrough();
+        const selectNativeElement = selectComponent.nativeElement;
 
-      selectNativeElement.querySelector("input").focus();
-      fixture.detectChanges();
+        const selectComponentInstance = selectComponent.componentInstance;
 
-      expect(selectComponentInstance.model).toBeNull();
-      dispatchKeydownEvent(selectNativeElement, KEYS.b);
-      fixture.detectChanges();
+        const input = selectNativeElement.querySelector("input");
 
-      expect(selectComponentInstance.model).toBeNull();
-    }));
+        spyOn(selectComponentInstance, "onSelect").and.callThrough();
+        spyOn(selectComponentInstance, "onCharacterKeydown").and.callThrough();
+        input.focus();
 
-    it("should make autoselection on enter", waitForAsync(() => {
-      const selectComponent = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      );
+        fixture.detectChanges();
+        expect(selectComponentInstance.model).toBeNull();
 
-      const selectNativeElement = selectComponent.nativeElement;
+        dispatchEvent(input, createKeyboardEvent("keyup", KEYS.b, input));
+        fixture.detectChanges();
+        expect(selectComponentInstance.model).toBeNull();
 
-      const selectComponentInstance = selectComponent.componentInstance;
+        dispatchEvent(input, createKeyboardEvent("keyup", KEYS.enter, input));
+        fixture.detectChanges();
+        expect(selectComponentInstance.model).toEqual(1);
+      })
+    );
 
-      const input = selectNativeElement.querySelector("input");
+    it(
+      "should make input writable when autoselection is off",
+      waitForAsync(() => {
+        const selectComponent = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        );
 
-      spyOn(selectComponentInstance, "onSelect").and.callThrough();
-      spyOn(selectComponentInstance, "onCharacterKeydown").and.callThrough();
-      input.focus();
+        const selectNativeElement = selectComponent.nativeElement;
 
-      fixture.detectChanges();
-      expect(selectComponentInstance.model).toBeNull();
-
-      dispatchEvent(input, createKeyboardEvent("keyup", KEYS.b, input));
-      fixture.detectChanges();
-      expect(selectComponentInstance.model).toBeNull();
-
-      dispatchEvent(input, createKeyboardEvent("keyup", KEYS.enter, input));
-      fixture.detectChanges();
-      expect(selectComponentInstance.model).toEqual(1);
-    }));
-
-    it("should make input writable when autoselection is off", waitForAsync(() => {
-      const selectComponent = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      );
-
-      const selectNativeElement = selectComponent.nativeElement;
-
-      expect(selectNativeElement.querySelector("input").readonly).toBeFalsy();
-    }));
+        expect(selectNativeElement.querySelector("input").readonly).toBeFalsy();
+      })
+    );
   });
 
   describe("multiple", () => {
     let fixture: ComponentFixture<TestMultipleComponent>;
 
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [MdlSelectModule.forRoot(), FormsModule],
-        declarations: [TestMultipleComponent],
-      });
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [MdlSelectModule.forRoot(), FormsModule],
+          declarations: [TestMultipleComponent],
+        });
 
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestMultipleComponent);
-        fixture.detectChanges();
-      });
-    }));
+        TestBed.compileComponents().then(() => {
+          fixture = TestBed.createComponent(TestMultipleComponent);
+          fixture.detectChanges();
+        });
+      })
+    );
 
-    it("should create the component and add the mdl-select css class", waitForAsync(() => {
-      const selectComponent = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      );
-
-      const selectNativeElement = selectComponent.nativeElement;
-
-      expect(selectNativeElement.classList.contains("mdl-select")).toBe(
-        true,
-        "did not have css class mdl-select"
-      );
-    }));
-
-    it("should support ngModel", waitForAsync(() => {
-      const testInstance = fixture.componentInstance;
-      const selectComponentInstance = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
-
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.model).toEqual(
-          [1, 2],
-          "did not init ngModel"
+    it(
+      "should create the component and add the mdl-select css class",
+      waitForAsync(() => {
+        const selectComponent = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
         );
 
-        testInstance.personIds = [3];
+        const selectNativeElement = selectComponent.nativeElement;
 
-        fixture.detectChanges();
-        fixture.whenStable().then(() => {
-          expect(selectComponentInstance.model).toEqual(
-            [3],
-            "did not update ngModel"
-          );
-        });
-      });
-    }));
-
-    it("should reset ngModel", waitForAsync(() => {
-      const selectComponentInstance = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
-
-      spyOn(selectComponentInstance, "bindOptions");
-
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.model).toEqual(
-          [1, 2],
-          "did not init ngModel"
+        expect(selectNativeElement.classList.contains("mdl-select")).toBe(
+          true,
+          "did not have css class mdl-select"
         );
+      })
+    );
 
-        selectComponentInstance.reset();
-
-        fixture.detectChanges();
-        fixture.whenStable().then(() => {
-          expect(selectComponentInstance.model).toEqual(
-            [],
-            "did not reset ngModel"
-          );
-        });
-      });
-    }));
-
-    it("should select and deselect value", waitForAsync(() => {
-      const selectComponentInstance: MdlSelectComponent =
-        fixture.debugElement.query(
+    it(
+      "should support ngModel",
+      waitForAsync(() => {
+        const testInstance = fixture.componentInstance;
+        const selectComponentInstance = fixture.debugElement.query(
           By.directive(MdlSelectComponent)
         ).componentInstance;
 
-      expect(selectComponentInstance.multiple).toBe(true, "is not multiple");
+        fixture.whenStable().then(() => {
+          expect(selectComponentInstance.model).toEqual(
+            [1, 2],
+            "did not init ngModel"
+          );
 
-      selectComponentInstance.onSelect(3);
+          testInstance.personIds = [3];
 
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.model).toEqual(
-          [1, 2, 3],
-          "did not update ngModel on select 3"
-        );
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(selectComponentInstance.model).toEqual(
+              [3],
+              "did not update ngModel"
+            );
+          });
+        });
+      })
+    );
+
+    it(
+      "should reset ngModel",
+      waitForAsync(() => {
+        const selectComponentInstance = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
+
+        spyOn(selectComponentInstance, "bindOptions");
+
+        fixture.whenStable().then(() => {
+          expect(selectComponentInstance.model).toEqual(
+            [1, 2],
+            "did not init ngModel"
+          );
+
+          selectComponentInstance.reset();
+
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(selectComponentInstance.model).toEqual(
+              [],
+              "did not reset ngModel"
+            );
+          });
+        });
+      })
+    );
+
+    it(
+      "should select and deselect value",
+      waitForAsync(() => {
+        const selectComponentInstance: MdlSelectComponent =
+          fixture.debugElement.query(
+            By.directive(MdlSelectComponent)
+          ).componentInstance;
+
+        expect(selectComponentInstance.multiple).toBe(true, "is not multiple");
 
         selectComponentInstance.onSelect(3);
 
         fixture.detectChanges();
         fixture.whenStable().then(() => {
           expect(selectComponentInstance.model).toEqual(
-            [1, 2],
-            "did not update ngModel on deselect 3"
+            [1, 2, 3],
+            "did not update ngModel on select 3"
           );
+
+          selectComponentInstance.onSelect(3);
+
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(selectComponentInstance.model).toEqual(
+              [1, 2],
+              "did not update ngModel on deselect 3"
+            );
+          });
         });
-      });
-    }));
+      })
+    );
 
-    it("should bind options on options change", waitForAsync(() => {
-      const testInstance = fixture.componentInstance;
-      const selectComponentInstance = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
+    it(
+      "should bind options on options change",
+      waitForAsync(() => {
+        const testInstance = fixture.componentInstance;
+        const selectComponentInstance = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
 
-      spyOn(selectComponentInstance, "bindOptions").and.callThrough();
+        spyOn(selectComponentInstance, "bindOptions").and.callThrough();
 
-      testInstance.people.push({ id: 4, name: "Gary Cole" });
+        testInstance.people.push({ id: 4, name: "Gary Cole" });
 
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.bindOptions).toHaveBeenCalled();
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          expect(selectComponentInstance.bindOptions).toHaveBeenCalled();
 
-        expect(selectComponentInstance.textByValue[4]).toEqual("Gary Cole");
-      });
-    }));
+          expect(selectComponentInstance.textByValue[4]).toEqual("Gary Cole");
+        });
+      })
+    );
   });
   describe("object", () => {
     let fixture: ComponentFixture<TestObjectComponent>;
 
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [MdlSelectModule.forRoot(), FormsModule],
-        declarations: [TestObjectComponent],
-      });
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [MdlSelectModule.forRoot(), FormsModule],
+          declarations: [TestObjectComponent],
+        });
 
-      TestBed.compileComponents().then(() => {
-        fixture = TestBed.createComponent(TestObjectComponent);
-        fixture.detectChanges();
-      });
-    }));
+        TestBed.compileComponents().then(() => {
+          fixture = TestBed.createComponent(TestObjectComponent);
+          fixture.detectChanges();
+        });
+      })
+    );
 
-    it("should support ngModel", waitForAsync(() => {
-      const testInstance = fixture.componentInstance;
-      const selectComponentInstance = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
+    it(
+      "should support ngModel",
+      waitForAsync(() => {
+        const testInstance = fixture.componentInstance;
+        const selectComponentInstance = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
 
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.model).toEqual(
-          [
-            { i: 1, n: "Bryan Cranston" },
-            { i: 2, n: "Aaron Paul" },
-          ],
-          "did not init ngModel"
-        );
-
-        testInstance.personObjs = [{ i: 1, n: "Bryan Cranston" }];
-
-        fixture.detectChanges();
         fixture.whenStable().then(() => {
           expect(selectComponentInstance.model).toEqual(
-            [{ i: 1, n: "Bryan Cranston" }],
-            "did not update ngModel"
+            [
+              { i: 1, n: "Bryan Cranston" },
+              { i: 2, n: "Aaron Paul" },
+            ],
+            "did not init ngModel"
           );
+
+          testInstance.personObjs = [{ i: 1, n: "Bryan Cranston" }];
+
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(selectComponentInstance.model).toEqual(
+              [{ i: 1, n: "Bryan Cranston" }],
+              "did not update ngModel"
+            );
+          });
         });
-      });
-    }));
+      })
+    );
 
-    it("should reset ngModel", waitForAsync(() => {
-      const selectComponentInstance = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
+    it(
+      "should reset ngModel",
+      waitForAsync(() => {
+        const selectComponentInstance = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
 
-      spyOn(selectComponentInstance, "bindOptions");
+        spyOn(selectComponentInstance, "bindOptions");
 
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.model).toEqual(
-          [
-            { i: 1, n: "Bryan Cranston" },
-            { i: 2, n: "Aaron Paul" },
-          ],
-          "did not init ngModel"
-        );
-
-        selectComponentInstance.reset();
-
-        fixture.detectChanges();
         fixture.whenStable().then(() => {
           expect(selectComponentInstance.model).toEqual(
-            [],
-            "did not reset ngModel"
+            [
+              { i: 1, n: "Bryan Cranston" },
+              { i: 2, n: "Aaron Paul" },
+            ],
+            "did not init ngModel"
           );
+
+          selectComponentInstance.reset();
+
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            expect(selectComponentInstance.model).toEqual(
+              [],
+              "did not reset ngModel"
+            );
+          });
         });
-      });
-    }));
+      })
+    );
 
-    it("should select and deselect value", waitForAsync(() => {
-      const selectComponentInstance = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
+    it(
+      "should select and deselect value",
+      waitForAsync(() => {
+        const selectComponentInstance = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
 
-      const arrWith3Obj = [
-        { i: 1, n: "Bryan Cranston" },
-        { i: 2, n: "Aaron Paul" },
-        { i: 3, n: "Bob Odenkirk" },
-      ];
+        const arrWith3Obj = [
+          { i: 1, n: "Bryan Cranston" },
+          { i: 2, n: "Aaron Paul" },
+          { i: 3, n: "Bob Odenkirk" },
+        ];
 
-      expect(selectComponentInstance.multiple).toBe(true, "is not multiple");
-
-      selectComponentInstance.onSelect(arrWith3Obj[2]);
-
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.model).toEqual(
-          arrWith3Obj,
-          "did not update ngModel on select 3"
-        );
+        expect(selectComponentInstance.multiple).toBe(true, "is not multiple");
 
         selectComponentInstance.onSelect(arrWith3Obj[2]);
 
         fixture.detectChanges();
         fixture.whenStable().then(() => {
           expect(selectComponentInstance.model).toEqual(
-            [arrWith3Obj[0], arrWith3Obj[1]],
-            "did not update ngModel on deselect 3"
+            arrWith3Obj,
+            "did not update ngModel on select 3"
           );
 
-          selectComponentInstance.onSelect(arrWith3Obj[1]);
+          selectComponentInstance.onSelect(arrWith3Obj[2]);
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
             expect(selectComponentInstance.model).toEqual(
-              [arrWith3Obj[0]],
+              [arrWith3Obj[0], arrWith3Obj[1]],
               "did not update ngModel on deselect 3"
             );
+
+            selectComponentInstance.onSelect(arrWith3Obj[1]);
+
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+              expect(selectComponentInstance.model).toEqual(
+                [arrWith3Obj[0]],
+                "did not update ngModel on deselect 3"
+              );
+            });
           });
         });
-      });
-    }));
+      })
+    );
 
-    it("should bind options on options change", waitForAsync(() => {
-      const testInstance = fixture.componentInstance;
-      const selectComponentInstance = fixture.debugElement.query(
-        By.directive(MdlSelectComponent)
-      ).componentInstance;
+    it(
+      "should bind options on options change",
+      waitForAsync(() => {
+        const testInstance = fixture.componentInstance;
+        const selectComponentInstance = fixture.debugElement.query(
+          By.directive(MdlSelectComponent)
+        ).componentInstance;
 
-      spyOn(selectComponentInstance, "bindOptions").and.callThrough();
+        spyOn(selectComponentInstance, "bindOptions").and.callThrough();
 
-      testInstance.people.push({ id: 4, name: "Gary Cole" });
+        testInstance.people.push({ id: 4, name: "Gary Cole" });
 
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(selectComponentInstance.bindOptions).toHaveBeenCalled();
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          expect(selectComponentInstance.bindOptions).toHaveBeenCalled();
 
-        expect(
-          selectComponentInstance.textByValue[
-            JSON.stringify({ i: 4, n: "Gary Cole" })
-          ]
-        ).toEqual("Gary Cole");
-      });
-    }));
+          expect(
+            selectComponentInstance.textByValue[
+              JSON.stringify({ i: 4, n: "Gary Cole" })
+            ]
+          ).toEqual("Gary Cole");
+        });
+      })
+    );
   });
 });
