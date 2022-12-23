@@ -17,7 +17,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2018", "dom"],
     "paths": {
@@ -29,7 +29,8 @@
       "@angular-mdl/fab-menu": ["projects/fab-menu/src/public-api.ts"],
       "@angular-mdl/popover": ["projects/popover/src/public-api.ts"],
       "@angular-mdl/select": ["projects/select/src/public-api.ts"]
-    }
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

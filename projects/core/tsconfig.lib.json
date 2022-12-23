@@ -4,7 +4,6 @@
     "paths": {},
     "declarationMap": true,
     "outDir": "../../out-tsc/lib",
-    "target": "es2020",
     "declaration": true,
     "inlineSources": true,
     "types": [],

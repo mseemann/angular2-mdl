@@ -1,6 +1,6 @@
 {
   "name": "@angular-mdl/core",
-  "version": "14.0.0",
+  "version": "15.0.0",
   "license": "MIT",
   "description": "Angular components, directives and styles based on material design lite https://getmdl.io.",
   "homepage": "http://mseemann.io/angular2-mdl/",
@@ -10,7 +10,7 @@
     "directory": "projects/core"
   },
   "keywords": [
-    "angular 2 4 5 6 7 8 9 10 11 12 13 14",
+    "angular 2 4 5 6 7 8 9 10 11 12 13 14 15",
     "angular2",
     "angular4",
     "angular5",
@@ -23,6 +23,7 @@
     "angular12",
     "angular13",
     "angular14",
+    "angular15",
     "angular",
     "material",
     "material design",
@@ -42,9 +43,9 @@
     "toggle"
   ],
   "peerDependencies": {
-    "@angular/core": ">=14.0.0",
-    "@angular/common": ">=14.0.0 <15.0.0",
-    "@angular/forms": ">=14.0.0 <15.0.0"
+    "@angular/core": ">=15.0.0",
+    "@angular/common": ">=15.0.0 <16.0.0",
+    "@angular/forms": ">=15.0.0 <16.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
